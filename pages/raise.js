@@ -46,13 +46,13 @@ const RaisePage = () => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(
-  (store) =>
-    async ({ req, res, ...etc }) => {
-      store.dispatch(getRaisePage());
-      store.dispatch(END);
-      await store.sagaTask.toPromise();
-    }
-);
+// export const getStaticProps = wrapper.getStaticProps(
+//   (store) =>
+//     async ({ req, res, ...etc }) => {
+//       store.dispatch(getRaisePage());
+//       store.dispatch(END);
+//       await store.sagaTask.toPromise();
+//     }
+// );
 
 export default RaisePage;
