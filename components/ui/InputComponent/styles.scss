@@ -1,0 +1,30 @@
+.input_component_label{
+  position: relative;
+  z-index: 1;
+  .input_component_input{
+    &:focus {
+      outline: none;
+      background: rgba(137, 207, 240, 0.2);
+      border: 1px solid #1F607C;
+      resize: none;
+    }
+  }
+}
+.password_eye{
+  position: absolute;
+  right: 12px;
+  top: 49px;
+  cursor: pointer;
+}
+
+.input_warning{
+    background: rgba(246, 86, 71, 0.1) !important;
+  border: 1px solid #FF4D4F !important;
+}
+.input_warning_text{
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  color: red;
+}
+

@@ -1,0 +1,33 @@
+.status {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  height: 30px;
+  font-family: Jost;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  text-align: center;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #353535;
+  border-radius: 6px;
+  box-shadow: 0px 1px 6px rgba(76, 94, 157, 0.25);
+
+
+  &.upcoming {
+    background: #fb7f73;
+  }
+  &.live {
+    background: #8AEB81;
+  }
+  &.successfully_closed{
+    background: #F1AAA1;
+  }
+  &.completed{
+    background: #89CFF0;
+
+  }
+}

@@ -1,0 +1,291 @@
+.home_page_container {
+  overflow: hidden;
+
+  .campaigns_container {
+    //width: 1464px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //margin-right: auto;
+    //margin-left: auto;
+
+    .campaigns_title {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: #323232;
+      margin-bottom: 52px;
+    }
+
+    .campaigns_button {
+      margin-bottom: 60px;
+      width: 260px;
+      height: 56px;
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+
+  .raise_instruction_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 1255px;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: auto;
+    margin-left: auto;
+
+    .raise_step {
+      position: relative;
+      font-family: Mulish;
+      font-style: normal;
+      width: 335px;
+      //height: 100px;
+      overflow: hidden;
+      margin-right: 100px;
+      margin-bottom: 30px;
+      &:nth-child(3n){
+        margin-right: 0;
+      }
+      &:last-child{
+        margin-right: 0;
+      }
+    }
+    .raise_step_text_wrapper{
+      padding-left: 95px;
+
+    }
+
+
+    .step_icon_wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 65px;
+      width: 65px;
+      background-color: #fff;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .raise_step_title {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 150%;
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .raise_step_title_accent {
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: rgba(0, 0, 0, 0.4);
+      margin-right: 10px;
+    }
+
+    .raise_step_text {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 150%;
+      color: #000000;
+      opacity: 0.6;
+    }
+  }
+
+
+
+  .featured_split_line {
+    margin-bottom: 55px;
+    width: 100%;
+    //transform: translateX(-10px);
+  }
+  .instructions_container {
+    background: rgba(220, 232, 248, 0.5);
+    padding-top: 63px;
+    padding-bottom: 108px;
+    width: 100%;
+    //transform: translateX(-10px);
+
+    .instructions_title {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 40px;
+      text-align: center;
+      letter-spacing: 1px;
+      color: rgba(0, 0, 0, 0.87);
+      margin-bottom: 55px;
+    }
+
+    .instructions_tab-bar {
+      width: 470px;
+      background: #c0cee0;
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 75px;
+    }
+
+
+  }
+
+  .join-us_container {
+    padding: 90px 15px;
+
+    .join-us_title {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 32px;
+      line-height: 64px;
+      text-align: center;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+      color: rgba(0, 0, 0, 0.87);
+      margin-bottom: 30px;
+    }
+
+    .join-us_button {
+      width: 206px;
+      height: 50px;
+      margin-right: auto;
+      margin-left: auto;
+      .join-us_button_plus{
+        display: none;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1440px) {
+  .home_page_container{
+    .raise_instruction_container {
+      width: 1165px;
+      .raise_step {
+        margin-right: 55px;}
+    }
+  }
+  .campaigns_container{
+    .campaigns_title{
+      margin-bottom: 61px;
+    }
+  }
+
+  .instructions_container {
+    padding-top: 52px;
+    padding-bottom: 78px;
+  }
+  }
+@media screen and (max-width: 1165px) {
+  .home_page_container {
+    .raise_instruction_container {
+      width: 775px;
+      .raise_step{
+        &:nth-child(3n){
+          margin-right: 55px;
+        }
+        &:nth-child(2n){
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  }
+@media screen and (max-width: 775px) {
+  .home_page_container {
+    .raise_instruction_container {
+      width: 385px;
+      .raise_step{
+        margin-right: 0;
+        &:nth-child(3n){
+          margin-right: 0;
+        }}
+      }
+  }
+
+  }
+
+
+  @media screen and (max-width: 550px) {
+    .home_page_container{
+
+      .instructions_container{
+        .instructions_title {
+          font-size: 30px;
+        }
+        .instructions_tab-bar {
+
+          width: 90%;
+        }
+      }
+      .join-us_container{
+      .join-us_button {
+          .join-us_button_plus{
+            display: block;
+            font-size: 25px;
+            margin-right: 8px;
+          }
+        }
+
+      }
+    }
+    .raise_instruction_container {
+      flex-direction: column;
+      width: 290px;
+
+      .step1,
+      .step2 {
+        margin-right: 0;
+      }
+    }
+  }
+  @media screen and (min-width: 375px) and (max-width: 767px) {
+  }
+@media screen and (max-width: 400px) {
+  .home_page_container {
+    .raise_instruction_container {
+      width: 280px;
+      padding-right: 10px;
+      padding-left: 10px;
+      .raise_step_text_wrapper{
+        padding-left: 85px;
+      }
+      .raise_step{
+        width: 260px;
+      }
+    }
+
+}
+  @media screen and (max-width: 360px) {
+    .home_page_container {
+        .item_container {
+          padding: 50px 15px 0;
+          padding-top: 30px;
+          .item_titel {
+            //font-size: 28px;
+            //line-height: 40px;
+            margin-bottom: 25px;
+          }
+          .item_description {
+            margin-bottom: 30px;
+            font-size:13px;
+          }
+        }
+      }
+
+    }
+  }
+
+
+

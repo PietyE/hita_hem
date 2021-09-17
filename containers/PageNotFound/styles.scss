@@ -1,0 +1,192 @@
+.page_404_container{
+  min-height: calc(100vh - 180px);
+  width: 100%;
+  background-color: #909090;
+  background-image: url('./images/BG404.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 70px;
+  padding-bottom: 40px;
+}
+.page_404_block{
+  width: 531px;
+  height: 370px;
+  border: 6px solid #383A48;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+}
+.page_404_error_wrapper{
+position: relative;
+}
+.page_404_back_block1{
+  position: absolute;
+  top: 20px;
+  left:-20px;
+  z-index: 1;
+  background: #7FD6C2;
+}
+.page_404_back_block2{
+  position: absolute;
+  top: 40px;
+  left:-40px;
+  background: #7FD6C2;
+
+}
+.page_404_error_block{
+  position: relative;
+  background: #F6E049;
+  z-index: 2;
+  margin-bottom: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.page_404_header{
+  height: 65px;
+  width: 100%;
+  background: #3E3E3E;
+  font-family: Anonymous Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 150%;
+  color: #F6E049;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.page_404_text_error{
+  font-family: Anonymous Pro;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 150%;
+  text-align: center;
+  color: #3E3E3E;
+}
+
+.page_404_title{
+  font-family: Anonymous Pro;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 140px;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #3E3E3E;
+}
+.page_404_text {
+  font-family: Anonymous Pro;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 140%;
+  text-align: center;
+  color: #3E3E3E;
+}
+.page_404_text_long{
+  max-width: 360px;
+}
+
+.page_404_button{
+  width: 240px;
+  height: 56px;
+
+}
+
+@media screen and (max-device-width: 1350px) {
+  .page_404_container {
+    padding-top: 30px;
+  }
+  .page_404_error_block {
+    margin-bottom: 62px;
+  }
+  }
+
+@media screen and (max-device-width: 650px) {
+  .page_404_container {
+    padding-top: 50px;
+    min-height: 600px;
+
+  }
+
+  .page_404_block {
+    width: 336px;
+    height: 350px;
+  }
+  .page_404_error_block {
+    margin-bottom: 90px;
+  }
+  .page_404_back_block1{
+    top: 14px;
+    left:-14px;
+  }
+  .page_404_back_block2{
+    top: 29px;
+    left:-29px;
+  }
+  .page_404_header {
+    height: 55px;
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .page_404_title{
+    font-size: 100px;
+  }
+  .page_404_text{
+    font-size: 18px;
+  }
+  .page_404_text_long{
+    max-width: 290px;
+  }
+
+  }
+
+@media screen and (max-device-width: 500px) {
+  .page_404_back_block1{
+    left: 9px;
+    top:11px;
+width: 320px;
+
+  }
+  .page_404_back_block2{
+    left: 15px;
+    top: 22px;
+    width: 310px;
+  }
+  .page_404_button {
+    width: 320px;
+    height: 52px;
+    font-size: 18px;
+  }
+
+}
+
+@media screen and (max-device-width: 350px) {
+  .page_404_error_block {
+    width: 280px;
+  }
+  .page_404_back_block1{
+    left: 6px;
+    width: 270px;
+
+  }
+  .page_404_back_block2{
+    left: 12px;
+    width: 260px;
+
+  }
+  .page_404_button {
+    width: 280px;
+  }
+}

@@ -1,0 +1,450 @@
+.invest_form_section{
+  padding: 45px 60px 60px 60px ;
+  background: rgba(220, 232, 248, 0.5);
+  min-height: calc(100vh - 180px);
+
+  .invest_form_section_title{
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 7px;
+  }
+  .invest_form_section_text{
+    width: 415px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 30px;
+  }
+  .invest_form_content_block{
+    display: flex;
+
+    .invest_form_invest_container{
+      width: 600px;
+      margin-right: 24px;
+
+      .invest_form_invest_progress_bar_container{
+        height: 115px;
+        background: #FFFFFF;
+        border-radius: 6px;
+        padding: 21px 24px;
+        margin-bottom: 25px;
+        .invest_form_invest_progress_bar_label{
+          display: flex;
+          justify-content: space-between;
+          font-family: Mulish;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 150%;
+          color: rgba(0, 0, 0, 0.38);
+        }
+      }
+      .invest_form_invest{
+        height: 501px;
+        background: #FFFFFF;
+        border-radius: 6px;
+        padding: 26px;
+        .invest_form_invest_title{
+          font-family: Raleway;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 150%;
+          color: rgba(0, 0, 0, 0.87);
+          margin-bottom: 20px;
+        }
+        .invest_form_invest_text{
+          position: relative;
+          width: 405px;
+          font-family: Mulish;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 16px;
+          line-height: 150%;
+          color: rgba(0, 0, 0, 0.6);
+          margin-bottom: 25px;
+          padding-left: 40px;
+
+          span{
+            color: #1F607C;
+          }
+
+          &::before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            content: '';
+            width: 29px;
+            height: 26px;
+            background-image: url('./images/icon.svg');
+          }
+        }
+        .invest_form_invest_label{
+          width: 100%;
+          font-family: Mulish;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 22px;
+          color: #333333;
+          padding-bottom: 33px;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+          .invest_form_invest_input{
+            width: 254.06px;
+            height: 40px;
+            background: #FFFFFF;
+            border: 1px solid #C4C4C4;
+            border-radius: 4px;
+            margin-top: 6px;
+            padding-left: 15px;
+            &:focus {
+              outline: none;
+              background: rgba(137, 207, 240, 0.2);
+              border: 1px solid #1F607C;
+              resize: none;
+            }
+            &::placeholder{
+              font-family: Mulish;
+              font-style: normal;
+              font-weight: 600;
+              font-size: 14px;
+              line-height: 150%;
+              color: rgba(0, 0, 0, 0.38);
+            }
+          }
+        }
+        .invest_form_invest_statistics_title{
+          font-family: Raleway;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 150%;
+          color: rgba(0, 0, 0, 0.87);
+          margin-top: 19px;
+          margin-bottom: 17px;
+
+        }
+        .invest_form_invest_shares_container{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: Mulish;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 32px;
+          color: rgba(0, 0, 0, 0.6);
+          .invest_form_invest_shares{
+            text-align: center;
+            min-width: 125.76px;
+            min-height: 36px;
+            background: rgba(137, 207, 240, 0.3);
+            border-radius: 45px;
+            color: #1F607C;
+            padding-right: 10px;
+            padding-left: 10px;
+            margin-right: 15px;
+          }
+        }
+        .invest_form_invest_statistics_text{
+          width: 370px;
+          font-family: Mulish;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 12px;
+          line-height: 130%;
+          color: rgba(0, 0, 0, 0.6);
+          margin-bottom: 20px;
+        }
+        .invest_form_content_block_footer{
+          width: calc(100% + 52px);
+          transform: translateX(-26px);
+          padding: 24px 26px;
+          border-top: 1px solid rgba(0, 0, 0, 0.1);
+          display: flex;
+          justify-content: space-between;
+          font-family: Raleway;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 22px;
+          line-height: 150%;
+          color: #1F607C;
+          .invest_form_content_block_footer_total{
+            font-family: Mulish;
+            font-weight: bold;
+            line-height: 32px;
+          }
+        }
+
+      }
+    }
+
+  }
+
+}
+
+@media screen and(max-width: 1440px){
+  .invest_form_section{
+
+    .invest_form_content_block{
+
+      .invest_form_invest_container{
+        width: 540px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 1200px){
+  .invest_form_section{
+
+    .invest_form_section_title{
+      text-align: center;
+    }
+    .invest_form_section_text{
+      text-align: center;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    .invest_form_content_block{
+      flex-direction: column;
+      align-items: center;
+      .invest_form_invest_container{
+        margin-right: 0;
+        margin-bottom: 40px;
+      }
+    }
+    .invest_form_profile_container{
+      .invest_form_profile_personal_details{
+        width: 540px;
+      }
+    }
+  }
+}
+@media screen and(max-width: 580px){
+  .invest_form_section{
+  padding: 40px 20px;
+    .invest_form_section_title{
+      font-weight: bold;
+      font-size: 28px;
+      line-height: 32px;
+      margin-bottom: 15px;
+    }
+    .invest_form_section_text{
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 150%;
+      margin-bottom: 30px;
+      width:100%;
+    }
+    .invest_form_content_block{
+      .invest_form_invest_container{
+        width: 100%;
+        .invest_form_invest_progress_bar_container{
+          .invest_form_invest_progress_bar_label{
+          }
+        }
+        .invest_form_invest{
+          height: auto;
+          padding-bottom: 0;
+          .invest_form_invest_title{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 150%;
+            margin-bottom: 17px;
+          }
+          .invest_form_invest_text{
+            width: 100%;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 150%;
+            margin-bottom: 20px;
+            &::before{
+              width: 29px;
+              height: 25px;
+            }
+          }
+          .invest_form_invest_label{
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 40px;
+            border-bottom: none;
+            padding-bottom: 0;
+            .invest_form_invest_input{
+              width: 100%;
+
+              font-weight: 600;
+              font-size: 16px;
+              line-height: 150%;
+              &::placeholder{
+              }
+            }
+          }
+          .invest_form_invest_statistics_title{
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 150%;
+          }
+          .invest_form_invest_shares_container{
+            .invest_form_invest_shares{
+            }
+          }
+          .invest_form_invest_statistics_text{
+            width: 100%;
+            font-size: 16px;
+            line-height: 150%;
+          }
+          .invest_form_content_block_footer{
+            padding-bottom: 10px;
+            .invest_form_content_block_footer_total{
+            }
+          }
+        }
+      }
+    }
+    .invest_form_profile_container{
+      .profile_personal_details {
+        width: 100%;
+        .profile_personal_details_title {
+        }
+
+        .profile_form {
+          //padding-right: 15px;
+          //padding-left: 15px;
+
+          .profile_form_upload_avatar_settings {
+            .profile_form_upload_avatar_container {
+              margin-right: 0;
+              margin-left: 0;
+              width: 100%;
+            }
+
+          }
+
+          .profile_form_data_container {
+            position: relative;
+            width: 100%;
+            //height: 791px;
+            height: auto;
+            margin-bottom: 90px;
+
+            .profile_form_data_container_title {
+              font-size: 20px;
+              line-height: 150%;
+              margin-bottom: 12px;
+            }
+
+            .profile_form_birth_text {
+              font-size: 14px;
+              line-height: 22px;
+              margin-bottom: 3px;
+              text-align: left;
+
+            }
+
+            .profile_form_input_container {
+              font-size: 14px;
+              line-height: 22px;
+              margin-bottom: 7px;
+              text-align: left;
+            }
+
+            .profile_form_input {
+              margin-top: 3px;
+              font-size: 11px;
+
+            }
+
+            .profile_input_arrow {
+              width: 33px;
+              top: 25px;
+            }
+
+            .profile_first_name {
+              width: 100%;
+              margin-right: 0;
+            }
+
+            .profile_second_name {
+              width: 100%;
+            }
+
+            .profile_month {
+              width: 100%;
+            }
+
+            .profile_day {
+              width: calc(50% - 8px);
+              margin-right: 16px;
+            }
+
+            .profile_year {
+              width: calc(50% - 8px);
+            }
+
+            .profile_country {
+              width: calc(50% - 8px);
+              margin-right: 16px;
+            }
+
+            .profile_city {
+              width: calc(50% - 8px);
+            }
+
+            .profile_address {
+              width: 100%;
+            }
+
+            .profile_id_number {
+              width: calc(50% - 8px);
+              margin-right: 16px;
+            }
+
+            .profile_phone {
+              width: calc(50% - 8px);
+            }
+            .profile_form_split_line{
+              display: none;
+            }
+            .profile_form_footer {
+              position: absolute;
+              bottom: -65px;
+              width: 100%;
+              transform: translateX(-23px);
+              padding-left: 8px;
+            }
+            .profile_form_agreement{
+              font-size: 12px;
+              .profile_form_checkbox{
+                height: 14px;
+                width: 14px;
+                margin-right: 3px;
+              }
+            }
+          }
+
+          .profile_form_upload_avatar_settings {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  .profile_personal_details{
+    .profile_form_button_cancel{
+      margin-right: auto;
+      margin-left: 0;
+    }
+  }
+}

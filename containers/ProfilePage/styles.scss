@@ -1,0 +1,1357 @@
+.profile_section {
+  padding-top: 35px;
+  padding-left: 230px;
+  padding-bottom: 50px;
+  background: rgba(220, 232, 248, 0.5);
+  min-height: calc(100vh - 180px);
+
+  .profile_tab_bar {
+    width: 845px;
+    margin-bottom: 32px;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+    letter-spacing: 0.012em;
+    color: rgba(0, 0, 0, 0.6);
+    transform: matrix(1, 0, 0, 1, 0, 0);
+  }
+}
+
+.profile_form_upload_avatar_settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 31px;
+
+  .profile_form_upload_avatar_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 224px;
+    height: 224px;
+    background: #ffffff;
+    border-radius: 6px;
+    margin-bottom: 24px;
+
+    .profile_form_button_remove_mobile {
+      display: none;
+    }
+
+    .profile_form_name_mobile {
+      display: none;
+    }
+
+    .profile_form_upload_avatar_circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 160px;
+      height: 160px;
+      background: rgba(0, 0, 0, 0.08);
+      border-radius: 150px;
+      background-image: url("./images/avatarIcon.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .profile_form_upload_avatar {
+      //width: 162px;
+      height: 162px;
+      overflow: hidden;
+    }
+  }
+
+  .profile_form_upload_avatar_button_label {
+    cursor: pointer;
+
+    button {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 32px;
+      font-feature-settings: "pnum" on, "lnum" on;
+      color: #ffffff;
+    }
+  }
+
+  .profile_form_upload_avatar_button {
+    width: 100%;
+    margin-bottom: 10px;
+    pointer-events: none;
+  }
+
+  .profile_form_upload_avatar_button_remove {
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 32px;
+    font-feature-settings: "pnum" on, "lnum" on;
+    color: #1f607c;
+  }
+}
+
+.profile_personal_details {
+  .profile_personal_details_title {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 25px;
+  }
+
+  .profile_form {
+    display: flex;
+
+    .profile_form_data_container {
+      width: 596px;
+      height: 640px;
+      background: #ffffff;
+      border-radius: 6px;
+      padding: 28px 22px 15px 27px;
+      margin-bottom: 40px;
+
+      .profile_form_input_container {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        font-feature-settings: "pnum" on, "lnum" on;
+        color: rgba(0, 0, 0, 0.6);
+        margin-bottom: 19px;
+      }
+
+      .profile_form_birth_text {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 22px;
+        font-feature-settings: "pnum" on, "lnum" on;
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      .profile_input_big {
+        @extend .profile_form_input_container;
+        width: 100%;
+      }
+
+      .profile_input_small {
+        @extend .profile_form_input_container;
+        width: calc(33% - 12px);
+      }
+
+      .profile_input_middle {
+        @extend .profile_form_input_container;
+        width: calc(50% - 10px);
+      }
+
+      .profile_first_name,
+      .profile_country,
+      .profile_id_number {
+        margin-right: 20px;
+      }
+
+      .profile_month,
+      .profile_day {
+        margin-right: 18px;
+      }
+
+      .profile_country,
+      .profile_day,
+      .profile_month,
+      .profile_year {
+        position: relative;
+
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+        }
+      }
+
+      .profile_input_arrow {
+        position: absolute;
+        top: 22px;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 45px;
+        background: rgba(31, 96, 124, 0.2);
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-left: 1px solid #c4c4c4;
+        cursor: pointer;
+        pointer-events: none;
+      }
+      .warning_date_text {
+        bottom: -34px;
+        font-size: 12px;
+      }
+
+      .profile_form_input {
+        width: 100%;
+        height: 40px;
+        background: #ffffff;
+        border: 1px solid #c4c4c4;
+        border-radius: 4px;
+        margin-top: 0;
+        padding-left: 5px;
+        padding-right: 5px;
+
+        &:focus {
+          outline: none;
+          background: rgba(137, 207, 240, 0.2);
+          border: 1px solid #1f607c;
+          resize: none;
+        }
+      }
+      .profile_form_warning_text {
+        bottom: -38px;
+      }
+      .profile_form_input_warning {
+        @extend .profile_form_input;
+        background: rgba(246, 86, 71, 0.1);
+        border: 1px solid #ff4d4f;
+      }
+    }
+
+    .profile_form_split_line {
+      margin-bottom: 19px;
+      margin-top: 19px;
+    }
+
+    .profile_form_footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      .profile_form_agreement {
+        display: flex;
+        align-items: center;
+        color: #666666;
+
+        .profile_form_checkbox {
+          margin-right: 8px;
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          background: #1f607c;
+          border-radius: 2px;
+        }
+
+        .profile_form_agreement_link {
+          color: #3e77b5;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .profile_form_button_cancel {
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 150%;
+    color: #1f607c;
+    margin-left: auto;
+    margin-right: 40px;
+  }
+  .profile_form_agreement_button {
+    height: 48px;
+  }
+}
+
+.profile_section_mobile {
+  display: none;
+}
+
+.account_settings_container {
+  .account_settings_title {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    font-feature-settings: "pnum" on, "lnum" on;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 25px;
+  }
+  .account_settings_form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    //height: 578px;
+    width: 596px;
+    background-color: #fff;
+    border: 1px solid #dce8f8;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 17px 25px 20px 25px;
+    .account_settings_form_title {
+      font-family: Raleway;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+      font-feature-settings: "pnum" on, "lnum" on;
+      color: #1f607c;
+      margin-bottom: 20px;
+    }
+    .account_settings_form_label {
+      position: relative;
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.6);
+      width: 100%;
+      margin-bottom: 20px;
+      .account_settings_form_input {
+        height: 40px;
+        background: #ffffff;
+        border: 1px solid #c4c4c4;
+        border-radius: 4px;
+        width: 100%;
+        margin-top: 7px;
+        padding-left: 15px;
+        &:focus {
+          outline: none;
+          background: rgba(137, 207, 240, 0.2);
+          border: 1px solid #1f607c;
+        }
+      }
+      .input_warning_text {
+        bottom: -40px;
+      }
+    }
+    .profile_account_icon_eye {
+      top: 43px;
+    }
+    .label_confirm_password {
+      margin-bottom: 30px;
+    }
+    .account_settings_forgot_link {
+      position: absolute;
+      right: 27px;
+      top: 160px;
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 150%;
+      color: #3c64b1;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .account_settings_text_delete {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 150%;
+      color: #fb7f73;
+      margin-bottom: 2px;
+      cursor: pointer;
+    }
+    .account_settings_text {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 150%;
+      letter-spacing: 0.02em;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+    }
+    .account_settings_buttons_container {
+      display: flex;
+      width: calc(100% + 50px);
+      transform: translateX(-25px);
+      align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 20px 25px;
+      margin-bottom: 20px;
+
+      .account_settings_button_cancel {
+        margin-left: auto;
+        margin-right: 50px;
+        height: 24px;
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 150%;
+        text-align: center;
+        color: #1f607c;
+      }
+      .account_settings_button_save {
+        font-family: Mulish;
+        font-size: 16px;
+        height: 48px;
+      }
+    }
+  }
+}
+
+.profile_campaigns_section {
+  padding: 32px 80px 32px 0;
+  max-width: 1338px;
+  .profile_campaigns_title {
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 27px;
+  }
+  .profile_campaigns_table_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 56px;
+    background: #1f607c;
+    border-radius: 8px 8px 0px 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+    .profile_campaigns_table_header_text {
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 32px;
+      color: #ffffff;
+      margin-bottom: 0;
+    }
+    .table_header_campaign_name {
+      width: 23%;
+      margin-right: 3%;
+    }
+    .table_header_campaign_link {
+      width: 29%;
+      //margin-right: 6%;
+    }
+    .table_header_campaign_s_date {
+      text-align: center;
+      width: 18%;
+      //margin-right: 4%;
+    }
+    .table_header_campaign_e_date {
+      text-align: center;
+      width: 10%;
+      //margin-right: 4%;
+    }
+    .table_header_campaign_status {
+      text-align: center;
+      width: 10%;
+      //margin-right: 5%;
+    }
+    .table_header_campaign_raised {
+      text-align: center;
+      width: 10%;
+    }
+
+    /////////////////////////////
+    .table_invest_header_name {
+      width: 30%;
+      //margin-right: 6%;
+    }
+    .table_invest_header_link {
+      width: 32%;
+      //margin-right: 6%;
+    }
+    .table_invest_header_amount {
+      text-align: center;
+      width: 13%;
+      //margin-right: 6%;
+    }
+    .table_invest_header_shares {
+      text-align: center;
+      width: 13%;
+      margin-right: 12%;
+    }
+  }
+  .profile_campaigns_list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid #dce8f8;
+    box-sizing: border-box;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    padding-left: 0;
+    //justify-content: center;
+    width: 100%;
+    .profile_campaigns_item {
+      display: flex;
+      //justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      padding: 10px 25px;
+      &:last-child {
+        border-bottom: 1px solid rgba(0, 0, 0, 0);
+      }
+      .profile_campaigns_table_item_text {
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 32px;
+        color: rgba(0, 0, 0, 0.87);
+        margin-bottom: 0;
+      }
+      .table_item_campaign_name {
+        width: 23%;
+        margin-right: 3%;
+      }
+      .table_item_campaign_link {
+        width: 29%;
+        //margin-right: 6%;
+        font-style: normal;
+        font-weight: normal;
+        color: #3c64b1;
+      }
+      .table_item_campaign_s_date {
+        text-align: center;
+        width: 18%;
+        //margin-right: 4%;
+      }
+      .table_item_campaign_e_date {
+        text-align: center;
+        width: 10%;
+        //margin-right: 4%;
+      }
+      .table_item_campaign_status {
+        text-align: center;
+        width: 10%;
+        //margin-right: 5%;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        color: #1f607c;
+      }
+      .table_item_campaign_raised {
+        text-align: center;
+        width: 10%;
+      }
+
+      ///////////////////////////////
+      .table_item_name {
+        width: 27%;
+        margin-right: 2%;
+      }
+      .table_item_invest_link {
+        width: 32%;
+        font-style: normal;
+        font-weight: normal;
+        color: #3c64b1;
+        margin-right: 1%;
+      }
+      .table_item_invest_amount {
+        width: 13%;
+        //margin-right: 6%;
+        text-align: center;
+      }
+      .table_item_invest_shares {
+        width: 13%;
+        //margin-right: 12%;
+        text-align: center;
+      }
+      .table_item_contact {
+        width: 12%;
+      }
+      .profile_investment_item_invest_button {
+        min-width: 110px;
+        height: 42px;
+        margin-left: auto;
+      }
+    }
+  }
+}
+
+.mobile_investments_container {
+  display: none;
+}
+
+@media screen and (max-width: 1440px) {
+  .profile_section {
+    padding-top: 40px;
+    padding-left: 168px;
+
+    .profile_tab_bar {
+      width: 800px;
+      margin-bottom: 32px;
+    }
+  }
+  .profile_form_upload_avatar_settings {
+    margin-right: 23px;
+
+    .profile_form_upload_avatar_container {
+      height: 250px;
+      width: 255px;
+
+      .profile_form_upload_avatar_circle {
+      }
+
+      .profile_form_upload_avatar {
+      }
+    }
+
+    .profile_form_upload_avatar_button_label {
+    }
+
+    .profile_form_upload_avatar_button {
+    }
+
+    .profile_form_upload_avatar_button_remove {
+    }
+  }
+  .profile_personal_details {
+    .profile_personal_details_title {
+    }
+
+    .profile_form {
+      .profile_form_data_container {
+        height: 638px;
+        width: 540px;
+        padding: 24px 25px 20px 23px;
+
+        .profile_form_input_container {
+        }
+
+        .profile_input_big {
+        }
+
+        .profile_input_small {
+        }
+
+        .profile_input_middle {
+        }
+
+        .profile_first_name,
+        .profile_country,
+        .profile_id_number {
+        }
+
+        .profile_month,
+        .profile_day {
+        }
+
+        .profile_country,
+        .profile_day,
+        .profile_month,
+        .profile_year {
+        }
+
+        .profile_input_arrow {
+        }
+
+        .profile_form_input {
+        }
+      }
+
+      .profile_form_split_line {
+      }
+
+      .profile_form_footer {
+        .profile_form_agreement {
+          .profile_form_checkbox {
+          }
+
+          .profile_form_agreement_link {
+          }
+        }
+      }
+    }
+  }
+  .account_settings_container {
+    padding-bottom: 40px;
+
+    .account_settings_form {
+      width: 540px;
+    }
+  }
+}
+
+@media screen and (max-width: 1370px) {
+  .profile_section {
+    padding-left: 120px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .profile_section {
+    padding-left: 80px;
+  }
+}
+
+@media screen and (max-width: 1240px) {
+  .profile_section {
+    padding-left: 50px;
+  }
+  .profile_campaigns_section {
+    padding-right: 50px;
+  }
+}
+
+@media screen and (max-width: 1160px) {
+  .profile_section {
+    padding-left: 0;
+
+    .profile_tab_bar {
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+  .profile_campaigns_section {
+    padding-left: 32px;
+  }
+  .profile_personal_details {
+    width: 826px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .account_settings_container {
+    width: 540px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .profile_campaigns_section {
+    padding: 26px;
+    .profile_campaigns_title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .profile_campaigns_table_container {
+      display: none;
+    }
+    .profile_campaigns_table_header {
+      .profile_campaigns_table_header_text {
+      }
+      .table_header_campaign_name {
+      }
+      .table_header_campaign_link {
+      }
+      .table_header_campaign_s_date {
+      }
+      .table_header_campaign_e_date {
+      }
+      .table_header_campaign_status {
+      }
+      .table_header_campaign_raised {
+      }
+      .table_invest_header_name {
+      }
+      .table_invest_header_link {
+      }
+      .table_invest_header_amount {
+      }
+      .table_invest_header_shares {
+      }
+    }
+    .profile_campaigns_list {
+      .profile_campaigns_item {
+        &:last-child {
+        }
+        .profile_campaigns_table_item_text {
+        }
+        .table_item_campaign_name {
+        }
+        .table_item_campaign_link {
+        }
+        .table_item_campaign_s_date {
+        }
+        .table_item_campaign_e_date {
+        }
+        .table_item_campaign_status {
+        }
+        .table_item_campaign_raised {
+        }
+        .table_item_name {
+        }
+        .table_item_invest_link {
+        }
+        .table_item_invest_amount {
+        }
+        .table_item_invest_shares {
+        }
+        .table_item_contact {
+        }
+        .profile_investment_item_invest_button {
+        }
+      }
+    }
+  }
+
+  .mobile_investments_container {
+    display: block;
+
+    .mobile_investments_card {
+      //margin-bottom: 24px;
+      background: #ffffff;
+      box-shadow: 0px 2px 15px rgba(142, 146, 184, 0.25);
+      border-radius: 6px;
+      //border-bottom-left-radius: 6px !important;
+      //border-bottom-right-radius: 6px !important;
+
+      .mobile_investments_toggle {
+        display: flex;
+        justify-content: space-between;
+        background: #1f607c;
+        //border-radius: 0px 0px 6px 6px;
+        font-family: Mulish;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 32px;
+        color: #ffffff;
+        .mobile_investments_toggle_name {
+          margin-right: 8px;
+        }
+        span {
+          pointer-events: none;
+        }
+      }
+      .mobile_investments_item {
+        padding: 0;
+        .mobile_investments_field {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          align-items: center;
+          width: 100%;
+          padding: 13px 20px;
+          margin-bottom: 0;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          &:last-child {
+            border-bottom: none;
+          }
+          .mobile_investments_field_text {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 32px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-right: 20px;
+          }
+          .mobile_investments_field_link {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 150%;
+            color: #3c64b1;
+          }
+          .mobile_investments_field_values {
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 18px;
+            line-height: 150%;
+            color: rgba(0, 0, 0, 0.87);
+          }
+        }
+
+        .mobile_investments_item_link {
+        }
+        .mobile_investments_amount {
+        }
+        .mobile_investments_shares {
+        }
+        .mobile_investments_contact {
+          display: flex;
+          justify-content: flex-end;
+          .mobile_investments_item_button {
+            padding: 12px 18px;
+            background: #89cff0;
+            border: 2px solid #89cff0;
+            box-sizing: border-box;
+            border-radius: 6px;
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 14px;
+            line-height: 18px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .profile_section {
+    display: none;
+  }
+  .profile_section_mobile {
+    display: block;
+
+    .profile_personal_details {
+      width: 100%;
+      background: rgba(220, 232, 248, 0.5);
+      text-align: center;
+      padding-top: 25px;
+
+      .profile_personal_details_title {
+        margin-bottom: 0;
+      }
+
+      .profile_form {
+        flex-direction: column;
+
+        .profile_form_data_container {
+          margin-right: auto;
+          margin-left: auto;
+        }
+
+        .profile_form_upload_avatar_settings {
+          width: 580px;
+          margin-right: auto;
+          margin-left: auto;
+          padding-top: 87px;
+          //margin-right: 0;
+          .profile_form_upload_avatar_container {
+            flex-direction: column;
+            position: relative;
+            background: #ffffff;
+            border-radius: 6px;
+            margin-right: 20px;
+            margin-left: 20px;
+            width: calc(100% - 40px);
+            //height: auto;
+            height: 133px;
+            padding-top: 45px;
+
+            .profile_form_button_remove_mobile {
+              display: block;
+              font-size: 13px;
+              line-height: 150%;
+              color: rgba(0, 0, 0, 0.38);
+            }
+
+            .profile_form_name_mobile {
+              display: block;
+              margin-bottom: 5px;
+              font-family: Mulish;
+              font-style: normal;
+              font-weight: bold;
+              font-size: 20px;
+              line-height: 120%;
+              color: rgba(0, 0, 0, 0.87);
+            }
+
+            .profile_form_upload_avatar_circle {
+              position: absolute;
+              top: -60px;
+              width: 120px;
+              height: 120px;
+              background: #89cff0;
+              border: 4px solid #ffffff;
+              box-sizing: border-box;
+              background-image: url("./images/iconMobile.svg");
+              background-repeat: no-repeat;
+              background-position: center;
+            }
+
+            .profile_form_upload_avatar {
+            }
+          }
+
+          .profile_form_upload_avatar_button_label {
+            display: none;
+          }
+
+          .profile_form_upload_avatar_button {
+          }
+
+          .profile_form_upload_avatar_button_remove {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .account_settings_container {
+    background: rgba(220, 232, 248, 0.5);
+    padding: 25px 25px 145px 25px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .profile_section {
+  }
+  .profile_section_mobile {
+    .profile_personal_details {
+      .profile_personal_details_title {
+      }
+
+      .profile_form {
+        //padding-right: 15px;
+        //padding-left: 15px;
+
+        .profile_form_upload_avatar_settings {
+          .profile_form_upload_avatar_container {
+            margin-right: 0;
+            margin-left: 0;
+            width: 100%;
+          }
+        }
+
+        .profile_form_data_container {
+          position: relative;
+          width: 100%;
+          //height: 791px;
+          height: auto;
+          margin-bottom: 90px;
+
+          .profile_form_data_container_title {
+            font-size: 20px;
+            line-height: 150%;
+            margin-bottom: 12px;
+          }
+
+          .profile_form_birth_text {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 3px;
+            text-align: left;
+          }
+
+          .profile_form_input_container {
+            font-size: 14px;
+            line-height: 22px;
+            margin-bottom: 7px;
+            text-align: left;
+          }
+
+          .profile_form_input {
+            margin-top: 3px;
+            font-size: 11px;
+          }
+          .profile_input_middle {
+            margin-bottom: 20px;
+          }
+          .profile_form_warning_text {
+            font-size: 10px;
+          }
+
+          .profile_input_arrow {
+            width: 33px;
+            top: 25px;
+          }
+
+          .profile_first_name {
+            width: 100%;
+            margin-right: 0;
+          }
+
+          .profile_second_name {
+            width: 100%;
+          }
+
+          .profile_month {
+            width: 100%;
+          }
+
+          .profile_day {
+            width: calc(50% - 8px);
+            margin-right: 16px;
+          }
+
+          .profile_year {
+            width: calc(50% - 8px);
+          }
+
+          .profile_country {
+            width: calc(50% - 8px);
+            margin-right: 16px;
+          }
+
+          .profile_city {
+            width: calc(50% - 8px);
+          }
+
+          .profile_address {
+            width: 100%;
+            margin-bottom: 20px;
+          }
+
+          .profile_id_number {
+            width: calc(50% - 8px);
+            margin-right: 16px;
+          }
+
+          .profile_phone {
+            width: calc(50% - 8px);
+          }
+          .profile_form_split_line {
+            display: none;
+          }
+          .profile_form_footer {
+            position: absolute;
+            bottom: -65px;
+            width: 100%;
+            transform: translateX(-23px);
+            padding-left: 8px;
+            padding-right: 8px;
+          }
+          .profile_form_agreement {
+            padding-left: 15px;
+            font-size: 12px;
+            .profile_form_checkbox {
+              height: 14px;
+              width: 14px;
+              margin-right: 3px;
+            }
+          }
+        }
+
+        .profile_form_upload_avatar_settings {
+          width: 100%;
+        }
+      }
+      .profile_form_button_cancel {
+        margin-left: 25px;
+        margin-right: auto;
+      }
+    }
+    .profile_form_agreement_button {
+      height: 42px;
+    }
+  }
+  .account_settings_container {
+    padding-bottom: 40px;
+    .account_settings_title {
+      font-size: 24px;
+      line-height: 32px;
+      margin-bottom: 26px;
+    }
+    .account_settings_form {
+      all: unset;
+      height: auto;
+      width: 100%;
+      padding: 23px 15px 30px 15px;
+
+      .account_settings_form_email,
+      .account_settings_form_password {
+        position: relative;
+        //display: flex;
+        //flex-direction: column;
+        //height: 578px;
+        width: 100%;
+        background-color: #fff;
+        border: 1px solid #dce8f8;
+        box-sizing: border-box;
+        border-radius: 8px;
+        padding: 17px 25px 20px 25px;
+        margin-bottom: 125px;
+      }
+
+      .account_settings_form_title {
+        font-size: 20px;
+        line-height: 32px;
+        margin-bottom: 10px;
+      }
+      .account_settings_form_label {
+        font-size: 14px;
+        line-height: 22px;
+        margin-bottom: 25px;
+        .account_settings_form_input {
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+      .label_confirm_password {
+        margin-bottom: 25px;
+      }
+      .account_settings_forgot_link {
+        top: 147px;
+        right: 18px;
+      }
+      .account_settings_text_delete {
+        //width: 140px;
+        //height: 40px;
+        display: flex;
+        //align-items: center;
+        justify-content: center;
+        //font-size: 15px;
+        //line-height: 150%;
+        //background-color: #FB7F73;
+        //border-radius: 6px;
+        //color: #ffffff;
+        margin-bottom: 20px;
+
+        //&:focus {
+        //  filter: brightness(1);
+        //  transition: 0.3s;
+        //  outline: none;
+        //  box-shadow: none;
+        //}
+        //&:hover {
+        //  filter: brightness(1.2);
+        //  transition: 0.3s;
+        //  outline: none;
+        //  box-shadow: none;
+        //}
+      }
+      .account_settings_text {
+        font-size: 13px;
+        line-height: 150%;
+        margin-bottom: 0;
+        display: block;
+        text-align: center;
+        padding-right: 20px;
+        padding-left: 20px;
+      }
+      .account_settings_buttons_container {
+        position: absolute;
+        bottom: -115px;
+        right: -50px;
+        border-top: none;
+        //padding-right: 0;
+
+        .account_settings_button_cancel {
+          margin-left: 25px;
+          margin-right: auto;
+          font-size: 16px;
+          line-height: 32px;
+        }
+        .account_settings_button_save {
+          font-size: 16px;
+          line-height: 32px;
+        }
+      }
+    }
+  }
+  .profile_campaigns_section {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .mobile_investments_container {
+    .mobile_investments_card {
+      .mobile_investments_toggle {
+        font-size: 15px;
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+      .mobile_investments_item {
+        //padding-right: 10px;
+        //padding-left: 10px;
+        .mobile_investments_field {
+          .mobile_investments_field_text {
+            font-size: 14px;
+          }
+          .mobile_investments_field_link {
+          }
+          .mobile_investments_field_values {
+            font-size: 16px;
+          }
+        }
+
+        .mobile_investments_item_link {
+        }
+        .mobile_investments_amount {
+        }
+        .mobile_investments_shares {
+        }
+        .mobile_investments_contact {
+          .mobile_investments_item_button {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .profile_section_mobile {
+    .profile_personal_details {
+      .profile_form {
+        .profile_form_data_container {
+          .warning_date_text {
+            font-size: 8px;
+          }
+          .profile_form_warning_text {
+            font-size: 7px;
+          }
+          .profile_form_footer {
+            padding-left: 0;
+          }
+          .profile_form_agreement {
+            padding-left: 5px;
+            font-size: 9px;
+          }
+        }
+      }
+    }
+  }
+  .account_settings_container {
+    padding-right: 15px;
+    padding-left: 15px;
+    .account_settings_form {
+      .account_settings_form_title {
+        font-size: 17px;
+      }
+      .account_settings_buttons_container {
+        right: -40px;
+      }
+      .profile_form_warning_text {
+        font-size: 12px;
+      }
+    }
+  }
+  .mobile_investments_container {
+    .mobile_investments_card {
+      .mobile_investments_toggle {
+      }
+      .mobile_investments_item {
+        .mobile_investments_field {
+          .mobile_investments_field_text {
+          }
+          .mobile_investments_field_link {
+            font-size: 12px;
+          }
+          .mobile_investments_field_values {
+          }
+        }
+
+        .mobile_investments_item_link {
+        }
+        .mobile_investments_amount {
+        }
+        .mobile_investments_shares {
+        }
+        .mobile_investments_contact {
+          .mobile_investments_item_button {
+          }
+        }
+      }
+    }
+  }
+}

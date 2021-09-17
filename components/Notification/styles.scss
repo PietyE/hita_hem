@@ -1,0 +1,16 @@
+.notification{
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 350px;
+  padding-right: 30px;
+z-index: 1150;
+}
+
+
+@media screen and (max-device-width: 450px) {
+
+  .notification{
+    width: 250px;
+  }
+}

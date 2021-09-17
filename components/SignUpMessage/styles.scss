@@ -1,0 +1,33 @@
+.sign_up_message_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .sign_up_message {
+    display: flex;
+    align-items: center;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@media screen and (max-device-width: 1369px) {
+  .sign_up_message_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .sign_up_message {
+      font-size: 13px;
+    }}
+
+}
+
+@media screen and (max-device-width: 330px) {
+  .sign_up_message_container {
+    .sign_up_message {
+      font-size: 12px;
+    }}
+}

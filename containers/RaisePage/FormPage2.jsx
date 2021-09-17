@@ -1,0 +1,136 @@
+import React from "react";
+import { useTranslation } from "react-i18next";
+import SplitLine from "components/ui/SplitLine";
+import Button from "components/ui/Button";
+import InputComponent from "components/ui/InputComponent";
+import { Formik, Form, Field } from "formik";
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { raiseForm2 } from "utils/vadidationSchemas";
+
+const FormPage2 = ({ changePage, submit, formNumber, data }) => {
+  const { t } = useTranslation();
+  const initialValues = {
+    company_name: data.company_name,
+    company_form: data.company_form,
+    role: data.role,
+    share_price: data.share_price,
+    revenue: data.revenue,
+    amount: data.amount,
+  };
+  const onSubmit = (values) => {
+    submit(values, `form${formNumber}`);
+    changePage(formNumber + 1);
+  };
+  const prevPage = (e) => {
+    e.preventDefault();
+    changePage(formNumber - 1);
+  };
+
+  return (
+    <Formik
+      initialValues={initialValues}
+      validationSchema={raiseForm2}
+      onSubmit={onSubmit}
+    >
+      {({ errors, touched, values, setFieldValue }) => (
+        <Form className="raise_form">
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.company_name")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="company_name"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.company_form")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="company_form"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.role")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="role"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.shares")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="share_price"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.revenue")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="revenue"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <InputComponent
+            labelClassName="raise_form_input_container"
+            label={t("raisePage.form2.amount")}
+            inputClassName="raise_form_input"
+            errorClassName="raise_error_label"
+            inputName="amount"
+            values={values}
+            setFieldValue={setFieldValue}
+            touched={touched}
+            errors={errors}
+          />
+          <SplitLine className="raise_form_split_line" />
+          <div className="raise_form_button_container">
+            <Button
+              type="button"
+              colorStyle="white"
+              className=" raise_form_button_back"
+              onClick={prevPage}
+            >
+              <FontAwesomeIcon
+                icon={faArrowLeft}
+                className="raise_form_button_arrow_left"
+              />
+              {t("raisePage.form_footer.button_prev")}
+            </Button>
+            <Button
+              type="submit"
+              colorStyle="dark-green"
+              className="raise_form_button"
+            >
+              {t("raisePage.form_footer.button_next")}
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="raise_form_button_arrow_right"
+              />
+            </Button>
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default FormPage2;

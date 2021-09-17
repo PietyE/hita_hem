@@ -1,0 +1,45 @@
+.social_tab_container {
+  display: flex;
+  align-items: center;
+  height: 18px;
+  .social_link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+    .social_icon {
+      height: inherit;
+      color: #1f607c;
+      //color: #ffffff;
+      width: auto;
+    }
+    &:hover {
+      .social_icon {
+        color: #1f7396;
+        transition: 0.3s;
+      }
+    }
+  }
+}
+.social_button {
+  margin-right: 20px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media screen and (max-device-width: 900px) {
+  .social_tab_container {
+    display: flex;
+    align-items: center;
+    height: 18px;
+    .social_link {
+      margin-right: 25px;
+    }}
+
+}

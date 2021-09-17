@@ -1,29 +1,74 @@
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
-import { END } from 'redux-saga'
-import { wrapper } from '../store'
-import { loadData, startClock, tickClock } from '../actions'
-import Page from '../components/page'
+import React, { useCallback, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { END } from "redux-saga";
+import { wrapper } from "redux/store";
+
+import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsFetchingHomePageSelector } from "redux/reducers/homePage";
+import { getHomePage } from "redux/actions/homePage";
+
+import TopSlider from "containers/HomePage/TopSlider";
+import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
+import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
+import InstructionSection from "containers/HomePage/InstructionSection";
+import JoinSection from "containers/HomePage/JoinSection";
+import SpinnerStyled from "components/ui/Spinner";
 
 const Index = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  const isAuth = useSelector(isSignInUserSelector);
+  const isFetching = useSelector(getIsFetchingHomePageSelector);
+
+  const _getHomePage = useCallback(
+    (id) => {
+      dispatch(getHomePage(id));
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
-    dispatch(startClock())
-  }, [dispatch])
+    _getHomePage();
+  }, []);
 
-  return <Page title="Index Page" linkTo="/other" NavigateTo="Other Page" />
-}
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  store.dispatch(tickClock(false))
+  return (
+    <>
+      <div className="home_page_container">
+        {isFetching && <SpinnerStyled />}
+        <div className="home_page_container">
+          <TopSlider />
+          <FeaturedCampaigns />
+          <UpcomingCampaigns />
+          <InstructionSection />
+          {!isAuth && <JoinSection />}
+        </div>
+      </div>
+    </>
+  );
+};
 
-  if (!store.getState().placeholderData) {
-    store.dispatch(loadData())
-    store.dispatch(END)
-  }
+export const getStaticProps = wrapper.getStaticProps(
+  (store) =>
+    async ({ req, res, ...etc }) => {
+      store.dispatch(getHomePage());
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    }
+);
 
-  await store.sagaTask.toPromise()
-})
+// export const getServerSideProps = wrapper.getServerSideProps(
+//   async ({ store }) => {
+//     store.dispatch(getHomePage());
+//     // if (!store.getState().placeholderData) {
+//     //   store.dispatch(loadData());
+//     //   store.dispatch(END);
+//     // }
+//     store.dispatch(END);
+//     await store.sagaTask.toPromise();
+//   }
+// );
 
-export default Index
+export default Index;
