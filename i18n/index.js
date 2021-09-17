@@ -14,10 +14,10 @@ const initLanguage = () => {
   const browserLang =
     typeof window !== "undefined"
       ? window?.navigator?.language?.split("-")[0]
-      : "en";
+      : null;
 
   const localStorLang =
-    typeof window !== "undefined" ? localStorage.getItem("language") : "en";
+    typeof window !== "undefined" ? localStorage.getItem("language") : null;
 
   if (localStorLang && Object.keys(lang).includes(localStorLang)) {
     return localStorLang;
@@ -42,7 +42,7 @@ i18n
       escapeValue: false, // react already safes from xss
     },
     react: {
-      wait: true,
+      useSuspense: true,
     },
   });
 

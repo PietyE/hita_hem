@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 
 import Progress from "components/Proggres";
-import PersonalDetails from "../ProfilePage/components/PersonalDetails";
+import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import SpinnerStyled from "components/ui/Spinner";
 import {
   clearCompany,

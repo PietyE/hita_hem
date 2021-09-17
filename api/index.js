@@ -9,9 +9,7 @@ import launchingSoonCRUD from "./routes/launchingSoon";
 import raisePageCRUD from "./routes/raisePage";
 import documentsCRUD from "./routes/documents";
 
-//const _baseURL = process.env.REACT_APP_API_BASE_URL; ///https://stage-api.accumeo.com/api
-
-const _baseURL = "https://stage-api.accumeo.com/api";
+const _baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 class Client {
   constructor(baseURL) {
@@ -59,6 +57,7 @@ class Client {
     this.language = language;
   }
 }
+
 const api = new Client(_baseURL);
 
 export const { post } = api;

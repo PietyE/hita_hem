@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import Head from "next/head";
 
 import "i18n";
 import "../styles/index.scss";
-//import App from "next/app";
-import { END } from "redux-saga";
-import { wrapper } from "redux/store";
-import RootPage from "components/RootPage";
 
+import { wrapper } from "redux/store";
 import { bootstap } from "redux/actions/user";
+import RootPage from "components/RootPage";
 
 function App({ Component, pageProps }) {
   const dispatch = useDispatch();
@@ -18,41 +17,15 @@ function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <RootPage>
-      <Component {...pageProps} />
-    </RootPage>
+    <>
+      <Head>
+        <title>Accumeo Next JS</title>
+      </Head>
+      <RootPage>
+        <Component {...pageProps} />
+      </RootPage>
+    </>
   );
 }
 
 export default wrapper.withRedux(App);
-
-// class MyApp extends App {
-//   static getInitialProps = wrapper.getInitialAppProps(
-//     (store) =>
-//       async ({ Component, ctx }) => {
-//         console.log("________!!!!!!!!MyAppMyAppMyAppMyApp");
-//         store.dispatch(bootstap());
-//         store.dispatch(END);
-//         await store.sagaTask.toPromise();
-//         return {
-//           pageProps: {
-//             // Call page-level getInitialProps
-//             // DON'T FORGET TO PROVIDE STORE TO PAGE
-//             ...(Component.getInitialProps
-//               ? await Component.getInitialProps({ ...ctx, store })
-//               : {}),
-//             // Some custom thing for all pages
-//             pathname: ctx.pathname,
-//           },
-//         };
-//       }
-//   );
-
-//   render() {
-//     const { Component, pageProps } = this.props;
-
-//     return <Component {...pageProps} />;
-//   }
-// }
-
-// export default wrapper.withRedux(MyApp);

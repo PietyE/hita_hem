@@ -30,29 +30,24 @@ const Index = () => {
     _getHomePage();
   }, []);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
-
   return (
-    <>
+    <div className="home_page_container">
+      {isFetching && <SpinnerStyled />}
       <div className="home_page_container">
-        {isFetching && <SpinnerStyled />}
-        <div className="home_page_container">
-          <TopSlider />
-          <FeaturedCampaigns />
-          <UpcomingCampaigns />
-          <InstructionSection />
-          {!isAuth && <JoinSection />}
-        </div>
+        <TopSlider />
+        <FeaturedCampaigns />
+        <UpcomingCampaigns />
+        <InstructionSection />
+        {!isAuth && <JoinSection />}
       </div>
-    </>
+    </div>
   );
 };
 
 // export const getStaticProps = wrapper.getStaticProps(
 //   (store) =>
 //     async ({ req, res, ...etc }) => {
+//       console.log("!!!!!!!!________getStaticProps");
 //       store.dispatch(getHomePage());
 //       store.dispatch(END);
 //       await store.sagaTask.toPromise();
