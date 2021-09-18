@@ -19,6 +19,9 @@ import rootSaga from "../sagas/index";
 function rootReducer(state = {}, action) {
   switch (action.type) {
     case HYDRATE: {
+      if (state?.user?.isFirstHydrate) {
+        return { ...state };
+      }
       return { ...state, ...action.payload };
     }
 

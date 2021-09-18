@@ -22,7 +22,7 @@
     "i18next": "^20.6.1",
     "lodash": "^4.17.21",
     "next": "latest",
-    "next-redux-wrapper": "^6.0.2",
+    "next-redux-wrapper": "^7.0.5",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.3",
     "react-country-region-selector": "^3.3.0",

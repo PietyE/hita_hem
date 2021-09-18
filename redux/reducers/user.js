@@ -6,6 +6,7 @@ import {
   SET_PROFILE,
   SET_USER_FETCHING,
   SET_TAB,
+  BOOTSTAP_ACTION,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -18,10 +19,13 @@ const initialsState = {
     id: "",
     email: "",
   },
+  isFirstHydrate: false,
 };
 
 export const user = (state = initialsState, actions) => {
   switch (actions.type) {
+    case BOOTSTAP_ACTION:
+      return { ...state, isFirstHydrate: true };
     case SET_AUTH:
       return { ...state, isAuth: actions.payload };
     case SET_TOKEN:

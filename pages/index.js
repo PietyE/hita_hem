@@ -44,26 +44,13 @@ const Index = () => {
   );
 };
 
-// export const getStaticProps = wrapper.getStaticProps(
-//   (store) =>
-//     async ({ req, res, ...etc }) => {
-//       console.log("!!!!!!!!________getStaticProps");
-//       store.dispatch(getHomePage());
-//       store.dispatch(END);
-//       await store.sagaTask.toPromise();
-//     }
-// );
-
-// export const getServerSideProps = wrapper.getServerSideProps(
-//   async ({ store }) => {
-//     store.dispatch(getHomePage());
-//     // if (!store.getState().placeholderData) {
-//     //   store.dispatch(loadData());
-//     //   store.dispatch(END);
-//     // }
-//     store.dispatch(END);
-//     await store.sagaTask.toPromise();
-//   }
-// );
+export const getStaticProps = wrapper.getStaticProps(
+  (store) =>
+    async ({ req, res, ...etc }) => {
+      store.dispatch(getHomePage());
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    }
+);
 
 export default Index;
