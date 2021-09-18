@@ -49,10 +49,6 @@ const InvestFormPage = () => {
     }
   }, [isAuth, userCanInvest, isCompanyClosed, history]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const companyId = history.query.companyId;
 
   const _makePayment = useCallback(

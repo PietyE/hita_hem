@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { END } from "redux-saga";
 
+import { wrapper } from "/redux/store";
+import { getPosts } from "redux/actions/launchingSoon";
 import PostsBlock from "containers/LaunchingSoonPage/PostsBlock";
 import ImageBlock from "containers/LaunchingSoonPage/ImageBlock";
 import SpinnerStyled from "components/ui/Spinner";
@@ -8,15 +11,21 @@ import SuccessfullySubscribedModal from "components/SuccessfullySubscribedModal"
 import { getIsFetchingLaunchingSoonSelector } from "redux/reducers/launchingSoon";
 
 const LaunchingSoonPage = () => {
+  const dispatch = useDispatch();
   const isFetching = useSelector(getIsFetchingLaunchingSoonSelector);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const [
     isShowSuccessfullySubscribeModal,
     setIsShowSuccessfullySubscribeModal,
   ] = useState(false);
+
+  const _getPosts = useCallback(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    _getPosts();
+  }, []);
 
   return (
     <>
@@ -32,5 +41,14 @@ const LaunchingSoonPage = () => {
     </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res, ...etc }) => {
+      store.dispatch(getPosts());
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    }
+);
 
 export default LaunchingSoonPage;

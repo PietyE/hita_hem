@@ -29,9 +29,6 @@ const ProfilePage = () => {
   const activeTab = useSelector(getActiveTabSelector);
   const isAuth = useSelector(isSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   useEffect(() => {
     if (!isAuth) {

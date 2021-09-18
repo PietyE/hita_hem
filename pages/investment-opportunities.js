@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useCallback } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { END } from "redux-saga";
 
 import { wrapper } from "/redux/store";
@@ -9,11 +9,21 @@ import CampaignsListSection from "containers/InvestmentOpportunitiesPage/Campaig
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingCampaignsSelector } from "redux/reducers/companies";
 
+import {
+  getCompaniesList,
+  getCompaniesHeaderList,
+} from "redux/actions/companies";
+
 const InvestmentOpportunitiesPage = () => {
+  const dispatch = useDispatch();
   const isFetching = useSelector(getIsFetchingCampaignsSelector);
 
+  const _getCompaniesHeaderList = useCallback(() => {
+    dispatch(getCompaniesHeaderList());
+  }, [dispatch]);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
+    _getCompaniesHeaderList();
   }, []);
 
   return (
@@ -25,13 +35,15 @@ const InvestmentOpportunitiesPage = () => {
   );
 };
 
-// export const getStaticProps = wrapper.getStaticProps(
-//   (store) =>
-//     async ({ req, res, ...etc }) => {
-//       // store.dispatch(getAboutUs());
-//       // store.dispatch(END);
-//       // await store.sagaTask.toPromise();
-//     }
-// );
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res, ...etc }) => {
+      store.dispatch(getCompaniesHeaderList());
+      store.dispatch(END);
+      store.dispatch(getCompaniesList());
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    }
+);
 
 export default InvestmentOpportunitiesPage;

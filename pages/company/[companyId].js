@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { END } from "redux-saga";
+import { wrapper } from "/redux/store";
 import { useRouter } from "next/router";
 
 import TopSection from "containers/CompanyPage/TopSection";
@@ -69,12 +70,6 @@ const CompanyPage = () => {
     };
   }, [_clearCompanyDetail, _getCompanyDetail, companyId, _resetCompanyTab]);
 
-  useEffect(() => {
-    if (companyId) {
-      _getCompanyDetail(companyId);
-    }
-  }, [isAuth, _getCompanyDetail, companyId]);
-
   return (
     <>
       {isFetching && <SpinnerStyled />}
@@ -87,5 +82,17 @@ const CompanyPage = () => {
     </>
   );
 };
+
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res, params, ...etc }) => {
+      if (params.companyId) {
+        store.dispatch(getCompanyById(params.companyId));
+        store.dispatch(END);
+      }
+
+      await store.sagaTask.toPromise();
+    }
+);
 
 export default CompanyPage;

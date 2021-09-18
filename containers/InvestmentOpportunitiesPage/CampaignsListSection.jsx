@@ -12,7 +12,6 @@ import {
 } from "redux/reducers/companies";
 import {
   getCompaniesList,
-  getCompaniesHeaderList,
   setFilter,
   resetCompanyList,
 } from "redux/actions/companies";
@@ -28,23 +27,16 @@ const CampaignsListSection = () => {
   const [filterValuesArray, setFilterValuesArray] = useState([]);
   const [currentOffset, setCurrentOffset] = useState(0);
 
-  const _getCompanyList = useCallback(
-    (data) => {
-      dispatch(getCompaniesList(data));
-    },
-    [dispatch]
-  );
-
-  const _getCompaniesHeaderList = useCallback(
-    (data) => {
-      dispatch(getCompaniesHeaderList(data));
-    },
-    [dispatch]
-  );
-
   const _setFilter = useCallback(
     (data) => {
       dispatch(setFilter(data));
+    },
+    [dispatch]
+  );
+
+  const _getCompanyList = useCallback(
+    (data) => {
+      dispatch(getCompaniesList(data));
     },
     [dispatch]
   );
@@ -54,14 +46,9 @@ const CampaignsListSection = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    _getCompaniesHeaderList();
-  }, [_getCompaniesHeaderList]);
-
-  useEffect(() => {
     if (!currentFilter) {
       _getCompanyList();
     } else {
-      // _getCompanyList(currentFilter)
       _getCompanyList({ filter: currentFilter, offset: currentOffset });
 
       setFilterValuesArray(currentFilter);
@@ -100,7 +87,7 @@ const CampaignsListSection = () => {
 
   const setFilterMenu = () => {
     setShowFilterMenu(true);
-    window.scrollTo(0, 0);
+    window?.scrollTo(0, 0);
   };
 
   const getMoreCampaigns = () => {

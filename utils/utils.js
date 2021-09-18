@@ -30,6 +30,7 @@ export const checkCurrentResolution = () => {
       return 480;
     }
   }
+  return 1920;
 };
 
 export const chooseCorrectResolution = (imageList) => {

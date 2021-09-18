@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getPosts } from "redux/actions/launchingSoon";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import {
   getMainSubTitleSelector,
   getMainPostsSelector,
@@ -8,19 +8,8 @@ import {
 import { isEqual } from "lodash";
 
 const PostsBlock = () => {
-  const dispatch = useDispatch();
   const title = useSelector(getMainSubTitleSelector, isEqual);
   const posts = useSelector(getMainPostsSelector, isEqual);
-  const _getPosts = useCallback(
-    (data) => {
-      dispatch(getPosts(data));
-    },
-    [dispatch]
-  );
-
-  useEffect(() => {
-    _getPosts();
-  }, [_getPosts]);
 
   const sortedByIndexPosts = posts.sort((a, b) => a.index - b.index);
   return (

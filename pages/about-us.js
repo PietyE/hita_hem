@@ -45,10 +45,6 @@ const AboutUsPage = () => {
   ] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  useEffect(() => {
     dispatch(getAboutUs());
   }, []);
 
@@ -73,13 +69,13 @@ const AboutUsPage = () => {
   );
 };
 
-// export const getStaticProps = wrapper.getStaticProps(
-//   (store) =>
-//     async ({ req, res, ...etc }) => {
-//       store.dispatch(getAboutUs());
-//       store.dispatch(END);
-//       await store.sagaTask.toPromise();
-//     }
-// );
+export const getServerSideProps = wrapper.getServerSideProps(
+  (store) =>
+    async ({ req, res, ...etc }) => {
+      store.dispatch(getAboutUs());
+      store.dispatch(END);
+      await store.sagaTask.toPromise();
+    }
+);
 
 export default AboutUsPage;
