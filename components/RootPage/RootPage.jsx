@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "components/Header";
@@ -26,6 +26,7 @@ import {
   getShowConfirmationOfAccountDeleting,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
+import { bootstap } from "redux/actions/user";
 
 const RootPage = ({ children }) => {
   const dispatch = useDispatch();
@@ -47,6 +48,10 @@ const RootPage = ({ children }) => {
     getShowConfirmationOfAccountDeleting
   );
   const isNotificationShow = useSelector(getNotificationStatusSelector);
+
+  useEffect(() => {
+    dispatch(bootstap());
+  }, []);
 
   return (
     <div className="container">

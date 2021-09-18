@@ -34,9 +34,9 @@ const CampaignsCard = (props) => {
   } = props?.content;
 
   const LinkStyled = (props) => {
-    const { children, to = "", ...extra } = props;
+    const { children, to = "", asHref, ...extra } = props;
     return (
-      <Link href={to}>
+      <Link href={asHref} as={to}>
         <a {...extra}>{children}</a>
       </Link>
     );
@@ -109,6 +109,7 @@ const CampaignsCard = (props) => {
               className="campaigns_card_button"
               as={LinkStyled}
               to={`/company/${id}`}
+              asHref={"/company/[companyId]"}
             >
               {t("campaigns_card.button")}
             </Button>

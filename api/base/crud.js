@@ -1,49 +1,49 @@
 class CRUD {
-  url
-  request
+  url;
+  request;
   constructor(config) {
-    const { request, url } = config
-    this.url = url
-    this.request = request
+    const { request, url } = config;
+    this.url = url;
+    this.request = request;
   }
 
   get(params) {
     return this.request({
       url: this.url,
       params,
-    })
+    });
   }
 
   one(id, params) {
     return this.request({
-      method: 'GET',
-      url: `${this.url}/${id}/`,
+      method: "GET",
+      url: `${this.url}/${id}`,
       params,
-    })
+    });
   }
 
   update(id, data) {
     return this.request({
-      method: 'PUT',
+      method: "PUT",
       url: `${this.url}/${id}/`,
       data,
-    })
+    });
   }
 
   create(data) {
     return this.request({
-      method: 'POST',
+      method: "POST",
       url: this.url,
       data,
-    })
+    });
   }
 
   delete(id) {
     return this.request({
-      method: 'DELETE',
+      method: "DELETE",
       url: `${this.url}/${id}/`,
-    })
+    });
   }
 }
 
-export default CRUD
+export default CRUD;

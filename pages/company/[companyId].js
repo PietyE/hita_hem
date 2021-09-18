@@ -68,7 +68,7 @@ const CompanyPage = () => {
       _clearCompanyDetail();
       _resetCompanyTab();
     };
-  }, [_clearCompanyDetail, _getCompanyDetail, companyId, _resetCompanyTab]);
+  }, [companyId]);
 
   return (
     <>
@@ -83,14 +83,18 @@ const CompanyPage = () => {
   );
 };
 
+// export async function getStaticPaths() {
+//   return {
+//     paths: ["/company/[companyId]"],
+//     fallback: true,
+//   };
+// }
+
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, params, ...etc }) => {
-      if (params.companyId) {
-        store.dispatch(getCompanyById(params.companyId));
-        store.dispatch(END);
-      }
-
+      store.dispatch(getCompanyById(params.companyId));
+      store.dispatch(END);
       await store.sagaTask.toPromise();
     }
 );

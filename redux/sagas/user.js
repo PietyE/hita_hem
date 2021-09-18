@@ -62,7 +62,6 @@ export function* bootstarpWorker() {
         yield call([api, "setToken"], token);
 
         const response = yield call([auth, "getUser"], id);
-        console.log("__________-response", response.data);
         if (response.status !== 200) {
           yield put(setAuth(false));
           return;

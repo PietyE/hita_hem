@@ -11,7 +11,7 @@ import {
 
 const initialsState = {
   activeTab: "personal_details",
-  isAuth: true,
+  isAuth: false,
   isFetching: false,
   token: {},
   user: {},
