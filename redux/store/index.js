@@ -45,7 +45,7 @@ function rootReducer(state = {}, action) {
 }
 
 const bindMiddleware = (middleware) => {
-  if (process.env.REACT_APP_CUSTOM_NODE_ENV !== "production") {
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
     const { composeWithDevTools } = require("redux-devtools-extension");
     return composeWithDevTools(applyMiddleware(...middleware));
   }
@@ -61,4 +61,4 @@ export const makeStore = (context) => {
   return store;
 };
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore, { debug: false });
