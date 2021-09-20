@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Carousel } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
 import { useTranslation } from "react-i18next";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 import Button from "components/ui/Button";
 import TopSliderComponent from "components/TopSliderComponent";
@@ -26,6 +26,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                     <img
                       className="raise_page_slider_image"
                       src={correctImage}
+                      loading="lazy"
                     />
                     <h1 className="raise_page_slider_title">
                       {content?.title}

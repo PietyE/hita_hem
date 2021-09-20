@@ -16,7 +16,9 @@ import { createProfile, changeProfile } from "redux/actions/user";
 import { getProfile } from "redux/reducers/user";
 import { useDispatch, useSelector } from "react-redux";
 
-import { isEqual, isEmpty, capitalize } from "lodash";
+import isEqual from "lodash/isEqual";
+import isEmpty from "lodash/isEmpty";
+import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
 import {

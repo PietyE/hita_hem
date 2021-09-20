@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Logo = ({ classNameContainer, classNameText }) => {
   return (
-    <Link href="/">
+    <Link href="/" prefetch={false}>
       <a className={`logo_container ${classNameContainer}`}>
         <div className="logo_circle">
           <svg

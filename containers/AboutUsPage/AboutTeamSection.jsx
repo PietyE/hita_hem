@@ -18,6 +18,7 @@ const AboutTeamSection = ({ content = [] }) => {
                     src={photo}
                     className="team_item_foto"
                     alt="foto of member of team"
+                    loading="lazy"
                   />
                   <h3 className="team_item_name">{name}</h3>
                   <span className="team_item_position">{position}</span>

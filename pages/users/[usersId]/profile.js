@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import { Collapse } from "react-bootstrap";
+import Collapse from "react-bootstrap/Collapse";
 import NavTab from "components/ui/NavTab/NavTab";
 
 import {

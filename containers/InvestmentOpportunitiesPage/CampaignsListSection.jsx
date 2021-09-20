@@ -5,7 +5,7 @@ import FilterMobileMenu from "./FilterMobileMenu";
 import Button from "components/ui/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Dropdown } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
 import {
   getFilterSelector,
   getIsMoreCampaignsSelector,

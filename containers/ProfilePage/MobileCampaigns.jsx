@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Accordion, Card } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getSelectedLangSelector } from "redux/reducers/language";

@@ -1,13 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { isEqual } from 'lodash'
+import React from "react";
+import { useSelector } from "react-redux";
+import isEqual from "lodash/isEqual";
 
-import TeamMemberCard from './TeamMemberCard'
+import TeamMemberCard from "./TeamMemberCard";
 
-import { getTeatMateSetSelector } from 'redux/reducers/companies'
+import { getTeatMateSetSelector } from "redux/reducers/companies";
 
 const Team = () => {
-  const teamsMateSet = useSelector(getTeatMateSetSelector, isEqual) || []
+  const teamsMateSet = useSelector(getTeatMateSetSelector, isEqual) || [];
 
   return (
     <section className="team_section_container">
@@ -16,7 +16,7 @@ const Team = () => {
           <TeamMemberCard key={index} item={member} />
         ))}
     </section>
-  )
-}
+  );
+};
 
-export default Team
+export default Team;

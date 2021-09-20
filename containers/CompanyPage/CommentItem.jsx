@@ -33,7 +33,7 @@ const CommentItem = ({ data, className, complete }) => {
       <div className={`comment_item ${className}`}>
         <div className="comment_item_image">
           {data?.user?.image && (
-            <img src={data?.user?.image} alt="user_avatar" />
+            <img src={data?.user?.image} alt="user_avatar" loading="lazy" />
           )}
         </div>
         <div className="comment_item_text_wrapper">

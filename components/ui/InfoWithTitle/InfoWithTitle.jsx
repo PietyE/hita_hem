@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
 const InfoWithTitle = ({
-  title = '',
-  info = '',
-  classNameContainer = '',
+  title = "",
+  info = "",
+  classNameContainer = "",
   isLink = false,
   href,
 }) => {
@@ -13,13 +13,13 @@ const InfoWithTitle = ({
     </a>
   ) : (
     <span className="info">{info}</span>
-  )
+  );
   return (
     <div className={`info_container ${classNameContainer}`}>
       <span className="title">{title}</span>
       {infoComponent}
     </div>
-  )
-}
+  );
+};
 
-export default InfoWithTitle
+export default InfoWithTitle;

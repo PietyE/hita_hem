@@ -1,18 +1,17 @@
-import CRUD from '../base'
+import CRUD from "../base";
 
 class AddEmailCRUD extends CRUD {
   addEmail(params) {
     return this.request({
-      method: 'POST',
+      method: "POST",
       url: `${this.url}/?${params}`,
-
-    })
+    });
   }
 }
 
 export default function addEmailCRUD(request) {
   return new AddEmailCRUD({
-    url: '/user-urls',
+    url: "/user-urls",
     request,
-  })
+  });
 }

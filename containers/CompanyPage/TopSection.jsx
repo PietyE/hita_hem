@@ -19,7 +19,12 @@ const TopSection = () => {
 
   return (
     <div className="company_top_section_container">
-      <img src={_src} alt="company_foto" className="company_top_section_foto" />
+      <img
+        src={_src}
+        alt="company_foto"
+        className="company_top_section_foto"
+        loading="lazy"
+      />
       <StatusCompanyBadge
         status={status.toLocaleLowerCase()}
         classNameContainer="company_top_section_status"

@@ -24,7 +24,7 @@ import api from "api";
 import { getCompanyIdSelector } from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import { setFaqPosts } from "../actions/companies";
-import { isEmpty } from "lodash";
+import isEmpty from "lodash/isEmpty";
 import { setError } from "../actions/errors";
 import { convertStatusToText } from "../../utils/utils";
 import { getSelectedLangSelector } from "../reducers/language";

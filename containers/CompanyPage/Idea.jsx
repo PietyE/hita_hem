@@ -1,15 +1,16 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { isEqual } from 'lodash'
+import React from "react";
+import { useSelector } from "react-redux";
+import isEqual from "lodash/isEqual";
 
-import Title from 'components/ui/Title'
-import InfoBlockColor from 'components/ui/InfoBlockColor'
-import ImageComponent from 'components/ui/ImageComponent'
-import { getIdeaSectionContentSelector } from 'redux/reducers/companies'
-import { sanitizeHtmlFromBack } from 'utils/sanitazeHTML'
+import Title from "components/ui/Title";
+import InfoBlockColor from "components/ui/InfoBlockColor";
+import ImageComponent from "components/ui/ImageComponent";
+import { getIdeaSectionContentSelector } from "redux/reducers/companies";
+import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 
 const Idea = () => {
-  const ideaContents = useSelector(getIdeaSectionContentSelector, isEqual) || []
+  const ideaContents =
+    useSelector(getIdeaSectionContentSelector, isEqual) || [];
   return (
     <div className="idea_section_container">
       {ideaContents.map((section, i) => {
@@ -21,9 +22,9 @@ const Idea = () => {
           fourth_image,
           title,
           description,
-        } = section
+        } = section;
 
-        if (type === 'Challenge') {
+        if (type === "Challenge") {
           return (
             <section key={i} className="idea_section mb-5">
               <InfoBlockColor className="idea_color_block">
@@ -36,7 +37,7 @@ const Idea = () => {
                 />
               </InfoBlockColor>
             </section>
-          )
+          );
         }
 
         return (
@@ -49,7 +50,7 @@ const Idea = () => {
                   __html: sanitizeHtmlFromBack(description),
                 }}
               />
-              {type === 'Solution' && (
+              {type === "Solution" && (
                 <>
                   {!!first_image && (
                     <ImageComponent
@@ -64,7 +65,7 @@ const Idea = () => {
                 </>
               )}
             </section>
-            {type === 'Result' && (
+            {type === "Result" && (
               <div className="idea_image_container">
                 {!!first_image && (
                   <ImageComponent
@@ -97,11 +98,10 @@ const Idea = () => {
               </div>
             )}
           </React.Fragment>
-        )
+        );
       })}
     </div>
+  );
+};
 
-  )
-}
-
-export default Idea
+export default Idea;

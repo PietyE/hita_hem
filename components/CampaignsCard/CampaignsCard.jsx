@@ -1,5 +1,3 @@
-import React from "react";
-
 import Link from "next/link";
 import Image from "next/image";
 
@@ -36,7 +34,7 @@ const CampaignsCard = (props) => {
   const LinkStyled = (props) => {
     const { children, to = "", asHref, ...extra } = props;
     return (
-      <Link href={asHref} as={to}>
+      <Link href={asHref} as={to} prefetch={false}>
         <a {...extra}>{children}</a>
       </Link>
     );
@@ -53,12 +51,12 @@ const CampaignsCard = (props) => {
             src={card_image || header_image}
             alt="company_foto"
           />
-
           <span className="campaigns_card_logo">
-            <img
+            <Image
               className="featured_campaigns_logo_img"
               src={logo}
               alt="campaigns_logo"
+              layout="fill"
             />
           </span>
 

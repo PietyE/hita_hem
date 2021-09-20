@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getUserSelector } from "redux/reducers/user";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import UserPanelMenu from "../ui/UserPanelMenu";
-import { Dropdown } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function UserPanel() {
   const userInfo = useSelector(getUserSelector, isEqual);
@@ -20,7 +20,12 @@ function UserPanel() {
         )}
         <div className="user_panel_avatar_wrapper">
           {user?.image && (
-            <img src={user?.image} alt="avatar" className="user_panel_avatar" />
+            <img
+              src={user?.image}
+              alt="avatar"
+              className="user_panel_avatar"
+              loading="lazy"
+            />
           )}
         </div>
       </Dropdown.Toggle>

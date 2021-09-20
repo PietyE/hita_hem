@@ -1,5 +1,7 @@
-import React, { useCallback, useRef, useState } from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { useCallback, useRef, useState } from "react";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import {
   RAISE_ROUTE,
   INVEST_ROUTE,
@@ -77,27 +79,27 @@ const Navigation = ({ className }) => {
               ref={menuBtn}
             >
               <NavDropdown.Item as="div" className="nav_item nav_item_invest">
-                <Link href={INVEST_ROUTE}>
+                <Link href={INVEST_ROUTE} prefetch={false}>
                   <a>{t("header.invest").toLocaleUpperCase()}</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className={submenuClass}>
-                <Link href={ABOUT_US_ROUTE}>
+                <Link href={ABOUT_US_ROUTE} prefetch={false}>
                   <a>{t("header.about_us").toLocaleUpperCase()}</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={RAISE_ROUTE}>
+                <Link href={RAISE_ROUTE} prefetch={false}>
                   <a>{t("header.raise").toLocaleUpperCase()}</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={ABOUT_US_ROUTE}>
+                <Link href={ABOUT_US_ROUTE} prefetch={false}>
                   <a>{t("header.about_us").toLocaleUpperCase()}</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={LAUNCHING_SOON}>
+                <Link href={LAUNCHING_SOON} prefetch={false}>
                   <a>{t("header.launching_soon").toLocaleUpperCase()}</a>
                 </Link>
               </NavDropdown.Item>

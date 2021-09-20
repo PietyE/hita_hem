@@ -1,6 +1,4 @@
-import React from "react";
 import { useSelector } from "react-redux";
-
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,12 +8,13 @@ import {
   faFacebookF,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+
 import {
   RAISE_ROUTE,
   INVEST_ROUTE,
   ABOUT_US_ROUTE,
   LAUNCHING_SOON,
-} from "../../constants/routesConstant";
+} from "constants/routesConstant";
 import Logo from "components/Logo";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 
@@ -28,16 +27,16 @@ const Footer = () => {
         <Logo classNameText="footer_text" />
       </div>
       <div className="footer_item footer_nav">
-        <Link href={INVEST_ROUTE}>
+        <Link href={INVEST_ROUTE} prefetch={false}>
           <a className="footer_nav_link">{t("footer.invest_link")}</a>
         </Link>
-        <Link href={RAISE_ROUTE}>
+        <Link href={RAISE_ROUTE} prefetch={false}>
           <a className="footer_nav_link">{t("footer.raise_link")}</a>
         </Link>
-        <Link href={ABOUT_US_ROUTE}>
+        <Link href={ABOUT_US_ROUTE} prefetch={false}>
           <a className="footer_nav_link">{t("footer.about_us_link")}</a>
         </Link>
-        <Link href={LAUNCHING_SOON}>
+        <Link href={LAUNCHING_SOON} prefetch={false}>
           <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>
         </Link>
         <a

@@ -1,5 +1,7 @@
 import React, { useCallback, useState } from "react";
-import { Accordion, Button, Card } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import ButtonStyled from "components/ui/Button";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

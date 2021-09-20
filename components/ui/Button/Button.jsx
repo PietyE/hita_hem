@@ -1,8 +1,8 @@
-import React, { forwardRef } from 'react'
-import { Button } from 'react-bootstrap'
+import React, { forwardRef } from "react";
+import Button from "react-bootstrap/Button";
 
 const ButtonStyled = forwardRef((props, ref) => {
-  const { children, className, colorStyle, ...rest } = props
+  const { children, className, colorStyle, ...rest } = props;
   return (
     <Button
       className={`styled_button ${className} ${colorStyle}`}
@@ -11,7 +11,7 @@ const ButtonStyled = forwardRef((props, ref) => {
     >
       {children}
     </Button>
-  )
-})
+  );
+});
 
-export default ButtonStyled
+export default ButtonStyled;

@@ -1,17 +1,14 @@
-import React from "react";
-
+import { useCallback, forwardRef } from "react";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Dropdown } from "react-bootstrap";
-import Logo from "components/Logo";
-import UserPanel from "../UserPanel";
-import IconChevronDown from "components/ui/IconChevronDown";
-import Navigation from "./components/Navigation";
-import Button from "components/ui/Button";
+import Dropdown from "react-bootstrap/Dropdown";
 
+import Logo from "components/Logo";
+import IconChevronDown from "components/ui/IconChevronDown";
+import Button from "components/ui/Button";
 import {
-  BASE_ROUTE,
   ABOUT_US_ROUTE,
   RAISE_ROUTE,
   INVEST_ROUTE,
@@ -19,17 +16,17 @@ import {
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
-import { setSelectedLanguage, changeLanguage } from "redux/actions/language";
-import {
-  setShowSignUp,
-  setShowSignIn,
-} from "../../redux/actions/authPopupWindows";
+import { changeLanguage } from "redux/actions/language";
+import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
 import { isSignInUserSelector } from "redux/reducers/user";
+
+const UserPanel = dynamic(() => import("components/UserPanel"));
+const Navigation = dynamic(() => import("./components/Navigation"));
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
   return (
-    <Link href={to} {...extra}>
+    <Link href={to} {...extra} prefetch={false}>
       <a {...extra}>{children}</a>
     </Link>
   );
@@ -40,21 +37,26 @@ const Header = () => {
   const { t } = useTranslation();
   const selectedLanguage = useSelector(getSelectedLangSelector);
   const isAuth = useSelector(isSignInUserSelector);
-  const handleSelectLang = (e) => {
-    dispatch(changeLanguage(lang[e.target.dataset.ln].code));
-  };
-  const handleShowSignUp = () => {
+
+  const handleSelectLang = useCallback(
+    (e) => {
+      dispatch(changeLanguage(lang[e.target.dataset.ln].code));
+    },
+    [dispatch]
+  );
+
+  const handleShowSignUp = useCallback(() => {
     dispatch(setShowSignUp(true));
-  };
-  const handleShowSignIn = () => {
+  }, [dispatch]);
+
+  const handleShowSignIn = useCallback(() => {
     dispatch(setShowSignIn(true));
-  };
+  }, [dispatch]);
 
   return (
     <>
       <div className="header_container">
         <Navigation className="header_mobile_navigation" />
-
         <div className="header_item logo left">
           <Logo
             classNameContainer={"header_logo_container"}
@@ -74,7 +76,6 @@ const Header = () => {
                   {t("header.invest").toLocaleUpperCase()}
                 </Button>
               </span>
-
               <span className="menu_item">
                 <Button
                   className="menu_item_link menu_item_link_raise"
@@ -107,7 +108,6 @@ const Header = () => {
               </span>
             </div>
           </div>
-
           <div className="header_item right">
             {!isAuth && (
               <>
@@ -128,7 +128,6 @@ const Header = () => {
               </>
             )}
             {!!isAuth && <UserPanel />}
-
             <Dropdown className="ln_button_container sign_in_item">
               <Dropdown.Toggle as={CustomToggle}>
                 {lang[selectedLanguage]?.name}
@@ -157,7 +156,7 @@ const Header = () => {
   );
 };
 
-const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
+const CustomToggle = forwardRef(({ children, onClick }, ref) => (
   <Button
     ref={ref}
     colorStyle="link"

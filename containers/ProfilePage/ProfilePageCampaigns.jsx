@@ -5,7 +5,7 @@ import { getSelectedLangSelector } from "redux/reducers/language";
 import MobileCampaigns from "./MobileCampaigns";
 import { useTranslation } from "react-i18next";
 import { convertStatusToText } from "utils/utils";
-import { startCase } from "lodash";
+import startCase from "lodash/startCase";
 
 const ProfilePageCampaigns = () => {
   const { t } = useTranslation();

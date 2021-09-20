@@ -5,7 +5,7 @@ import {
   getMainSubTitleSelector,
   getMainPostsSelector,
 } from "redux/reducers/launchingSoon";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 const PostsBlock = () => {
   const title = useSelector(getMainSubTitleSelector, isEqual);

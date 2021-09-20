@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FormControl, InputGroup } from "react-bootstrap";
+import FormControl from "react-bootstrap/FormControl";
+import InputGroup from "react-bootstrap/InputGroup";
 import Image from "next/image";
 
 import {
@@ -8,7 +9,7 @@ import {
   getMainImageSelector,
   getMainTitleSelector,
 } from "redux/reducers/launchingSoon";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
 import IconTriangle from "./images/triangle.svg";

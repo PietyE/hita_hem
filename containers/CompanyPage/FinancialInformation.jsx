@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import Image from "next/image";
 
 import FinArticle from "./FinArticle";

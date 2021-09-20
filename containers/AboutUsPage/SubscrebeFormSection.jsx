@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { InputGroup, FormControl } from "react-bootstrap";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
 import { useDispatch } from "react-redux";
 import Image from "next/image";
 

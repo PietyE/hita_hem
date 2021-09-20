@@ -25,7 +25,7 @@ const Campaigns = ({ title, type, buttonText }) => {
     <section className="campaigns_container">
       <h2 className="campaigns_title">{title}</h2>
       <CampaignsList type={type} />
-      <Link href={INVEST_ROUTE}>
+      <Link href={INVEST_ROUTE} prefetch={false}>
         <a>
           <Button
             colorStyle="dark-green"

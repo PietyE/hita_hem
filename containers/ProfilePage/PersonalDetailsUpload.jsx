@@ -63,7 +63,11 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
             name="image"
             onChange={imageChangeHandler}
           />
-          <img ref={imageEl} className="profile_form_upload_avatar" />
+          <img
+            ref={imageEl}
+            className="profile_form_upload_avatar"
+            loading="lazy"
+          />
         </div>
         {profile?.first_name && profile?.second_name && (
           <p className="profile_form_name_mobile">

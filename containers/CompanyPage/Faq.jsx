@@ -8,7 +8,7 @@ import {
   getFaqUsersPostsSelector,
   getCompanyIdSelector,
 } from "redux/reducers/companies";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { addFaqPost, getFaqPosts } from "redux/actions/companies";
 import { useTranslation } from "react-i18next";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 import {
   getRaisePageRaiseOpportunitiesDescriptionSelector,
@@ -42,7 +42,12 @@ const RaiseInstructionsBlock = ({ type }) => {
               return (
                 <li key={i} className="raise_item_container">
                   <div className="raise_item_icon_wrapper">
-                    <img className="raise_item_img" src={el.logo} alt="" />
+                    <img
+                      className="raise_item_img"
+                      src={el.logo}
+                      alt=""
+                      loading="lazy"
+                    />
                   </div>
                   <h3 className="rise_item_title">{el.title}</h3>
                   <p className="raise_item_text">{el.description} </p>

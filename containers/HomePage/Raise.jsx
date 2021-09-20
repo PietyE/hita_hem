@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { getHomePageRaisesSelector } from "redux/reducers/homePage";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 
 function Raise() {
@@ -19,6 +19,7 @@ function Raise() {
                   src={logo}
                   alt="step_one_icon"
                   className="raise_step_icon"
+                  loading="lazy"
                 />
               </div>
               <div className="raise_step_text_wrapper">

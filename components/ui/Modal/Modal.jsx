@@ -1,5 +1,5 @@
-import React from 'react'
-import { Modal } from 'react-bootstrap'
+import React from "react";
+import Modal from "react-bootstrap/Modal";
 
 const ModalContainer = ({
   children,
@@ -11,10 +11,10 @@ const ModalContainer = ({
   ...rest
 }) => {
   const handleClose = () => {
-    if (onHide && typeof onHide === 'function') {
-      onHide(false)
+    if (onHide && typeof onHide === "function") {
+      onHide(false);
     }
-  }
+  };
   return (
     <Modal
       onHide={handleClose}
@@ -31,7 +31,7 @@ const ModalContainer = ({
         {children}
       </Modal.Body>
     </Modal>
-  )
-}
+  );
+};
 
-export default ModalContainer
+export default ModalContainer;

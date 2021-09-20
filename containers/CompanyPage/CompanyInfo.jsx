@@ -1,11 +1,11 @@
-import React from 'react'
-import {useTranslation} from 'react-i18next';
-import { useSelector } from 'react-redux'
-import { isEqual } from 'lodash'
+import React from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import isEqual from "lodash/isEqual";
 
-import InfoWithTitle from 'components/ui/InfoWithTitle'
-import SocialTab from 'components/ui/SocialTab'
-import Title from 'components/ui/Title'
+import InfoWithTitle from "components/ui/InfoWithTitle";
+import SocialTab from "components/ui/SocialTab";
+import Title from "components/ui/Title";
 
 import {
   getCompanyLogoUrlSelector,
@@ -14,18 +14,17 @@ import {
   getCountryTitleSelector,
   getWebSiteCompanySelector,
   getSocialsCompanySelector,
-} from 'redux/reducers/companies'
+} from "redux/reducers/companies";
 
 const CompanyInfo = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
-
-  const logoUrl = useSelector(getCompanyLogoUrlSelector)
-  const companyName = useSelector(getCompanyNameSelector)
-  const industryTitle = useSelector(getCompanyIndustryTitleSelector)
-  const countryTitle = useSelector(getCountryTitleSelector)
-  const webSite = useSelector(getWebSiteCompanySelector)
-  const socials = useSelector(getSocialsCompanySelector, isEqual)
+  const logoUrl = useSelector(getCompanyLogoUrlSelector);
+  const companyName = useSelector(getCompanyNameSelector);
+  const industryTitle = useSelector(getCompanyIndustryTitleSelector);
+  const countryTitle = useSelector(getCountryTitleSelector);
+  const webSite = useSelector(getWebSiteCompanySelector);
+  const socials = useSelector(getSocialsCompanySelector, isEqual);
 
   return (
     <div className="company_info_container">
@@ -34,23 +33,24 @@ const CompanyInfo = () => {
           src={logoUrl}
           alt="Company logo"
           className="company_info_logo_img"
+          loading="lazy"
         />
       </div>
       <div className="company_info_sig_container">
         <Title title={companyName} className="company_name" />
         <div className="company_info_sig">
           <InfoWithTitle
-            title={t('company_page.company_info.Industry')}
+            title={t("company_page.company_info.Industry")}
             info={industryTitle}
             classNameContainer="company_info_sig_item"
           />
           <InfoWithTitle
-            title={t('company_page.company_info.Location')}
+            title={t("company_page.company_info.Location")}
             info={countryTitle}
             classNameContainer="company_info_sig_item"
           />
           <InfoWithTitle
-            title={t('company_page.company_info.Website')}
+            title={t("company_page.company_info.Website")}
             info={webSite}
             href={webSite}
             isLink
@@ -63,7 +63,7 @@ const CompanyInfo = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CompanyInfo
+export default CompanyInfo;

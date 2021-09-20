@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import TopSliderComponent from "components/TopSliderComponent";
 import { getHomePageHeadersSelector } from "redux/reducers/homePage";
 

@@ -28,7 +28,7 @@ const PageNotFound = () => {
           </div>
         </div>
 
-        <Link href={HOME_ROUTE}>
+        <Link href={HOME_ROUTE} prefetch={false}>
           <a>
             <Button colorStyle="red" className="page_404_button">
               {t("not_found_page.button")}

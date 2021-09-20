@@ -2,7 +2,7 @@ import React from "react";
 import TopSliderComponent from "components/TopSliderComponent";
 import { useSelector } from "react-redux";
 import { getInvestHeaderCompanyListSelector } from "redux/reducers/companies";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 
 const InvestTopSlider = () => {
   const investPageHeader =

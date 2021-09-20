@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const IconChevronDown = (props) => {
   return (
@@ -16,7 +16,7 @@ const IconChevronDown = (props) => {
         strokeLinecap="round"
       />
     </svg>
-  )
-}
+  );
+};
 
-export default IconChevronDown
+export default IconChevronDown;

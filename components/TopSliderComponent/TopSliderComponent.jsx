@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
-import { uniqueId } from "lodash";
-import { Carousel } from "react-bootstrap";
+import uniqueId from "lodash/uniqueId";
+import Carousel from "react-bootstrap/Carousel";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
@@ -49,6 +49,7 @@ const TopSliderComponent = ({
                     className="item_component_image"
                     src={_src}
                     alt="First slide"
+                    loading="lazy"
                   />
                   {status && (
                     <StatusCompanyBadge
