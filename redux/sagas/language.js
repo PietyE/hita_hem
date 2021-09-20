@@ -1,11 +1,15 @@
 import { takeEvery, call } from "redux-saga/effects";
-import { SET_LANGUAGE, CHANGE_LANGUAGE } from "constants/actionsConstant";
+import Cookies from "js-cookie";
+
+import { CHANGE_LANGUAGE } from "constants/actionsConstant";
 
 function* setLangWorker({ payload }) {
   try {
-    if (typeof window !== "undefined" && localStorage) {
-      yield call([localStorage, "setItem"], "language", payload);
-    }
+    // if (typeof window !== "undefined" && localStorage) {
+    //   yield call([localStorage, "setItem"], "language", payload);
+    // }
+
+    Cookies.set("i18next", payload);
 
     if (typeof window !== "undefined") {
       window.location.reload();

@@ -52,11 +52,11 @@ const CampaignsCard = (props) => {
             alt="company_foto"
           />
           <span className="campaigns_card_logo">
-            <Image
+            <img
               className="featured_campaigns_logo_img"
               src={logo}
               alt="campaigns_logo"
-              layout="fill"
+              loading="lazy"
             />
           </span>
 

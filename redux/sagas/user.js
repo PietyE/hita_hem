@@ -1,5 +1,7 @@
 import { takeEvery, call, put, select } from "redux-saga/effects";
 import i18n from "i18next";
+import Cookies from "js-cookie";
+
 import {
   BOOTSTAP_ACTION,
   SIGN_IN,
@@ -17,14 +19,10 @@ import {
   setAccount,
   setAuth,
   setToken,
-  createProfile,
   setProfile,
   setFetchingUsers,
 } from "redux/actions/user";
-import {
-  setNotification,
-  setNotificationMessage,
-} from "../actions/notification";
+import { setNotificationMessage } from "../actions/notification";
 import {
   setShowSignIn,
   setShowSignUp,
@@ -41,18 +39,22 @@ import { getDocumentsWorker } from "./documents";
 
 const { auth } = api;
 
-export function* bootstarpWorker() {
+export function* bootstarpWorker({ payload: cook }) {
   try {
-    console.log(
-      "________!!!!!!!!bootstarpWorkerbootstarpWorkerbootstarpWorker"
-    );
     yield put(setFetchingUsers(true));
-    const systemLang = i18n.language;
+
+    const systemLang = cook.i18next || i18n.language;
+
+    !!cook.i18next && i18n.changeLanguage(systemLang);
+
     yield call([api, "setLanguage"], systemLang);
+
     yield put(setSelectedLanguage(systemLang));
-    yield call([localStorage, "setItem"], "language", systemLang);
+
+    Cookies.set("i18next", systemLang);
 
     const auth_data = yield call([localStorage, "getItem"], "auth_data");
+
     if (auth_data) {
       const data = JSON.parse(auth_data);
       const { expiration_timestamp, key: token, user: id } = data;

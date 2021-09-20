@@ -42,7 +42,7 @@ const ShowConfirmationOfAccountDeletion = dynamic(() =>
   import("components/ShowConfirmationOfAccountDeletion")
 );
 
-const RootPage = ({ children }) => {
+const RootPage = ({ children, cookies = {} }) => {
   const dispatch = useDispatch();
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);
@@ -64,7 +64,7 @@ const RootPage = ({ children }) => {
   const isNotificationShow = useSelector(getNotificationStatusSelector);
 
   useEffect(() => {
-    dispatch(bootstap());
+    dispatch(bootstap(cookies));
   }, []);
 
   return (

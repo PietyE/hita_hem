@@ -16,12 +16,12 @@ const initLanguage = () => {
       ? window?.navigator?.language?.split("-")[0]
       : null;
 
-  const localStorLang =
-    typeof window !== "undefined" ? localStorage.getItem("language") : null;
+  // const localStorLang = null;
+  // // typeof window !== "undefined" ? localStorage.getItem("language") : null;
 
-  if (localStorLang && Object.keys(lang).includes(localStorLang)) {
-    return localStorLang;
-  }
+  // if (localStorLang && Object.keys(lang).includes(localStorLang)) {
+  //   return localStorLang;
+  // }
 
   if (browserLang && Object.keys(lang).includes(browserLang)) {
     return browserLang;

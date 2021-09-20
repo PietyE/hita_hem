@@ -18,8 +18,9 @@ import {
   DELETE_ACCOUNT,
 } from "constants/actionsConstant";
 
-export const bootstap = () => ({
+export const bootstap = (payload) => ({
   type: BOOTSTAP_ACTION,
+  payload,
 });
 
 export const signUp = (payload) => ({
