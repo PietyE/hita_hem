@@ -1,4 +1,5 @@
 import axios from "axios";
+import i18next from "i18next";
 
 import aboutAsCRUD from "./routes/aboutUs";
 import addEmailCRUD from "./routes/addEmail";
@@ -55,6 +56,7 @@ class Client {
   }
   setLanguage(language) {
     this.language = language;
+    i18next.changeLanguage(language);
   }
 }
 

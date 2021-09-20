@@ -5,23 +5,16 @@ import { en } from "./en";
 import { sv } from "./sv";
 import { lang } from "constants/languageConstant";
 
-const resources = {
+export const resources = {
   en: en,
   sv: sv,
 };
 
-const initLanguage = () => {
+export const initLanguage = () => {
   const browserLang =
     typeof window !== "undefined"
       ? window?.navigator?.language?.split("-")[0]
       : null;
-
-  // const localStorLang = null;
-  // // typeof window !== "undefined" ? localStorage.getItem("language") : null;
-
-  // if (localStorLang && Object.keys(lang).includes(localStorLang)) {
-  //   return localStorLang;
-  // }
 
   if (browserLang && Object.keys(lang).includes(browserLang)) {
     return browserLang;

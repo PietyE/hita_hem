@@ -45,13 +45,13 @@ export function* bootstarpWorker({ payload: cook }) {
 
     const systemLang = cook.i18next || i18n.language;
 
-    !!cook.i18next && i18n.changeLanguage(systemLang);
-
     yield call([api, "setLanguage"], systemLang);
 
     yield put(setSelectedLanguage(systemLang));
 
-    Cookies.set("i18next", systemLang);
+    if (!cook.i18next) {
+      yield call([Cookies, "set"], "i18next", systemLang);
+    }
 
     const auth_data = yield call([localStorage, "getItem"], "auth_data");
 

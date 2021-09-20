@@ -9,7 +9,8 @@ function* setLangWorker({ payload }) {
     //   yield call([localStorage, "setItem"], "language", payload);
     // }
 
-    Cookies.set("i18next", payload);
+    //Cookies.set("i18next", payload);
+    yield call([Cookies, "set"], "i18next", payload);
 
     if (typeof window !== "undefined") {
       window.location.reload();
