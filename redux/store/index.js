@@ -45,7 +45,7 @@ function rootReducer(state = {}, action) {
 }
 
 const bindMiddleware = (middleware) => {
-  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV !== "production") {
     const { composeWithDevTools } = require("redux-devtools-extension");
     return composeWithDevTools(applyMiddleware(...middleware));
   }

@@ -8,5 +8,6 @@ module.exports = withBundleAnalyzer({
   },
   devIndicators: {
     autoPrerender: false,
+    buildActivity: false,
   },
 });
