@@ -18,7 +18,7 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { changeLanguage } from "redux/actions/language";
 import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
-import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
@@ -36,7 +36,7 @@ const Header = ({ cookLng }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const selectedLanguage = cookLng || useSelector(getSelectedLangSelector);
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
 
   const handleSelectLang = useCallback(
     (e) => {

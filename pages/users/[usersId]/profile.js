@@ -8,7 +8,7 @@ import NavTab from "components/ui/NavTab/NavTab";
 
 import {
   getActiveTabSelector,
-  isSignInUserSelector,
+  getIsSignInUserSelector,
   getIsFetchingAuthSelector,
 } from "redux/reducers/user";
 import { setActiveTab } from "redux/actions/user";
@@ -27,7 +27,7 @@ const ProfilePage = () => {
   const history = useRouter();
 
   const activeTab = useSelector(getActiveTabSelector);
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
 
   useEffect(() => {
