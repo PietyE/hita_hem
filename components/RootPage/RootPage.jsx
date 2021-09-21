@@ -69,7 +69,7 @@ const RootPage = ({ children, cookies = {} }) => {
 
   return (
     <div className="container">
-      <Header />
+      <Header cookLng={cookies?.i18next} />
       {children}
       {!!showSignInWindow && <SignIn show={showSignInWindow} />}
       {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
