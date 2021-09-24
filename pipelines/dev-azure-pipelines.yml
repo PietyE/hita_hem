@@ -11,13 +11,17 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm run build:dev
-  displayName: '[Dev]npm install and build'
+    yarn install
+    yarn build:dev
+  displayName: '[Dev] Yarn install and build'
 
 - task: CopyFiles@2
   inputs:
-    Contents: '**'
+    Contents: |
+      '.next/**'
+      'public/**'
+      'package.json'
+      'next.config.js'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
