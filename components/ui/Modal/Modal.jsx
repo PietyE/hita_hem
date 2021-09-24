@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
+import Spinner from "react-bootstrap/Spinner";
 
 const ModalContainer = ({
   children,
@@ -8,6 +9,7 @@ const ModalContainer = ({
   onHide,
   className,
   dialogClassName,
+  isFetchIndicator,
   ...rest
 }) => {
   const handleClose = () => {
@@ -15,6 +17,9 @@ const ModalContainer = ({
       onHide(false);
     }
   };
+
+  const fetchIndicatorClassName = isFetchIndicator ? "fetching" : "";
+
   return (
     <Modal
       onHide={handleClose}
@@ -27,8 +32,17 @@ const ModalContainer = ({
       {isCloseButton && (
         <button className="close_button" onClick={handleClose}></button>
       )}
-      <Modal.Body className={`dialog_modal_body ${bodyClassName}`}>
+      <Modal.Body
+        className={`dialog_modal_body ${bodyClassName} ${fetchIndicatorClassName}`}
+      >
         {children}
+        {!!isFetchIndicator && (
+          <Spinner
+            variant="success"
+            animation="border"
+            className="modal_spinner"
+          />
+        )}
       </Modal.Body>
     </Modal>
   );

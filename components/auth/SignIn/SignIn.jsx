@@ -1,8 +1,9 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
-import InputComponent from "../../ui/InputComponent";
+
+import InputComponent from "components/ui/InputComponent";
 import Modal from "components/ui/Modal";
 import Button from "components/ui/Button";
 import {
@@ -12,9 +13,12 @@ import {
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
 import { signInSchema } from "utils/vadidationSchemas";
+import { getIsFetchingAuthSelector } from "redux/reducers/user";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
+
+  const isFetching = useSelector(getIsFetchingAuthSelector);
 
   const { t } = useTranslation();
 
@@ -58,6 +62,7 @@ const SignIn = ({ show }) => {
       dialogClassName="auth_modal_dialog"
       bodyClassName="auth_modal_container"
       centered={true}
+      isFetchIndicator={isFetching}
     >
       <h1 className="sign_up_title">{t("auth.sign_in.title")}</h1>
       <Formik
@@ -99,7 +104,7 @@ const SignIn = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              disabled={!isValid}
+              disabled={!isValid || isFetching}
             >
               {t("auth.sign_in.button")}
             </Button>

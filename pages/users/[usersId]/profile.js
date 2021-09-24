@@ -36,31 +36,13 @@ const ProfilePage = () => {
     }
   }, [isAuth, history]);
 
-  useEffect(() => {
-    setChosen(activeTab);
-  }, [activeTab]);
-
-  const [chosen, setChosen] = useState(activeTab);
-
   const handleClick = (key) => {
-    setChosen(key);
     dispatch(setActiveTab(key));
   };
 
-  const TabContent = () => {
-    switch (chosen) {
-      case "investment":
-        return <Investment />;
-      case "personal_details":
-        return <PersonalDetails />;
-      case "account_settings":
-        return <AccountSettings />;
-      case "campaigns":
-        return <ProfilePageCampaigns />;
-      default:
-        return null;
-    }
-  };
+  if (!isAuth) {
+    return <SpinnerStyled />;
+  }
 
   return (
     <>
@@ -80,30 +62,30 @@ const ProfilePage = () => {
             { name: t("profile_page.profile_campaigns"), key: "campaigns" },
           ]}
           onClick={handleClick}
-          selectedKey={chosen}
+          selectedKey={activeTab}
           className="profile_tab_bar"
         />
 
-        <TabContent />
+        <TabContent activeTab={activeTab} />
       </section>
       <section className="profile_section_mobile">
-        <NavTab tab={chosen} change={handleClick} />
-        <Collapse in={chosen === "investment"}>
+        <NavTab tab={activeTab} change={handleClick} />
+        <Collapse in={activeTab === "investment"}>
           <div id="investment">
             <Investment />
           </div>
         </Collapse>
-        <Collapse in={chosen === "personal_details"}>
+        <Collapse in={activeTab === "personal_details"}>
           <div id="personal_details">
             <PersonalDetails />
           </div>
         </Collapse>
-        <Collapse in={chosen === "account_settings"}>
+        <Collapse in={activeTab === "account_settings"}>
           <div id="account_settings">
             <AccountSettings />
           </div>
         </Collapse>
-        <Collapse in={chosen === "campaigns"}>
+        <Collapse in={activeTab === "campaigns"}>
           <div id="campaigns">
             <ProfilePageCampaigns />
           </div>
@@ -111,6 +93,21 @@ const ProfilePage = () => {
       </section>
     </>
   );
+};
+
+const TabContent = ({ activeTab }) => {
+  switch (activeTab) {
+    case "investment":
+      return <Investment />;
+    case "personal_details":
+      return <PersonalDetails />;
+    case "account_settings":
+      return <AccountSettings />;
+    case "campaigns":
+      return <ProfilePageCampaigns />;
+    default:
+      return null;
+  }
 };
 
 export default ProfilePage;
