@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import Collapse from "react-bootstrap/Collapse";
@@ -20,6 +19,7 @@ import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import AccountSettings from "containers/ProfilePage/AccountSettings";
 import ProfilePageCampaigns from "containers/ProfilePage/ProfilePageCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
+import { usePrevious } from "customHooks/usePrevious";
 
 const ProfilePage = () => {
   const { t } = useTranslation();
@@ -29,12 +29,13 @@ const ProfilePage = () => {
   const activeTab = useSelector(getActiveTabSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
+  const prevIsFetch = usePrevious(isFetching);
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!isAuth && !isFetching && prevIsFetch) {
       history.push(HOME_ROUTE);
     }
-  }, [isAuth, history]);
+  }, [isAuth, history, isFetching]);
 
   const handleClick = (key) => {
     dispatch(setActiveTab(key));
