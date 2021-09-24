@@ -17,11 +17,12 @@ steps:
 
 - task: CopyFiles@2
   inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
     Contents: |
-      '**/.next/**'
-      '**/public/**'
-      '**/package.json'
-      '**/next.config.js'
+      .next/**
+      public/**
+      package.json
+      next.config.js
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
