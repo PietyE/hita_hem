@@ -18,10 +18,10 @@ steps:
 - task: CopyFiles@2
   inputs:
     Contents: |
-      '.next/**'
-      'public/**'
-      'package.json'
-      'next.config.js'
+      '$(Agent.BuildDirectory)/.next/**'
+      '$(Agent.BuildDirectory)/public/**'
+      '$(Agent.BuildDirectory)/package.json'
+      '$(Agent.BuildDirectory)/next.config.js'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishBuildArtifacts@1
