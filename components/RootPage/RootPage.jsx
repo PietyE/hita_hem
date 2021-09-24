@@ -78,7 +78,7 @@ const RootPage = ({ children, cookies = {} }) => {
     let timer = null;
     if (isAuth) {
       timer = new IdleTimer({
-        timeout: 60 * 1,
+        timeout: 60 * 10,
         onTimeout: _logOut,
         onExpired: _logOut,
       });
