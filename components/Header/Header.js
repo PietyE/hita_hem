@@ -130,7 +130,7 @@ const Header = ({ cookLng }) => {
               </>
             )}
             {!!isAuth && <UserPanel />}
-            {/* <Dropdown className="ln_button_container sign_in_item">
+            <Dropdown className="ln_button_container sign_in_item">
               <Dropdown.Toggle as={CustomToggle}>
                 {lang[selectedLanguage]?.name}
               </Dropdown.Toggle>
@@ -150,7 +150,7 @@ const Header = ({ cookLng }) => {
                   );
                 })}
               </Dropdown.Menu>
-            </Dropdown> */}
+            </Dropdown>
           </div>
         </>
       </div>
