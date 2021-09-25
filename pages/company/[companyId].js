@@ -26,10 +26,6 @@ const CompanyPage = () => {
 
   const companyId = router?.query?.companyId;
 
-  if (typeof window !== "undefined") {
-    alert(companyId);
-  }
-
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
@@ -54,45 +50,38 @@ const CompanyPage = () => {
     dispatch(setError404(false));
   }, [dispatch]);
 
-  // useEffect(() => {
-  //   if (isError404) {
-  //     router.push("/NotFound");
-  //   }
-  //   return () => {
-  //     _clearError404();
-  //   };
-  // }, [_clearError404, isError404]);
+  useEffect(() => {
+    if (isError404) {
+      router.push("/NotFound");
+    }
+    return () => {
+      _clearError404();
+    };
+  }, [_clearError404, isError404]);
 
-  // useEffect(() => {
-  //   if (companyId) {
-  //     _getCompanyDetail(companyId); /////// id need to get after transfer to this page
-  //   }
+  useEffect(() => {
+    if (companyId) {
+      _getCompanyDetail(companyId); /////// id need to get after transfer to this page
+    }
 
-  //   return () => {
-  //     _clearCompanyDetail();
-  //     _resetCompanyTab();
-  //   };
-  // }, [companyId]);
+    return () => {
+      _clearCompanyDetail();
+      _resetCompanyTab();
+    };
+  }, [companyId]);
 
   return (
     <>
       {isFetching && <SpinnerStyled />}
       <div className="company-page-container">
-        {/* <TopSection /> */}
-        {/* <CompanyInfo />
+        <TopSection />
+        <CompanyInfo />
         <ProjectInfo isAuth={isAuth} />
-        <MiddleSection isAuth={isAuth} /> */}
+        <MiddleSection isAuth={isAuth} />
       </div>
     </>
   );
 };
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: ["/company/[companyId]"],
-//     fallback: true,
-//   };
-// }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
