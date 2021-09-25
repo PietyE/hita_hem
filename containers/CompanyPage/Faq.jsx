@@ -42,13 +42,14 @@ const Faq = () => {
   return (
     <section className="faq">
       <ul className="faq_comments_list">
-        {(posts?.length === 0 || !posts) && (
+        {((posts && posts?.length === 0) || !posts) && (
           <p className="faq_comments_answer">
             {t("company_page.faq.faq_text")}
           </p>
         )}
-        {posts?.length > 0 &&
-          posts.map((comment) => (
+        {posts &&
+          posts?.length > 0 &&
+          posts?.map((comment) => (
             <CommentBlock key={comment.id} item={comment} />
           ))}
       </ul>
