@@ -13,6 +13,8 @@ import RootPage from "components/RootPage";
 function App({ Component, pageProps }) {
   const { _cookies } = pageProps;
 
+  console.log("App _cookies", _cookies);
+
   return (
     <>
       <Head>
