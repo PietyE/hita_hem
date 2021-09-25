@@ -26,6 +26,10 @@ const CompanyPage = () => {
 
   const companyId = router?.query?.companyId;
 
+  if (typeof window !== "undefined") {
+    alert(companyId);
+  }
+
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
@@ -74,7 +78,7 @@ const CompanyPage = () => {
     <>
       {isFetching && <SpinnerStyled />}
       <div className="company-page-container">
-        <TopSection />
+        {/* <TopSection /> */}
         {/* <CompanyInfo />
         <ProjectInfo isAuth={isAuth} />
         <MiddleSection isAuth={isAuth} /> */}
