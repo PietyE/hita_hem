@@ -35,7 +35,7 @@ const LinkStyled = (props) => {
 const Header = ({ cookLng }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const selectedLanguage = cookLng || useSelector(getSelectedLangSelector);
+  //const selectedLanguage = cookLng || useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
 
   const handleSelectLang = useCallback(
