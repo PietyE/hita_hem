@@ -14,7 +14,7 @@ import RootPage from "components/RootPage";
 function App({ Component, pageProps }) {
   const initLang = pageProps?._cookies?.i18next || Cookies.get("i18next");
 
-  console.log("App initLang", initLang);
+  console.log("App pageProps", pageProps);
 
   return (
     <>
@@ -52,11 +52,12 @@ App.getInitialProps = wrapper.getInitialAppProps(
         pageProps: {
           // Call page-level getInitialProps
           // DON'T FORGET TO PROVIDE STORE TO PAGE
-          ...(Component.getInitialProps
-            ? await Component.getInitialProps({ ...ctx, store })
-            : {}),
+          // ...(Component.getInitialProps
+          //   ? await Component.getInitialProps({ ...ctx, store })
+          //   : {}),
           _cookies: cookies,
-          pathname: ctx.pathname,
+          initialLang: lang,
+          // pathname: ctx.pathname,
         },
       };
     }
