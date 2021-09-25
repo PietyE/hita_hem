@@ -12,7 +12,7 @@ import { wrapper } from "redux/store";
 import RootPage from "components/RootPage";
 
 function App({ Component, pageProps }) {
-  const initLang = pageProps?._cookies || Cookies.get("i18next");
+  const initLang = pageProps?._cookies?.i18next || Cookies.get("i18next");
 
   console.log("App _cookies", _cookies);
 
