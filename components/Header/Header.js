@@ -35,7 +35,7 @@ const LinkStyled = (props) => {
 const Header = ({ cookLng }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  //const selectedLanguage = cookLng || useSelector(getSelectedLangSelector);
+  const selectedLanguage = cookLng || useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
 
   const handleSelectLang = useCallback(
@@ -56,7 +56,7 @@ const Header = ({ cookLng }) => {
   return (
     <>
       <div className="header_container">
-        {/* <Navigation className="header_mobile_navigation" /> */}
+        <Navigation className="header_mobile_navigation" />
         <div className="header_item logo left">
           <Logo
             classNameContainer={"header_logo_container"}
