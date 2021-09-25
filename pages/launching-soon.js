@@ -42,13 +42,13 @@ const LaunchingSoonPage = () => {
   );
 };
 
-export const getServerSideProps = wrapper.getServerSideProps(
+export const getStaticProps = wrapper.getStaticProps(
   (store) =>
     async ({ req, res, ...etc }) => {
-      res.setHeader(
-        "Cache-Control",
-        "public, s-maxage=10, stale-while-revalidate=59"
-      );
+      // res.setHeader(
+      //   "Cache-Control",
+      //   "public, s-maxage=10, stale-while-revalidate=59"
+      // );
 
       store.dispatch(getPosts());
       store.dispatch(END);
