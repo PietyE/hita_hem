@@ -44,7 +44,7 @@ const ShowConfirmationOfAccountDeletion = dynamic(() =>
   import("components/ShowConfirmationOfAccountDeletion")
 );
 
-const RootPage = ({ children, cookies = {} }) => {
+const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const showSignInWindow = useSelector(getShowSignIn);
@@ -71,7 +71,7 @@ const RootPage = ({ children, cookies = {} }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(bootstap(cookies));
+    dispatch(bootstap(initLang));
   }, []);
 
   useEffect(() => {
@@ -94,7 +94,7 @@ const RootPage = ({ children, cookies = {} }) => {
 
   return (
     <div className="container">
-      <Header cookLng={cookies?.i18next} />
+      <Header cookLng={initLang} />
       {children}
       {!!showSignInWindow && <SignIn show={showSignInWindow} />}
       {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}

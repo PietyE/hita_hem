@@ -3,6 +3,7 @@ import NextCookies from "next-cookies";
 import universalLanguageDetect from "@unly/universal-language-detector";
 import api from "api";
 import get from "lodash/get";
+import Cookies from "js-cookie";
 
 import "i18n";
 import "../styles/index.scss";
@@ -11,7 +12,7 @@ import { wrapper } from "redux/store";
 import RootPage from "components/RootPage";
 
 function App({ Component, pageProps }) {
-  const { _cookies } = pageProps;
+  const initLang = pageProps?._cookies || Cookies.get("i18next");
 
   console.log("App _cookies", _cookies);
 
@@ -20,7 +21,7 @@ function App({ Component, pageProps }) {
       <Head>
         <title>Accumeo Next JS</title>
       </Head>
-      <RootPage cookies={_cookies}>
+      <RootPage initLang={initLang}>
         <Component {...pageProps} />
       </RootPage>
     </>

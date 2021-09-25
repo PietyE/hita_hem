@@ -37,8 +37,10 @@ const Header = ({ cookLng }) => {
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const selectedLanguage = useSelector(getSelectedLangSelector);
+  const _selectedLanguage = useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
+
+  const selectedLanguage = cookLng || _selectedLanguage;
 
   const handleSelectLang = useCallback(
     (e) => {
