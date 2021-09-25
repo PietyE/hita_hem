@@ -56,7 +56,7 @@ const Header = ({ cookLng }) => {
   return (
     <>
       <div className="header_container">
-        {/* <Navigation className="header_mobile_navigation" /> */}
+        <Navigation className="header_mobile_navigation" />
         <div className="header_item logo left">
           <Logo
             classNameContainer={"header_logo_container"}
@@ -128,7 +128,7 @@ const Header = ({ cookLng }) => {
               </>
             )}
             {!!isAuth && <UserPanel />}
-            <Dropdown className="ln_button_container sign_in_item">
+            {/* <Dropdown className="ln_button_container sign_in_item">
               <Dropdown.Toggle as={CustomToggle}>
                 {lang[selectedLanguage]?.name}
               </Dropdown.Toggle>
@@ -148,7 +148,7 @@ const Header = ({ cookLng }) => {
                   );
                 })}
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown> */}
           </div>
         </>
       </div>
