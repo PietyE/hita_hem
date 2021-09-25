@@ -12,9 +12,7 @@ import { wrapper } from "redux/store";
 import RootPage from "components/RootPage";
 
 function App({ Component, pageProps }) {
-  const initLang = pageProps?._cookies?.i18next || Cookies.get("i18next");
-
-  console.log("App pageProps", pageProps);
+  const initLang = pageProps?.initialLang || Cookies.get("i18next");
 
   return (
     <>
@@ -55,7 +53,6 @@ App.getInitialProps = wrapper.getInitialAppProps(
           // ...(Component.getInitialProps
           //   ? await Component.getInitialProps({ ...ctx, store })
           //   : {}),
-          _cookies: cookies,
           initialLang: lang,
           // pathname: ctx.pathname,
         },

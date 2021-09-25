@@ -94,7 +94,7 @@ const RootPage = ({ children, initLang = "" }) => {
 
   return (
     <div className="container">
-      <Header cookLng={initLang} />
+      <Header initLang={initLang} />
       {children}
       {!!showSignInWindow && <SignIn show={showSignInWindow} />}
       {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}

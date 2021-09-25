@@ -35,7 +35,7 @@ const InvestmentOpportunitiesPage = () => {
   );
 };
 
-export const getStaticProps = wrapper.getStaticProps(
+export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, ...etc }) => {
       // res.setHeader(

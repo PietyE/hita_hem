@@ -32,15 +32,13 @@ const LinkStyled = (props) => {
   );
 };
 
-const Header = ({ cookLng }) => {
-  console.log("cookLngcookLngcookLng", cookLng);
-
+const Header = ({ initLang }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const _selectedLanguage = useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
 
-  const selectedLanguage = cookLng || _selectedLanguage;
+  const selectedLanguage = initLang || _selectedLanguage;
 
   const handleSelectLang = useCallback(
     (e) => {
