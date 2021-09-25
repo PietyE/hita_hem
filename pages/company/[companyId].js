@@ -75,9 +75,9 @@ const CompanyPage = () => {
       {isFetching && <SpinnerStyled />}
       <div className="company-page-container">
         <TopSection />
-        <CompanyInfo />
+        {/* <CompanyInfo />
         <ProjectInfo isAuth={isAuth} />
-        <MiddleSection isAuth={isAuth} />
+        <MiddleSection isAuth={isAuth} /> */}
       </div>
     </>
   );
