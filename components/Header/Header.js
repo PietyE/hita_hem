@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import Logo from "components/Logo";
+import Navigation from "./components/Navigation";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 import {
@@ -21,7 +22,6 @@ import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
-const Navigation = dynamic(() => import("./components/Navigation"));
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
