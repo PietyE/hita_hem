@@ -8,6 +8,8 @@ import {
   setIsFetchingAboutUs,
 } from "redux/actions/aboutUs";
 import { setError } from "../actions/errors";
+import {setSuccessfulSubscribe} from '../actions/authPopupWindows';
+
 
 function* aboutUsWorker() {
   try {
@@ -32,6 +34,7 @@ function* sendEmail({ payload }) {
     yield put(setIsFetchingAboutUs(true));
     const { addEmail } = api;
     yield call([addEmail, "addEmail"], `email=${payload}`);
+    yield put(setSuccessfulSubscribe(true))
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })

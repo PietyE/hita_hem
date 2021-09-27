@@ -1,6 +1,3 @@
-.about_us_container {
-  //padding-bottom: 100px;
-}
 .top_section {
   width: 100%;
   height: 690px;
@@ -9,16 +6,17 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 80px;
+  .top_section_content_container{
+    max-width: 1920px;
+    margin-right: auto;
+    margin-left: auto;
+  }
   .backgroung_pic {
     height: 100%;
     object-fit: cover;
-    //filter: blur(1px) brightness(0.7);
     width: calc(100% + 4px);
-    //height: auto;
     position: absolute;
-    //top: -30px;
     top: 0;
-
     left: -2px;
     z-index: -1;
   }
@@ -35,14 +33,11 @@
   }
   .top_section_description {
     display: block;
-    //font-family: Source Sans Pro;
     font-family: Mulish;
     font-style: normal;
-
     font-weight: 600;
     font-size: 18px;
     line-height: 150%;
-    /* or 24px */
     width: 100%;
     max-width: 435px;
     color: rgba(255, 255, 255, 0.8);
@@ -52,6 +47,9 @@
 .middle_section {
   padding-left: 350px;
   width: 100%;
+  max-width: 1920px;
+  margin-right: auto;
+  margin-left: auto;
   background: url('./images/background-1.png'), url('./images/background-2.png');
   background-repeat: no-repeat, no-repeat;
   background-size: 270px auto, 600px auto;
@@ -157,6 +155,9 @@
 
 .subscribe_form_section {
   width: 100%;
+  max-width: 1920px;
+  margin-right: auto;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -178,7 +179,6 @@
   }
   .subscribe_form_section_subtitle {
     margin-bottom: 50px;
-    //font-family: Source Sans Pro;
     font-family: Mulish;
     font-style: normal;
     font-weight: normal;
@@ -197,7 +197,6 @@
       padding: 0 42px;
       background: #1f607c;
       border-radius: 6px;
-      //font-family: Source Sans Pro;
       font-family: Mulish;
       font-style: normal;
       font-weight: 600;
@@ -220,7 +219,7 @@
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
-     color:red;
+      color:red;
       position: absolute;
       bottom: -40px;
       left: 0;
@@ -231,7 +230,6 @@
       border: 1px solid #949494;
       border-right: none;
       border-radius: 4px;
-      //font-family: Source Sans Pro;
       font-family: Mulish;
       font-style: normal;
       font-weight: normal;
@@ -259,8 +257,6 @@
   }
   .subscribe_form_section_below_message {
     font-family: Mulish;
-
-    //font-family: Source Sans Pro;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -269,25 +265,14 @@
     color: rgba(0, 0, 0, 0.6);
   }
 }
-@media screen and (min-device-width: 1921px) {
+
+@media screen and (max-device-width: 1770px) {
   .about_us_container{
     .middle_section {
       background-size: 270px auto, 600px auto;
-      background-position: left 45%, 95% 45%;
-      .middle_section_content{
-        max-width: 1000px;
-
-      }
+      background-position: left 45%, 111% 45%;
     }
   }
-}
-@media screen and (max-device-width: 1770px) {
-.about_us_container{
-  .middle_section {
-    background-size: 270px auto, 600px auto;
-    background-position: left 45%, 111% 45%;
-  }
-}
 }
 @media screen and (max-device-width: 1650px) {
   .about_us_container{
@@ -298,12 +283,12 @@
   }
 }
 @media screen and (max-device-width: 1580px) {
-.about_us_container{
-  .middle_section {
-    background-size: 270px auto, 526px auto;
-    background-position: left 45%, 116% 70%;
+  .about_us_container{
+    .middle_section {
+      background-size: 270px auto, 526px auto;
+      background-position: left 45%, 116% 70%;
+    }
   }
-}
 }
 @media screen and (max-device-width: 1500px) {
   .about_us_container{
@@ -318,23 +303,23 @@
   .bottom_section_team_container {
     //justify-content: space-between;
   }
-.team_item{
-  min-width: 272px;
-  margin-right: 60px;
-  &:nth-child(4n){
-    margin-right: 0;
-  }
-  &:last-child{
-    margin-right: 0;
-  }
-  .team_item_email{
-    width: 248px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+  .team_item{
+    min-width: 272px;
+    margin-right: 60px;
+    &:nth-child(4n){
+      margin-right: 0;
+    }
+    &:last-child{
+      margin-right: 0;
+    }
+    .team_item_email{
+      width: 248px;
+      overflow:hidden;
+      white-space:nowrap;
+      text-overflow:ellipsis;
 
+    }
   }
-}
 }
 @media screen and (max-device-width: 1440px) {
   .top_section {
@@ -458,7 +443,6 @@
     .bottom_section_team_container {
       width: 100%;
       display: flex;
-      //justify-content: space-between;
     }
   }
 
@@ -586,7 +570,6 @@
       width: 100% !important;
       margin-bottom: 20px;
       border-radius: 4px !important;
-      //border-right: 1px solid #949494 !important;
     }
   }
 }

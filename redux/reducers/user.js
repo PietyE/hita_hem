@@ -13,6 +13,7 @@ const initialsState = {
   activeTab: "personal_details",
   isAuth: false,
   isFetching: false,
+  isQuizPassed: false,
   token: {},
   user: {},
   account: {
@@ -61,13 +62,13 @@ export const getPaymentsByCurrentCompanySelector = (state) => {
 };
 export const getTotalPaymentsByCompanySelector = (state) => {
   const payments = getPaymentsByCurrentCompanySelector(state);
-  const totalPayments = payments.reduce(
+  return payments.reduce(
     (sum, { amount }) => sum + Number(amount),
     0
   );
-  return totalPayments;
 };
 
+export const getIsPaymentsWasSelector = state => !!state.user?.user?.payments?.length
 export const getUserIdSelector = (state) => state.user.account.id;
 export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;

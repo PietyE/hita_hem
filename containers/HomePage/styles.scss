@@ -1,15 +1,15 @@
 .home_page_container {
   overflow: hidden;
 
+  .home_page_top_container{
+    align-items: center;
+  }
+
   .campaigns_container {
-    //width: 1464px;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    //margin-right: auto;
-    //margin-left: auto;
-
     .campaigns_title {
       font-family: Raleway;
       font-style: normal;
@@ -49,7 +49,6 @@
       font-family: Mulish;
       font-style: normal;
       width: 335px;
-      //height: 100px;
       overflow: hidden;
       margin-right: 100px;
       margin-bottom: 30px;
@@ -78,6 +77,10 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      img{
+        width: auto;
+        height: 100%;
+      }
     }
 
     .raise_step_title {
@@ -110,14 +113,12 @@
   .featured_split_line {
     margin-bottom: 55px;
     width: 100%;
-    //transform: translateX(-10px);
   }
   .instructions_container {
     background: rgba(220, 232, 248, 0.5);
     padding-top: 63px;
     padding-bottom: 108px;
     width: 100%;
-    //transform: translateX(-10px);
 
     .instructions_title {
       font-family: Raleway;
@@ -186,9 +187,12 @@
     padding-top: 52px;
     padding-bottom: 78px;
   }
-  }
+}
 @media screen and (max-width: 1165px) {
   .home_page_container {
+    .home_page_top_container{
+      padding-top: 100px;
+    }
     .raise_instruction_container {
       width: 775px;
       .raise_step{
@@ -201,9 +205,12 @@
       }
     }
   }
-  }
+}
 @media screen and (max-width: 775px) {
   .home_page_container {
+    .home_page_top_container{
+      padding-top: 80px;
+    }
     .raise_instruction_container {
       width: 385px;
       .raise_step{
@@ -211,47 +218,45 @@
         &:nth-child(3n){
           margin-right: 0;
         }}
-      }
+    }
   }
 
-  }
+}
 
 
-  @media screen and (max-width: 550px) {
-    .home_page_container{
+@media screen and (max-width: 550px) {
+  .home_page_container{
 
-      .instructions_container{
-        .instructions_title {
-          font-size: 30px;
-        }
-        .instructions_tab-bar {
-
-          width: 90%;
-        }
+    .instructions_container{
+      .instructions_title {
+        font-size: 30px;
       }
-      .join-us_container{
+      .instructions_tab-bar {
+
+        width: 90%;
+      }
+    }
+    .join-us_container{
       .join-us_button {
-          .join-us_button_plus{
-            display: block;
-            font-size: 25px;
-            margin-right: 8px;
-          }
+        .join-us_button_plus{
+          display: block;
+          font-size: 25px;
+          margin-right: 8px;
         }
-
       }
-    }
-    .raise_instruction_container {
-      flex-direction: column;
-      width: 290px;
 
-      .step1,
-      .step2 {
-        margin-right: 0;
-      }
     }
   }
-  @media screen and (min-width: 375px) and (max-width: 767px) {
+  .raise_instruction_container {
+    flex-direction: column;
+    width: 290px;
+
+    .step1,
+    .step2 {
+      margin-right: 0;
+    }
   }
+}
 @media screen and (max-width: 400px) {
   .home_page_container {
     .raise_instruction_container {
@@ -266,26 +271,30 @@
       }
     }
 
-}
+  }
   @media screen and (max-width: 360px) {
     .home_page_container {
-        .item_container {
-          padding: 50px 15px 0;
-          padding-top: 30px;
-          .item_titel {
-            //font-size: 28px;
-            //line-height: 40px;
-            margin-bottom: 25px;
-          }
-          .item_description {
-            margin-bottom: 30px;
-            font-size:13px;
-          }
+      .item_container {
+        padding: 50px 15px 0;
+        padding-top: 30px;
+        .item_titel {
+          margin-bottom: 25px;
+        }
+        .item_description {
+          margin-bottom: 30px;
+          font-size:13px;
         }
       }
+    }
 
+  }
+}
+@media screen and (max-width: 360px){
+  .home_page_container {
+    .home_page_top_container {
+      padding: 30px 15px 0;
     }
   }
-
+}
 
 

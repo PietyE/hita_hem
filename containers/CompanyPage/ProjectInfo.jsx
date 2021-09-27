@@ -48,6 +48,19 @@ const ProjectInfo = ({ isAuth }) => {
     <div className="project_info_container">
       <div className="project_info_section_container">
         <div className="project_info_left_section">
+          {!!businessHighlights && (
+              <div className="project_info_bussines_highlights">
+                <h4 className="project_info_bussines_highlights_title">
+                  {t("company_page.project_info.text")}
+                </h4>
+                <span
+                    className="list_container"
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeHtmlFromBack(businessHighlights),
+                    }}
+                />
+              </div>
+          )}
           <div className="project_info_description_section">
             <Title title={title} className="project_info_title" />
             <span
@@ -70,19 +83,7 @@ const ProjectInfo = ({ isAuth }) => {
               </div>
             )}
           </div>
-          {!!businessHighlights && (
-            <div className="project_info_bussines_highlights">
-              <h4 className="project_info_bussines_highlights_title">
-                {t("company_page.project_info.text")}
-              </h4>
-              <span
-                className="list_container"
-                dangerouslySetInnerHTML={{
-                  __html: sanitizeHtmlFromBack(businessHighlights),
-                }}
-              />
-            </div>
-          )}
+
         </div>
         <ProjectInvestInfoSection isAuth={isAuth} />
       </div>

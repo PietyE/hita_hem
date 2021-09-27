@@ -1,14 +1,20 @@
 import React from "react";
+import {useDispatch} from 'react-redux';
 import { useTranslation } from "react-i18next";
 import SvgIcon from "./SvgIcon";
 import Modal from "components/ui/Modal";
+import {setSuccessfulSubscribe} from 'redux/actions/authPopupWindows';
 
-const SuccessfullySubscribedModal = ({ isShow = false, onHide }) => {
+const SuccessfullySubscribedModal = ({ show }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch()
+  const handleClose = () =>{
+    dispatch(setSuccessfulSubscribe(false))
+  }
   return (
     <Modal
-      show={isShow}
-      onHide={onHide}
+      show={show}
+      onHide={handleClose}
       backdrop={true}
       keyboard={false}
       className="successfully_subscribed_modal_container"

@@ -52,6 +52,7 @@ const ResetEmail = () => {
                 inputClassName="account_settings_form_input"
                 errorClassName="profile_form_warning_text"
                 inputName="email"
+                autoComplete="new-password"
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
@@ -70,6 +71,7 @@ const ResetEmail = () => {
                 errorClassName="profile_form_warning_text"
                 iconClassName="profile_account_icon_eye"
                 inputName="password"
+                autoComplete="new-password"
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}

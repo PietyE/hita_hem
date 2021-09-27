@@ -16,6 +16,8 @@ import {
   getShowSuccessfulResetPassword,
   getShowSuccessfulDeletedAccount,
   getShowConfirmationOfAccountDeleting,
+  getShowQuizError,
+  getShowSuccessfulSubscribe
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
@@ -43,6 +45,12 @@ const SuccessfulDeletedAccountModal = dynamic(() =>
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
   import("components/ShowConfirmationOfAccountDeletion")
 );
+const QuizWrongAnswersModal = dynamic(() =>
+    import("components/QuizWrongAnswersModal")
+);
+const SuccessfullySubscribedModal = dynamic(() =>
+    import("components/SuccessfullySubscribedModal")
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -65,6 +73,8 @@ const RootPage = ({ children, initLang = "" }) => {
     getShowConfirmationOfAccountDeleting
   );
   const isNotificationShow = useSelector(getNotificationStatusSelector);
+  const isShowQuizErrorPopup = useSelector(getShowQuizError)
+  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe)
 
   const _logOut = useCallback(() => {
     dispatch(logOut());
@@ -94,37 +104,45 @@ const RootPage = ({ children, initLang = "" }) => {
 
   return (
     <div className="container">
-      <Header initLang={initLang} />
+      <Header />
       <main>
-        {children}
-        {!!showSignInWindow && <SignIn show={showSignInWindow} />}
-        {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-        {!!showSignResetPassWindow && (
-          <ResetPassword show={showSignResetPassWindow} />
-        )}
-        {!!showSuccessfulSignUpWindow && (
-          <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
-        )}
-        {!!showSuccessfullyCampaignRegistrationModal && (
-          <SuccessfullyCampaignRegistrationModal
-            show={showSuccessfullyCampaignRegistrationModal}
-          />
-        )}
-        {!!showSuccessfulInvestment && (
-          <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
-        )}
-        {!!showSuccessfulResetPassword && (
-          <SuccessfulResetPassword show={showSuccessfulResetPassword} />
-        )}
-        {!!showSuccessfulDeletedAccount && (
-          <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
-        )}
-        {!!showConfirmationOfAccountDeletion && (
-          <ShowConfirmationOfAccountDeletion
-            show={showConfirmationOfAccountDeletion}
-          />
-        )}
-        {!!isNotificationShow && <Notification show={isNotificationShow} />}
+      {children}
+      {!!showSignInWindow && <SignIn show={showSignInWindow} />}
+      {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
+      {!!showSignResetPassWindow && (
+        <ResetPassword show={showSignResetPassWindow} />
+      )}
+      {!!showSuccessfulSignUpWindow && (
+        <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
+      )}
+      {!!showSuccessfullyCampaignRegistrationModal && (
+        <SuccessfullyCampaignRegistrationModal
+          show={showSuccessfullyCampaignRegistrationModal}
+        />
+      )}
+      {!!showSuccessfulInvestment && (
+        <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
+      )}
+      {!!showSuccessfulResetPassword && (
+        <SuccessfulResetPassword show={showSuccessfulResetPassword} />
+      )}
+      {!!showSuccessfulDeletedAccount && (
+        <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
+      )}
+      {!!showConfirmationOfAccountDeletion && (
+        <ShowConfirmationOfAccountDeletion
+          show={showConfirmationOfAccountDeletion}
+        />
+      )}
+      {!!isShowQuizErrorPopup && (
+          <QuizWrongAnswersModal show={isShowQuizErrorPopup}/>
+
+      )}
+      {!!isShowSuccessfulSubscribe && (
+          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe}/>
+
+      )}
+      {!!isNotificationShow && <Notification show={isNotificationShow} />}
       </main>
       <Footer />
     </div>

@@ -14,8 +14,10 @@
     .social_icon {
       height: inherit;
       color: #1f607c;
-      //color: #ffffff;
       width: auto;
+      path{
+        fill: #1f7396;
+      }
     }
     &:hover {
       .social_icon {

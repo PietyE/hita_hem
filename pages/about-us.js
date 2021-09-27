@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { END } from "redux-saga";
 
@@ -8,7 +8,6 @@ import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
 import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
 import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
-import SuccessfullySubscribedModal from "components/SuccessfullySubscribedModal";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingAboutUsSelector } from "redux/reducers/aboutUs";
 
@@ -40,11 +39,6 @@ const AboutUsPage = () => {
     image: header_image,
   };
 
-  const [
-    isShowSuccessfullySubscripeModal,
-    setIsShowSuccessfullySubscripeModal,
-  ] = useState(false);
-
   useEffect(() => {
     dispatch(getAboutUs());
   }, []);
@@ -59,11 +53,6 @@ const AboutUsPage = () => {
         <AboutTeamSection content={team_members} />
         <SubscrebeFormSection
           content={subscribe_title}
-          onShowSubscripeModal={setIsShowSuccessfullySubscripeModal}
-        />
-        <SuccessfullySubscribedModal
-          isShow={isShowSuccessfullySubscripeModal}
-          onHide={setIsShowSuccessfullySubscripeModal}
         />
       </div>
     </>

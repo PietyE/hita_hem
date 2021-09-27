@@ -56,14 +56,18 @@ const ProfilePageCampaigns = () => {
               );
 
               let _link;
-              if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-                _link = `https://dev.accumeo.com/company/${campaign.id}`;
+              let textLink;
+              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'development'){
+                _link = `https://dev.accumeo.com/company/${campaign.id}`
+                textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-                _link = `https://stage.accumeo.com/company/${campaign.id}`;
+              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging'){
+                _link = `https://stage.accumeo.com/company/${campaign.id}`
+                textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-                _link = `https://prod.accumeo.com/company/${campaign.id}`;
+              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
+                _link = `https://preprod.accumeo.com/company/${campaign.id}`
+                textLink = `https://accumeo.com/company/${campaign.id}`
               }
               let _status = startCase(
                 convertStatusToText(campaign.status).toLocaleLowerCase()
@@ -80,7 +84,7 @@ const ProfilePageCampaigns = () => {
                     href={_link}
                     className="profile_campaigns_table_item_text table_item_campaign_link"
                   >
-                    {_link}
+                    {textLink}
                   </a>
                   <p className="profile_campaigns_table_item_text table_item_campaign_s_date">
                     {_startDayLocal}

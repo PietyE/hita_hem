@@ -1,5 +1,9 @@
+import React from "react";
 import { useSelector } from "react-redux";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "components/Logo";
+
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -15,14 +19,15 @@ import {
   ABOUT_US_ROUTE,
   LAUNCHING_SOON,
 } from "constants/routesConstant";
-import Logo from "components/Logo";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
+import allabolagIcon from '../../public/images/allabolag.svg'
 
 const Footer = () => {
   const { t } = useTranslation();
   const documentUrl = useSelector(getPrivacyPolicyDocument);
   return (
     <footer className="footer_container">
+      <div className='footer_content_container'>
       <div className="footer_item logo_container">
         <Logo classNameText="footer_text" />
       </div>
@@ -39,16 +44,27 @@ const Footer = () => {
         <Link href={LAUNCHING_SOON} prefetch={false}>
           <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>
         </Link>
-        <a
-          className="footer_nav_link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href={documentUrl?.file || documentUrl?.url}
-        >
-          {t("footer.privacy_policy_link")}
-        </a>
+        {!!documentUrl?.length && (
+            <a
+                className = "footer_nav_link"
+                target = "_blank"
+                rel = "noopener noreferrer"
+                href = {documentUrl?.file || documentUrl?.url}
+            >
+              {t("footer.privacy_policy_link")}
+            </a>
+        )}
       </div>
       <div className="footer_item social_footer_item">
+        <a
+            className="social_button"
+            href="https://www.allabolag.se/what/accumeo"
+            target="_blank"
+            rel="noreferrer"
+        >
+          <Image src={allabolagIcon} alt="allabolag" className="social_button" />
+
+        </a>
         <a
           className="social_button"
           href="https://www.linkedin.com/company/accumeo/"
@@ -81,6 +97,7 @@ const Footer = () => {
         >
           <FontAwesomeIcon icon={faInstagram} className="social_icon" />
         </a>
+      </div>
       </div>
     </footer>
   );

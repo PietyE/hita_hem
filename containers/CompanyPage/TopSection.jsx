@@ -25,11 +25,13 @@ const TopSection = () => {
         className="company_top_section_foto"
         loading="lazy"
       />
-      <StatusCompanyBadge
-        status={status.toLocaleLowerCase()}
-        classNameContainer="company_top_section_status"
-      />
-      <h1 className="company_top_section_title">{title}</h1>
+        <div className='company_top_content_container'>
+            <StatusCompanyBadge
+             status={status.toLocaleLowerCase()}
+             classNameContainer="company_top_section_status"
+             />
+            <h1 className="company_top_section_title">{title}</h1>
+        </div>
     </div>
   );
 };
