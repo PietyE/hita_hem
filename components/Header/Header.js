@@ -1,12 +1,12 @@
-import { useCallback, forwardRef } from "react";
+import { useCallback, forwardRef, useState, useEffect } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import Logo from "components/Logo";
-import Navigation from "./components/Navigation";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 import {
@@ -22,6 +22,7 @@ import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
+const Navigation = dynamic(() => import("./components/Navigation"));
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
@@ -34,9 +35,12 @@ const LinkStyled = (props) => {
 
 const Header = ({ initLang }) => {
   const dispatch = useDispatch();
+  const { pathname } = useRouter();
   const { t } = useTranslation();
   const _selectedLanguage = useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
+
+  const [activeNavIteb, setActiveNavItem] = useState("");
 
   const selectedLanguage = initLang || _selectedLanguage;
 
@@ -56,8 +60,8 @@ const Header = ({ initLang }) => {
   }, [dispatch]);
 
   return (
-      <header className="header_container">
-        <div className='header_content_container'>
+    <header className="header_container">
+      <div className="header_content_container">
         <Navigation className="header_mobile_navigation" />
         <div className="header_item logo left">
           <Logo
@@ -67,20 +71,24 @@ const Header = ({ initLang }) => {
         </div>
         <>
           <div className="header_item middle">
-            <div className="menu_container">
+            <nav className="menu_container">
               <span className="menu_item">
                 <Button
                   colorStyle="link"
                   as={LinkStyled}
                   to={INVEST_ROUTE}
-                  className="menu_item_link"
+                  className={`menu_item_link ${
+                    pathname.includes(INVEST_ROUTE) ? "active" : ""
+                  }`}
                 >
                   {t("header.invest").toLocaleUpperCase()}
                 </Button>
               </span>
               <span className="menu_item">
                 <Button
-                  className="menu_item_link menu_item_link_raise"
+                  className={`menu_item_link menu_item_link_raise ${
+                    pathname.includes(RAISE_ROUTE) ? "active" : ""
+                  }`}
                   colorStyle="link"
                   as={LinkStyled}
                   to={RAISE_ROUTE}
@@ -93,14 +101,18 @@ const Header = ({ initLang }) => {
                   colorStyle="link"
                   as={LinkStyled}
                   to={ABOUT_US_ROUTE}
-                  className="menu_item_link menu_item_link_about"
+                  className={`menu_item_link menu_item_link_about ${
+                    pathname.includes(ABOUT_US_ROUTE) ? "active" : ""
+                  }`}
                 >
                   {t("header.about_us").toLocaleUpperCase()}
                 </Button>
               </span>
               <span className="menu_item">
                 <Button
-                  className="menu_item_link"
+                  className={`menu_item_link ${
+                    pathname.includes(LAUNCHING_SOON) ? "active" : ""
+                  }`}
                   colorStyle="link"
                   as={LinkStyled}
                   to={LAUNCHING_SOON}
@@ -108,7 +120,7 @@ const Header = ({ initLang }) => {
                   {t("header.launching_soon").toLocaleUpperCase()}
                 </Button>
               </span>
-            </div>
+            </nav>
           </div>
           <div className="header_item right">
             {!isAuth && (
@@ -153,8 +165,8 @@ const Header = ({ initLang }) => {
             </Dropdown>
           </div>
         </>
-        </div>
-      </header>
+      </div>
+    </header>
   );
 };
 
