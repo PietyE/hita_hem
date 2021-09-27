@@ -15,7 +15,7 @@ import {
   setError404,
   resetCompanyTab,
 } from "redux/actions/companies";
-import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsSignInUserSelector } from "redux/reducers/user";
 import {
   getIsError404Selector,
   getIsFetchingCampaignsSelector,
@@ -27,7 +27,7 @@ const CompanyPage = () => {
   const companyId = router?.query?.companyId;
 
   const dispatch = useDispatch();
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
   const isFetching = useSelector(getIsFetchingCampaignsSelector);
 
@@ -82,13 +82,6 @@ const CompanyPage = () => {
     </>
   );
 };
-
-// export async function getStaticPaths() {
-//   return {
-//     paths: ["/company/[companyId]"],
-//     fallback: true,
-//   };
-// }
 
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>

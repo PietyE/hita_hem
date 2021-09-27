@@ -21,7 +21,7 @@ import {
   getIsCompanyClosedSelector,
 } from "redux/reducers/companies";
 import {
-  isSignInUserSelector,
+  getIsSignInUserSelector,
   getIsFetchingAuthSelector,
   getTotalPaymentsByCompanySelector,
 } from "redux/reducers/user";
@@ -40,7 +40,7 @@ const InvestFormPage = () => {
 
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
 
   useEffect(() => {

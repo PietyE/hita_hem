@@ -1,4 +1,4 @@
-import { all, call, takeLatest } from "redux-saga/effects";
+import { all, call } from "redux-saga/effects";
 
 import { langWatcher } from "./language";
 import { aboutUsWatcher } from "./aboutUs";

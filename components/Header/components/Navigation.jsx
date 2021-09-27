@@ -15,7 +15,7 @@ import SocialTab from "../../ui/SocialTab";
 import { logOut } from "redux/actions/user";
 import { useDispatch, useSelector } from "react-redux";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
-import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsSignInUserSelector } from "redux/reducers/user";
 
 import Link from "next/link";
 import { changeLanguage } from "redux/actions/language";
@@ -26,7 +26,7 @@ import { useTranslation } from "react-i18next";
 const Navigation = ({ className }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const selectedLanguage = useSelector(getSelectedLangSelector);
   const menuBtn = useRef();
   const [showSubMenu, setShowSubMenu] = useState(false);

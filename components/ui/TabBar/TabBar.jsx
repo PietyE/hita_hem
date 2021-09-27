@@ -21,7 +21,7 @@ const TabBar = ({ data = [], selectedKey = "", onClick, className }) => {
             >
               {item.name.toUpperCase()}
             </button>
-            {index !== arr.length - 1 &&
+            {index !== arr?.length - 1 &&
               index !== noLineIndex &&
               index !== indexSelected && (
                 <span className="vertical_line"></span>

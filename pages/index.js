@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { wrapper } from "redux/store";
 
-import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsSignInUserSelector } from "redux/reducers/user";
 import { getIsFetchingHomePageSelector } from "redux/reducers/homePage";
 import { getHomePage } from "redux/actions/homePage";
 
@@ -16,7 +16,7 @@ import SpinnerStyled from "components/ui/Spinner";
 
 const Index = () => {
   const dispatch = useDispatch();
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingHomePageSelector);
 
   const _getHomePage = useCallback(

@@ -29,6 +29,7 @@ function NavTab({ tab, change }) {
           <Image
             className="nav_tabs_img"
             src={tab === "investment" ? icon1w : icon1}
+            alt="nav_tabs_img"
           />
         </Button>
         <p className="nav_tabs_text">{t("profile_page.investment")}</p>
@@ -44,7 +45,10 @@ function NavTab({ tab, change }) {
           aria-controls="personal_details"
           aria-expanded={"open"}
         >
-          <Image src={tab === "personal_details" ? icon2w : icon2} />
+          <Image
+            src={tab === "personal_details" ? icon2w : icon2}
+            alt="personal detail icon"
+          />
         </Button>
         <p className="nav_tabs_text">{t("profile_page.personal_details")}</p>
       </div>
@@ -59,7 +63,11 @@ function NavTab({ tab, change }) {
           aria-controls="account_settings"
           aria-expanded={"open"}
         >
-          <Image src={tab === "account_settings" ? icon3w : icon3} />
+          <Image
+            src={tab === "account_settings" ? icon3w : icon3}
+            alt="personal detail icon"
+          />
+          />
         </Button>
         <p className="nav_tabs_text">{t("profile_page.account_settings")}</p>
       </div>
@@ -72,7 +80,11 @@ function NavTab({ tab, change }) {
           aria-controls="campaigns"
           aria-expanded={"open"}
         >
-          <Image src={tab === "campaigns" ? icon4w : icon4} />
+          <Image
+            src={tab === "campaigns" ? icon4w : icon4}
+            alt="personal detail icon"
+          />
+          />
         </Button>
 
         <p className="nav_tabs_text">{t("profile_page.profile_campaigns")}</p>

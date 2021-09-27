@@ -11,8 +11,8 @@ const Team = () => {
 
   return (
     <section className="team_section_container">
-      {teamsMateSet.length > 0 &&
-        teamsMateSet.map((member, index) => (
+      {teamsMateSet?.length > 0 &&
+        teamsMateSet?.map((member, index) => (
           <TeamMemberCard key={index} item={member} />
         ))}
     </section>

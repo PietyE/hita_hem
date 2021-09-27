@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
 import Collapse from "react-bootstrap/Collapse";
@@ -8,7 +7,7 @@ import NavTab from "components/ui/NavTab/NavTab";
 
 import {
   getActiveTabSelector,
-  isSignInUserSelector,
+  getIsSignInUserSelector,
   getIsFetchingAuthSelector,
 } from "redux/reducers/user";
 import { setActiveTab } from "redux/actions/user";
@@ -20,6 +19,7 @@ import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import AccountSettings from "containers/ProfilePage/AccountSettings";
 import ProfilePageCampaigns from "containers/ProfilePage/ProfilePageCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
+import { usePrevious } from "customHooks/usePrevious";
 
 const ProfilePage = () => {
   const { t } = useTranslation();
@@ -27,40 +27,23 @@ const ProfilePage = () => {
   const history = useRouter();
 
   const activeTab = useSelector(getActiveTabSelector);
-  const isAuth = useSelector(isSignInUserSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
+  const prevIsFetch = usePrevious(isFetching);
 
   useEffect(() => {
-    if (!isAuth) {
+    if (!isAuth && !isFetching && prevIsFetch) {
       history.push(HOME_ROUTE);
     }
-  }, [isAuth, history]);
-
-  useEffect(() => {
-    setChosen(activeTab);
-  }, [activeTab]);
-
-  const [chosen, setChosen] = useState(activeTab);
+  }, [isAuth, history, isFetching]);
 
   const handleClick = (key) => {
-    setChosen(key);
     dispatch(setActiveTab(key));
   };
 
-  const TabContent = () => {
-    switch (chosen) {
-      case "investment":
-        return <Investment />;
-      case "personal_details":
-        return <PersonalDetails />;
-      case "account_settings":
-        return <AccountSettings />;
-      case "campaigns":
-        return <ProfilePageCampaigns />;
-      default:
-        return null;
-    }
-  };
+  if (!isAuth) {
+    return <SpinnerStyled />;
+  }
 
   return (
     <>
@@ -81,31 +64,31 @@ const ProfilePage = () => {
             { name: t("profile_page.profile_campaigns"), key: "campaigns" },
           ]}
           onClick={handleClick}
-          selectedKey={chosen}
+          selectedKey={activeTab}
           className="profile_tab_bar"
         />
 
-        <TabContent />
+        <TabContent activeTab={activeTab}/>
         </div>
       </section>
       <section className="profile_section_mobile">
-        <NavTab tab={chosen} change={handleClick} />
-        <Collapse in={chosen === "investment"}>
+        <NavTab tab={activeTab} change={handleClick} />
+        <Collapse in={activeTab === "investment"}>
           <div id="investment">
             <Investment />
           </div>
         </Collapse>
-        <Collapse in={chosen === "personal_details"}>
+        <Collapse in={activeTab === "personal_details"}>
           <div id="personal_details">
             <PersonalDetails />
           </div>
         </Collapse>
-        <Collapse in={chosen === "account_settings"}>
+        <Collapse in={activeTab === "account_settings"}>
           <div id="account_settings">
             <AccountSettings />
           </div>
         </Collapse>
-        <Collapse in={chosen === "campaigns"}>
+        <Collapse in={activeTab === "campaigns"}>
           <div id="campaigns">
             <ProfilePageCampaigns />
           </div>
@@ -113,6 +96,21 @@ const ProfilePage = () => {
       </section>
     </>
   );
+};
+
+const TabContent = ({ activeTab }) => {
+  switch (activeTab) {
+    case "investment":
+      return <Investment />;
+    case "personal_details":
+      return <PersonalDetails />;
+    case "account_settings":
+      return <AccountSettings />;
+    case "campaigns":
+      return <ProfilePageCampaigns />;
+    default:
+      return null;
+  }
 };
 
 export default ProfilePage;

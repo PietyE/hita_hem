@@ -39,17 +39,17 @@ import { getDocumentsWorker } from "./documents";
 
 const { auth } = api;
 
-export function* bootstarpWorker({ payload: cook }) {
+export function* bootstarpWorker({ payload: initLang }) {
   try {
     yield put(setFetchingUsers(true));
 
-    const systemLang = cook.i18next || i18n.language;
+    const systemLang = initLang || i18n.language;
 
     yield call([api, "setLanguage"], systemLang);
 
     yield put(setSelectedLanguage(systemLang));
 
-    if (!cook.i18next) {
+    if (!initLang) {
       yield call([Cookies, "set"], "i18next", systemLang);
     }
 

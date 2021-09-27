@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import Logo from "components/Logo";
+import Navigation from "./components/Navigation";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 import {
@@ -18,10 +19,9 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { changeLanguage } from "redux/actions/language";
 import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
-import { isSignInUserSelector } from "redux/reducers/user";
+import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
-const Navigation = dynamic(() => import("./components/Navigation"));
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
@@ -32,11 +32,13 @@ const LinkStyled = (props) => {
   );
 };
 
-const Header = () => {
+const Header = ({ initLang }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const selectedLanguage = useSelector(getSelectedLangSelector);
-  const isAuth = useSelector(isSignInUserSelector);
+  const _selectedLanguage = useSelector(getSelectedLangSelector);
+  const isAuth = useSelector(getIsSignInUserSelector);
+
+  const selectedLanguage = initLang || _selectedLanguage;
 
   const handleSelectLang = useCallback(
     (e) => {
@@ -54,8 +56,7 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <div className="header_container">
+      <header className="header_container">
         <div className='header_content_container'>
         <Navigation className="header_mobile_navigation" />
         <div className="header_item logo left">
@@ -153,8 +154,7 @@ const Header = () => {
           </div>
         </>
         </div>
-      </div>
-    </>
+      </header>
   );
 };
 

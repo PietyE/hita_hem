@@ -46,7 +46,7 @@ export const user = (state = initialsState, actions) => {
   }
 };
 
-export const isSignInUserSelector = (state) => state.user.isAuth;
+export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;
 export const getUserCampaignsSelector = (state) => state.user.user?.companies;
 export const getUserPaymentsSelector = (state) => state.user.user?.payments;

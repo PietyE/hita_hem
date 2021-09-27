@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
+import Cookies from "js-cookie";
 
 import { en } from "./en";
 import { sv } from "./sv";
@@ -11,6 +12,12 @@ export const resources = {
 };
 
 export const initLanguage = () => {
+  const cookiesLang = Cookies.get("i18next");
+
+  if (cookiesLang) {
+    return cookiesLang;
+  }
+
   const browserLang =
     typeof window !== "undefined"
       ? window?.navigator?.language?.split("-")[0]

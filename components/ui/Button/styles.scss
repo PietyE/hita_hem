@@ -51,7 +51,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     color: #1f607c;
     &:focus {
       transition: 0.3s;
@@ -166,18 +166,18 @@
     outline: none;
     box-shadow: none;
   }
-  &.blue{
-    background: #89CFF0;
+  &.blue {
+    background: #89cff0;
     box-shadow: 0px 1px 12px rgba(74, 87, 133, 0.25);
     font-family: Mulish;
     font-weight: bold;
     font-size: 18px;
-    color: #FFFFFF;
+    color: #ffffff;
     transform: rotate(-0.14deg);
   }
-  &.red{
-    background: #E0719E;
-    border: 6px solid #383A48;
+  &.red {
+    background: #e0719e;
+    border: 6px solid #383a48;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
     font-family: Mulish;
     font-style: normal;
@@ -185,7 +185,7 @@
     font-size: 18px;
     line-height: 150%;
     text-align: center;
-    color: #FFFFFF;
+    color: #ffffff;
     &:focus {
       filter: brightness(1);
       transition: 0.3s;
@@ -207,8 +207,8 @@
       box-shadow: none;
     }
   }
-  &.red-without-border{
-    background: #FB7F73;
+  &.red-without-border {
+    background: #fb7f73;
     border-radius: 6px;
     &:focus {
       filter: brightness(1);
@@ -231,8 +231,8 @@
       box-shadow: none;
     }
   }
-  &.light-blue{
-    background: #89CFF0;
+  &.light-blue {
+    background: #89cff0;
     font-family: Mulish;
     font-style: normal;
     font-weight: 600;
@@ -260,7 +260,7 @@
       box-shadow: none;
     }
   }
-  &.grey{
+  &.grey {
     background: rgba(220, 232, 248, 0.5);
     font-family: Mulish;
     font-style: normal;
@@ -289,8 +289,8 @@
       box-shadow: none;
     }
   }
-  &.outline-blue{
-    border: 1px solid #89CFF0;
+  &.outline-blue {
+    border: 1px solid #89cff0;
     box-sizing: border-box;
     border-radius: 6px;
     font-family: Mulish;
@@ -298,7 +298,7 @@
     font-weight: 600;
     font-size: 15px;
     line-height: 150%;
-    color: #89CFF0;
+    color: #89cff0;
     background-color: #fff;
     &:focus {
       filter: brightness(1);
@@ -323,14 +323,14 @@
       box-shadow: none;
     }
   }
-  &.light-blue-white-text{
-    background: #89CFF0;
+  &.light-blue-white-text {
+    background: #89cff0;
     font-family: Mulish;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
     line-height: 150%;
-    color: #FFFFFF;
+    color: #ffffff;
 
     &:focus {
       filter: brightness(1);
@@ -346,7 +346,7 @@
     }
     &:active {
       //background: #58d0e0 !important;
-      background: #89CFF0 !important;
+      background: #89cff0 !important;
       //filter: brightness(1.4);
       transition: 0.3s;
     }
