@@ -10,9 +10,13 @@ const Progress = ({
   currency = 0,
 }) => {
   const { t } = useTranslation();
+
   let dayLeftValue;
-  if (status === 4 || status === 2) {
-    dayLeftValue = t("company_page.company_closed");
+
+  if (status === 2) {
+    dayLeftValue = t("company_page.company_completed");
+  } else if (status === 4) {
+    dayLeftValue = t("company_page.company_successfully_closed");
   } else if (dayLeft >= 0) {
     dayLeftValue = `${dayLeft} ${t("company_page.company_days_left")}`;
   } else {

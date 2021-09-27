@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { useTranslation } from "react-i18next";
@@ -13,17 +14,7 @@ import SplitLine from "../ui/SplitLine";
 import Button from "../ui/Button";
 import { convertStatusToText } from "utils/utils";
 
-const LinkStyled = (props) => {
-  const { children, to = "", asHref = '/', ...extra } = props;
-  return (
-      <Link href={asHref} as={to} prefetch={false}>
-        <a {...extra}>{children}</a>
-      </Link>
-  );
-};
-
 const CampaignsCard = (props) => {
-
   const { t } = useTranslation();
 
   const { className } = props;
@@ -42,31 +33,36 @@ const CampaignsCard = (props) => {
     percentage,
   } = props?.content;
 
-
-
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
     <>
-      {props?.content && (
+      {!!props?.content && (
         <li className={`campaigns_card ${className}`}>
-          <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
-
-          <ImageComponent
-            className="campaigns_card_image"
-            src={card_image || header_image}
-            alt="company_foto"
-          />
-          </Link>
-          <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
-          <span className="campaigns_card_logo">
-            <img
-              className="featured_campaigns_logo_img"
-              src={logo}
-              alt="campaigns_logo"
-              loading="lazy"
+          <Link
+            as={`/company/${id}`}
+            href={"/company/[companyId]"}
+            prefetch={false}
+          >
+            <ImageComponent
+              className="campaigns_card_image"
+              src={card_image || header_image}
+              alt="company_foto"
             />
-          </span>
+          </Link>
+          <Link
+            as={`/company/${id}`}
+            href={"/company/[companyId]"}
+            prefetch={false}
+          >
+            <span className="campaigns_card_logo">
+              <img
+                className="featured_campaigns_logo_img"
+                src={logo}
+                alt="campaigns_logo"
+                loading="lazy"
+              />
+            </span>
           </Link>
 
           <StatusCompanyBadge
@@ -91,8 +87,12 @@ const CampaignsCard = (props) => {
             </div>
 
             <div className="campaigns_card_text_wrapper">
-              <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
-              <h3 className="campaigns_card_title">{title}</h3>
+              <Link
+                as={`/company/${id}`}
+                href={"/company/[companyId]"}
+                prefetch={false}
+              >
+                <h3 className="campaigns_card_title">{title}</h3>
               </Link>
               <p className="campaigns_card_description">{short_description}</p>
             </div>
@@ -118,7 +118,7 @@ const CampaignsCard = (props) => {
               className="campaigns_card_button"
               as={LinkStyled}
               to={`/company/${id}`}
-              asHref={"/company/[companyId]"}
+              title="This link leads to the company detail page"
             >
               {t("campaigns_card.button")}
             </Button>
@@ -126,6 +126,21 @@ const CampaignsCard = (props) => {
         </li>
       )}
     </>
+  );
+};
+
+const LinkStyled = (props) => {
+  const router = useRouter();
+  const { children, to = "", ...extra } = props;
+
+  const handleClickLinkButton = () => {
+    router.push(to);
+  };
+
+  return (
+    <button onClick={handleClickLinkButton} type="button">
+      <span {...extra}>{children}</span>
+    </button>
   );
 };
 

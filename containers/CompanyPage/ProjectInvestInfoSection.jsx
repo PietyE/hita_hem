@@ -1,6 +1,7 @@
-import React, { useRef, useCallback } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useTranslation } from "react-i18next";
 
 import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
@@ -13,7 +14,7 @@ import {
   getBusinessGoalSelector,
   getBusinessInvestedSelector,
   getBusinessShapePriceSelector,
-  getCompanyTabSelected,
+  //getCompanyTabSelected,
   getBusinessCurrencySelector,
   getPercentageSelector,
   getDaysLeftSelector,
@@ -23,8 +24,7 @@ import {
   getIsCompanyClosedSelector,
 } from "redux/reducers/companies";
 import { getSelectedLangSelector } from "redux/reducers/language";
-import { companyTabConstants } from "constants/companyTabConstant";
-import { useTranslation } from "react-i18next";
+//import { companyTabConstants } from "constants/companyTabConstant";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -32,10 +32,11 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   let history = useRouter();
 
   const sectionRef = useRef();
+  //const prevSelectedTab = useRef();
+  //const scrollScreenValue = useRef();
 
-  const prevSelectedTab = useRef();
   const companyId = useSelector(getCompanyIdSelector);
-  const selectedTab = useSelector(getCompanyTabSelected);
+  //const selectedTab = useSelector(getCompanyTabSelected);
   const currentLanguage = useSelector(getSelectedLangSelector);
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
@@ -48,75 +49,65 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
-  const HEADER_HEIGHT = 100;
+
+  //const HEADER_HEIGHT = 100;
+
   const dataOptions = {
     day: "numeric",
     month: "long",
     year: "numeric",
   };
+
   const _startDayLocal = new Date(startDay).toLocaleString(
     currentLanguage,
     dataOptions
   );
+
   const _endDayLocal = new Date(endDay).toLocaleString(
     currentLanguage,
     dataOptions
   );
 
-  const scrollScreenValue = useRef();
+  // const setInitPositionSection = () => {
+  //   const element = sectionRef.current;
+  //   element.style.position = "static";
+  //   element.style.left = "unset";
+  //   element.style.top = "unset";
+  //   element.style.zIndex = "unset";
+  // };
 
-  const setInitPositionSection = () => {
-    const element = sectionRef.current;
-    element.style.position = "static";
-    element.style.left = "unset";
-    element.style.top = "unset";
-    element.style.zIndex = "unset";
-  };
+  // const setNewPositionSection = () => {
+  //   const element = sectionRef.current;
+  //   const { x } = element.getBoundingClientRect();
+  //   element.style.position = "fixed";
+  //   element.style.left = `${x}px`;
+  //   element.style.top = `${HEADER_HEIGHT - 1}px`;
+  //   element.style.zIndex = 4;
+  // };
 
-  const setNewPositionSection = () => {
-    const element = sectionRef.current;
-    const { x } = element.getBoundingClientRect();
-    element.style.position = "fixed";
-    element.style.left = `${x}px`;
-    element.style.top = `${HEADER_HEIGHT - 1}px`;
-    element.style.zIndex = 4;
-  };
+  // const changePositionSection = useCallback(() => {
+  //   const element = sectionRef.current;
+  //   const { y } = element.getBoundingClientRect();
 
-  const changePositionSection = useCallback(() => {
-    const element = sectionRef.current;
-    const { y } = element.getBoundingClientRect();
-
-    if (y <= HEADER_HEIGHT) {
-      scrollScreenValue.current = scrollScreenValue.current
-        ? scrollScreenValue.current
-        : document.documentElement.scrollTop;
-      if (selectedTab === companyTabConstants.IDEA) {
-        setNewPositionSection();
-      }
-      if (
-        prevSelectedTab?.current !== selectedTab &&
-        selectedTab === companyTabConstants.IDEA
-      ) {
-        setNewPositionSection();
-      }
-    }
-
-    if (scrollScreenValue.current > document.documentElement.scrollTop) {
-      setInitPositionSection();
-    }
-  }, [selectedTab]);
-
-  // useLayoutEffect(() => {
-  //   document.addEventListener('scroll', changePositionSection)
-  //   return () => {
-  //     setInitPositionSection()
-  //     document.removeEventListener('scroll', changePositionSection)
+  //   if (y <= HEADER_HEIGHT) {
+  //     scrollScreenValue.current = scrollScreenValue.current
+  //       ? scrollScreenValue.current
+  //       : document.documentElement.scrollTop;
+  //     if (selectedTab === companyTabConstants.IDEA) {
+  //       setNewPositionSection();
+  //     }
+  //     if (
+  //       prevSelectedTab?.current !== selectedTab &&
+  //       selectedTab === companyTabConstants.IDEA
+  //     ) {
+  //       setNewPositionSection();
+  //     }
   //   }
-  // }, [changePositionSection, selectedTab])
 
-  // useEffect(() => {
-  //   prevSelectedTab.current = selectedTab
-  // }, [selectedTab])
+  //   if (scrollScreenValue.current > document.documentElement.scrollTop) {
+  //     setInitPositionSection();
+  //   }
+  // }, [selectedTab]);
 
   const handleClickInvest = () => {
     if (isAuth) {
@@ -125,6 +116,10 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
       dispatch(setShowSignIn(true));
     }
   };
+
+  const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
+    style: "decimal",
+  });
 
   return (
     <div className="project_info_right_section" ref={sectionRef}>
@@ -140,19 +135,25 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           </span>
         </div>
         <div className="invest_info_item">
-          <CurrensyText value={invested} currency={currency} />
+          <CurrensyText
+            value={moneyFormat.format(parseInt(invested))}
+            currency={currency}
+          />
           <span className="invest_info_param">
             {t("company_page.company_invested")}
           </span>
         </div>
         <div className="invest_info_item">
-          <CurrensyText value={goal} currency={currency} />
+          <CurrensyText
+            value={moneyFormat.format(parseInt(goal))}
+            currency={currency}
+          />
           <span className="invest_info_param">
             {t("company_page.company_goal")}
           </span>
         </div>
         <div className="invest_info_item">
-          <CurrensyText value={price} currency={currency} />
+          <CurrensyText value={moneyFormat.format(price)} currency={currency} />
           <span className="invest_info_param">
             {t("company_page.company_share_price")}
           </span>

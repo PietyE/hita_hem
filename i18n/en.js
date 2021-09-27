@@ -166,6 +166,8 @@ export const en = {
       company_share_price: "Share price",
       company_raised: "Raised",
       company_closed: "Closed",
+      company_completed: "Completed",
+      company_successfully_closed: "Successfully closed",
       company_days_left: "days left",
       button_invest: "Invest Now",
       button_contact: "Contact sales",

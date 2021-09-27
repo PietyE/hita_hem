@@ -168,6 +168,8 @@ export const sv = {
       company_share_price: "Aktiepris",
       company_raised: "Rest kapital",
       company_closed: "Stängd",
+      company_completed: "Avslutad",
+      company_successfully_closed: "Stängt",
       company_days_left: "dagar kvar",
       button_invest: "Investera nu",
       button_contact: "Kontakta för köp",
