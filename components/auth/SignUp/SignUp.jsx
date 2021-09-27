@@ -8,18 +8,15 @@ import { signUp } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
 import { signUpSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
-// import { getDocumentUrl } from "redux/reducers/documents";
-import {getIsFetchingAuthSelector} from 'redux/reducers/user';
-import SpinnerStyled from '../../ui/Spinner';
+import { getIsFetchingAuthSelector } from "redux/reducers/user";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
 
-  const isFetching = useSelector(getIsFetchingAuthSelector)
+  const isFetching = useSelector(getIsFetchingAuthSelector);
 
-  // const documentUrl = useSelector(getDocumentUrl);
   const initialValues = {
     email: "",
     password: "",
@@ -57,8 +54,8 @@ const SignUp = ({ show }) => {
       dialogClassName="auth_modal_dialog"
       bodyClassName="auth_modal_container"
       centered={true}
+      isFetchIndicator={isFetching}
     >
-      {isFetching && <SpinnerStyled/>}
       <h1 className="sign_up_title">{t("auth.sign_up.title")}</h1>
       <Formik
         initialValues={initialValues}
@@ -102,7 +99,7 @@ const SignUp = ({ show }) => {
                     : "sign_up_agreement_checkbox"
                 }
               />
-              <span className="checkmark"/>
+              <span className="checkmark" />
               <span className="sign_up_password_label">
                 {t("auth.sign_up.agreement_text")}
               </span>

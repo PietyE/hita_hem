@@ -13,8 +13,8 @@ import {
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
 import { signInSchema } from "utils/vadidationSchemas";
-import SpinnerStyled from '../../ui/Spinner';
-import {getIsFetchingAuthSelector} from 'redux/reducers/user';
+
+import { getIsFetchingAuthSelector } from "redux/reducers/user";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
@@ -65,7 +65,6 @@ const SignIn = ({ show }) => {
       centered={true}
       isFetchIndicator={isFetching}
     >
-      {isFetching && <SpinnerStyled/>}
       <h1 className="sign_up_title">{t("auth.sign_in.title")}</h1>
       <Formik
         initialValues={initialValues}
