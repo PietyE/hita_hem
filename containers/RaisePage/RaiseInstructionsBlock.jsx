@@ -31,10 +31,10 @@ const RaiseInstructionsBlock = ({ type }) => {
 
   return (
     <>
-      {content.length > 0 && (
+      {!!content.length && (
         <div className="raise_instructions_container">
-          {title && <h2 className="raise_instructions_title">{title}</h2>}
-          {description && (
+          {!!title && <h2 className="raise_instructions_title">{title}</h2>}
+          {!!description && (
             <p className="raise_instructions_text">{description} </p>
           )}
           <ul className="raise_item-list_instructions_container">
@@ -50,7 +50,7 @@ const RaiseInstructionsBlock = ({ type }) => {
                     />
                   </div>
                   <h3 className="rise_item_title">{el.title}</h3>
-                  <p className="raise_item_text">{el.description} </p>
+                  <p className="raise_item_text">{el.description}</p>
                 </li>
               );
             })}
