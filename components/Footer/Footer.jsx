@@ -22,7 +22,7 @@ const Footer = () => {
   const { t } = useTranslation();
   const documentUrl = useSelector(getPrivacyPolicyDocument);
   return (
-    <div className="footer_container">
+    <footer className="footer_container">
       <div className="footer_item logo_container">
         <Logo classNameText="footer_text" />
       </div>
@@ -82,7 +82,7 @@ const Footer = () => {
           <FontAwesomeIcon icon={faInstagram} className="social_icon" />
         </a>
       </div>
-    </div>
+    </footer>
   );
 };
 

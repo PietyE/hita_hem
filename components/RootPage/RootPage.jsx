@@ -95,35 +95,37 @@ const RootPage = ({ children, initLang = "" }) => {
   return (
     <div className="container">
       <Header initLang={initLang} />
-      {children}
-      {!!showSignInWindow && <SignIn show={showSignInWindow} />}
-      {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-      {!!showSignResetPassWindow && (
-        <ResetPassword show={showSignResetPassWindow} />
-      )}
-      {!!showSuccessfulSignUpWindow && (
-        <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
-      )}
-      {!!showSuccessfullyCampaignRegistrationModal && (
-        <SuccessfullyCampaignRegistrationModal
-          show={showSuccessfullyCampaignRegistrationModal}
-        />
-      )}
-      {!!showSuccessfulInvestment && (
-        <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
-      )}
-      {!!showSuccessfulResetPassword && (
-        <SuccessfulResetPassword show={showSuccessfulResetPassword} />
-      )}
-      {!!showSuccessfulDeletedAccount && (
-        <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
-      )}
-      {!!showConfirmationOfAccountDeletion && (
-        <ShowConfirmationOfAccountDeletion
-          show={showConfirmationOfAccountDeletion}
-        />
-      )}
-      {!!isNotificationShow && <Notification show={isNotificationShow} />}
+      <main>
+        {children}
+        {!!showSignInWindow && <SignIn show={showSignInWindow} />}
+        {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
+        {!!showSignResetPassWindow && (
+          <ResetPassword show={showSignResetPassWindow} />
+        )}
+        {!!showSuccessfulSignUpWindow && (
+          <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
+        )}
+        {!!showSuccessfullyCampaignRegistrationModal && (
+          <SuccessfullyCampaignRegistrationModal
+            show={showSuccessfullyCampaignRegistrationModal}
+          />
+        )}
+        {!!showSuccessfulInvestment && (
+          <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
+        )}
+        {!!showSuccessfulResetPassword && (
+          <SuccessfulResetPassword show={showSuccessfulResetPassword} />
+        )}
+        {!!showSuccessfulDeletedAccount && (
+          <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
+        )}
+        {!!showConfirmationOfAccountDeletion && (
+          <ShowConfirmationOfAccountDeletion
+            show={showConfirmationOfAccountDeletion}
+          />
+        )}
+        {!!isNotificationShow && <Notification show={isNotificationShow} />}
+      </main>
       <Footer />
     </div>
   );

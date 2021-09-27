@@ -45,7 +45,7 @@ const RaiseInstructionsBlock = ({ type }) => {
                     <img
                       className="raise_item_img"
                       src={el.logo}
-                      alt=""
+                      alt="raise_item_img"
                       loading="lazy"
                     />
                   </div>

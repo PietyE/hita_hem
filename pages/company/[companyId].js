@@ -86,11 +86,6 @@ const CompanyPage = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
   (store) =>
     async ({ req, res, params, ...etc }) => {
-      // res.setHeader(
-      //   "Cache-Control",
-      //   "public, s-maxage=10, stale-while-revalidate=59"
-      // );
-
       store.dispatch(getCompanyById(params.companyId));
       store.dispatch(END);
       await store.sagaTask.toPromise();

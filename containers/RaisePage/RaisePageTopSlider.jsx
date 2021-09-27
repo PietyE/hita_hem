@@ -27,6 +27,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                       className="raise_page_slider_image"
                       src={correctImage}
                       loading="lazy"
+                      alt="raise_page_slider_image"
                     />
                     <h1 className="raise_page_slider_title">
                       {content?.title}

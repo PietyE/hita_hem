@@ -67,6 +67,7 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
             ref={imageEl}
             className="profile_form_upload_avatar"
             loading="lazy"
+            alt='user avatar'
           />
         </div>
         {profile?.first_name && profile?.second_name && (
