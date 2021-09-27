@@ -119,10 +119,7 @@ function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "signIn"], payload);
-    const { data, status } = response;
-    if (status !== 200) {
-      throw new Error();
-    }
+    const { data } = response;
     const { user, token } = data;
     yield put(setAccount(user));
     if (user?.profile?.date_of_birth) {
@@ -156,10 +153,7 @@ function* signIn({ payload }) {
 function* logout() {
   try {
     yield put(setFetchingUsers(true));
-    const response = yield call([auth, "logOut"]);
-    if (response.status !== 200) {
-      throw new Error();
-    }
+    yield call([auth, "logOut"]);
     yield call(clean);
   } catch (error) {
     yield put(
@@ -255,8 +249,8 @@ export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
 
-    let projectId = yield select(getUserIdSelector);
-    const response = yield call([auth, "getUser"], projectId);
+    let userId = yield select(getUserIdSelector);
+    const response = yield call([auth, "getUser"], userId);
     if (response.status !== 200) {
       yield put(setAuth(false));
       return;

@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 import Modal from "../../ui/Modal";
 import { Form, Formik } from "formik";
 import Button from "../../ui/Button";
@@ -8,11 +8,15 @@ import { setShowResetPassword } from "redux/actions/authPopupWindows";
 import { resetPassword } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
 import { resetPasswordSchema } from "utils/vadidationSchemas";
+import SpinnerStyled from '../../ui/Spinner';
+import {getIsFetchingAuthSelector} from 'redux/reducers/user';
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
 
   const dispatch = useDispatch();
+
+  const isFetching = useSelector(getIsFetchingAuthSelector)
 
   const _resetPassword = useCallback(
     (data) => {
@@ -40,6 +44,8 @@ const ResetPassword = ({ show }) => {
       dialogClassName="auth_modal_dialog"
       bodyClassName="auth_modal_container"
     >
+      {isFetching && <SpinnerStyled/>}
+
       <h1 className="sign_up_title">{t("auth.resetPasswordPopup.title")}</h1>
       <p className="reset_password_text">
         {t("auth.resetPasswordPopup.description")}

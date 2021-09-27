@@ -15,6 +15,8 @@ import {
   getShowSuccessfulResetPassword,
   getShowSuccessfulDeletedAccount,
   getShowConfirmationOfAccountDeleting,
+  getShowQuizError,
+  getShowSuccessfulSubscribe
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap } from "redux/actions/user";
@@ -41,6 +43,12 @@ const SuccessfulDeletedAccountModal = dynamic(() =>
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
   import("components/ShowConfirmationOfAccountDeletion")
 );
+const QuizWrongAnswersModal = dynamic(() =>
+    import("components/QuizWrongAnswersModal")
+);
+const SuccessfullySubscribedModal = dynamic(() =>
+    import("components/SuccessfullySubscribedModal")
+);
 
 const RootPage = ({ children, cookies = {} }) => {
   const dispatch = useDispatch();
@@ -62,6 +70,8 @@ const RootPage = ({ children, cookies = {} }) => {
     getShowConfirmationOfAccountDeleting
   );
   const isNotificationShow = useSelector(getNotificationStatusSelector);
+  const isShowQuizErrorPopup = useSelector(getShowQuizError)
+  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe)
 
   useEffect(() => {
     dispatch(bootstap(cookies));
@@ -97,6 +107,14 @@ const RootPage = ({ children, cookies = {} }) => {
         <ShowConfirmationOfAccountDeletion
           show={showConfirmationOfAccountDeletion}
         />
+      )}
+      {!!isShowQuizErrorPopup && (
+          <QuizWrongAnswersModal show={isShowQuizErrorPopup}/>
+
+      )}
+      {!!isShowSuccessfulSubscribe && (
+          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe}/>
+
       )}
       {!!isNotificationShow && <Notification show={isNotificationShow} />}
       <Footer />

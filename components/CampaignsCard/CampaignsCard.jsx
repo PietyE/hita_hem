@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -12,7 +13,17 @@ import SplitLine from "../ui/SplitLine";
 import Button from "../ui/Button";
 import { convertStatusToText } from "utils/utils";
 
+const LinkStyled = (props) => {
+  const { children, to = "", asHref = '/', ...extra } = props;
+  return (
+      <Link href={asHref} as={to} prefetch={false}>
+        <a {...extra}>{children}</a>
+      </Link>
+  );
+};
+
 const CampaignsCard = (props) => {
+
   const { t } = useTranslation();
 
   const { className } = props;
@@ -31,14 +42,7 @@ const CampaignsCard = (props) => {
     percentage,
   } = props?.content;
 
-  const LinkStyled = (props) => {
-    const { children, to = "", asHref, ...extra } = props;
-    return (
-      <Link href={asHref} as={to} prefetch={false}>
-        <a {...extra}>{children}</a>
-      </Link>
-    );
-  };
+
 
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
@@ -46,11 +50,15 @@ const CampaignsCard = (props) => {
     <>
       {props?.content && (
         <li className={`campaigns_card ${className}`}>
+          <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
+
           <ImageComponent
             className="campaigns_card_image"
             src={card_image || header_image}
             alt="company_foto"
           />
+          </Link>
+          <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
           <span className="campaigns_card_logo">
             <img
               className="featured_campaigns_logo_img"
@@ -59,6 +67,7 @@ const CampaignsCard = (props) => {
               loading="lazy"
             />
           </span>
+          </Link>
 
           <StatusCompanyBadge
             status={convertStatusToText(status).toLocaleLowerCase()}
@@ -82,7 +91,9 @@ const CampaignsCard = (props) => {
             </div>
 
             <div className="campaigns_card_text_wrapper">
+              <Link as = {`/company/${id}`} href={"/company/[companyId]"} prefetch={false}>
               <h3 className="campaigns_card_title">{title}</h3>
+              </Link>
               <p className="campaigns_card_description">{short_description}</p>
             </div>
 

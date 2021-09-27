@@ -17,7 +17,7 @@ import {
   setError404,
   isMoreCampaignsOnTheApi,
 } from "redux/actions/companies";
-import { setShowSuccessfulInvestment } from "../actions/authPopupWindows";
+import { setShowQuiz, setShowSuccessfulInvestment } from "../actions/authPopupWindows";
 import { getProfileFromApi } from "./user";
 
 import api from "api";
@@ -26,7 +26,7 @@ import { getProfile, getUserIdSelector } from "../reducers/user";
 import { setFaqPosts } from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
 import { setError } from "../actions/errors";
-import { convertStatusToText } from "../../utils/utils";
+import { convertStatusToText } from "utils/utils";
 import { getSelectedLangSelector } from "../reducers/language";
 
 const { auth, companies } = api;
@@ -170,7 +170,9 @@ function* makePayment({ payload }) {
             company: campaignId,
             amount: payload.amount,
           });
+          yield call(getProfileFromApi)
           yield put(setShowSuccessfulInvestment(true));
+          yield put(setShowQuiz(false))
         }
       } else {
         yield call([companies, "makePayment"], {
@@ -178,7 +180,9 @@ function* makePayment({ payload }) {
           company: campaignId,
           amount: payload.amount,
         });
+        yield call(getProfileFromApi)
         yield put(setShowSuccessfulInvestment(true));
+        yield put(setShowQuiz(false))
       }
     }
   } catch (error) {

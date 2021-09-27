@@ -56,6 +56,7 @@ const Header = () => {
   return (
     <>
       <div className="header_container">
+        <div className='header_content_container'>
         <Navigation className="header_mobile_navigation" />
         <div className="header_item logo left">
           <Logo
@@ -151,6 +152,7 @@ const Header = () => {
             </Dropdown>
           </div>
         </>
+        </div>
       </div>
     </>
   );

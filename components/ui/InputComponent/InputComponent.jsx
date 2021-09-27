@@ -16,6 +16,7 @@ const InputComponent = ({
   touched,
   errors,
   placeholder,
+  autoComplete,
 }) => {
   const [passInputType, setPassInputType] = useState(
     type === "password" ? "password" : "text"
@@ -39,6 +40,7 @@ const InputComponent = ({
           type={passInputType}
           name={inputName}
           onChange={handleChange}
+          autoComplete={autoComplete}
           className={
             touchedValue && !!errorValue
               ? ` input_warning input_component_input ${inputClassName}`

@@ -59,7 +59,8 @@ const AccountSettingsResetPassword = () => {
                 errorClassName="profile_form_warning_text"
                 iconClassName="profile_account_icon_eye"
                 inputName="old_password"
-                // values={values}
+                autoComplete="new-password"
+                  // values={values}
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}

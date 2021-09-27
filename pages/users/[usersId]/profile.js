@@ -66,6 +66,7 @@ const ProfilePage = () => {
     <>
       {isFetching && <SpinnerStyled />}
       <section className="profile_section">
+        <div className='profile_section_content_container'>
         <TabBar
           data={[
             { name: t("profile_page.investment"), key: "investment" },
@@ -85,6 +86,7 @@ const ProfilePage = () => {
         />
 
         <TabContent />
+        </div>
       </section>
       <section className="profile_section_mobile">
         <NavTab tab={chosen} change={handleClick} />

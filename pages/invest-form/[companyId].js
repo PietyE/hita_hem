@@ -104,6 +104,7 @@ const InvestFormPage = () => {
     <>
       {isFetching && <SpinnerStyled />}
       <section className="invest_form_section">
+        <div className='invest_form_section_content_container'>
         <h1 className="invest_form_section_title">{companyName}</h1>
         <p className="invest_form_section_text">
           {t("invest_form_page.main_text")}
@@ -176,6 +177,7 @@ const InvestFormPage = () => {
               sectionClassName="invest_form_profile_personal_details"
             />
           </div>
+        </div>
         </div>
       </section>
     </>

@@ -8,10 +8,14 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 import { createYearList, months, getDays } from "utils/utils";
 
+import Quiz from 'components/Quiz'
 import PersonalDetailsUpload from "./PersonalDetailsUpload";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 
+import {getIsPaymentsWasSelector} from 'redux/reducers/user';
+import {setShowQuiz} from 'redux/actions/authPopupWindows';
+import {getShowQuiz} from 'redux/reducers/authPopupWindows'
 import { createProfile, changeProfile } from "redux/actions/user";
 import { getProfile } from "redux/reducers/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -37,6 +41,8 @@ const PersonalDetails = ({
 
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
+  const isShowQuiz = useSelector(getShowQuiz)
+  const isPaymentsWas = useSelector(getIsPaymentsWasSelector)
   let initialValues = {
     address: {
       country: "",
@@ -75,6 +81,10 @@ const PersonalDetails = ({
     [dispatch]
   );
 
+  const openQuiz =  useCallback(() => {
+    dispatch(setShowQuiz(true))
+  }, [dispatch])
+
   const documentUrl = useSelector(getPrivacyPolicyDocument);
 
   const prepareDataForApi = (values) => {
@@ -109,10 +119,14 @@ const PersonalDetails = ({
     }
   };
 
-  const onSubmitInvest = (values) => {
-    const dataForApi = prepareDataForApi(values);
-    onMakePayment({ profile: dataForApi, amount: currentInvestment });
-  };
+  const onSubmitInvest = values => {
+    const dataForApi = prepareDataForApi(values)
+    if(isPaymentsWas){
+      onMakePayment({profile:dataForApi, amount: currentInvestment})
+    }else{
+      openQuiz()
+    }
+  }
 
   const years = createYearList();
 
@@ -155,8 +169,13 @@ const PersonalDetails = ({
           } else {
             isButtonDisabled = !(isValid && dirty);
           }
+          const onSubmitInvestFromQuiz = () => {
+            onMakePayment({profile:prepareDataForApi(values), amount: currentInvestment})
+          }
 
           return (
+              <>
+              <Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz}/>
             <Form className="profile_form">
               {!type && (
                 <PersonalDetailsUpload
@@ -210,7 +229,7 @@ const PersonalDetails = ({
                       <option
                         label={t("profile_page.personal.month_placeholder")}
                         disabled={true}
-                      ></option>
+                      />
                       {months.map((el) => {
                         return (
                           <option key={el.id} value={el.id}>
@@ -244,7 +263,7 @@ const PersonalDetails = ({
                       <option
                         label={t("profile_page.personal.day_placeholder")}
                         disabled={true}
-                      ></option>
+                      />
                       {days.map((el) => {
                         return (
                           <option key={el} value={el}>
@@ -277,7 +296,7 @@ const PersonalDetails = ({
                       <option
                         label={t("profile_page.personal.year_placeholder")}
                         disabled={true}
-                      ></option>
+                      />
                       {years.map((year) => {
                         return (
                           <option key={year} value={year}>
@@ -307,6 +326,7 @@ const PersonalDetails = ({
                     }
                     name="address.country"
                     values={values?.address?.country}
+                    value={values?.address?.country}
                     onChange={(_, e) => handleChange(e)}
                     onBlur={(_, e) => handleBlur(e)}
                     defaultOptionLabel={values?.address?.country || ""}
@@ -406,6 +426,7 @@ const PersonalDetails = ({
                 </div>
               </div>
             </Form>
+              </>
           );
         }}
       </Formik>

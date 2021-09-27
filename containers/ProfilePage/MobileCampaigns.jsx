@@ -42,14 +42,18 @@ const MobileCampaigns = ({ data }) => {
             );
 
             let _link;
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = `https://dev.accumeo.com/company/${campaign.id}`;
+            let textLink;
+            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'development'){
+              _link = `https://dev.accumeo.com/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`
             }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = `https://stage.accumeo.com/company/${campaign.id}`;
+            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging'){
+              _link = `https://stage.accumeo.com/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`
             }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = `https://prod.accumeo.com/company/${campaign.id}`;
+            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
+              _link = `https://preprod.accumeo.com/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`
             }
             let _status;
             if (campaign.status === 3) {
@@ -93,7 +97,7 @@ const MobileCampaigns = ({ data }) => {
                         {t("profile_page.campaigns.link")}
                       </span>
                       <a href={_link} className="mobile_investments_field_link">
-                        {_link}
+                        {textLink}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">

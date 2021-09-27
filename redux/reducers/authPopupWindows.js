@@ -8,6 +8,9 @@ import {
   SET_SHOW_SUCCESSFUL_RESET_PASSWORD,
   SET_SHOW_SUCCESSFUL_DELETED_ACCOUNT,
   SET_SHOW_CONFIRMATION_OF_ACCOUNT_DELETING,
+  SET_SHOW_QUIZ_MODAL,
+  SET_SHOW_QUIZ_ERROR,
+  SET_SHOW_SUCCESSFUL_SUBSCRIBE,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -20,6 +23,9 @@ const initialValues = {
   showSuccessfulResetPassword: false,
   showSuccessfulDeletedAccount: false,
   showConfirmationOfAccountDeleting: false,
+  showQuiz:false,
+  showQuizError: false,
+  showSuccessfulSubscribe:false,
 };
 export const getShowSignIn = (state) => state.authPopupWindows.showSignIn;
 export const getShowSignUp = (state) => state.authPopupWindows.showSignUp;
@@ -37,6 +43,9 @@ export const getShowSuccessfulDeletedAccount = (state) =>
   state.authPopupWindows.showSuccessfulDeletedAccount;
 export const getShowConfirmationOfAccountDeleting = (state) =>
   state.authPopupWindows.showConfirmationOfAccountDeleting;
+export const getShowQuiz = state =>  state.authPopupWindows.showQuiz;
+export const getShowQuizError = state =>  state.authPopupWindows.showQuizError;
+export const getShowSuccessfulSubscribe = state =>  state.authPopupWindows.showSuccessfulSubscribe;
 
 export const authPopupWindows = (state = initialValues, actions) => {
   switch (actions.type) {
@@ -58,6 +67,12 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showSuccessfulDeletedAccount: actions.payload };
     case SET_SHOW_CONFIRMATION_OF_ACCOUNT_DELETING:
       return { ...state, showConfirmationOfAccountDeleting: actions.payload };
+    case SET_SHOW_QUIZ_MODAL:
+      return { ...state, showQuiz: actions.payload }
+    case SET_SHOW_QUIZ_ERROR:
+      return { ...state, showQuizError: actions.payload }
+    case SET_SHOW_SUCCESSFUL_SUBSCRIBE:
+      return { ...state, showSuccessfulSubscribe: actions.payload }
     default:
       return state;
   }

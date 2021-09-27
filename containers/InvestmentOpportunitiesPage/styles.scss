@@ -470,21 +470,7 @@
 }
 
 @media screen and (max-width: 540px) {
-  .invest_opp_top_section {
 
-    .invest_opp_top_description {
-      //font-size: 18px;
-      //line-height: 150%;
-      //margin-bottom: 45px;
-    }
-
-    .invest_opp_top_status {
-      //margin-bottom: 35px;
-    }
-
-    .invest_opp_top_buttons_container {
-    }
-  }
   @media screen and (max-width: 420px) {
     .invest_opp_top_section {
       .invest_opp_top_container {
@@ -505,12 +491,6 @@
         width: 100%;
         padding-right: 40px;
         padding-left: 40px;
-      }
-
-      .invest_opp_top_status {
-      }
-
-      .invest_opp_top_buttons_container {
       }
     }
     .invest_opp_middle_container {
@@ -540,12 +520,6 @@
         padding-right: 25px;
         padding-left: 25px;
         margin-bottom: 15px;
-      }
-
-      .invest_opp_top_status {
-      }
-
-      .invest_opp_top_buttons_container {
       }
     }
     .invest_opp_middle_container {

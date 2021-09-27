@@ -25,14 +25,19 @@ const MobileInvestment = ({ data }) => {
         {data?.length > 0 &&
           data?.map((payment, index) => {
             let _link;
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = `https://dev.accumeo.com/company/${payment.company_id}`;
+            let textLink;
+
+            if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'development') {
+              _link = `https://dev.accumeo.com/company/${payment.company_id}`
+              textLink = `https://accumeo.com/company/${payment.company_id}`
             }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = `https://stage.accumeo.com/company/${payment.company_id}`;
+            if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging') {
+              _link = `https://stage.accumeo.com/company/${payment.company_id}`
+              textLink =   `https://accumeo.com/company/${payment.company_id}`
             }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = `https://prod.accumeo.com/company/${payment.company_id}`;
+            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
+              _link = `https://preprod.accumeo.com/company/${payment.company_id}`
+              textLink =   `https://accumeo.com/company/${payment.company_id}`
             }
             return (
               <Card key={index} className="mobile_investments_card">
@@ -65,7 +70,7 @@ const MobileInvestment = ({ data }) => {
                         {t("profile_page.investments.link")}
                       </span>
                       <a href={_link} className="mobile_investments_field_link">
-                        {_link}
+                        {textLink}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">
@@ -85,7 +90,7 @@ const MobileInvestment = ({ data }) => {
                       </span>
                     </p>
                     <div className="mobile_investments_field mobile_investments_contact">
-                      <a href={"mailto:" + payment.owner_email}>
+                      <a href={"mailto:" + payment.company_owner_email}>
                         <Button
                           colorStyle="dark-green"
                           className="mobile_investments_item_button"

@@ -10,7 +10,7 @@ import IconAttention from "public/images/attention.svg";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
 
-const SubscrebeFormSection = ({ content = [], onShowSubscripeModal }) => {
+const SubscrebeFormSection = ({ content = [] }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -27,7 +27,6 @@ const SubscrebeFormSection = ({ content = [], onShowSubscripeModal }) => {
     if (validateEmail(email)) {
       _addEmail(email);
       setEmail("");
-      onShowSubscripeModal(true);
     } else {
       setShowWarning(true);
     }
@@ -48,7 +47,6 @@ const SubscrebeFormSection = ({ content = [], onShowSubscripeModal }) => {
       </h4>
       <InputGroup className="subscribe_form_section_from">
         <FormControl
-          // placeholder= {showWarning?'Please fill the form':"Enter your email address"}
           placeholder={t("about_us_page.placeholder")}
           className={
             showWarning

@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from 'react-redux';
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 import InputComponent from "../../ui/InputComponent";
@@ -12,11 +12,15 @@ import {
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
 import { signInSchema } from "utils/vadidationSchemas";
+import SpinnerStyled from '../../ui/Spinner';
+import {getIsFetchingAuthSelector} from 'redux/reducers/user';
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
 
   const { t } = useTranslation();
+
+  const isFetching = useSelector(getIsFetchingAuthSelector)
 
   const initialValues = {
     email: "",
@@ -59,6 +63,7 @@ const SignIn = ({ show }) => {
       bodyClassName="auth_modal_container"
       centered={true}
     >
+      {isFetching && <SpinnerStyled/>}
       <h1 className="sign_up_title">{t("auth.sign_in.title")}</h1>
       <Formik
         initialValues={initialValues}

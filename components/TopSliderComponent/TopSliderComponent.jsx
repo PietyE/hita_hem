@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import uniqueId from "lodash/uniqueId";
 import Carousel from "react-bootstrap/Carousel";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
@@ -21,12 +20,10 @@ const TopSliderComponent = ({
 }) => {
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={false} slide={true} interval={8000} touch={true}>
+      <Carousel controls={data?.length>1} slide={true} interval={8000} touch={true}>
         {!!data?.length &&
           data?.map((headerItem) => {
             const {
-              index,
-              id,
               image_list,
               image,
               title,
@@ -44,13 +41,14 @@ const TopSliderComponent = ({
 
             return (
               <Carousel.Item key={uniqueId()}>
-                <div className={`item_component_container ${containerClass}`}>
+                <div className='item_component_container'>
                   <img
                     className="item_component_image"
                     src={_src}
                     alt="First slide"
                     loading="lazy"
                   />
+                  <div className= {`item_component_content_container ${containerClass}`}>
                   {status && (
                     <StatusCompanyBadge
                       status={status}
@@ -79,8 +77,6 @@ const TopSliderComponent = ({
                           <Button
                             className={`slider_component_first_btn ${firstButtonClass}`}
                             colorStyle="white"
-                            // as={LinkStyled}
-                            // to={first_button_url}
                           >
                             {first_button_title}
                           </Button>
@@ -91,8 +87,6 @@ const TopSliderComponent = ({
                           <Button
                             className={`slider_component_second_btn ${secondButtonClass}`}
                             colorStyle="outline-white"
-                            // as={LinkStyled}
-                            // to={second_button_title}
                           >
                             {second_button_title}
                           </Button>
@@ -100,6 +94,7 @@ const TopSliderComponent = ({
                       )}
                     </div>
                   )}
+                  </div>
                 </div>
               </Carousel.Item>
             );
