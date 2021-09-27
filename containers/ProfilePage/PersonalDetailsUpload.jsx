@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import Button from "components/ui/Button";
 import { useSelector } from "react-redux";
@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 const PersonalDetailsUpload = ({ setFieldValue }) => {
   const { t } = useTranslation();
   const profile = useSelector(getProfile, isEqual);
+  const [hasAvatarUpload, setHasAvatarUpload] = useState(false);
 
   const imageEl = useRef(null);
 
@@ -31,11 +32,13 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
 
     reader.onloadend = function () {
       preview.src = reader.result;
+      setHasAvatarUpload(true);
     };
     if (blob) {
       reader.readAsDataURL(blob);
     } else {
       preview.src = "";
+      setHasAvatarUpload(false);
     }
   }
 
@@ -67,7 +70,10 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
             ref={imageEl}
             className="profile_form_upload_avatar"
             loading="lazy"
-            alt='user avatar'
+            alt="user avatar"
+            style={{
+              display: hasAvatarUpload ? "flex" : "none",
+            }}
           />
         </div>
         {profile?.first_name && profile?.second_name && (
