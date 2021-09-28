@@ -7,6 +7,7 @@ import {
   SET_USER_FETCHING,
   SET_TAB,
   BOOTSTAP_ACTION,
+  SET_RESPONSE_FROM_API,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -14,6 +15,7 @@ const initialsState = {
   isAuth: false,
   isFetching: false,
   isQuizPassed: false,
+  isSuccessfulResponseFromApi: false,
   token: {},
   user: {},
   account: {
@@ -41,6 +43,8 @@ export const user = (state = initialsState, actions) => {
       return { ...state, user: actions.payload };
     case SET_TAB:
       return { ...state, activeTab: actions.payload };
+    case SET_RESPONSE_FROM_API:
+      return {...state, isSuccessfulResponseFromApi: actions.payload}
     default:
       return state;
   }
@@ -68,6 +72,7 @@ export const getTotalPaymentsByCompanySelector = (state) => {
   );
 };
 
+export const isSuccessfulResponseFromApiSelector = state => state.user.isSuccessfulResponseFromApi
 export const getIsPaymentsWasSelector = state => !!state.user?.user?.payments?.length
 export const getUserIdSelector = (state) => state.user.account.id;
 export const getProfile = (state) => state.user.user;

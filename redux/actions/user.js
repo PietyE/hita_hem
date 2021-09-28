@@ -16,6 +16,8 @@ import {
   CHANGE_PASSWORD,
   CHANGE_EMAIL,
   DELETE_ACCOUNT,
+  SET_RESPONSE_FROM_API,
+
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -97,3 +99,8 @@ export const deleteAccount = (payload) => ({
   type: DELETE_ACCOUNT,
   payload,
 });
+
+export const setResponseFromApi = payload => ({
+  type: SET_RESPONSE_FROM_API,
+  payload
+})

@@ -9,10 +9,11 @@ import InputComponent from "../../ui/InputComponent";
 import { signUpSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
 
   const isFetching = useSelector(getIsFetchingAuthSelector);
@@ -25,10 +26,12 @@ const SignUp = ({ show }) => {
 
   const handleClose = () => {
     dispatch(setShowSignUp(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowSignIn = () => {
     dispatch(setShowSignUp(false));
     dispatch(setShowSignIn(true));
+    errorHandlerHook?._clearErrors()
   };
   const _signUp = useCallback(
     (values) => {
@@ -74,6 +77,8 @@ const SignUp = ({ show }) => {
               setFieldValue={setFieldValue}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.emailError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_up.email_placeholder")}
             />
             <InputComponent
@@ -86,6 +91,8 @@ const SignUp = ({ show }) => {
               setFieldValue={setFieldValue}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.passwordError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_up.password_placeholder")}
               iconClassName="auth_password_eye"
             />

@@ -4,7 +4,7 @@ import { GET_RAISE_PAGE, SEND_FORM } from "constants/actionsConstant";
 import { setRaisePage, setIsFetchingRaisePage } from "redux/actions/raisePage";
 import { setShowSuccessfulCampaignRegistration } from "../actions/authPopupWindows";
 import api from "api";
-import { setError } from "../actions/errors";
+import {setRaiseError, setError} from '../actions/errors';
 
 const { raisePage } = api;
 
@@ -34,7 +34,7 @@ function* sendForm({ payload }) {
     }
   } catch (error) {
     yield put(
-      setError({ status: error?.response?.status, data: error?.response?.data })
+        yield put(setRaiseError({status:error?.response?.status, data:error?.response?.data}))
     );
   } finally {
     yield put(setIsFetchingRaisePage(false));

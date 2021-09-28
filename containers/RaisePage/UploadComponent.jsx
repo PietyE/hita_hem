@@ -1,14 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from 'react'
 import { useTranslation } from "react-i18next";
-
+import {useSelector} from 'react-redux';
 import ButtonStyled from "components/ui/Button";
 import { validateUrl } from "utils/utils";
+import {getRaiseFormDocumentsErrorSelector} from 'redux/reducers/errors';
 
 const UploadComponent = ({ setFieldValue, values }) => {
   const { t } = useTranslation();
   const inputRef = useRef(null);
 
   const [showWarning, setShowWarning] = useState(false);
+
+    const isDocumentsError = useSelector(getRaiseFormDocumentsErrorSelector)
+
+    useEffect(()=>{
+        if(!isDocumentsError){
+            setShowWarning(true)
+        }
+    },[isDocumentsError])
 
   const addFiles = (e) => {
     e.preventDefault();

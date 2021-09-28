@@ -1,16 +1,28 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect, useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import { Formik, Form } from "formik";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
-import { changePassword } from "redux/actions/user";
-import { useDispatch } from "react-redux";
+import { changePassword, setResponseFromApi } from "redux/actions/user";
 import { accountSettingsResetPasswordSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import {isSuccessfulResponseFromApiSelector} from 'redux/reducers/user';
 
 const AccountSettingsResetPassword = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const errorHandlerHook = useAuthErrorHandler()
+  const formikRef = useRef();
+  const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
+
+  useEffect(()=>{
+    if(isSuccessfulResponseFromApi){
+      formikRef?.current?.resetForm()
+      dispatch(setResponseFromApi(false))
+    }
+  },[isSuccessfulResponseFromApi,dispatch ])
 
   const handleShowResetPass = () => {
     dispatch(setShowResetPassword(true));
@@ -33,6 +45,7 @@ const AccountSettingsResetPassword = () => {
   return (
     <>
       <Formik
+        innerRef={formikRef}
         initialValues={initialValuesPassword}
         validationSchema={accountSettingsResetPasswordSchema}
         onSubmit={onSubmitPassword}
@@ -64,6 +77,8 @@ const AccountSettingsResetPassword = () => {
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.oldPasswordError }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <InputComponent
@@ -78,6 +93,8 @@ const AccountSettingsResetPassword = () => {
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
+                errorFromApi={ errorHandlerHook?.newPassword1Error }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <InputComponent
@@ -92,6 +109,8 @@ const AccountSettingsResetPassword = () => {
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.newPassword2Error }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <div className="account_settings_buttons_container">

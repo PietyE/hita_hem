@@ -6,7 +6,7 @@ import {
   setNotificationMessage,
   setNotificationTitle,
 } from "../actions/notification";
-import { ERROR } from "constants/actionsConstant";
+import {ERROR, SET_AUTH_ERROR, SET_PROFILE_ERROR} from 'constants/actionsConstant';
 import api from "../../api";
 
 function* errorHandler() {
@@ -46,5 +46,5 @@ function* errorHandler() {
 }
 
 export function* errorsWatcher() {
-  yield takeEvery(ERROR, errorHandler);
+  yield takeEvery([ERROR, SET_AUTH_ERROR, SET_PROFILE_ERROR], errorHandler);
 }
