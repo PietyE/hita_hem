@@ -22,6 +22,7 @@
   border-radius: 0;
   height: 254px;
   margin-bottom: 57px;
+  cursor: pointer;
 }
 
 .campaigns_card_image img {
@@ -42,6 +43,7 @@
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   overflow: hidden;
+  cursor: pointer;
   .featured_campaigns_logo_img {
     height: 100%;
     object-fit: cover;
@@ -103,6 +105,7 @@
   line-height: 32px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #333333;
+  cursor: pointer;
 }
 
 .campaigns_card_target {
