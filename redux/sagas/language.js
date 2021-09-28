@@ -5,16 +5,16 @@ import { CHANGE_LANGUAGE } from "constants/actionsConstant";
 
 function* setLangWorker({ payload }) {
   try {
-    // if (typeof window !== "undefined" && localStorage) {
-    //   yield call([localStorage, "setItem"], "language", payload);
-    // }
-
-    //Cookies.set("i18next", payload);
-    yield call([Cookies, "set"], "i18next", payload);
-
-    if (typeof window !== "undefined") {
-      window.location.reload();
+    Cookies.set("NEXT_LOCALE", payload);
+    const pathname = window.location.pathname;
+    let newPathName = "";
+    if (payload === "en") {
+      newPathName = pathname.replace(pathname.length === 3 ? "sv" : "/sv", "");
     }
+    if (payload === "sv") {
+      newPathName = pathname.replace("/", "/sv/");
+    }
+    window.location.replace(newPathName);
   } catch (error) {
     //to do
   }
