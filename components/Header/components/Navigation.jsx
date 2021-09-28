@@ -52,7 +52,7 @@ const Navigation = ({ className }) => {
   };
 
   const handleSelectLang = (e) => {
-    dispatch(changeLanguage(lang[e.target.dataset.ln].code));
+    dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
   };
 
   const closeSubMen = () => {

@@ -46,7 +46,7 @@ const Header = ({ initLang }) => {
 
   const handleSelectLang = useCallback(
     (e) => {
-      dispatch(changeLanguage(lang[e.target.dataset.ln].code));
+      dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
     },
     [dispatch]
   );
