@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "components/ui/Button";
-
 import Link from "next/link";
+
 import { HOME_ROUTE } from "constants/routesConstant";
 import { useTranslation } from "react-i18next";
 
@@ -14,7 +14,7 @@ const PageNotFound = () => {
           <div className="page_404_back_block1 page_404_block"></div>
           <div className="page_404_back_block2 page_404_block"></div>
           <div className="page_404_error_block page_404_block">
-            <p className="page_404_header">{t("not_found_page.title")}</p>
+            <p className="page_404_header">{"Internal Server Error"}</p>
             <span className="page_404_text_error">
               {t("not_found_page.error")}
             </span>
@@ -23,7 +23,7 @@ const PageNotFound = () => {
               {t("not_found_page.text_oops")}
             </span>
             <p className="page_404_text page_404_text_long">
-              {t("not_found_page.text")}
+              This page isn't working
             </p>
           </div>
         </div>
