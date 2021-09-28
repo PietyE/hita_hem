@@ -13,6 +13,7 @@ const InputComponent = ({
   inputName,
   iconClassName,
   setFieldValue,
+  setFieldError,
   touched,
   errors,
   errorFromApi,
@@ -28,6 +29,9 @@ const InputComponent = ({
     setPassInputType(passInputType === "password" ? "text" : "password");
   };
   const handleFocus = () => {
+    if(setFieldError){
+      setFieldError(inputName, undefined)
+    }
     if(clearError){
       clearError(inputName)
     }
@@ -50,7 +54,7 @@ const InputComponent = ({
           onFocus={handleFocus}
           autoComplete={autoComplete}
           className={
-            touchedValue && !!errorValue
+            !!errorValue
               ? ` input_warning input_component_input ${inputClassName}`
               : `input_component_input ${inputClassName}`
           }
