@@ -57,7 +57,7 @@ export const accountSettingsResetPasswordSchema = yup.object({
   old_password: yup
       .string().max(128)
       .required('Password is a required field'),
-  new_password1: yup.string().max(128).matches(passwordRegExp, 'Please choose a stronger password.').required('New password is a required field'),
+  new_password1: yup.string().max(128).matches(passwordRegExp, 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)').required('New password is a required field'),
   new_password2: yup
       .string().required('Confirm password is a required field').max(128)
       .when('new_password1', {
@@ -76,7 +76,7 @@ export const signUpSchema = yup.object({
   email: yup.string().email('example test@test.com').max(80).required('Email is a required field'),
   password: yup
       .string().max(128)
-      .matches(passwordRegExp, 'Please choose a stronger password.')
+      .matches(passwordRegExp, 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)')
       .required('Password is a required field'),
   is_agree: yup.bool().oneOf([true])
 })
