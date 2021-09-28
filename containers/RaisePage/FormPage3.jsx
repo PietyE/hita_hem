@@ -38,8 +38,10 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
       initialValues={initialValues}
       validationSchema={raiseForm3}
       onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
-      {({ errors, touched, values, setFieldValue }) => (
+      {({ errors, touched, values, setFieldValue, setFieldError }) => (
         <Form className="raise_form">
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -49,6 +51,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="website"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.websiteError}
@@ -62,6 +65,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="video_preview"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.videoPreviewError}
@@ -75,6 +79,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="social_one"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.socialsOneError}
@@ -88,6 +93,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="followers_count_one"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.followersOneError}
@@ -101,6 +107,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="social_two"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.socialsTwoError}
@@ -114,6 +121,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="followers_count_two"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.followersTwoError}
@@ -127,6 +135,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="social_three"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.socialsThreeError}
@@ -140,6 +149,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             inputName="followers_count_three"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.followersThreeError}

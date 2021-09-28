@@ -35,8 +35,10 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
       initialValues={initialValues}
       validationSchema={raiseForm2}
       onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
-      {({ errors, touched, values, setFieldValue }) => (
+      {({ errors, touched, values, setFieldValue, setFieldError }) => (
         <Form className="raise_form">
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -46,6 +48,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="company_name"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.companyNameError}
@@ -59,6 +62,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="company_form"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.companyFormError}
@@ -72,6 +76,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="role"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.roleError}
@@ -85,6 +90,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="share_price"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.sharePriceError}
@@ -98,6 +104,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="revenue"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.revenueError}
@@ -111,6 +118,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             inputName="amount"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.amountError}

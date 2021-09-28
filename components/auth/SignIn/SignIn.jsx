@@ -74,9 +74,11 @@ const SignIn = ({ show }) => {
         initialValues={initialValues}
         validationSchema={signInSchema}
         onSubmit={onSubmit}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ touched, errors, values, setFieldValue, isValid }) => (
+        {({ touched, errors, values, setFieldValue, setFieldError }) => (
           <Form className="auth_form">
             <InputComponent
               labelClassName="auth_login_container auth_container"
@@ -85,6 +87,7 @@ const SignIn = ({ show }) => {
               inputName="email"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
               errorFromApi={errorHandlerHook?.emailError}
@@ -102,6 +105,7 @@ const SignIn = ({ show }) => {
               inputName="password"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
               errorFromApi={errorHandlerHook?.passwordError}
@@ -113,7 +117,7 @@ const SignIn = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              disabled={!isValid || isFetching}
+              disabled={isFetching}
             >
               {t("auth.sign_in.button")}
             </Button>

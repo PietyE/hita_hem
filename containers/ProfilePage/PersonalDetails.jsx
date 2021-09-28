@@ -147,7 +147,9 @@ const PersonalDetails = ({
         }
         onSubmit={type ? onSubmitInvest : onSubmitProfile}
         enableReinitialize
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
         {({
           values,
@@ -157,7 +159,7 @@ const PersonalDetails = ({
           handleChange,
           setFieldValue,
           setValues,
-          isValid,
+          setFieldError,
           dirty,
         }) => {
           let days = getDays(values?.month?.toString()) || [];
@@ -165,10 +167,10 @@ const PersonalDetails = ({
           let isButtonDisabled;
           if (type) {
             isButtonDisabled = isEmpty(profile)
-              ? !(isValid && dirty && currentInvestment > 0)
+              ? !( dirty && currentInvestment > 0)
               : currentInvestment <= 0;
           } else {
-            isButtonDisabled = !(isValid && dirty);
+            isButtonDisabled = !(dirty);
           }
           const onSubmitInvestFromQuiz = () => {
             onMakePayment({profile:prepareDataForApi(values), amount: currentInvestment})
@@ -196,6 +198,7 @@ const PersonalDetails = ({
                   inputName="first_name"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.firstNameError}
@@ -209,6 +212,7 @@ const PersonalDetails = ({
                   inputName="second_name"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.secondNameError}
@@ -225,6 +229,9 @@ const PersonalDetails = ({
                     <Field
                       name="month"
                       as="select"
+                      onBlur={()=>{
+                        setFieldError('month', undefined)
+                      }}
                       className={
                         touched.month && errors.month
                           ? "profile_form_input_warning"
@@ -258,6 +265,9 @@ const PersonalDetails = ({
                     <Field
                       name="day"
                       as="select"
+                      onBlur={()=>{
+                        setFieldError('day', undefined)
+                      }}
                       disabled={!values?.month}
                       className={
                         touched.day && errors.day
@@ -292,6 +302,9 @@ const PersonalDetails = ({
                     <Field
                       name="year"
                       as="select"
+                      onBlur={()=>{
+                        setFieldError('year', undefined)
+                      }}
                       className={
                         touched.year && errors.year
                           ? "profile_form_input_warning"
@@ -336,7 +349,10 @@ const PersonalDetails = ({
                       errorHandlerHook?.clearProfileErrorFromApi('address.country')
                       handleChange(e)
                     } }
-                    onBlur={(_, e) => handleBlur(e)}
+                    onBlur={(_, e) => {
+                      setFieldError('address.country', undefined)
+                      handleBlur(e)
+                    }}
                     defaultOptionLabel={values?.address?.country || ""}
                   />
                   <div className="profile_input_arrow">
@@ -361,6 +377,7 @@ const PersonalDetails = ({
                   inputName="address.city"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.cityError}
@@ -374,6 +391,7 @@ const PersonalDetails = ({
                   inputName="address.address"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.addressError}
@@ -387,6 +405,7 @@ const PersonalDetails = ({
                   inputName="personal_id"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.personalIdError}
@@ -400,6 +419,7 @@ const PersonalDetails = ({
                   inputName="phone_number"
                   values={values}
                   setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
                   touched={touched}
                   errors={errors}
                   errorFromApi={errorHandlerHook?.phoneError}

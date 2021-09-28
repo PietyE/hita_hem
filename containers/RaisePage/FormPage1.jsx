@@ -30,6 +30,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
       initialValues={initialValues}
       validationSchema={raiseForm1}
       onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {({
         values,
@@ -38,6 +40,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
         handleBlur,
         handleChange,
         setFieldValue,
+        setFieldError
       }) => (
         <Form className="raise_form">
           <InputComponent
@@ -48,6 +51,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="first_name"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.firstNameError}
@@ -61,6 +65,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="second_name"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.secondNameError}
@@ -74,6 +79,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="email"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.emailNameError}
@@ -87,6 +93,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="phone"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
             errorFromApi={errorHandlerHook?.phoneError}
@@ -111,7 +118,10 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
                 handleChange(e)
                 errorHandlerHook?.clearRaiseFormErrorFromApi('country')
               }}
-              onBlur={(_, e) => handleBlur(e)}
+              onBlur={(_, e) => {
+                setFieldError('country', undefined)
+                handleBlur(e)
+              }}
               defaultOptionLabel=""
             />
             <div className="raise_form_country_arrow">
