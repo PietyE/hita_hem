@@ -10,10 +10,11 @@ import InputComponent from "../../ui/InputComponent";
 import { resetPasswordSchema } from "utils/vadidationSchemas";
 import SpinnerStyled from '../../ui/Spinner';
 import {getIsFetchingAuthSelector} from 'redux/reducers/user';
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const dispatch = useDispatch();
 
   const isFetching = useSelector(getIsFetchingAuthSelector)
@@ -27,6 +28,7 @@ const ResetPassword = ({ show }) => {
 
   const onClose = () => {
     dispatch(setShowResetPassword(false));
+    errorHandlerHook?._clearErrors()
   };
 
   const onSubmit = (values) => {
@@ -67,6 +69,8 @@ const ResetPassword = ({ show }) => {
               setFieldValue={setFieldValue}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.userError || errorHandlerHook?.emailError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.resetPasswordPopup.placeholder")}
             />
             <Button

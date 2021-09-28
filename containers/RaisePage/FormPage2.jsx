@@ -3,13 +3,16 @@ import { useTranslation } from "react-i18next";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { raiseForm2 } from "utils/vadidationSchemas";
+import useRaiseForm2ErrorHandler from 'customHooks/useRaiseForm2ErrorHandler';
 
 const FormPage2 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
+  const errorHandlerHook = useRaiseForm2ErrorHandler()
+
   const initialValues = {
     company_name: data.company_name,
     company_form: data.company_form,
@@ -45,6 +48,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.companyNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -56,6 +61,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.companyFormError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -67,6 +74,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.roleError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -78,6 +87,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.sharePriceError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -89,6 +100,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.revenueError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -100,6 +113,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.amountError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <SplitLine className="raise_form_split_line" />
           <div className="raise_form_button_container">

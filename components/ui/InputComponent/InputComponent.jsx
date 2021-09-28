@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {memo, useState} from 'react';
 import { Field } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -15,6 +15,8 @@ const InputComponent = ({
   setFieldValue,
   touched,
   errors,
+  errorFromApi,
+  clearError,
   placeholder,
   autoComplete,
 }) => {
@@ -25,6 +27,11 @@ const InputComponent = ({
   const setShowPassword = () => {
     setPassInputType(passInputType === "password" ? "text" : "password");
   };
+  const handleFocus = () => {
+    if(clearError){
+      clearError(inputName)
+    }
+  }
   const handleChange = (e) => {
     setFieldValue(inputName, e.target.value);
   };
@@ -40,6 +47,7 @@ const InputComponent = ({
           type={passInputType}
           name={inputName}
           onChange={handleChange}
+          onFocus={handleFocus}
           autoComplete={autoComplete}
           className={
             touchedValue && !!errorValue
@@ -70,9 +78,12 @@ const InputComponent = ({
         {errorValue && touchedValue ? (
           <p className={`input_warning_text ${errorClassName}`}>{errorValue}</p>
         ) : null}
+        {errorFromApi ?
+            <p className= {`input_warning_text ${errorClassName}`}>{ Array.isArray(errorFromApi)?errorFromApi[0]:errorFromApi}</p>
+            : null}
       </label>
     </>
   );
 };
 
-export default InputComponent;
+export default memo(InputComponent);

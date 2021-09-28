@@ -15,10 +15,11 @@ import { signIn } from "redux/actions/user";
 import { signInSchema } from "utils/vadidationSchemas";
 
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const isFetching = useSelector(getIsFetchingAuthSelector);
 
   const { t } = useTranslation();
@@ -30,14 +31,17 @@ const SignIn = ({ show }) => {
 
   const handleClose = () => {
     dispatch(setShowSignIn(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowResetPass = () => {
     dispatch(setShowResetPassword(true));
     dispatch(setShowSignIn(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowSignIn = () => {
     dispatch(setShowSignIn(false));
     dispatch(setShowSignUp(true));
+    errorHandlerHook?._clearErrors()
   };
 
   const _signIn = useCallback(
@@ -83,6 +87,8 @@ const SignIn = ({ show }) => {
               setFieldValue={setFieldValue}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.emailError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.email_placeholder")}
             />
             <span onClick={handleShowResetPass} className="auth_forgot_link">
@@ -98,6 +104,8 @@ const SignIn = ({ show }) => {
               setFieldValue={setFieldValue}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.passwordError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.password_placeholder")}
               iconClassName="auth_password_eye"
             />

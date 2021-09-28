@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import Button from "components/ui/Button";
 import SplitLine from "components/ui/SplitLine";
 import InputComponent from "components/ui/InputComponent";
@@ -8,9 +8,11 @@ import { CountryDropdown } from "react-country-region-selector";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { raiseForm1 } from "utils/vadidationSchemas";
+import useRaiseFormErrorHandler from 'customHooks/useRaiseFormErrorHandler';
 
 const FormPage1 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
+  const errorHandlerHook = useRaiseFormErrorHandler()
 
   const initialValues = {
     first_name: data.first_name,
@@ -48,6 +50,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.firstNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -59,6 +63,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.secondNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -70,6 +76,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.emailNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -81,6 +89,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.phoneError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
             placeholder="+3071 0XX XX XXX XXX"
           />
           <label
@@ -92,12 +102,15 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             <CountryDropdown
               className={
                 touched.country && errors.country
-                  ? "raise_form_input_warning "
-                  : "raise_form_input "
+                    ? 'raise_form_input_warning raise_form_country'
+                    : 'raise_form_input raise_form_country'
               }
               name="country"
               value={values.country}
-              onChange={(_, e) => handleChange(e)}
+              onChange={(_, e) => {
+                handleChange(e)
+                errorHandlerHook?.clearRaiseFormErrorFromApi('country')
+              }}
               onBlur={(_, e) => handleBlur(e)}
               defaultOptionLabel=""
             />
@@ -109,6 +122,11 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
                 {errors.country}
               </p>
             ) : null}
+            {errorHandlerHook?.countryError ?
+                <p className= {'raise_error_label country_warning_text'}>
+                  { Array.isArray(errorHandlerHook?.countryError)?errorHandlerHook?.countryError[0]:errorHandlerHook?.countryError}
+                </p>
+                : null}
           </label>
 
           <SplitLine className="raise_form_split_line" />

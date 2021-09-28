@@ -3,13 +3,15 @@ import { useTranslation } from "react-i18next";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { raiseForm3 } from "utils/vadidationSchemas";
+import useRaiseForm3ErrorHandler from 'customHooks/useRaiseForm3ErrorHandler';
 
 const FormPage3 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
+  const errorHandlerHook = useRaiseForm3ErrorHandler()
 
   const initialValues = {
     website: data.website,
@@ -49,6 +51,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.websiteError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -60,6 +64,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.videoPreviewError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -71,6 +77,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.socialsOneError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -82,6 +90,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.followersOneError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -93,6 +103,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.socialsTwoError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -104,6 +116,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.followersTwoError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -115,6 +129,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.socialsThreeError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -126,6 +142,8 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
             setFieldValue={setFieldValue}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.followersThreeError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <SplitLine className="raise_form_split_line" />
           <div className="raise_form_button_container">

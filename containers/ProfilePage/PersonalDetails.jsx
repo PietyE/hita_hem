@@ -30,6 +30,7 @@ import {
   personalDetailsUpdateSchema,
 } from "utils/vadidationSchemas";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
+import useProfileErrorHandler from 'customHooks/useProfileErrorHandler';
 
 const PersonalDetails = ({
   type,
@@ -38,7 +39,7 @@ const PersonalDetails = ({
   sectionClassName,
 }) => {
   const { t } = useTranslation();
-
+  const errorHandlerHook = useProfileErrorHandler()
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
   const isShowQuiz = useSelector(getShowQuiz)
@@ -197,6 +198,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.firstNameError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <InputComponent
                   labelClassName="profile_input_middle profile_second_name"
@@ -208,6 +211,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.secondNameError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <div className="profile_form_date_block">
                   <p className="profile_form_birth_text">
@@ -327,7 +332,10 @@ const PersonalDetails = ({
                     name="address.country"
                     values={values?.address?.country}
                     value={values?.address?.country}
-                    onChange={(_, e) => handleChange(e)}
+                    onChange = {(_, e) => {
+                      errorHandlerHook?.clearProfileErrorFromApi('address.country')
+                      handleChange(e)
+                    } }
                     onBlur={(_, e) => handleBlur(e)}
                     defaultOptionLabel={values?.address?.country || ""}
                   />
@@ -339,6 +347,11 @@ const PersonalDetails = ({
                       {errors.address?.country}
                     </p>
                   ) : null}
+                  {errorHandlerHook?.countryError ?
+                      <p className= {'input_warning_text warning_date_text'}>
+                        { Array.isArray(errorHandlerHook?.countryError)?errorHandlerHook?.countryError[0]:errorHandlerHook?.countryError}
+                      </p>
+                      : null}
                 </label>
                 <InputComponent
                   labelClassName="profile_input_middle profile_city"
@@ -350,6 +363,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.cityError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <InputComponent
                   labelClassName="profile_input_big profile_address"
@@ -361,6 +376,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.addressError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <InputComponent
                   labelClassName="profile_input_middle profile_id_number"
@@ -372,6 +389,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.personalIdError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <InputComponent
                   labelClassName="profile_input_middle profile_phone"
@@ -383,6 +402,8 @@ const PersonalDetails = ({
                   setFieldValue={setFieldValue}
                   touched={touched}
                   errors={errors}
+                  errorFromApi={errorHandlerHook?.phoneError}
+                  clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
                 <SplitLine className="profile_form_split_line" />
                 <div className="profile_form_footer">

@@ -1,16 +1,28 @@
-import React, { useCallback } from "react";
+import React, {useCallback, memo, useEffect, useRef} from 'react';
 import { Formik, Form } from "formik";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { accountSettingsResetEmailSchema } from "utils/vadidationSchemas";
-import { changeEmail } from "redux/actions/user";
+import { changeEmail, setResponseFromApi } from "redux/actions/user";
 import { useTranslation } from "react-i18next";
+import {isSuccessfulResponseFromApiSelector} from 'redux/reducers/user';
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 
 const ResetEmail = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const errorHandlerHook = useAuthErrorHandler()
+
+  const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
+  const formikRef = useRef();
+  useEffect(()=>{
+    if(isSuccessfulResponseFromApi){
+      formikRef?.current?.resetForm()
+      dispatch(setResponseFromApi(false))
+    }
+  },[isSuccessfulResponseFromApi,dispatch ])
 
   const handleShowResetPass = () => {
     dispatch(setShowResetPassword(true));
@@ -29,17 +41,20 @@ const ResetEmail = () => {
 
   const onSubmitEmail = (values) => {
     _changeEmail(values);
+    errorHandlerHook?._clearErrors()
   };
 
   return (
     <>
       <Formik
+          innerRef={formikRef}
         initialValues={initialValuesEmail}
         validationSchema={accountSettingsResetEmailSchema}
         onSubmit={onSubmitEmail}
         validateOnMount
+          enableReinitialize
       >
-        {({ errors, touched, setFieldValue, setValues, isValid }) => {
+        {({ errors, touched, setFieldValue, isValid }) => {
           return (
             <Form className="account_settings_form_email">
               <h3 className="account_settings_form_title">
@@ -56,6 +71,8 @@ const ResetEmail = () => {
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.emailError}
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
               <span
                 onClick={handleShowResetPass}
@@ -75,13 +92,14 @@ const ResetEmail = () => {
                 setFieldValue={setFieldValue}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.passwordError || errorHandlerHook?.userError}
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <div className="account_settings_buttons_container">
                 <Button
                   colorStyle="link"
                   className="account_settings_button_cancel"
-                  onClick={() => setValues(initialValuesEmail)}
                 >
                   {t("profile_page.reset_email.button_cancel")}
                 </Button>
@@ -102,4 +120,4 @@ const ResetEmail = () => {
   );
 };
 
-export default ResetEmail;
+export default memo(ResetEmail);
