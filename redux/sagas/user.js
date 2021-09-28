@@ -22,7 +22,11 @@ import {
   setProfile,
   setFetchingUsers,
 } from "redux/actions/user";
-import {setNotificationTitle, setNotificationMessage, setNotification} from '../actions/notification';
+import {
+  setNotificationTitle,
+  setNotificationMessage,
+  setNotification,
+} from "../actions/notification";
 import {
   setShowSignIn,
   setShowSignUp,
@@ -33,8 +37,8 @@ import {
   setShowConfirmationOfAccountDeleting,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
-import {setAuthError, setProfileError, setError} from '../actions/errors';
-import {setResponseFromApi} from '../actions/user'
+import { setAuthError, setProfileError, setError } from "../actions/errors";
+import { setResponseFromApi } from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 
@@ -51,7 +55,7 @@ export function* bootstarpWorker({ payload: initLang }) {
     yield put(setSelectedLanguage(systemLang));
 
     if (!initLang) {
-      yield call([Cookies, "set"], "i18next", systemLang);
+      yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
     }
 
     const auth_data = yield call([localStorage, "getItem"], "auth_data");
@@ -88,7 +92,9 @@ export function* bootstarpWorker({ payload: initLang }) {
 
     yield call(getDocumentsWorker);
   } catch (error) {
-    yield put(setAuthError({status: error.response.status, data: error.response.data}))
+    yield put(
+      setAuthError({ status: error.response.status, data: error.response.data })
+    );
   } finally {
     yield put(setFetchingUsers(false));
   }
@@ -103,7 +109,9 @@ function* signUp({ payload }) {
       yield put(setShowSuccessfulSignUp(true));
     }
   } catch (error) {
-    yield put(setAuthError({status: error.response.status, data: error.response.data}))
+    yield put(
+      setAuthError({ status: error.response.status, data: error.response.data })
+    );
     // if(error?.response?.status === 400){
     //     yield put(setNotificationMessage(error.response?.data?.email[0]))
     // }
@@ -135,14 +143,21 @@ function* signIn({ payload }) {
     yield call([localStorage, "setItem"], "auth_data", authData);
     yield put(setShowSignIn(false));
   } catch (error) {
-    yield put(setError({status: error.response.status, data: error.response.data}))
-    if(error?.response?.status === 400){
-      if(error?.response?.data?.user){
-        yield put(setNotification(true))
-        yield put(setNotificationTitle(error.response.data.user[0]))
-        yield put(setNotificationMessage('Check your email or password'))
-      }else {
-        yield put(setAuthError({status: error.response.status, data: error.response.data}))
+    yield put(
+      setError({ status: error.response.status, data: error.response.data })
+    );
+    if (error?.response?.status === 400) {
+      if (error?.response?.data?.user) {
+        yield put(setNotification(true));
+        yield put(setNotificationTitle(error.response.data.user[0]));
+        yield put(setNotificationMessage("Check your email or password"));
+      } else {
+        yield put(
+          setAuthError({
+            status: error.response.status,
+            data: error.response.data,
+          })
+        );
       }
     }
   } finally {
@@ -176,7 +191,12 @@ function* createUserProfile({ payload }) {
     yield call(getProfileFromApi);
   } catch (error) {
     yield put(
-        yield put(setProfileError({status: error.response.status, data: error.response.data}))
+      yield put(
+        setProfileError({
+          status: error.response.status,
+          data: error.response.data,
+        })
+      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -194,7 +214,12 @@ function* changeUserProfile({ payload }) {
     yield call(getProfileFromApi);
   } catch (error) {
     yield put(
-        yield put(setProfileError({status: error.response.status, data: error.response.data}))
+      yield put(
+        setProfileError({
+          status: error.response.status,
+          data: error.response.data,
+        })
+      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -208,7 +233,9 @@ function* resetUserPassword({ payload }) {
     yield put(setShowResetPassword(false));
     yield put(setShowSuccessfulResetPassword(true));
   } catch (error) {
-    yield put(setAuthError({status: error.response.status, data: error.response.data}))
+    yield put(
+      setAuthError({ status: error.response.status, data: error.response.data })
+    );
     // if(error?.response?.status === 400){
     //     yield put(setNotificationMessage(error.response.data.user[0]))
     // }
@@ -221,10 +248,15 @@ function* changeUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "changePassword"], payload);
-    yield put(setResponseFromApi(true))
+    yield put(setResponseFromApi(true));
   } catch (error) {
     yield put(
-        yield put(setAuthError({status: error.response.status, data: error.response.data}))
+      yield put(
+        setAuthError({
+          status: error.response.status,
+          data: error.response.data,
+        })
+      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -235,10 +267,15 @@ function* changeUserEmail({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "changeEmail"], payload);
-    yield put(setResponseFromApi(true))
+    yield put(setResponseFromApi(true));
   } catch (error) {
     yield put(
-        yield put(setAuthError({status: error.response.status, data: error.response.data}))
+      yield put(
+        setAuthError({
+          status: error.response.status,
+          data: error.response.data,
+        })
+      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -262,7 +299,9 @@ export function* getProfileFromApi() {
       yield put(setProfile(response.data.profile));
     }
   } catch (error) {
-    yield put(setAuthError({status: error.response.status, data: error.response.data}))
+    yield put(
+      setAuthError({ status: error.response.status, data: error.response.data })
+    );
   } finally {
     yield put(setFetchingUsers(false));
   }

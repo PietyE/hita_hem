@@ -23,11 +23,11 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
 
-const Navigation = ({ className }) => {
+const Navigation = ({ className, initLang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
-  const selectedLanguage = useSelector(getSelectedLangSelector);
+  const selectedLanguage = initLang || useSelector(getSelectedLangSelector);
   const menuBtn = useRef();
   const [showSubMenu, setShowSubMenu] = useState(false);
   const submenuClass = showSubMenu

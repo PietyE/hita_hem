@@ -1,4 +1,4 @@
-import { useCallback, forwardRef, useState, useEffect } from "react";
+import { useCallback, forwardRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -35,21 +35,19 @@ const LinkStyled = (props) => {
 
 const Header = ({ initLang }) => {
   const dispatch = useDispatch();
-  const { pathname } = useRouter();
+  const router = useRouter();
+  const { pathname, locale } = router;
+
   const { t } = useTranslation();
   const _selectedLanguage = useSelector(getSelectedLangSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
 
-  const [activeNavIteb, setActiveNavItem] = useState("");
-
   const selectedLanguage = initLang || _selectedLanguage;
 
-  const handleSelectLang = useCallback(
-    (e) => {
-      dispatch(changeLanguage(lang[e.target.dataset.ln].code));
-    },
-    [dispatch]
-  );
+  const handleSelectLang = (e) => {
+    if (locale === lang[e.target.dataset.ln].code) return;
+    dispatch(changeLanguage(lang[e.target.dataset.ln].code));
+  };
 
   const handleShowSignUp = useCallback(() => {
     dispatch(setShowSignUp(true));
@@ -62,7 +60,7 @@ const Header = ({ initLang }) => {
   return (
     <header className="header_container">
       <div className="header_content_container">
-        <Navigation className="header_mobile_navigation" />
+        <Navigation className="header_mobile_navigation" initLang={initLang} />
         <div className="header_item logo left">
           <Logo
             classNameContainer={"header_logo_container"}

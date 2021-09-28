@@ -108,7 +108,7 @@ const RootPage = ({ children, initLang = "" }) => {
 
   return (
     <div className="container">
-      <Header />
+      <Header initLang={initLang} />
       <main>
         {children}
         {!!showSignInWindow && <SignIn show={showSignInWindow} />}
