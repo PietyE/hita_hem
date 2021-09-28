@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Field, Form, Formik } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -68,6 +68,8 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       validationSchema={raiseForm4}
       onSubmit={onSubmit}
       setValue
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {({ setFieldValue, values }) => (
         <Form className="raise_form">

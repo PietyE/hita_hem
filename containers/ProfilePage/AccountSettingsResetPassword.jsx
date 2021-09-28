@@ -49,9 +49,11 @@ const AccountSettingsResetPassword = () => {
         initialValues={initialValuesPassword}
         validationSchema={accountSettingsResetPasswordSchema}
         onSubmit={onSubmitPassword}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ values, errors, touched, setFieldValue, setValues, isValid }) => {
+        {({ values, errors, touched, setFieldValue, setValues, setFieldError }) => {
           return (
             <Form className="account_settings_form_password">
               <h3 className="account_settings_form_title">
@@ -75,6 +77,7 @@ const AccountSettingsResetPassword = () => {
                 autoComplete="new-password"
                   // values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
                 errorFromApi={errorHandlerHook?.oldPasswordError }
@@ -91,6 +94,7 @@ const AccountSettingsResetPassword = () => {
                 inputName="new_password1"
                 values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
                 errorFromApi={ errorHandlerHook?.newPassword1Error }
@@ -107,6 +111,7 @@ const AccountSettingsResetPassword = () => {
                 inputName="new_password2"
                 values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
                 errorFromApi={errorHandlerHook?.newPassword2Error }
@@ -124,7 +129,7 @@ const AccountSettingsResetPassword = () => {
                 <Button
                   type="submit"
                   colorStyle="dark-green"
-                  disabled={!isValid}
+                  // disabled={!isValid}
                   className="account_settings_button_save"
                 >
                   {t("profile_page.reset_password.button_save")}

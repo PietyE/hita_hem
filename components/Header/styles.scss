@@ -117,6 +117,7 @@
   background: #ffffff;
   box-shadow: 0px 2px 10px rgba(26, 38, 100, 0.14);
   border-radius: 6px;
+  min-width: 8rem;
   border: none;
 }
 @media screen and (max-device-width: 1480px) {
@@ -173,8 +174,8 @@
     .navbar {
       .nav_dropdown {
         .dropdown-menu {
-          top: 56px;
-          left: -26px;
+          top: 58px;
+          left: -10px;
           width: 100vw;
           background-color: #fff;
           padding-left: 15px;

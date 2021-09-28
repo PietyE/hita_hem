@@ -16,6 +16,7 @@ const ResetEmail = () => {
   const errorHandlerHook = useAuthErrorHandler()
 
   const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
+
   const formikRef = useRef();
   useEffect(()=>{
     if(isSuccessfulResponseFromApi){
@@ -51,10 +52,12 @@ const ResetEmail = () => {
         initialValues={initialValuesEmail}
         validationSchema={accountSettingsResetEmailSchema}
         onSubmit={onSubmitEmail}
-        validateOnMount
+        // validateOnMount
           enableReinitialize
+          validateOnChange={false}
+          validateOnBlur={false}
       >
-        {({ errors, touched, setFieldValue, isValid }) => {
+        {({ errors, touched, setFieldValue, setFieldError }) => {
           return (
             <Form className="account_settings_form_email">
               <h3 className="account_settings_form_title">
@@ -69,6 +72,7 @@ const ResetEmail = () => {
                 inputName="email"
                 autoComplete="new-password"
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
                 errorFromApi={errorHandlerHook?.emailError}
@@ -90,6 +94,7 @@ const ResetEmail = () => {
                 inputName="password"
                 autoComplete="new-password"
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
                 errorFromApi={errorHandlerHook?.passwordError || errorHandlerHook?.userError}
@@ -106,7 +111,7 @@ const ResetEmail = () => {
                 <Button
                   type="submit"
                   colorStyle="dark-green"
-                  disabled={!isValid}
+                  // disabled={!isValid}
                   className="account_settings_button_save"
                 >
                   {t("profile_page.reset_email.button_save")}

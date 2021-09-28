@@ -56,9 +56,11 @@ const ResetPassword = ({ show }) => {
         initialValues={{ email: "" }}
         validationSchema={resetPasswordSchema}
         onSubmit={onSubmit}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ touched, errors, values, setFieldValue, isValid }) => (
+        {({ touched, errors, values, setFieldValue, setFieldError }) => (
           <Form className="auth_form">
             <InputComponent
               labelClassName="auth_login_container auth_container"
@@ -67,6 +69,7 @@ const ResetPassword = ({ show }) => {
               inputName="email"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
               errorFromApi={errorHandlerHook?.userError || errorHandlerHook?.emailError}
@@ -77,7 +80,7 @@ const ResetPassword = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              disabled={!isValid}
+              // disabled={!isValid}
             >
               {t("auth.resetPasswordPopup.button")}
             </Button>
