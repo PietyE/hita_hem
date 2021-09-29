@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import {
   faChevronDown,
   faChevronRight,
@@ -60,7 +60,7 @@ function TabAccordion({ isAuth }) {
             </span>
             {t("tab_accordion.Idea")}
             <span className="tab_accordion_chevron">
-              <FontAwesomeIcon
+              <IconComponent
                 icon={activeTab === "0" ? faChevronDown : faChevronRight}
               />
             </span>
@@ -84,7 +84,7 @@ function TabAccordion({ isAuth }) {
             </span>
             {t("tab_accordion.Team")}
             <span className="tab_accordion_chevron">
-              <FontAwesomeIcon
+              <IconComponent
                 icon={activeTab === "1" ? faChevronDown : faChevronRight}
               />
             </span>
@@ -108,7 +108,7 @@ function TabAccordion({ isAuth }) {
             </span>
             {t("tab_accordion.Financial_information")}
             <span className="tab_accordion_chevron">
-              <FontAwesomeIcon
+              <IconComponent
                 icon={activeTab === "2" ? faChevronDown : faChevronRight}
               />
             </span>
@@ -132,7 +132,7 @@ function TabAccordion({ isAuth }) {
             </span>
             {t("tab_accordion.FAQ")}
             <span className="tab_accordion_chevron">
-              <FontAwesomeIcon
+              <IconComponent
                 icon={activeTab === "3" ? faChevronDown : faChevronRight}
               />
             </span>

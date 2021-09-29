@@ -5,14 +5,14 @@ import Button from "components/ui/Button";
 import SplitLine from "components/ui/SplitLine";
 import InputComponent from "components/ui/InputComponent";
 import { CountryDropdown } from "react-country-region-selector";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faArrowRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { raiseForm1 } from "utils/vadidationSchemas";
-import useRaiseFormErrorHandler from 'customHooks/useRaiseFormErrorHandler';
+import useRaiseFormErrorHandler from "customHooks/useRaiseFormErrorHandler";
 
 const FormPage1 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
-  const errorHandlerHook = useRaiseFormErrorHandler()
+  const errorHandlerHook = useRaiseFormErrorHandler();
 
   const initialValues = {
     first_name: data.first_name,
@@ -40,7 +40,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
         handleBlur,
         handleChange,
         setFieldValue,
-        setFieldError
+        setFieldError,
       }) => (
         <Form className="raise_form">
           <InputComponent
@@ -109,34 +109,36 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             <CountryDropdown
               className={
                 touched.country && errors.country
-                    ? 'raise_form_input_warning raise_form_country'
-                    : 'raise_form_input raise_form_country'
+                  ? "raise_form_input_warning raise_form_country"
+                  : "raise_form_input raise_form_country"
               }
               name="country"
               value={values.country}
               onChange={(_, e) => {
-                handleChange(e)
-                errorHandlerHook?.clearRaiseFormErrorFromApi('country')
+                handleChange(e);
+                errorHandlerHook?.clearRaiseFormErrorFromApi("country");
               }}
               onBlur={(_, e) => {
-                setFieldError('country', undefined)
-                handleBlur(e)
+                setFieldError("country", undefined);
+                handleBlur(e);
               }}
               defaultOptionLabel=""
             />
             <div className="raise_form_country_arrow">
-              <FontAwesomeIcon icon={faCaretDown} />
+              <IconComponent icon={faCaretDown} />
             </div>
             {errors.country && touched.country ? (
               <p className={"raise_error_label country_warning_text "}>
                 {errors.country}
               </p>
             ) : null}
-            {errorHandlerHook?.countryError ?
-                <p className= {'raise_error_label country_warning_text'}>
-                  { Array.isArray(errorHandlerHook?.countryError)?errorHandlerHook?.countryError[0]:errorHandlerHook?.countryError}
-                </p>
-                : null}
+            {errorHandlerHook?.countryError ? (
+              <p className={"raise_error_label country_warning_text"}>
+                {Array.isArray(errorHandlerHook?.countryError)
+                  ? errorHandlerHook?.countryError[0]
+                  : errorHandlerHook?.countryError}
+              </p>
+            ) : null}
           </label>
 
           <SplitLine className="raise_form_split_line" />
@@ -146,7 +148,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             className="raise_form_button raise_form_button_alone"
           >
             {t("raisePage.form_footer.button_next")}
-            <FontAwesomeIcon
+            <IconComponent
               icon={faArrowRight}
               className="raise_form_button_arrow_right"
             />

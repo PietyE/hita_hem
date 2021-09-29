@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Field, Form, Formik } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -120,7 +120,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
                 className=" raise_form_button_back"
                 onClick={prevForm}
               >
-                <FontAwesomeIcon
+                <IconComponent
                   icon={faArrowLeft}
                   className="raise_form_button_arrow_left"
                 />

@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getSelectedLangSelector } from "redux/reducers/language";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import {
   faChevronDown,
   faChevronRight,
@@ -43,17 +43,17 @@ const MobileCampaigns = ({ data }) => {
 
             let _link;
             let textLink;
-            if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development'){
-              _link = `https://dev.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+              _link = `https://dev.accumeo.com/company/${campaign.id}`;
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging'){
-              _link = `https://stage.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
+              _link = `https://stage.accumeo.com/company/${campaign.id}`;
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-              _link = `https://preprod.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+              _link = `https://preprod.accumeo.com/company/${campaign.id}`;
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
             let _status;
             if (campaign.status === 3) {
@@ -81,7 +81,7 @@ const MobileCampaigns = ({ data }) => {
                     {campaign.name}
                   </span>
                   <span className="tab_accordion_chevron">
-                    <FontAwesomeIcon
+                    <IconComponent
                       icon={
                         Number(activeTab) === index + 1
                           ? faChevronDown
