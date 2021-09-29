@@ -73,12 +73,13 @@
       background-color: #FFEAEB;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
       border-radius: 4px;
-
-      img {
+      span{
+        margin-left: 11px;
+      }
+      div {
         height: 16px;
         width: 16px;
         margin-right: 11px;
-
       }
     }
 

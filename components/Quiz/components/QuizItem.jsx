@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Image from "next/image";
 import WarningIcon from 'public/images/attention.svg';
 
 const QuizItem = ({data, onSelect, warningList}) => {
@@ -24,8 +25,8 @@ const QuizItem = ({data, onSelect, warningList}) => {
         <div className= {`quiz_item ${_warningStyle}`}>
             {showWarning &&
             <div className = 'quiz_item_warning_notification'>
-                <img src={WarningIcon} alt='attention'/>
-                You have to select right answer
+                <Image src={WarningIcon} alt='attention'/>
+                <span>You have to select right answer</span>
             </div>
             }
             <h3 className= 'quiz_item_title' >{question}</h3>
