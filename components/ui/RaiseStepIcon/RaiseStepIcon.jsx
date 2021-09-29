@@ -1,7 +1,9 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+//import IconComponent from "components/ui/IconComponent";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+
+import IconComponent from "components/ui/IconComponent";
 
 const RaiseStepIcon = ({ number = 1, formNumber = 1 }) => {
   const { t } = useTranslation();
@@ -31,7 +33,7 @@ const RaiseStepIcon = ({ number = 1, formNumber = 1 }) => {
   const CircleContent = () => {
     switch (status) {
       case "success":
-        return <FontAwesomeIcon icon={faCheck} />;
+        return <IconComponent icon={faCheck} />;
       case "active":
         return `${number}`;
       case "":

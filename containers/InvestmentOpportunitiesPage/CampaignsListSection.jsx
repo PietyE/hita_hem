@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CampaignsList from "components/CampaignsList";
 import FilterMobileMenu from "./FilterMobileMenu";
 import Button from "components/ui/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "react-bootstrap/Dropdown";
 import {
@@ -109,7 +109,7 @@ const CampaignsListSection = () => {
           <Dropdown.Toggle className="invest_opp_select">
             {t("investment_opportunities_page.status")}
             <div className="invest_opp_arrow">
-              <FontAwesomeIcon icon={faCaretDown} />
+              <IconComponent icon={faCaretDown} />
             </div>
           </Dropdown.Toggle>
           <Dropdown.Menu className="invest_opp_dropdown_menu">
@@ -177,7 +177,7 @@ const CampaignsListSection = () => {
           {currentFilter.includes(3) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.live")}
-              <FontAwesomeIcon
+              <IconComponent
                 icon={faTimes}
                 data-value="live"
                 onClick={handleChangeCheckbox}
@@ -188,7 +188,7 @@ const CampaignsListSection = () => {
           {currentFilter.includes(1) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.upcoming")}
-              <FontAwesomeIcon
+              <IconComponent
                 icon={faTimes}
                 data-value="upcoming"
                 onClick={handleChangeCheckbox}
@@ -199,7 +199,7 @@ const CampaignsListSection = () => {
           {currentFilter.includes(4) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.closed")}
-              <FontAwesomeIcon
+              <IconComponent
                 icon={faTimes}
                 data-value="closed"
                 onClick={handleChangeCheckbox}

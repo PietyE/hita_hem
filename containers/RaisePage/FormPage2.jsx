@@ -5,13 +5,13 @@ import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
 import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { raiseForm2 } from "utils/vadidationSchemas";
-import useRaiseForm2ErrorHandler from 'customHooks/useRaiseForm2ErrorHandler';
+import useRaiseForm2ErrorHandler from "customHooks/useRaiseForm2ErrorHandler";
 
 const FormPage2 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
-  const errorHandlerHook = useRaiseForm2ErrorHandler()
+  const errorHandlerHook = useRaiseForm2ErrorHandler();
 
   const initialValues = {
     company_name: data.company_name,
@@ -132,7 +132,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
               className=" raise_form_button_back"
               onClick={prevPage}
             >
-              <FontAwesomeIcon
+              <IconComponent
                 icon={faArrowLeft}
                 className="raise_form_button_arrow_left"
               />
@@ -144,7 +144,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
               className="raise_form_button"
             >
               {t("raisePage.form_footer.button_next")}
-              <FontAwesomeIcon
+              <IconComponent
                 icon={faArrowRight}
                 className="raise_form_button_arrow_right"
               />

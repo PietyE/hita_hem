@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ButtonStyled from "components/ui/Button";
 import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { setFilter } from "redux/actions/companies";
 import {
   faCheck,
@@ -73,7 +73,7 @@ const FilterMobileMenu = ({
               onClick={handleTabClick}
             >
               {t("investment_opportunities_page.status")}
-              <FontAwesomeIcon
+              <IconComponent
                 icon={activeTab === "1" ? faChevronDown : faChevronRight}
                 className="filter_mobile_menu_accordion_button_chevron"
               />
@@ -93,7 +93,7 @@ const FilterMobileMenu = ({
               >
                 {t("investment_opportunities_page.live")}
                 {currentFilters.includes(3) && (
-                  <FontAwesomeIcon
+                  <IconComponent
                     icon={faCheck}
                     className="filter_mobile_menu_accordion_tab_button_chevron"
                   />
@@ -111,7 +111,7 @@ const FilterMobileMenu = ({
               >
                 {t("investment_opportunities_page.upcoming")}
                 {currentFilters.includes(1) && (
-                  <FontAwesomeIcon
+                  <IconComponent
                     icon={faCheck}
                     className="filter_mobile_menu_accordion_tab_button_chevron"
                   />
@@ -129,7 +129,7 @@ const FilterMobileMenu = ({
               >
                 {t("investment_opportunities_page.closed")}
                 {currentFilters.includes(4) && (
-                  <FontAwesomeIcon
+                  <IconComponent
                     icon={faCheck}
                     className="filter_mobile_menu_accordion_tab_button_chevron"
                   />

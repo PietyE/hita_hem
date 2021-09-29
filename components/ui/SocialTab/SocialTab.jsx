@@ -6,8 +6,9 @@ import {
   faFacebookF,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import allabolagIcon from '../../../public/images/allabolag.svg';
+import allabolagIcon from "../../../public/images/allabolag.svg";
+
+import IconComponent from "components/ui/IconComponent";
 
 const _data = {
   twitter: {
@@ -29,22 +30,24 @@ const _data = {
 };
 
 const SocialTab = ({ socials = [], classNameContainer = "" }) => {
-
   return (
     <div className={`social_tab_container ${classNameContainer}`}>
       {socials.map((s, i) => {
         return (
-            <a className = "social_link" href = {s.url} key = {i}>
-              {s.name !== 'allabolag'
-                  ?
-                  <FontAwesomeIcon
-                      icon = {_data[s.name].iconName}
-                      className = "social_icon"
-                  />
-                  :
-                <Image src={allabolagIcon} alt="allabolag" className="social_icon" />
-              }
-            </a>
+          <a className="social_link" href={s.url} key={i}>
+            {s.name !== "allabolag" ? (
+              <IconComponent
+                icon={_data[s.name].iconName}
+                className="social_icon"
+              />
+            ) : (
+              <Image
+                src={allabolagIcon}
+                alt="allabolag"
+                className="social_icon"
+              />
+            )}
+          </a>
         );
       })}
     </div>
