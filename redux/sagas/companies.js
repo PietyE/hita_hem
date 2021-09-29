@@ -25,6 +25,7 @@ import { getCompanyIdSelector } from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import { setFaqPosts } from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
+import isEqual from "lodash/isEqual"
 import { setError } from "../actions/errors";
 import { convertStatusToText } from "utils/utils";
 import { getSelectedLangSelector } from "../reducers/language";
@@ -175,6 +176,17 @@ function* makePayment({ payload }) {
           yield put(setShowQuiz(false))
         }
       } else {
+        // const convertedProfile = {...profile}
+        // convertedProfile.dateOfBirth = `${convertedProfile.year}-${convertedProfile.month}-${convertedProfile.day}`
+        // delete convertedProfile.year
+        // delete convertedProfile.month
+        // delete convertedProfile.day
+        // delete convertedProfile.image
+        //
+        // console.log('convertedProfile', convertedProfile)
+        // console.log('payload.profile.profile', payload.profile.profile)
+        // const wasCahnges = isEqual(convertedProfile, payload.profile.profile)
+        // console.log('wasCahnges', wasCahnges)
         yield call([companies, "makePayment"], {
           user: userId,
           company: campaignId,

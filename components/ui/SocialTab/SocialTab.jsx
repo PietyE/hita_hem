@@ -32,9 +32,9 @@ const SocialTab = ({ socials = [], classNameContainer = "" }) => {
 
   return (
     <div className={`social_tab_container ${classNameContainer}`}>
-      {socials.map((s) => {
+      {socials.map((s, i) => {
         return (
-            <a className = "social_link" href = {s.url} key = {s.name}>
+            <a className = "social_link" href = {s.url} key = {i}>
               {s.name !== 'allabolag'
                   ?
                   <FontAwesomeIcon
