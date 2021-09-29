@@ -7,7 +7,7 @@ import {
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import allabolagIcon from '../../../public/images/allabolag.svg';
+import allabolagIcon from '../../../public/images/allabolag_blue.svg';
 
 const _data = {
   twitter: {
