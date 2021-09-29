@@ -57,15 +57,15 @@ const ProfilePageCampaigns = () => {
 
               let _link;
               let textLink;
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'development'){
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development'){
                 _link = `https://dev.accumeo.com/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging'){
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging'){
                 _link = `https://stage.accumeo.com/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
                 _link = `https://preprod.accumeo.com/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
