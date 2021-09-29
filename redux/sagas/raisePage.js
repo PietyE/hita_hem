@@ -2,7 +2,7 @@ import { takeEvery, call, put } from "redux-saga/effects";
 
 import { GET_RAISE_PAGE, SEND_FORM } from "constants/actionsConstant";
 import { setRaisePage, setIsFetchingRaisePage } from "redux/actions/raisePage";
-import { setShowSuccessfulCampaignRegistration } from "../actions/authPopupWindows";
+import {setShowRaiseError, setShowSuccessfulCampaignRegistration} from "../actions/authPopupWindows";
 import api from "api";
 import {setRaiseError, setError} from '../actions/errors';
 
@@ -33,6 +33,7 @@ function* sendForm({ payload }) {
       yield put(setShowSuccessfulCampaignRegistration(true));
     }
   } catch (error) {
+    yield put(setShowRaiseError(true))
     yield put(
         yield put(setRaiseError({status:error?.response?.status, data:error?.response?.data}))
     );

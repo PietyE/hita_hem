@@ -11,6 +11,7 @@ import {
   SET_SHOW_QUIZ_MODAL,
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
+  SET_SHOW_RAISE_ERROR,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -26,6 +27,7 @@ const initialValues = {
   showQuiz:false,
   showQuizError: false,
   showSuccessfulSubscribe:false,
+  showRaiseError: false,
 };
 export const getShowSignIn = (state) => state.authPopupWindows.showSignIn;
 export const getShowSignUp = (state) => state.authPopupWindows.showSignUp;
@@ -46,6 +48,9 @@ export const getShowConfirmationOfAccountDeleting = (state) =>
 export const getShowQuiz = state =>  state.authPopupWindows.showQuiz;
 export const getShowQuizError = state =>  state.authPopupWindows.showQuizError;
 export const getShowSuccessfulSubscribe = state =>  state.authPopupWindows.showSuccessfulSubscribe;
+export const getShowRaiseError = state =>  state.authPopupWindows.showRaiseError;
+
+
 
 export const authPopupWindows = (state = initialValues, actions) => {
   switch (actions.type) {
@@ -73,6 +78,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showQuizError: actions.payload }
     case SET_SHOW_SUCCESSFUL_SUBSCRIBE:
       return { ...state, showSuccessfulSubscribe: actions.payload }
+    case SET_SHOW_RAISE_ERROR:
+      return { ...state, showRaiseError: actions.payload }
     default:
       return state;
   }

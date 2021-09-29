@@ -18,10 +18,12 @@ import {
   getShowConfirmationOfAccountDeleting,
   getShowQuizError,
   getShowSuccessfulSubscribe,
+  getShowRaiseError,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
+import RaiseWrongAnswersModal from "../RaiseWrongAnswersModal/RaiseWrongAnswersModal";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -55,6 +57,9 @@ const QuizWrongAnswersModal = dynamic(() =>
 const SuccessfullySubscribedModal = dynamic(() =>
   import("components/SuccessfullySubscribedModal")
 );
+const RaiseWrongAnswerModal = dynamic(() =>
+    import("components/RaiseWrongAnswersModal")
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -79,6 +84,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isNotificationShow = useSelector(getNotificationStatusSelector);
   const isShowQuizErrorPopup = useSelector(getShowQuizError);
   const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
+  const isShowQuizRaisePopup = useSelector(getShowRaiseError);
+
 
   const _logOut = useCallback(() => {
     dispatch(logOut());
@@ -143,6 +150,9 @@ const RootPage = ({ children, initLang = "" }) => {
         )}
         {!!isShowSuccessfulSubscribe && (
           <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
+        )}
+        {!!isShowQuizRaisePopup && (
+            <RaiseWrongAnswersModal show={isShowQuizRaisePopup} />
         )}
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
         <ScrollToTopButton />
