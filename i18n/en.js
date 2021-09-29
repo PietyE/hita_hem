@@ -248,10 +248,10 @@ export const en = {
       button: "Go to the Homepage",
     },
     profile_page: {
-      investment: "investment",
-      personal_details: "personal details",
-      account_settings: "account settings",
-      profile_campaigns: "campaigns",
+      investment: "Investment",
+      personal_details: "Personal details",
+      account_settings: "Account settings",
+      profile_campaigns: "Campaigns",
 
       account: {
         title: "My account settings",
