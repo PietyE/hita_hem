@@ -168,8 +168,10 @@ const PersonalDetails = ({
             isButtonDisabled = isEmpty(profile)
               ? !(dirty && currentInvestment > 0 && values.is_agree)
               : currentInvestment <= 0;
-          } else {
+          } else if(isEmpty(profile)){
             isButtonDisabled = !(dirty && values.is_agree);
+          } else {
+            isButtonDisabled = !(dirty);
           }
           const onSubmitInvestFromQuiz = () => {
             onMakePayment({
