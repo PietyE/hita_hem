@@ -165,19 +165,15 @@ const PersonalDetails = ({
           let days = getDays(values?.month?.toString()) || [];
           let isButtonDisabled;
           if (type) {
-            console.log('-----------------  1 --------------------')
             isButtonDisabled = isEmpty(profile)
               ? !( dirty && currentInvestment > 0 && values.is_agree)
               : currentInvestment <= 0;
           } else {
-            console.log('-----------------  2 --------------------')
             isButtonDisabled = !(dirty && values.is_agree);
           }
           const onSubmitInvestFromQuiz = () => {
             onMakePayment({profile:prepareDataForApi(values), amount: currentInvestment})
           }
-          console.log('type', type)
-          console.log('isButtonDisabled', isButtonDisabled)
           return (
               <>
               <Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz}/>

@@ -38,7 +38,7 @@ import {
   SET_FORM3_FOLLOWERS_TWO_ERROR,
   SET_FORM3_FOLLOWERS_THREE_ERROR,
 } from 'constants/actionsConstant';
-import {isEmpty} from "lodash";
+import isEmpty from "lodash/isEmpty";
 
 const initialState = {
   status: '',
