@@ -30,6 +30,7 @@
       line-height: 18px;
       letter-spacing: 0.2px;
       color: #89cff0;
+      margin-right: 10px;
     }
 
     &.footer_nav {
@@ -53,7 +54,9 @@
 
     &.social_footer_item {
       justify-content: flex-end;
-
+      .social_button_allabolag{
+        width: 20px;
+      }
       .social_button {
         margin-right: 20px;
         padding: 0;

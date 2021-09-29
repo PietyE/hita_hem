@@ -23,6 +23,29 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
 
+const socials = [
+  {
+    url: 'https://www.allabolag.se/what/accumeo',
+    name: 'allabolag'
+  },
+  {
+    url: 'https://www.linkedin.com/company/accumeo/',
+    name: 'linkedin'
+  },
+  {
+    url: 'https://twitter.com/accumeo',
+    name: 'twitter'
+  },
+  {
+    url: 'https://www.facebook.com/Accumeo/',
+    name: 'facebook'
+  },
+  {
+    url: 'https://www.instagram.com/accumeo/',
+    name: 'instagram'
+  },
+]
+
 const Navigation = ({ className, initLang }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -104,7 +127,7 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item_socials">
-                <SocialTab />
+                <SocialTab socials={socials} />
               </NavDropdown.Item>
               <SplitLine className="nav_btn_split_line" />
               <NavDropdown.Item as="div" className="nav_item_buttons">
@@ -168,5 +191,7 @@ const Navigation = ({ className, initLang }) => {
     </>
   );
 };
+
+
 
 export default Navigation;
