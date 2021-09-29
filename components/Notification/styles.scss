@@ -3,8 +3,18 @@
   bottom: 100px;
   right: 20px;
   width: 350px;
-  padding-right: 30px;
-z-index: 1150;
+  padding-right: 15px;
+  padding-top: 5px;
+  z-index: 1150;
+
+  button{
+    display: block;
+    margin-left: auto;
+    span{
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
 }
 
 

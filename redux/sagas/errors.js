@@ -37,9 +37,17 @@ function* errorHandler() {
       // re-login - fix next
       // yield put(setNotificationMessage('The token has expired. re-login'))
       break;
-    // case 400:
-    //    console.log('-----------------  !!! --------------------')
-    //     break
+    case 400:
+//////////////////временно пока приходит пустая ошибка по существующей подписке
+      if(!error?.data){
+        yield put(setNotificationTitle('Ooops...'))
+        yield put(setNotificationMessage('Such mail already exists'))
+      }else {
+        yield put(setNotificationMessage(Array.isArray(error?.data?.email)? error?.data?.email[0]:error?.data?.email))
+
+      }
+
+      break
     default:
       return null;
   }
