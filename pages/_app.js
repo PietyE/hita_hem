@@ -1,6 +1,5 @@
 import Head from "next/head";
 import api from "api";
-import Cookies from "js-cookie";
 
 import "i18n";
 import "../styles/index.scss";

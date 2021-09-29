@@ -4,11 +4,11 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import Dropdown from "react-bootstrap/Dropdown";
 
 import Logo from "components/Logo";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
+
 import {
   ABOUT_US_ROUTE,
   RAISE_ROUTE,
@@ -23,6 +23,18 @@ import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
+const DropDownComponent = dynamic(() =>
+  import("components/ui/DropDownComponent")
+);
+const DropdownToggle = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+);
+const DropdownMenu = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+);
+const DropdownItem = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+);
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
@@ -140,27 +152,27 @@ const Header = ({ initLang }) => {
               </>
             )}
             {!!isAuth && <UserPanel />}
-            <Dropdown className="ln_button_container sign_in_item">
-              <Dropdown.Toggle as={CustomToggle}>
+            <DropDownComponent className="ln_button_container sign_in_item">
+              <DropdownToggle as={CustomToggle}>
                 {lang[selectedLanguage]?.name}
-              </Dropdown.Toggle>
-              <Dropdown.Menu
+              </DropdownToggle>
+              <DropdownMenu
                 className="dropdown_menu"
                 onClick={handleSelectLang}
               >
                 {Object.keys(lang).map((l) => {
                   return (
-                    <Dropdown.Item
+                    <DropdownItem
                       key={l}
                       className="dropdown_menu_item"
                       data-ln={lang[l].code}
                     >
                       {lang[l].name}
-                    </Dropdown.Item>
+                    </DropdownItem>
                   );
                 })}
-              </Dropdown.Menu>
-            </Dropdown>
+              </DropdownMenu>
+            </DropDownComponent>
           </div>
         </>
       </div>
