@@ -67,7 +67,6 @@ function NavTab({ tab, change }) {
             src={tab === "account_settings" ? icon3w : icon3}
             alt="personal detail icon"
           />
-          />
         </Button>
         <p className="nav_tabs_text">{t("profile_page.account_settings")}</p>
       </div>
@@ -84,9 +83,8 @@ function NavTab({ tab, change }) {
             src={tab === "campaigns" ? icon4w : icon4}
             alt="personal detail icon"
           />
-          />
-        </Button>
 
+        </Button>
         <p className="nav_tabs_text">{t("profile_page.profile_campaigns")}</p>
       </div>
     </section>
