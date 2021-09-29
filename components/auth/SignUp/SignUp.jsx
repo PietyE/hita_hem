@@ -127,7 +127,7 @@ const SignUp = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              // disabled={!isValid}
+              disabled={!values.is_agree}
             >
               {t("auth.sign_up.button")}
             </Button>

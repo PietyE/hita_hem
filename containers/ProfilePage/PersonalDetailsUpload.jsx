@@ -3,7 +3,7 @@ import { useDropzone } from "react-dropzone";
 import Button from "components/ui/Button";
 import { useSelector } from "react-redux";
 import { getProfile } from "redux/reducers/user";
-import { isEqual } from "lodash";
+import  isEqual  from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 
 const PersonalDetailsUpload = ({ setFieldValue }) => {
