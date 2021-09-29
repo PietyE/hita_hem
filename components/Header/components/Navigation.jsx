@@ -1,4 +1,5 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useRef } from "react";
+import { useRouter } from "next/router";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
@@ -25,14 +26,18 @@ import { useTranslation } from "react-i18next";
 
 const Navigation = ({ className, initLang }) => {
   const { t } = useTranslation();
+
+  const router = useRouter();
+  const { pathname, locale } = router;
+
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const selectedLanguage = initLang || useSelector(getSelectedLangSelector);
   const menuBtn = useRef();
-  const [showSubMenu, setShowSubMenu] = useState(false);
-  const submenuClass = showSubMenu
-    ? "nav_item_about_us"
-    : "nav_item_about_us_disable";
+  //const [showSubMenu, setShowSubMenu] = useState(false);
+  //const submenuClass = showSubMenu
+  // ? "nav_item_about_us"
+  // : "nav_item_about_us_disable";
   // const arrowButton =  showSubMenu? faChevronDown:faChevronRight ;
 
   const handleShowSignIn = () => {
@@ -46,26 +51,26 @@ const Navigation = ({ className, initLang }) => {
     dispatch(logOut());
   }, [dispatch]);
 
-  const handleOpenSubMenu = (e) => {
-    e.stopPropagation();
-    setShowSubMenu(!showSubMenu);
-  };
+  // const handleOpenSubMenu = (e) => {
+  //   e.stopPropagation();
+  //   setShowSubMenu(!showSubMenu);
+  // };
 
   const handleSelectLang = (e) => {
     dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
   };
 
-  const closeSubMen = () => {
-    if (menuBtn.current?.children[0]?.ariaExpanded) {
-      setShowSubMenu(false);
-    }
-  };
+  // const closeSubMen = () => {
+  //   if (menuBtn.current?.children[0]?.ariaExpanded) {
+  //     setShowSubMenu(false);
+  //   }
+  // };
   return (
     <>
       <Navbar
         collapseOnSelect={true}
         className={className}
-        onClick={closeSubMen}
+        //onClick={closeSubMen}
       >
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
@@ -80,27 +85,57 @@ const Navigation = ({ className, initLang }) => {
             >
               <NavDropdown.Item as="div" className="nav_item nav_item_invest">
                 <Link href={INVEST_ROUTE} prefetch={false}>
-                  <a>{t("header.invest").toLocaleUpperCase()}</a>
+                  <a
+                    className={`${
+                      pathname.includes(INVEST_ROUTE) ? "active" : ""
+                    }`}
+                  >
+                    {t("header.invest").toLocaleUpperCase()}
+                  </a>
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item as="div" className={submenuClass}>
+              {/* <NavDropdown.Item as="div" className={submenuClass}>
                 <Link href={ABOUT_US_ROUTE} prefetch={false}>
-                  <a>{t("header.about_us").toLocaleUpperCase()}</a>
+                  <a
+                    className={`${
+                      pathname.includes(ABOUT_US_ROUTE) ? "active" : ""
+                    }`}
+                  >
+                    {t("header.about_us").toLocaleUpperCase()}
+                  </a>
                 </Link>
-              </NavDropdown.Item>
+              </NavDropdown.Item> */}
               <NavDropdown.Item as="div" className="nav_item">
                 <Link href={RAISE_ROUTE} prefetch={false}>
-                  <a>{t("header.raise").toLocaleUpperCase()}</a>
+                  <a
+                    className={`${
+                      pathname.includes(RAISE_ROUTE) ? "active" : ""
+                    }`}
+                  >
+                    {t("header.raise").toLocaleUpperCase()}
+                  </a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
                 <Link href={ABOUT_US_ROUTE} prefetch={false}>
-                  <a>{t("header.about_us").toLocaleUpperCase()}</a>
+                  <a
+                    className={`${
+                      pathname.includes(ABOUT_US_ROUTE) ? "active" : ""
+                    }`}
+                  >
+                    {t("header.about_us").toLocaleUpperCase()}
+                  </a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
                 <Link href={LAUNCHING_SOON} prefetch={false}>
-                  <a>{t("header.launching_soon").toLocaleUpperCase()}</a>
+                  <a
+                    className={`${
+                      pathname.includes(LAUNCHING_SOON) ? "active" : ""
+                    }`}
+                  >
+                    {t("header.launching_soon").toLocaleUpperCase()}
+                  </a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item_socials">

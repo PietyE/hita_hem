@@ -200,6 +200,9 @@
           line-height: 150%;
           letter-spacing: 0.003em;
           color: rgba(0, 0, 0, 0.87);
+          &.active {
+            color: #fb7f73;
+          }
         }
       }
       .nav_item_about_us {
