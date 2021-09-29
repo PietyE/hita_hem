@@ -163,19 +163,21 @@ const PersonalDetails = ({
           dirty,
         }) => {
           let days = getDays(values?.month?.toString()) || [];
-
           let isButtonDisabled;
           if (type) {
+            console.log('-----------------  1 --------------------')
             isButtonDisabled = isEmpty(profile)
-              ? !( dirty && currentInvestment > 0)
+              ? !( dirty && currentInvestment > 0 && values.is_agree)
               : currentInvestment <= 0;
           } else {
-            isButtonDisabled = !(dirty);
+            console.log('-----------------  2 --------------------')
+            isButtonDisabled = !(dirty && values.is_agree);
           }
           const onSubmitInvestFromQuiz = () => {
             onMakePayment({profile:prepareDataForApi(values), amount: currentInvestment})
           }
-
+          console.log('type', type)
+          console.log('isButtonDisabled', isButtonDisabled)
           return (
               <>
               <Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz}/>
@@ -190,6 +192,7 @@ const PersonalDetails = ({
                 <h3 className="profile_form_data_container_title">
                   {t("profile_page.personal.profile_title")}
                 </h3>
+                <div className='profile_form_inputs_container'>
                 <InputComponent
                   labelClassName="profile_input_middle profile_first_name"
                   label={t("profile_page.personal.first_name_label")}
@@ -218,10 +221,11 @@ const PersonalDetails = ({
                   errorFromApi={errorHandlerHook?.secondNameError}
                   clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
-                <div className="profile_form_date_block">
                   <p className="profile_form_birth_text">
                     {t("profile_page.personal.date_title")}
                   </p>
+                <div className="profile_form_date_block">
+
 
                   <label className="profile_input_small profile_month">
                     {t("profile_page.personal.month_label")}
@@ -234,8 +238,8 @@ const PersonalDetails = ({
                       }}
                       className={
                         touched.month && errors.month
-                          ? "profile_form_input_warning"
-                          : "profile_form_input"
+                          ? "profile_form_input_warning profile_form_input_with_arrow"
+                          : "profile_form_input profile_form_input_with_arrow"
                       }
                     >
                       <option
@@ -271,8 +275,8 @@ const PersonalDetails = ({
                       disabled={!values?.month}
                       className={
                         touched.day && errors.day
-                          ? "profile_form_input_warning"
-                          : "profile_form_input"
+                          ? "profile_form_input_warning profile_form_input_with_arrow"
+                          : "profile_form_input profile_form_input_with_arrow"
                       }
                     >
                       <option
@@ -307,8 +311,8 @@ const PersonalDetails = ({
                       }}
                       className={
                         touched.year && errors.year
-                          ? "profile_form_input_warning"
-                          : "profile_form_input"
+                          ? "profile_form_input_warning profile_form_input_with_arrow"
+                          : "profile_form_input profile_form_input_with_arrow"
                       }
                     >
                       <option
@@ -339,8 +343,8 @@ const PersonalDetails = ({
                   <CountryDropdown
                     className={
                       errors.address?.country && touched.address?.country
-                        ? "profile_form_input_warning "
-                        : "profile_form_input "
+                        ? "profile_form_input_warning profile_form_input_with_arrow"
+                        : "profile_form_input profile_form_input_with_arrow"
                     }
                     name="address.country"
                     values={values?.address?.country}
@@ -425,6 +429,7 @@ const PersonalDetails = ({
                   errorFromApi={errorHandlerHook?.phoneError}
                   clearError={errorHandlerHook?.clearProfileErrorFromApi}
                 />
+                </div>
                 <SplitLine className="profile_form_split_line" />
                 <div className="profile_form_footer">
                   {isEmpty(profile) && (
