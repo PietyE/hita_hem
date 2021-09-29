@@ -2,16 +2,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
 
 import CampaignsList from "components/CampaignsList";
 import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
-import DropDownComponent, {
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "components/ui/DropDownComponent";
-import FilterMobileMenu from "./FilterMobileMenu";
 
 import {
   getFilterSelector,
@@ -22,6 +17,19 @@ import {
   setFilter,
   resetCompanyList,
 } from "redux/actions/companies";
+
+const DropDownComponent = dynamic(() =>
+  import("components/ui/DropDownComponent")
+);
+const DropdownToggle = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+);
+const DropdownMenu = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+);
+const DropdownItem = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+);
 
 const CampaignsListSection = () => {
   const { t } = useTranslation();

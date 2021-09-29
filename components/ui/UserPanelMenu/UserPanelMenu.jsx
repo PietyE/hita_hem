@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -7,7 +8,12 @@ import iconLogOut from "./images/logOut.svg";
 import { logOut, setActiveTab } from "redux/actions/user";
 import { getUserIdSelector } from "redux/reducers/user";
 
-import { DropdownItem, DropdownMenu } from "components/ui/DropDownComponent";
+const DropdownMenu = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+);
+const DropdownItem = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+);
 
 const UserPanelMenu = ({ show }) => {
   const dispatch = useDispatch();

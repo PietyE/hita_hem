@@ -8,11 +8,7 @@ import { useTranslation } from "react-i18next";
 import Logo from "components/Logo";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
-import DropDownComponent, {
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-} from "components/ui/DropDownComponent";
+
 import {
   ABOUT_US_ROUTE,
   RAISE_ROUTE,
@@ -27,6 +23,18 @@ import { getIsSignInUserSelector } from "redux/reducers/user";
 
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
+const DropDownComponent = dynamic(() =>
+  import("components/ui/DropDownComponent")
+);
+const DropdownToggle = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+);
+const DropdownMenu = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+);
+const DropdownItem = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+);
 
 const LinkStyled = (props) => {
   const { children, to = "", ...extra } = props;
