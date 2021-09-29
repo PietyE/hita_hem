@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import Dropdown from "react-bootstrap/Dropdown";
 import iconLogOut from "./images/logOut.svg";
 import { logOut, setActiveTab } from "redux/actions/user";
 import { getUserIdSelector } from "redux/reducers/user";
+
+import { DropdownItem, DropdownMenu } from "components/ui/DropDownComponent";
 
 const UserPanelMenu = ({ show }) => {
   const dispatch = useDispatch();
@@ -36,36 +37,36 @@ const UserPanelMenu = ({ show }) => {
   };
 
   return (
-    <Dropdown.Menu show={show} drop="down" className="user_menu">
-      <Dropdown.Item
+    <DropdownMenu show={show} drop="down" className="user_menu">
+      <DropdownItem
         eventKey="investment"
         className="user_menu_item"
         onSelect={handleSelect}
       >
         <span>{t("header.user_panel.Investments")}</span>
-      </Dropdown.Item>
-      <Dropdown.Item
+      </DropdownItem>
+      <DropdownItem
         eventKey="personal_details"
         className="user_menu_item"
         onSelect={handleSelect}
       >
         <span>{t("header.user_panel.Personal_details")}</span>
-      </Dropdown.Item>
-      <Dropdown.Item
+      </DropdownItem>
+      <DropdownItem
         eventKey="account_settings"
         className="user_menu_item"
         onSelect={handleSelect}
       >
         <span>{t("header.user_panel.Account_settings")}</span>
-      </Dropdown.Item>
-      <Dropdown.Item
+      </DropdownItem>
+      <DropdownItem
         eventKey="campaigns"
         className="user_menu_item"
         onSelect={handleSelect}
       >
         <span>{t("header.user_panel.Campaigns")}</span>
-      </Dropdown.Item>
-      <Dropdown.Item
+      </DropdownItem>
+      <DropdownItem
         eventKey="log_out"
         className="user_menu_item user_menu_item_logout"
         onSelect={handleSelect}
@@ -74,8 +75,8 @@ const UserPanelMenu = ({ show }) => {
           <Image src={iconLogOut} alt="logout icon" />
           {t("header.user_panel.Log_Out")}
         </span>
-      </Dropdown.Item>
-    </Dropdown.Menu>
+      </DropdownItem>
+    </DropdownMenu>
   );
 };
 
