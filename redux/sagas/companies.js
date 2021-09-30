@@ -27,7 +27,6 @@ import { setFaqPosts } from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
 import isEqual from "lodash/isEqual"
 import { setError } from "../actions/errors";
-import { convertStatusToText } from "utils/utils";
 import { getSelectedLangSelector } from "../reducers/language";
 
 const { auth, companies } = api;
@@ -44,7 +43,7 @@ function* getCompaniesHeaderListWorker() {
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
     const investCampaignList = data?.results?.map((el) => ({
       id: el.id,
-      status: convertStatusToText(el.status, language).toLowerCase(),
+      status: el.status,
       title: el.investment_page_title,
       description: el.investment_page_description,
       image_list: el.header_image_list,
