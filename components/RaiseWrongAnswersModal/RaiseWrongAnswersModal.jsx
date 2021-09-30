@@ -4,8 +4,10 @@ import {setShowRaiseError} from "../../redux/actions/authPopupWindows";
 import Modal from "../ui/Modal";
 import Image from "next/image";
 import Icon from "../../public/images/icon.svg";
+import {useTranslation} from "react-i18next";
 
 function RaiseWrongAnswersModal({show}) {
+    const { t } = useTranslation();
     const dispatch = useDispatch()
 
     const handleClose = () => {
@@ -25,8 +27,8 @@ function RaiseWrongAnswersModal({show}) {
             <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
                 <Image src={Icon} alt='icon'/>
             </div>
-            <h2 className='successful_investment_title'>Some of the filled fields take mistakes</h2>
-            <p className='successful_investment_text'>Please review your data on all steps</p>
+            <h2 className='successful_investment_title'>{t("raiseWrongAnswersModal.title")}</h2>
+            <p className='successful_investment_text'>{t("raiseWrongAnswersModal.title")}</p>
 
         </Modal>
     );

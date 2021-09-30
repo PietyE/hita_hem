@@ -145,7 +145,10 @@ export const sv = {
       button_confirm: "Godkänn",
       button_discard: "Avbryt",
     },
-
+    quiz:{
+      back_button: "Tillbaka",
+      button_confirm: 'Godkänn',
+    },
     tab_accordion: {
       Idea: "Ide",
       Team: "Team",

@@ -145,6 +145,21 @@ export const en = {
       button_confirm: "Confirm",
       button_discard: "Discard",
     },
+    quizWrongAnswersModal: {
+      title:'Some of the selected answers are wrong',
+      text: 'Please review your answers and read up on the risks related to investing in unlisted companies.',
+    },
+    raiseWrongAnswersModal: {
+      title:'Some of the filled fields take mistakes',
+      text: 'Please review your data on all steps',
+
+    },
+    quiz:{
+      title: 'To complete the registration process, please answer the following questions',
+      text: 'These questions are to assess your financial literacy and knowledge about investments',
+      back_button: 'Back',
+      button_confirm: 'Confirm',
+    },
     tab_accordion: {
       Idea: "Idea",
       Team: "Team",
