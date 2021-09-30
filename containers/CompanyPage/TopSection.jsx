@@ -27,7 +27,7 @@ const TopSection = () => {
       />
         <div className='company_top_content_container'>
             <StatusCompanyBadge
-             status={status.toLocaleLowerCase()}
+             status={status}
              classNameContainer="company_top_section_status"
              />
             <h1 className="company_top_section_title">{title}</h1>

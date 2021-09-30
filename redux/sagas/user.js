@@ -23,11 +23,6 @@ import {
   setFetchingUsers,
 } from "redux/actions/user";
 import {
-  setNotificationTitle,
-  setNotificationMessage,
-  setNotification,
-} from "../actions/notification";
-import {
   setShowSignIn,
   setShowSignUp,
   setShowSuccessfulSignUp,
@@ -37,7 +32,7 @@ import {
   setShowConfirmationOfAccountDeleting,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
-import { setAuthError, setProfileError, setError } from "../actions/errors";
+import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import { setResponseFromApi } from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
@@ -91,6 +86,8 @@ export function* bootstarpWorker({ payload: initLang }) {
     }
 
     yield call(getDocumentsWorker);
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       setAuthError({ status: error.response.status, data: error.response.data })
@@ -108,6 +105,8 @@ function* signUp({ payload }) {
       yield put(setShowSignUp(false));
       yield put(setShowSuccessfulSignUp(true));
     }
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       setAuthError({ status: error.response.status, data: error.response.data })
@@ -142,24 +141,26 @@ function* signIn({ payload }) {
     const authData = JSON.stringify(token);
     yield call([localStorage, "setItem"], "auth_data", authData);
     yield put(setShowSignIn(false));
+    yield put(clearErrors())
   } catch (error) {
     yield put(
-      setError({ status: error.response.status, data: error.response.data })
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
     );
-    if (error?.response?.status === 400) {
-      if (error?.response?.data?.user) {
-        yield put(setNotification(true));
-        yield put(setNotificationTitle(error.response.data.user[0]));
-        yield put(setNotificationMessage("Check your email or password"));
-      } else {
-        yield put(
-          setAuthError({
-            status: error.response.status,
-            data: error.response.data,
-          })
-        );
-      }
-    }
+    // if (error?.response?.status === 400) {
+    //   if (error?.response?.data?.user) {
+    //     yield put(setNotification(true));
+    //     yield put(setNotificationTitle(error?.response?.data?.user[0]));
+    //     yield put(setNotificationMessage("Check your email or password"));
+    //   }
+      // else {
+      //   yield put(
+      //     setAuthError({
+      //       status: error.response.status,
+      //       auth: error.response.data,
+      //     })
+      //   );
+      // }
+    // }
   } finally {
     yield put(setFetchingUsers(false));
   }
@@ -172,7 +173,7 @@ function* logout() {
     yield call(clean);
   } catch (error) {
     yield put(
-      setError({ status: error?.response?.status, data: error?.response?.data })
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -189,6 +190,8 @@ function* createUserProfile({ payload }) {
     }
 
     yield call(getProfileFromApi);
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       yield put(
@@ -212,6 +215,8 @@ function* changeUserProfile({ payload }) {
     }
 
     yield call(getProfileFromApi);
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       yield put(
@@ -232,6 +237,8 @@ function* resetUserPassword({ payload }) {
     yield call([auth, "resetPassword"], { email: payload });
     yield put(setShowResetPassword(false));
     yield put(setShowSuccessfulResetPassword(true));
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       setAuthError({ status: error.response.status, data: error.response.data })
@@ -249,6 +256,8 @@ function* changeUserPassword({ payload }) {
     yield put(setFetchingUsers(true));
     yield call([auth, "changePassword"], payload);
     yield put(setResponseFromApi(true));
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       yield put(
@@ -268,6 +277,8 @@ function* changeUserEmail({ payload }) {
     yield put(setFetchingUsers(true));
     yield call([auth, "changeEmail"], payload);
     yield put(setResponseFromApi(true));
+    yield put(clearErrors())
+
   } catch (error) {
     yield put(
       yield put(
@@ -317,7 +328,7 @@ export function* deleteUserAccount() {
     yield call(clean);
   } catch (error) {
     yield put(
-      setError({ status: error?.response?.status, data: error?.response?.data })
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -331,6 +342,7 @@ function* clean() {
   yield put(setAuth(false));
   yield call([api, "deleteToken"]);
   yield call([localStorage, "removeItem"], "auth_data");
+  yield put(clearErrors())
 }
 
 const prepareProfile = (data) => {

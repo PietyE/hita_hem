@@ -34,7 +34,6 @@ const TopSliderComponent = ({
               second_button_url,
               status,
             } = headerItem;
-
             const correct_image = chooseCorrectResolution(image_list);
 
             const _src = correct_image || image;

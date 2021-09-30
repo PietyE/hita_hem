@@ -360,6 +360,7 @@
       }
       .input_warning_text {
         bottom: -40px;
+        transform: translateY(0);
       }
     }
     .profile_account_icon_eye {
@@ -715,6 +716,7 @@
         font-size: 18px;
         line-height: 32px;
         color: #ffffff;
+        cursor: pointer;
         .mobile_investments_toggle_name {
           margin-right: 8px;
         }

@@ -14,7 +14,6 @@ const Notification = ({ show }) => {
   const dispatch = useDispatch();
   const message = useSelector(getNotificationMessageSelector);
   const title = useSelector(getNotificationTitleSelector);
-
   const handleClose = useCallback(() => {
     dispatch(setNotification(false));
     dispatch(setNotificationMessage(""));
