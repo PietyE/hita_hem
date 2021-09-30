@@ -7,7 +7,7 @@ import {
 const initialState = {
   showNotification: false,
   message: "",
-  title: "Something went wrong!",
+  title: "Oops...",
 };
 
 export const getNotificationStatusSelector = (state) =>
