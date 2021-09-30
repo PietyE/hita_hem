@@ -209,6 +209,9 @@ function* changeUserProfile({ payload }) {
     yield call([auth, "changeProfile"], payload.profile);
     if (payload.image) {
       yield call([auth, "changeAvatar"], payload.image);
+    } else if(payload.image === null){
+      yield call([auth, "deleteAvatar"]);
+
     }
 
     yield call(getProfileFromApi);

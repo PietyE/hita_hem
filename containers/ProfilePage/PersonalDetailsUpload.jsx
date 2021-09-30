@@ -22,7 +22,7 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
   function imageChangeHandler(e) {
     let blob;
     if (e.target.dataset.value === "del") {
-      setFieldValue("image", "");
+      setFieldValue("image", null);
     } else {
       setFieldValue("image", e.target.files[0]);
       blob = new Blob([e.target.files[0]]);
