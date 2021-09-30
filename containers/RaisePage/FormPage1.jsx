@@ -108,7 +108,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             <br />
             <CountryDropdown
               className={
-                touched.country && errors.country
+                ((touched.country && errors.country)|| errorHandlerHook?.countryError)
                   ? "raise_form_input_warning raise_form_country"
                   : "raise_form_input raise_form_country"
               }

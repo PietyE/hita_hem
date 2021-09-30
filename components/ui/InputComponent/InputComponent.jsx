@@ -55,7 +55,7 @@ const InputComponent = ({
           onFocus={handleFocus}
           autoComplete={autoComplete}
           className={
-            !!errorValue
+            (!!errorValue || errorFromApi)
               ? ` input_warning input_component_input ${inputClassName}`
               : `input_component_input ${inputClassName}`
           }

@@ -341,7 +341,7 @@ const PersonalDetails = ({
                       <br />
                       <CountryDropdown
                         className={
-                          errors.address?.country && touched.address?.country
+                          ((errors.address?.country && touched.address?.country) || errorHandlerHook?.countryError)
                             ? "profile_form_input_warning profile_form_input_with_arrow"
                             : "profile_form_input profile_form_input_with_arrow"
                         }
