@@ -137,6 +137,7 @@
     .header_item {
       &.right {
         flex-grow: 0;
+        width: 43px;
       }
     }
     .middle {
@@ -162,6 +163,7 @@
         opacity: 0;
         pointer-events: none;
         width: 74px;
+        //width: 43px;
         height: 34px;
         background: #1f607c;
         border-radius: 89px;
@@ -299,6 +301,7 @@
   }
   .header_mobile_navigation {
     display: block;
+    width: 43px;
   }
   .header_logo_text {
     display: none;

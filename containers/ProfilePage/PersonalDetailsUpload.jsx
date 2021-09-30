@@ -59,13 +59,6 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
               : {}
           }
         >
-          <input
-            id="upload_file"
-            {...getInputProps()}
-            type="file"
-            name="image"
-            onChange={imageChangeHandler}
-          />
           <img
             ref={imageEl}
             className="profile_form_upload_avatar"
@@ -92,10 +85,17 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
         </Button>
       </div>
       <label
-        htmlFor="upload_file"
+        //htmlFor="upload_file"
         name="image"
         className="profile_form_upload_avatar_button_label"
       >
+        <input
+          //id="upload_file"
+          {...getInputProps()}
+          type="file"
+          name="image"
+          onChange={imageChangeHandler}
+        />
         <Button
           colorStyle="dark-green"
           type="button"

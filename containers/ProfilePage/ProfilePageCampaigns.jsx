@@ -70,7 +70,7 @@ const ProfilePageCampaigns = () => {
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
               let _status = startCase(
-                convertStatusToText(campaign.status).toLocaleLowerCase()
+                convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
               );
 
               return (

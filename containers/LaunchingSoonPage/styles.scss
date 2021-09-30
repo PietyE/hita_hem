@@ -41,14 +41,15 @@
           font-size: 68px;
           line-height: 110%;
           letter-spacing: 2px;
+          margin-right: 5px;
           color: #383A48;
         }
         .launching_soon_image_top_block_icon{
-          transform: translateY(-12px);
+          transform: translateY(0);
           margin-left: 40px;
         }
         .launching_soon_image_top_block_icon2{
-          transform: translateY(-12px);
+          transform: translateY(0);
           height: 22px;
           width: 26px;
 
@@ -402,6 +403,9 @@
           height: 185px;
           padding-left: 15px;
           padding-right: 15px;
+          div{
+            display: none !important;
+          }
           .launching_soon_image_top_block_title{
             display: block;
             font-weight: 800;

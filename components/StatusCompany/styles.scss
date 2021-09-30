@@ -17,16 +17,16 @@
   box-shadow: 0px 1px 6px rgba(76, 94, 157, 0.25);
 
 
-  &.upcoming {
+  &.status1 {
     background: #fb7f73;
   }
-  &.live {
+  &.status3 {
     background: #8AEB81;
   }
-  &.successfully_closed{
+  &.status4{
     background: #F1AAA1;
   }
-  &.completed{
+  &.status2{
     background: #89CFF0;
 
   }

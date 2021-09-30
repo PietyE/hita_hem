@@ -41,49 +41,49 @@ import {
 import isEmpty from "lodash/isEmpty";
 
 const initialState = {
-  status: "",
-  auth: {
-    password: "",
-    email: "",
-    user: "",
-    old_password: "",
-    new_password1: "",
-    new_password2: "",
-  },
-  profile: {
-    first_name: "",
-    second_name: "",
-    date_of_birth: "",
-    country: "",
-    city: "",
-    address: "",
-    personal_id: "",
-    phone_number: "",
-    payments: [],
-    companies: [],
-  },
-  raise: {
-    first_name: "",
-    second_name: "",
-    email: "",
-    phone: "",
-    country: "",
-    company_name: "",
-    company_form: "",
-    role: "",
-    share_price: "",
-    revenue: "",
-    amount: "",
-    website: "",
-    video_preview: "",
-    social_one: "",
-    social_two: "",
-    social_three: "",
-    followers_count_one: "",
-    followers_count_two: "",
-    followers_count_three: "",
-    documents: {},
-  },
+//   status: "",
+//   auth: {
+//     password: "",
+//     email: "",
+//     user: "",
+//     old_password: "",
+//     new_password1: "",
+//     new_password2: "",
+//   },
+//   profile: {
+//     first_name: "",
+//     second_name: "",
+//     date_of_birth: "",
+//     country: "",
+//     city: "",
+//     address: "",
+//     personal_id: "",
+//     phone_number: "",
+//     payments: [],
+//     companies: [],
+//   },
+//   raise: {
+//     first_name: "",
+//     second_name: "",
+//     email: "",
+//     phone: "",
+//     country: "",
+//     company_name: "",
+//     company_form: "",
+//     role: "",
+//     share_price: "",
+//     revenue: "",
+//     amount: "",
+//     website: "",
+//     video_preview: "",
+//     social_one: "",
+//     social_two: "",
+//     social_three: "",
+//     followers_count_one: "",
+//     followers_count_two: "",
+//     followers_count_three: "",
+//     documents: {},
+//   },
 };
 export const getRaiseFirstNameErrorSelector = (state) =>
   state.errors?.raise?.first_name;
@@ -149,7 +149,7 @@ export const getErrorSelector = (state) => state.errors;
 export const errors = (state = initialState, actions) => {
   switch (actions.type) {
     case CLEAR_ERRORS:
-      return { auth: initialState };
+      return {};
     case ERROR:
       return {
         ...state,
@@ -197,7 +197,7 @@ export const errors = (state = initialState, actions) => {
         ...state,
         profile: {
           ...state.profile,
-          address: { ...state.profile.address, country: "" },
+          address: { ...state.profile?.address, country: "" },
         },
       };
     case SET_PROFILE_CITY_ERROR:
@@ -205,7 +205,7 @@ export const errors = (state = initialState, actions) => {
         ...state,
         profile: {
           ...state.profile,
-          address: { ...state.profile.address, city: "" },
+          address: { ...state.profile?.address, city: "" },
         },
       };
     case SET_PROFILE_ADDRESS_ERROR:
@@ -213,7 +213,7 @@ export const errors = (state = initialState, actions) => {
         ...state,
         profile: {
           ...state.profile,
-          address: { ...state.profile.address, address: "" },
+          address: { ...state.profile?.address, address: "" },
         },
       };
     case SET_PROFILE_PERSONAL_ID_ERROR:

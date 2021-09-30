@@ -51,7 +51,7 @@ const Content = ({ data }) => {
       {matchesAll && isShowButton && (
         <div className="show_more">
           <span className="show_more_button" onClick={_handleClickShowMore}>
-            {isShowMore ? "Show less" : "Show more"}
+            {isShowMore ? t("company_page.button_show_less") : t("company_page.button_show_more")}
           </span>
         </div>
       )}

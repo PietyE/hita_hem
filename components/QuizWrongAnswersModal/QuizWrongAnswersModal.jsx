@@ -4,8 +4,10 @@ import Image from "next/image";
 import Icon from 'public/images/icon.svg';
 import {setShowQuizError} from 'redux/actions/authPopupWindows';
 import {useDispatch} from 'react-redux';
+import {useTranslation} from "react-i18next";
 
 const QuizWrongAnswersModal = ({show}) => {
+    const { t } = useTranslation();
     const dispatch = useDispatch()
 
     const handleClose = () => {
@@ -25,8 +27,8 @@ const QuizWrongAnswersModal = ({show}) => {
             <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
                 <Image src={Icon} alt='icon'/>
             </div>
-            <h2 className='successful_investment_title'> Some of the selected answers are wrong</h2>
-            <p className='successful_investment_text'>Please review your answers and read up on the risks related to investing in unlisted companies.</p>
+            <h2 className='successful_investment_title'>{t("quizWrongAnswersModal.title")}</h2>
+            <p className='successful_investment_text'>{t("quizWrongAnswersModal.text")}</p>
 
         </Modal>
     );

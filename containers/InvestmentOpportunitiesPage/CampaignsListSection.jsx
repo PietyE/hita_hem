@@ -1,11 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+
 import CampaignsList from "components/CampaignsList";
-import FilterMobileMenu from "./FilterMobileMenu";
 import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
-import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
-import Dropdown from "react-bootstrap/Dropdown";
+
 import {
   getFilterSelector,
   getIsMoreCampaignsSelector,
@@ -15,7 +17,19 @@ import {
   setFilter,
   resetCompanyList,
 } from "redux/actions/companies";
-import { useTranslation } from "react-i18next";
+
+const DropDownComponent = dynamic(() =>
+  import("components/ui/DropDownComponent")
+);
+const DropdownToggle = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+);
+const DropdownMenu = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+);
+const DropdownItem = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+);
 
 const CampaignsListSection = () => {
   const { t } = useTranslation();
@@ -105,14 +119,14 @@ const CampaignsListSection = () => {
           {t("investment_opportunities_page.title")}
         </h2>
 
-        <Dropdown className="invest_opp_dropdown">
-          <Dropdown.Toggle className="invest_opp_select">
+        <DropDownComponent className="invest_opp_dropdown">
+          <DropdownToggle className="invest_opp_select">
             {t("investment_opportunities_page.status")}
             <div className="invest_opp_arrow">
               <IconComponent icon={faCaretDown} />
             </div>
-          </Dropdown.Toggle>
-          <Dropdown.Menu className="invest_opp_dropdown_menu">
+          </DropdownToggle>
+          <DropdownMenu className="invest_opp_dropdown_menu">
             <div className="invest_opp_checkbox_wrapper">
               <label className="invest_opp_label">
                 <input
@@ -148,7 +162,7 @@ const CampaignsListSection = () => {
                 {t("investment_opportunities_page.closed")}
               </label>
             </div>
-            <Dropdown.Item>
+            <DropdownItem>
               <Button
                 colorStyle="light-blue"
                 type="button"
@@ -157,9 +171,9 @@ const CampaignsListSection = () => {
               >
                 {t("investment_opportunities_page.dropdown_button")}
               </Button>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+            </DropdownItem>
+          </DropdownMenu>
+        </DropDownComponent>
         <Button
           colorStyle="grey"
           type="button"

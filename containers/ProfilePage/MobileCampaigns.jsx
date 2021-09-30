@@ -9,6 +9,8 @@ import {
   faChevronDown,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import startCase from "lodash/startCase";
+import {convertStatusToText} from "utils/utils";
 
 const MobileCampaigns = ({ data }) => {
   const { t } = useTranslation();
@@ -55,17 +57,9 @@ const MobileCampaigns = ({ data }) => {
               _link = `https://preprod.accumeo.com/company/${campaign.id}`;
               textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            let _status;
-            if (campaign.status === 3) {
-              _status = "Live";
-            }
-            if (campaign.status === 4) {
-              _status = "Closed";
-            }
-            if (campaign.status === 1) {
-              _status = "Upcoming";
-            }
-
+            let _status = startCase(
+                convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
+            );
             return (
               <Card key={index} className="mobile_investments_card">
                 <Accordion.Toggle
@@ -129,7 +123,7 @@ const MobileCampaigns = ({ data }) => {
                         {t("profile_page.campaigns.raised")}
                       </span>
                       <span className="mobile_investments_field_values">
-                        {campaign.goal_currency} {campaign.goal}
+                        {campaign?.invested_currency} {campaign?.invested}
                       </span>
                     </p>
                   </Card.Body>

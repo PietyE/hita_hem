@@ -44,16 +44,16 @@ export const chooseCorrectResolution = (imageList) => {
   }
 };
 
-export const convertStatusToText = (status) => {
+export const convertStatusToText = (status, language='en') => {
   switch (status) {
     case 1:
-      return "UPCOMING";
+      return language === 'en'?"UPCOMING":"KOMMANDE";
     case 2:
-      return "COMPLETED";
+      return language === 'en'?"COMPLETED":"AVSLUTAD";
     case 3:
       return "LIVE";
     case 4:
-      return "SUCCESSFULLY_CLOSED";
+      return  language === 'en'?"SUCCESSFULLY_CLOSED":"Stängt".toUpperCase;
     default:
       return null;
   }
