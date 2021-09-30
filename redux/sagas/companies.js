@@ -44,7 +44,7 @@ function* getCompaniesHeaderListWorker() {
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
     const investCampaignList = data?.results?.map((el) => ({
       id: el.id,
-      status: convertStatusToText(el.status).toLowerCase(),
+      status: convertStatusToText(el.status, language).toLowerCase(),
       title: el.investment_page_title,
       description: el.investment_page_description,
       image_list: el.header_image_list,

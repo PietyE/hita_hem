@@ -210,7 +210,7 @@ export const getHeaderTitleSelector = (state) =>
   state.companies.companyDetail.header_title;
 
 export const getCompanyStatusSelector = (state) =>
-  convertStatusToText(state.companies.companyDetail?.status) || "";
+  convertStatusToText(state.companies.companyDetail?.status, state.language.selectedLanguage) || "";
 export const getCompanyStatusInNumbersSelector = (state) =>
   state.companies.companyDetail?.status;
 

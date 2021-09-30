@@ -171,6 +171,10 @@ export const en = {
       company_days_left: "days left",
       button_invest: "Invest Now",
       button_contact: "Contact sales",
+      button_read_more: "Read more",
+      button_show_more: "Show more",
+      button_show_less: "Show less",
+
       company_info: {
         Industry: "Industry:",
         Location: "Location:",

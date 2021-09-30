@@ -1,4 +1,5 @@
 import React from "react";
+import {useSelector} from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -13,10 +14,10 @@ import Progress from "../Proggres";
 import SplitLine from "../ui/SplitLine";
 import Button from "../ui/Button";
 import { convertStatusToText } from "utils/utils";
+import {getSelectedLangSelector} from "redux/reducers/language";
 
 const CampaignsCard = (props) => {
   const { t } = useTranslation();
-
   const { className } = props;
   const {
     id,
@@ -33,6 +34,7 @@ const CampaignsCard = (props) => {
     percentage,
   } = props?.content;
 
+  const language = useSelector(getSelectedLangSelector)
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
@@ -66,7 +68,7 @@ const CampaignsCard = (props) => {
           </Link>
 
           <StatusCompanyBadge
-            status={convertStatusToText(status).toLocaleLowerCase()}
+            status={convertStatusToText(status, language).toLocaleLowerCase()}
             classNameContainer="campaigns_card_status"
           />
 

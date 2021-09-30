@@ -173,6 +173,9 @@ export const sv = {
       company_days_left: "dagar kvar",
       button_invest: "Investera nu",
       button_contact: "Kontakta för köp",
+      button_read_more: "Läs mer",
+      button_show_more: "Visa mer",
+      button_show_less: "Visa mindre",
       company_info: {
         Industry: "Industri:",
         Location: "Område:",
