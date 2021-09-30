@@ -33,7 +33,7 @@ const Notification = ({ show }) => {
       className="notification"
     >
       <Alert.Heading>{`${title}`}</Alert.Heading>
-      <p>{message}</p>
+      <p>{Array.isArray(message)?message[0]:message}</p>
     </Alert>
   );
 };

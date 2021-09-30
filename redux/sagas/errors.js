@@ -79,6 +79,13 @@ function* errorHandler() {
                         yield put(setNotificationMessage(error.raise[prop]))
                         break
                     }
+
+                }else if (error.data) {
+                    for (let prop in error.data) {
+                        yield put(setNotificationMessage(error.data[prop]))
+                        break
+                    }
+
                 }
             }
         default:
