@@ -6,8 +6,8 @@ import { getProfile } from "redux/reducers/user";
 import isEqual from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 
-const PersonalDetailsUpload = ({ setFieldValue }) => {
-  const { t } = useTranslation();
+const PersonalDetailsUpload = ({ setFieldValue, values }) => {
+    const { t } = useTranslation();
   const profile = useSelector(getProfile, isEqual);
   const [hasAvatarUpload, setHasAvatarUpload] = useState(false);
 
@@ -49,7 +49,7 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
           {...getRootProps()}
           className="profile_form_upload_avatar_circle"
           style={
-            profile?.image
+            (profile?.image && (values?.image !== null))
               ? {
                   backgroundImage: `url(${profile?.image})`,
                   backgroundPosition: "center",
@@ -85,12 +85,10 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
         </Button>
       </div>
       <label
-        //htmlFor="upload_file"
         name="image"
         className="profile_form_upload_avatar_button_label"
       >
         <input
-          //id="upload_file"
           {...getInputProps()}
           type="file"
           name="image"
