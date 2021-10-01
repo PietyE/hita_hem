@@ -99,14 +99,18 @@ const PersonalDetails = ({
     if (!!values?.year && !!values?.month && !!values?.day) {
       newProfile.date_of_birth = `${values.year}-${values.month}-${values.day}`;
     }
-
     const dataForApi = { profile: newProfile };
 
-    if (profile?.image !== values?.image) {
-      let data = new FormData();
-      data.append("image", values.image);
-      dataForApi.image = data;
+    if(values.image !== null){
+      if (profile?.image !== values?.image) {
+        let data = new FormData();
+        data.append("image", values.image);
+        dataForApi.image = data;
+      }
+    }else{
+      dataForApi.image = null;
     }
+
     return dataForApi;
   };
 
