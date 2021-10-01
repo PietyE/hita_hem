@@ -120,10 +120,17 @@
   min-width: 8rem;
   border: none;
 }
-@media screen and (max-device-width: 1480px) {
+@media screen and (max-device-width: 1570px) {
   .header_container {
     .header_content_container {
-      padding: 0 100px;
+      padding: 0 160px;
+    }
+  }
+}
+@media screen and (max-device-width: 1440px) {
+  .header_container {
+    .header_content_container {
+      padding: 0 120px;
     }
   }
 }
