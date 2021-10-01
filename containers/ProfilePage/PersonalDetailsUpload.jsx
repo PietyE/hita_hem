@@ -20,12 +20,14 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   function imageChangeHandler(e) {
-    let blob;
-    if (e.target.dataset.value === "del") {
+      let blob;
+    if (e?.target?.dataset?.value === "del") {
       setFieldValue("image", null);
-    } else {
-      setFieldValue("image", e.target.files[0]);
-      blob = new Blob([e.target.files[0]]);
+    }else if(e?.target?.files[0]){
+        setFieldValue("image", e.target.files[0]);
+        blob = new Blob([e.target.files[0]]);
+    }else{
+        return
     }
     const preview = imageEl.current;
     let reader = new FileReader();
@@ -62,7 +64,6 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
           <img
             ref={imageEl}
             className="profile_form_upload_avatar"
-            loading="lazy"
             alt="user avatar"
             style={{
               display: hasAvatarUpload ? "flex" : "none",
