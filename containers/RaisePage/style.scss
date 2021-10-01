@@ -4,6 +4,16 @@
     font-style: normal;
     position: relative;
     overflow: hidden;
+    .carousel-control-prev-icon, .carousel-control-next-icon{
+      opacity: 0;
+    }
+
+    &:hover .carousel-control-prev-icon{
+      opacity: 1;
+    }
+    &:hover .carousel-control-next-icon{
+      opacity: 1;
+    }
     .carousel-indicators {
       display: flex;
       align-items: center;
