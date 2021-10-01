@@ -7,7 +7,6 @@ import Button from "components/ui/Button";
 import { INVEST_ROUTE } from "constants/routesConstant";
 import { setFilter } from "redux/actions/companies";
 import {getHomePageFutureSelector, getHomePageUpcomingSelector} from "redux/reducers/homePage";
-import {getCompanyListSelector} from "redux/reducers/companies";
 
 import isEqual from "lodash/isEqual";
 
@@ -23,7 +22,6 @@ const Campaigns = ({ title, type, buttonText }) => {
 
     const homePageFuture = useSelector(getHomePageFutureSelector, isEqual) || [];
     const homePageUpcoming = useSelector(getHomePageUpcomingSelector, isEqual) || [];
-    const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
     let content = [];
     switch (type) {
         case "featured":
@@ -31,9 +29,6 @@ const Campaigns = ({ title, type, buttonText }) => {
             break;
         case "upcoming":
             content = homePageUpcoming;
-            break;
-        case "invest":
-            content = companiesList;
             break;
         default:
             return;

@@ -47,15 +47,16 @@ const SignUp = ({ show }) => {
       password: `${values.password}`,
       is_agree: `${values.is_agree}`,
     });
-    const signUpSchema = yup.object({
-      email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
-      password: yup
-          .string().max(128)
-          .matches(passwordRegExp, t("errors.password_example"))
-          .required(t("errors.password_required")),
-      is_agree: yup.bool().oneOf([true])
-    })
   };
+  const signUpSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .matches(passwordRegExp, t("errors.password_example"))
+        .required(t("errors.password_required")),
+    is_agree: yup.bool().oneOf([true])
+  })
+
   return (
     <Modal
       show={show}
