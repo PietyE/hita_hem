@@ -9,6 +9,7 @@ import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
 
 import {
+  getCompanyListSelector,
   getFilterSelector,
   getIsMoreCampaignsSelector,
 } from "redux/reducers/companies";
@@ -17,6 +18,7 @@ import {
   setFilter,
   resetCompanyList,
 } from "redux/actions/companies";
+import isEqual from "lodash/isEqual";
 
 const DropDownComponent = dynamic(() =>
   import("components/ui/DropDownComponent")
@@ -36,6 +38,7 @@ const CampaignsListSection = () => {
   const dispatch = useDispatch();
   const currentFilter = useSelector(getFilterSelector);
   const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
+  const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
 
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [filterValuesArray, setFilterValuesArray] = useState([]);
@@ -231,7 +234,7 @@ const CampaignsListSection = () => {
           changeCurrentFilter={setFilterValuesArray}
         />
       )}
-      <CampaignsList type="invest" />
+      <CampaignsList content={companiesList} />
       {isMoreCampaigns && (
         <Button
           colorStyle="dark-green"

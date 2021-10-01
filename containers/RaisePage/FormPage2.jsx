@@ -6,8 +6,9 @@ import InputComponent from "components/ui/InputComponent";
 import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
-import { raiseForm2 } from "utils/vadidationSchemas";
+// import { raiseForm2 } from "utils/vadidationSchemas";
 import useRaiseForm2ErrorHandler from "customHooks/useRaiseForm2ErrorHandler";
+import * as yup from "yup";
 
 const FormPage2 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
@@ -21,6 +22,14 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
     revenue: data.revenue,
     amount: data.amount,
   };
+  const raiseForm2 = yup.object({
+    company_name: yup.string().min(2).max(200).required(t("errors.company_name_required")),
+    company_form: yup.string().max(200).required(t("errors.company_form_required")),
+    role: yup.string().max(200).required(t("errors.role_required")),
+    share_price: yup.number().typeError(t("errors.share_price_number")).required(t("errors.share_price_required")).min(0,t("errors.share_price_positive")),
+    revenue: yup.number().min(0,t("errors.revenue_positive")).typeError(t("errors.revenue_number")),
+    amount: yup.number().typeError(t("errors.amount_number")).required(t("errors.amount_required")).min(0,t("errors.amount_positive")),
+  })
   const onSubmit = (values) => {
     submit(values, `form${formNumber}`);
     changePage(formNumber + 1);

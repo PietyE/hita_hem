@@ -6,10 +6,12 @@ import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
 import { signUp } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-import { signUpSchema } from "utils/vadidationSchemas";
+// import { signUpSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import * as yup from "yup";
+import {passwordRegExp} from "../../../utils/vadidationSchemas";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
@@ -45,8 +47,16 @@ const SignUp = ({ show }) => {
       password: `${values.password}`,
       is_agree: `${values.is_agree}`,
     });
-    // dispatch(setShowSignUp(false))
   };
+  const signUpSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .matches(passwordRegExp, t("errors.password_example"))
+        .required(t("errors.password_required")),
+    is_agree: yup.bool().oneOf([true])
+  })
+
   return (
     <Modal
       show={show}
