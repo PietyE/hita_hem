@@ -70,6 +70,10 @@ const CompanyPage = () => {
     };
   }, [companyId]);
 
+  useEffect(()=>{
+    _getCompanyDetail(companyId)
+  },[isAuth,companyId])
+
   return (
     <>
       {isFetching && <SpinnerStyled />}
