@@ -7,12 +7,13 @@ import Button from "../../ui/Button";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
 import { resetPassword } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-import { resetPasswordSchema } from "utils/vadidationSchemas";
+// import { resetPasswordSchema } from "utils/vadidationSchemas";
 import SpinnerStyled from '../../ui/Spinner';
 import {getIsFetchingAuthSelector} from 'redux/reducers/user';
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 
-// import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
+import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
+import * as yup from "yup";
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
@@ -37,7 +38,9 @@ const ResetPassword = ({ show }) => {
     _resetPassword(values.email.toLowerCase());
 
   };
-
+  const resetPasswordSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+  })
   return (
     <Modal
       show={show}
@@ -64,7 +67,7 @@ const ResetPassword = ({ show }) => {
         validateOnBlur={false}
       >
         {({ touched, errors, values, setFieldValue, setFieldError, setFieldTouched }) => {
-          // useTranslateFormErrors(errors, touched,setFieldTouched)
+          useTranslateFormErrors(errors, touched,setFieldTouched)
          return (
               <Form className = "auth_form">
                 <InputComponent

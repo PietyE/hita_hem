@@ -6,8 +6,9 @@ import InputComponent from "components/ui/InputComponent";
 import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
-import { raiseForm3 } from "utils/vadidationSchemas";
+// import { raiseForm3 } from "utils/vadidationSchemas";
 import useRaiseForm3ErrorHandler from "customHooks/useRaiseForm3ErrorHandler";
+import * as yup from "yup";
 
 const FormPage3 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
@@ -23,7 +24,26 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
     followers_count_two: data.followers_count_two,
     followers_count_three: data.followers_count_three,
   };
-
+  const raiseForm3 = yup.object({
+    website: yup.string().url('example https://accumeo.com'),
+    video_preview: yup.string().url('example https://youtube.com/.....'),
+    social_one: yup.string().url('example https://facebook.com/...')
+        .when('followers_count_one', {
+          is: (el => el && el >= 0 ? true : false),
+          then: yup.string().url().required(t("errors.media_required")),
+        }),
+    followers_count_one: yup.number().typeError(t("errors.followers_number")).min(0,t("errors.follower_positive")),
+    social_two: yup.string().url('example https://twitter.com/...').when('followers_count_two', {
+      is: (el => el && el >= 0 ? true : false),
+      then: yup.string().url().required(t("errors.media_required")),
+    }),
+    followers_count_two: yup.number().typeError(t("errors.followers_number")).min(0,t("errors.follower_positive")),
+    social_three: yup.string().url('example https://linkedin.com/...').when('followers_count_three', {
+      is: (el => el && el >= 0 ? true : false),
+      then: yup.string().url().required(t("errors.media_required")),
+    }),
+    followers_count_three: yup.number().typeError(t("errors.followers_number")).min(0,t("errors.follower_positive")),
+  })
   const onSubmit = (values) => {
     submit(values, `form${formNumber}`);
     changePage(formNumber + 1);

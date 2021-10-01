@@ -12,10 +12,11 @@ import {
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
-import { signInSchema } from "utils/vadidationSchemas";
+// import { signInSchema } from "utils/vadidationSchemas";
 
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import * as yup from "yup";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
@@ -28,6 +29,12 @@ const SignIn = ({ show }) => {
     email: "",
     password: "",
   };
+  const signInSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .required(t("errors.password_required")),
+  })
 
   const handleClose = () => {
     dispatch(setShowSignIn(false));

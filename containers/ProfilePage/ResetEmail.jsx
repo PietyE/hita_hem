@@ -4,11 +4,12 @@ import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
 import { useDispatch, useSelector } from "react-redux";
-import { accountSettingsResetEmailSchema } from "utils/vadidationSchemas";
+// import { accountSettingsResetEmailSchema } from "utils/vadidationSchemas";
 import { changeEmail, setResponseFromApi } from "redux/actions/user";
 import { useTranslation } from "react-i18next";
 import {isSuccessfulResponseFromApiSelector} from 'redux/reducers/user';
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import * as yup from "yup";
 
 const ResetEmail = () => {
   const { t } = useTranslation();
@@ -39,6 +40,12 @@ const ResetEmail = () => {
     email: "",
     password: "",
   };
+  const accountSettingsResetEmailSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .required(t("errors.password_required")),
+  })
 
   const onSubmitEmail = (values) => {
     _changeEmail(values);

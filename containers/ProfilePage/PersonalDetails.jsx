@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field } from "formik";
+import * as yup from "yup";
+
 
 import { CountryDropdown } from "react-country-region-selector";
 import IconComponent from "components/ui/IconComponent";
@@ -25,10 +27,11 @@ import isEmpty from "lodash/isEmpty";
 import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
-import {
-  personalDetailsCreateSchema,
-  personalDetailsUpdateSchema,
-} from "utils/vadidationSchemas";
+import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
+// import {
+//   personalDetailsCreateSchema,
+//   personalDetailsUpdateSchema,
+// } from "utils/vadidationSchemas";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 
@@ -60,6 +63,36 @@ const PersonalDetails = ({
     phone_number: "",
     image: "",
   };
+
+  const personalDetailsCreateSchema = yup.object({
+    address: yup.object().shape({
+      country: yup.string().required(t("errors.country_required")),
+      city: yup.string().max(256).required(t("errors.city_required")),
+      address: yup.string().max(400).required(t("errors.address_required")),
+    }),
+    first_name: yup.string().max(100).required(t("errors.first_name_required")),
+    second_name: yup.string().max(100).required(t("errors.second_name_required")),
+    is_agree: yup.bool().oneOf([true]),
+    day: yup.number().required(t("errors.day_required")),
+    month: yup.number().required(t("errors.month_required")),
+    year: yup.number().required(t("errors.year_required")),
+    personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).required(t("errors.personal_id_required")),
+    phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
+  })
+  const personalDetailsUpdateSchema = yup.object({
+    address: yup.object().shape({
+      country: yup.string(),
+      city: yup.string().max(256).test('city', t("errors.city_empty"), val => val?.length),
+      address: yup.string().max(400).test('address', t("errors.address_empty"), val => val?.length),
+    }),
+    first_name: yup.string().max(100).test('first_name', t("errors.first_name_empty"), val => val?.length),
+    second_name: yup.string().max(100).test('second_name', t("errors.second_name_empty"), val => val?.length),
+    day: yup.number(),
+    month: yup.number(),
+    year: yup.number(),
+    personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
+    phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
+  })
 
   const [valuesFromApi, setValuesFromApi] = useState(null);
   useEffect(() => {
