@@ -25,7 +25,7 @@ export const getHomePageRaisesSelector = (state) =>
 export const getHomePageInvestSelector = (state) =>
   sortedByIndex(state.homePage.homePageContent.invest_set);
 export const getHomePageUpcomingSelector = (state) =>
-  sortedByIndex(state.homePage.homePageContent.upcoming);
+  sortedByIndex(state.homePage.homePageContent.upcoming).filter(el=>el.status === 1);
 export const getIsFetchingHomePageSelector = (state) =>
   state.homePage.isFetching;
 
