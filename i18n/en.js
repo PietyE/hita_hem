@@ -36,16 +36,19 @@ export const en = {
         role: "Role in the company*",
         shares: "Company % for shares*",
         revenue: "Revenue of the last financial year",
-        amount: "Amount you want to raise*",
+        amount: "Funding goal*",
       },
       form3: {
         company_website: "Company website",
-        video_link: "Link to the video",
-        social_media: "Social media link",
+        video_link: "Optional link to video presentation",
+        social_media_facebook: "Optional link to facebook",
+        social_media_linkedin: "Optional link to linkedin",
+        social_media_instagram: "Optional link to Instagram",
+
         followers: "Number of followers",
       },
       form4: {
-        attach_text: "Add link to your pitch deck or presentation file",
+        attach_text: "Add link to pitch deck or presentation file",
         drop_zone_part1: "Drag files here",
         drop_zone_part2: "or",
         drop_zone_part3: "click to browse",

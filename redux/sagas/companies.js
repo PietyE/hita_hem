@@ -48,7 +48,7 @@ function* getCompaniesHeaderListWorker() {
       description: el.investment_page_description,
       image_list: el.header_image_list,
       first_button_title: _title,
-      first_button_url: `/company/${el.id}`,
+      first_button_url: language === "en"?`/company/${el.id}`:`/sv/company/${el.id}`,
     }));
     yield put(setInvestCompaniesList(investCampaignList));
   } catch (error) {

@@ -5,10 +5,19 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
-export const validateUrl = (url) => {
-  //eslint-disable-next-line
-  const urlRegExp =
+//eslint-disable-next-line
+export const urlRegExp =
     /^(http:\/\/|https:\/\/)+[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
+
+export const checkingAndEditingLink = link => {
+  if (link.trim().slice(0,4) === 'http'){
+    return link
+  }else{
+    return `https://${link}`
+  }
+}
+
+export const validateUrl = (url) => {
   return urlRegExp.test(url);
 };
 
