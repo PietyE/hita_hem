@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
+import throttle from 'lodash/throttle';
 
 import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
@@ -30,7 +31,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let history = useRouter();
-const buttonRef=useRef()
   const sectionRef = useRef();
   //const prevSelectedTab = useRef();
   //const scrollScreenValue = useRef();
@@ -119,20 +119,18 @@ const buttonRef=useRef()
   /////////////////////////////////////////////////////////
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = () => {
-    console.dir(sectionRef.current)
-    // const topPart = buttonRef.current?.offsetParent.offsetParent.offsetTop + buttonRef.current?.offsetParent.offsetTop + buttonRef.current?.offsetTop + buttonRef.current?.offsetHeight;
+  const toggleVisible = throttle(() => {
     const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
-
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > topPart) {
       setVisible(true);
     } else if (scrolled <= topPart) {
       setVisible(false);
     }
-  };
+  }, 1000);
 
   const classNameVisible = visible ? "invest_button_visible" : "";
+
   useEffect(() => {
     window.addEventListener("scroll", toggleVisible);
     return () => {
@@ -194,7 +192,6 @@ const buttonRef=useRef()
       </div>
       {!isCompanyClosed && (
         <Button
-            ref={buttonRef}
           colorStyle="dark-green"
           className="invest_button"
           onClick={handleClickInvest}
