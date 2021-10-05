@@ -6,7 +6,6 @@ import InputComponent from "components/ui/InputComponent";
 import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
-// import { raiseForm3 } from "utils/vadidationSchemas";
 import useRaiseForm3ErrorHandler from "customHooks/useRaiseForm3ErrorHandler";
 import * as yup from "yup";
 
@@ -25,7 +24,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
     followers_count_three: data.followers_count_three,
   };
   const raiseForm3 = yup.object({
-    website: yup.string().url('example https://accumeo.com'),
+    website: yup.string('example https://accumeo.com'),
     video_preview: yup.string().url('example https://youtube.com/.....'),
     social_one: yup.string().url('example https://facebook.com/...')
         .when('followers_count_one', {
@@ -93,7 +92,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
           />
           <InputComponent
             labelClassName="raise_form_input_container"
-            label={t("raisePage.form3.social_media")}
+            label={t("raisePage.form3.social_media_facebook")}
             inputClassName="raise_form_input"
             errorClassName="raise_error_label"
             inputName="social_one"
@@ -121,7 +120,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
           />
           <InputComponent
             labelClassName="raise_form_input_container"
-            label={t("raisePage.form3.social_media")}
+            label={t("raisePage.form3.social_media_linkedin")}
             inputClassName="raise_form_input"
             errorClassName="raise_error_label"
             inputName="social_two"
@@ -149,7 +148,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
           />
           <InputComponent
             labelClassName="raise_form_input_container"
-            label={t("raisePage.form3.social_media")}
+            label={t("raisePage.form3.social_media_instagram")}
             inputClassName="raise_form_input"
             errorClassName="raise_error_label"
             inputName="social_three"

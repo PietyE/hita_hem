@@ -14,6 +14,7 @@ import { raiseForm4 } from "utils/vadidationSchemas";
 
 import { sendForm } from "redux/actions/raisePage";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
+import {checkingAndEditingLink} from "../../utils/utils";
 
 const FormPage4 = ({ changePage, formNumber, data }) => {
   const { t } = useTranslation();
@@ -35,10 +36,14 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
   };
 
   const onSubmit = (values) => {
+    const convertedDataFromForm3 = JSON.parse(JSON.stringify(data.form3))
+    if(data.form3.website){
+      convertedDataFromForm3.website = checkingAndEditingLink(data.form3.website)
+    }
     const assignedObject = Object.assign(
       data.form1,
       data.form2,
-      data.form3,
+      convertedDataFromForm3,
       values
     );
     let dataForApi = {};
