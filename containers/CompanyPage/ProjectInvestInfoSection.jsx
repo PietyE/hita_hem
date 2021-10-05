@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -30,11 +30,10 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let history = useRouter();
-
+const buttonRef=useRef()
   const sectionRef = useRef();
   //const prevSelectedTab = useRef();
   //const scrollScreenValue = useRef();
-
   const companyId = useSelector(getCompanyIdSelector);
   //const selectedTab = useSelector(getCompanyTabSelected);
   const currentLanguage = useSelector(getSelectedLangSelector);
@@ -117,11 +116,37 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     }
   };
 
+  /////////////////////////////////////////////////////////
+  const [visible, setVisible] = useState(false);
+
+  const toggleVisible = () => {
+    console.dir(sectionRef.current)
+    // const topPart = buttonRef.current?.offsetParent.offsetParent.offsetTop + buttonRef.current?.offsetParent.offsetTop + buttonRef.current?.offsetTop + buttonRef.current?.offsetHeight;
+    const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
+
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > topPart) {
+      setVisible(true);
+    } else if (scrolled <= topPart) {
+      setVisible(false);
+    }
+  };
+
+  const classNameVisible = visible ? "invest_button_visible" : "";
+  useEffect(() => {
+    window.addEventListener("scroll", toggleVisible);
+    return () => {
+      window.removeEventListener("scroll", toggleVisible);
+    };
+  }, []);
+
+
   const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
     style: "decimal",
   });
 
   return (
+      <>
     <div className="project_info_right_section" ref={sectionRef}>
       <div className="invest_info">
         <div className="invest_info_item">
@@ -169,6 +194,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
       </div>
       {!isCompanyClosed && (
         <Button
+            ref={buttonRef}
           colorStyle="dark-green"
           className="invest_button"
           onClick={handleClickInvest}
@@ -188,6 +214,36 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
       {!isAuth && <SignUpMessage />}
     </div>
+        {!isCompanyClosed && (
+            <div className={`sticky_invest_button_container ${classNameVisible}`}>
+              <div className='sticky_invest_content_wrapper'>
+                <Button
+                    colorStyle="dark-green"
+                    className={`sticky_invest_button ${classNameVisible}`}
+                    onClick={handleClickInvest}
+                >
+                  {t("company_page.button_invest")}
+                </Button>
+              </div>
+             </div>
+
+        )}
+        {isCompanyClosed && (
+            <div className={`sticky_invest_button_container ${classNameVisible}`}>
+              <div className='sticky_invest_content_wrapper'>
+              <a href={"mailto:" + "info@accumeo.com"}>
+              <Button
+                  colorStyle="dark-green"
+                  className={`sticky_invest_button ${classNameVisible}`}
+              >
+                {t("company_page.button_contact")}
+              </Button>
+            </a>
+            </div>
+            </div>
+
+        )}
+        </>
   );
 };
 
