@@ -295,13 +295,14 @@
       .middle_tabbr_wrapp {
         background-color: #ffffff;
         position: sticky;
-        top: 80px;
+        top: 100px;
         z-index: 1;
+        max-width: 840px;
+
       }
       .middle_tabbr {
         margin-bottom: 30px;
         width: 100%;
-        max-width: 840px;
       }
     }
     .middle_mobile_tabbr_container {
@@ -829,6 +830,40 @@
       }
     }
   }
+
+}
+.sticky_invest_button_container{
+  display: none;
+  position: fixed;
+  top: 79px;
+  right: 10px;
+  left: 0;
+  z-index: 1;
+  background-color: #fff;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 12px;
+  .sticky_invest_content_wrapper{
+    max-width: 1460px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+.sticky_invest_button{
+  //display: none;
+  //position: fixed;
+  //top: 90px;
+  //right: 10px;
+  //z-index: 3;
+  margin-left: auto;
+  margin-right: 75px;
+  width: 350px;
+  height: 56px;
+  z-index: 2;
+}
+.invest_button_visible{
+  display: block;
 }
 
 @media screen and (min-width: 1920px) {
@@ -951,8 +986,12 @@
       padding-right: 120px;
       padding-left: 120px;
       .middle_tabbr_container {
+        width: 68%;
+
+        .middle_tabbr_wrapp{
+
+        }
         .middle_tabbr {
-          width: 68%;
         }
       }
     }
@@ -988,6 +1027,10 @@
       padding-left: 120px;
     }
   }
+  .sticky_invest_button{
+    width: 200px;
+    margin-right: 189px;
+  }
 }
 @media screen and (min-device-width: 1370px) and (max-device-width: 1440px) {
   .company-page-container {
@@ -1019,8 +1062,9 @@
     }
     .middle_section_container {
       .middle_tabbr_container {
+        width: 88%;
+
         .middle_tabbr {
-          width: 88%;
         }
       }
 
@@ -1037,10 +1081,18 @@
       }
     }
   }
+  .sticky_invest_button{
+    width: 150px;
+    margin-right: 50px;
+  }
 }
 @media screen and (max-device-width: 1180px) {
   .campaigns_tab_sign-up_container {
     width: 88%;
+  }
+  .sticky_invest_button{
+    width: 140px;
+    margin-right: 5px;
   }
 }
 @media screen and (max-device-width: 1050px) {
@@ -1087,6 +1139,14 @@
   }
 }
 @media screen and (max-device-width: 980px) {
+
+  .sticky_invest_button{
+    width: 115px;
+  }
+  .middle_tabbr_container{
+    width: 88%;
+  }
+
   .company-page-container {
     .company_top_section_container {
       padding-left: 50px;
@@ -1152,6 +1212,18 @@
   }
 }
 @media screen and (max-device-width: 900px) {
+  .sticky_invest_button_container{
+    width: 100vw;
+    right: 0;
+    top: 79px;
+
+  }
+  .sticky_invest_button{
+    width: 100%;
+
+    //right: 0;
+    //top: 79px;
+  }
   .company-page-container {
     .company_top_section_container {
       .company_top_section_title {
