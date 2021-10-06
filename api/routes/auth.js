@@ -81,6 +81,18 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  deleteAvatar() {
+    const url = "/profile/image/";
+    return this.request({
+      url,
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data;",
+      },
+       data: null,
+    });
+  }
+
   changeProfile(data) {
     const url = "/profile/patch/";
     return this.request({

@@ -2,16 +2,24 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { getUserSelector } from "redux/reducers/user";
 import isEqual from "lodash/isEqual";
-import UserPanelMenu from "../ui/UserPanelMenu";
-import Dropdown from "react-bootstrap/Dropdown";
+import dynamic from "next/dynamic";
+
+import UserPanelMenu from "components/ui/UserPanelMenu";
+
+const DropDownComponent = dynamic(() =>
+  import("components/ui/DropDownComponent")
+);
+const DropdownToggle = dynamic(() =>
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+);
 
 function UserPanel() {
   const userInfo = useSelector(getUserSelector, isEqual);
   const { account, user } = userInfo;
 
   return (
-    <Dropdown className="user_panel_container">
-      <Dropdown.Toggle className="user_panel_toggle" as="div">
+    <DropDownComponent className="user_panel_container">
+      <DropdownToggle className="user_panel_toggle" as="div">
         {!!user?.first_name && !!user?.second_name && (
           <span className="user_panel_text">{`${user?.first_name} ${user?.second_name}`}</span>
         )}
@@ -28,11 +36,11 @@ function UserPanel() {
             />
           )}
         </div>
-      </Dropdown.Toggle>
-      <Dropdown.Item as="div" className="user_panel_avatar_item">
-        <UserPanelMenu />
-      </Dropdown.Item>
-    </Dropdown>
+      </DropdownToggle>
+      {/* <Dropdown.Item as="div" className="user_panel_avatar_item"> */}
+      <UserPanelMenu />
+      {/* </Dropdown.Item> */}
+    </DropDownComponent>
   );
 }
 

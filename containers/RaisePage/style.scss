@@ -4,6 +4,16 @@
     font-style: normal;
     position: relative;
     overflow: hidden;
+    .carousel-control-prev-icon, .carousel-control-next-icon{
+      opacity: 0;
+    }
+
+    &:hover .carousel-control-prev-icon{
+      opacity: 1;
+    }
+    &:hover .carousel-control-next-icon{
+      opacity: 1;
+    }
     .carousel-indicators {
       display: flex;
       align-items: center;
@@ -287,6 +297,9 @@
 
     .raise_form {
       position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
       width: 600px;
       //height: 405px;
       background: #ffffff;
@@ -328,7 +341,9 @@
           /* for Chrome */
           -webkit-appearance: none;
         }
-
+        .raise_form_country{
+          padding-right: 43px;
+        }
         .raise_form_input {
           border: unset;
           width: 265.13px;
@@ -361,12 +376,14 @@
           }
         }
         .raise_error_label {
-          bottom: -37px;
+          transform: translateY(0);
+          //bottom: -37px;
           font-size: 12px;
         }
         .country_warning_text {
-          position: absolute;
+          //position: absolute;
           color: red;
+          max-width: 265px;
         }
         .raise_form_input_warning {
           @extend .raise_form_input;
@@ -407,7 +424,7 @@
 
     .raise_form_split_line {
       width: calc(100% + 50px);
-      transform: translateX(-25px);
+      //transform: translateX(-25px);
       opacity: 0.1;
       border: 1px solid #000000;
       background-color: #000;
@@ -571,6 +588,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      width: 100%;
 
       .raise_agreement {
         font-family: Mulish;
@@ -604,6 +622,7 @@
 
     .raise_form_button_container {
       display: flex;
+      margin-left: auto;
     }
 
     .raise_form_button {
@@ -831,6 +850,7 @@
     }
   }
   @media screen and (max-width: 632px) {
+
     .raise_instructions_container {
       .raise_item-list_instructions_container {
         .raise_item_container {
@@ -847,6 +867,7 @@
       }
     }
     .raise_advantages_container {
+
       .raise_advantages_item {
         flex-direction: column;
         height: auto;
@@ -889,8 +910,8 @@
         margin-right: 10px;
         margin-left: 10px;
         width: calc(100% - 20px);
-        display: flex;
-        flex-direction: column;
+        //display: flex;
+        //flex-direction: column;
         align-items: center;
 
         .form4_title {
@@ -907,6 +928,9 @@
 
           .raise_form_input {
             width: 100%;
+          }
+          .country_warning_text{
+            max-width: 100%;
           }
         }
 

@@ -10,6 +10,10 @@ module.exports = withBundleAnalyzer({
     autoPrerender: false,
     buildActivity: false,
   },
+  i18n: {
+    locales: ["en", "sv"],
+    defaultLocale: "en",
+  },
   async headers() {
     return [
       {

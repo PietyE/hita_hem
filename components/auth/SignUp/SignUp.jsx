@@ -6,13 +6,16 @@ import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
 import { signUp } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-import { signUpSchema } from "utils/vadidationSchemas";
+// import { signUpSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import * as yup from "yup";
+import {passwordRegExp} from "../../../utils/vadidationSchemas";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
 
   const isFetching = useSelector(getIsFetchingAuthSelector);
@@ -25,10 +28,12 @@ const SignUp = ({ show }) => {
 
   const handleClose = () => {
     dispatch(setShowSignUp(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowSignIn = () => {
     dispatch(setShowSignUp(false));
     dispatch(setShowSignIn(true));
+    errorHandlerHook?._clearErrors()
   };
   const _signUp = useCallback(
     (values) => {
@@ -42,8 +47,16 @@ const SignUp = ({ show }) => {
       password: `${values.password}`,
       is_agree: `${values.is_agree}`,
     });
-    // dispatch(setShowSignUp(false))
   };
+  const signUpSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .matches(passwordRegExp, t("errors.password_example"))
+        .required(t("errors.password_required")),
+    is_agree: yup.bool().oneOf([true])
+  })
+
   return (
     <Modal
       show={show}
@@ -61,9 +74,11 @@ const SignUp = ({ show }) => {
         initialValues={initialValues}
         validationSchema={signUpSchema}
         onSubmit={onSubmit}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ values, touched, errors, setFieldValue, isValid }) => (
+        {({ values, touched, errors, setFieldValue, setFieldError }) => (
           <Form className="auth_form">
             <InputComponent
               labelClassName="auth_login_container auth_container"
@@ -72,8 +87,11 @@ const SignUp = ({ show }) => {
               inputName="email"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.emailError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_up.email_placeholder")}
             />
             <InputComponent
@@ -84,8 +102,11 @@ const SignUp = ({ show }) => {
               inputName="password"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.passwordError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_up.password_placeholder")}
               iconClassName="auth_password_eye"
             />
@@ -116,7 +137,7 @@ const SignUp = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              disabled={!isValid}
+              disabled={!values.is_agree}
             >
               {t("auth.sign_up.button")}
             </Button>

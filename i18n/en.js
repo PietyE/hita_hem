@@ -33,19 +33,22 @@ export const en = {
       form2: {
         company_name: "Company Name*",
         company_form: "Form of the company*",
-        role: "Role in the company*",
+        role: "Your role in the company*",
         shares: "Company % for shares*",
         revenue: "Revenue of the last financial year",
-        amount: "Amount you want to raise*",
+        amount: "Funding goal*",
       },
       form3: {
         company_website: "Company website",
-        video_link: "Link to the video",
-        social_media: "Social media link",
+        video_link: "Optional link to video presentation",
+        social_media_facebook: "Optional link to facebook",
+        social_media_linkedin: "Optional link to linkedin",
+        social_media_instagram: "Optional link to Instagram",
+
         followers: "Number of followers",
       },
       form4: {
-        attach_text: "Add link to your pitch deck or presentation file",
+        attach_text: "Add link to pitch deck or presentation file",
         drop_zone_part1: "Drag files here",
         drop_zone_part2: "or",
         drop_zone_part3: "click to browse",
@@ -145,6 +148,21 @@ export const en = {
       button_confirm: "Confirm",
       button_discard: "Discard",
     },
+    quizWrongAnswersModal: {
+      title:'Some of the selected answers are wrong',
+      text: 'Please review your answers and read up on the risks related to investing in unlisted companies.',
+    },
+    raiseWrongAnswersModal: {
+      title:'Some of the filled fields take mistakes',
+      text: 'Please review your data on all steps',
+
+    },
+    quiz:{
+      title: 'To complete the registration process, please answer the following questions',
+      text: 'These questions are to assess your financial literacy and knowledge about investments',
+      back_button: 'Back',
+      button_confirm: 'Confirm',
+    },
     tab_accordion: {
       Idea: "Idea",
       Team: "Team",
@@ -171,6 +189,10 @@ export const en = {
       company_days_left: "days left",
       button_invest: "Invest Now",
       button_contact: "Contact sales",
+      button_read_more: "Read more",
+      button_show_more: "Show more",
+      button_show_less: "Show less",
+
       company_info: {
         Industry: "Industry:",
         Location: "Location:",
@@ -248,10 +270,10 @@ export const en = {
       button: "Go to the Homepage",
     },
     profile_page: {
-      investment: "investment",
-      personal_details: "personal details",
-      account_settings: "account settings",
-      profile_campaigns: "campaigns",
+      investment: "Investment",
+      personal_details: "Personal details",
+      account_settings: "Account settings",
+      profile_campaigns: "Campaigns",
 
       account: {
         title: "My account settings",
@@ -318,5 +340,51 @@ export const en = {
         save_button: "Save Changes",
       },
     },
+    errors: {
+        email_example: 'example test@test.com',
+        email_required: 'Email is a required field',
+        password_required: 'Password is a required field',
+        password_example: 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)',
+        new_password_required: 'New password is a required field',
+        confirm_password_required: 'Confirm password is a required field',
+        password_match: 'Password doesn\'t match',
+        country_required: 'Country is a required field',
+        city_required: 'City is a required field',
+        address_required: 'Address is a required field',
+        first_name_required: 'First name is a required field',
+        second_name_required: 'Last name is a required field',
+        day_required: 'Day is a required field',
+        month_required: 'Month is a required field',
+        year_required: 'Year is a required field',
+        personal_id_required: 'Personal ID is a required field',
+        personal_id_example: 'example 12345678-1234',
+        phone_required: 'Phone number is a required field',
+        phone_example: 'example +49 1234567890',
+        city_empty: '"City" cannot be empty',
+        address_empty: '"Address" cannot be empty',
+        first_name_empty: '"First name" cannot be empty',
+        second_name_empty: '"Last name" cannot be empty',
+        personal_id_empty: '"Personal ID" cannot be empty',
+        phone_empty: '"Phone number" cannot be empty',
+
+      company_name_required: 'Company name is a required field',
+      company_form_required: 'Form of the company is a required field',
+      role_required: 'Role in the company is a required field',
+      share_price_required: 'Company % for shares is a required field',
+      share_price_number: 'Company % for shares must be a number',
+      share_price_positive: 'Company % for shares must be >= 0',
+      revenue_positive: 'Revenue must be >= 0',
+      revenue_number: 'Revenue  must be a number',
+      amount_required: 'Amount you want to raise is a required field',
+      amount_number: 'Amount must be a number',
+      amount_positive: 'Amount must be >= 0',
+
+      media_required: 'Fill out this social media field',
+      followers_number: 'Number of followers must be a number',
+      follower_positive: 'Number of followers must be >= 0',
+
+    }
+
   },
+
 };

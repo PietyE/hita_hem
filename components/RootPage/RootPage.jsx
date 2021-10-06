@@ -17,12 +17,18 @@ import {
   getShowSuccessfulDeletedAccount,
   getShowConfirmationOfAccountDeleting,
   getShowQuizError,
-  getShowSuccessfulSubscribe
+  getShowSuccessfulSubscribe,
+  getShowRaiseError,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
+import RaiseWrongAnswersModal from "../RaiseWrongAnswersModal/RaiseWrongAnswersModal";
 
+const ScrollToTopButton = dynamic(
+  () => import("components/ScrollToTopButton"),
+  { loading: () => <span></span> }
+);
 const SignIn = dynamic(() => import("components/auth/SignIn"));
 const SignUp = dynamic(() => import("components/auth/SignUp"));
 const Notification = dynamic(() => import("components/Notification"));
@@ -46,10 +52,13 @@ const ShowConfirmationOfAccountDeletion = dynamic(() =>
   import("components/ShowConfirmationOfAccountDeletion")
 );
 const QuizWrongAnswersModal = dynamic(() =>
-    import("components/QuizWrongAnswersModal")
+  import("components/QuizWrongAnswersModal")
 );
 const SuccessfullySubscribedModal = dynamic(() =>
-    import("components/SuccessfullySubscribedModal")
+  import("components/SuccessfullySubscribedModal")
+);
+const RaiseWrongAnswerModal = dynamic(() =>
+    import("components/RaiseWrongAnswersModal")
 );
 
 const RootPage = ({ children, initLang = "" }) => {
@@ -73,8 +82,10 @@ const RootPage = ({ children, initLang = "" }) => {
     getShowConfirmationOfAccountDeleting
   );
   const isNotificationShow = useSelector(getNotificationStatusSelector);
-  const isShowQuizErrorPopup = useSelector(getShowQuizError)
-  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe)
+  const isShowQuizErrorPopup = useSelector(getShowQuizError);
+  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
+  const isShowQuizRaisePopup = useSelector(getShowRaiseError);
+
 
   const _logOut = useCallback(() => {
     dispatch(logOut());
@@ -104,45 +115,47 @@ const RootPage = ({ children, initLang = "" }) => {
 
   return (
     <div className="container">
-      <Header />
+      <Header initLang={initLang} />
       <main>
-      {children}
-      {!!showSignInWindow && <SignIn show={showSignInWindow} />}
-      {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-      {!!showSignResetPassWindow && (
-        <ResetPassword show={showSignResetPassWindow} />
-      )}
-      {!!showSuccessfulSignUpWindow && (
-        <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
-      )}
-      {!!showSuccessfullyCampaignRegistrationModal && (
-        <SuccessfullyCampaignRegistrationModal
-          show={showSuccessfullyCampaignRegistrationModal}
-        />
-      )}
-      {!!showSuccessfulInvestment && (
-        <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
-      )}
-      {!!showSuccessfulResetPassword && (
-        <SuccessfulResetPassword show={showSuccessfulResetPassword} />
-      )}
-      {!!showSuccessfulDeletedAccount && (
-        <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
-      )}
-      {!!showConfirmationOfAccountDeletion && (
-        <ShowConfirmationOfAccountDeletion
-          show={showConfirmationOfAccountDeletion}
-        />
-      )}
-      {!!isShowQuizErrorPopup && (
-          <QuizWrongAnswersModal show={isShowQuizErrorPopup}/>
-
-      )}
-      {!!isShowSuccessfulSubscribe && (
-          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe}/>
-
-      )}
-      {!!isNotificationShow && <Notification show={isNotificationShow} />}
+        {children}
+        {!!showSignInWindow && <SignIn show={showSignInWindow} />}
+        {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
+        {!!showSignResetPassWindow && (
+          <ResetPassword show={showSignResetPassWindow} />
+        )}
+        {!!showSuccessfulSignUpWindow && (
+          <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
+        )}
+        {!!showSuccessfullyCampaignRegistrationModal && (
+          <SuccessfullyCampaignRegistrationModal
+            show={showSuccessfullyCampaignRegistrationModal}
+          />
+        )}
+        {!!showSuccessfulInvestment && (
+          <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
+        )}
+        {!!showSuccessfulResetPassword && (
+          <SuccessfulResetPassword show={showSuccessfulResetPassword} />
+        )}
+        {!!showSuccessfulDeletedAccount && (
+          <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
+        )}
+        {!!showConfirmationOfAccountDeletion && (
+          <ShowConfirmationOfAccountDeletion
+            show={showConfirmationOfAccountDeletion}
+          />
+        )}
+        {!!isShowQuizErrorPopup && (
+          <QuizWrongAnswersModal show={isShowQuizErrorPopup} />
+        )}
+        {!!isShowSuccessfulSubscribe && (
+          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
+        )}
+        {!!isShowQuizRaisePopup && (
+            <RaiseWrongAnswersModal show={isShowQuizRaisePopup} />
+        )}
+        {!!isNotificationShow && <Notification show={isNotificationShow} />}
+        <ScrollToTopButton />
       </main>
       <Footer />
     </div>

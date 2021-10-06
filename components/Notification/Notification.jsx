@@ -14,7 +14,6 @@ const Notification = ({ show }) => {
   const dispatch = useDispatch();
   const message = useSelector(getNotificationMessageSelector);
   const title = useSelector(getNotificationTitleSelector);
-
   const handleClose = useCallback(() => {
     dispatch(setNotification(false));
     dispatch(setNotificationMessage(""));
@@ -34,7 +33,7 @@ const Notification = ({ show }) => {
       className="notification"
     >
       <Alert.Heading>{`${title}`}</Alert.Heading>
-      <p>{message}</p>
+      <p>{Array.isArray(message)?message[0]:message}</p>
     </Alert>
   );
 };

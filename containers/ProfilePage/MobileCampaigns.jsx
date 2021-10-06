@@ -4,11 +4,13 @@ import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { getSelectedLangSelector } from "redux/reducers/language";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import {
   faChevronDown,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
+import startCase from "lodash/startCase";
+import {convertStatusToText} from "utils/utils";
 
 const MobileCampaigns = ({ data }) => {
   const { t } = useTranslation();
@@ -43,29 +45,21 @@ const MobileCampaigns = ({ data }) => {
 
             let _link;
             let textLink;
-            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'development'){
-              _link = `https://dev.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+              _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${campaign.id}`:`https://nextdev.accumeo.com/sv/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging'){
-              _link = `https://stage.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
+              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.id}`:`https://stage.accumeo.com/sv/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
-              _link = `https://preprod.accumeo.com/company/${campaign.id}`
-              textLink = `https://accumeo.com/company/${campaign.id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+              _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${campaign.id}`:`https://preprod.accumeo.com/sv/company/${campaign.id}`
+              textLink = `https://accumeo.com/company/${campaign.id}`;
             }
-            let _status;
-            if (campaign.status === 3) {
-              _status = "Live";
-            }
-            if (campaign.status === 4) {
-              _status = "Closed";
-            }
-            if (campaign.status === 1) {
-              _status = "Upcoming";
-            }
-
+            let _status = startCase(
+                convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
+            );
             return (
               <Card key={index} className="mobile_investments_card">
                 <Accordion.Toggle
@@ -81,7 +75,7 @@ const MobileCampaigns = ({ data }) => {
                     {campaign.name}
                   </span>
                   <span className="tab_accordion_chevron">
-                    <FontAwesomeIcon
+                    <IconComponent
                       icon={
                         Number(activeTab) === index + 1
                           ? faChevronDown
@@ -129,7 +123,7 @@ const MobileCampaigns = ({ data }) => {
                         {t("profile_page.campaigns.raised")}
                       </span>
                       <span className="mobile_investments_field_values">
-                        {campaign.goal_currency} {campaign.goal}
+                        {campaign?.invested_currency} {campaign?.invested}
                       </span>
                     </p>
                   </Card.Body>

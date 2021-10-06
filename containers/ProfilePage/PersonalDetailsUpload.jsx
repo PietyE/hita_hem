@@ -3,11 +3,11 @@ import { useDropzone } from "react-dropzone";
 import Button from "components/ui/Button";
 import { useSelector } from "react-redux";
 import { getProfile } from "redux/reducers/user";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { useTranslation } from "react-i18next";
 
-const PersonalDetailsUpload = ({ setFieldValue }) => {
-  const { t } = useTranslation();
+const PersonalDetailsUpload = ({ setFieldValue, values }) => {
+    const { t } = useTranslation();
   const profile = useSelector(getProfile, isEqual);
   const [hasAvatarUpload, setHasAvatarUpload] = useState(false);
 
@@ -20,12 +20,14 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   function imageChangeHandler(e) {
-    let blob;
-    if (e.target.dataset.value === "del") {
-      setFieldValue("image", "");
-    } else {
-      setFieldValue("image", e.target.files[0]);
-      blob = new Blob([e.target.files[0]]);
+      let blob;
+    if (e?.target?.dataset?.value === "del") {
+      setFieldValue("image", null);
+    }else if(e?.target?.files[0]){
+        setFieldValue("image", e.target.files[0]);
+        blob = new Blob([e.target.files[0]]);
+    }else{
+        return
     }
     const preview = imageEl.current;
     let reader = new FileReader();
@@ -49,7 +51,7 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
           {...getRootProps()}
           className="profile_form_upload_avatar_circle"
           style={
-            profile?.image
+            (profile?.image && (values?.image !== null))
               ? {
                   backgroundImage: `url(${profile?.image})`,
                   backgroundPosition: "center",
@@ -59,17 +61,9 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
               : {}
           }
         >
-          <input
-            id="upload_file"
-            {...getInputProps()}
-            type="file"
-            name="image"
-            onChange={imageChangeHandler}
-          />
           <img
             ref={imageEl}
             className="profile_form_upload_avatar"
-            loading="lazy"
             alt="user avatar"
             style={{
               display: hasAvatarUpload ? "flex" : "none",
@@ -92,10 +86,15 @@ const PersonalDetailsUpload = ({ setFieldValue }) => {
         </Button>
       </div>
       <label
-        htmlFor="upload_file"
         name="image"
         className="profile_form_upload_avatar_button_label"
       >
+        <input
+          {...getInputProps()}
+          type="file"
+          name="image"
+          onChange={imageChangeHandler}
+        />
         <Button
           colorStyle="dark-green"
           type="button"

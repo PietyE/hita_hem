@@ -12,13 +12,15 @@ import {
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
-import { signInSchema } from "utils/vadidationSchemas";
+// import { signInSchema } from "utils/vadidationSchemas";
 
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import * as yup from "yup";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const isFetching = useSelector(getIsFetchingAuthSelector);
 
   const { t } = useTranslation();
@@ -27,17 +29,26 @@ const SignIn = ({ show }) => {
     email: "",
     password: "",
   };
+  const signInSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    password: yup
+        .string().max(128)
+        .required(t("errors.password_required")),
+  })
 
   const handleClose = () => {
     dispatch(setShowSignIn(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowResetPass = () => {
     dispatch(setShowResetPassword(true));
     dispatch(setShowSignIn(false));
+    errorHandlerHook?._clearErrors()
   };
   const handleShowSignIn = () => {
     dispatch(setShowSignIn(false));
     dispatch(setShowSignUp(true));
+    errorHandlerHook?._clearErrors()
   };
 
   const _signIn = useCallback(
@@ -70,9 +81,11 @@ const SignIn = ({ show }) => {
         initialValues={initialValues}
         validationSchema={signInSchema}
         onSubmit={onSubmit}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ touched, errors, values, setFieldValue, isValid }) => (
+        {({ touched, errors, values, setFieldValue, setFieldError }) => (
           <Form className="auth_form">
             <InputComponent
               labelClassName="auth_login_container auth_container"
@@ -81,8 +94,11 @@ const SignIn = ({ show }) => {
               inputName="email"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.emailError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.email_placeholder")}
             />
             <span onClick={handleShowResetPass} className="auth_forgot_link">
@@ -96,8 +112,11 @@ const SignIn = ({ show }) => {
               inputName="password"
               values={values}
               setFieldValue={setFieldValue}
+              setFieldError={setFieldError}
               touched={touched}
               errors={errors}
+              errorFromApi={errorHandlerHook?.passwordError}
+              clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.password_placeholder")}
               iconClassName="auth_password_eye"
             />
@@ -105,7 +124,7 @@ const SignIn = ({ show }) => {
               type="submit"
               colorStyle={"dark-green"}
               className="auth_button"
-              disabled={!isValid || isFetching}
+              disabled={isFetching}
             >
               {t("auth.sign_in.button")}
             </Button>

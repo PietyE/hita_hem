@@ -1,16 +1,20 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import Button from "components/ui/Button";
 import SplitLine from "components/ui/SplitLine";
 import InputComponent from "components/ui/InputComponent";
 import { CountryDropdown } from "react-country-region-selector";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faArrowRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { raiseForm1 } from "utils/vadidationSchemas";
+// import { raiseForm1 } from "utils/vadidationSchemas";
+import useRaiseFormErrorHandler from "customHooks/useRaiseFormErrorHandler";
+import * as yup from "yup";
+import {phoneRegExp} from "../../utils/vadidationSchemas";
 
 const FormPage1 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
+  const errorHandlerHook = useRaiseFormErrorHandler();
 
   const initialValues = {
     first_name: data.first_name,
@@ -19,6 +23,14 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
     phone: data.phone,
     country: data.country,
   };
+  const raiseForm1 = yup.object({
+    first_name: yup.string().min(1).max(80).required(t("errors.first_name_required")),
+    second_name: yup.string().min(1).max(80).required(t("errors.second_name_required")),
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    phone: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
+    country: yup.string().required(t("errors.country_required")),
+  })
+
   const onSubmit = (values) => {
     submit(values, `form${formNumber}`);
     changePage(formNumber + 1);
@@ -28,6 +40,8 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
       initialValues={initialValues}
       validationSchema={raiseForm1}
       onSubmit={onSubmit}
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {({
         values,
@@ -36,6 +50,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
         handleBlur,
         handleChange,
         setFieldValue,
+        setFieldError,
       }) => (
         <Form className="raise_form">
           <InputComponent
@@ -46,8 +61,11 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="first_name"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.firstNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -57,8 +75,11 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="second_name"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.secondNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -68,8 +89,11 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="email"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.emailNameError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
           <InputComponent
             labelClassName="raise_form_input_container"
@@ -79,8 +103,11 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             inputName="phone"
             values={values}
             setFieldValue={setFieldValue}
+            setFieldError={setFieldError}
             touched={touched}
             errors={errors}
+            errorFromApi={errorHandlerHook?.phoneError}
+            clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
             placeholder="+3071 0XX XX XXX XXX"
           />
           <label
@@ -91,22 +118,35 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             <br />
             <CountryDropdown
               className={
-                touched.country && errors.country
-                  ? "raise_form_input_warning "
-                  : "raise_form_input "
+                ((touched.country && errors.country)|| errorHandlerHook?.countryError)
+                  ? "raise_form_input_warning raise_form_country"
+                  : "raise_form_input raise_form_country"
               }
               name="country"
               value={values.country}
-              onChange={(_, e) => handleChange(e)}
-              onBlur={(_, e) => handleBlur(e)}
+              onChange={(_, e) => {
+                handleChange(e);
+                errorHandlerHook?.clearRaiseFormErrorFromApi("country");
+              }}
+              onBlur={(_, e) => {
+                setFieldError("country", undefined);
+                handleBlur(e);
+              }}
               defaultOptionLabel=""
             />
             <div className="raise_form_country_arrow">
-              <FontAwesomeIcon icon={faCaretDown} />
+              <IconComponent icon={faCaretDown} />
             </div>
             {errors.country && touched.country ? (
               <p className={"raise_error_label country_warning_text "}>
                 {errors.country}
+              </p>
+            ) : null}
+            {errorHandlerHook?.countryError ? (
+              <p className={"raise_error_label country_warning_text"}>
+                {Array.isArray(errorHandlerHook?.countryError)
+                  ? errorHandlerHook?.countryError[0]
+                  : errorHandlerHook?.countryError}
               </p>
             ) : null}
           </label>
@@ -118,7 +158,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             className="raise_form_button raise_form_button_alone"
           >
             {t("raisePage.form_footer.button_next")}
-            <FontAwesomeIcon
+            <IconComponent
               icon={faArrowRight}
               className="raise_form_button_arrow_right"
             />

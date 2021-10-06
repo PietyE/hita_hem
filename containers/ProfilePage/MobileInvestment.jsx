@@ -2,15 +2,19 @@ import React, { useState } from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import Button from "components/ui/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import {
   faChevronDown,
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import {useSelector} from "react-redux";
+import {getSelectedLangSelector} from "redux/reducers/language";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
+  const currentLanguage = useSelector(getSelectedLangSelector);
+
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
     if (activeTab === e.target.dataset.value) {
@@ -27,17 +31,17 @@ const MobileInvestment = ({ data }) => {
             let _link;
             let textLink;
 
-            if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'development') {
-              _link = `https://dev.accumeo.com/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+              _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${payment.company_id}`:`https://nextdev.accumeo.com/sv/company/${payment.company_id}`
+              textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
-            if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging') {
-              _link = `https://stage.accumeo.com/company/${payment.company_id}`
-              textLink =   `https://accumeo.com/company/${payment.company_id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
+              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
+              textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
-            if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
-              _link = `https://preprod.accumeo.com/company/${payment.company_id}`
-              textLink =   `https://accumeo.com/company/${payment.company_id}`
+            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+              _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${payment.company_id}`:`https://preprod.accumeo.com/sv/company/${payment.company_id}`
+              textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             return (
               <Card key={index} className="mobile_investments_card">
@@ -54,7 +58,7 @@ const MobileInvestment = ({ data }) => {
                     {payment.company_name}
                   </span>
                   <span className="tab_accordion_chevron">
-                    <FontAwesomeIcon
+                    <IconComponent
                       icon={
                         Number(activeTab) === index + 1
                           ? faChevronDown

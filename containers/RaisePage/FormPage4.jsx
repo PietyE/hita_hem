@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Field, Form, Formik } from "formik";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -14,6 +14,7 @@ import { raiseForm4 } from "utils/vadidationSchemas";
 
 import { sendForm } from "redux/actions/raisePage";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
+import {checkingAndEditingLink} from "../../utils/utils";
 
 const FormPage4 = ({ changePage, formNumber, data }) => {
   const { t } = useTranslation();
@@ -35,10 +36,14 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
   };
 
   const onSubmit = (values) => {
+    const convertedDataFromForm3 = JSON.parse(JSON.stringify(data.form3))
+    if(data.form3.website){
+      convertedDataFromForm3.website = checkingAndEditingLink(data.form3.website)
+    }
     const assignedObject = Object.assign(
       data.form1,
       data.form2,
-      data.form3,
+      convertedDataFromForm3,
       values
     );
     let dataForApi = {};
@@ -68,6 +73,8 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       validationSchema={raiseForm4}
       onSubmit={onSubmit}
       setValue
+      validateOnChange={false}
+      validateOnBlur={false}
     >
       {({ setFieldValue, values }) => (
         <Form className="raise_form">
@@ -118,7 +125,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
                 className=" raise_form_button_back"
                 onClick={prevForm}
               >
-                <FontAwesomeIcon
+                <IconComponent
                   icon={faArrowLeft}
                   className="raise_form_button_arrow_left"
                 />

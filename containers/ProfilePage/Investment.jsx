@@ -4,9 +4,11 @@ import { getUserPaymentsSelector } from "redux/reducers/user";
 import MobileInvestment from "./MobileInvestment";
 import Button from "components/ui/Button";
 import { useTranslation } from "react-i18next";
+import {getSelectedLangSelector} from "redux/reducers/language";
 
 const Investment = () => {
   const { t } = useTranslation();
+    const currentLanguage = useSelector(getSelectedLangSelector);
 
   const paymentsList = useSelector(getUserPaymentsSelector);
   return (
@@ -34,17 +36,16 @@ const Investment = () => {
             paymentsList?.map((payment, index) => {
                 let _link;
                 let textLink;
-
-                if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'development') {
-                    _link = `https://dev.accumeo.com/company/${payment.company_id}`
+                if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+                    _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${payment.company_id}`:`https://nextdev.accumeo.com/sv/company/${payment.company_id}`
                     textLink = `https://accumeo.com/company/${payment.company_id}`
                 }
-                if (process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging') {
-                    _link = `https://stage.accumeo.com/company/${payment.company_id}`
+                if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+                    _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
                     textLink =   `https://accumeo.com/company/${payment.company_id}`
                 }
-                if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
-                    _link = `https://preprod.accumeo.com/company/${payment.company_id}`
+                if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+                    _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${payment.company_id}`:`https://preprod.accumeo.com/sv/company/${payment.company_id}`
                     textLink =   `https://accumeo.com/company/${payment.company_id}`
                 }
 

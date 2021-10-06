@@ -22,9 +22,11 @@
   border: 1px solid #FF4D4F !important;
 }
 .input_warning_text{
-  position: absolute;
-  bottom: -20px;
-  left: 0;
+  margin-bottom: 0;
+  transform: translateY(-10px);
+  //position: absolute;
+  //bottom: -20px;
+  //left: 0;
   color: red;
 }
 

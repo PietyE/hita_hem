@@ -1,10 +1,11 @@
 import CRUD from "../base";
 
 class AddEmailCRUD extends CRUD {
-  addEmail(params) {
+  addEmail(data) {
     return this.request({
       method: "POST",
-      url: `${this.url}/?${params}`,
+      url: `${this.url}/`,
+      data,
     });
   }
 }

@@ -5,9 +5,12 @@ import {setShowQuiz, setShowQuizError} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {quizData} from './quizData';
+import {useTranslation} from "react-i18next";
 
 const Quiz = ({show, onSubmit}) => {
+    const { t } = useTranslation();
     const dispatch = useDispatch()
+
     const handleCloseQuiz = () => {
         dispatch(setShowQuiz(false))
     }
@@ -64,9 +67,9 @@ const Quiz = ({show, onSubmit}) => {
             <section className='quiz'>
                 <header className='quiz_header'>
                     <h2 className='quiz_header_title'>
-                        To complete the registration process, please answer the following questions
+                        {t("quiz.title")}
                     </h2>
-                    <p className='quiz_header_text'>These questions are to assess your financial literacy and knowledge about investments</p>
+                    <p className='quiz_header_text'>{t("quiz.text")}</p>
                 </header>
                 <div className='quiz_body'>
                     {quizData?.length &&
@@ -82,8 +85,8 @@ const Quiz = ({show, onSubmit}) => {
                     }
                 </div>
                 <footer className='quiz_footer'>
-                    <ButtonStyled colorStyle='outline-green' className='quiz_footer_button_back quiz_footer_button' onClick={handleCloseQuiz}>Back</ButtonStyled>
-                    <ButtonStyled colorStyle='dark-green' className='quiz_footer_button_confirm quiz_footer_button' onClick = {handleSubmit}>Confirm</ButtonStyled>
+                    <ButtonStyled colorStyle='outline-green' className='quiz_footer_button_back quiz_footer_button' onClick={handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
+                    <ButtonStyled colorStyle='dark-green' className='quiz_footer_button_confirm quiz_footer_button' onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
                 </footer>
             </section>
         </Modal>

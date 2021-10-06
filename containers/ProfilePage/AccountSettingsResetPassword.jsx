@@ -1,16 +1,30 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect, useRef} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import { Formik, Form } from "formik";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
-import { changePassword } from "redux/actions/user";
-import { useDispatch } from "react-redux";
-import { accountSettingsResetPasswordSchema } from "utils/vadidationSchemas";
+import { changePassword, setResponseFromApi } from "redux/actions/user";
+// import { accountSettingsResetPasswordSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+import {isSuccessfulResponseFromApiSelector} from 'redux/reducers/user';
+import * as yup from "yup";
+import {passwordRegExp} from "../../utils/vadidationSchemas";
 
 const AccountSettingsResetPassword = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const errorHandlerHook = useAuthErrorHandler()
+  const formikRef = useRef();
+  const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
+
+  useEffect(()=>{
+    if(isSuccessfulResponseFromApi){
+      formikRef?.current?.resetForm()
+      dispatch(setResponseFromApi(false))
+    }
+  },[isSuccessfulResponseFromApi,dispatch ])
 
   const handleShowResetPass = () => {
     dispatch(setShowResetPassword(true));
@@ -27,18 +41,33 @@ const AccountSettingsResetPassword = () => {
     new_password1: "",
     new_password2: "",
   };
+  const accountSettingsResetPasswordSchema = yup.object({
+    old_password: yup
+        .string().max(128)
+        .required(t("errors.password_required")),
+    new_password1: yup.string().max(128).matches(passwordRegExp, t("errors.password_example")).required(t("errors.new_password_required")),
+    new_password2: yup
+        .string().required(t("errors.confirm_password_required")).max(128)
+        .when('new_password1', {
+          is: password => (password && password.length > 0 ? true : false),
+          then: yup.string().oneOf([yup.ref('new_password1')], t("errors.password_match"))
+        })
+  })
   const onSubmitPassword = (values) => {
     _changePassword(values);
   };
   return (
     <>
       <Formik
+        innerRef={formikRef}
         initialValues={initialValuesPassword}
         validationSchema={accountSettingsResetPasswordSchema}
         onSubmit={onSubmitPassword}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ values, errors, touched, setFieldValue, setValues, isValid }) => {
+        {({ values, errors, touched, setFieldValue, setValues, setFieldError }) => {
           return (
             <Form className="account_settings_form_password">
               <h3 className="account_settings_form_title">
@@ -62,8 +91,11 @@ const AccountSettingsResetPassword = () => {
                 autoComplete="new-password"
                   // values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.oldPasswordError }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <InputComponent
@@ -76,8 +108,11 @@ const AccountSettingsResetPassword = () => {
                 inputName="new_password1"
                 values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
+                errorFromApi={ errorHandlerHook?.newPassword1Error }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <InputComponent
@@ -90,8 +125,11 @@ const AccountSettingsResetPassword = () => {
                 inputName="new_password2"
                 values={values}
                 setFieldValue={setFieldValue}
+                setFieldError={setFieldError}
                 touched={touched}
                 errors={errors}
+                errorFromApi={errorHandlerHook?.newPassword2Error }
+                clearError={errorHandlerHook?.clearAuthErrorFromApi}
               />
 
               <div className="account_settings_buttons_container">
@@ -105,7 +143,7 @@ const AccountSettingsResetPassword = () => {
                 <Button
                   type="submit"
                   colorStyle="dark-green"
-                  disabled={!isValid}
+                  // disabled={!isValid}
                   className="account_settings_button_save"
                 >
                   {t("profile_page.reset_password.button_save")}

@@ -7,13 +7,17 @@ import Button from "../../ui/Button";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
 import { resetPassword } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-import { resetPasswordSchema } from "utils/vadidationSchemas";
+// import { resetPasswordSchema } from "utils/vadidationSchemas";
 import SpinnerStyled from '../../ui/Spinner';
 import {getIsFetchingAuthSelector} from 'redux/reducers/user';
+import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
+
+import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
+import * as yup from "yup";
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
-
+  const errorHandlerHook = useAuthErrorHandler()
   const dispatch = useDispatch();
 
   const isFetching = useSelector(getIsFetchingAuthSelector)
@@ -27,12 +31,16 @@ const ResetPassword = ({ show }) => {
 
   const onClose = () => {
     dispatch(setShowResetPassword(false));
+    errorHandlerHook?._clearErrors()
   };
 
   const onSubmit = (values) => {
     _resetPassword(values.email.toLowerCase());
-  };
 
+  };
+  const resetPasswordSchema = yup.object({
+    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+  })
   return (
     <Modal
       show={show}
@@ -54,31 +62,39 @@ const ResetPassword = ({ show }) => {
         initialValues={{ email: "" }}
         validationSchema={resetPasswordSchema}
         onSubmit={onSubmit}
-        validateOnMount
+        // validateOnMount
+        validateOnChange={false}
+        validateOnBlur={false}
       >
-        {({ touched, errors, values, setFieldValue, isValid }) => (
-          <Form className="auth_form">
-            <InputComponent
-              labelClassName="auth_login_container auth_container"
-              label={t("auth.resetPasswordPopup.label")}
-              inputClassName="auth_input"
-              inputName="email"
-              values={values}
-              setFieldValue={setFieldValue}
-              touched={touched}
-              errors={errors}
-              placeholder={t("auth.resetPasswordPopup.placeholder")}
-            />
-            <Button
-              type="submit"
-              colorStyle={"dark-green"}
-              className="auth_button"
-              disabled={!isValid}
-            >
-              {t("auth.resetPasswordPopup.button")}
-            </Button>
-          </Form>
-        )}
+        {({ touched, errors, values, setFieldValue, setFieldError, setFieldTouched }) => {
+          useTranslateFormErrors(errors, touched,setFieldTouched)
+         return (
+              <Form className = "auth_form">
+                <InputComponent
+                    labelClassName = "auth_login_container auth_container"
+                    label = {t("auth.resetPasswordPopup.label")}
+                    inputClassName = "auth_input"
+                    inputName = "email"
+                    values = {values}
+                    setFieldValue = {setFieldValue}
+                    setFieldError = {setFieldError}
+                    touched = {touched}
+                    errors = {errors}
+                    errorFromApi = {errorHandlerHook?.userError || errorHandlerHook?.emailError}
+                    clearError = {errorHandlerHook?.clearAuthErrorFromApi}
+                    placeholder = {t("auth.resetPasswordPopup.placeholder")}
+                />
+                <Button
+                    type = "submit"
+                    colorStyle = {"dark-green"}
+                    className = "auth_button"
+                    // disabled={!isValid}
+                >
+                  {t("auth.resetPasswordPopup.button")}
+                </Button>
+              </Form>
+          )
+        }}
       </Formik>
     </Modal>
   );

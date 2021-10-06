@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import iconDocument from "public/images/raise_document.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import IconComponent from "components/ui/IconComponent";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const DocumentItem = ({ data, setFieldValue, values }) => {
@@ -24,7 +24,7 @@ const DocumentItem = ({ data, setFieldValue, values }) => {
         className="form_file_delete"
         onClick={removeDocument}
       >
-        <FontAwesomeIcon icon={faTimes} className="form_file_delete_icon" />
+        <IconComponent icon={faTimes} className="form_file_delete_icon" />
       </div>
     </li>
   );

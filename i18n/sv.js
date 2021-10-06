@@ -145,7 +145,10 @@ export const sv = {
       button_confirm: "Godkänn",
       button_discard: "Avbryt",
     },
-
+    quiz:{
+      back_button: "Tillbaka",
+      button_confirm: 'Godkänn',
+    },
     tab_accordion: {
       Idea: "Ide",
       Team: "Team",
@@ -173,6 +176,9 @@ export const sv = {
       company_days_left: "dagar kvar",
       button_invest: "Investera nu",
       button_contact: "Kontakta för köp",
+      button_read_more: "Läs mer",
+      button_show_more: "Visa mer",
+      button_show_less: "Visa mindre",
       company_info: {
         Industry: "Industri:",
         Location: "Område:",
@@ -319,5 +325,6 @@ export const sv = {
         save_button: "Spara ändringar",
       },
     },
+
   },
 };

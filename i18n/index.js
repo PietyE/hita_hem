@@ -12,7 +12,7 @@ export const resources = {
 };
 
 export const initLanguage = () => {
-  const cookiesLang = Cookies.get("i18next");
+  const cookiesLang = Cookies.get("NEXT_LOCALE");
 
   if (cookiesLang) {
     return cookiesLang;

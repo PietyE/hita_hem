@@ -3,8 +3,11 @@ import ImageComponent from "components/ui/ImageComponent";
 import Button from "components/ui/Button";
 import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
+import {useTranslation} from "react-i18next";
 
 const FinArticle = ({ item }) => {
+  const { t } = useTranslation();
+
   const { title, description, image } = item;
 
   const contentRef = useRef();
@@ -96,7 +99,7 @@ const FinArticle = ({ item }) => {
               className="show_more_button fin_show_more"
               onClick={_handleClickShowMore}
             >
-              {isShowMore ? "Show less" : "Show more"}
+              {isShowMore ? t("company_page.button_show_less") : t("company_page.button_show_more")}
             </span>
           </div>
         )}
@@ -107,7 +110,7 @@ const FinArticle = ({ item }) => {
             className="fin_article_large_button"
             style={buttonStyle}
           >
-            {isShowMore ? "Show less" : "Read more"}
+            {isShowMore ? t("company_page.button_show_less") : t("company_page.button_read_more")}
           </Button>
         )}
       </li>

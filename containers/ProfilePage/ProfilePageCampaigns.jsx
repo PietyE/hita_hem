@@ -57,20 +57,20 @@ const ProfilePageCampaigns = () => {
 
               let _link;
               let textLink;
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'development'){
-                _link = `https://dev.accumeo.com/company/${campaign.id}`
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development'){
+                _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${campaign.id}`:`https://nextdev.accumeo.com/sv/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'staging'){
-                _link = `https://stage.accumeo.com/company/${campaign.id}`
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging'){
+                _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.id}`:`https://stage.accumeo.com/sv/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
-              if(process.env.REACT_APP_CUSTOM_NODE_ENV === 'production'){
-                _link = `https://preprod.accumeo.com/company/${campaign.id}`
+              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+                _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${campaign.id}`:`https://preprod.accumeo.com/sv/company/${campaign.id}`
                 textLink = `https://accumeo.com/company/${campaign.id}`
               }
               let _status = startCase(
-                convertStatusToText(campaign.status).toLocaleLowerCase()
+                convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
               );
 
               return (
