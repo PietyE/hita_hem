@@ -17,6 +17,9 @@ export const SET_TAB = "user/SET_TAB";
 export const DELETE_ACCOUNT = "user/DELETE_ACCOUNT";
 export const SET_RESPONSE_FROM_API = 'SET_RESPONSE_FROM_API'
 
+export const SET_CAN_CHANGE_EMAIL = 'SET_CAN_CHANGE_EMAIL'
+
+
 export const SET_LANGUAGE = "language/SET_LANGUAGE";
 export const CHANGE_LANGUAGE = "language/CHANGE_LANGUAGE";
 

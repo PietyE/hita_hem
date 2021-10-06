@@ -119,7 +119,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   /////////////////////////////////////////////////////////
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = throttle(() => {
+  const toggleVisible = () => {
     const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > topPart) {
@@ -127,7 +127,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     } else if (scrolled <= topPart) {
       setVisible(false);
     }
-  }, 1000);
+  };
 
   const classNameVisible = visible ? "invest_button_visible" : "";
 

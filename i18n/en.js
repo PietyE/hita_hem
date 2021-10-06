@@ -383,8 +383,21 @@ export const en = {
       followers_number: 'Number of followers must be a number',
       follower_positive: 'Number of followers must be >= 0',
 
-    }
-
+    },
+    change_email_page: {
+      button_submit: "Submit",
+      new_email: 'New Email Address*',
+      password: 'Password*',
+      text: 'A message will be sent to your current email. Please follow the instructions sent by email to confirm the email changing',
+      button_change: 'Change email',
+    },
+    change_password_page: {
+      new_password: "New password*",
+      confirm_password: "Re-enter new password*",
+      text: "A message will be sent to your email. Please follow the instructions sent by email to confirm the password changing.",
+      button_change: 'Change password',
+    },
   },
+
 
 };

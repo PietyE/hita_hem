@@ -17,6 +17,7 @@ import {
   CHANGE_EMAIL,
   DELETE_ACCOUNT,
   SET_RESPONSE_FROM_API,
+  SET_CAN_CHANGE_EMAIL,
 
 } from "constants/actionsConstant";
 
@@ -102,5 +103,10 @@ export const deleteAccount = (payload) => ({
 
 export const setResponseFromApi = payload => ({
   type: SET_RESPONSE_FROM_API,
+  payload
+})
+
+export const setCanChangeEmail = payload => ({
+  type: SET_CAN_CHANGE_EMAIL,
   payload
 })

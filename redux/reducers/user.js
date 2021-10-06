@@ -8,10 +8,12 @@ import {
   SET_TAB,
   BOOTSTAP_ACTION,
   SET_RESPONSE_FROM_API,
+  SET_CAN_CHANGE_EMAIL,
 } from "constants/actionsConstant";
 
 const initialsState = {
   activeTab: "personal_details",
+  canChangeEmail: false,
   isAuth: false,
   isFetching: false,
   isQuizPassed: false,
@@ -45,10 +47,14 @@ export const user = (state = initialsState, actions) => {
       return { ...state, activeTab: actions.payload };
     case SET_RESPONSE_FROM_API:
       return {...state, isSuccessfulResponseFromApi: actions.payload}
+    case SET_CAN_CHANGE_EMAIL:
+      return {...state, canChangeEmail: actions.payload}
     default:
       return state;
   }
 };
+
+export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;

@@ -57,103 +57,19 @@ const AccountSettingsResetPassword = () => {
     _changePassword(values);
   };
   return (
-    <>
-      <Formik
-        innerRef={formikRef}
-        initialValues={initialValuesPassword}
-        validationSchema={accountSettingsResetPasswordSchema}
-        onSubmit={onSubmitPassword}
-        // validateOnMount
-        validateOnChange={false}
-        validateOnBlur={false}
-      >
-        {({ values, errors, touched, setFieldValue, setValues, setFieldError }) => {
-          return (
-            <Form className="account_settings_form_password">
-              <h3 className="account_settings_form_title">
-                {t("profile_page.reset_password.title")}
-              </h3>
+<>
+              <p className="account_settings_form_title">
+                {t("change_password_page.text")}
+              </p>
 
-              <span
-                onClick={handleShowResetPass}
-                className="account_settings_forgot_link"
-              >
-                {t("profile_page.reset_password.forgot_password")}
-              </span>
-              <InputComponent
-                type="password"
-                labelClassName="account_settings_form_label"
-                label={t("profile_page.reset_password.password_label")}
-                inputClassName="account_settings_form_input"
-                errorClassName="profile_form_warning_text"
-                iconClassName="profile_account_icon_eye"
-                inputName="old_password"
-                autoComplete="new-password"
-                  // values={values}
-                setFieldValue={setFieldValue}
-                setFieldError={setFieldError}
-                touched={touched}
-                errors={errors}
-                errorFromApi={errorHandlerHook?.oldPasswordError }
-                clearError={errorHandlerHook?.clearAuthErrorFromApi}
-              />
-
-              <InputComponent
-                type="password"
-                labelClassName="account_settings_form_label"
-                label={t("profile_page.reset_password.new_password_label")}
-                inputClassName="account_settings_form_input"
-                errorClassName="profile_form_warning_text"
-                iconClassName="profile_account_icon_eye"
-                inputName="new_password1"
-                values={values}
-                setFieldValue={setFieldValue}
-                setFieldError={setFieldError}
-                touched={touched}
-                errors={errors}
-                errorFromApi={ errorHandlerHook?.newPassword1Error }
-                clearError={errorHandlerHook?.clearAuthErrorFromApi}
-              />
-
-              <InputComponent
-                type="password"
-                labelClassName="account_settings_form_label"
-                label={t("profile_page.reset_password.confirm_password_label")}
-                inputClassName="account_settings_form_input"
-                iconClassName="profile_account_icon_eye"
-                errorClassName="profile_form_warning_text"
-                inputName="new_password2"
-                values={values}
-                setFieldValue={setFieldValue}
-                setFieldError={setFieldError}
-                touched={touched}
-                errors={errors}
-                errorFromApi={errorHandlerHook?.newPassword2Error }
-                clearError={errorHandlerHook?.clearAuthErrorFromApi}
-              />
-
-              <div className="account_settings_buttons_container">
-                <Button
-                  colorStyle="link"
-                  className="account_settings_button_cancel"
-                  onClick={() => setValues(initialValuesPassword)}
-                >
-                  {t("profile_page.reset_password.button_cancel")}
-                </Button>
                 <Button
                   type="submit"
                   colorStyle="dark-green"
-                  // disabled={!isValid}
                   className="account_settings_button_save"
                 >
-                  {t("profile_page.reset_password.button_save")}
+                  {t("change_password_page.button_change")}
                 </Button>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
-    </>
+       </>
   );
 };
 
