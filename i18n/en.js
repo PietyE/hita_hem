@@ -33,7 +33,7 @@ export const en = {
       form2: {
         company_name: "Company Name*",
         company_form: "Form of the company*",
-        role: "Role in the company*",
+        role: "Your role in the company*",
         shares: "Company % for shares*",
         revenue: "Revenue of the last financial year",
         amount: "Funding goal*",

@@ -8,9 +8,13 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import {useSelector} from "react-redux";
+import {getSelectedLangSelector} from "redux/reducers/language";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
+  const currentLanguage = useSelector(getSelectedLangSelector);
+
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
     if (activeTab === e.target.dataset.value) {
@@ -28,15 +32,15 @@ const MobileInvestment = ({ data }) => {
             let textLink;
 
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = `https://dev.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${payment.company_id}`:`https://nextdev.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = `https://stage.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = `https://preprod.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${payment.company_id}`:`https://preprod.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             return (
