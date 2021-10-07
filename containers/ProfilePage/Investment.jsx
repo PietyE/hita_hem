@@ -37,7 +37,7 @@ const Investment = () => {
                 let _link;
                 let textLink;
                 if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
-                    _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${payment.company_id}`:`https://nextdev.accumeo.com/sv/company/${payment.company_id}`
+                    _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
                     textLink = `https://accumeo.com/company/${payment.company_id}`
                 }
                 if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {

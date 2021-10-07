@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import throttle from 'lodash/throttle';
 
 import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
@@ -119,7 +118,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   /////////////////////////////////////////////////////////
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = throttle(() => {
+  const toggleVisible = () => {
     const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > topPart) {
@@ -127,7 +126,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     } else if (scrolled <= topPart) {
       setVisible(false);
     }
-  }, 1000);
+  };
 
   const classNameVisible = visible ? "invest_button_visible" : "";
 
