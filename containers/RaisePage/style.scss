@@ -83,7 +83,8 @@
   }
 
   .raise_instructions_container {
-    padding-bottom: 135px;
+    padding-top: 55px;
+    //padding-bottom: 110px;
 
     .raise_instructions_title {
       font-family: Raleway;
@@ -187,7 +188,14 @@
       }
     }
   }
-
+  .raise_opportunities_container{
+    padding-bottom: 110px;
+  }
+  .raise_features_container{
+    .raise_item-list_instructions_container{
+      box-shadow: none;
+    }
+  }
   .raise_advantages_container {
     display: flex;
     flex-wrap: wrap;
@@ -270,6 +278,7 @@
       line-height: 36px;
       text-align: center;
       color: rgba(0, 0, 0, 0.87);
+      padding: 0 10px;
     }
 
     .raise_form_description {
@@ -281,6 +290,7 @@
       text-align: center;
       color: rgba(0, 0, 0, 0.6);
       margin-bottom: 40px;
+      padding: 0 10px;
     }
 
     .raise_form_bottom_block {
@@ -776,10 +786,10 @@
         box-shadow: none;
         width: 100%;
         flex-direction: column;
-        padding: 0;
+        padding: 60px;
 
         .raise_item_container {
-          width: 400px;
+          width: 380px;
           position: relative;
           padding-left: 90px;
           margin-right: auto;
@@ -805,6 +815,12 @@
             margin-bottom: 0;
           }
         }
+      }
+    }
+    .raise_opportunities_container{
+      padding-bottom: 0;
+      .raise_item-list_instructions_container{
+        padding-bottom: 0;
       }
     }
   }
@@ -880,7 +896,8 @@
         }
 
         .raise_advantages_title {
-          width: 280px;
+          //width: 280px;
+          width: auto;
           font-size: 36px;
         }
 
@@ -1046,7 +1063,7 @@
     }
     .raise_instructions_container {
       padding-top: 55px;
-      padding-bottom: 50px;
+      //padding-bottom: 50px;
 
       .raise_instructions_title {
         font-size: 28px;
@@ -1058,8 +1075,9 @@
       }
 
       .raise_item-list_instructions_container {
+        padding: 30px;
         .raise_item_container {
-          width: 280px;
+          width: 260px;
           padding-left: 65px;
 
           &:nth-child(3n) {
