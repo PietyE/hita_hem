@@ -41,8 +41,8 @@ export const en = {
       form3: {
         company_website: "Company website",
         video_link: "Optional link to video presentation",
-        social_media_facebook: "Optional link to facebook",
-        social_media_linkedin: "Optional link to linkedin",
+        social_media_facebook: "Optional link to Facebook",
+        social_media_linkedin: "Optional link to Linkedin",
         social_media_instagram: "Optional link to Instagram",
 
         followers: "Number of followers",
