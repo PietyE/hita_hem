@@ -1,0 +1,3 @@
+import SuccessfullyCampaignRegistrationModal from './SuccessfullyCampaignRegistrationModal'
+
+export default SuccessfullyCampaignRegistrationModal

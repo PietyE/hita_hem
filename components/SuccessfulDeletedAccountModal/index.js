@@ -1,0 +1,3 @@
+import SuccessfulDeletedAccountModal from './SuccessfulDeletedAccountModal'
+
+export default SuccessfulDeletedAccountModal

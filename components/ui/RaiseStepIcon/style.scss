@@ -1,0 +1,128 @@
+  .step_icon_container{
+  position: relative;
+  margin-right: 3px;
+    margin-left: 3px;
+
+  //&::after{
+  //  position: absolute;
+  //  left: 50px;
+  //  top:22px;
+  //  content: '';
+  //  display: block;
+  //  width: 70px;
+  //  padding: 10px;
+  //  border: 5px rgba(31, 96, 124, 0.4);
+  //  border-top-style: dotted;
+  //}
+
+  &:last-child{
+    margin-right: 0;
+    &::after{
+      display: none;
+    }
+  }
+
+.step_icon_bg-circle{
+  width: 45px;
+  height: 45px;
+  background:rgba(31, 96, 124, 0.3);
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+  .step_icon_bg-circle_hide{
+    @extend .step_icon_bg-circle;
+    background: rgba(31, 96, 124, 0);
+  }
+  .step_icon_circle_active{
+    transform: translate(4.5px, 4.5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 36px;
+    height: 36px;
+    background: #1F607C;
+    font-family: SANS-SERIF;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #FFFFFF;
+
+  }
+  .step_icon_circle_not-active{
+    @extend .step_icon_circle_active;
+    background:rgba(31, 96, 124, 0.3);
+
+  }
+  .step_icon_description{
+    font-family: SANS-SERIF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+    opacity: 0.4;
+  }
+  .step_icon_description_active{
+    @extend .step_icon_description;
+    font-weight: 500;
+    color: #1F607C;
+    opacity: 1;
+
+
+  }
+}
+  .raise_step_dots{
+    color: rgba(31, 96, 124, 0.4);
+    font-size: 44px;
+    transform: translateY(-26px);
+    &:last-child{
+      display: none;
+    }
+  }
+  .raise_step_dots-active{
+    @extend .raise_step_dots;
+    color:rgb(31, 96, 124);
+
+  }
+.step_icon_container_active-dots{
+  @extend .step_icon_container;
+  &::after{
+    border: 5px rgb(31, 96, 124);
+    border-top-style: dotted;
+  }
+  }
+
+
+@media screen and (max-width: 435px) {
+  .step_icon_container{
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .raise_step_dots {
+    font-size: 32px;
+    transform: translateY(-14px);
+    font-weight: 300;
+    }
+}
+  @media screen and (max-width: 380px) {
+    .step_icon_container{
+      margin-right: 1px;
+      margin-left: 1px;
+    }
+    .raise_step_dots {
+      font-size: 24px;
+      transform: translateY(-4px);
+    }
+  }
+
+
+  @media screen and (max-width: 330px) {
+    .raise_step_dots {
+      font-size: 16px;
+      transform: translateY(6px);
+    }
+  }
