@@ -46,7 +46,7 @@ const MobileCampaigns = ({ data }) => {
             let _link;
             let textLink;
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = currentLanguage === 'en'?`https://nextdev.accumeo.com/company/${campaign.id}`:`https://nextdev.accumeo.com/sv/company/${campaign.id}`
+              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${campaign.id}`:`https://dev.accumeo.com/sv/company/${campaign.id}`
               textLink = `https://accumeo.com/company/${campaign.id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
