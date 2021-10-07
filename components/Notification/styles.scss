@@ -1,0 +1,26 @@
+.notification{
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  width: 350px;
+  padding-right: 15px;
+  padding-top: 5px;
+  z-index: 1150;
+
+  button{
+    display: block;
+    margin-left: auto;
+    span{
+      font-size: 20px;
+      line-height: 20px;
+    }
+  }
+}
+
+
+@media screen and (max-device-width: 450px) {
+
+  .notification{
+    width: 250px;
+  }
+}

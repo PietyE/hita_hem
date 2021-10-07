@@ -1,0 +1,4 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+User-agent: AdsBot-Google
+Disallow: /

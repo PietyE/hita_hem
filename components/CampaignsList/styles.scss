@@ -1,0 +1,39 @@
+.campaigns_list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 1490px;
+  padding-right: 25px;
+  padding-left: 25px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 1490px) {
+  .campaigns_list {
+    width: 1157px;
+    margin-bottom: 10px;
+  }
+}
+@media screen and (max-width: 1157px) {
+  .campaigns_list {
+    width: 778px;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 778px) {
+  .campaigns_list {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .campaigns_list {
+    width: 399px;
+  }
+}
+@media screen and (max-width: 399px) {
+  .campaigns_list {
+    width: 300px;
+
+  }
+}

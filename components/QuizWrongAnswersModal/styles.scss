@@ -1,0 +1,31 @@
+.quiz_error_modal{
+  padding-top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  .quiz_error_dialog{
+    width: auto;
+    box-shadow: none;
+  }
+}
+.quiz_error_dialog_icon_container{
+  background-color: rgba(255, 77, 79, 0.2);
+}
+
+.successful_investment_text {
+  font-family: Mulish;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 150%;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 500px) {
+  .quiz_error_modal{
+    .quiz_error_body{
+      padding: 30px 45px;
+    }
+
+  }
+
+}

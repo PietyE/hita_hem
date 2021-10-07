@@ -1,0 +1,3 @@
+import ShowConfirmationOfAccountDeletion from './ShowConfirmationOfAccountDeletion'
+
+export default ShowConfirmationOfAccountDeletion
