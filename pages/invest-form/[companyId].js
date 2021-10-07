@@ -27,6 +27,7 @@ import {
 } from "redux/reducers/user";
 
 import { HOME_ROUTE } from "constants/routesConstant";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const numbers_validation = /^\d*(?:[.,]\d*)?$/;
 
@@ -37,6 +38,7 @@ const InvestFormPage = () => {
   const [amount, setAmount] = useState("");
 
   let history = useRouter();
+  const moneyFormat = useMoneyFormat()
 
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
@@ -119,7 +121,7 @@ const InvestFormPage = () => {
               <Progress
                 percent={percentage}
                 currency={currency}
-                target={target}
+                target={moneyFormat.format(target)}
               />
             </div>
             <div className="invest_form_invest">
@@ -129,7 +131,7 @@ const InvestFormPage = () => {
               <p className="invest_form_invest_text">
                 {t("invest_form_page.invest_text")}{" "}
                 <span>
-                  {currency} {price}
+                  {currency} {moneyFormat.format(price)}
                 </span>
               </p>
               <label className="invest_form_invest_label">
@@ -141,7 +143,7 @@ const InvestFormPage = () => {
                   onChange={handleChangeInput}
                   placeholder={`${t(
                     "invest_form_page.invest_placeholder"
-                  )} ${currency} ${price}`}
+                  )} ${currency} ${moneyFormat.format(price)}`}
                   className="invest_form_invest_input"
                   pattern=""
                 />
@@ -151,10 +153,10 @@ const InvestFormPage = () => {
               </h2>
               <div className="invest_form_invest_shares_container">
                 <p className="invest_form_invest_shares">
-                  {shares} {t("invest_form_page.statistics_shares")}
+                  {moneyFormat.format(shares)} {t("invest_form_page.statistics_shares")}
                 </p>
                 <p className="invest_form_invest_shares_total">
-                  {currency} {currentInvestment || 0}
+                  {currency} {moneyFormat.format(currentInvestment) || 0}
                 </p>
               </div>
               <p className="invest_form_invest_statistics_text">
@@ -164,7 +166,7 @@ const InvestFormPage = () => {
                 <p>{t("invest_form_page.invest_form_total")}</p>
                 <p className="invest_form_content_block_footer_total">
                   {" "}
-                  {currency} {total || 0}
+                  {currency} {moneyFormat.format(total) || 0}
                 </p>
               </div>
             </div>

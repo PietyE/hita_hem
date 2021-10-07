@@ -10,10 +10,12 @@ import {
 import { useTranslation } from "react-i18next";
 import {useSelector} from "react-redux";
 import {getSelectedLangSelector} from "redux/reducers/language";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
   const currentLanguage = useSelector(getSelectedLangSelector);
+  const moneyFormat = useMoneyFormat()
 
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
@@ -82,7 +84,7 @@ const MobileInvestment = ({ data }) => {
                         {t("profile_page.investments.amount")}
                       </span>
                       <span className="mobile_investments_field_values">
-                        {payment.amount_currency} {payment.amount}
+                        {payment.amount_currency} {moneyFormat.format(payment.amount)}
                       </span>
                     </p>
                     <p className="mobile_investments_field mobile_investments_shares">
