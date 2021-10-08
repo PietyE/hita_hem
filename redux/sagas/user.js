@@ -13,6 +13,8 @@ import {
   CHANGE_PASSWORD,
   CHANGE_EMAIL,
   DELETE_ACCOUNT,
+  REQUEST_FOR_CHANGING_EMAIL,
+  REQUEST_FOR_CHANGING_PASSWORD,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -338,6 +340,33 @@ export function* deleteUserAccount() {
   }
 }
 
+function* requestForChangingEmail() {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForChangingEmail"]);
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* requestForChangingPassword() {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForChangingPassword"]);
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
 function* clean() {
   yield put(setAccount({}));
   yield put(setToken({}));
@@ -369,4 +398,6 @@ export function* userWorker() {
   yield takeEvery(CHANGE_PASSWORD, changeUserPassword);
   yield takeEvery(CHANGE_EMAIL, changeUserEmail);
   yield takeEvery(DELETE_ACCOUNT, deleteUserAccount);
+  yield takeEvery(REQUEST_FOR_CHANGING_EMAIL, requestForChangingEmail);
+  yield takeEvery(REQUEST_FOR_CHANGING_PASSWORD, requestForChangingPassword);
 }

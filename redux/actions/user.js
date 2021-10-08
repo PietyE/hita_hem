@@ -18,6 +18,8 @@ import {
   DELETE_ACCOUNT,
   SET_RESPONSE_FROM_API,
   SET_CAN_CHANGE_EMAIL,
+  REQUEST_FOR_CHANGING_EMAIL,
+  REQUEST_FOR_CHANGING_PASSWORD,
 
 } from "constants/actionsConstant";
 
@@ -110,3 +112,14 @@ export const setCanChangeEmail = payload => ({
   type: SET_CAN_CHANGE_EMAIL,
   payload
 })
+
+export const makeRequestForChangingEmail = payload => ({
+  type: REQUEST_FOR_CHANGING_EMAIL,
+  payload
+})
+
+export const makeRequestForChangingPassword = payload => ({
+  type: REQUEST_FOR_CHANGING_PASSWORD,
+  payload
+})
+

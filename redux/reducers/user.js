@@ -9,6 +9,7 @@ import {
   BOOTSTAP_ACTION,
   SET_RESPONSE_FROM_API,
   SET_CAN_CHANGE_EMAIL,
+
 } from "constants/actionsConstant";
 
 const initialsState = {

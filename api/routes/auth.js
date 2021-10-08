@@ -109,6 +109,22 @@ class AuthCRUD extends CRUD {
       method: "DELETE",
     });
   }
+
+  requestForChangingPassword() {
+    const url = `${this.url}/password-changing-request/`;
+    return this.request({
+      url,
+      method: "PATCH",
+    });
+  }
+
+  requestForChangingEmail() {
+    const url = `${this.url}/email-changing-request/`;
+    return this.request({
+      url,
+      method: "PATCH",
+    });
+  }
 }
 
 export default function authCRUD(request) {

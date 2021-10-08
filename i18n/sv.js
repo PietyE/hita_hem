@@ -325,6 +325,20 @@ export const sv = {
         save_button: "Spara ändringar",
       },
     },
+    change_email_page: {
+      button_submit: "Skicka",
+      new_email: 'Ny mail address*',
+      password: 'Lösenord*',
+      text: 'Ett meddelande kommer skickas till din nuvarande mail. Var vänlig och följ instruktionerna skickade över email för att godkänna bytet av email',
+      button_change: 'Byt email',
+    },
+    change_password_page: {
+      new_password: "Nytt lösenord*",
+      confirm_password: "Upprepa nytt lösenord*",
+      text: "Ett meddelande kommer skickas till din nuvarande mail. Var vänlig och följ instruktionerna skickade över email för att godkänna bytet av email",
+      button_change: 'Byt lösenord',
+    },
 
-  },
+
+    },
 };
