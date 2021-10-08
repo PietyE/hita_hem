@@ -86,6 +86,9 @@ export const SET_SHOW_QUIZ_ERROR = "authPopupWindows/SET_SHOW_QUIZ_ERROR"
 export const SET_SHOW_SUCCESSFUL_SUBSCRIBE =
     "authPopupWindows/SET_SHOW_SUCCESSFUL_SUBSCRIBE"
 export const SET_SHOW_RAISE_ERROR = "authPopupWindows/SET_SHOW_RAISE_ERROR"
+export const SET_SHOW_REQUEST_FOR_CHANGE = "authPopupWindows/SET_SHOW_REQUEST_FOR_CHANGE"
+
+
 
 export const GET_LAUNCHING_SOON_POSTS = "launchingSoon/GET_POSTS";
 export const SET_LAUNCHING_SOON_POSTS = "launchingSoon/SET_POSTS";

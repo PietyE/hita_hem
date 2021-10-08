@@ -19,6 +19,7 @@ import {
   getShowQuizError,
   getShowSuccessfulSubscribe,
   getShowRaiseError,
+    getShowRequestForChange,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
@@ -60,6 +61,9 @@ const SuccessfullySubscribedModal = dynamic(() =>
 const RaiseWrongAnswerModal = dynamic(() =>
     import("components/RaiseWrongAnswersModal")
 );
+const SuccessfulRequestForChange = dynamic(() =>
+    import("components/SuccessfulRequestForChange")
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -85,7 +89,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowQuizErrorPopup = useSelector(getShowQuizError);
   const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
-
+  const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
 
   const _logOut = useCallback(() => {
     dispatch(logOut());
@@ -153,6 +157,9 @@ const RootPage = ({ children, initLang = "" }) => {
         )}
         {!!isShowQuizRaisePopup && (
             <RaiseWrongAnswersModal show={isShowQuizRaisePopup} />
+        )}
+        {!!isShowSuccessfulRequestForChange && (
+            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChange}/>
         )}
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
         <ScrollToTopButton />

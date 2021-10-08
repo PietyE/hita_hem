@@ -32,6 +32,7 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
+  setShowRequestForChange,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -344,6 +345,7 @@ function* requestForChangingEmail() {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingEmail"]);
+    yield put(setShowRequestForChange(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
@@ -357,6 +359,7 @@ function* requestForChangingPassword() {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingPassword"]);
+    yield put(setShowRequestForChange(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })

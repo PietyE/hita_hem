@@ -12,6 +12,7 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
+  SET_SHOW_REQUEST_FOR_CHANGE,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -74,5 +75,10 @@ export const setSuccessfulSubscribe= payload =>({
 
 export const setShowRaiseError= payload =>({
   type: SET_SHOW_RAISE_ERROR,
+  payload,
+})
+
+export const setShowRequestForChange= payload =>({
+  type: SET_SHOW_REQUEST_FOR_CHANGE,
   payload,
 })
