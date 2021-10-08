@@ -10,9 +10,11 @@ import {ERROR, SET_AUTH_ERROR, SET_PROFILE_ERROR} from 'constants/actionsConstan
 import api from "../../api";
 
 import isEmpty from "lodash/isEmpty";
+import {getSelectedLangSelector} from "../reducers/language";
 
 function* errorHandler() {
     const error = yield select(getErrorSelector);
+    const language = yield select(getSelectedLangSelector)
     yield put(setNotification(true));
     switch (error?.status) {
         case 500:
@@ -44,7 +46,7 @@ function* errorHandler() {
 
             if (isEmpty(error)) {
                 yield put(setNotificationTitle('Ooops...'))
-                yield put(setNotificationMessage('Such mail already exists'))
+                yield put(setNotificationMessage(language ==='en'?'Such mail already exists':'Detta email existerar redan'))
             } else {
 
                 if (error.auth) {

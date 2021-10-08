@@ -11,9 +11,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import startCase from "lodash/startCase";
 import {convertStatusToText} from "utils/utils";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const MobileCampaigns = ({ data }) => {
   const { t } = useTranslation();
+  const moneyFormat = useMoneyFormat()
 
   const currentLanguage = useSelector(getSelectedLangSelector);
   const [activeTab, setActiveTab] = useState(null);
@@ -123,7 +125,7 @@ const MobileCampaigns = ({ data }) => {
                         {t("profile_page.campaigns.raised")}
                       </span>
                       <span className="mobile_investments_field_values">
-                        {campaign?.invested_currency} {campaign?.invested}
+                        {campaign?.invested_currency} {moneyFormat.format(campaign?.invested)}
                       </span>
                     </p>
                   </Card.Body>

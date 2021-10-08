@@ -28,7 +28,7 @@ function RaiseWrongAnswersModal({show}) {
                 <Image src={Icon} alt='icon'/>
             </div>
             <h2 className='successful_investment_title'>{t("raiseWrongAnswersModal.title")}</h2>
-            <p className='successful_investment_text'>{t("raiseWrongAnswersModal.title")}</p>
+            <p className='successful_investment_text'>{t("raiseWrongAnswersModal.text")}</p>
 
         </Modal>
     );

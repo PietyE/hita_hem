@@ -25,12 +25,15 @@ import {
 } from "redux/reducers/companies";
 import { getSelectedLangSelector } from "redux/reducers/language";
 //import { companyTabConstants } from "constants/companyTabConstant";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let history = useRouter();
   const sectionRef = useRef();
+
+  const moneyFormat = useMoneyFormat()
   //const prevSelectedTab = useRef();
   //const scrollScreenValue = useRef();
   const companyId = useSelector(getCompanyIdSelector);
@@ -138,9 +141,9 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   }, []);
 
 
-  const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
-    style: "decimal",
-  });
+  // const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
+  //   style: "decimal",
+  // });
 
   return (
       <>
