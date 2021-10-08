@@ -6,9 +6,11 @@ import MobileCampaigns from "./MobileCampaigns";
 import { useTranslation } from "react-i18next";
 import { convertStatusToText } from "utils/utils";
 import startCase from "lodash/startCase";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const ProfilePageCampaigns = () => {
   const { t } = useTranslation();
+  const moneyFormat = useMoneyFormat()
 
   const currentLanguage = useSelector(getSelectedLangSelector);
 
@@ -96,7 +98,7 @@ const ProfilePageCampaigns = () => {
                     {_status}
                   </p>
                   <p className="profile_campaigns_table_item_text table_item_campaign_raised">
-                    {campaign?.invested_currency} {campaign?.invested}
+                    {campaign?.invested_currency} {moneyFormat.format(campaign?.invested)}
                   </p>
                 </li>
               );
