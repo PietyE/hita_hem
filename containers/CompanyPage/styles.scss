@@ -631,7 +631,9 @@
         margin-bottom: 25px;
         margin-right: 40px;
       }
-
+      .fin_document_link{
+        margin-left: 12px;
+      }
       .fin_document_icon {
         margin-right: 12px;
       }
@@ -986,7 +988,7 @@
       padding-right: 120px;
       padding-left: 120px;
       .middle_tabbr_container {
-        width: 68%;
+        //width: 68%;
 
         .middle_tabbr_wrapp{
 
@@ -1037,7 +1039,7 @@
     .middle_section_container {
       .idea_section_container {
         .idea_section {
-          width: 68%;
+          //width: 68%;
         }
       }
     }
@@ -1062,7 +1064,7 @@
     }
     .middle_section_container {
       .middle_tabbr_container {
-        width: 88%;
+        //width: 88%;
 
         .middle_tabbr {
         }
@@ -1087,6 +1089,13 @@
   }
 }
 @media screen and (max-device-width: 1180px) {
+  .middle_section_container{
+    .middle_tabbr_container{
+      .middle_tabbr_wrapp{
+        width: 85%;
+      }
+    }
+  }
   .campaigns_tab_sign-up_container {
     width: 88%;
   }
@@ -1144,7 +1153,7 @@
     width: 115px;
   }
   .middle_tabbr_container{
-    width: 88%;
+    //width: 88%;
   }
 
   .company-page-container {
