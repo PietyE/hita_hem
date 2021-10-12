@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
 import useRaiseForm3ErrorHandler from "customHooks/useRaiseForm3ErrorHandler";
+import {websiteRegExp} from "../../utils/vadidationSchemas";
 import * as yup from "yup";
 
 const FormPage3 = ({ changePage, submit, formNumber, data }) => {
@@ -24,7 +25,7 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
     followers_count_three: data.followers_count_three,
   };
   const raiseForm3 = yup.object({
-    website: yup.string(t("errors.website_example")),
+    website: yup.string(t("errors.website_example")).matches(websiteRegExp, t("errors.website_example")),
     video_preview: yup.string().url(t("errors.youtube_example")),
     social_one: yup.string().url(t("errors.facebook_example"))
         .when('followers_count_one', {
