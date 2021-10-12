@@ -62,7 +62,7 @@ export const convertStatusToText = (status, language='en') => {
     case 3:
       return "LIVE";
     case 4:
-      return  language === 'en'?"SUCCESSFULLY_CLOSED":"Stängt".toUpperCase;
+      return  language === 'en'?"SUCCESSFULLY CLOSED":"Stängt";
     default:
       return null;
   }
