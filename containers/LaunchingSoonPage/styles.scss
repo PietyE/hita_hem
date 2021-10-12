@@ -81,11 +81,13 @@
         background: #7FD6C2;
         border: 7px solid #383A48;
         border-radius: 6px;
+        border: 6px solid #383A48;
 
       }
       .launching_soon_image_subscribe_form{
         width: 452px;
         height: 52px;
+        //background-color: #fff;
         border: 6px solid #383A48;
         box-sizing: border-box;
         box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
@@ -95,6 +97,7 @@
           border-bottom-left-radius: 0;
           border-top-left-radius: 0;
           border-color: #fff;
+          outline: 1px solid #fff;
           background: #FFFFFF;
           box-sizing: border-box;
           height: 40px;
@@ -107,11 +110,12 @@
 
           &:focus{
             box-shadow: 0 0 rgba(0, 0, 0, 0);
-            border-color: #383A48;
+            //border-color: #383A48;
           }
         }
         .launching_soon_image_subscribe_form_button{
           background: #E0719E;
+          outline: 1px solid #E0719E;
           box-sizing: border-box;
           height: 40px;
           width: 165px;
@@ -329,6 +333,7 @@
         .launching_soon_image_subscribe_form{
           border: none;
           box-shadow: none;
+          background-color: transparent;
           flex-direction: column;
           flex-wrap: nowrap;
           height: auto;
@@ -336,6 +341,7 @@
           .launching_soon_image_subscribe_form_input{
             width: 100%;
             background: #FFFFFF;
+            outline: none;
             border: 6px solid #383A48;
             box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
             border-radius: 4px;
@@ -349,6 +355,7 @@
             }
           }
           .launching_soon_image_subscribe_form_button{
+            outline: none;
             width: 100%;
             background: #E0719E;
             border: 6px solid #383A48;
