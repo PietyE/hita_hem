@@ -13,6 +13,9 @@ import {
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
   SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_INVALID_TOKEN_MODAL,
+  SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
+  SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -30,7 +33,12 @@ const initialValues = {
   showSuccessfulSubscribe:false,
   showRaiseError: false,
   showSuccessfulRequestForChange:false,
+  showInvalidTokenModal: false,
+  showSuccessfulChangeEmailOrPassword:false,
+  text: '',
 };
+
+
 export const getShowSignIn = (state) => state.authPopupWindows.showSignIn;
 export const getShowSignUp = (state) => state.authPopupWindows.showSignUp;
 export const getShowResetPassword = (state) =>
@@ -52,6 +60,9 @@ export const getShowQuizError = state =>  state.authPopupWindows.showQuizError;
 export const getShowSuccessfulSubscribe = state =>  state.authPopupWindows.showSuccessfulSubscribe;
 export const getShowRaiseError = state =>  state.authPopupWindows.showRaiseError;
 export const getShowRequestForChange = state =>  state.authPopupWindows.showSuccessfulRequestForChange;
+export const getShowInvalidTokenModal = state =>  state.authPopupWindows.showInvalidTokenModal;
+export const getShowSuccessfulChangeEmailOrPassword = state =>  state.authPopupWindows.showSuccessfulChangeEmailOrPassword;
+export const getChangeEmailOrPasswordText = state =>  state.authPopupWindows.text;
 
 
 
@@ -85,6 +96,12 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showRaiseError: actions.payload }
     case SET_SHOW_REQUEST_FOR_CHANGE:
       return { ...state, showSuccessfulRequestForChange: actions.payload }
+    case SET_SHOW_INVALID_TOKEN_MODAL:
+      return { ...state, showInvalidTokenModal: actions.payload }
+    case SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD:
+      return { ...state, showSuccessfulChangeEmailOrPassword: actions.payload }
+    case SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT:
+      return { ...state, text: actions.payload }
     default:
       return state;
   }

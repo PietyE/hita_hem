@@ -11,14 +11,13 @@ import Button from "../components/ui/Button";
 import * as yup from "yup";
 import {useTranslation} from "react-i18next";
 import useAuthErrorHandler from "../customHooks/useAuthErrorHandler";
-import {changeEmail, setResponseFromApi} from "../redux/actions/user";
-import {setShowResetPassword, setShowSignIn} from "../redux/actions/authPopupWindows";
+import {changeEmail, setResponseFromApi } from "../redux/actions/user";
+import {setShowResetPassword} from "../redux/actions/authPopupWindows";
 import Modal from "../components/ui/Modal";
 import {HOME_ROUTE} from "../constants/routesConstant";
 import {useRouter} from "next/router";
 
 function ChangeEmail() {
-
     const history = useRouter();
 
     const { t } = useTranslation();
@@ -28,22 +27,15 @@ function ChangeEmail() {
     const canChangeEmail = useSelector(getCanChangeEmailSelector)
     const isAuth = useSelector(getIsSignInUserSelector);
     const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
-
     const formikRef = useRef();
 
-    // const _setShowSignIn = useCallback(
-    //     (data) => {
-    //         dispatch(setShowSignIn(data));
-    //     },
-    //     [dispatch]
-    // );
+    useEffect(()=>{
+        if(!canChangeEmail){
+            history.push(HOME_ROUTE)
+        }
 
-    // useEffect(()=>{
-    //     if(!isAuth && canChangeEmail){
-    //         _setShowSignIn(true)
-    //     }
-    //
-    // },[isAuth, canChangeEmail, _setShowSignIn])
+    },[canChangeEmail])
+
     useEffect(()=>{
         if(isSuccessfulResponseFromApi){
             formikRef?.current?.resetForm()
@@ -60,6 +52,8 @@ function ChangeEmail() {
         },
         [dispatch]
     );
+
+
 
     const initialValuesEmail = {
         email: "",
@@ -78,20 +72,11 @@ function ChangeEmail() {
     };
 
     const handleClose =() => {
-        console.log('-----------------   --------------------')
         history.push(HOME_ROUTE);
     }
 
     return (
         <>
-            { !canChangeEmail  && (
-                <h1> Something went wrong, please try to change your email again! </h1>
-            )
-            }
-            { !isAuth  && (
-                <h1> Something went wrong, login first! </h1>
-            )
-            }
         { canChangeEmail && isAuth &&(
     <Modal
         show = {true}

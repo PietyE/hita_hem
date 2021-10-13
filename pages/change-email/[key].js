@@ -1,21 +1,27 @@
 import React, {useCallback, useEffect} from 'react';
 import {useRouter} from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
-import {setCanChangeEmail} from "redux/actions/user";
-import {getShowSignIn} from "redux/reducers/authPopupWindows";
+import {makeRequestForCheckingToken} from "redux/actions/user";
 import {CHANGE_EMAIL} from "constants/routesConstant";
-import {getIsSignInUserSelector} from "../../redux/reducers/user";
-import {setShowSignIn} from "../../redux/actions/authPopupWindows";
+import {getCanChangeEmailSelector, getIsFetchingAuthSelector, getIsSignInUserSelector} from "redux/reducers/user";
+import SpinnerStyled from "../../components/ui/Spinner";
+import {setShowSignIn} from "redux/actions/authPopupWindows";
 
 
 const changeEmailCheckKey = () => {
     const dispatch = useDispatch();
     const history = useRouter();
     const router = useRouter()
-    const isShowSignIn = useSelector(getShowSignIn);
-    const key = router?.query?.key
-
+    const isFetching = useSelector(getIsFetchingAuthSelector)
+    const canChangeEmail = useSelector(getCanChangeEmailSelector)
     const isAuth = useSelector(getIsSignInUserSelector);
+
+    const _makeRequestForCheckingToken = useCallback(
+        (data) => {
+            dispatch(makeRequestForCheckingToken(data));
+        },
+        [dispatch]
+    );
 
     const _setShowSignIn = useCallback(
         (data) => {
@@ -23,26 +29,27 @@ const changeEmailCheckKey = () => {
         },
         [dispatch]
     );
-
-    const _setCanChangeEmail = useCallback((data) => {
-        dispatch(setCanChangeEmail(data));
-        // if(!isAuth ){
-        //     _setShowSignIn(true)
-        // }
-    }, [dispatch, isAuth, _setShowSignIn]);
-
+    useEffect(() => {
+        _setShowSignIn(!isAuth)
+    }, [isAuth])
 
     useEffect(() => {
-        //todo connect to api for checking key, and check is auth in saga
-        _setCanChangeEmail(true)
-        history.push(CHANGE_EMAIL);
-    }, [key, isShowSignIn])
+        if (router?.query?.key && isAuth) {
+            _makeRequestForCheckingToken(router?.query?.key)
+        }
+    }, [isAuth, _makeRequestForCheckingToken])
 
+    useEffect(() => {
+        if (canChangeEmail) {
+            history.push(CHANGE_EMAIL)
+        }
+    }, [canChangeEmail])
     return (
         <>
+            {isFetching && <SpinnerStyled/>}
         </>
-    )
-        ;
+    );
 }
+
 
 export default changeEmailCheckKey;

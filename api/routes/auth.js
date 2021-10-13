@@ -40,7 +40,7 @@ class AuthCRUD extends CRUD {
     const url = `${this.url}/change_password/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
       data,
     });
   }
@@ -48,7 +48,7 @@ class AuthCRUD extends CRUD {
     const url = `${this.url}/change_email/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
       data,
     });
   }
@@ -125,6 +125,18 @@ class AuthCRUD extends CRUD {
       method: "POST",
     });
   }
+
+  requestForCheckingToken(params) {
+    const url = `/tokens/${params}`;
+    return this.request({
+      url,
+      method: "DELETE",
+    });
+  }
+
+
+
+
 }
 
 export default function authCRUD(request) {

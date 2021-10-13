@@ -397,6 +397,9 @@ export const en = {
       text: "A message will be sent to your email. Please follow the instructions sent by email to confirm the password changing.",
       button_change: 'Change password',
     },
+    invalid_token_modal: {
+      text: 'Your link is not valid. Try to request data change again in your Personal Account in the Account Settings tab.',
+    }
   },
 
 

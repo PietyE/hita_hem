@@ -13,6 +13,9 @@ import {
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
   SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_INVALID_TOKEN_MODAL,
+  SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
+  SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -82,3 +85,19 @@ export const setShowRequestForChange= payload =>({
   type: SET_SHOW_REQUEST_FOR_CHANGE,
   payload,
 })
+
+export const setShowInvalidTokenModal= payload =>({
+  type: SET_SHOW_INVALID_TOKEN_MODAL,
+  payload,
+})
+
+export const setShowChangeEmailOrPassword = payload =>({
+  type: SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
+  payload,
+})
+
+export const setChangeEmailOrPasswordText = payload =>({
+  type: SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
+  payload,
+})
+

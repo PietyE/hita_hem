@@ -20,6 +20,8 @@ import {
   SET_CAN_CHANGE_EMAIL,
   REQUEST_FOR_CHANGING_EMAIL,
   REQUEST_FOR_CHANGING_PASSWORD,
+  CHECK_TOKEN,
+  CLEAN_AUTH_DATA,
 
 } from "constants/actionsConstant";
 
@@ -122,4 +124,15 @@ export const makeRequestForChangingPassword = payload => ({
   type: REQUEST_FOR_CHANGING_PASSWORD,
   payload
 })
+
+
+export const makeRequestForCheckingToken = payload => ({
+  type: CHECK_TOKEN,
+  payload
+})
+
+export const cleanAuthData = () => ({
+  type: CLEAN_AUTH_DATA,
+})
+
 

@@ -20,11 +20,12 @@ import {
   getShowSuccessfulSubscribe,
   getShowRaiseError,
     getShowRequestForChange,
+    getShowInvalidTokenModal,
+    getShowSuccessfulChangeEmailOrPassword,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
-import RaiseWrongAnswersModal from "../RaiseWrongAnswersModal/RaiseWrongAnswersModal";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -64,6 +65,12 @@ const RaiseWrongAnswerModal = dynamic(() =>
 const SuccessfulRequestForChange = dynamic(() =>
     import("components/SuccessfulRequestForChange")
 );
+const InvalidTokenModal = dynamic(() =>
+    import("components/InvalidTokenModal")
+);
+const SuccessfulChangeEmailOrPassword = dynamic(() =>
+    import("components/SuccessfulChangeEmailOrPassword")
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -90,6 +97,9 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
   const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
+  const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
+  const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
+
 
   const _logOut = useCallback(() => {
     dispatch(logOut());
@@ -156,12 +166,14 @@ const RootPage = ({ children, initLang = "" }) => {
           <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
         )}
         {!!isShowQuizRaisePopup && (
-            <RaiseWrongAnswersModal show={isShowQuizRaisePopup} />
+            <RaiseWrongAnswerModal show={isShowQuizRaisePopup} />
         )}
         {!!isShowSuccessfulRequestForChange && (
             <SuccessfulRequestForChange show={isShowSuccessfulRequestForChange}/>
         )}
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
+        {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
+        {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         <ScrollToTopButton />
       </main>
       <Footer />
