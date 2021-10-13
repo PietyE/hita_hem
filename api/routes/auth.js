@@ -111,18 +111,18 @@ class AuthCRUD extends CRUD {
   }
 
   requestForChangingPassword() {
-    const url = `${this.url}/password-changing-request/`;
+    const url = `${this.url}/send_notification_change_password/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
     });
   }
 
   requestForChangingEmail() {
-    const url = `${this.url}/email-changing-request/`;
+    const url = `${this.url}/send_notification_change_email/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
     });
   }
 }
