@@ -38,6 +38,14 @@ const FinArticle = ({ item }) => {
       }
       return () => clearInterval(timerId);
     }
+    if (!matchesAll) {
+        if (
+            contentRef?.current?.offsetHeight !== 0 &&
+            contentRef?.current?.offsetHeight !== 458
+        ) {
+          setIsShowButton(contentRef?.current?.offsetHeight > 519);
+        }
+      }
   }, [matchesAll]);
 
   let _style;
@@ -51,7 +59,7 @@ const FinArticle = ({ item }) => {
   }
   if (!matchesAll) {
     if (image) {
-      _style = !isShowButton
+      _style = isShowButton
         ? {
             height: isShowMore ? "auto" : "458px",
           }
@@ -103,7 +111,7 @@ const FinArticle = ({ item }) => {
             </span>
           </div>
         )}
-        {!matchesAll && !isShowButton && image && (
+        {!matchesAll && isShowButton && image && (
           <Button
             onClick={_handleClickShowMore}
             colorStyle="red-without-border"

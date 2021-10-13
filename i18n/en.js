@@ -341,7 +341,7 @@ export const en = {
       },
     },
     errors: {
-        email_example: 'example test@test.com',
+        email_example: 'Example test@test.com',
         email_required: 'Email is a required field',
         password_required: 'Password is a required field',
         password_example: 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)',
@@ -357,7 +357,7 @@ export const en = {
         month_required: 'Month is a required field',
         year_required: 'Year is a required field',
         personal_id_required: 'Personal ID is a required field',
-        personal_id_example: 'example 12345678-1234',
+        personal_id_example: 'Example 12345678-1234',
         phone_required: 'Phone number is a required field',
         phone_example: 'example +49 1234567890',
         city_empty: '"City" cannot be empty',
@@ -382,6 +382,13 @@ export const en = {
       media_required: 'Fill out this social media field',
       followers_number: 'Number of followers must be a number',
       follower_positive: 'Number of followers must be >= 0',
+
+      website_example: 'Example https://accumeo.com',
+      youtube_example: 'Example https://youtube.com/.....',
+      facebook_example: 'Example https://facebook.com/...',
+      twitter_example: 'Example https://twitter.com/...',
+      linkedin_example: 'Example https://linkedin.com/...',
+
 
     }
 

@@ -54,7 +54,7 @@
         }
       }
       .invest_form_invest{
-        height: 501px;
+        height: 476px;
         background: #FFFFFF;
         border-radius: 6px;
         padding: 26px;
@@ -70,6 +70,7 @@
         .invest_form_invest_text{
           position: relative;
           width: 405px;
+          height: 50px;
           font-family: Mulish;
           font-style: normal;
           font-weight: 600;
@@ -102,7 +103,7 @@
           font-size: 14px;
           line-height: 22px;
           color: #333333;
-          padding-bottom: 33px;
+          padding-bottom: 18px;
           border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
           .invest_form_invest_input{
@@ -136,7 +137,7 @@
           font-size: 20px;
           line-height: 150%;
           color: rgba(0, 0, 0, 0.87);
-          margin-top: 19px;
+          margin-top: 10px;
           margin-bottom: 17px;
 
         }
@@ -180,12 +181,16 @@
           border-top: 1px solid rgba(0, 0, 0, 0.1);
           display: flex;
           justify-content: space-between;
+          align-items: center;
           font-family: Raleway;
           font-style: normal;
           font-weight: 600;
           font-size: 22px;
           line-height: 150%;
           color: #1F607C;
+          p{
+            margin-bottom: 0;
+          }
           .invest_form_content_block_footer_total{
             font-family: Mulish;
             font-weight: bold;
@@ -274,6 +279,7 @@
           }
           .invest_form_invest_text{
             width: 100%;
+            height: auto;
             font-weight: 600;
             font-size: 16px;
             line-height: 150%;
@@ -316,7 +322,7 @@
             line-height: 150%;
           }
           .invest_form_content_block_footer{
-            padding-bottom: 10px;
+            //padding-bottom: 10px;
             .invest_form_content_block_footer_total{
             }
           }

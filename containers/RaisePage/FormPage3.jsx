@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
 import useRaiseForm3ErrorHandler from "customHooks/useRaiseForm3ErrorHandler";
+import {websiteRegExp} from "../../utils/vadidationSchemas";
 import * as yup from "yup";
 
 const FormPage3 = ({ changePage, submit, formNumber, data }) => {
@@ -24,20 +25,20 @@ const FormPage3 = ({ changePage, submit, formNumber, data }) => {
     followers_count_three: data.followers_count_three,
   };
   const raiseForm3 = yup.object({
-    website: yup.string('example https://accumeo.com'),
-    video_preview: yup.string().url('example https://youtube.com/.....'),
-    social_one: yup.string().url('example https://facebook.com/...')
+    website: yup.string(t("errors.website_example")).matches(websiteRegExp, t("errors.website_example")),
+    video_preview: yup.string().url(t("errors.youtube_example")),
+    social_one: yup.string().url(t("errors.facebook_example"))
         .when('followers_count_one', {
           is: (el => el && el >= 0 ? true : false),
           then: yup.string().url().required(t("errors.media_required")),
         }),
     followers_count_one: yup.number().typeError(t("errors.followers_number")).min(0,t("errors.follower_positive")),
-    social_two: yup.string().url('example https://twitter.com/...').when('followers_count_two', {
+    social_two: yup.string().url(t("errors.twitter_example")).when('followers_count_two', {
       is: (el => el && el >= 0 ? true : false),
       then: yup.string().url().required(t("errors.media_required")),
     }),
     followers_count_two: yup.number().typeError(t("errors.followers_number")).min(0,t("errors.follower_positive")),
-    social_three: yup.string().url('example https://linkedin.com/...').when('followers_count_three', {
+    social_three: yup.string().url(t("errors.linkedin_example")).when('followers_count_three', {
       is: (el => el && el >= 0 ? true : false),
       then: yup.string().url().required(t("errors.media_required")),
     }),
