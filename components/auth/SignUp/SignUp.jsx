@@ -6,7 +6,6 @@ import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
 import { signUp } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-// import { signUpSchema } from "utils/vadidationSchemas";
 import { useTranslation } from "react-i18next";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'

@@ -124,7 +124,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const toggleVisible = () => {
     const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > topPart) {
+    if (scrolled > topPart + 20) {
       setVisible(true);
     } else if (scrolled <= topPart) {
       setVisible(false);
@@ -220,6 +220,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
                     colorStyle="dark-green"
                     className={`sticky_invest_button ${classNameVisible}`}
                     onClick={handleClickInvest}
+                    disabled={!userCanInvest}
                 >
                   {t("company_page.button_invest")}
                 </Button>
