@@ -4,6 +4,7 @@ import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 
 import SubTitle from "components/ui/SubTitle";
+import {useTranslation} from "react-i18next";
 
 const MiddleSection = ({ content }) => {
   return (
@@ -17,6 +18,7 @@ const MiddleSection = ({ content }) => {
 
 const Content = ({ data }) => {
   const contentRef = useRef();
+  const { t } = useTranslation();
 
   const { matchesAll } = useMediaQueries({
     screen: "screen",

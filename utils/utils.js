@@ -1,7 +1,7 @@
 export const validateEmail = (email) => {
   //eslint-disable-next-line
   const re =
-    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/;
   return re.test(email);
 };
 
@@ -62,7 +62,7 @@ export const convertStatusToText = (status, language='en') => {
     case 3:
       return "LIVE";
     case 4:
-      return  language === 'en'?"SUCCESSFULLY_CLOSED":"Stängt".toUpperCase;
+      return  language === 'en'?"SUCCESSFULLY CLOSED":"Stängt";
     default:
       return null;
   }
