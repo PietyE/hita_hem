@@ -2,18 +2,18 @@ import React, {useCallback, useEffect} from 'react';
 import {useRouter} from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
 import {makeRequestForCheckingToken} from "redux/actions/user";
-import {CHANGE_EMAIL} from "constants/routesConstant";
-import {getCanChangeEmailSelector, getIsFetchingAuthSelector, getIsSignInUserSelector} from "redux/reducers/user";
+import {getCanChangePasswordSelector, getIsFetchingAuthSelector, getIsSignInUserSelector} from "redux/reducers/user";
 import SpinnerStyled from "../../components/ui/Spinner";
 import {setShowSignIn} from "redux/actions/authPopupWindows";
+import {CHANGE_PASSWORD} from "../../constants/routesConstant";
 
 
-const changeEmailCheckKey = () => {
+const changePasswordCheckKey = () => {
     const dispatch = useDispatch();
     const history = useRouter();
     const router = useRouter()
     const isFetching = useSelector(getIsFetchingAuthSelector)
-    const canChangeEmail = useSelector(getCanChangeEmailSelector)
+    const canChangePassword = useSelector(getCanChangePasswordSelector)
     const isAuth = useSelector(getIsSignInUserSelector);
 
     const _makeRequestForCheckingToken = useCallback(
@@ -32,18 +32,17 @@ const changeEmailCheckKey = () => {
     useEffect(() => {
         _setShowSignIn(!isAuth)
     }, [isAuth])
-
     useEffect(() => {
         if (router?.query?.key && isAuth) {
-            _makeRequestForCheckingToken({key:router?.query?.key , type:'email'})
+            _makeRequestForCheckingToken({key:router?.query?.key , type:'password'})
         }
     }, [isAuth, _makeRequestForCheckingToken])
 
     useEffect(() => {
-        if (canChangeEmail) {
-            history.push(CHANGE_EMAIL)
+        if (canChangePassword) {
+            history.push(CHANGE_PASSWORD)
         }
-    }, [canChangeEmail])
+    }, [canChangePassword])
     return (
         <>
             {isFetching && <SpinnerStyled/>}
@@ -52,4 +51,4 @@ const changeEmailCheckKey = () => {
 }
 
 
-export default changeEmailCheckKey;
+export default changePasswordCheckKey;

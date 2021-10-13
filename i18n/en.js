@@ -291,7 +291,7 @@ export const en = {
       reset_password: {
         title: "Change password",
         forgot_password: "Forgot your password?",
-        password_label: "Password",
+        password_label: "Password*",
         new_password_label: "New Password",
         confirm_password_label: "Confirm new Password",
         button_cancel: "Cancel",

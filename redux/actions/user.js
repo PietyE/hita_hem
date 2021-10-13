@@ -22,7 +22,7 @@ import {
   REQUEST_FOR_CHANGING_PASSWORD,
   CHECK_TOKEN,
   CLEAN_AUTH_DATA,
-
+  SET_CAN_CHANGE_PASSWORD,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -112,6 +112,10 @@ export const setResponseFromApi = payload => ({
 
 export const setCanChangeEmail = payload => ({
   type: SET_CAN_CHANGE_EMAIL,
+  payload
+})
+export const setCanChangePassword = payload => ({
+  type: SET_CAN_CHANGE_PASSWORD,
   payload
 })
 

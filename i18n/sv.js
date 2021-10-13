@@ -276,7 +276,7 @@ export const sv = {
       reset_password: {
         title: "Ändra lösenord",
         forgot_password: "Glömt ditt lösenord?",
-        password_label: "Lösenord",
+        password_label: "Lösenord*",
         new_password_label: "Nytt lösenord",
         confirm_password_label: "Bekräfta ditt nya lösenord",
         button_cancel: "Avbryt",

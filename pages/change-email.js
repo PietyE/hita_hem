@@ -23,11 +23,11 @@ function ChangeEmail() {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const errorHandlerHook = useAuthErrorHandler()
-
-    const canChangeEmail = useSelector(getCanChangeEmailSelector)
-    const isAuth = useSelector(getIsSignInUserSelector);
     const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
     const formikRef = useRef();
+    const canChangeEmail = useSelector(getCanChangeEmailSelector)
+    const isAuth = useSelector(getIsSignInUserSelector);
+
 
     useEffect(()=>{
         if(!canChangeEmail){

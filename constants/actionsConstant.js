@@ -25,6 +25,9 @@ export const CHECK_TOKEN = 'user/CHECK_TOKEN'
 
 
 export const SET_CAN_CHANGE_EMAIL = 'SET_CAN_CHANGE_EMAIL'
+export const SET_CAN_CHANGE_PASSWORD = 'SET_CAN_CHANGE_PASSWORD'
+
+
 
 
 export const SET_LANGUAGE = "language/SET_LANGUAGE";

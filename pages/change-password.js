@@ -3,21 +3,37 @@ import Modal from "../components/ui/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import useAuthErrorHandler from "../customHooks/useAuthErrorHandler";
-import {isSuccessfulResponseFromApiSelector} from "../redux/reducers/user";
+import {
+    getCanChangePasswordSelector,
+    getIsSignInUserSelector,
+    isSuccessfulResponseFromApiSelector
+} from "../redux/reducers/user";
 import {changePassword, setResponseFromApi} from "../redux/actions/user";
-// import {setShowResetPassword} from "../redux/actions/authPopupWindows";
 import * as yup from "yup";
 import {passwordRegExp} from "../utils/vadidationSchemas";
 import {Form, Formik} from "formik";
 import InputComponent from "../components/ui/InputComponent";
 import Button from "../components/ui/Button";
+import {useRouter} from "next/router";
+import {HOME_ROUTE} from "../constants/routesConstant";
 
 const ChangePassword = () => {
+    const history = useRouter();
+
     const dispatch = useDispatch();
     const { t } = useTranslation();
     const errorHandlerHook = useAuthErrorHandler()
     const formikRef = useRef();
     const isSuccessfulResponseFromApi = useSelector(isSuccessfulResponseFromApiSelector)
+    const canChangePassword = useSelector(getCanChangePasswordSelector)
+    const isAuth = useSelector(getIsSignInUserSelector);
+
+    useEffect(()=>{
+        if(!canChangePassword){
+            history.push(HOME_ROUTE)
+        }
+
+    },[canChangePassword])
 
     useEffect(()=>{
         if(isSuccessfulResponseFromApi){
@@ -37,10 +53,12 @@ const ChangePassword = () => {
     );
 
     const initialValuesPassword = {
+        old_password: '',
         new_password1: "",
         new_password2: "",
     };
     const accountSettingsResetPasswordSchema = yup.object({
+        old_password: yup.string().max(128).required(t("errors.password_required")),
         new_password1: yup.string().max(128).matches(passwordRegExp, t("errors.password_example")).required(t("errors.new_password_required")),
         new_password2: yup
             .string().required(t("errors.confirm_password_required")).max(128)
@@ -53,6 +71,8 @@ const ChangePassword = () => {
         _changePassword(values);
     };
     return (
+        <>
+            { canChangePassword && isAuth &&(
         <Modal
             show={true}
             isCloseButton={false}
@@ -78,6 +98,23 @@ const ChangePassword = () => {
                 {({ values, errors, touched, setFieldValue, setValues, setFieldError }) => {
                     return (
                         <Form className="auth_form">
+
+                            <InputComponent
+                                type="password"
+                                labelClassName=" auth_container"
+                                label={t("profile_page.reset_password.password_label")}
+                                inputClassName="auth_input"
+                                errorClassName="profile_form_warning_text"
+                                iconClassName="profile_account_icon_eye"
+                                inputName="old_password"
+                                values={values}
+                                setFieldValue={setFieldValue}
+                                setFieldError={setFieldError}
+                                touched={touched}
+                                errors={errors}
+                                errorFromApi={ errorHandlerHook?.oldPasswordError }
+                                clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                            />
 
                             <InputComponent
                                 type="password"
@@ -127,7 +164,10 @@ const ChangePassword = () => {
                     );
                 }}
             </Formik>
-        </Modal>
+        </Modal>)
+            }
+            </>
+
     );
 }
 

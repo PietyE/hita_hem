@@ -23,6 +23,8 @@ const SuccessfulChangeEmailOrPassword = ({show}) => {
     const handleClick = (e) => {
         e.preventDefault()
         dispatch(setShowSignIn(true))
+        dispatch(setShowChangeEmailOrPassword(false))
+
     }
     return (
         <Modal

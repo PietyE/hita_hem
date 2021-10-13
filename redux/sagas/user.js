@@ -23,7 +23,7 @@ import {
   setAuth,
   setToken,
   setProfile,
-  setFetchingUsers, setCanChangeEmail, cleanAuthData,
+  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanChangePassword,
 } from "redux/actions/user";
 import {
   setShowSignIn,
@@ -264,6 +264,7 @@ function* changeUserPassword({ payload }) {
     yield call([auth, "changePassword"], payload);
     yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
     yield put(setShowChangeEmailOrPassword(true))
+    yield put(setCanChangePassword(false))
     yield put(clearErrors())
     yield put(cleanAuthData())
   } catch (error) {
@@ -377,8 +378,12 @@ function* requestForChangingPassword() {
 function* requestForCheckingToken({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "requestForCheckingToken"], payload);
-    yield put(setCanChangeEmail(true))
+    yield call([auth, "requestForCheckingToken"], payload?.key);
+    if(payload?.type === 'email'){
+      yield put(setCanChangeEmail(true))
+    }else if(payload?.type === 'password'){
+      yield put(setCanChangePassword(true))
+    }
   } catch (error) {
     if(error?.response?.status === 404){
       yield put(setShowInvalidTokenModal(true))
