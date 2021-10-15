@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Modal from "../ui/Modal";
 import Image from "next/image";
 import Icon from "../../public/images/icon.svg";
-// import {useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 import {setShowInvalidTokenModal} from "redux/actions/authPopupWindows";
 import {getUserIdSelector} from "redux/reducers/user";
 import {useRouter} from "next/router";
@@ -11,7 +11,7 @@ import {HOME_ROUTE} from "../../constants/routesConstant";
 import {setActiveTab} from "../../redux/actions/user";
 
 const InvalidTokenModal = ({show}) => {
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
     const history = useRouter();
 
     const dispatch = useDispatch()
