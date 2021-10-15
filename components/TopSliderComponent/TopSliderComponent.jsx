@@ -20,7 +20,7 @@ const TopSliderComponent = ({
 }) => {
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={data?.length>1} slide={true} interval={8000} touch={true}>
+      <Carousel controls={data?.length>1} slide={true} interval={8000} touch={true} indicators={data?.length>1}>
         {!!data?.length &&
           data?.map((headerItem) => {
             const {

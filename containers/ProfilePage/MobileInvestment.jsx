@@ -8,9 +8,15 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
+import {useSelector} from "react-redux";
+import {getSelectedLangSelector} from "redux/reducers/language";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
+  const currentLanguage = useSelector(getSelectedLangSelector);
+  const moneyFormat = useMoneyFormat()
+
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
     if (activeTab === e.target.dataset.value) {
@@ -28,15 +34,15 @@ const MobileInvestment = ({ data }) => {
             let textLink;
 
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = `https://dev.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = `https://stage.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = `https://preprod.accumeo.com/company/${payment.company_id}`;
+              _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${payment.company_id}`:`https://preprod.accumeo.com/sv/company/${payment.company_id}`
               textLink = `https://accumeo.com/company/${payment.company_id}`;
             }
             return (
@@ -78,7 +84,7 @@ const MobileInvestment = ({ data }) => {
                         {t("profile_page.investments.amount")}
                       </span>
                       <span className="mobile_investments_field_values">
-                        {payment.amount_currency} {payment.amount}
+                        {payment.amount_currency} {moneyFormat.format(payment.amount)}
                       </span>
                     </p>
                     <p className="mobile_investments_field mobile_investments_shares">

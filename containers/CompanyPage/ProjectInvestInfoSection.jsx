@@ -2,7 +2,6 @@ import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
-import throttle from 'lodash/throttle';
 
 import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
@@ -26,12 +25,15 @@ import {
 } from "redux/reducers/companies";
 import { getSelectedLangSelector } from "redux/reducers/language";
 //import { companyTabConstants } from "constants/companyTabConstant";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let history = useRouter();
   const sectionRef = useRef();
+
+  const moneyFormat = useMoneyFormat()
   //const prevSelectedTab = useRef();
   //const scrollScreenValue = useRef();
   const companyId = useSelector(getCompanyIdSelector);
@@ -122,7 +124,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const toggleVisible = () => {
     const topPart = sectionRef.current?.offsetParent.offsetTop + sectionRef.current?.offsetTop + sectionRef.current?.offsetHeight;
     const scrolled = document.documentElement.scrollTop;
-    if (scrolled > topPart) {
+    if (scrolled > topPart + 20) {
       setVisible(true);
     } else if (scrolled <= topPart) {
       setVisible(false);
@@ -139,9 +141,9 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   }, []);
 
 
-  const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
-    style: "decimal",
-  });
+  // const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
+  //   style: "decimal",
+  // });
 
   return (
       <>
@@ -218,6 +220,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
                     colorStyle="dark-green"
                     className={`sticky_invest_button ${classNameVisible}`}
                     onClick={handleClickInvest}
+                    disabled={!userCanInvest}
                 >
                   {t("company_page.button_invest")}
                 </Button>

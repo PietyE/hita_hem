@@ -25,30 +25,30 @@ const FinancialInformation = () => {
           <FinArticle key={index} item={article} />
         ))}
       </ul>
-      <div className="financial_info_documents">
-        <h2 className="financial_info_documents_title">
-          {t("company_page.documents")}
-        </h2>
-        <ul className="financial_info_documents_list">
-          {document.map((document, index) => (
-            <li key={index} className="fin_document">
-              <Image
-                src={IconDocument}
-                alt="icon_document"
-                className="fin_document_icon"
-              />
-              <a
-                href={document.document}
-                className="fin_document_link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                {document.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
+        {!!document.length &&(<div className = "financial_info_documents">
+            <h2 className = "financial_info_documents_title">
+                {t("company_page.documents")}
+            </h2>
+            <ul className = "financial_info_documents_list">
+                {document.map((document, index) => (
+                    <li key = {index} className = "fin_document">
+                        <Image
+                            src = {IconDocument}
+                            alt = "icon_document"
+                            className = "fin_document_icon"
+                        />
+                        <a
+                            href = {document.document}
+                            className = "fin_document_link"
+                            target = "_blank"
+                            rel = "noreferrer"
+                        >
+                            {document.name}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </div>)}
     </>
   );
 };

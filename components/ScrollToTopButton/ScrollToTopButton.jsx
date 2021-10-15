@@ -1,17 +1,16 @@
 import React, { useState, forwardRef, useEffect } from "react";
-import throttle from 'lodash/throttle'
 
 const ScrollToTopButton = forwardRef(({ className = "" }, ref) => {
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = throttle(() => {
+  const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 700) {
       setVisible(true);
     } else if (scrolled <= 700) {
       setVisible(false);
     }
-  }, 500);
+  };
 
   const scrollToTop = () => {
     window.scrollTo({

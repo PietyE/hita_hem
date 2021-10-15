@@ -13,6 +13,9 @@ import Progress from "../Proggres";
 import SplitLine from "../ui/SplitLine";
 import Button from "../ui/Button";
 
+import useMoneyFormat from "customHooks/useMoneyFormat";
+
+
 const CampaignsCard = (props) => {
   const { t } = useTranslation();
   const { className } = props;
@@ -30,6 +33,10 @@ const CampaignsCard = (props) => {
     currency,
     percentage,
   } = props?.content;
+
+  const moneyFormat = useMoneyFormat()
+
+
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
@@ -107,7 +114,7 @@ const CampaignsCard = (props) => {
                 {t("campaigns_card.target_title")}
               </p>
               <p className="campaigns_card_target_value">
-                {currency} {goal}
+                {currency} {moneyFormat.format(goal)}
               </p>
             </div>
             <Button

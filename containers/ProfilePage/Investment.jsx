@@ -4,9 +4,13 @@ import { getUserPaymentsSelector } from "redux/reducers/user";
 import MobileInvestment from "./MobileInvestment";
 import Button from "components/ui/Button";
 import { useTranslation } from "react-i18next";
+import {getSelectedLangSelector} from "redux/reducers/language";
+import useMoneyFormat from "customHooks/useMoneyFormat";
 
 const Investment = () => {
   const { t } = useTranslation();
+    const currentLanguage = useSelector(getSelectedLangSelector);
+    const moneyFormat = useMoneyFormat()
 
   const paymentsList = useSelector(getUserPaymentsSelector);
   return (
@@ -34,17 +38,16 @@ const Investment = () => {
             paymentsList?.map((payment, index) => {
                 let _link;
                 let textLink;
-
                 if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
-                    _link = `https://dev.accumeo.com/company/${payment.company_id}`
+                    _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
                     textLink = `https://accumeo.com/company/${payment.company_id}`
                 }
                 if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
-                    _link = `https://stage.accumeo.com/company/${payment.company_id}`
+                    _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
                     textLink =   `https://accumeo.com/company/${payment.company_id}`
                 }
                 if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-                    _link = `https://preprod.accumeo.com/company/${payment.company_id}`
+                    _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${payment.company_id}`:`https://preprod.accumeo.com/sv/company/${payment.company_id}`
                     textLink =   `https://accumeo.com/company/${payment.company_id}`
                 }
 
@@ -62,7 +65,7 @@ const Investment = () => {
                     {textLink}
                   </a>
                   <p className="profile_campaigns_table_item_text table_item_invest_amount">
-                    {payment.amount_currency} {payment.amount}
+                    {payment.amount_currency} {moneyFormat.format(payment.amount)}
                   </p>
                   <p className="profile_campaigns_table_item_text table_item_invest_shares">
                     {payment.shares}

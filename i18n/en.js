@@ -33,7 +33,7 @@ export const en = {
       form2: {
         company_name: "Company Name*",
         company_form: "Form of the company*",
-        role: "Role in the company*",
+        role: "Your role in the company*",
         shares: "Company % for shares*",
         revenue: "Revenue of the last financial year",
         amount: "Funding goal*",
@@ -41,8 +41,8 @@ export const en = {
       form3: {
         company_website: "Company website",
         video_link: "Optional link to video presentation",
-        social_media_facebook: "Optional link to facebook",
-        social_media_linkedin: "Optional link to linkedin",
+        social_media_facebook: "Optional link to Facebook",
+        social_media_linkedin: "Optional link to Linkedin",
         social_media_instagram: "Optional link to Instagram",
 
         followers: "Number of followers",
@@ -341,7 +341,7 @@ export const en = {
       },
     },
     errors: {
-        email_example: 'example test@test.com',
+        email_example: 'Example test@test.com',
         email_required: 'Email is a required field',
         password_required: 'Password is a required field',
         password_example: 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)',
@@ -357,7 +357,7 @@ export const en = {
         month_required: 'Month is a required field',
         year_required: 'Year is a required field',
         personal_id_required: 'Personal ID is a required field',
-        personal_id_example: 'example 12345678-1234',
+        personal_id_example: 'Example 12345678-1234',
         phone_required: 'Phone number is a required field',
         phone_example: 'example +49 1234567890',
         city_empty: '"City" cannot be empty',
@@ -383,6 +383,13 @@ export const en = {
       followers_number: 'Number of followers must be a number',
       follower_positive: 'Number of followers must be >= 0',
 
+      website_example: 'Example https://accumeo.com',
+      youtube_example: 'Example https://youtube.com/.....',
+      facebook_example: 'Example https://facebook.com/...',
+      twitter_example: 'Example https://twitter.com/...',
+      linkedin_example: 'Example https://linkedin.com/...',
+
+
     },
     change_email_page: {
       button_submit: "Submit",
@@ -399,8 +406,7 @@ export const en = {
     },
     invalid_token_modal: {
       text: 'Your link is not valid. Try to request data change again in your Personal Account in the Account Settings tab.',
-    }
+    },
   },
-
 
 };
