@@ -27,8 +27,8 @@ const SuccessfulRequestForChange = ({show}) => {
             <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
                 <Image src={Icon} alt='icon'/>
             </div>
-            <h2 className='successful_investment_title'>Message sent!</h2>
-            <p className='successful_investment_text'>Check your registered mail.</p>
+            <h2 className='successful_investment_title'>{t("request_for_change.title")}</h2>
+            <p className='successful_investment_text'>{t("request_for_change.text")}</p>
 
         </Modal>
     );

@@ -407,6 +407,23 @@ export const en = {
     invalid_token_modal: {
       text: 'Your link is not valid. Try to request data change again in your Personal Account in the Account Settings tab.',
     },
+    request_for_change:{
+      title: 'Message sent!',
+      text: 'Check your registered mail.',
+    },
+    invalid_token: {
+      text1: 'Your link is not valid. Try to request data change again in your Personal Account in the',
+      link: 'Account Settings',
+      text2: 'tab.'
+    },
+    successful_change_email_or_password: {
+      text1: 'Please',
+      link: 'Log in',
+      text2: 'to your account.',
+    },
+    change_email_saga_title: 'Your mail has been successfully updated.',
+    change_password_saga_title: 'Your password has been successfully updated.',
   },
+
 
 };

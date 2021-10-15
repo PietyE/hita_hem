@@ -42,7 +42,7 @@ const InvalidTokenModal = ({show}) => {
                 <Image src={Icon} alt='icon'/>
             </div>
             <h2 className='successful_investment_title'>Ooops...</h2>
-            <p className='successful_investment_text'>Your link is not valid. Try to request data change again in your Personal Account in the <a onClick={handleClick} className='modal_link'>Account Settings</a> tab.</p>
+            <p className='successful_investment_text'>{t("invalid_token.text1")} <a onClick={handleClick} className='modal_link'>{t("invalid_token.link")}</a> {t("invalid_token.text2")}</p>
 
         </Modal>
     );
