@@ -23,6 +23,9 @@ import {
   CHECK_TOKEN,
   CLEAN_AUTH_DATA,
   SET_CAN_CHANGE_PASSWORD,
+  SET_CAN_RESET_PASSWORD,
+  REQUEST_FOR_RESET_PASSWORD,
+  CHECK_TOKEN_FOR_RESET_PASSWORD,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -114,8 +117,14 @@ export const setCanChangeEmail = payload => ({
   type: SET_CAN_CHANGE_EMAIL,
   payload
 })
+
 export const setCanChangePassword = payload => ({
   type: SET_CAN_CHANGE_PASSWORD,
+  payload
+})
+
+export const setCanResetPassword = payload => ({
+  type: SET_CAN_RESET_PASSWORD,
   payload
 })
 
@@ -129,11 +138,22 @@ export const makeRequestForChangingPassword = payload => ({
   payload
 })
 
+export const makeRequestForResetPassword = payload => ({
+  type: REQUEST_FOR_RESET_PASSWORD,
+  payload
+})
+
 
 export const makeRequestForCheckingToken = payload => ({
   type: CHECK_TOKEN,
   payload
 })
+
+export const makeRequestForResetPasswordTokenVerification = payload => ({
+  type: CHECK_TOKEN_FOR_RESET_PASSWORD,
+  payload
+})
+
 
 export const cleanAuthData = () => ({
   type: CLEAN_AUTH_DATA,
