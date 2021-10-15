@@ -9,9 +9,10 @@ import {
     setShowSignIn
 } from "../../redux/actions/authPopupWindows";
 import {getChangeEmailOrPasswordText} from "../../redux/reducers/authPopupWindows";
+import {useTranslation} from "react-i18next";
 
 const SuccessfulChangeEmailOrPassword = ({show}) => {
-    // const { t } = useTranslation();
+    const { t } = useTranslation();
     const dispatch = useDispatch()
 
     const title = useSelector(getChangeEmailOrPasswordText)
