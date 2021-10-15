@@ -291,7 +291,7 @@ export const en = {
       reset_password: {
         title: "Change password",
         forgot_password: "Forgot your password?",
-        password_label: "Password",
+        password_label: "Password*",
         new_password_label: "New Password",
         confirm_password_label: "Confirm new Password",
         button_cancel: "Cancel",
@@ -390,8 +390,40 @@ export const en = {
       linkedin_example: 'Example https://linkedin.com/...',
 
 
-    }
-
+    },
+    change_email_page: {
+      button_submit: "Submit",
+      new_email: 'New Email Address*',
+      password: 'Password*',
+      text: 'A message will be sent to your current email. Please follow the instructions sent by email to confirm the email changing',
+      button_change: 'Change email',
+    },
+    change_password_page: {
+      new_password: "New password*",
+      confirm_password: "Re-enter new password*",
+      text: "A message will be sent to your email. Please follow the instructions sent by email to confirm the password changing.",
+      button_change: 'Change password',
+    },
+    invalid_token_modal: {
+      text: 'Your link is not valid. Try to request data change again in your Personal Account in the Account Settings tab.',
+    },
+    request_for_change:{
+      title: 'Message sent!',
+      text: 'Check your registered mail.',
+    },
+    invalid_token: {
+      text1: 'Your link is not valid. Try to request data change again in your Personal Account in the',
+      link: 'Account Settings',
+      text2: 'tab.'
+    },
+    successful_change_email_or_password: {
+      text1: 'Please',
+      link: 'Log in',
+      text2: 'to your account.',
+    },
+    change_email_saga_title: 'Your mail has been successfully updated.',
+    change_password_saga_title: 'Your password has been successfully updated.',
   },
+
 
 };
