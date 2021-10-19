@@ -1,16 +1,18 @@
 import React, { useState} from 'react';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import Modal from '../ui/Modal';
 import {setShowQuiz, setShowQuizError} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
-import {quizData} from './quizData';
+// import {quizData} from './quizData';
 import {useTranslation} from "react-i18next";
+import {getQuiz} from "../../redux/reducers/user";
 
 const Quiz = ({show, onSubmit}) => {
     const { t } = useTranslation();
     const dispatch = useDispatch()
 
+    const quizData = useSelector(getQuiz)
     const handleCloseQuiz = () => {
         dispatch(setShowQuiz(false))
     }
@@ -75,7 +77,7 @@ const Quiz = ({show, onSubmit}) => {
                     {quizData?.length &&
                         quizData.map(question =>
 
-                                <QuizItem key={question.id} 
+                                <QuizItem key={question.id}
                                           data={question}
                                           onSelect={receiveAnswer}
                                           warningList={warnings}

@@ -407,7 +407,6 @@ function* requestForQuiz() {
   try {
     yield put(setFetchingUsers(true));
     const res = yield call([auth, "requestForQuiz"]);
-    console.log('res', res)
     yield put(setQuiz(res?.data?.results))
     yield put(setShowQuiz(true))
   } catch (error) {
