@@ -23,6 +23,9 @@ import {
   CHECK_TOKEN,
   CLEAN_AUTH_DATA,
   SET_CAN_CHANGE_PASSWORD,
+    GET_QUIZ,
+  SET_QUIZ,
+
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -137,6 +140,15 @@ export const makeRequestForCheckingToken = payload => ({
 
 export const cleanAuthData = () => ({
   type: CLEAN_AUTH_DATA,
+})
+
+export const getQuiz = () => ({
+  type: GET_QUIZ,
+})
+
+export const setQuiz = payload => ({
+  type: SET_QUIZ,
+  payload,
 })
 
 

@@ -135,6 +135,14 @@ class AuthCRUD extends CRUD {
   }
 
 
+  requestForQuiz() {
+    const url = '/quiz/questions/';
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
 
 
 }

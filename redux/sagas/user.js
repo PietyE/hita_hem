@@ -16,6 +16,7 @@ import {
   REQUEST_FOR_CHANGING_EMAIL,
   REQUEST_FOR_CHANGING_PASSWORD,
   CHECK_TOKEN, CLEAN_AUTH_DATA,
+    GET_QUIZ
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -23,7 +24,7 @@ import {
   setAuth,
   setToken,
   setProfile,
-  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanChangePassword,
+  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanChangePassword, setQuiz,
 } from "redux/actions/user";
 import {
   setShowSignIn,
@@ -33,7 +34,11 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
-  setShowRequestForChange, setShowInvalidTokenModal, setShowChangeEmailOrPassword, setChangeEmailOrPasswordText,
+  setShowRequestForChange,
+  setShowInvalidTokenModal,
+  setShowChangeEmailOrPassword,
+  setChangeEmailOrPasswordText,
+  setShowQuiz,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -398,6 +403,22 @@ function* requestForCheckingToken({payload}) {
   }
 }
 
+function* requestForQuiz() {
+  try {
+    yield put(setFetchingUsers(true));
+    const res = yield call([auth, "requestForQuiz"]);
+    console.log('res', res)
+    yield put(setQuiz(res?.data?.results))
+    yield put(setShowQuiz(true))
+  } catch (error) {
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
 
 
 function* clean() {
@@ -435,4 +456,5 @@ export function* userWorker() {
   yield takeEvery(REQUEST_FOR_CHANGING_PASSWORD, requestForChangingPassword);
   yield takeEvery(CHECK_TOKEN, requestForCheckingToken)
   yield takeEvery(CLEAN_AUTH_DATA, clean)
+  yield takeEvery(GET_QUIZ, requestForQuiz)
 }

@@ -10,19 +10,20 @@ import {
   SET_RESPONSE_FROM_API,
   SET_CAN_CHANGE_EMAIL,
   SET_CAN_CHANGE_PASSWORD,
-
+  SET_QUIZ,
+  SET_QUIZ_IS_PASSED
 } from "constants/actionsConstant";
 
 const initialsState = {
   activeTab: "personal_details",
   canChangeEmail: false,
   canChangePassword: false,
-  isAuth: false,
   isFetching: false,
   isQuizPassed: false,
   isSuccessfulResponseFromApi: false,
   token: {},
   user: {},
+  quiz:[],
   account: {
     id: "",
     email: "",
@@ -54,11 +55,17 @@ export const user = (state = initialsState, actions) => {
       return {...state, canChangeEmail: actions.payload}
     case SET_CAN_CHANGE_PASSWORD:
       return {...state, canChangePassword: actions.payload}
+    case SET_QUIZ:
+      return {...state, quiz: actions.payload}
+    case SET_QUIZ_IS_PASSED:
+      return {...state, isQuizPassed: actions.payload}
     default:
       return state;
   }
 };
 
+export const getQuizIsPassedSelector = (state) => state.user.isQuizPassed;
+export const getQuiz = (state) => state.user.quiz;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 
