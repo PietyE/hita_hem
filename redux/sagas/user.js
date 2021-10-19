@@ -432,13 +432,14 @@ function* passwordResetTokenVerificationRequest({payload}) {
     yield call([auth, "requestForPasswordResetTokenVerification"], payload);
       yield put(setCanResetPassword(true))
   } catch (error) {
-    if(error?.response?.status === 404){
+    if(error?.response?.status === 401 || error?.response?.status === 404){
       yield put(setShowInvalidTokenModal(true))
     }else{
       yield put(
           setAuthError({ status: error?.response?.status, data: error?.response?.data })
       );
     }
+
 
   } finally {
     yield put(setFetchingUsers(false));

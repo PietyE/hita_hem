@@ -147,16 +147,16 @@ class AuthCRUD extends CRUD {
 
 
   requestForPasswordResetTokenVerification(params) {
-    console.log('params', params?.key)
     const url = `/tokens/${params?.key}`;
     return this.request({
       url,
-      method: "DELETE",
+      method: "GET",
       headers: {
         "Authorization": `Bearer ${params?.key}`,
       },
     });
   }
+
 
 
 
