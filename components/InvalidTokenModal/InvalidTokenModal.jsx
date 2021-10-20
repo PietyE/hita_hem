@@ -15,7 +15,7 @@ const InvalidTokenModal = ({show}) => {
     const history = useRouter();
 
     const dispatch = useDispatch()
-    const userId = useSelector(getUserIdSelector)
+    const usersId = useSelector(getUserIdSelector)
     const handleClose = () => {
         dispatch(setShowInvalidTokenModal(false))
         history.push(HOME_ROUTE)
@@ -23,9 +23,9 @@ const InvalidTokenModal = ({show}) => {
     }
     const handleClick = (e) => {
         e.preventDefault()
-        history.push(`/users/${userId}/profile`)
-        dispatch(setShowInvalidTokenModal(false))
         dispatch(setActiveTab('account_settings'))
+        history.push(`/users/[usersId]/profile`,`/users/${usersId}/profile`)
+        dispatch(setShowInvalidTokenModal(false))
     }
     return (
         <Modal

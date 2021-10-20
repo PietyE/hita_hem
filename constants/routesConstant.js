@@ -7,5 +7,6 @@ export const INVEST_ROUTE = "/investment-opportunities";
 export const LAUNCHING_SOON = "/launching-soon";
 export const CHANGE_EMAIL = "/change-email"
 export const CHANGE_PASSWORD = "/change-password"
+export const RESET_PASSWORD = "/reset-password"
 
 export const COMPANY_ROUTE = "/company";
