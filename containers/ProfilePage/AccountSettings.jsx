@@ -4,6 +4,7 @@ import ResetEmail from "./ResetEmail";
 import AccountSettingsResetPassword from "./AccountSettingsResetPassword";
 import { useTranslation } from "react-i18next";
 import { setShowConfirmationOfAccountDeleting } from "redux/actions/authPopupWindows";
+import SplitLine from "../../components/ui/SplitLine";
 
 const AccountSettings = () => {
   const { t } = useTranslation();
@@ -18,8 +19,10 @@ const AccountSettings = () => {
       </h2>
       <div className="account_settings_form">
         <ResetEmail />
+        <SplitLine className='account_settings_split_line'/>
         <AccountSettingsResetPassword />
-        <p className="account_settings_text_delete" onClick={handleClickDelete}>
+          <SplitLine className='account_settings_split_line'/>
+          <p className="account_settings_text_delete" onClick={handleClickDelete}>
           {t("profile_page.account.text_delete")}
         </p>
         <p className="account_settings_text">

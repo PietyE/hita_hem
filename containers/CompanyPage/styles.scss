@@ -592,7 +592,7 @@
 
       .fin_article_large_button {
         position: absolute;
-        bottom: -5px;
+        bottom: 0;
         width: 140px;
         height: 40px;
       }
@@ -1725,14 +1725,14 @@
   line-height: 150%;
   color: rgba(0, 0, 0, 0.6);
 }
-
-.show_more {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  transform: translateY(25px);
+.company-page-container {
+  .show_more {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    transform: translateY(25px);
+  }
 }
-
 .fin_show_more {
   transform: translateY(14px);
   text-align: center;

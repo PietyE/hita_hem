@@ -112,7 +112,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
   const handleClickInvest = () => {
     if (isAuth) {
-      history.push(`/invest-form/${companyId}`);
+      history.push(`/invest-form/[companyId]`,`/invest-form/${companyId}`);
     } else {
       dispatch(setShowSignIn(true));
     }

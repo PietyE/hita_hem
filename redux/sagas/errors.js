@@ -41,7 +41,7 @@ function* errorHandler() {
             // re-login - fix next
             // yield put(setNotificationMessage('The token has expired. re-login'))
             break;
-        case 400:
+        case (400) :
 //////////////////временно пока приходит пустая ошибка по существующей подписке
 
             if (isEmpty(error)) {
@@ -50,20 +50,28 @@ function* errorHandler() {
             } else {
 
                 if (error.auth) {
-                    for (let prop in error.auth) {
-                        if ((typeof error.auth[prop] === "object" || typeof error.auth[prop] === 'function') && (error.auth[prop] !== null)) {
-                            for (let subProp in error.auth[prop]) {
-                                yield put(setNotificationMessage(error.auth[prop][subProp]))
-                                break
-                            }
+                    if(typeof error.auth === 'string'){
+                        yield put(setNotificationMessage(error.auth))
+                    }else{
+                        for (let prop in error.auth) {
+                            if ((typeof error.auth[prop] === "object" || typeof error.auth[prop] === 'function') && (error.auth[prop] !== null)) {
+                                for (let subProp in error.auth[prop]) {
+                                    yield put(setNotificationMessage(error.auth[prop][subProp]))
+                                    break
+                                }
 
-                        } else {
-                            yield put(setNotificationMessage(error.profile[prop]))
+                            } else {
+                                yield put(setNotificationMessage(error.auth[prop]))
+                            }
+                            break
                         }
-                        break
                     }
 
+
                 } else if (error.profile) {
+                    if(typeof error.profile === 'string'){
+                        yield put(setNotificationMessage(error.profile))
+                    }else{
                     for (let prop in error.profile) {
                         if ((typeof error.profile[prop] === "object" || typeof error.profile[prop] === 'function') && (error.profile[prop] !== null)) {
                             for (let subProp in error.profile[prop]) {
@@ -75,6 +83,7 @@ function* errorHandler() {
                             yield put(setNotificationMessage(error.profile[prop]))
                         }
                         break
+                    }
                     }
                 } else if (error.raise) {
                     for (let prop in error.raise) {
@@ -90,6 +99,50 @@ function* errorHandler() {
 
                 }
             }
+        case (404) :
+                if (error.auth) {
+                    if(typeof error.auth === 'string'){
+                        yield put(setNotificationMessage(error.auth))
+                    }else{
+                        for (let prop in error.auth) {
+                            if ((typeof error.auth[prop] === "object" || typeof error.auth[prop] === 'function') && (error.auth[prop] !== null)) {
+                                for (let subProp in error.auth[prop]) {
+                                    yield put(setNotificationMessage(error.auth[prop][subProp]))
+                                    break
+                                }
+                            } else {
+                                yield put(setNotificationMessage(error.auth[prop]))
+                            }
+                            break
+                        }
+                    }
+                } else if (error.profile) {
+                    if(typeof error.profile === 'string'){
+                        yield put(setNotificationMessage(error.profile))
+                    }else{
+                        for (let prop in error.profile) {
+                            if ((typeof error.profile[prop] === "object" || typeof error.profile[prop] === 'function') && (error.profile[prop] !== null)) {
+                                for (let subProp in error.profile[prop]) {
+                                    yield put(setNotificationMessage(error.profile[prop][subProp]))
+                                    break
+                                }
+                            } else {
+                                yield put(setNotificationMessage(error.profile[prop]))
+                            }
+                            break
+                        }
+                    }
+                } else if (error.raise) {
+                    for (let prop in error.raise) {
+                        yield put(setNotificationMessage(error.raise[prop]))
+                        break
+                    }
+                }else if (error.data) {
+                    for (let prop in error.data) {
+                        yield put(setNotificationMessage(error.data[prop]))
+                        break
+                    }
+                }
         default:
             return null;
     }

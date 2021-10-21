@@ -36,11 +36,13 @@ class AuthCRUD extends CRUD {
     });
   }
 
+
+
   changePassword(data) {
     const url = `${this.url}/change_password/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
       data,
     });
   }
@@ -48,7 +50,7 @@ class AuthCRUD extends CRUD {
     const url = `${this.url}/change_email/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
       data,
     });
   }
@@ -109,6 +111,57 @@ class AuthCRUD extends CRUD {
       method: "DELETE",
     });
   }
+
+  requestForChangingPassword() {
+    const url = `${this.url}/send_notification_change_password/`;
+    return this.request({
+      url,
+      method: "POST",
+    });
+  }
+
+  requestForResetPassword(data) {
+    const url = `${this.url}/send_notification_reset_password/`;
+    return this.request({
+      url,
+      method: "POST",
+      data,
+    });
+  }
+
+  requestForChangingEmail() {
+    const url = `${this.url}/send_notification_change_email/`;
+    return this.request({
+      url,
+      method: "POST",
+    });
+  }
+
+  requestForTokenVerification(params) {
+    const url = `/tokens/${params}`;
+    return this.request({
+      url,
+      method: "DELETE",
+    });
+  }
+
+
+  requestForPasswordResetTokenVerification(params) {
+    const url = `/tokens/${params?.key}`;
+    return this.request({
+      url,
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${params?.key}`,
+      },
+    });
+  }
+
+
+
+
+
+
 }
 
 export default function authCRUD(request) {
