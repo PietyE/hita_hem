@@ -28,6 +28,7 @@ import {
   CHECK_QUIZ_ANSWERS,
   SET_QUIZ_ERRORS,
   SET_QUIZ_IS_PASSED,
+  GET_PROFILE_FROM_API,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -166,5 +167,9 @@ export const setQuizErrors = payload => ({
 export const setQuizIsPassed = payload => ({
   type: SET_QUIZ_IS_PASSED,
   payload
+})
+
+export const fetchProfileFromApi = () => ({
+  type: GET_PROFILE_FROM_API,
 })
 

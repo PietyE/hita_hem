@@ -17,6 +17,7 @@ import {
   REQUEST_FOR_CHANGING_PASSWORD,
   CHECK_TOKEN, CLEAN_AUTH_DATA,
     GET_QUIZ, CHECK_QUIZ_ANSWERS,
+  GET_PROFILE_FROM_API,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -42,7 +43,7 @@ import {
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
-import {setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
+import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 
@@ -308,12 +309,9 @@ function* changeUserEmail({ payload }) {
   }
 }
 
-
-
 export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
-
     let userId = yield select(getUserIdSelector);
     const response = yield call([auth, "getUser"], userId);
     if (response.status !== 200) {
@@ -325,6 +323,9 @@ export function* getProfileFromApi() {
       yield put(setProfile(profileCopy));
     } else {
       yield put(setProfile(response.data.profile));
+    }
+    if(response?.data?.quiz){
+      yield put(setQuizIsPassed(response.data.quiz));
     }
   } catch (error) {
     yield put(
@@ -421,13 +422,10 @@ function* requestForQuiz() {
 function* requestForCheckingQuiz({payload}) {
   try {
     yield put(setFetchingUsers(true));
-   yield call([auth, "checkQuizAnswers"], payload);
-    // yield put(setQuizIsPassed(true))
-    yield put(setShowQuiz(false))
-
+    yield call([auth, "checkQuizAnswers"], payload);
+    yield call(getProfileFromApi)
   } catch (error) {
-    console.dir(error)
-    if(error?.response?.status === 400){
+    if(error?.response?.status === 477){
       yield put(setQuizErrors(error?.response?.data))
     }else{
       yield put(
@@ -480,6 +478,7 @@ export function* userWorker() {
   yield takeEvery(CLEAN_AUTH_DATA, clean)
   yield takeEvery(GET_QUIZ, requestForQuiz)
   yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
+  yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
 
 }
 

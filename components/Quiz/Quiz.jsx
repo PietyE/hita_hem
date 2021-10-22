@@ -1,32 +1,39 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { useRouter } from "next/router";
 import Modal from '../ui/Modal';
-import {setShowQuiz, setShowQuizError} from 'redux/actions/authPopupWindows';
+import {setShowQuiz} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {useTranslation} from "react-i18next";
-import {getQuiz, getQuizErrorsSelector} from "../../redux/reducers/user";
+import {getQuiz, getQuizErrorsSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
 import {checkQuizAnswers} from "../../redux/actions/user";
+import {getCompanyIdSelector} from "../../redux/reducers/companies";
 
 const Quiz = ({show}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
+    let history = useRouter();
 
     const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
+    const quizIsPassed = useSelector(getQuizIsPassedSelector)
+    const companyId = useSelector(getCompanyIdSelector);
 
-    const generateInitialValues = () => {
-        if(quizData?.length){
-            const object ={}
-            for (let i = 0; i < quizData.length; ++ i) {
-                object[`answer${i+1}`] = 999
-            }
-            return object
-        }
-        return {}
-    }
+    // const generateInitialValues = () => {
+    //     if(quizData?.length){
+    //         const object ={}
+    //         for (let i = 0; i < quizData.length; ++ i) {
+    //             object[`answer${i+1}`] = 999
+    //         }
+    //         return object
+    //     }
+    //     return {}
+    // }
 
-    const [quizResults, setQuizResults] = useState(generateInitialValues())
+    // const [quizResults, setQuizResults] = useState(generateInitialValues())
+    const [quizResults, setQuizResults] = useState({})
+
     const [warnings, setWarnings] = useState({})
 
     useEffect(() => {
@@ -34,6 +41,13 @@ const Quiz = ({show}) => {
             setWarnings(quizErrors)
         }
     }, [quizErrors])
+
+    useEffect(()=>{
+        if(quizIsPassed){
+            history.push(`/invest-form/${companyId}`);
+        }
+    },[quizIsPassed,companyId])
+
     const _setShowQuiz = useCallback((data) => {
         dispatch(setShowQuiz(data));
     }, [dispatch]);

@@ -61,7 +61,7 @@ export const user = (state = initialsState, actions) => {
     case SET_QUIZ:
       return {...state, quizQuestions: actions.payload}
     case SET_QUIZ_IS_PASSED:
-      return {...state, isQuizPassed: actions.account.payload}
+      return {...state, account:{...state.account, quiz: actions.payload}}
     case SET_QUIZ_ERRORS:
       return {...state, quizErrors: actions.payload}
     default:
