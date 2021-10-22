@@ -143,6 +143,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  checkQuizAnswers(data) {
+    const url = `${this.url}/quiz/`;
+    return this.request({
+      url,
+      method: "PATCH",
+      data,
+    });
+  }
+
 
 
 }

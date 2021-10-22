@@ -25,7 +25,9 @@ import {
   SET_CAN_CHANGE_PASSWORD,
     GET_QUIZ,
   SET_QUIZ,
-
+  CHECK_QUIZ_ANSWERS,
+  SET_QUIZ_ERRORS,
+  SET_QUIZ_IS_PASSED,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -151,4 +153,18 @@ export const setQuiz = payload => ({
   payload,
 })
 
+export const checkQuizAnswers = payload => ({
+  type: CHECK_QUIZ_ANSWERS,
+  payload
+})
+
+export const setQuizErrors = payload => ({
+  type: SET_QUIZ_ERRORS,
+  payload
+})
+
+export const setQuizIsPassed = payload => ({
+  type: SET_QUIZ_IS_PASSED,
+  payload
+})
 

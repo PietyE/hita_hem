@@ -11,7 +11,8 @@ import {
   SET_CAN_CHANGE_EMAIL,
   SET_CAN_CHANGE_PASSWORD,
   SET_QUIZ,
-  SET_QUIZ_IS_PASSED
+  SET_QUIZ_IS_PASSED,
+  SET_QUIZ_ERRORS,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -19,14 +20,16 @@ const initialsState = {
   canChangeEmail: false,
   canChangePassword: false,
   isFetching: false,
-  isQuizPassed: false,
   isSuccessfulResponseFromApi: false,
   token: {},
   user: {},
-  quiz:[],
+  quizQuestions:[],
+  quizErrors: null,
   account: {
     id: "",
     email: "",
+    quiz: false,
+
   },
   isFirstHydrate: false,
 };
@@ -56,16 +59,19 @@ export const user = (state = initialsState, actions) => {
     case SET_CAN_CHANGE_PASSWORD:
       return {...state, canChangePassword: actions.payload}
     case SET_QUIZ:
-      return {...state, quiz: actions.payload}
+      return {...state, quizQuestions: actions.payload}
     case SET_QUIZ_IS_PASSED:
-      return {...state, isQuizPassed: actions.payload}
+      return {...state, isQuizPassed: actions.account.payload}
+    case SET_QUIZ_ERRORS:
+      return {...state, quizErrors: actions.payload}
     default:
       return state;
   }
 };
 
-export const getQuizIsPassedSelector = (state) => state.user.isQuizPassed;
-export const getQuiz = (state) => state.user.quiz;
+export const getQuizErrorsSelector = (state) => state.user.quizErrors;
+export const getQuizIsPassedSelector = (state) => state.user.account.quiz;
+export const getQuiz = (state) => state.user.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 

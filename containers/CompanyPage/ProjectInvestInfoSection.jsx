@@ -54,7 +54,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   const isQuizPassed = useSelector(getQuizIsPassedSelector)
   const isShowQuiz = useSelector(getShowQuiz);
-
   //const HEADER_HEIGHT = 100;
 
   const dataOptions = {
@@ -123,7 +122,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const handleClickInvest = () => {
     if (isAuth) {
       if(isQuizPassed){
-        history.push(`/invest-form/${companyId}`, '/invest-form/[companyId]');
+        history.push(`/invest-form/${companyId}`);
       }else{
         _getQuiz()
       }

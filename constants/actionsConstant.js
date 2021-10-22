@@ -24,6 +24,9 @@ export const CHECK_TOKEN = 'user/CHECK_TOKEN'
 export const GET_QUIZ = 'user/GET_QUIZ'
 export const SET_QUIZ = 'user/SET_QUIZ'
 export const SET_QUIZ_IS_PASSED = 'user/SET_QUIZ_IS_PASSED'
+export const CHECK_QUIZ_ANSWERS = 'user/CHECK_QUIZ_ANSWERS'
+export const SET_QUIZ_ERRORS = 'user/SET_QUIZ_ERRORS'
+
 
 
 
