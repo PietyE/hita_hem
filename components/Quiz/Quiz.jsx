@@ -19,7 +19,6 @@ const Quiz = ({show}) => {
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
     const companyId = useSelector(getCompanyIdSelector);
-
     // const generateInitialValues = () => {
     //     if(quizData?.length){
     //         const object ={}
@@ -107,6 +106,7 @@ const Quiz = ({show}) => {
                     <ButtonStyled colorStyle = 'outline-green' className = 'quiz_footer_button_back quiz_footer_button'
                                   onClick = {handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
                     <ButtonStyled colorStyle = 'dark-green' className = 'quiz_footer_button_confirm quiz_footer_button'
+                                  disabled={Object.keys(quizResults).length !== quizData.length}
                                   onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
                 </footer>
             </section>
