@@ -14,6 +14,7 @@ import {
   getBusinessGoalSelector,
   getBusinessInvestedSelector,
   getBusinessShapePriceSelector,
+  //getCompanyTabSelected,
   getBusinessCurrencySelector,
   getPercentageSelector,
   getDaysLeftSelector,

@@ -128,7 +128,7 @@ export const sv = {
       text: "Du prenumererar nu på vårt nyhetsbrev!",
     },
     successful_reset_password: {
-      title: "Kontot återställd!",
+      title: "Begäran accepteras!",
       text: "Var vänlig att följa instruktionerna du fått per mail.",
     },
     successfulInvestment: {

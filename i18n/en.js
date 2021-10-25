@@ -132,7 +132,7 @@ export const en = {
       text: "Please follow the instructions sent by email to confirm the registration.",
     },
     successful_reset_password: {
-      title: "Account successfully recovered!",
+      title: "Request accepted!",
       text: "Please follow the instructions sent by email to reset your password.",
     },
     successfulInvestment: {

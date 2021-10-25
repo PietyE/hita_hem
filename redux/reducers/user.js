@@ -13,13 +13,17 @@ import {
   SET_QUIZ,
   SET_QUIZ_IS_PASSED,
   SET_QUIZ_ERRORS,
+    SET_CAN_RESET_PASSWORD,
 } from "constants/actionsConstant";
 
 const initialsState = {
   activeTab: "personal_details",
   canChangeEmail: false,
   canChangePassword: false,
+  canResetPassword: false,
+  isAuth: false,
   isFetching: false,
+  isQuizPassed: false,
   isSuccessfulResponseFromApi: false,
   token: {},
   user: {},
@@ -64,6 +68,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, account:{...state.account, quiz: actions.payload}}
     case SET_QUIZ_ERRORS:
       return {...state, quizErrors: actions.payload}
+    case SET_CAN_RESET_PASSWORD:
+      return {...state, canResetPassword: actions.payload}
     default:
       return state;
   }
@@ -74,6 +80,8 @@ export const getQuizIsPassedSelector = (state) => state.user.account.quiz;
 export const getQuiz = (state) => state.user.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
+export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
+
 
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
