@@ -425,8 +425,8 @@ function* requestForCheckingQuiz({payload}) {
     yield call([auth, "checkQuizAnswers"], payload);
     yield call(getProfileFromApi)
   } catch (error) {
-    if(error?.response?.status === 477){
-      yield put(setQuizErrors(error?.response?.data))
+    if(error?.response?.data?.answers){
+      yield put(setQuizErrors(error?.response?.data?.answers))
     }else{
       yield put(
           setAuthError({ status: error?.response?.status, data: error?.response?.data })
