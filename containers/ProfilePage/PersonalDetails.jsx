@@ -45,8 +45,8 @@ const PersonalDetails = ({
   const errorHandlerHook = useProfileErrorHandler();
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
-  const isShowQuiz = useSelector(getShowQuiz);
-  const isPaymentsWas = useSelector(getIsPaymentsWasSelector);
+  // const isShowQuiz = useSelector(getShowQuiz);
+  // const isPaymentsWas = useSelector(getIsPaymentsWasSelector);
   let initialValues = {
     address: {
       country: "",
@@ -115,9 +115,9 @@ const PersonalDetails = ({
     [dispatch]
   );
 
-  const openQuiz = useCallback(() => {
-    dispatch(setShowQuiz(true));
-  }, [dispatch]);
+  // const openQuiz = useCallback(() => {
+  //   dispatch(setShowQuiz(true));
+  // }, [dispatch]);
 
   const documentUrl = useSelector(getPrivacyPolicyDocument);
 
@@ -159,11 +159,11 @@ const PersonalDetails = ({
 
   const onSubmitInvest = (values) => {
     const dataForApi = prepareDataForApi(values);
-    if (isPaymentsWas) {
+    // if (isPaymentsWas) {
       onMakePayment({ profile: dataForApi, amount: currentInvestment });
-    } else {
-      openQuiz();
-    }
+    // } else {
+    //   openQuiz();
+    // }
   };
 
   const years = createYearList();
@@ -210,15 +210,15 @@ const PersonalDetails = ({
           } else {
             isButtonDisabled = !(dirty);
           }
-          const onSubmitInvestFromQuiz = () => {
-            onMakePayment({
-              profile: prepareDataForApi(values),
-              amount: currentInvestment,
-            });
-          };
+          // const onSubmitInvestFromQuiz = () => {
+          //   onMakePayment({
+          //     profile: prepareDataForApi(values),
+          //     amount: currentInvestment,
+          //   });
+          // };
           return (
             <>
-              <Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz} />
+              {/*<Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz} />*/}
               <Form className="profile_form">
                 {!type && (
                   <PersonalDetailsUpload

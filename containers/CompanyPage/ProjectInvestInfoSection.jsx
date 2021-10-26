@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
 import Progress from "components/Proggres";
 import SignUpMessage from "components/SignUpMessage";
-import { setShowSignIn } from "redux/actions/authPopupWindows";
+import {setShowSignIn} from "redux/actions/authPopupWindows";
 import {
   getBusinessStartDaySelector,
   getBusinessEndDaySelector,
@@ -23,9 +23,12 @@ import {
   canUserInvestSelector,
   getIsCompanyClosedSelector,
 } from "redux/reducers/companies";
+import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
-//import { companyTabConstants } from "constants/companyTabConstant";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import Quiz from "components/Quiz";
+import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import {getQuiz} from "redux/actions/user";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -50,7 +53,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
-
+  const isQuizPassed = useSelector(getQuizIsPassedSelector)
+  const isShowQuiz = useSelector(getShowQuiz);
   //const HEADER_HEIGHT = 100;
 
   const dataOptions = {
@@ -110,9 +114,19 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   //   }
   // }, [selectedTab]);
 
+
+  const _getQuiz = useCallback(() => {
+    dispatch(getQuiz());
+  }, [dispatch]);
+
+
   const handleClickInvest = () => {
     if (isAuth) {
-      history.push(`/invest-form/[companyId]`,`/invest-form/${companyId}`);
+      if(isQuizPassed){
+        history.push('/invest-form/[companyId]',`/invest-form/${companyId}`);
+      }else{
+        _getQuiz()
+      }
     } else {
       dispatch(setShowSignIn(true));
     }
@@ -145,9 +159,13 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   //   style: "decimal",
   // });
 
+
+
   return (
       <>
-    <div className="project_info_right_section" ref={sectionRef}>
+        {isShowQuiz && <Quiz show = {isShowQuiz}/>}
+
+        <div className="project_info_right_section" ref={sectionRef}>
       <div className="invest_info">
         <div className="invest_info_item">
           <span className="invest_info_item_date">
@@ -213,17 +231,17 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
       {!isAuth && <SignUpMessage />}
     </div>
-        {!isCompanyClosed && (
+        {!isCompanyClosed &&  (
             <div className={`sticky_invest_button_container ${classNameVisible}`}>
               <div className='sticky_invest_content_wrapper'>
-                <Button
-                    colorStyle="dark-green"
-                    className={`sticky_invest_button ${classNameVisible}`}
-                    onClick={handleClickInvest}
-                    disabled={!userCanInvest}
+                {userCanInvest && <Button
+                    colorStyle = "dark-green"
+                    className = {`sticky_invest_button ${classNameVisible}`}
+                    onClick = {handleClickInvest}
+                    disabled = {!userCanInvest}
                 >
                   {t("company_page.button_invest")}
-                </Button>
+                </Button>}
               </div>
              </div>
 

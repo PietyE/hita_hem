@@ -36,8 +36,6 @@ class AuthCRUD extends CRUD {
     });
   }
 
-
-
   changePassword(data) {
     const url = `${this.url}/change_password/`;
     return this.request({
@@ -146,22 +144,33 @@ class AuthCRUD extends CRUD {
   }
 
 
-  requestForPasswordResetTokenVerification(params) {
-    const url = `/tokens/${params?.key}`;
+  requestForQuiz() {
+    const url = '/quiz/questions/';
     return this.request({
       url,
       method: "GET",
-      headers: {
-        "Authorization": `Bearer ${params?.key}`,
-      },
     });
   }
 
+  checkQuizAnswers(data) {
+    const url = `${this.url}/quiz/`;
+    return this.request({
+      url,
+      method: "PATCH",
+      data,
+    });
+  }
 
-
-
-
-
+    requestForPasswordResetTokenVerification(params) {
+        const url = `/tokens/${params?.key}`;
+        return this.request({
+            url,
+            method: "GET",
+            headers: {
+                "Authorization": `Bearer ${params?.key}`,
+            },
+        });
+    }
 }
 
 export default function authCRUD(request) {

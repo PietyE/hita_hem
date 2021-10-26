@@ -24,6 +24,7 @@ import {
   getIsSignInUserSelector,
   getIsFetchingAuthSelector,
   getTotalPaymentsByCompanySelector,
+  getQuizIsPassedSelector
 } from "redux/reducers/user";
 
 import { HOME_ROUTE } from "constants/routesConstant";
@@ -44,12 +45,12 @@ const InvestFormPage = () => {
   const userCanInvest = useSelector(canUserInvestSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
-
+  const quizIsPassed = useSelector(getQuizIsPassedSelector)
   useEffect(() => {
-    if (!isAuth || !userCanInvest || isCompanyClosed) {
+    if (!isAuth || !userCanInvest || !quizIsPassed || isCompanyClosed) {
       history.push(HOME_ROUTE);
     }
-  }, [isAuth, userCanInvest, isCompanyClosed, history]);
+  }, [isAuth, userCanInvest, isCompanyClosed, quizIsPassed,  history]);
 
   const companyId = history.query.companyId;
 
@@ -68,6 +69,7 @@ const InvestFormPage = () => {
   const _clearCompanyDetail = useCallback(() => {
     dispatch(clearCompany());
   }, [dispatch]);
+  
   useEffect(() => {
     if (companyId) {
       _getCompanyDetail(companyId);

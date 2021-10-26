@@ -158,7 +158,7 @@ export const en = {
 
     },
     quiz:{
-      title: 'To complete the registration process, please answer the following questions',
+      title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy and knowledge about investments',
       back_button: 'Back',
       button_confirm: 'Confirm',
