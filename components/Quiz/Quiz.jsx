@@ -7,7 +7,7 @@ import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {useTranslation} from "react-i18next";
 import {getQuiz, getQuizErrorsSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
-import {checkQuizAnswers} from "../../redux/actions/user";
+import {checkQuizAnswers, setQuizErrors} from "../../redux/actions/user";
 import {getCompanyIdSelector} from "../../redux/reducers/companies";
 
 const Quiz = ({show}) => {
@@ -19,21 +19,10 @@ const Quiz = ({show}) => {
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
     const companyId = useSelector(getCompanyIdSelector);
-    // const generateInitialValues = () => {
-    //     if(quizData?.length){
-    //         const object ={}
-    //         for (let i = 0; i < quizData.length; ++ i) {
-    //             object[`answer${i+1}`] = 999
-    //         }
-    //         return object
-    //     }
-    //     return {}
-    // }
 
-    // const [quizResults, setQuizResults] = useState(generateInitialValues())
     const [quizResults, setQuizResults] = useState({})
 
-    const [warnings, setWarnings] = useState({})
+    const [warnings, setWarnings] = useState([])
 
     useEffect(() => {
         if (quizErrors) {
@@ -43,9 +32,14 @@ const Quiz = ({show}) => {
 
     useEffect(()=>{
         if(quizIsPassed){
-            history.push(`/invest-form/${companyId}`);
+            history.push( `/invest-form/[companyId]`, `/invest-form/${companyId}`);
         }
     },[quizIsPassed,companyId])
+
+    useEffect(()=>{
+        return () => _setQuizErrors(null)
+
+    },[])
 
     const _setShowQuiz = useCallback((data) => {
         dispatch(setShowQuiz(data));
@@ -53,6 +47,10 @@ const Quiz = ({show}) => {
 
     const _checkQuizAnswers = useCallback((data) => {
         dispatch(checkQuizAnswers(data));
+    }, [dispatch]);
+
+    const _setQuizErrors = useCallback((data) => {
+        dispatch(setQuizErrors(data));
     }, [dispatch]);
 
     const handleCloseQuiz = () => {

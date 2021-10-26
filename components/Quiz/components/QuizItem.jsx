@@ -6,9 +6,8 @@ const QuizItem = ({data, index, onSelect, warningList}) => {
     const {id, text, answers} = data
     const [showWarning, setShowWarning] = useState(null)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
-
     useEffect(() => {
-        if (warningList[id]) {
+        if (warningList.includes(id.toString())) {
             setShowWarning(true)
         }
     }, [warningList])

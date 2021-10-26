@@ -123,7 +123,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const handleClickInvest = () => {
     if (isAuth) {
       if(isQuizPassed){
-        history.push(`/invest-form/${companyId}`);
+        history.push('/invest-form/[companyId]',`/invest-form/${companyId}`);
       }else{
         _getQuiz()
       }
