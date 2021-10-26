@@ -41,7 +41,7 @@ import {
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
-  setShowQuiz,
+  setShowQuiz, setShowQuizError,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -455,6 +455,7 @@ function* requestForCheckingQuiz({payload}) {
   } catch (error) {
     if(error?.response?.data?.questions){
       yield put(setQuizErrors(error?.response?.data?.questions))
+      yield put(setShowQuizError(true))
     }else{
       yield put(
           setAuthError({ status: error?.response?.status, data: error?.response?.data })
