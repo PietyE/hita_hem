@@ -10,14 +10,10 @@ import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
 
 import { createYearList, months, getDays } from "utils/utils";
 
-import Quiz from "components/Quiz";
 import PersonalDetailsUpload from "./PersonalDetailsUpload";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 
-import { getIsPaymentsWasSelector } from "redux/reducers/user";
-import { setShowQuiz } from "redux/actions/authPopupWindows";
-import { getShowQuiz } from "redux/reducers/authPopupWindows";
 import { createProfile, changeProfile } from "redux/actions/user";
 import { getProfile } from "redux/reducers/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,10 +24,7 @@ import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
 import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
-// import {
-//   personalDetailsCreateSchema,
-//   personalDetailsUpdateSchema,
-// } from "utils/vadidationSchemas";
+import {restrictOnlyLetters, restrictCity,restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 
@@ -45,8 +38,6 @@ const PersonalDetails = ({
   const errorHandlerHook = useProfileErrorHandler();
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
-  // const isShowQuiz = useSelector(getShowQuiz);
-  // const isPaymentsWas = useSelector(getIsPaymentsWasSelector);
   let initialValues = {
     address: {
       country: "",
@@ -115,10 +106,6 @@ const PersonalDetails = ({
     [dispatch]
   );
 
-  // const openQuiz = useCallback(() => {
-  //   dispatch(setShowQuiz(true));
-  // }, [dispatch]);
-
   const documentUrl = useSelector(getPrivacyPolicyDocument);
 
   const prepareDataForApi = (values) => {
@@ -159,11 +146,7 @@ const PersonalDetails = ({
 
   const onSubmitInvest = (values) => {
     const dataForApi = prepareDataForApi(values);
-    // if (isPaymentsWas) {
       onMakePayment({ profile: dataForApi, amount: currentInvestment });
-    // } else {
-    //   openQuiz();
-    // }
   };
 
   const years = createYearList();
@@ -210,15 +193,9 @@ const PersonalDetails = ({
           } else {
             isButtonDisabled = !(dirty);
           }
-          // const onSubmitInvestFromQuiz = () => {
-          //   onMakePayment({
-          //     profile: prepareDataForApi(values),
-          //     amount: currentInvestment,
-          //   });
-          // };
+
           return (
             <>
-              {/*<Quiz show={isShowQuiz} onSubmit={onSubmitInvestFromQuiz} />*/}
               <Form className="profile_form">
                 {!type && (
                   <PersonalDetailsUpload
@@ -238,6 +215,7 @@ const PersonalDetails = ({
                       errorClassName="profile_form_warning_text"
                       inputName="first_name"
                       values={values}
+                      restrictInput = {restrictOnlyLetters}
                       setFieldValue={setFieldValue}
                       setFieldError={setFieldError}
                       touched={touched}
@@ -252,6 +230,7 @@ const PersonalDetails = ({
                       errorClassName="profile_form_warning_text"
                       inputName="second_name"
                       values={values}
+                      restrictInput = {restrictOnlyLetters}
                       setFieldValue={setFieldValue}
                       setFieldError={setFieldError}
                       touched={touched}
@@ -420,6 +399,7 @@ const PersonalDetails = ({
                       errorClassName="profile_form_warning_text"
                       inputName="address.city"
                       values={values}
+                      restrictInput = {restrictCity}
                       setFieldValue={setFieldValue}
                       setFieldError={setFieldError}
                       touched={touched}
@@ -434,6 +414,7 @@ const PersonalDetails = ({
                       errorClassName="profile_form_warning_text"
                       inputName="address.address"
                       values={values}
+                      restrictInput = {restrictLettersNumbersAndSpecialCharacters}
                       setFieldValue={setFieldValue}
                       setFieldError={setFieldError}
                       touched={touched}

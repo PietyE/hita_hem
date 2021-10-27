@@ -21,11 +21,11 @@ const InputComponent = ({
   clearError,
   placeholder,
   autoComplete,
+  restrictInput
 }) => {
   const [passInputType, setPassInputType] = useState(
     type === "password" ? "password" : "text"
   );
-
   const setShowPassword = () => {
     setPassInputType(passInputType === "password" ? "text" : "password");
   };
@@ -38,7 +38,15 @@ const InputComponent = ({
     }
   };
   const handleChange = (e) => {
-    setFieldValue(inputName, e.target.value);
+    if(restrictInput !== undefined){
+      const inputData = restrictInput(e.target.value)
+      // if(inputData){
+        setFieldValue(inputName, inputData);
+      // }
+    }else{
+      setFieldValue(inputName, e.target.value);
+    }
+
   };
   const errorValue = get(errors, inputName);
   const touchedValue = get(touched, inputName);
