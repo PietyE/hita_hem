@@ -27,14 +27,14 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
         e.preventDefault();
         grecaptcha.ready(function() {
             grecaptcha.execute('6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP', {action: 'submit'}).then(function(token) {
-                // handleClickSubscripe()
+                handleClickSubscripe(token)
             });
         });
     }
 
-  const handleClickSubscripe = () => {
+  const handleClickSubscripe = (token) => {
     if (validateEmail(email)) {
-      _addEmail(email);
+      _addEmail({email, token});
       setEmail("");
     } else {
       setShowWarning(true);
