@@ -38,11 +38,10 @@ const InputComponent = ({
     }
   };
   const handleChange = (e) => {
-    if(restrictInput !== undefined){
+    if(typeof restrictInput === 'function'){
       const inputData = restrictInput(e.target.value)
-      // if(inputData){
-        setFieldValue(inputName, inputData);
-      // }
+      console.log('inputData', inputData)
+      setFieldValue(inputName, inputData);
     }else{
       setFieldValue(inputName, e.target.value);
     }
