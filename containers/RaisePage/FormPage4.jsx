@@ -10,11 +10,13 @@ import UploadComponent from "./UploadComponent";
 import DocumentItem from "./documentItem";
 import Button from "components/ui/Button";
 
-import { raiseForm4 } from "utils/vadidationSchemas";
-
 import { sendForm } from "redux/actions/raisePage";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {checkingAndEditingLink} from "../../utils/utils";
+import {filterComments} from "../../utils/restrictInput";
+
+import * as yup from 'yup';
+
 
 const FormPage4 = ({ changePage, formNumber, data }) => {
   const { t } = useTranslation();
@@ -44,7 +46,6 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       data.form1,
       data.form2,
       convertedDataFromForm3,
-      values
     );
     let dataForApi = {};
     for (let key in assignedObject) {
@@ -52,6 +53,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
         dataForApi[key] = assignedObject[key];
       }
     }
+
     let documentForApi;
 
     if (values.documents.length > 0) {
@@ -60,8 +62,17 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       }));
       dataForApi.documents = documentForApi;
     }
-    _sendForm(dataForApi);
+
+    dataForApi.comments =  filterComments(values.comments);
+      dataForApi.is_agree =  values.is_agree;
+      _sendForm(dataForApi);
   };
+
+ const raiseForm4 = yup.object({
+    is_agree: yup.bool().oneOf([true]),
+    comments: yup.string(),
+    documents: '',
+  })
 
   return (
     <Formik

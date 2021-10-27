@@ -6,9 +6,9 @@ import InputComponent from "components/ui/InputComponent";
 import { Formik, Form } from "formik";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
-// import { raiseForm2 } from "utils/vadidationSchemas";
 import useRaiseForm2ErrorHandler from "customHooks/useRaiseForm2ErrorHandler";
 import * as yup from "yup";
+import {restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 
 const FormPage2 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
@@ -16,17 +16,13 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
 
   const initialValues = {
     company_name: data.company_name,
-    // company_form: data.company_form,
     role: data.role,
-    // share_price: data.share_price,
     revenue: data.revenue,
     amount: data.amount,
   };
   const raiseForm2 = yup.object({
     company_name: yup.string().min(2).max(200).required(t("errors.company_name_required")),
-    // company_form: yup.string().max(200).required(t("errors.company_form_required")),
     role: yup.string().max(200).required(t("errors.role_required")),
-    // share_price: yup.number().typeError(t("errors.share_price_number")).required(t("errors.share_price_required")).min(0,t("errors.share_price_positive")),
     revenue: yup.number().min(0,t("errors.revenue_positive")).typeError(t("errors.revenue_number")),
     amount: yup.number().typeError(t("errors.amount_number")).required(t("errors.amount_required")).min(0,t("errors.amount_positive")),
   })
@@ -56,6 +52,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             errorClassName="raise_error_label"
             inputName="company_name"
             values={values}
+            restrictInput = {restrictLettersNumbersAndSpecialCharacters}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
             touched={touched}
@@ -63,20 +60,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             errorFromApi={errorHandlerHook?.companyNameError}
             clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
-          {/*<InputComponent*/}
-          {/*  labelClassName="raise_form_input_container"*/}
-          {/*  label={t("raisePage.form2.company_form")}*/}
-          {/*  inputClassName="raise_form_input"*/}
-          {/*  errorClassName="raise_error_label"*/}
-          {/*  inputName="company_form"*/}
-          {/*  values={values}*/}
-          {/*  setFieldValue={setFieldValue}*/}
-          {/*  setFieldError={setFieldError}*/}
-          {/*  touched={touched}*/}
-          {/*  errors={errors}*/}
-          {/*  errorFromApi={errorHandlerHook?.companyFormError}*/}
-          {/*  clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}*/}
-          {/*/>*/}
+
           <InputComponent
             labelClassName="raise_form_input_container"
             label={t("raisePage.form2.role")}
@@ -84,6 +68,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             errorClassName="raise_error_label"
             inputName="role"
             values={values}
+            restrictInput = {restrictLettersNumbersAndSpecialCharacters}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
             touched={touched}
@@ -91,20 +76,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             errorFromApi={errorHandlerHook?.roleError}
             clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}
           />
-          {/*<InputComponent*/}
-          {/*  labelClassName="raise_form_input_container"*/}
-          {/*  label={t("raisePage.form2.shares")}*/}
-          {/*  inputClassName="raise_form_input"*/}
-          {/*  errorClassName="raise_error_label"*/}
-          {/*  inputName="share_price"*/}
-          {/*  values={values}*/}
-          {/*  setFieldValue={setFieldValue}*/}
-          {/*  setFieldError={setFieldError}*/}
-          {/*  touched={touched}*/}
-          {/*  errors={errors}*/}
-          {/*  errorFromApi={errorHandlerHook?.sharePriceError}*/}
-          {/*  clearError={errorHandlerHook?.clearRaiseFormErrorFromApi}*/}
-          {/*/>*/}
+
           <InputComponent
             labelClassName="raise_form_input_container"
             label={t("raisePage.form2.revenue")}

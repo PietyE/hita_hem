@@ -3,6 +3,7 @@ import Modal from "components/ui/Modal";
 import Button from "components/ui/Button";
 import { addFaqAnswer } from "redux/actions/companies";
 import { useDispatch } from "react-redux";
+import {filterComments} from "../../utils/restrictInput";
 
 const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
   const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
   );
   const handleSubmit = (e) => {
     e.preventDefault();
-    _addFaqAnswer({ post: e.target[0].value, id: postId });
+    _addFaqAnswer({ post: filterComments(e.target[0].value), id: postId });
     handleClose(null);
   };
   return (
