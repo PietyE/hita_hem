@@ -157,6 +157,10 @@ export const en = {
       text: 'Please review your data on all steps',
 
     },
+    denyDeletingAccount: {
+      title: 'You cannot delete your account.',
+      text: 'To delete your account, please, contact our managers - '
+    },
     quiz:{
       title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy and knowledge about investments',

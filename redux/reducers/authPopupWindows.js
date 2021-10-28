@@ -16,6 +16,7 @@ import {
   SET_SHOW_INVALID_TOKEN_MODAL,
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
   SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
+  SET_SHOW_DENY_DELETING_ACCOUNT,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -35,6 +36,7 @@ const initialValues = {
   showSuccessfulRequestForChange:false,
   showInvalidTokenModal: false,
   showSuccessfulChangeEmailOrPassword:false,
+  showDenyDeletingAccount:false,
   text: '',
 };
 
@@ -63,6 +65,8 @@ export const getShowRequestForChange = state =>  state.authPopupWindows.showSucc
 export const getShowInvalidTokenModal = state =>  state.authPopupWindows.showInvalidTokenModal;
 export const getShowSuccessfulChangeEmailOrPassword = state =>  state.authPopupWindows.showSuccessfulChangeEmailOrPassword;
 export const getChangeEmailOrPasswordText = state =>  state.authPopupWindows.text;
+export const getShowDenyDeletingAccount = state =>  state.authPopupWindows.showDenyDeletingAccount;
+
 
 
 
@@ -102,6 +106,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showSuccessfulChangeEmailOrPassword: actions.payload }
     case SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT:
       return { ...state, text: actions.payload }
+    case SET_SHOW_DENY_DELETING_ACCOUNT:
+      return { ...state, showDenyDeletingAccount: actions.payload }
     default:
       return state;
   }
