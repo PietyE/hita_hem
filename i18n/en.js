@@ -338,6 +338,9 @@ export const en = {
         cancel_button: "Cancel",
         submit_button: "Submit",
         save_button: "Save Changes",
+        footer_text1: 'To edit your personal data, go to the ',
+        footer_link: 'Personal details',
+        footer_text2: ' section in your Personal Account',
       },
     },
     errors: {
