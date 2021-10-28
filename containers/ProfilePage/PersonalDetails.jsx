@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import {useRouter} from "next/router";
 import { useTranslation } from "react-i18next";
 import { Formik, Form, Field } from "formik";
 import * as yup from "yup";
@@ -14,8 +15,8 @@ import PersonalDetailsUpload from "./PersonalDetailsUpload";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 
-import { createProfile, changeProfile } from "redux/actions/user";
-import { getProfile } from "redux/reducers/user";
+import {createProfile, changeProfile, setActiveTab} from "redux/actions/user";
+import {getProfile, getUserIdSelector} from "redux/reducers/user";
 import { useDispatch, useSelector } from "react-redux";
 
 import isEqual from "lodash/isEqual";
@@ -27,6 +28,7 @@ import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
 import {restrictOnlyLetters, restrictCity,restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
+import {setShowInvalidTokenModal} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
   type,
@@ -35,6 +37,8 @@ const PersonalDetails = ({
   sectionClassName,
 }) => {
   const { t } = useTranslation();
+  const history = useRouter();
+
   const errorHandlerHook = useProfileErrorHandler();
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
@@ -107,6 +111,15 @@ const PersonalDetails = ({
   );
 
   const documentUrl = useSelector(getPrivacyPolicyDocument);
+  const usersId = useSelector(getUserIdSelector)
+
+  const handleClick = (e) => {
+    e.preventDefault()
+    dispatch(setActiveTab('personal_details'))
+    history.push(`/users/[usersId]/profile`,`/users/${usersId}/profile`)
+  }
+
+  const isInputsReadOnly = !isEmpty(profile) && !!type
 
   const prepareDataForApi = (values) => {
     const newProfile = JSON.parse(JSON.stringify(values));
@@ -220,6 +233,7 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.firstNameError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
@@ -235,6 +249,7 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.secondNameError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
@@ -248,6 +263,7 @@ const PersonalDetails = ({
                         <Field
                           name="month"
                           as="select"
+                          disabled={isInputsReadOnly}
                           onBlur={() => {
                             setFieldError("month", undefined);
                           }}
@@ -287,7 +303,7 @@ const PersonalDetails = ({
                           onBlur={() => {
                             setFieldError("day", undefined);
                           }}
-                          disabled={!values?.month}
+                          disabled={!values?.month || isInputsReadOnly}
                           className={
                             touched.day && errors.day
                               ? "profile_form_input_warning profile_form_input_with_arrow"
@@ -321,6 +337,7 @@ const PersonalDetails = ({
                         <Field
                           name="year"
                           as="select"
+                          disabled={isInputsReadOnly}
                           onBlur={() => {
                             setFieldError("year", undefined);
                           }}
@@ -364,6 +381,7 @@ const PersonalDetails = ({
                         name="address.country"
                         values={values?.address?.country}
                         value={values?.address?.country}
+                        disabled={isInputsReadOnly}
                         onChange={(_, e) => {
                           errorHandlerHook?.clearProfileErrorFromApi(
                             "address.country"
@@ -404,6 +422,7 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.cityError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
@@ -419,6 +438,7 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.addressError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
@@ -433,6 +453,7 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.personalIdError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
@@ -447,10 +468,14 @@ const PersonalDetails = ({
                       setFieldError={setFieldError}
                       touched={touched}
                       errors={errors}
+                      disabled={isInputsReadOnly}
                       errorFromApi={errorHandlerHook?.phoneError}
                       clearError={errorHandlerHook?.clearProfileErrorFromApi}
                     />
                   </div>
+                  {isInputsReadOnly && <p className = 'profile_form_footer_text'>{t("profile_page.personal.footer_text1")}<a onClick={handleClick} className='profile_form_footer_link'>
+                    {t("profile_page.personal.footer_link")}
+                  </a>{t("profile_page.personal.footer_text2")}</p>}
                   <SplitLine className="profile_form_split_line" />
                   <div className="profile_form_footer">
                     {isEmpty(profile) && (
