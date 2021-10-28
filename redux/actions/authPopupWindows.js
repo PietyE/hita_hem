@@ -15,7 +15,8 @@ import {
   SET_SHOW_REQUEST_FOR_CHANGE,
   SET_SHOW_INVALID_TOKEN_MODAL,
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
-  SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT
+  SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
+  SET_SHOW_DENY_DELETING_ACCOUNT,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -101,3 +102,7 @@ export const setChangeEmailOrPasswordText = payload =>({
   payload,
 })
 
+export const setShowDenyDeletingAccount = payload =>({
+  type: SET_SHOW_DENY_DELETING_ACCOUNT,
+  payload,
+})

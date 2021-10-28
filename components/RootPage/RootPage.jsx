@@ -26,6 +26,7 @@ import {
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
+import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -71,7 +72,9 @@ const InvalidTokenModal = dynamic(() =>
 const SuccessfulChangeEmailOrPassword = dynamic(() =>
     import("components/SuccessfulChangeEmailOrPassword")
 );
-
+const ShowDenyDeletingAccount = dynamic(() =>
+    import("components/ShowDenyDeletingAccount")
+);
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
@@ -99,6 +102,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
+  const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
 
 
   const _logOut = useCallback(() => {
@@ -174,6 +178,7 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
+        {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
         <ScrollToTopButton />
       </main>
       <Footer />
