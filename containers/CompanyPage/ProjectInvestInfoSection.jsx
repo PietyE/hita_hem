@@ -140,7 +140,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > topPart + 20) {
       setVisible(true);
-    } else if (scrolled <= topPart) {
+    } else if (scrolled <= topPart + 20) {
       setVisible(false);
     }
   };

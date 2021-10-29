@@ -33,7 +33,9 @@ function* sendEmail({ payload }) {
   try {
     yield put(setIsFetchingAboutUs(true));
     const { addEmail } = api;
-    yield call([addEmail, "addEmail"], payload);
+    // yield call([addEmail, "addEmail"], payload);
+    yield call([addEmail, "addEmail"], {email: payload});
+
     yield put(setSuccessfulSubscribe(true))
   } catch (error) {
     yield put(
