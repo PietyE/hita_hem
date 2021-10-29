@@ -68,7 +68,7 @@ const SignUp = ({ show }) => {
       centered={true}
       isFetchIndicator={isFetching}
     >
-      <h1 className="sign_up_title">{t("auth.sign_up.title")}</h1>
+      <h1 className="sign_up_title mb-4">{t("auth.sign_up.title")}</h1>
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}

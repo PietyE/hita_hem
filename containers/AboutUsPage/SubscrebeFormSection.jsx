@@ -6,10 +6,10 @@ import { useDispatch } from "react-redux";
 import Button from "components/ui/Button";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
-import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
+// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
     const SubscrebeFormSection = ({ content = [] }) => {
-    useGoogleCaptcha();
+    // useGoogleCaptcha();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -23,23 +23,32 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
   );
 
 
-    function handleClick(e) {
-        e.preventDefault();
-        grecaptcha.ready(function() {
-            grecaptcha.execute('6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP', {action: 'submit'}).then(function(token) {
-                handleClickSubscripe(token)
-            });
-        });
-    }
+    // function handleClick(e) {
+    //     e.preventDefault();
+    //     grecaptcha.ready(function() {
+    //         grecaptcha.execute('6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP', {action: 'submit'}).then(function(token) {
+    //             handleClickSubscribe(token)
+    //         });
+    //     });
+    // }
 
-  const handleClickSubscripe = (token) => {
-    if (validateEmail(email)) {
-      _addEmail({email, token});
-      setEmail("");
-    } else {
-      setShowWarning(true);
-    }
-  };
+  // const handleClickSubscribe = (token) => {
+  //   if (validateEmail(email)) {
+  //     _addEmail({email, token});
+  //     setEmail("");
+  //   } else {
+  //     setShowWarning(true);
+  //   }
+  // };
+
+        const handleClickSubscribe = () => {
+            if (validateEmail(email)) {
+                _addEmail(email);
+                setEmail("");
+            } else {
+                setShowWarning(true);
+            }
+        };
 
   const handleChangeEmail = (e) => {
     if (showWarning || email === "") {
@@ -69,10 +78,10 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
           className="subscribe_form_section_button g-recaptcha"
           // data-sitekey="6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP"
           // data-action='submit'
-            onClick={handleClick}
+          //   onClick={handleClick}
           colorStyle="dark-green"
-          // onClick={handleClickSubscribe}
-          data-callback='onSubmit'
+          onClick={handleClickSubscribe}
+          // data-callback='onSubmit'
           disabled={!email}
         >
           {t("about_us_page.button")}
