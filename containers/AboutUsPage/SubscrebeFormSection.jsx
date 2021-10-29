@@ -6,8 +6,10 @@ import { useDispatch } from "react-redux";
 import Button from "components/ui/Button";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
+// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
-const SubscrebeFormSection = ({ content = [] }) => {
+    const SubscrebeFormSection = ({ content = [] }) => {
+    // useGoogleCaptcha();
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -20,14 +22,33 @@ const SubscrebeFormSection = ({ content = [] }) => {
     [dispatch]
   );
 
-  const handleClickSubscripe = () => {
-    if (validateEmail(email)) {
-      _addEmail(email);
-      setEmail("");
-    } else {
-      setShowWarning(true);
-    }
-  };
+
+    // function handleClick(e) {
+    //     e.preventDefault();
+    //     grecaptcha.ready(function() {
+    //         grecaptcha.execute('6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP', {action: 'submit'}).then(function(token) {
+    //             handleClickSubscribe(token)
+    //         });
+    //     });
+    // }
+
+  // const handleClickSubscribe = (token) => {
+  //   if (validateEmail(email)) {
+  //     _addEmail({email, token});
+  //     setEmail("");
+  //   } else {
+  //     setShowWarning(true);
+  //   }
+  // };
+
+        const handleClickSubscribe = () => {
+            if (validateEmail(email)) {
+                _addEmail(email);
+                setEmail("");
+            } else {
+                setShowWarning(true);
+            }
+        };
 
   const handleChangeEmail = (e) => {
     if (showWarning || email === "") {
@@ -54,9 +75,13 @@ const SubscrebeFormSection = ({ content = [] }) => {
           onChange={handleChangeEmail}
         />
         <Button
-          className="subscribe_form_section_button"
+          className="subscribe_form_section_button g-recaptcha"
+          // data-sitekey="6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP"
+          // data-action='submit'
+          //   onClick={handleClick}
           colorStyle="dark-green"
-          onClick={handleClickSubscripe}
+          onClick={handleClickSubscribe}
+          // data-callback='onSubmit'
           disabled={!email}
         >
           {t("about_us_page.button")}

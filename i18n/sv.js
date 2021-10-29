@@ -157,7 +157,7 @@ export const sv = {
       text: 'Vänligen gå igenom din data',
     },
     quiz:{
-      title:'Some of the filled fields take mistakes',
+      title:'För att slutföra registreringen måste du besvara följande frågor',
       text: 'Vänligen gå igenom din data',
       back_button: "Tillbaka",
       button_confirm: 'Godkänn',

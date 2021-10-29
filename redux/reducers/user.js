@@ -10,7 +10,10 @@ import {
   SET_RESPONSE_FROM_API,
   SET_CAN_CHANGE_EMAIL,
   SET_CAN_CHANGE_PASSWORD,
-  SET_CAN_RESET_PASSWORD,
+  SET_QUIZ,
+  SET_QUIZ_IS_PASSED,
+  SET_QUIZ_ERRORS,
+    SET_CAN_RESET_PASSWORD,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -24,9 +27,13 @@ const initialsState = {
   isSuccessfulResponseFromApi: false,
   token: {},
   user: {},
+  quizQuestions:[],
+  quizErrors: null,
   account: {
     id: "",
     email: "",
+    quiz: false,
+
   },
   isFirstHydrate: false,
 };
@@ -55,6 +62,12 @@ export const user = (state = initialsState, actions) => {
       return {...state, canChangeEmail: actions.payload}
     case SET_CAN_CHANGE_PASSWORD:
       return {...state, canChangePassword: actions.payload}
+    case SET_QUIZ:
+      return {...state, quizQuestions: actions.payload}
+    case SET_QUIZ_IS_PASSED:
+      return {...state, account:{...state.account, quiz: actions.payload}}
+    case SET_QUIZ_ERRORS:
+      return {...state, quizErrors: actions.payload}
     case SET_CAN_RESET_PASSWORD:
       return {...state, canResetPassword: actions.payload}
     default:
@@ -62,6 +75,9 @@ export const user = (state = initialsState, actions) => {
   }
 };
 
+export const getQuizErrorsSelector = (state) => state.user.quizErrors;
+export const getQuizIsPassedSelector = (state) => state.user.account.quiz;
+export const getQuiz = (state) => state.user.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
@@ -96,3 +112,10 @@ export const getUserIdSelector = (state) => state.user.account.id;
 export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
+
+
+export const canDeleteProfile = state => {
+const userCampaigns = state.user?.user?.companies;
+ const investedInCampaigns = userCampaigns?.reduce((acc, el) => (acc + Number(el.invested)),0)
+  return !investedInCampaigns
+}

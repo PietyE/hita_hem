@@ -2,46 +2,45 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import WarningIcon from 'public/images/attention.svg';
 
-const QuizItem = ({data, onSelect, warningList}) => {
-    const{id, question, options, answer } = data
+const QuizItem = ({data, index, onSelect, warningList}) => {
+    const {id, text, answers} = data
     const [showWarning, setShowWarning] = useState(null)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
-
-    useEffect(()=>{
-        if(warningList[`answer${id}`] !== showWarning){
-            setShowWarning(warningList[`answer${id}`])
+    useEffect(() => {
+        if (warningList.includes(id.toString())) {
+            setShowWarning(true)
         }
-    },[warningList])
+    }, [warningList])
 
+    let _warningStyle = showWarning ? 'quiz_item_warning' : null
 
-    let _warningStyle = showWarning?'quiz_item_warning': null
-    const checkAnswer = (e) => {
-        const booleanIsCorrect = e.target.value === answer
-        onSelect(booleanIsCorrect, `answer${data.id}`)
+    const saveAnswer = (e) => {
+        onSelect(e.target.dataset.id, `answer${index + 1}`)
         setShowWarning(false)
         setSelectedAnswer(e.target.value)
     }
-    return(
-        <div className= {`quiz_item ${_warningStyle}`}>
+    return (
+        <div className = {`quiz_item ${_warningStyle}`}>
             {showWarning &&
             <div className = 'quiz_item_warning_notification'>
-                <Image src={WarningIcon} alt='attention'/>
+                <Image src = {WarningIcon} alt = 'attention'/>
                 <span>You have to select right answer</span>
             </div>
             }
-            <h3 className= 'quiz_item_title' >{question}</h3>
-            {options.length &&
-            options.map((option, i) => {
-                    const _textWarning = showWarning && option === selectedAnswer?'quiz_text_warning':null
-                    const _radioWarning = showWarning && option === selectedAnswer?'quiz_item_option_radio_check_warning':'quiz_item_option_radio_check'
-                    return  (
-                        <label key = {i} className = {`quiz_item_option_label ${_textWarning}`}>
-                            <input type = 'radio' value = {option} name = {id} onChange = {checkAnswer}
+            <h3 className = 'quiz_item_title'>{text}</h3>
+            {answers?.length &&
+            answers.map(option => {
+                    const _textWarning = showWarning && option.text === selectedAnswer ? 'quiz_text_warning' : null
+                    const _radioWarning = showWarning && option.text === selectedAnswer ? 'quiz_item_option_radio_check_warning' : 'quiz_item_option_radio_check'
+                    return (
+                        <label key = {option?.id} className = {`quiz_item_option_label ${_textWarning}`}>
+                            <input type = 'radio' value = {option.text} name = {id} data-id = {option.id}
+                                   onChange = {saveAnswer}
                                    className = 'quiz_item_option_radio'/>
                             <div className = {_radioWarning}>
                                 <span className = 'quiz_item_option_radio_check_inner'/>
                             </div>
-                            <span className='quiz_item_option_label_text'>{option}</span>
+                            <span className = 'quiz_item_option_label_text'>{option.text}</span>
                         </label>
                     )
                 }

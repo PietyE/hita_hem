@@ -157,8 +157,12 @@ export const en = {
       text: 'Please review your data on all steps',
 
     },
+    denyDeletingAccount: {
+      title: 'You cannot delete your account.',
+      text: 'To delete your account, please, contact our managers - '
+    },
     quiz:{
-      title: 'To complete the registration process, please answer the following questions',
+      title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy and knowledge about investments',
       back_button: 'Back',
       button_confirm: 'Confirm',
@@ -338,6 +342,9 @@ export const en = {
         cancel_button: "Cancel",
         submit_button: "Submit",
         save_button: "Save Changes",
+        footer_text1: 'To edit your personal data, go to the ',
+        footer_link: 'Personal details',
+        footer_text2: ' section in your Personal Account',
       },
     },
     errors: {
