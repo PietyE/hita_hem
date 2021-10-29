@@ -38,6 +38,8 @@
 @import "../components/QuizWrongAnswersModal/styles.scss";
 @import "../components/ScrollToTopButton/style.scss";
 @import "../components/RaiseWrongAnswersModal/styles.scss";
+@import "../components/ShowDenyDeletingAccount/styles.scss";
+
 /// pages style
 @import "../containers/AboutUsPage/styles.scss";
 @import "../containers/HomePage/styles.scss";
@@ -49,3 +51,4 @@
 @import "../containers/InvestmentOpportunitiesPage/styles.scss";
 @import "../containers/LaunchingSoonPage/styles.scss";
 @import "../containers/InvestFormPage/styles.scss";
+@import "../containers/ChangeEmailPage/styles.scss";

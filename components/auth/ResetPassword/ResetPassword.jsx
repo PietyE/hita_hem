@@ -5,9 +5,8 @@ import Modal from "../../ui/Modal";
 import { Form, Formik } from "formik";
 import Button from "../../ui/Button";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
-import { resetPassword } from "redux/actions/user";
+import { makeRequestForResetPassword } from "redux/actions/user";
 import InputComponent from "../../ui/InputComponent";
-// import { resetPasswordSchema } from "utils/vadidationSchemas";
 import SpinnerStyled from '../../ui/Spinner';
 import {getIsFetchingAuthSelector} from 'redux/reducers/user';
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
@@ -22,9 +21,9 @@ const ResetPassword = ({ show }) => {
 
   const isFetching = useSelector(getIsFetchingAuthSelector)
 
-  const _resetPassword = useCallback(
+  const _makeRequestForResetPassword= useCallback(
     (data) => {
-      dispatch(resetPassword(data));
+      dispatch(makeRequestForResetPassword(data));
     },
     [dispatch]
   );
@@ -35,7 +34,7 @@ const ResetPassword = ({ show }) => {
   };
 
   const onSubmit = (values) => {
-    _resetPassword(values.email.toLowerCase());
+    _makeRequestForResetPassword(values.email.toLowerCase());
 
   };
   const resetPasswordSchema = yup.object({
@@ -54,7 +53,7 @@ const ResetPassword = ({ show }) => {
     >
       {isFetching && <SpinnerStyled/>}
 
-      <h1 className="sign_up_title">{t("auth.resetPasswordPopup.title")}</h1>
+      <h1 className="sign_up_title mb-2">{t("auth.resetPasswordPopup.title")}</h1>
       <p className="reset_password_text">
         {t("auth.resetPasswordPopup.description")}
       </p>
@@ -62,7 +61,6 @@ const ResetPassword = ({ show }) => {
         initialValues={{ email: "" }}
         validationSchema={resetPasswordSchema}
         onSubmit={onSubmit}
-        // validateOnMount
         validateOnChange={false}
         validateOnBlur={false}
       >
@@ -88,7 +86,6 @@ const ResetPassword = ({ show }) => {
                     type = "submit"
                     colorStyle = {"dark-green"}
                     className = "auth_button"
-                    // disabled={!isValid}
                 >
                   {t("auth.resetPasswordPopup.button")}
                 </Button>

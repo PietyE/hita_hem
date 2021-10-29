@@ -592,7 +592,7 @@
 
       .fin_article_large_button {
         position: absolute;
-        bottom: -5px;
+        bottom: 0;
         width: 140px;
         height: 40px;
       }
@@ -844,6 +844,7 @@
   z-index: 1;
   background-color: #fff;
   width: 100%;
+  height: 80px;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px;
@@ -854,11 +855,6 @@
   }
 }
 .sticky_invest_button{
-  //display: none;
-  //position: fixed;
-  //top: 90px;
-  //right: 10px;
-  //z-index: 3;
   margin-left: auto;
   margin-right: 75px;
   width: 350px;
@@ -869,7 +865,7 @@
   display: block;
 }
 
-@media screen and (min-width: 1920px) {
+@media screen and (min-width: 1921px) {
   .company-page-container {
     .financial_info_documents {
       max-width: 1480px;
@@ -1725,14 +1721,14 @@
   line-height: 150%;
   color: rgba(0, 0, 0, 0.6);
 }
-
-.show_more {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: center;
-  transform: translateY(25px);
+.company-page-container {
+  .show_more {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    transform: translateY(25px);
+  }
 }
-
 .fin_show_more {
   transform: translateY(14px);
   text-align: center;

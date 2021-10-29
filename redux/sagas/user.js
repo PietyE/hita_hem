@@ -13,6 +13,13 @@ import {
   CHANGE_PASSWORD,
   CHANGE_EMAIL,
   DELETE_ACCOUNT,
+  REQUEST_FOR_CHANGING_EMAIL,
+  REQUEST_FOR_CHANGING_PASSWORD,
+  REQUEST_FOR_RESET_PASSWORD,
+  CHECK_TOKEN, CLEAN_AUTH_DATA,
+    GET_QUIZ, CHECK_QUIZ_ANSWERS,
+  GET_PROFILE_FROM_API,
+  CHECK_TOKEN_FOR_RESET_PASSWORD,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -20,7 +27,7 @@ import {
   setAuth,
   setToken,
   setProfile,
-  setFetchingUsers,
+  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanResetPassword, setCanChangePassword, setQuiz,
 } from "redux/actions/user";
 import {
   setShowSignIn,
@@ -30,10 +37,15 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
+  setShowRequestForChange,
+  setShowInvalidTokenModal,
+  setShowChangeEmailOrPassword,
+  setChangeEmailOrPasswordText,
+  setShowQuiz, setShowQuizError,
 } from "../actions/authPopupWindows";
 import { getUserIdSelector } from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
-import { setResponseFromApi } from "../actions/user";
+import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 
@@ -234,10 +246,10 @@ function* changeUserProfile({ payload }) {
   }
 }
 
-function* resetUserPassword({ payload }) {
+function* requestForResetUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "resetPassword"], { email: payload });
+    yield call([auth, "requestForResetPassword"], { email: payload });
     yield put(setShowResetPassword(false));
     yield put(setShowSuccessfulResetPassword(true));
     yield put(clearErrors())
@@ -254,13 +266,38 @@ function* resetUserPassword({ payload }) {
   }
 }
 
+function* resetUserPassword({ payload }) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "resetPassword"], payload);
+    yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
+    yield put(setShowChangeEmailOrPassword(true))
+    yield put(setCanResetPassword(false))
+    yield put(clearErrors())
+    yield put(cleanAuthData())
+  } catch (error) {
+    yield put(
+        yield put(
+            setAuthError({
+              status: error.response.status,
+              data: error.response.data,
+            })
+        )
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
 function* changeUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "changePassword"], payload);
-    yield put(setResponseFromApi(true));
+    yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
+    yield put(setShowChangeEmailOrPassword(true))
+    yield put(setCanChangePassword(false))
     yield put(clearErrors())
-
+    yield put(cleanAuthData())
   } catch (error) {
     yield put(
       yield put(
@@ -280,16 +317,17 @@ function* changeUserEmail({ payload }) {
     yield put(setFetchingUsers(true));
     yield call([auth, "changeEmail"], payload);
     yield put(setResponseFromApi(true));
+    yield put(setChangeEmailOrPasswordText('Your mail has been successfully updated.'))
+    yield put(setShowChangeEmailOrPassword(true))
+    yield put(setCanChangeEmail(false))
     yield put(clearErrors())
-
+    yield put(cleanAuthData())
   } catch (error) {
-    yield put(
       yield put(
         setAuthError({
-          status: error.response.status,
-          data: error.response.data,
+          status: error?.response?.status,
+          data: error?.response?.data,
         })
-      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -299,7 +337,6 @@ function* changeUserEmail({ payload }) {
 export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
-
     let userId = yield select(getUserIdSelector);
     const response = yield call([auth, "getUser"], userId);
     if (response.status !== 200) {
@@ -311,6 +348,9 @@ export function* getProfileFromApi() {
       yield put(setProfile(profileCopy));
     } else {
       yield put(setProfile(response.data.profile));
+    }
+    if(response?.data?.quiz){
+      yield put(setQuizIsPassed(response.data.quiz));
     }
   } catch (error) {
     yield put(
@@ -337,6 +377,119 @@ export function* deleteUserAccount() {
     yield put(setFetchingUsers(false));
   }
 }
+
+function* requestForChangingEmail() {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForChangingEmail"]);
+    yield put(setShowRequestForChange(true));
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* requestForChangingPassword() {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForChangingPassword"]);
+    yield put(setShowRequestForChange(true));
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* requestForCheckingToken({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForTokenVerification"], payload?.key);
+    if(payload?.type === 'email'){
+      yield put(setCanChangeEmail(true))
+    }else if(payload?.type === 'password'){
+      yield put(setCanChangePassword(true))
+    }
+    // else if(payload.type === 'reset-password'){
+    //   yield put(setCanResetPassword(true))
+    // }
+  } catch (error) {
+    if(error?.response?.status === 404){
+      yield put(setShowInvalidTokenModal(true))
+    }else{
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+    }
+
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* requestForQuiz() {
+  try {
+    yield put(setFetchingUsers(true));
+    const res = yield call([auth, "requestForQuiz"]);
+    yield put(setQuiz(res?.data))
+    yield put(setShowQuiz(true))
+  } catch (error) {
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* requestForCheckingQuiz({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "checkQuizAnswers"], payload);
+    yield call(getProfileFromApi)
+  } catch (error) {
+    if(error?.response?.data?.questions){
+      yield put(setQuizErrors(error?.response?.data?.questions))
+      yield put(setShowQuizError(true))
+    }else{
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+    }
+
+
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* passwordResetTokenVerificationRequest({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestForPasswordResetTokenVerification"], payload);
+    yield put(setCanResetPassword(true))
+    yield call([api, "setToken"], payload?.key);
+  } catch (error) {
+    if(error?.response?.status === 401 || error?.response?.status === 404){
+      yield put(setShowInvalidTokenModal(true))
+    }else{
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+    }
+
+
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
 
 function* clean() {
   yield put(setAccount({}));
@@ -366,7 +519,18 @@ export function* userWorker() {
   yield takeEvery(CREATE_PROFILE, createUserProfile);
   yield takeEvery(CHANGE_PROFILE, changeUserProfile);
   yield takeEvery(RESET_PASSWORD, resetUserPassword);
+  yield takeEvery(REQUEST_FOR_RESET_PASSWORD, requestForResetUserPassword);
   yield takeEvery(CHANGE_PASSWORD, changeUserPassword);
   yield takeEvery(CHANGE_EMAIL, changeUserEmail);
   yield takeEvery(DELETE_ACCOUNT, deleteUserAccount);
+  yield takeEvery(REQUEST_FOR_CHANGING_EMAIL, requestForChangingEmail);
+  yield takeEvery(REQUEST_FOR_CHANGING_PASSWORD, requestForChangingPassword);
+  yield takeEvery(CHECK_TOKEN, requestForCheckingToken)
+  yield takeEvery( CHECK_TOKEN_FOR_RESET_PASSWORD, passwordResetTokenVerificationRequest)
+  yield takeEvery(CLEAN_AUTH_DATA, clean)
+  yield takeEvery(GET_QUIZ, requestForQuiz)
+  yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
+  yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
+
 }
+

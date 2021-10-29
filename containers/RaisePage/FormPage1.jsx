@@ -7,10 +7,10 @@ import InputComponent from "components/ui/InputComponent";
 import { CountryDropdown } from "react-country-region-selector";
 import IconComponent from "components/ui/IconComponent";
 import { faArrowRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-// import { raiseForm1 } from "utils/vadidationSchemas";
 import useRaiseFormErrorHandler from "customHooks/useRaiseFormErrorHandler";
 import * as yup from "yup";
 import {phoneRegExp} from "../../utils/vadidationSchemas";
+import {restrictOnlyLetters} from "../../utils/restrictInput";
 
 const FormPage1 = ({ changePage, submit, formNumber, data }) => {
   const { t } = useTranslation();
@@ -60,6 +60,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             errorClassName="raise_error_label"
             inputName="first_name"
             values={values}
+            restrictInput = {restrictOnlyLetters}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
             touched={touched}
@@ -74,6 +75,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
             errorClassName="raise_error_label"
             inputName="second_name"
             values={values}
+            restrictInput = {restrictOnlyLetters}
             setFieldValue={setFieldValue}
             setFieldError={setFieldError}
             touched={touched}

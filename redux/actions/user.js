@@ -17,7 +17,21 @@ import {
   CHANGE_EMAIL,
   DELETE_ACCOUNT,
   SET_RESPONSE_FROM_API,
-
+  SET_CAN_CHANGE_EMAIL,
+  REQUEST_FOR_CHANGING_EMAIL,
+  REQUEST_FOR_CHANGING_PASSWORD,
+  CHECK_TOKEN,
+  CLEAN_AUTH_DATA,
+  SET_CAN_CHANGE_PASSWORD,
+    GET_QUIZ,
+  SET_QUIZ,
+  CHECK_QUIZ_ANSWERS,
+  SET_QUIZ_ERRORS,
+  SET_QUIZ_IS_PASSED,
+  GET_PROFILE_FROM_API,
+  SET_CAN_RESET_PASSWORD,
+  REQUEST_FOR_RESET_PASSWORD,
+  CHECK_TOKEN_FOR_RESET_PASSWORD,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -104,3 +118,78 @@ export const setResponseFromApi = payload => ({
   type: SET_RESPONSE_FROM_API,
   payload
 })
+
+export const setCanChangeEmail = payload => ({
+  type: SET_CAN_CHANGE_EMAIL,
+  payload
+})
+
+export const setCanChangePassword = payload => ({
+  type: SET_CAN_CHANGE_PASSWORD,
+  payload
+})
+
+export const setCanResetPassword = payload => ({
+  type: SET_CAN_RESET_PASSWORD,
+  payload
+})
+
+export const makeRequestForChangingEmail = payload => ({
+  type: REQUEST_FOR_CHANGING_EMAIL,
+  payload
+})
+
+export const makeRequestForChangingPassword = payload => ({
+  type: REQUEST_FOR_CHANGING_PASSWORD,
+  payload
+})
+
+export const makeRequestForResetPassword = payload => ({
+  type: REQUEST_FOR_RESET_PASSWORD,
+  payload
+})
+
+
+export const makeRequestForCheckingToken = payload => ({
+  type: CHECK_TOKEN,
+  payload
+})
+
+export const makeRequestForResetPasswordTokenVerification = payload => ({
+  type: CHECK_TOKEN_FOR_RESET_PASSWORD,
+  payload
+})
+
+
+export const cleanAuthData = () => ({
+  type: CLEAN_AUTH_DATA,
+})
+
+export const getQuiz = () => ({
+  type: GET_QUIZ,
+})
+
+export const setQuiz = payload => ({
+  type: SET_QUIZ,
+  payload,
+})
+
+export const checkQuizAnswers = payload => ({
+  type: CHECK_QUIZ_ANSWERS,
+  payload
+})
+
+export const setQuizErrors = payload => ({
+  type: SET_QUIZ_ERRORS,
+  payload
+})
+
+export const setQuizIsPassed = payload => ({
+  type: SET_QUIZ_IS_PASSED,
+  payload
+})
+
+export const fetchProfileFromApi = () => ({
+  type: GET_PROFILE_FROM_API,
+})
+

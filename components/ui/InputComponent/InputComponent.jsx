@@ -21,11 +21,12 @@ const InputComponent = ({
   clearError,
   placeholder,
   autoComplete,
+  restrictInput,
+  disabled
 }) => {
   const [passInputType, setPassInputType] = useState(
     type === "password" ? "password" : "text"
   );
-
   const setShowPassword = () => {
     setPassInputType(passInputType === "password" ? "text" : "password");
   };
@@ -38,22 +39,30 @@ const InputComponent = ({
     }
   };
   const handleChange = (e) => {
-    setFieldValue(inputName, e.target.value);
+    if(typeof restrictInput === 'function'){
+      const inputData = restrictInput(e.target.value)
+      console.log('inputData', inputData)
+      setFieldValue(inputName, inputData);
+    }else{
+      setFieldValue(inputName, e.target.value);
+    }
+
   };
   const errorValue = get(errors, inputName);
   const touchedValue = get(touched, inputName);
-
   return (
     <>
       <label className={`input_component_label ${labelClassName}`}>
         {label}
         <br />
+        
         <Field
           type={passInputType}
           name={inputName}
           onChange={handleChange}
           onFocus={handleFocus}
           autoComplete={autoComplete}
+          disabled={disabled}
           className={
             (!!errorValue || errorFromApi)
               ? ` input_warning input_component_input ${inputClassName}`

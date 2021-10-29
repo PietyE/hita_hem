@@ -19,11 +19,14 @@ import {
   getShowQuizError,
   getShowSuccessfulSubscribe,
   getShowRaiseError,
+    getShowRequestForChange,
+    getShowInvalidTokenModal,
+    getShowSuccessfulChangeEmailOrPassword,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
-import RaiseWrongAnswersModal from "../RaiseWrongAnswersModal/RaiseWrongAnswersModal";
+import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -60,7 +63,18 @@ const SuccessfullySubscribedModal = dynamic(() =>
 const RaiseWrongAnswerModal = dynamic(() =>
     import("components/RaiseWrongAnswersModal")
 );
-
+const SuccessfulRequestForChange = dynamic(() =>
+    import("components/SuccessfulRequestForChange")
+);
+const InvalidTokenModal = dynamic(() =>
+    import("components/InvalidTokenModal")
+);
+const SuccessfulChangeEmailOrPassword = dynamic(() =>
+    import("components/SuccessfulChangeEmailOrPassword")
+);
+const ShowDenyDeletingAccount = dynamic(() =>
+    import("components/ShowDenyDeletingAccount")
+);
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
@@ -85,6 +99,10 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowQuizErrorPopup = useSelector(getShowQuizError);
   const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
+  const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
+  const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
+  const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
+  const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
 
 
   const _logOut = useCallback(() => {
@@ -152,9 +170,15 @@ const RootPage = ({ children, initLang = "" }) => {
           <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
         )}
         {!!isShowQuizRaisePopup && (
-            <RaiseWrongAnswersModal show={isShowQuizRaisePopup} />
+            <RaiseWrongAnswerModal show={isShowQuizRaisePopup} />
+        )}
+        {!!isShowSuccessfulRequestForChange && (
+            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChange}/>
         )}
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
+        {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
+        {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
+        {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
         <ScrollToTopButton />
       </main>
       <Footer />

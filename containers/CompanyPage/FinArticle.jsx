@@ -62,6 +62,7 @@ const FinArticle = ({ item }) => {
       _style = isShowButton
         ? {
             height: isShowMore ? "auto" : "458px",
+            borderBottom: isShowMore? "none" :"1px solid rgba(0, 0, 0, 0.1)"
           }
         : {};
     }

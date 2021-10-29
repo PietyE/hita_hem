@@ -252,6 +252,19 @@
       }
     }
 
+    .profile_form_footer_text{
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 130%;
+      color: rgba(0, 0, 0, 0.6);
+    }
+    .profile_form_footer_link{
+      color: #000;
+      text-decoration: underline;
+    }
+
     .profile_form_split_line {
       margin-bottom: 19px;
       margin-top: 19px;
@@ -304,6 +317,30 @@
 }
 
 .account_settings_container {
+  .account_settings_change_block{
+    display: flex;
+  }
+  .account_settings_form_text_wrapper{
+    width: 60%  ;
+  }
+  .account_settings_form_button_wrapper{
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+    padding-left: 45px;
+    .account_settings_button_save {
+      font-family: Mulish;
+      margin-top: auto;
+      margin-bottom: 25px;
+      font-size: 14px;
+      height: 40px;
+      width: 100%;
+    }
+  }
+  .account_settings_split_line{
+    margin-bottom: 15px;
+  }
   .account_settings_title {
     font-family: Raleway;
     font-style: normal;
@@ -332,7 +369,7 @@
       line-height: 32px;
       font-feature-settings: "pnum" on, "lnum" on;
       color: #1f607c;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
     .account_settings_form_label {
       position: relative;
@@ -423,11 +460,7 @@
         text-align: center;
         color: #1f607c;
       }
-      .account_settings_button_save {
-        font-family: Mulish;
-        font-size: 16px;
-        height: 48px;
-      }
+
     }
   }
 }
@@ -1018,6 +1051,28 @@
       font-size: 24px;
       line-height: 32px;
       margin-bottom: 26px;
+    }
+    .account_settings_split_line{
+      display: none;
+    }
+    .account_settings_change_block{
+      flex-direction: column;
+      .account_settings_form_text_wrapper{
+        text-align: center;
+        width: 85%;
+        margin-right: auto;
+        margin-left: auto;
+      }
+      .account_settings_form_button_wrapper{
+        width: 100%;
+        padding-left: 0;
+        margin-bottom: 25px;
+        .account_settings_button_save{
+          margin-bottom: 0;
+          font-size: 16px;
+          height: 46px;
+        }
+      }
     }
     .account_settings_form {
       all: unset;
