@@ -33,8 +33,8 @@ function* sendEmail({ payload }) {
   try {
     yield put(setIsFetchingAboutUs(true));
     const { addEmail } = api;
-    // yield call([addEmail, "addEmail"], payload);
-    yield call([addEmail, "addEmail"], {email: payload});
+    yield call([api, "setRecaptcha"], payload.token);
+    yield call([addEmail, "addEmail"], {email: payload.email});
 
     yield put(setSuccessfulSubscribe(true))
   } catch (error) {

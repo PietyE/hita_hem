@@ -26,6 +26,7 @@ class Client {
       if (!this.token) {
         config.headers = {
           ...config.headers,
+          "x-recaptcha-token": this.recaptcha || 'zzz',
           "Accept-Language": this.language || "en",
         };
         return config;
@@ -33,6 +34,7 @@ class Client {
       config.headers = {
         ...config.headers,
         "Accept-Language": this.language || "en",
+        "x-recaptcha-token": this.recaptcha || 'zzz',
         Authorization: `Bearer ${this.token}`,
       };
       return config;
@@ -58,7 +60,12 @@ class Client {
     this.language = language;
     i18next.changeLanguage(language);
   }
+  setRecaptcha(recaptcha){
+    this.recaptcha = recaptcha
+
+  }
 }
+
 
 const api = new Client(_baseURL);
 
