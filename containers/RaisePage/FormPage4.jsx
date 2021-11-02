@@ -46,6 +46,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       data.form1,
       data.form2,
       convertedDataFromForm3,
+        values,
     );
     let dataForApi = {};
     for (let key in assignedObject) {
@@ -64,8 +65,8 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
     }
 
     // dataForApi.comments =  filterComments(values.comments);
-      dataForApi.is_agree =  values.is_agree;
-      dataForApi.comments =  values.comments;
+    //   dataForApi.is_agree =  values.is_agree;
+    //   dataForApi.comments =  values.comments;
 
       _sendForm(dataForApi);
   };

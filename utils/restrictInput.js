@@ -1,5 +1,5 @@
 export const restrictOnlyLetters = data => {
-    return data?.replace(/[^a-zA-ZäåéöÖÉÅÄ]/g, '')
+    return data?.replace(/[^a-zA-ZäåéöÖÉÅÄ-]/g, '')
 }
 
 export const restrictCity = data => {
