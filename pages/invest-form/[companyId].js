@@ -29,6 +29,7 @@ import {
 
 import { HOME_ROUTE } from "constants/routesConstant";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {recaptcha} from "../../utils/recaptcha";
 
 const numbers_validation = /^\d*(?:[.,]\d*)?$/;
 
@@ -100,7 +101,8 @@ const InvestFormPage = () => {
   };
 
   const onSubmit = (data) => {
-    _makePayment(data);
+    recaptcha('make_payment',_makePayment,data)
+    // _makePayment(data);
     setAmount("");
   };
 

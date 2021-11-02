@@ -27,6 +27,7 @@ import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
+import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -77,6 +78,7 @@ const ShowDenyDeletingAccount = dynamic(() =>
 );
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
+  useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);

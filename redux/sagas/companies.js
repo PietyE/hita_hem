@@ -104,9 +104,10 @@ function* addPost({ payload }) {
     let campaignId = yield select(getCompanyIdSelector);
     let userId = yield select(getUserIdSelector);
     yield call([companies, "addFaqPost"], {
-      company: campaignId,
-      user: userId,
-      description: payload,
+    data: {company: campaignId,
+        user: userId,
+        description: payload.data,} ,
+      token: payload.token
     });
   } catch (error) {
     yield put(
@@ -161,35 +162,28 @@ function* makePayment({ payload }) {
       if (isEmpty(profile)) {
         const res = yield call(
           [auth, "createProfile"],
-          payload.profile.profile
+            {data: payload?.data?.data?.profile?.profile, token: payload.data.token}
         );
         if (res.status === 201) {
           yield call(getProfileFromApi);
           yield call([companies, "makePayment"], {
-            user: userId,
+          data: {user: userId,
             company: campaignId,
-            amount: payload.amount,
+            amount: payload?.data?.data.amount,
+          },
+            token: payload.token,
           });
           yield call(getProfileFromApi)
           yield put(setShowSuccessfulInvestment(true));
           yield put(setShowQuiz(false))
         }
       } else {
-        // const convertedProfile = {...profile}
-        // convertedProfile.dateOfBirth = `${convertedProfile.year}-${convertedProfile.month}-${convertedProfile.day}`
-        // delete convertedProfile.year
-        // delete convertedProfile.month
-        // delete convertedProfile.day
-        // delete convertedProfile.image
-        //
-        // console.log('convertedProfile', convertedProfile)
-        // console.log('payload.profile.profile', payload.profile.profile)
-        // const wasCahnges = isEqual(convertedProfile, payload.profile.profile)
-        // console.log('wasCahnges', wasCahnges)
         yield call([companies, "makePayment"], {
-          user: userId,
+        data:{user: userId,
           company: campaignId,
-          amount: payload.amount,
+          amount: payload.data.data.amount,
+        },
+          token: payload.token
         });
         yield call(getProfileFromApi)
         yield put(setShowSuccessfulInvestment(true));

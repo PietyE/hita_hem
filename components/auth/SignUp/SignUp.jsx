@@ -11,6 +11,7 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {passwordRegExp} from "../../../utils/vadidationSchemas";
+import {recaptcha} from "../../../utils/recaptcha";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
@@ -41,11 +42,12 @@ const SignUp = ({ show }) => {
     [dispatch]
   );
   const onSubmit = (values) => {
-    _signUp({
-      email: `${values.email.toLowerCase()}`,
-      password: `${values.password}`,
-      is_agree: `${values.is_agree}`,
-    });
+    recaptcha('sign_up',_signUp,{email: `${values.email.toLowerCase()}`, password: `${values.password}`,is_agree: `${values.is_agree}`})
+    // _signUp({
+    //   email: `${values.email.toLowerCase()}`,
+    //   password: `${values.password}`,
+    //   is_agree: `${values.is_agree}`,
+    // });
   };
   const signUpSchema = yup.object({
     email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),

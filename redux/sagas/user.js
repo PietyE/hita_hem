@@ -1,7 +1,6 @@
 import { takeEvery, call, put, select } from "redux-saga/effects";
 import i18n from "i18next";
 import Cookies from "js-cookie";
-
 import {
   BOOTSTAP_ACTION,
   SIGN_IN,
@@ -112,7 +111,7 @@ export function* bootstarpWorker({ payload: initLang }) {
 function* signUp({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    const response = yield call([auth, "signUp"], payload);
+    const response = yield call([auth, "signUp"], {token:payload.token, data: payload.data});
     if (response.status === 201) {
       yield put(setShowSignUp(false));
       yield put(setShowSuccessfulSignUp(true));
@@ -134,7 +133,7 @@ function* signUp({ payload }) {
 function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    const response = yield call([auth, "signIn"], payload);
+    const response = yield call([auth, "signIn"], {token:payload.token, data: payload.data});
     const { data } = response;
     const { user, token } = data;
     yield put(setAccount(user));
@@ -178,10 +177,10 @@ function* signIn({ payload }) {
   }
 }
 
-function* logout() {
+function* logout({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "logOut"]);
+    yield call([auth, "logOut"], {token: payload.token});
     yield call(clean);
   } catch (error) {
     yield put(
@@ -195,10 +194,10 @@ function* logout() {
 function* createUserProfile({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "createProfile"], payload.profile);
+    yield call([auth, "createProfile"], {token:payload.token, data: payload.data.profile});
 
-    if (payload.image) {
-      yield call([auth, "changeAvatar"], payload.image);
+    if (payload.data.image) {
+      yield call([auth, "changeAvatar"], payload.data.image);
     }
 
     yield call(getProfileFromApi);
@@ -221,10 +220,10 @@ function* createUserProfile({ payload }) {
 function* changeUserProfile({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "changeProfile"], payload.profile);
-    if (payload.image) {
-      yield call([auth, "changeAvatar"], payload.image);
-    } else if(payload.image === null){
+    yield call([auth, "changeProfile"], {token:payload.token, data: payload.data.profile});
+    if (payload.data.image) {
+      yield call([auth, "changeAvatar"], payload.data.image);
+    } else if(payload.data.image === null){
       yield call([auth, "deleteAvatar"]);
 
     }
@@ -249,7 +248,7 @@ function* changeUserProfile({ payload }) {
 function* requestForResetUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "requestForResetPassword"], { email: payload });
+    yield call([auth, "requestForResetPassword"], {token:payload.token, data: { email: payload.data }});
     yield put(setShowResetPassword(false));
     yield put(setShowSuccessfulResetPassword(true));
     yield put(clearErrors())
@@ -269,7 +268,7 @@ function* requestForResetUserPassword({ payload }) {
 function* resetUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "resetPassword"], payload);
+    yield call([auth, "resetPassword"], {token:payload.token, data: payload.data});
     yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
     yield put(setShowChangeEmailOrPassword(true))
     yield put(setCanResetPassword(false))
@@ -292,7 +291,7 @@ function* resetUserPassword({ payload }) {
 function* changeUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "changePassword"], payload);
+    yield call([auth, "changePassword"], {token:payload.token, data: payload.data});
     yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
     yield put(setShowChangeEmailOrPassword(true))
     yield put(setCanChangePassword(false))
@@ -315,7 +314,7 @@ function* changeUserPassword({ payload }) {
 function* changeUserEmail({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "changeEmail"], payload);
+    yield call([auth, "changeEmail"], {token:payload.token, data: payload.data});
     yield put(setResponseFromApi(true));
     yield put(setChangeEmailOrPasswordText('Your mail has been successfully updated.'))
     yield put(setShowChangeEmailOrPassword(true))
@@ -378,10 +377,10 @@ export function* deleteUserAccount() {
   }
 }
 
-function* requestForChangingEmail() {
+function* requestForChangingEmail({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "requestForChangingEmail"]);
+    yield call([auth, "requestForChangingEmail"], {token: payload.token});
     yield put(setShowRequestForChange(true));
   } catch (error) {
     yield put(
@@ -392,10 +391,10 @@ function* requestForChangingEmail() {
   }
 }
 
-function* requestForChangingPassword() {
+function* requestForChangingPassword({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "requestForChangingPassword"]);
+    yield call([auth, "requestForChangingPassword"],{token: payload.token});
     yield put(setShowRequestForChange(true));
   } catch (error) {
     yield put(
@@ -450,7 +449,7 @@ function* requestForQuiz() {
 function* requestForCheckingQuiz({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "checkQuizAnswers"], payload);
+    yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
     yield call(getProfileFromApi)
   } catch (error) {
     if(error?.response?.data?.questions){

@@ -16,6 +16,7 @@ import InputComponent from "../components/ui/InputComponent";
 import Button from "../components/ui/Button";
 import {useRouter} from "next/router";
 import {HOME_ROUTE} from "../constants/routesConstant";
+import {recaptcha} from "../utils/recaptcha";
 
 const ChangePassword = () => {
     const history = useRouter();
@@ -68,7 +69,8 @@ const ChangePassword = () => {
             })
     })
     const onSubmitPassword = (values) => {
-        _changePassword(values);
+        recaptcha('change_password', _changePassword, values)
+        // _changePassword(values);
     };
     return (
         <>

@@ -1,54 +1,78 @@
 import CRUD from "../base";
 
 class AuthCRUD extends CRUD {
-  signUp(data) {
+  signUp(payload) {
+    const {data, token} = payload
     const url = `${this.url}/`;
     return this.request({
       url,
       data,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
     });
   }
 
-  signIn(data) {
+  signIn(payload) {
+    const {data, token} = payload
     const url = `${this.url}/login/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
 
-  logOut() {
+  logOut(payload) {
+    const {data, token} = payload
     const url = `${this.url}/auth/logout/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
     });
   }
 
-  resetPassword(data) {
+  resetPassword(payload) {
+    const {data, token} = payload
     const url = `${this.url}/reset_password/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
 
-  changePassword(data) {
+  changePassword(payload) {
+    const {data, token} = payload
     const url = `${this.url}/change_password/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
-  changeEmail(data) {
+  changeEmail(payload) {
+    const {data, token} = payload
     const url = `${this.url}/change_email/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
@@ -61,11 +85,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  createProfile(data) {
+  createProfile(payload) {
+    const {data, token} = payload
     const url = "/profile/";
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
@@ -93,11 +121,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  changeProfile(data) {
+  changeProfile(payload) {
+    const {data, token} = payload
     const url = "/profile/patch/";
     return this.request({
       url,
       method: "PATCH",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
@@ -110,28 +142,40 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  requestForChangingPassword() {
+  requestForChangingPassword(payload) {
+    const {data, token} = payload
     const url = `${this.url}/send_notification_change_password/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
     });
   }
 
-  requestForResetPassword(data) {
+  requestForResetPassword(payload) {
+    const {data, token} = payload
     const url = `${this.url}/send_notification_reset_password/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
 
-  requestForChangingEmail() {
+  requestForChangingEmail(payload) {
+    const {data, token} = payload
     const url = `${this.url}/send_notification_change_email/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
     });
   }
 
@@ -152,11 +196,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  checkQuizAnswers(data) {
+  checkQuizAnswers(payload) {
+    const {data, token} = payload
     const url = `${this.url}/quiz/`;
     return this.request({
       url,
       method: "PATCH",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }

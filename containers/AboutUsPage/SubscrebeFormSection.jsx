@@ -6,10 +6,9 @@ import { useDispatch } from "react-redux";
 import Button from "components/ui/Button";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
-// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
+import {recaptcha} from "../../utils/recaptcha";
 
-    const SubscrebeFormSection = ({ content = [] }) => {
-    // useGoogleCaptcha();
+const SubscrebeFormSection = ({ content = [] }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -22,33 +21,16 @@ import { addEmail } from "redux/actions/aboutUs";
     [dispatch]
   );
 
-
-    // function handleClick(e) {
-    //     e.preventDefault();
-    //     grecaptcha.ready(function() {
-    //         grecaptcha.execute('6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP', {action: 'submit'}).then(function(token) {
-    //             handleClickSubscribe(token)
-    //         });
-    //     });
-    // }
-
-  // const handleClickSubscribe = (token) => {
-  //   if (validateEmail(email)) {
-  //     _addEmail({email, token});
-  //     setEmail("");
-  //   } else {
-  //     setShowWarning(true);
-  //   }
-  // };
-
         const handleClickSubscribe = () => {
             if (validateEmail(email)) {
-                _addEmail(email);
+                recaptcha('about_us_subscribe',_addEmail, email)
+                // _addEmail({email, token});
                 setEmail("");
             } else {
                 setShowWarning(true);
             }
         };
+
 
   const handleChangeEmail = (e) => {
     if (showWarning || email === "") {
@@ -76,12 +58,10 @@ import { addEmail } from "redux/actions/aboutUs";
         />
         <Button
           className="subscribe_form_section_button g-recaptcha"
-          // data-sitekey="6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP"
-          // data-action='submit'
-          //   onClick={handleClick}
-          colorStyle="dark-green"
+          type='submit'
+          action='about_us_subscribe'
           onClick={handleClickSubscribe}
-          // data-callback='onSubmit'
+          colorStyle="dark-green"
           disabled={!email}
         >
           {t("about_us_page.button")}

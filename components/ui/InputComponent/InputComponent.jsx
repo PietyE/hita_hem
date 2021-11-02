@@ -41,7 +41,6 @@ const InputComponent = ({
   const handleChange = (e) => {
     if(typeof restrictInput === 'function'){
       const inputData = restrictInput(e.target.value)
-      console.log('inputData', inputData)
       setFieldValue(inputName, inputData);
     }else{
       setFieldValue(inputName, e.target.value);

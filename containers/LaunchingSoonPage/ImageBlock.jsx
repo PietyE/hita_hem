@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormControl from "react-bootstrap/FormControl";
 import InputGroup from "react-bootstrap/InputGroup";
 import Image from "next/image";
-
+import {recaptcha} from "../../utils/recaptcha";
 import {
   getMainDescriptionSelector,
   getMainImageSelector,
@@ -31,10 +31,13 @@ const ImageBlock = ({ onOpenModal }) => {
     [dispatch]
   );
 
+
+
   const handleClickSubscribe = (e) => {
     e.preventDefault();
     if (validateEmail(email)) {
-      _addEmail(email);
+      recaptcha('launching_soon_subscribe', _addEmail, email)
+      // _addEmail(email);
       setEmail("");
       onOpenModal(true);
     } else {
@@ -98,7 +101,8 @@ const ImageBlock = ({ onOpenModal }) => {
               onChange={handleChangeEmail}
             />
             <button
-              className="launching_soon_image_subscribe_form_button"
+              className="launching_soon_image_subscribe_form_button g-recaptcha"
+              action='launching_soon_subscribe'
               onClick={handleClickSubscribe}
             >
               {t("launching_soon_page.image_block_button")}

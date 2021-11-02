@@ -9,7 +9,6 @@ import {
   ABOUT_US_ROUTE,
   LAUNCHING_SOON,
 } from "constants/routesConstant";
-// import {faChevronDown, faChevronRight} from '@fortawesome/free-solid-svg-icons';
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
 import SocialTab from "../../ui/SocialTab";
@@ -23,6 +22,7 @@ import { changeLanguage } from "redux/actions/language";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
+import {recaptcha} from "../../../utils/recaptcha";
 
 const socials = [
   {
@@ -70,9 +70,13 @@ const Navigation = ({ className, initLang }) => {
     dispatch(setShowSignUp(true));
   };
 
-  const _logOut = useCallback(() => {
-    dispatch(logOut());
+  const _logOut = useCallback((data) => {
+    dispatch(logOut(data));
   }, [dispatch]);
+
+  const handleLogOut = () => {
+    recaptcha('logout',_logOut)
+  }
 
   // const handleOpenSubMenu = (e) => {
   //   e.stopPropagation();
@@ -188,7 +192,7 @@ const Navigation = ({ className, initLang }) => {
                   <Button
                     colorStyle="red"
                     className="nav_btn_sign_up"
-                    onClick={_logOut}
+                    onClick={handleLogOut}
                   >
                     {" "}
                     Log out

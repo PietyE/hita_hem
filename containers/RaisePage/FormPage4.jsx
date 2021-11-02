@@ -14,7 +14,7 @@ import { sendForm } from "redux/actions/raisePage";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {checkingAndEditingLink} from "../../utils/utils";
 // import {filterComments} from "../../utils/restrictInput";
-
+import {recaptcha} from "../../utils/recaptcha";
 import * as yup from 'yup';
 
 
@@ -68,7 +68,8 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
     //   dataForApi.is_agree =  values.is_agree;
     //   dataForApi.comments =  values.comments;
 
-      _sendForm(dataForApi);
+      // _sendForm(dataForApi);
+      recaptcha('rise_form_send',_sendForm,dataForApi)
   };
 
  const raiseForm4 = yup.object({
@@ -147,8 +148,9 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
               </Button>
               <Button
                 type="submit"
+                action='rise_form_send'
                 colorStyle="dark-green"
-                className="raise_form_button"
+                className="raise_form_button g-recaptcha"
                 disabled={!values.is_agree}
               >
                 {t("raisePage.form_footer.button_submit")}

@@ -10,7 +10,7 @@ import InputComponent from "../../ui/InputComponent";
 import SpinnerStyled from '../../ui/Spinner';
 import {getIsFetchingAuthSelector} from 'redux/reducers/user';
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
-
+import {recaptcha} from "../../../utils/recaptcha";
 import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
 import * as yup from "yup";
 
@@ -34,7 +34,8 @@ const ResetPassword = ({ show }) => {
   };
 
   const onSubmit = (values) => {
-    _makeRequestForResetPassword(values.email.toLowerCase());
+    recaptcha('request_for_reset_password',_makeRequestForResetPassword, values.email.toLowerCase())
+    // _makeRequestForResetPassword(values.email.toLowerCase());
 
   };
   const resetPasswordSchema = yup.object({
