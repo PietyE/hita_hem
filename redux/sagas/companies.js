@@ -162,14 +162,14 @@ function* makePayment({ payload }) {
       if (isEmpty(profile)) {
         const res = yield call(
           [auth, "createProfile"],
-            {data: payload.data.profile.profile, token: payload.data.token}
+            {data: payload?.data?.data?.profile?.profile, token: payload.data.token}
         );
         if (res.status === 201) {
           yield call(getProfileFromApi);
           yield call([companies, "makePayment"], {
           data: {user: userId,
             company: campaignId,
-            amount: payload.data.amount,
+            amount: payload?.data?.data.amount,
           },
             token: payload.token,
           });
@@ -181,7 +181,7 @@ function* makePayment({ payload }) {
         yield call([companies, "makePayment"], {
         data:{user: userId,
           company: campaignId,
-          amount: payload.data.amount,
+          amount: payload.data.data.amount,
         },
           token: payload.token
         });
