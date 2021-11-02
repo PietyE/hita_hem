@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import iconLogOut from "./images/logOut.svg";
 import { logOut, setActiveTab } from "redux/actions/user";
 import { getUserIdSelector } from "redux/reducers/user";
+import {recaptcha} from "../../../utils/recaptcha";
 
 const DropdownMenu = dynamic(() =>
   import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
@@ -22,8 +23,8 @@ const UserPanelMenu = ({ show }) => {
 
   const userId = useSelector(getUserIdSelector);
 
-  const _logOut = useCallback(() => {
-    dispatch(logOut());
+  const _logOut = useCallback((data) => {
+    dispatch(logOut(data));
   }, [dispatch]);
 
   const _setActiveTab = useCallback(
@@ -35,7 +36,8 @@ const UserPanelMenu = ({ show }) => {
 
   const handleSelect = (tab) => {
     if (tab === "log_out") {
-      _logOut();
+        recaptcha('logout', _logOut)
+      // _logOut();
       return;
     }
     _setActiveTab(tab);

@@ -12,6 +12,7 @@ import isEqual from "lodash/isEqual";
 import { addFaqPost, getFaqPosts } from "redux/actions/companies";
 import { useTranslation } from "react-i18next";
 // import {filterComments} from "../../utils/restrictInput";
+import {recaptcha} from "../../utils/recaptcha";
 
 const Faq = () => {
   const { t } = useTranslation();
@@ -37,7 +38,8 @@ const Faq = () => {
     e.preventDefault();
     if (e?.target[0]?.value) {
       // _addFaqPost(filterComments(e.target[0].value));
-      _addFaqPost(e.target[0].value);
+      recaptcha('add_faq_post',_addFaqPost,e.target[0].value)
+      // _addFaqPost(e.target[0].value);
 
       e.target[0].value = "";
     }
@@ -69,8 +71,9 @@ const Faq = () => {
           </Button>
           <Button
             type="submit"
+            action='add_faq_post'
             colorStyle="blue"
-            className="faq_post_button_small"
+            className="faq_post_button_small g-recaptcha"
           >
             <Image src={iconMessage} alt="message" />
           </Button>

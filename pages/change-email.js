@@ -16,6 +16,7 @@ import {setShowResetPassword} from "../redux/actions/authPopupWindows";
 import Modal from "../components/ui/Modal";
 import {HOME_ROUTE} from "../constants/routesConstant";
 import {useRouter} from "next/router";
+import {recaptcha} from "../utils/recaptcha";
 
 function ChangeEmail() {
     const history = useRouter();
@@ -67,7 +68,8 @@ function ChangeEmail() {
     })
 
     const onSubmitEmail = (values) => {
-        _changeEmail(values);
+        recaptcha('change_email', _changeEmail, values)
+        // _changeEmail(values);
         errorHandlerHook?._clearErrors()
     };
 
