@@ -41,7 +41,7 @@ const Footer = () => {
           <Link href={LAUNCHING_SOON} prefetch={false}>
             <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>
           </Link>
-          {!!documentUrl?.length && (
+          {!!(documentUrl?.file || documentUrl?.url) && (
             <a
               className="footer_nav_link"
               target="_blank"
