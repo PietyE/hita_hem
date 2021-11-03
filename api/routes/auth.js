@@ -85,6 +85,16 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  getSelf() {
+    const url = `${this.url}/self/`;
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
+
+
   createProfile(payload) {
     const {data, token} = payload
     const url = "/profile/";

@@ -68,13 +68,13 @@ export function* bootstarpWorker({ payload: initLang }) {
 
     if (auth_data) {
       const data = JSON.parse(auth_data);
-      const { expiration_timestamp, key: token, user: id } = data;
+      const { expiration_timestamp, key: token } = data;
       const nowTime = Math.floor(new Date().getTime() / 1000);
 
       if (token && expiration_timestamp && nowTime < expiration_timestamp) {
         yield call([api, "setToken"], token);
 
-        const response = yield call([auth, "getUser"], id);
+        const response = yield call([auth, "getSelf"]);
         if (response.status !== 200) {
           yield put(setAuth(false));
           return;
@@ -149,7 +149,7 @@ function* signIn({ payload }) {
     yield put(setToken(token));
     yield put(setAuth(true));
     yield call([api, "setToken"], token.key);
-    const authData = JSON.stringify(token);
+    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
     yield call([localStorage, "setItem"], "auth_data", authData);
     yield put(setShowSignIn(false));
     yield put(clearErrors())
@@ -336,8 +336,7 @@ function* changeUserEmail({ payload }) {
 export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
-    let userId = yield select(getUserIdSelector);
-    const response = yield call([auth, "getUser"], userId);
+    const response = yield call([auth, "getSelf"]);
     if (response.status !== 200) {
       yield put(setAuth(false));
       return;
