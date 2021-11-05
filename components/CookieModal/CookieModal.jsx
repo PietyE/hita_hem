@@ -15,19 +15,20 @@ function CookieModal({show}) {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     const documentUrl = useSelector(getPrivacyPolicyDocument);
-    const userId = useSelector(getUserIdSelector)
+    // const userId = useSelector(getUserIdSelector)
     const handleClose = () => {
-        if(userId){
-            const cookies = Cookies.get("cookie-agreed-user");
-            const jsonPrs = cookies? JSON.parse(cookies) : []
-            jsonPrs.push(userId)
-            const jsonStr = JSON.stringify(jsonPrs)
-            Cookies.set('cookie-agreed-user', jsonStr)
 
-        }else{
-            Cookies.set('cookie-agreed-guest', Date.now(), { expires: 100 })
+        // if(userId){
+        //     const cookies = Cookies.get("cookie-agreed-user");
+        //     const jsonPrs = cookies? JSON.parse(cookies) : []
+        //     jsonPrs.push(userId)
+        //     const jsonStr = JSON.stringify(jsonPrs)
+        //     Cookies.set('cookie-agreed-user', jsonStr)
+        //
+        // }else{
+            Cookies.set('cookie-agreed', Date.now(), { expires: 100 })
 
-        }
+        // }
         dispatch(setShowCookiePopup(false));
     };
     return (

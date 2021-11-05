@@ -101,16 +101,14 @@ export function* bootstarpWorker({ payload: initLang }) {
       yield put(setAuth(false));
     }
 
-    const userId = yield select(getUserIdSelector)
+    // const userId = yield select(getUserIdSelector)
 
-    let isCookieAccepted
-
- if(userId) {
-   const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
-   isCookieAccepted = idToCheck? idToCheck?.includes(userId) : false
- }else{
-   isCookieAccepted =  !!(yield call([Cookies, "get"], "cookie-agreed-guest"))
- }
+ // if(userId) {
+ //   const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
+ //   isCookieAccepted = idToCheck? idToCheck?.includes(userId) : false
+ // }else{
+  const isCookieAccepted =  !!(yield call([Cookies, "get"], "cookie-agreed"))
+ // }
 
     if(!isCookieAccepted){
       yield put(setShowCookiePopup(true))
@@ -159,12 +157,12 @@ function* signIn({ payload }) {
     const { user, token } = data;
     yield put(setAccount(user));
 
-      const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
-     const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
-
-    if(!isCookieAccepted){
-      yield put(setShowCookiePopup(true))
-    }
+      // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
+     // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
+    //
+    // if(!isCookieAccepted){
+    //   yield put(setShowCookiePopup(true))
+    // }
     if (user?.profile?.date_of_birth) {
       const profileCopy = prepareProfile(user.profile);
       yield put(setProfile(profileCopy));
