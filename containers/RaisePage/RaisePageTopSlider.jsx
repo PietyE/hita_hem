@@ -17,7 +17,9 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
         <Carousel controls={headerContent?.length>1} slide={true} interval={null} touch={true} indicators={headerContent?.length>1}>
           {headerContent.length > 0 &&
             headerContent.map((content, i) => {
-              const correctImage = chooseCorrectResolution(content?.image_list);
+                // const correctImage = chooseCorrectResolution(content?.image_list);
+
+                const correctImage = content?.image;
               return (
                 <Carousel.Item key={i}>
                   <div className="raise_page_slider_item">
