@@ -22,6 +22,7 @@ import {
     getShowRequestForChange,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
+    getShowCookiePopup,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
@@ -76,6 +77,11 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount")
 );
+const ShowCookiePopup = dynamic(() =>
+    import("components/CookieModal")
+);
+
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
   useGoogleCaptcha()
@@ -105,6 +111,9 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
+  const isShowCookie = useSelector(getShowCookiePopup)
+
+
 
 
   const _logOut = useCallback(() => {
@@ -181,6 +190,7 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
+        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
         <ScrollToTopButton />
       </main>
       <Footer />
