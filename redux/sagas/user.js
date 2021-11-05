@@ -26,7 +26,7 @@ import {
   setAuth,
   setToken,
   setProfile,
-  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanResetPassword, setCanChangePassword, setQuiz,
+  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanResetPassword, setCanChangePassword, setQuiz, getQuiz,
 } from "redux/actions/user";
 import {
   setShowSignIn,
@@ -42,7 +42,7 @@ import {
   setChangeEmailOrPasswordText,
   setShowQuiz, setShowQuizError,
 } from "../actions/authPopupWindows";
-import { getUserIdSelector } from "../reducers/user";
+import {getQuizIsPassedSelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
 import api from "api";
@@ -96,6 +96,13 @@ export function* bootstarpWorker({ payload: initLang }) {
       yield put(setAuth(false));
     }
 
+    const quizIsPassed = yield select(getQuizIsPassedSelector)
+
+    if(!quizIsPassed){
+      yield call(requestForQuiz)
+    }
+
+
     yield call(getDocumentsWorker);
     yield put(clearErrors())
 
@@ -134,9 +141,11 @@ function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "signIn"], {token:payload.token, data: payload.data});
+
     const { data } = response;
     const { user, token } = data;
     yield put(setAccount(user));
+
     if (user?.profile?.date_of_birth) {
       const profileCopy = prepareProfile(user.profile);
       yield put(setProfile(profileCopy));
@@ -153,6 +162,13 @@ function* signIn({ payload }) {
     yield call([localStorage, "setItem"], "auth_data", authData);
     yield put(setShowSignIn(false));
     yield put(clearErrors())
+
+    const quizIsPassed = yield select(getQuizIsPassedSelector)
+
+    if(!quizIsPassed){
+      yield call(requestForQuiz)
+    }
+
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
