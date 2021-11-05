@@ -135,6 +135,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
                 handleBlur(e);
               }}
               defaultOptionLabel=""
+              valueType="short"
             />
             <div className="raise_form_country_arrow">
               <IconComponent icon={faCaretDown} />

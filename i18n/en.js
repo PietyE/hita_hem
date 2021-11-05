@@ -183,7 +183,7 @@ export const en = {
       documents: "Documents",
       company_start_date: "Start Date:",
       company_end_date: "End Date:",
-      company_invested: "Invested",
+      company_valuation: " Valuation",
       company_goal: "Goal",
       company_share_price: "Share price",
       company_raised: "Raised",

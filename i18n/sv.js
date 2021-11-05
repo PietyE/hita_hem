@@ -179,7 +179,7 @@ export const sv = {
       documents: "Dokument",
       company_start_date: "Startdatum:",
       company_end_date: "Slutdatum:",
-      company_invested: "Investerat",
+      company_valuation: " Värdering",
       company_goal: "Mål",
       company_share_price: "Aktiepris",
       company_raised: "Rest kapital",

@@ -385,6 +385,7 @@ const PersonalDetails = ({
                         values={values?.address?.country}
                         value={values?.address?.country}
                         disabled={isInputsReadOnly}
+                        valueType="short"
                         onChange={(_, e) => {
                           errorHandlerHook?.clearProfileErrorFromApi(
                             "address.country"
