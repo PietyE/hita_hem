@@ -12,7 +12,7 @@ import {
   getBusinessStartDaySelector,
   getBusinessEndDaySelector,
   getBusinessGoalSelector,
-  getBusinessInvestedSelector,
+  // getBusinessInvestedSelector,
   getBusinessShapePriceSelector,
   //getCompanyTabSelected,
   getBusinessCurrencySelector,
@@ -22,6 +22,7 @@ import {
   getCompanyStatusInNumbersSelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
+  getValuationSelector,
 } from "redux/reducers/companies";
 import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
@@ -46,7 +47,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
   const goal = useSelector(getBusinessGoalSelector);
-  const invested = useSelector(getBusinessInvestedSelector);
+  // const invested = useSelector(getBusinessInvestedSelector);
+  const valuation = useSelector(getValuationSelector)
   const price = useSelector(getBusinessShapePriceSelector);
   const currency = useSelector(getBusinessCurrencySelector);
   const percentage = useSelector(getPercentageSelector);
@@ -161,7 +163,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   // });
 
 
-
   return (
       <>
         {/*{isShowQuiz && <Quiz show = {isShowQuiz}/>}*/}
@@ -178,15 +179,18 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             <span className="date">{_endDayLocal}</span>
           </span>
         </div>
+        {valuation &&
         <div className="invest_info_item">
           <CurrensyText
-            value={moneyFormat.format(parseInt(invested))}
-            currency={currency}
+              value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
           />
           <span className="invest_info_param">
-            {t("company_page.company_invested")}
+            {t("company_page.company_valuation")}
           </span>
         </div>
+        }
+
+
         <div className="invest_info_item">
           <CurrensyText
             value={moneyFormat.format(parseInt(goal))}

@@ -48,6 +48,7 @@ const initialState = {
     },
     status: "",
     country: "",
+    valuation: null,
     user: {
       id: "",
       username: "",
@@ -250,6 +251,9 @@ export const getDaysLeftSelector = (state) => {
   const diff = endDate - currentDate;
   return Math.floor(diff / (1000 * 3600 * 24));
 };
+
+export const getValuationSelector = (state) =>
+    state.companies.companyDetail.valuation;
 
 export const getBusinessInvestedSelector = (state) =>
   state.companies.companyDetail.invested;
