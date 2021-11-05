@@ -400,6 +400,10 @@ export const sv = {
       twitter_example: 'Exempel https://twitter.com/...',
       linkedin_example: 'Exempel https://linkedin.com/...',
     },
-
+    cookie: {
+      text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webtrafiken. Genom att använda vår webbplats godkänner du vårv',
+      link: 'integritetspolicy',
+      button: 'Acceptera och fortsätt',
+    }
   },
 };

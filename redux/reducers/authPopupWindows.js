@@ -17,6 +17,7 @@ import {
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
   SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
   SET_SHOW_DENY_DELETING_ACCOUNT,
+  SET_SHOW_COOKIE,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -38,9 +39,10 @@ const initialValues = {
   showSuccessfulChangeEmailOrPassword:false,
   showDenyDeletingAccount:false,
   text: '',
+  showCookie: false,
 };
 
-
+export const getShowCookiePopup = state => state.authPopupWindows.showCookie;
 export const getShowSignIn = (state) => state.authPopupWindows.showSignIn;
 export const getShowSignUp = (state) => state.authPopupWindows.showSignUp;
 export const getShowResetPassword = (state) =>
@@ -108,6 +110,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, text: actions.payload }
     case SET_SHOW_DENY_DELETING_ACCOUNT:
       return { ...state, showDenyDeletingAccount: actions.payload }
+    case SET_SHOW_COOKIE:
+      return { ...state, showCookie: actions.payload }
     default:
       return state;
   }

@@ -40,7 +40,7 @@ import {
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
-  setShowQuiz, setShowQuizError,
+  setShowQuiz, setShowQuizError, setShowCookiePopup,
 } from "../actions/authPopupWindows";
 import {getQuizIsPassedSelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -60,12 +60,13 @@ export function* bootstarpWorker({ payload: initLang }) {
 
     yield put(setSelectedLanguage(systemLang));
 
+
+
     if (!initLang) {
       yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
     }
 
     const auth_data = yield call([localStorage, "getItem"], "auth_data");
-
     if (auth_data) {
       const data = JSON.parse(auth_data);
       const { expiration_timestamp, key: token } = data;
@@ -86,8 +87,6 @@ export function* bootstarpWorker({ payload: initLang }) {
           yield put(setProfile(response.data.profile));
         }
 
-
-
         yield put(setToken(token));
         yield put(setAccount(response.data));
         yield put(setAuth(true));
@@ -102,8 +101,18 @@ export function* bootstarpWorker({ payload: initLang }) {
       yield put(setAuth(false));
     }
 
+    // const userId = yield select(getUserIdSelector)
 
+ // if(userId) {
+ //   const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
+ //   isCookieAccepted = idToCheck? idToCheck?.includes(userId) : false
+ // }else{
+  const isCookieAccepted =  !!(yield call([Cookies, "get"], "cookie-agreed"))
+ // }
 
+    if(!isCookieAccepted){
+      yield put(setShowCookiePopup(true))
+    }
 
     yield call(getDocumentsWorker);
     yield put(clearErrors())
@@ -148,6 +157,12 @@ function* signIn({ payload }) {
     const { user, token } = data;
     yield put(setAccount(user));
 
+      // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
+     // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
+    //
+    // if(!isCookieAccepted){
+    //   yield put(setShowCookiePopup(true))
+    // }
     if (user?.profile?.date_of_birth) {
       const profileCopy = prepareProfile(user.profile);
       yield put(setProfile(profileCopy));

@@ -17,6 +17,7 @@ import {
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
   SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
   SET_SHOW_DENY_DELETING_ACCOUNT,
+  SET_SHOW_COOKIE,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -104,5 +105,10 @@ export const setChangeEmailOrPasswordText = payload =>({
 
 export const setShowDenyDeletingAccount = payload =>({
   type: SET_SHOW_DENY_DELETING_ACCOUNT,
+  payload,
+})
+
+export const setShowCookiePopup = payload =>({
+  type: SET_SHOW_COOKIE,
   payload,
 })

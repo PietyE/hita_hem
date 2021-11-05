@@ -398,6 +398,11 @@ export const en = {
 
 
     },
+    cookie: {
+      text: 'Accumeo uses cookies to provide necessary website functionality, improve your experience and analyze our traffic. By using our website, you agree to our',
+      link: 'Privacy Policy',
+      button: 'Accept and Continue',
+    },
     change_email_page: {
       button_submit: "Submit",
       new_email: 'New Email Address*',
@@ -431,6 +436,8 @@ export const en = {
     change_email_saga_title: 'Your mail has been successfully updated.',
     change_password_saga_title: 'Your password has been successfully updated.',
   },
+
+
 
 
 };
