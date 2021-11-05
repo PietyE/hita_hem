@@ -86,15 +86,15 @@ export function* bootstarpWorker({ payload: initLang }) {
           yield put(setProfile(response.data.profile));
         }
 
-        const quizIsPassed = yield select(getQuizIsPassedSelector)
 
-        if(!quizIsPassed){
-          yield call(requestForQuiz)
-        }
 
         yield put(setToken(token));
         yield put(setAccount(response.data));
         yield put(setAuth(true));
+        // const quizIsPassed = yield select(getQuizIsPassedSelector)
+        // if(!quizIsPassed){
+        //   yield call(requestForQuiz)
+        // }
       } else {
         yield put(setAuth(false));
       }
