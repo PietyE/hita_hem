@@ -25,9 +25,13 @@ const sortedByIndex = (data = []) => data.sort((a, b) => a.index - b.index);
 
 export const getHeaderDescriptionSelector = (state) =>
   state.aboutUs.aboutUsContent.header_description;
+// export const getHeaderImageSelector = (state) =>
+//   chooseCorrectResolution(state.aboutUs.aboutUsContent.header_image_list) ||
+//   state.aboutUs.aboutUsContent.header_image;
 export const getHeaderImageSelector = (state) =>
-  chooseCorrectResolution(state.aboutUs.aboutUsContent.header_image_list) ||
   state.aboutUs.aboutUsContent.header_image;
+////////////////////////////////////////////////////
+
 export const getHeaderTitleSelector = (state) =>
   state.aboutUs.aboutUsContent.header_title;
 export const getSubscribeTitleSelector = (state) =>
