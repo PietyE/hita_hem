@@ -448,7 +448,6 @@ function* requestForCheckingToken({payload}) {
 
 function* requestForQuiz() {
   try {
-    console.log('-----------------  1 --------------------')
     yield put(setFetchingUsers(true));
     const res = yield call([auth, "requestForQuiz"]);
     yield put(setQuiz(res?.data))

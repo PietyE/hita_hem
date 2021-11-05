@@ -27,8 +27,9 @@ import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 // import Quiz from "components/Quiz";
-// import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {getQuiz} from "redux/actions/user";
+import {setShowQuiz} from "../../redux/actions/authPopupWindows";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -53,7 +54,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
-  // const isQuizPassed = useSelector(getQuizIsPassedSelector)
+  const isQuizPassed = useSelector(getQuizIsPassedSelector)
   // const isShowQuiz = useSelector(getShowQuiz);
   //const HEADER_HEIGHT = 100;
 
@@ -115,18 +116,18 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   // }, [selectedTab]);
 
 
-  // const _getQuiz = useCallback(() => {
-  //   dispatch(getQuiz());
-  // }, [dispatch]);
+  const _setShowQuiz = useCallback(() => {
+    dispatch(setShowQuiz(true));
+  }, [dispatch]);
 
 
   const handleClickInvest = () => {
     if (isAuth) {
-      // if(isQuizPassed){
+       if(isQuizPassed){
         history.push('/invest-form/[companyId]',`/invest-form/${companyId}`);
-      // }else{
-      //   _getQuiz()
-      // }
+       }else{
+         _setShowQuiz()
+       }
     } else {
       dispatch(setShowSignIn(true));
     }
