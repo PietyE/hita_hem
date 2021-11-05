@@ -86,6 +86,12 @@ export function* bootstarpWorker({ payload: initLang }) {
           yield put(setProfile(response.data.profile));
         }
 
+        const quizIsPassed = yield select(getQuizIsPassedSelector)
+
+        if(!quizIsPassed){
+          yield call(requestForQuiz)
+        }
+
         yield put(setToken(token));
         yield put(setAccount(response.data));
         yield put(setAuth(true));
@@ -96,11 +102,7 @@ export function* bootstarpWorker({ payload: initLang }) {
       yield put(setAuth(false));
     }
 
-    const quizIsPassed = yield select(getQuizIsPassedSelector)
 
-    if(!quizIsPassed){
-      yield call(requestForQuiz)
-    }
 
 
     yield call(getDocumentsWorker);
