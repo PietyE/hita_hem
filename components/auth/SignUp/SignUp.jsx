@@ -12,14 +12,14 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {passwordRegExp} from "../../../utils/vadidationSchemas";
 import {recaptcha} from "../../../utils/recaptcha";
+import {getMembershipAgreementDocument} from "../../../redux/reducers/documents";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
-
+  const documentUrl = useSelector(getMembershipAgreementDocument);
   const isFetching = useSelector(getIsFetchingAuthSelector);
-
   const initialValues = {
     email: "",
     password: "",
@@ -129,7 +129,7 @@ const SignUp = ({ show }) => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="/"
+              href={documentUrl?.file || documentUrl?.url}
               className="sign_up_password_link"
             >
               {t("auth.sign_up.agreement_link")}

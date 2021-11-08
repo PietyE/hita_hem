@@ -13,10 +13,8 @@ import Button from "components/ui/Button";
 import { sendForm } from "redux/actions/raisePage";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {checkingAndEditingLink} from "../../utils/utils";
-// import {filterComments} from "../../utils/restrictInput";
 import {recaptcha} from "../../utils/recaptcha";
 import * as yup from 'yup';
-
 
 const FormPage4 = ({ changePage, formNumber, data }) => {
   const { t } = useTranslation();
@@ -63,12 +61,6 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       }));
       dataForApi.documents = documentForApi;
     }
-
-    // dataForApi.comments =  filterComments(values.comments);
-    //   dataForApi.is_agree =  values.is_agree;
-    //   dataForApi.comments =  values.comments;
-
-      // _sendForm(dataForApi);
       recaptcha('rise_form_send',_sendForm,dataForApi)
   };
 
