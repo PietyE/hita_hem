@@ -9,12 +9,16 @@ class CompaniesCRUD extends CRUD {
     });
   }
 
-  addFaqPost(data) {
+  addFaqPost(payload) {
+    const {data, token} = payload
     const url = "/companies-faq/";
 
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }
@@ -36,12 +40,16 @@ class CompaniesCRUD extends CRUD {
     });
   }
 
-  makePayment(data) {
+  makePayment(payload) {
     const url = "/payments/";
+    const {data, token} = payload
 
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
       data,
     });
   }

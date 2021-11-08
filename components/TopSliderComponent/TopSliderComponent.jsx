@@ -35,8 +35,8 @@ const TopSliderComponent = ({
               status,
             } = headerItem;
             const correct_image = chooseCorrectResolution(image_list);
-
-            const _src = correct_image || image;
+            // const _src = correct_image || image;
+            const _src =  image_list?.header_image || image;
 
             return (
               <Carousel.Item key={uniqueId()}>

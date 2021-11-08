@@ -48,7 +48,7 @@ const CommentItem = ({ data, className, complete }) => {
           )}
 
           <p className="comment_item_text">{data?.description}</p>
-          {isOwner && !data.question && !complete && (
+          {isOwner && data?.user && !data.question && !complete && (
             <Button
               colorStyle="outline-green"
               className="comment_item_button"

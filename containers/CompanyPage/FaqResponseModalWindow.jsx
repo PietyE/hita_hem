@@ -4,19 +4,21 @@ import Button from "components/ui/Button";
 import { addFaqAnswer } from "redux/actions/companies";
 import { useDispatch } from "react-redux";
 import {filterComments} from "../../utils/restrictInput";
+import {recaptcha} from "../../utils/recaptcha";
 
 const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
   const dispatch = useDispatch();
 
   const _addFaqAnswer = useCallback(
-    (id) => {
-      dispatch(addFaqAnswer(id));
+    (data) => {
+      dispatch(addFaqAnswer(data));
     },
     [dispatch]
   );
   const handleSubmit = (e) => {
     e.preventDefault();
-    _addFaqAnswer({ post: filterComments(e.target[0].value), id: postId });
+    recaptcha('faq_response',_addFaqAnswer,{ post: filterComments(e.target[0].value), id: postId })
+    // _addFaqAnswer({ post: filterComments(e.target[0].value), id: postId });
     handleClose(null);
   };
   return (

@@ -9,5 +9,6 @@ const useGoogleCaptcha = () => {
             document.body.removeChild(script);
         }
     }, []);
+
 };
 export default useGoogleCaptcha;

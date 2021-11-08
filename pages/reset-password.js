@@ -15,6 +15,7 @@ import InputComponent from "../components/ui/InputComponent";
 import Button from "../components/ui/Button";
 import {useRouter} from "next/router";
 import {HOME_ROUTE} from "../constants/routesConstant";
+import {recaptcha} from "../utils/recaptcha";
 
 const ResetPassword = () => {
     const history = useRouter();
@@ -61,7 +62,8 @@ const ResetPassword = () => {
             })
     })
     const onSubmitPassword = (values) => {
-        _resetPassword(values);
+        recaptcha('reset_password', _resetPassword, values)
+        // _resetPassword(values);
     };
     return (
         <>

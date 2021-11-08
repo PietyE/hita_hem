@@ -77,7 +77,8 @@
     }
 
     .raise_page_slider_button {
-      width: 144px;
+      min-width: 144px;
+      max-width: 280px;
       height: 48px;
     }
   }

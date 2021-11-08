@@ -33,7 +33,6 @@ const CampaignsCard = (props) => {
     currency,
     percentage,
   } = props?.content;
-
   const moneyFormat = useMoneyFormat()
 
 
@@ -50,7 +49,9 @@ const CampaignsCard = (props) => {
           >
             <ImageComponent
               className="campaigns_card_image"
-              src={card_image || header_image}
+              // src={card_image || header_image}
+              src={header_image || card_image}
+
               alt="company_foto"
             />
           </Link>

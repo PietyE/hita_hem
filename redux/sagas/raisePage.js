@@ -28,7 +28,7 @@ function* raisePageWorker() {
 function* sendForm({ payload }) {
   try {
     yield put(setIsFetchingRaisePage(true));
-    const res = yield call([raisePage, "sendFormData"], payload);
+    const res = yield call([raisePage, "sendFormData"], {data: payload.data, token: payload.token});
     if (res.status === 201) {
       yield put(setShowSuccessfulCampaignRegistration(true));
     }
