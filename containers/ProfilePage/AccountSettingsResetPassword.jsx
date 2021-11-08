@@ -3,16 +3,20 @@ import {useDispatch} from 'react-redux';
 import Button from "components/ui/Button";
 import { useTranslation } from "react-i18next";
 import {makeRequestForChangingPassword} from "redux/actions/user";
+import {recaptcha} from "../../utils/recaptcha";
 
 const AccountSettingsResetPassword = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const _makeRequestForChangingPassword = useCallback(
-      () => {
-        dispatch(makeRequestForChangingPassword());
+      (data) => {
+        dispatch(makeRequestForChangingPassword(data));
       },
       [dispatch]
   );
+  const handleChangePassword = () => {
+      recaptcha('request_for_change_password', _makeRequestForChangingPassword)
+  }
   return (
 <section className='account_settings_change_block'>
     <div className='account_settings_form_text_wrapper'>
@@ -28,7 +32,7 @@ const AccountSettingsResetPassword = () => {
             type="submit"
             colorStyle="dark-green"
             className="account_settings_button_save"
-            onClick={_makeRequestForChangingPassword}
+            onClick={handleChangePassword}
         >
             {t("change_password_page.button_change")}
         </Button>

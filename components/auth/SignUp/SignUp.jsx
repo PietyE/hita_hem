@@ -11,14 +11,15 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {passwordRegExp} from "../../../utils/vadidationSchemas";
+import {recaptcha} from "../../../utils/recaptcha";
+import {getMembershipAgreementDocument} from "../../../redux/reducers/documents";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
-
+  const documentUrl = useSelector(getMembershipAgreementDocument);
   const isFetching = useSelector(getIsFetchingAuthSelector);
-
   const initialValues = {
     email: "",
     password: "",
@@ -41,11 +42,12 @@ const SignUp = ({ show }) => {
     [dispatch]
   );
   const onSubmit = (values) => {
-    _signUp({
-      email: `${values.email.toLowerCase()}`,
-      password: `${values.password}`,
-      is_agree: `${values.is_agree}`,
-    });
+    recaptcha('sign_up',_signUp,{email: `${values.email.toLowerCase()}`, password: `${values.password}`,is_agree: `${values.is_agree}`})
+    // _signUp({
+    //   email: `${values.email.toLowerCase()}`,
+    //   password: `${values.password}`,
+    //   is_agree: `${values.is_agree}`,
+    // });
   };
   const signUpSchema = yup.object({
     email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
@@ -127,7 +129,7 @@ const SignUp = ({ show }) => {
             <a
               target="_blank"
               rel="noopener noreferrer"
-              href="/"
+              href={documentUrl?.file || documentUrl?.url}
               className="sign_up_password_link"
             >
               {t("auth.sign_up.agreement_link")}

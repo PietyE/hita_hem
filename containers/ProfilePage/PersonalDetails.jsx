@@ -28,7 +28,7 @@ import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
 import {restrictOnlyLetters, restrictCity,restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
-import {setShowInvalidTokenModal} from "../../redux/actions/authPopupWindows";
+import {recaptcha} from "../../utils/recaptcha";
 
 const PersonalDetails = ({
   type,
@@ -151,15 +151,18 @@ const PersonalDetails = ({
     const dataForApi = prepareDataForApi(values);
 
     if (isEmpty(profile)) {
-      _createProfile(dataForApi);
+      recaptcha('create_profile', _createProfile,dataForApi)
+      // _createProfile(dataForApi);
     } else {
-      _changeProfile(dataForApi);
+      recaptcha('change_profile', _changeProfile,dataForApi)
+      // _changeProfile(dataForApi);
     }
   };
 
   const onSubmitInvest = (values) => {
     const dataForApi = prepareDataForApi(values);
-      onMakePayment({ profile: dataForApi, amount: currentInvestment });
+    recaptcha('create_profile_in_invest_form',onMakePayment, { profile: dataForApi, amount: currentInvestment })
+      // onMakePayment({ profile: dataForApi, amount: currentInvestment });
   };
 
   const years = createYearList();
@@ -209,7 +212,7 @@ const PersonalDetails = ({
 
           return (
             <>
-              <Form className="profile_form">
+              <Form className="profile_form" action='make_payment'>
                 {!type && (
                   <PersonalDetailsUpload
                     setFieldValue={setFieldValue}
@@ -382,6 +385,7 @@ const PersonalDetails = ({
                         values={values?.address?.country}
                         value={values?.address?.country}
                         disabled={isInputsReadOnly}
+                        valueType="short"
                         onChange={(_, e) => {
                           errorHandlerHook?.clearProfileErrorFromApi(
                             "address.country"

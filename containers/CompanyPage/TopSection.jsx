@@ -14,8 +14,9 @@ const TopSection = () => {
   const imageUrl = useSelector(getHeaderImage1Selector);
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
+    // const _src = imageUrlCorrenct || imageUrl;
 
-  const _src = imageUrlCorrenct || imageUrl;
+  const _src = imageUrl;
 
   return (
     <div className="company_top_section_container">

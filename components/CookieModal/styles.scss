@@ -1,0 +1,37 @@
+.cookie_modal_container{
+    padding-top: 0;
+    .close_button{
+        display: none;
+    }
+    .cookie_modal_dialog_container{
+        padding: 15px 20px 30px 20px;
+        background: #F3F6E6;
+        box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06), 0px 3px 8px rgba(0, 0, 0, 0.15);
+        .cookie_text{
+            font-family: Mulish;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 25px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.87);
+            margin-bottom: 20px;
+        }
+        .cookie_btn{
+            font-family: Mulish;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 10px 30px;
+        }
+        .cookie_icon_wrapper{
+            margin-bottom: 10px;
+        }
+        .cookie_link{
+            color: #1551a3;
+            cursor: pointer;
+        }
+
+    }
+
+}
+

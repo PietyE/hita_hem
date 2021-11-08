@@ -9,6 +9,7 @@ import {useTranslation} from "react-i18next";
 import {getQuiz, getQuizErrorsSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
 import {checkQuizAnswers, setQuizErrors} from "../../redux/actions/user";
 import {getCompanyIdSelector} from "../../redux/reducers/companies";
+import {recaptcha} from "../../utils/recaptcha";
 
 const Quiz = ({show}) => {
     const {t} = useTranslation();
@@ -31,8 +32,12 @@ const Quiz = ({show}) => {
     }, [quizErrors])
 
     useEffect(()=>{
-        if(quizIsPassed){
+        if(quizIsPassed && companyId){
             history.push( `/invest-form/[companyId]`, `/invest-form/${companyId}`);
+            _setShowQuiz(false)
+        }else if(quizIsPassed && !companyId){
+            _setShowQuiz(false)
+
         }
     },[quizIsPassed,companyId])
 
@@ -66,7 +71,8 @@ const Quiz = ({show}) => {
         for (let answer in quizResults) {
             arrayOfAnswer.push(quizResults[answer])
         }
-        _checkQuizAnswers({answers: arrayOfAnswer})
+        recaptcha('check_quiz_answers', _checkQuizAnswers,{answers: arrayOfAnswer})
+        // _checkQuizAnswers({answers: arrayOfAnswer})
     }
     return (
         <Modal

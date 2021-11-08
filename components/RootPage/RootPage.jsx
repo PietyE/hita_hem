@@ -22,11 +22,14 @@ import {
     getShowRequestForChange,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
+    getShowQuiz,
+  getShowCookiePopup,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
+import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -75,8 +78,17 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount")
 );
+const ShowCookiePopup = dynamic(() =>
+    import("components/CookieModal")
+);
+const Quiz = dynamic(() =>
+    import("components/Quiz")
+);
+
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
+  useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);
@@ -103,6 +115,9 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
+  const isQuizShow = useSelector(getShowQuiz)
+  const isShowCookie = useSelector(getShowCookiePopup)
+
 
 
   const _logOut = useCallback(() => {
@@ -179,6 +194,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
+        {!!isQuizShow && <Quiz show={isQuizShow}/>}
+        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
+
         <ScrollToTopButton />
       </main>
       <Footer />

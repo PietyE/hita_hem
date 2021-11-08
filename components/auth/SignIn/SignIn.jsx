@@ -12,8 +12,7 @@ import {
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
 import { signIn } from "redux/actions/user";
-// import { signInSchema } from "utils/vadidationSchemas";
-
+import {recaptcha} from "../../../utils/recaptcha";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
@@ -59,10 +58,11 @@ const SignIn = ({ show }) => {
   );
 
   const onSubmit = (values) => {
-    _signIn({
-      email: `${values.email.toLowerCase()}`,
-      password: `${values.password}`,
-    });
+    recaptcha('sign_in', _signIn, {email: `${values.email.toLowerCase()}`,password: `${values.password}`,})
+    // _signIn({
+    //   email: `${values.email.toLowerCase()}`,
+    //   password: `${values.password}`,
+    // });
   };
   return (
     <Modal

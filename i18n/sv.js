@@ -179,7 +179,8 @@ export const sv = {
       documents: "Dokument",
       company_start_date: "Startdatum:",
       company_end_date: "Slutdatum:",
-      company_invested: "Investerat",
+      company_valuation: " Värdering",
+      company_invested: 'Investerat',
       company_goal: "Mål",
       company_share_price: "Aktiepris",
       company_raised: "Rest kapital",
@@ -400,6 +401,10 @@ export const sv = {
       twitter_example: 'Exempel https://twitter.com/...',
       linkedin_example: 'Exempel https://linkedin.com/...',
     },
-
+    cookie: {
+      text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webtrafiken. Genom att använda vår webbplats godkänner du vårv',
+      link: 'integritetspolicy',
+      button: 'Acceptera och fortsätt',
+    }
   },
 };

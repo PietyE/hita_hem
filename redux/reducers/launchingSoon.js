@@ -33,8 +33,10 @@ export const getMainTitleSelector = (state) =>
   state.launchingSoon.launchingSoonContent.title;
 export const getMainDescriptionSelector = (state) =>
   state.launchingSoon.launchingSoonContent.description;
-export const getMainImageSelector = (state) =>
-  chooseCorrectResolution(state.launchingSoon.launchingSoonContent.image_list);
+// export const getMainImageSelector = (state) =>
+//   chooseCorrectResolution(state.launchingSoon.launchingSoonContent.image_list);
+export const getMainImageSelector = (state) =>state.launchingSoon.launchingSoonContent.image;
+////////////////////////////////////////////////////////////////////
 export const getMainSubTitleSelector = (state) =>
   state.launchingSoon.launchingSoonContent.sub_title;
 export const getMainPostsSelector = (state) =>

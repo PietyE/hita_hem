@@ -12,6 +12,13 @@ export const getPrivacyPolicyDocument = (state) =>
     (document) => document.name === "Privacy Policy"
   );
 
+export const getMembershipAgreementDocument = (state) =>
+    state.documents.documents?.find(
+        (document) => document.name === "Membership Agreement"
+    );
+
+
+
 export const documents = (state = initialState, actions) => {
   switch (actions.type) {
     case SET_DOCUMENTS:
