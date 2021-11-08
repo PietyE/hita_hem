@@ -50,6 +50,9 @@ const ImageBlock = ({ onOpenModal }) => {
     }
     setEmail(e.target.value);
   };
+  const formBorderStyle = showWarning ? 'launching_soon_image_subscribe_form_warning' : 'launching_soon_image_subscribe_form'
+  const inputBorderStyle = showWarning ? 'launching_soon_image_subscribe_form_input_warning' : 'launching_soon_image_subscribe_form_input'
+
 
   return (
     <div
@@ -93,10 +96,10 @@ const ImageBlock = ({ onOpenModal }) => {
       <div className="launching_soon_image_subscribe_block">
         <div className="launching_soon_image_subscribe_bg_block"></div>
         <div className="launching_soon_image_subscribe_input_block">
-          <InputGroup className="launching_soon_image_subscribe_form">
+          <InputGroup className={formBorderStyle}>
             <FormControl
               placeholder={t("launching_soon_page.email_placeholder")}
-              className="launching_soon_image_subscribe_form_input"
+              className={inputBorderStyle}
               value={email}
               onChange={handleChangeEmail}
             />

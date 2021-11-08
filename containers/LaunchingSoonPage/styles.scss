@@ -113,6 +113,10 @@
             //border-color: #383A48;
           }
         }
+        .launching_soon_image_subscribe_form_input_warning{
+          @extend .launching_soon_image_subscribe_form_input;
+        }
+
         .launching_soon_image_subscribe_form_button{
           background: #E0719E;
           outline: 1px solid #E0719E;
@@ -127,7 +131,10 @@
           color: #FFFFFF;
         }
       }
-
+      .launching_soon_image_subscribe_form_warning{
+        @extend .launching_soon_image_subscribe_form;
+        border-color: red;
+      }
     }
   }
   .launching_soon_posts_block{
@@ -353,6 +360,10 @@
               line-height: 22px;
               color: #383A48;
             }
+          }
+          .launching_soon_image_subscribe_form_input_warning{
+
+            border-color: red;
           }
           .launching_soon_image_subscribe_form_button{
             outline: none;
