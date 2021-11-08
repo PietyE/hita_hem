@@ -32,8 +32,12 @@ const Quiz = ({show}) => {
     }, [quizErrors])
 
     useEffect(()=>{
-        if(quizIsPassed){
+        if(quizIsPassed && companyId){
             history.push( `/invest-form/[companyId]`, `/invest-form/${companyId}`);
+            _setShowQuiz(false)
+        }else if(quizIsPassed && !companyId){
+            _setShowQuiz(false)
+
         }
     },[quizIsPassed,companyId])
 
