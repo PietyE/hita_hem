@@ -12,7 +12,7 @@ import {
   getBusinessStartDaySelector,
   getBusinessEndDaySelector,
   getBusinessGoalSelector,
-  // getBusinessInvestedSelector,
+  getBusinessInvestedSelector,
   getBusinessShapePriceSelector,
   //getCompanyTabSelected,
   getBusinessCurrencySelector,
@@ -47,7 +47,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
   const goal = useSelector(getBusinessGoalSelector);
-  // const invested = useSelector(getBusinessInvestedSelector);
+  const invested = useSelector(getBusinessInvestedSelector);
   const valuation = useSelector(getValuationSelector)
   const price = useSelector(getBusinessShapePriceSelector);
   const currency = useSelector(getBusinessCurrencySelector);
@@ -179,6 +179,24 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             <span className="date">{_endDayLocal}</span>
           </span>
         </div>
+        <div className="invest_info_item">
+          <CurrensyText
+              value={moneyFormat.format(parseInt(invested))}
+              currency={currency}
+          />
+          <span className="invest_info_param">
+            {t("company_page.company_invested")}
+          </span>
+        </div>
+        <div className="invest_info_item">
+          <CurrensyText
+            value={moneyFormat.format(parseInt(goal))}
+            currency={currency}
+          />
+          <span className="invest_info_param">
+            {t("company_page.company_goal")}
+          </span>
+        </div>
         {valuation &&
         <div className="invest_info_item">
           <CurrensyText
@@ -189,23 +207,12 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           </span>
         </div>
         }
-
-
-        <div className="invest_info_item">
-          <CurrensyText
-            value={moneyFormat.format(parseInt(goal))}
-            currency={currency}
-          />
-          <span className="invest_info_param">
-            {t("company_page.company_goal")}
-          </span>
-        </div>
-        <div className="invest_info_item">
-          <CurrensyText value={moneyFormat.format(price)} currency={currency} />
-          <span className="invest_info_param">
-            {t("company_page.company_share_price")}
-          </span>
-        </div>
+        {/*<div className="invest_info_item">*/}
+        {/*  <CurrensyText value={moneyFormat.format(price)} currency={currency} />*/}
+        {/*  <span className="invest_info_param">*/}
+        {/*    {t("company_page.company_share_price")}*/}
+        {/*  </span>*/}
+        {/*</div>*/}
         <div className="invest_info_item">
           <Progress
             title={t("company_page.company_raised")}
