@@ -124,10 +124,14 @@ function* addAnswer({ payload }) {
     let campaignId = yield select(getCompanyIdSelector);
     let userId = yield select(getUserIdSelector);
     yield call([companies, "addFaqPost"], {
-      question: payload?.id,
-      company: campaignId,
-      user: userId,
-      description: payload.post,
+   data: {
+      question: payload?.data?.id,
+          company: campaignId,
+        user: userId,
+        description: payload?.data?.post,
+
+    },
+    token: payload.token,
     });
   } catch (error) {
     yield put(
