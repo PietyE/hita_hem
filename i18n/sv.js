@@ -180,6 +180,7 @@ export const sv = {
       company_start_date: "Startdatum:",
       company_end_date: "Slutdatum:",
       company_valuation: " Värdering",
+      company_invested: 'Investerat',
       company_goal: "Mål",
       company_share_price: "Aktiepris",
       company_raised: "Rest kapital",

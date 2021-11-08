@@ -76,7 +76,7 @@ export function* bootstarpWorker({ payload: initLang }) {
         yield call([api, "setToken"], token);
 
         const response = yield call([auth, "getSelf"]);
-        if (response.status !== 200) {
+        if (response?.status !== 200) {
           yield put(setAuth(false));
           return;
         }
