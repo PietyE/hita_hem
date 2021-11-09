@@ -9,9 +9,14 @@ import {
   getBusinessHighlightSelector,
   getAboutProjectDescriptionSelector,
   getAboutProjectTitleSelector,
+  getVideoLinkSelector,
 } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import { useTranslation } from "react-i18next";
+
+import dynamic from "next/dynamic";
+const ReactPlayer = dynamic(() => import('react-player/lazy'))
+// import ReactPlayer from 'react-player/lazy'
 
 const ProjectInfo = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -22,6 +27,7 @@ const ProjectInfo = ({ isAuth }) => {
 
   const title = useSelector(getAboutProjectTitleSelector);
   const description = useSelector(getAboutProjectDescriptionSelector);
+  const videoLink = useSelector(getVideoLinkSelector)
 
   const { matchesAll } = useMediaQueries({
     screen: "screen",
@@ -48,8 +54,22 @@ const ProjectInfo = ({ isAuth }) => {
     <div className="project_info_container">
       <div className="project_info_section_container">
         <div className="project_info_left_section">
+          {!!videoLink && (
+          <div className='project_info_player_wrapper'>
+            <ReactPlayer
+                className="project_info_player"
+                url={videoLink}
+                controls={true}
+                light={true}
+                width='100%'
+                height='100%'
+
+            />
+          </div>
+          )
+          }
           {!!businessHighlights && (
-              <div className="project_info_bussines_highlights">
+              <div style={videoLink ? {marginTop: '30px'} : {} } className="project_info_bussines_highlights">
                 <h4 className="project_info_bussines_highlights_title">
                   {t("company_page.project_info.text")}
                 </h4>
