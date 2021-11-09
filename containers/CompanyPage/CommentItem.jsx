@@ -38,7 +38,7 @@ const CommentItem = ({ data, className, complete }) => {
         </div>
         <div className="comment_item_text_wrapper">
           <h3 className="comment_item_name">
-            {data?.user?.first_name} {data?.user?.second_name}
+            {data?.user ? `${data?.user?.first_name} ${data?.user?.second_name}`: t("company_page.faq.deleted_user")}
           </h3>
           {!data.question && <p className="comment_item_date">{_date}</p>}
           {data.question && (

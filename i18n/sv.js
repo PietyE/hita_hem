@@ -206,6 +206,8 @@ export const sv = {
         faq_manager: "Hanterare",
         button: "Svara",
         button_send: "Skicka",
+        deleted_user: 'Anonym användare',
+
       },
       tab_sign_up: {
         title: "Vill du se mer?",
