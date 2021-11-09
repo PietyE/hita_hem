@@ -13,7 +13,7 @@ import {
 } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import { useTranslation } from "react-i18next";
-import ReactPlayer from 'react-player/lazy'
+// import ReactPlayer from 'react-player/lazy'
 
 const ProjectInfo = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -53,15 +53,15 @@ const ProjectInfo = ({ isAuth }) => {
         <div className="project_info_left_section">
           {!!videoLink && (
           <div className='project_info_player_wrapper'>
-            <ReactPlayer
-                className="project_info_player"
-                url={videoLink}
-                controls={true}
-                light={true}
-                width='100%'
-                height='100%'
+            {/*<ReactPlayer*/}
+            {/*    className="project_info_player"*/}
+            {/*    url={videoLink}*/}
+            {/*    controls={true}*/}
+            {/*    light={true}*/}
+            {/*    width='100%'*/}
+            {/*    height='100%'*/}
 
-            />
+            {/*/>*/}
           </div>
 
           )
