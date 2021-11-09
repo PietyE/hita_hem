@@ -212,6 +212,7 @@ export const en = {
         faq_manager: "Manager",
         button: "Reply",
         button_send: "Send",
+        deleted_user: 'Anonymous user',
       },
       tab_sign_up: {
         title: "Want to see more?",
