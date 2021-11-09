@@ -54,20 +54,20 @@ const ProjectInfo = ({ isAuth }) => {
     <div className="project_info_container">
       <div className="project_info_section_container">
         <div className="project_info_left_section">
-          {/*{!!videoLink && (*/}
-          {/*<div className='project_info_player_wrapper'>*/}
-          {/*  <ReactPlayer*/}
-          {/*      className="project_info_player"*/}
-          {/*      url={videoLink}*/}
-          {/*      controls={true}*/}
-          {/*      light={true}*/}
-          {/*      width='100%'*/}
-          {/*      height='100%'*/}
+          {!!videoLink && (
+          <div className='project_info_player_wrapper'>
+            <ReactPlayer
+                className="project_info_player"
+                url={videoLink}
+                controls={true}
+                light={true}
+                width='100%'
+                height='100%'
 
-          {/*  />*/}
-          {/*</div>*/}
-          {/*)*/}
-          {/*}*/}
+            />
+          </div>
+          )
+          }
           {!!businessHighlights && (
               <div style={videoLink ? {marginTop: '30px'} : {} } className="project_info_bussines_highlights">
                 <h4 className="project_info_bussines_highlights_title">
