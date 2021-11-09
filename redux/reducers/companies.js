@@ -55,6 +55,7 @@ const initialState = {
       email: "",
       last_login: "",
     },
+    youtube_link: "",
     business_highlights: "",
     name: "",
     header_image: "",
@@ -162,6 +163,8 @@ const initialState = {
   private_mod_viewers: [],
   private_mode: false,
 };
+
+export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
 
 export const getCompanyListSelector = (state) => state.companies.companiesList;
 
