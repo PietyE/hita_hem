@@ -138,6 +138,9 @@ export const sv = {
     successfulDeletedAccount: {
       title: "Kontot borttaget!",
     },
+    successfulFaqPopup: {
+      title: 'Ditt meddelande har skickats.',
+    },
     successful_sign_up: {
       title: "Välkommen till vår gemenskap!",
       text: "Var vänlig att följa instruktionerna som vi skicka per mail för att bekräfta registreringen.",
