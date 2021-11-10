@@ -201,6 +201,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
         <div className="invest_info_item">
           <CurrensyText
               value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
+              currency={currency}
           />
           <span className="invest_info_param">
             {t("company_page.company_valuation")}
