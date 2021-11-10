@@ -180,11 +180,11 @@ function* signIn({ payload }) {
     yield put(setShowSignIn(false));
     yield put(clearErrors())
 
-    const quizIsPassed = yield select(getQuizIsPassedSelector)
+    // const quizIsPassed = yield select(getQuizIsPassedSelector)
 
-    if(!quizIsPassed){
-      yield call(requestForQuiz)
-    }
+    // if(!quizIsPassed){
+    //   yield call(requestForQuiz)
+    // }
 
   } catch (error) {
     yield put(

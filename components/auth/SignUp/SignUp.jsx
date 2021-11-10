@@ -13,6 +13,7 @@ import * as yup from "yup";
 import {passwordRegExp} from "../../../utils/vadidationSchemas";
 import {recaptcha} from "../../../utils/recaptcha";
 import {getMembershipAgreementDocument} from "../../../redux/reducers/documents";
+import {getQuiz} from "../../../redux/actions/user";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
@@ -41,8 +42,15 @@ const SignUp = ({ show }) => {
     },
     [dispatch]
   );
+  const _showQuiz = useCallback(
+      () => {
+        dispatch(getQuiz());
+      },
+      [dispatch]
+  );
   const onSubmit = (values) => {
-    recaptcha('sign_up',_signUp,{email: `${values.email.toLowerCase()}`, password: `${values.password}`,is_agree: `${values.is_agree}`})
+    _showQuiz()
+    // recaptcha('sign_up',_signUp,{email: `${values.email.toLowerCase()}`, password: `${values.password}`,is_agree: `${values.is_agree}`, answers:[]})
     // _signUp({
     //   email: `${values.email.toLowerCase()}`,
     //   password: `${values.password}`,
