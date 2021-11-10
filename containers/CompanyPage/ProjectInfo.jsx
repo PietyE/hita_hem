@@ -60,7 +60,7 @@ const ProjectInfo = ({ isAuth }) => {
                 className="project_info_player"
                 url={videoLink}
                 controls={true}
-                light={true}
+                // light={true}
                 width='100%'
                 height='100%'
 
