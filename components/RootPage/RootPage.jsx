@@ -24,6 +24,7 @@ import {
     getShowSuccessfulChangeEmailOrPassword,
     getShowQuiz,
   getShowCookiePopup,
+  getShowSuccessfulFaqPopup,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
@@ -84,6 +85,9 @@ const ShowCookiePopup = dynamic(() =>
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
+const SuccessfulFaqPopup = dynamic(() =>
+    import("components/SuccessfulFaqPost")
+);
 
 
 const RootPage = ({ children, initLang = "" }) => {
@@ -117,6 +121,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
   const isQuizShow = useSelector(getShowQuiz)
   const isShowCookie = useSelector(getShowCookiePopup)
+  const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
+
 
 
 
@@ -196,7 +202,7 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
         {!!isQuizShow && <Quiz show={isQuizShow}/>}
         {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
-
+        {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         <ScrollToTopButton />
       </main>
       <Footer />

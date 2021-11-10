@@ -17,7 +17,7 @@ import {
   setError404,
   isMoreCampaignsOnTheApi,
 } from "redux/actions/companies";
-import { setShowQuiz, setShowSuccessfulInvestment } from "../actions/authPopupWindows";
+import {setShowQuiz, setShowSuccessfulFAQPopup, setShowSuccessfulInvestment} from "../actions/authPopupWindows";
 import { getProfileFromApi } from "./user";
 
 import api from "api";
@@ -109,6 +109,7 @@ function* addPost({ payload }) {
         description: payload.data,} ,
       token: payload.token
     });
+    yield put(setShowSuccessfulFAQPopup(true))
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })
@@ -133,6 +134,7 @@ function* addAnswer({ payload }) {
     },
     token: payload.token,
     });
+    yield put(setShowSuccessfulFAQPopup(true))
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })

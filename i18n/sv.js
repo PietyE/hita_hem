@@ -25,8 +25,8 @@ export const sv = {
         "Vi behöver mer information från dig. Fyll i 4 korta steg och vi återkommer med ett preliminärt besked",
 
       form1: {
-        first_name: "Förnamn*",
-        last_name: "Efternamn*",
+        first_name: "Förnamn",
+        last_name: "Efternamn",
         email: "Mailadress*",
         phone: "Telefonnummer*",
         country: "Land*",
@@ -137,6 +137,9 @@ export const sv = {
     },
     successfulDeletedAccount: {
       title: "Kontot borttaget!",
+    },
+    successfulFaqPopup: {
+      title: 'Ditt meddelande har skickats.',
     },
     successful_sign_up: {
       title: "Välkommen till vår gemenskap!",
