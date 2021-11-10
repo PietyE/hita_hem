@@ -40,7 +40,7 @@ const RaisePage = () => {
       <section className="raise_page_container">
         <RaisePageTopSlider onScrollTo={scrollTo} />
         <RaiseOpportunities />
-        <ImageComponent src={image} className='raise_page_image'/>
+        {image && <ImageComponent src = {image} className = 'raise_page_image'/>}
         <RaiseAdvantages />
         <RaiseFeatures />
         <RaiseForm myRef={myRef} />
