@@ -211,7 +211,7 @@ class AuthCRUD extends CRUD {
     const url = `${this.url}/quiz/`;
     return this.request({
       url,
-      method: "PATCH",
+      method: "POST",
       headers: {
         "x-recaptcha-token": token,
       },
