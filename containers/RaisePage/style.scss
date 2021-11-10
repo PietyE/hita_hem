@@ -197,6 +197,14 @@
       box-shadow: none;
     }
   }
+  .raise_page_image{
+    width: 100%;
+    max-width: 1920px;
+    margin-right: auto;
+    margin-left: auto;
+    //max-height: 400px;
+    margin-bottom: 40px;
+  }
   .raise_advantages_container {
     display: flex;
     flex-wrap: wrap;
