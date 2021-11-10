@@ -35,7 +35,6 @@ const CampaignsCard = (props) => {
   } = props?.content;
   const moneyFormat = useMoneyFormat()
 
-
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
