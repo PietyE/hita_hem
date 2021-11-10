@@ -112,10 +112,3 @@ export const getUserIdSelector = (state) => state.user.account.id;
 export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
-
-
-export const canDeleteProfile = state => {
-const userCampaigns = state.user?.user?.companies;
- const investedInCampaigns = userCampaigns?.reduce((acc, el) => (acc + Number(el.invested)),0)
-  return !investedInCampaigns
-}
