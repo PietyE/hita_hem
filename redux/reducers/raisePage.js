@@ -8,6 +8,7 @@ const initialState = {
     raise_opportunities_description: "",
     platform_advantages_title: "",
     extra_features_title: "",
+    image: '',
     headers: [],
     opportunities: [],
     platform: [],
@@ -46,3 +47,5 @@ export const getRaisePageOpportunitiesSelector = (state) =>
   sortedByIndexPosts(state.raisePage.raisePageContent.opportunities);
 export const getIsFetchingRaisePageSelector = (state) =>
   state.raisePage.isFetching;
+export const getRaisePageImageSelector = (state) =>
+    state.raisePage.raisePageContent.image;
