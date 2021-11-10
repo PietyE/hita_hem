@@ -13,8 +13,7 @@ import {
   getBusinessEndDaySelector,
   getBusinessGoalSelector,
   getBusinessInvestedSelector,
-  getBusinessShapePriceSelector,
-  //getCompanyTabSelected,
+  // getBusinessShapePriceSelector,
   getBusinessCurrencySelector,
   getPercentageSelector,
   getDaysLeftSelector,
@@ -27,9 +26,6 @@ import {
 import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
-// import Quiz from "components/Quiz";
-import {getShowQuiz} from "redux/reducers/authPopupWindows";
-import {getQuiz} from "redux/actions/user";
 import {setShowQuiz} from "../../redux/actions/authPopupWindows";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
@@ -39,17 +35,14 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const sectionRef = useRef();
 
   const moneyFormat = useMoneyFormat()
-  //const prevSelectedTab = useRef();
-  //const scrollScreenValue = useRef();
   const companyId = useSelector(getCompanyIdSelector);
-  //const selectedTab = useSelector(getCompanyTabSelected);
   const currentLanguage = useSelector(getSelectedLangSelector);
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
   const goal = useSelector(getBusinessGoalSelector);
   const invested = useSelector(getBusinessInvestedSelector);
   const valuation = useSelector(getValuationSelector)
-  const price = useSelector(getBusinessShapePriceSelector);
+  // const price = useSelector(getBusinessShapePriceSelector);
   const currency = useSelector(getBusinessCurrencySelector);
   const percentage = useSelector(getPercentageSelector);
   const daysLeft = useSelector(getDaysLeftSelector);
@@ -57,8 +50,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   const isQuizPassed = useSelector(getQuizIsPassedSelector)
-  // const isShowQuiz = useSelector(getShowQuiz);
-  //const HEADER_HEIGHT = 100;
 
   const dataOptions = {
     day: "numeric",
@@ -165,8 +156,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
   return (
       <>
-        {/*{isShowQuiz && <Quiz show = {isShowQuiz}/>}*/}
-
         <div className="project_info_right_section" ref={sectionRef}>
       <div className="invest_info">
         <div className="invest_info_item">
@@ -235,11 +224,16 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
       )}
 
       {isCompanyClosed && (
-        <a href={"mailto:" + "info@accumeo.com"}>
+          isAuth ?
+      (  <a href={"mailto:" + "info@accumeo.com"}>
           <Button colorStyle="dark-green" className="invest_button">
             {t("company_page.button_contact")}
           </Button>
-        </a>
+        </a>) : (
+                  <Button colorStyle="dark-green" className="invest_button" disabled={!isAuth}>
+                    {t("company_page.button_contact")}
+                  </Button>
+              )
       )}
 
       {!isAuth && <SignUpMessage />}
@@ -262,14 +256,24 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
         {isCompanyClosed && (
             <div className={`sticky_invest_button_container ${classNameVisible}`}>
               <div className='sticky_invest_content_wrapper'>
-              <a href={"mailto:" + "info@accumeo.com"}>
-              <Button
-                  colorStyle="dark-green"
-                  className={`sticky_invest_button ${classNameVisible}`}
-              >
-                {t("company_page.button_contact")}
-              </Button>
-            </a>
+                {isAuth ?
+                    <a href = {"mailto:" + "info@accumeo.com"}>
+                      <Button
+                          colorStyle = "dark-green"
+                          className = {`sticky_invest_button ${classNameVisible}`}
+                          disabled = {!isAuth}
+                      >
+                        {t("company_page.button_contact")}
+                      </Button>
+                    </a>
+                    :
+                    <Button
+                        colorStyle = "dark-green"
+                        className = {`sticky_invest_button ${classNameVisible}`}
+                        disabled = {!isAuth}
+                    >
+                      {t("company_page.button_contact")}
+                    </Button>}
             </div>
             </div>
 
