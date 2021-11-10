@@ -161,6 +161,9 @@ export const en = {
       title: 'You cannot delete your account.',
       text: 'To delete your account, please, contact our managers - '
     },
+    successfulFaqPopup: {
+      title: 'Your message has been successfully sent.',
+    },
     quiz:{
       title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy and knowledge about investments',
