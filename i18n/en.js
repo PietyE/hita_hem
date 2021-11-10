@@ -164,6 +164,12 @@ export const en = {
     successfulFaqPopup: {
       title: 'Your message has been successfully sent.',
     },
+    dataLossWarning: {
+      title: 'Are you sure you want to close this window?',
+      text: 'The data you have entered will not be saved until you have successfully completed the form.',
+      confirm: 'Confirm',
+      return: 'Return to form',
+    },
     quiz:{
       title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy and knowledge about investments',

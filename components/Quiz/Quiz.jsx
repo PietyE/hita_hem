@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useRouter } from "next/router";
 import Modal from '../ui/Modal';
-import {setShowQuiz} from 'redux/actions/authPopupWindows';
+import {setShowDataLossWarning, setShowQuiz} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {useTranslation} from "react-i18next";
@@ -32,12 +32,8 @@ const Quiz = ({show, data}) => {
     }, [quizErrors])
 
     useEffect(()=>{
-        if(quizIsPassed && companyId){
-            history.push( `/invest-form/[companyId]`, `/invest-form/${companyId}`);
+        if(quizIsPassed ){
             _setShowQuiz(false)
-        }else if(quizIsPassed && !companyId){
-            _setShowQuiz(false)
-
         }
     },[quizIsPassed,companyId])
 
@@ -48,6 +44,10 @@ const Quiz = ({show, data}) => {
 
     const _setShowQuiz = useCallback((data) => {
         dispatch(setShowQuiz(data));
+    }, [dispatch]);
+
+    const _setShowDataLossWarning = useCallback(() => {
+        dispatch(setShowDataLossWarning(true));
     }, [dispatch]);
 
     // const _checkQuizAnswers = useCallback((data) => {
@@ -63,7 +63,7 @@ const Quiz = ({show, data}) => {
     }, [dispatch]);
 
     const handleCloseQuiz = () => {
-        _setShowQuiz(false)
+        _setShowDataLossWarning()
     }
 
     const receiveAnswer = (data, answerNumber) => {

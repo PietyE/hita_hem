@@ -1,0 +1,29 @@
+.data_loss_warning_button{
+  height: 50px;
+  width: 165px;
+  &:first-child{
+    margin-right: 40px;
+  }
+}
+
+
+@media screen and (max-width: 400px) {
+
+  .data_loss_warning_button{
+    width: 135px;
+    &:first-child{
+      margin-right: 5px;
+    }
+  }
+
+}
+
+@media screen and (max-width: 350px) {
+
+  .data_loss_warning_button{
+    &:first-child{
+      margin-right: 5px;
+    }
+  }
+
+}
