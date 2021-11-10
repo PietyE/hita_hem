@@ -146,6 +146,10 @@
 
   .join-us_container {
     padding: 90px 15px;
+    background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-size: 253px auto, 500px auto , 500px auto;
+    background-position: center 82%,-10% 45% , 110% 45%;
 
     .join-us_title {
       font-family: Raleway;
@@ -212,6 +216,9 @@
     .home_page_top_container{
       padding-top: 80px;
     }
+    .join-us_container {
+      background-position: center 82%, -80% 45%, 160% 45%;
+    }
     .raise_instruction_container {
       width: 385px;
       .raise_step{
@@ -258,6 +265,14 @@
     }
   }
 }
+
+@media screen and (max-width: 500px) {
+  .home_page_container {
+    .join-us_container {
+      background-position: center 82%, 99% 45%, 50% 45%;
+    }
+  }
+}
 @media screen and (max-width: 400px) {
   .home_page_container {
     .raise_instruction_container {
@@ -271,6 +286,7 @@
         width: 260px;
       }
     }
+
 
   }
   @media screen and (max-width: 360px) {

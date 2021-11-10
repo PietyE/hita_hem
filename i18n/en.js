@@ -234,7 +234,7 @@ export const en = {
     home_page: {
       featured_button: "View All Campaigns",
       upcoming_button: "View Upcoming Campaigns",
-      join_title: "Join us now and start investing",
+      join_title: "Discover unlisted opportunities today.",
       join_button: "Become a Member",
       instructions_title: "Start your journey",
       featured_campaigns: "Featured campaigns",
