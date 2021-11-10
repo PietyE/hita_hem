@@ -42,7 +42,7 @@ import {
   setChangeEmailOrPasswordText,
   setShowQuiz, setShowQuizError, setShowCookiePopup, setShowDenyDeletingAccount,
 } from "../actions/authPopupWindows";
-import {getQuizIsPassedSelector, getUserIdSelector} from "../reducers/user";
+import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
 import api from "api";
@@ -90,10 +90,7 @@ export function* bootstarpWorker({ payload: initLang }) {
         yield put(setToken(token));
         yield put(setAccount(response.data));
         yield put(setAuth(true));
-        // const quizIsPassed = yield select(getQuizIsPassedSelector)
-        // if(!quizIsPassed){
-        //   yield call(requestForQuiz)
-        // }
+
       } else {
         yield put(setAuth(false));
       }
@@ -132,17 +129,20 @@ function* signUp({ payload }) {
     const response = yield call([auth, "signUp"], {token:payload.token, data: payload.data});
     if (response.status === 201) {
       yield put(setShowSignUp(false));
+      yield put (setShowQuiz(false));
       yield put(setShowSuccessfulSignUp(true));
     }
     yield put(clearErrors())
 
   } catch (error) {
-    yield put(
-      setAuthError({ status: error.response.status, data: error.response.data })
-    );
-    // if(error?.response?.status === 400){
-    //     yield put(setNotificationMessage(error.response?.data?.email[0]))
-    // }
+    if(error?.response?.data?.questions){
+      yield put(setQuizErrors(error?.response?.data?.questions))
+      yield put(setShowQuizError(true))
+    }else{
+      yield put(
+          setAuthError({ status: error.response.status, data: error.response.data })
+      );
+    }
   } finally {
     yield put(setFetchingUsers(false));
   }
@@ -179,32 +179,10 @@ function* signIn({ payload }) {
     yield call([localStorage, "setItem"], "auth_data", authData);
     yield put(setShowSignIn(false));
     yield put(clearErrors())
-
-    // const quizIsPassed = yield select(getQuizIsPassedSelector)
-
-    // if(!quizIsPassed){
-    //   yield call(requestForQuiz)
-    // }
-
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
     );
-    // if (error?.response?.status === 400) {
-    //   if (error?.response?.data?.user) {
-    //     yield put(setNotification(true));
-    //     yield put(setNotificationTitle(error?.response?.data?.user[0]));
-    //     yield put(setNotificationMessage("Check your email or password"));
-    //   }
-      // else {
-      //   yield put(
-      //     setAuthError({
-      //       status: error.response.status,
-      //       auth: error.response.data,
-      //     })
-      //   );
-      // }
-    // }
   } finally {
     yield put(setFetchingUsers(false));
   }
