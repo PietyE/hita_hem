@@ -230,7 +230,7 @@ export const sv = {
     home_page: {
       featured_button: "Se alla kampanjer",
       upcoming_button: "Se kommande kampanjer",
-      join_title: "Bli medlem du och börja investera",
+      join_title: "Upptäck onoterat.",
       join_button: "Bli en medlem",
       featured_campaigns: "Utvalda kampanjer",
       upcoming_campaigns: "Kommande Kampanjer",
