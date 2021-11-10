@@ -22,9 +22,9 @@ import {
     getShowRequestForChange,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
-    getShowQuiz,
   getShowCookiePopup,
   getShowSuccessfulFaqPopup,
+    getShowDataLossWarning,
 } from "redux/reducers/authPopupWindows.js";
 import { getNotificationStatusSelector } from "redux/reducers/notification";
 import { bootstap, logOut } from "redux/actions/user";
@@ -82,11 +82,11 @@ const ShowDenyDeletingAccount = dynamic(() =>
 const ShowCookiePopup = dynamic(() =>
     import("components/CookieModal")
 );
-const Quiz = dynamic(() =>
-    import("components/Quiz")
-);
 const SuccessfulFaqPopup = dynamic(() =>
     import("components/SuccessfulFaqPost")
+);
+const DataLossWarning = dynamic(() =>
+    import("components/DataLossWarning")
 );
 
 
@@ -119,9 +119,10 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
-  const isQuizShow = useSelector(getShowQuiz)
   const isShowCookie = useSelector(getShowCookiePopup)
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
+  const isShowDataLossWarning = useSelector(getShowDataLossWarning)
+
 
 
 
@@ -200,9 +201,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {!!isQuizShow && <Quiz show={isQuizShow}/>}
         {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
+        {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
         <ScrollToTopButton />
       </main>
       <Footer />

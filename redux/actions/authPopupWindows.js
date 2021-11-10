@@ -19,6 +19,7 @@ import {
   SET_SHOW_DENY_DELETING_ACCOUNT,
   SET_SHOW_COOKIE,
   SET_SHOW_SUCCESSFUL_FAQ_POST,
+  SET_SHOW_DATA_LOSS_WARNING,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -116,5 +117,10 @@ export const setShowCookiePopup = payload =>({
 
 export const setShowSuccessfulFAQPopup = payload =>({
   type: SET_SHOW_SUCCESSFUL_FAQ_POST,
+  payload,
+})
+
+export const setShowDataLossWarning = payload =>({
+  type: SET_SHOW_DATA_LOSS_WARNING,
   payload,
 })

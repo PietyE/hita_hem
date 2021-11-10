@@ -141,6 +141,12 @@ export const sv = {
     successfulFaqPopup: {
       title: 'Ditt meddelande har skickats.',
     },
+    dataLossWarning: {
+      title: 'Är du säker på att du vill stänga det här fönstret?',
+      text: 'De svar du gett kommer ej sparas förrän du slutfört vår KYC-process.',
+      confirm: 'Ja, jag vill avsluta',
+      return: 'Nej, jag vill fortsätta',
+    },
     successful_sign_up: {
       title: "Välkommen till vår gemenskap!",
       text: "Var vänlig att följa instruktionerna som vi skicka per mail för att bekräfta registreringen.",
@@ -224,7 +230,7 @@ export const sv = {
     home_page: {
       featured_button: "Se alla kampanjer",
       upcoming_button: "Se kommande kampanjer",
-      join_title: "Bli medlem du och börja investera",
+      join_title: "Upptäck onoterat.",
       join_button: "Bli en medlem",
       featured_campaigns: "Utvalda kampanjer",
       upcoming_campaigns: "Kommande Kampanjer",
