@@ -24,8 +24,8 @@ export const en = {
       raise_form_text:
         "Wed like to hear more from you. Just 4 steps and our team will make a preliminary evaluation.",
       form1: {
-        first_name: "First Name*",
-        last_name: "Last Name*",
+        first_name: "First Name",
+        last_name: "Last Name",
         email: "Email address*",
         phone: "Phone number*",
         country: "Country*",
@@ -160,6 +160,9 @@ export const en = {
     denyDeletingAccount: {
       title: 'You cannot delete your account.',
       text: 'To delete your account, please, contact our managers - '
+    },
+    successfulFaqPopup: {
+      title: 'Your message has been successfully sent.',
     },
     quiz:{
       title: 'To start the investment process, please answer the following questions.',

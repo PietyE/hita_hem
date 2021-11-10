@@ -9,8 +9,8 @@ const Logo = ({ classNameContainer, classNameText }) => {
         <div className="logo_circle">
           <svg
             width="34"
-            height="30"
-            viewBox="0 0 34 30"
+            height="32"
+            viewBox="0 1.5 34 31"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >

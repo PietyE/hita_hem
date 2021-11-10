@@ -190,12 +190,20 @@
     }
   }
   .raise_opportunities_container{
-    padding-bottom: 110px;
+    //padding-bottom: 110px;
   }
   .raise_features_container{
     .raise_item-list_instructions_container{
       box-shadow: none;
     }
+  }
+  .raise_page_image{
+    width: 100%;
+    max-width: 1920px;
+    margin-right: auto;
+    margin-left: auto;
+    //max-height: 400px;
+    margin-bottom: 40px;
   }
   .raise_advantages_container {
     display: flex;

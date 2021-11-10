@@ -40,7 +40,7 @@ import {
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
-  setShowQuiz, setShowQuizError, setShowCookiePopup,
+  setShowQuiz, setShowQuizError, setShowCookiePopup, setShowDenyDeletingAccount,
 } from "../actions/authPopupWindows";
 import {getQuizIsPassedSelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -401,9 +401,15 @@ export function* deleteUserAccount() {
     yield put(setShowSuccessfulDeletedAccount(true));
     yield call(clean);
   } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
+    if(error?.response?.status === 400 && error?.response?.data?.delete){
+      yield put(setShowConfirmationOfAccountDeleting(false));
+      yield put(setShowDenyDeletingAccount(true))
+    }else{
+      yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      );
+    }
+
   } finally {
     yield put(setFetchingUsers(false));
   }
