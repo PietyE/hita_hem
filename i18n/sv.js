@@ -410,6 +410,12 @@ cookie: {
     text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webbtrafiken. Genom att använda vår webbplats godkänner du vår',
         link: 'integritetspolicy.',
     button: 'Acceptera och fortsätt',
-}
+},
+        dataLossWarning:{
+            title: 'Är du säker på att du vill stänga det här fönstret?',
+            text: 'De svar du gett kommer ej sparas förrän du slutfört vår KYC-process.',
+            confirm: 'Ja, jag vill avsluta',
+            return: 'Nej, jag vill fortsätta',
+        },
 },
 };

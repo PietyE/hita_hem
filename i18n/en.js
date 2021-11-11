@@ -408,6 +408,12 @@ cookie: {
       link: 'Privacy Policy',
       button: 'Accept and Continue',
 },
+      dataLossWarning:{
+          title: 'Are you sure you want to close this window?',
+          text: 'The data you have entered will not be saved until you have successfully completed the form.',
+          confirm: 'Confirm',
+          return: 'Return to form',
+      },
 change_email_page: {
   button_submit: "Submit",
       new_email: 'New email address*',
