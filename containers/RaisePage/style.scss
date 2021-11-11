@@ -1165,6 +1165,17 @@
   }
 }
 
+@media screen and (max-width: 340px){
+  .raise_page_container {
+    .raise_form_container {
+      .raise_form_title{
+        font-size: 29px;
+      }
+    }
+  }
+
+}
+
 .raise_form_input_file {
   position: absolute;
   bottom: 10px;
