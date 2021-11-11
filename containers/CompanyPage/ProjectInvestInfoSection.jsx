@@ -168,15 +168,18 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             <span className="date">{_endDayLocal}</span>
           </span>
         </div>
-        <div className="invest_info_item">
+
+        {isAuth && (
+            <div className = "invest_info_item">
           <CurrensyText
-              value={moneyFormat.format(parseInt(invested))}
-              currency={currency}
+              value = {moneyFormat.format(parseInt(invested))}
+              currency = {currency}
           />
-          <span className="invest_info_param">
+          <span className = "invest_info_param">
             {t("company_page.company_invested")}
           </span>
-        </div>
+        </div>)}
+        {isAuth && (
         <div className="invest_info_item">
           <CurrensyText
             value={moneyFormat.format(parseInt(goal))}
@@ -186,7 +189,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             {t("company_page.company_goal")}
           </span>
         </div>
-        {valuation &&
+        )}
+        {valuation && isAuth &&
         <div className="invest_info_item">
           <CurrensyText
               value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
@@ -197,6 +201,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           </span>
         </div>
         }
+
         {/*<div className="invest_info_item">*/}
         {/*  <CurrensyText value={moneyFormat.format(price)} currency={currency} />*/}
         {/*  <span className="invest_info_param">*/}
