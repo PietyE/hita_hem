@@ -406,6 +406,9 @@ errors: {
         facebook_example: 'Exempel https://facebook.com/...',
         twitter_example: 'Exempel https://twitter.com/...',
         linkedin_example: 'Exempel https://linkedin.com/...',
+
+    long_error_part1: "Måste vara högst",
+    long_error_part2: "tecken",
 },
 cookie: {
     text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webbtrafiken. Genom att använda vår webbplats godkänner du vår',
