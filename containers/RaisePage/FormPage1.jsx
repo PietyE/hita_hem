@@ -24,9 +24,9 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
     country: data.country,
   };
   const raiseForm1 = yup.object({
-    first_name: yup.string().min(1).max(80),
-    second_name: yup.string().min(1).max(80),
-    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    first_name: yup.string().min(1).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`),
+    second_name: yup.string().min(1).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`),
+    email: yup.string().email(t("errors.email_example")).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`).required(t("errors.email_required")),
     phone: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
     country: yup.string().required(t("errors.country_required")),
   })

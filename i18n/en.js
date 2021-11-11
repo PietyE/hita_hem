@@ -402,6 +402,9 @@ errors: {
       twitter_example: 'Example https://twitter.com/...',
       linkedin_example: 'Example https://linkedin.com/...',
 
+    long_error_part1: "Must be at most",
+    long_error_part2: "characters",
+
 
 },
 cookie: {

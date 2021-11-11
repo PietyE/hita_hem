@@ -61,9 +61,9 @@ function ChangeEmail() {
         password: "",
     };
     const accountSettingsResetEmailSchema = yup.object({
-        email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+        email: yup.string().email(t("errors.email_example")).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`).required(t("errors.email_required")),
         password: yup
-            .string().max(128)
+            .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
             .required(t("errors.password_required")),
     })
 
