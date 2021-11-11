@@ -76,7 +76,7 @@
       font-weight: 600;
       font-size: 14px;
       line-height: 22px;
-      color: rgba(0, 0, 0, 0.6);
+      color: #000;
 
       &:focus {
         box-shadow: 0 0 rgba(0, 0, 0, 0.0) !important;
@@ -84,7 +84,7 @@
 
       &:active {
         background-color: #fff;
-        color: rgba(0, 0, 0, 0.6);
+        color: #000;
         border: 1px solid #C4C4C4;
       }
 
@@ -184,7 +184,7 @@
       font-weight: 600;
       font-size: 16px;
       line-height: 150%;
-      color: rgba(0, 0, 0, 0.6);
+      color: #000;
       margin-right: 23px;
     }
 
@@ -379,7 +379,7 @@
         right: 15px;
         font-size: 22px;
         font-weight: 700;
-        color: rgba(0, 0, 0, 0.6);
+        color: #000;
         cursor: pointer;
       }
 
@@ -399,7 +399,7 @@
         font-weight: 600;
         font-size: 20px;
         line-height: 150%;
-        color: rgba(0, 0, 0, 0.6);
+        color: #000;
         margin-bottom: 27px;
       }
 
@@ -459,7 +459,7 @@
           font-weight: bold;
           font-size: 15px;
           line-height: 150%;
-          color: rgba(0, 0, 0, 0.6);
+          color: #000;
         }
 
       }
