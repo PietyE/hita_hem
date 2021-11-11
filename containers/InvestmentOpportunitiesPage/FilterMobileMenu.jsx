@@ -117,6 +117,26 @@ const FilterMobileMenu = ({
                   />
                 )}
               </ButtonStyled>
+
+              <ButtonStyled
+                  colorStyle={
+                    currentFilters.includes(2)
+                        ? "light-blue-white-text"
+                        : "outline-blue"
+                  }
+                  className="filter_mobile_menu_accordion_tab_button"
+                  onClick={onChangeFilter}
+                  name="completed"
+              >
+                {t("investment_opportunities_page.completed")}
+                {currentFilters.includes(2) && (
+                    <IconComponent
+                        icon={faCheck}
+                        className="filter_mobile_menu_accordion_tab_button_chevron"
+                    />
+                )}
+              </ButtonStyled>
+
               <ButtonStyled
                 colorStyle={
                   currentFilters.includes(4)

@@ -259,6 +259,7 @@ investment_opportunities_page: {
       live: "Live",
       upcoming: "Upcoming",
       closed: "Successfully closed",
+    completed: "Completed",
       dropdown_button: "Apply",
       filter_button: "Filters",
       filter_modal_text: "Filter by",
