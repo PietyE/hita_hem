@@ -81,7 +81,7 @@ const UserPanelMenu = ({ show }) => {
       >
         <span>
           <Image src={iconLogOut} alt="logout icon" />
-          {t("header.user_panel.Log_Out")}
+            <span className='user_menu_item_text'>{t("header.user_panel.Log_Out")}</span>
         </span>
       </DropdownItem>
     </DropdownMenu>

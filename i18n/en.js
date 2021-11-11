@@ -53,7 +53,7 @@ form4: {
       drop_zone_part2: "or",
       drop_zone_part3: "click to browse",
       comments: "Comments",
-      add_document_button: "Add document",
+      add_document_button: "Confirm",
 },
 form_footer: {
   button_next: "Next",

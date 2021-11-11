@@ -54,7 +54,7 @@ form4: {
         drop_zone_part2: "eller",
         drop_zone_part3: "klicka för att bläddra",
         comments: "Kommentarer",
-        add_document_button: "Ladda upp ett dokument",
+        add_document_button: "Godkän",
 },
 form_footer: {
     button_next: "Nästa",
