@@ -24,7 +24,6 @@ import {
   getIsSignInUserSelector,
   getIsFetchingAuthSelector,
   getTotalPaymentsByCompanySelector,
-  getQuizIsPassedSelector
 } from "redux/reducers/user";
 
 import { HOME_ROUTE } from "constants/routesConstant";
@@ -46,12 +45,11 @@ const InvestFormPage = () => {
   const userCanInvest = useSelector(canUserInvestSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
-  const quizIsPassed = useSelector(getQuizIsPassedSelector)
   useEffect(() => {
-    if (!isAuth || !userCanInvest || !quizIsPassed || isCompanyClosed) {
+    if (!isAuth || !userCanInvest  || isCompanyClosed) {
       history.push(HOME_ROUTE);
     }
-  }, [isAuth, userCanInvest, isCompanyClosed, quizIsPassed,  history]);
+  }, [isAuth, userCanInvest, isCompanyClosed,  history]);
 
   const companyId = history.query.companyId;
 
@@ -109,7 +107,7 @@ const InvestFormPage = () => {
   return (
     <>
       {isFetching && <SpinnerStyled />}
-      {quizIsPassed &&
+      {/*{quizIsPassed &&*/}
       <section className="invest_form_section">
         <div className='invest_form_section_content_container'>
           <h1 className="invest_form_section_title">{companyName}</h1>
@@ -187,7 +185,7 @@ const InvestFormPage = () => {
           </div>
         </div>
       </section>
-      }
+      {/*}*/}
     </>
   );
 };

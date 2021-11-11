@@ -139,6 +139,9 @@ function* signUp({ payload }) {
       yield put(setQuizErrors(error?.response?.data?.questions))
       yield put(setShowQuizError(true))
     }else{
+      if(error?.response?.data?.email || error?.response?.data?.password){
+        yield put(setShowQuiz(false))
+      }
       yield put(
           setAuthError({ status: error.response.status, data: error.response.data })
       );

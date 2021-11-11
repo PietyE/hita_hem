@@ -29,6 +29,7 @@ import {restrictOnlyLetters, restrictCity,restrictLettersNumbersAndSpecialCharac
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const PersonalDetails = ({
   type,
@@ -42,6 +43,7 @@ const PersonalDetails = ({
   const errorHandlerHook = useProfileErrorHandler();
   const dispatch = useDispatch();
   const profile = useSelector(getProfile, isEqual);
+  const language = useSelector(getSelectedLangSelector)
   let initialValues = {
     address: {
       country: "",
@@ -62,11 +64,11 @@ const PersonalDetails = ({
   const personalDetailsCreateSchema = yup.object({
     address: yup.object().shape({
       country: yup.string().required(t("errors.country_required")),
-      city: yup.string().max(256).required(t("errors.city_required")),
-      address: yup.string().max(400).required(t("errors.address_required")),
+      city: yup.string().max(256, `${t("errors.long_error_part1")} 256 ${t("errors.long_error_part2")}`).required(t("errors.city_required")),
+      address: yup.string().max(400, `${t("errors.long_error_part1")} 400 ${t("errors.long_error_part2")}`).required(t("errors.address_required")),
     }),
-    first_name: yup.string().max(100).required(t("errors.first_name_required")),
-    second_name: yup.string().max(100).required(t("errors.second_name_required")),
+    first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.first_name_required")),
+    second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.second_name_required")),
     is_agree: yup.bool().oneOf([true]),
     day: yup.number().required(t("errors.day_required")),
     month: yup.number().required(t("errors.month_required")),
@@ -77,11 +79,11 @@ const PersonalDetails = ({
   const personalDetailsUpdateSchema = yup.object({
     address: yup.object().shape({
       country: yup.string(),
-      city: yup.string().max(256).test('city', t("errors.city_empty"), val => val?.length),
-      address: yup.string().max(400).test('address', t("errors.address_empty"), val => val?.length),
+      city: yup.string().max(256, `${t("errors.long_error_part1")} 256 ${t("errors.long_error_part2")}`).test('city', t("errors.city_empty"), val => val?.length),
+      address: yup.string().max(400, `${t("errors.long_error_part1")} 400 ${t("errors.long_error_part2")}`).test('address', t("errors.address_empty"), val => val?.length),
     }),
-    first_name: yup.string().max(100).test('first_name', t("errors.first_name_empty"), val => val?.length),
-    second_name: yup.string().max(100).test('second_name', t("errors.second_name_empty"), val => val?.length),
+    first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('first_name', t("errors.first_name_empty"), val => val?.length),
+    second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('second_name', t("errors.second_name_empty"), val => val?.length),
     day: yup.number(),
     month: yup.number(),
     year: yup.number(),
@@ -283,7 +285,7 @@ const PersonalDetails = ({
                           {months.map((el) => {
                             return (
                               <option key={el.id} value={el.id}>
-                                {el.month}
+                                {language === "en" ? el.month : el.monthSw}
                               </option>
                             );
                           })}

@@ -53,9 +53,9 @@ const ResetPassword = () => {
         new_password2: "",
     };
     const accountSettingsResetPasswordSchema = yup.object({
-        new_password1: yup.string().max(128).matches(passwordRegExp, t("errors.password_example")).required(t("errors.new_password_required")),
+        new_password1: yup.string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`).matches(passwordRegExp, t("errors.password_example")).required(t("errors.new_password_required")),
         new_password2: yup
-            .string().required(t("errors.confirm_password_required")).max(128)
+            .string().required(t("errors.confirm_password_required")).max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
             .when('new_password1', {
                 is: password => (password && password.length > 0 ? true : false),
                 then: yup.string().oneOf([yup.ref('new_password1')], t("errors.password_match"))
