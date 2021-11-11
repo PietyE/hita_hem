@@ -64,7 +64,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       recaptcha('rise_form_send',_sendForm,dataForApi)
   };
 
- const raiseForm4 = yup.object({
+ const raiseForm4 =     yup.object({
     is_agree: yup.bool().oneOf([true]),
     comments: yup.string(),
     documents: '',

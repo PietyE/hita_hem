@@ -38,7 +38,7 @@
   font-size: 14px;
   line-height: 22px;
   font-feature-settings: 'pnum' on, 'lnum' on;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000;
 }
 .auth_login_container{
 
@@ -120,7 +120,7 @@ z-index: 2;
   font-weight: normal;
   font-size: 14px;
   line-height: 150%;
-  color: #666666;
+  color: #000;
 }
 .auth_footer_text{
   margin-bottom: 35px;
@@ -129,7 +129,7 @@ z-index: 2;
   font-weight: normal;
   font-size: 14px;
   line-height: 150%;
-  color: #666666;
+  color: #000;
 }
 .sign_up_password_link{
   font-family: Mulish;
@@ -155,7 +155,7 @@ z-index: 2;
   font-size: 14px;
   line-height: 150%;
   text-align: center;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000;
 }
 .auth_footer_link{
   font-family: Mulish;
@@ -176,7 +176,7 @@ z-index: 2;
   font-size: 14px;
   line-height: 150%;
   text-align: center;
-  color: rgba(0, 0, 0, 0.6);
+  color: #000;
 }
 
 @media screen and (max-device-width: 450px) {

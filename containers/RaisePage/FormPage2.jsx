@@ -21,8 +21,8 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
     amount: data.amount,
   };
   const raiseForm2 = yup.object({
-    company_name: yup.string().min(2).max(200).required(t("errors.company_name_required")),
-    role: yup.string().max(200).required(t("errors.role_required")),
+    company_name: yup.string().min(1).max(200, `${t("errors.long_error_part1")} 200 ${t("errors.long_error_part2")}`).required(t("errors.company_name_required")),
+    role: yup.string().max(200, `${t("errors.long_error_part1")} 200 ${t("errors.long_error_part2")}`).required(t("errors.role_required")),
     revenue: yup.number().min(0,t("errors.revenue_positive")).typeError(t("errors.revenue_number")),
     amount: yup.number().typeError(t("errors.amount_number")).required(t("errors.amount_required")).min(0,t("errors.amount_positive")),
   })

@@ -53,9 +53,9 @@ const SignUp = ({ show }) => {
 
   };
   const signUpSchema = yup.object({
-    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    email: yup.string().email(t("errors.email_example")).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`).required(t("errors.email_required")),
     password: yup
-        .string().max(128)
+        .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .matches(passwordRegExp, t("errors.password_example"))
         .required(t("errors.password_required")),
     is_agree: yup.bool().oneOf([true])

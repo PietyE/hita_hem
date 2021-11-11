@@ -126,16 +126,16 @@ export const getDays = (month) => {
 };
 
 export const months = [
-  { id: 1, month: "January" },
-  { id: 2, month: "February" },
-  { id: 3, month: "March" },
-  { id: 4, month: "April" },
-  { id: 5, month: "May" },
-  { id: 6, month: "June" },
-  { id: 7, month: "July" },
-  { id: 8, month: "August" },
-  { id: 9, month: "September" },
-  { id: 10, month: "October" },
-  { id: 11, month: "November" },
-  { id: 12, month: "December" },
+  { id: 1, month: "January", monthSw: 'Januari'},
+  { id: 2, month: "February", monthSw: 'Februari' },
+  { id: 3, month: "March", monthSw: 'Mars' },
+  { id: 4, month: "April", monthSw: 'April' },
+  { id: 5, month: "May", monthSw: 'Maj' },
+  { id: 6, month: "June", monthSw: 'Juni' },
+  { id: 7, month: "July", monthSw: 'Juli' },
+  { id: 8, month: "August", monthSw: 'Augusti' },
+  { id: 9, month: "September", monthSw: 'September' },
+  { id: 10, month: "October", monthSw: 'Oktober' },
+  { id: 11, month: "November", monthSw: 'November' },
+  { id: 12, month: "December", monthSw: 'December' },
 ];

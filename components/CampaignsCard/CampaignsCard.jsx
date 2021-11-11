@@ -14,6 +14,8 @@ import SplitLine from "../ui/SplitLine";
 import Button from "../ui/Button";
 
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {useSelector} from "react-redux";
+import {getIsSignInUserSelector} from "../../redux/reducers/user";
 
 
 const CampaignsCard = (props) => {
@@ -34,7 +36,7 @@ const CampaignsCard = (props) => {
     percentage,
   } = props?.content;
   const moneyFormat = useMoneyFormat()
-
+const isAuth = useSelector(getIsSignInUserSelector)
   const diff = new Date(props?.content?.end_date) - new Date();
   const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
@@ -109,14 +111,17 @@ const CampaignsCard = (props) => {
               dayLeft={leftDays}
               status={status}
             />
-            <div className="campaigns_card_target">
-              <p className="campaigns_card_target_title">
+
+            {isAuth && (
+                <div className = "campaigns_card_target">
+              <p className = "campaigns_card_target_title">
                 {t("campaigns_card.target_title")}
               </p>
-              <p className="campaigns_card_target_value">
+              <p className = "campaigns_card_target_value">
                 {currency} {moneyFormat.format(goal)}
               </p>
-            </div>
+            </div>)}
+
             <Button
               colorStyle="outline-green"
               className="campaigns_card_button"

@@ -23,10 +23,10 @@ import {
   getIsCompanyClosedSelector,
   getValuationSelector,
 } from "redux/reducers/companies";
-import {  getQuizIsPassedSelector} from "redux/reducers/user";
+// import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
-import {setShowQuiz} from "../../redux/actions/authPopupWindows";
+// import {setShowQuiz} from "../../redux/actions/authPopupWindows";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
-  const isQuizPassed = useSelector(getQuizIsPassedSelector)
+  // const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
   const dataOptions = {
     day: "numeric",
@@ -108,19 +108,19 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   //   }
   // }, [selectedTab]);
 
-
-  const _setShowQuiz = useCallback(() => {
-    dispatch(setShowQuiz(true));
-  }, [dispatch]);
+  //
+  // const _setShowQuiz = useCallback(() => {
+  //   dispatch(setShowQuiz(true));
+  // }, [dispatch]);
 
 
   const handleClickInvest = () => {
     if (isAuth) {
-       if(isQuizPassed){
+       // if(isQuizPassed){
         history.push('/invest-form/[companyId]',`/invest-form/${companyId}`);
-       }else{
-         _setShowQuiz()
-       }
+       // }else{
+       //   _setShowQuiz()
+       // }
     } else {
       dispatch(setShowSignIn(true));
     }
@@ -168,15 +168,18 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             <span className="date">{_endDayLocal}</span>
           </span>
         </div>
-        <div className="invest_info_item">
+
+        {isAuth && (
+            <div className = "invest_info_item">
           <CurrensyText
-              value={moneyFormat.format(parseInt(invested))}
-              currency={currency}
+              value = {moneyFormat.format(parseInt(invested))}
+              currency = {currency}
           />
-          <span className="invest_info_param">
+          <span className = "invest_info_param">
             {t("company_page.company_invested")}
           </span>
-        </div>
+        </div>)}
+        {isAuth && (
         <div className="invest_info_item">
           <CurrensyText
             value={moneyFormat.format(parseInt(goal))}
@@ -186,7 +189,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
             {t("company_page.company_goal")}
           </span>
         </div>
-        {valuation &&
+        )}
+        {valuation && isAuth &&
         <div className="invest_info_item">
           <CurrensyText
               value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
@@ -197,6 +201,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           </span>
         </div>
         }
+
         {/*<div className="invest_info_item">*/}
         {/*  <CurrensyText value={moneyFormat.format(price)} currency={currency} />*/}
         {/*  <span className="invest_info_param">*/}
