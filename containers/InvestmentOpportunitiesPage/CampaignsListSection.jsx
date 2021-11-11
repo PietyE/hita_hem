@@ -92,12 +92,16 @@ const CampaignsListSection = () => {
       setFilterList(3);
     } else if (e.target.name === "upcoming") {
       setFilterList(1);
+    }else if (e.target.name === "completed") {
+      setFilterList(2);
     } else if (e.target.name === "closed") {
       setFilterList(4);
     } else if (e.target.dataset.value === "live") {
       _setFilter(3);
     } else if (e.target.dataset.value === "upcoming") {
       _setFilter(1);
+    } else if (e.target.dataset.value === "completed") {
+      _setFilter(2);
     } else if (e.target.dataset.value === "closed") {
       _setFilter(4);
     }
@@ -165,6 +169,17 @@ const CampaignsListSection = () => {
                 />
                 {t("investment_opportunities_page.closed")}
               </label>
+              <label className="invest_opp_label">
+                <input
+                    className="invest_opp_checkbox"
+                    type="checkbox"
+                    name="completed"
+                    value="completed"
+                    checked={filterValuesArray.includes(2)}
+                    onChange={handleChangeCheckbox}
+                />
+                {t("investment_opportunities_page.completed")}
+              </label>
             </div>
             <DropdownItem>
               <Button
@@ -213,6 +228,17 @@ const CampaignsListSection = () => {
                 className="invest_opp_delete_filter"
               />
             </div>
+          )}
+          {currentFilter.includes(2) && (
+              <div className="invest_opp_active_filter">
+                {t("investment_opportunities_page.completed")}
+                <IconComponent
+                    icon={faTimes}
+                    data-value="completed"
+                    onClick={handleChangeCheckbox}
+                    className="invest_opp_delete_filter"
+                />
+              </div>
           )}
           {currentFilter.includes(4) && (
             <div className="invest_opp_active_filter">
