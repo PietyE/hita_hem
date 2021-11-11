@@ -1173,6 +1173,8 @@
   }
 }
 
+
+
 @media screen and (max-width: 375px) {
   .profile_section_mobile {
     .profile_personal_details {
@@ -1217,6 +1219,19 @@
           .mobile_investments_field_link {
             font-size: 12px;
           }
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 340px) {
+  .profile_section_mobile {
+    .profile_personal_details {
+      .profile_form {
+        .profile_form_input_container {
+            font-size: 12px;
         }
       }
     }
