@@ -32,6 +32,8 @@ import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
+import {recaptcha} from "../../utils/recaptcha";
+
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
   { loading: () => <span></span> }
@@ -127,8 +129,8 @@ const RootPage = ({ children, initLang = "" }) => {
 
 
 
-  const _logOut = useCallback(() => {
-    dispatch(logOut());
+  const _logOut = useCallback((data) => {
+    dispatch(logOut(data));
   }, [dispatch]);
 
   useEffect(() => {
@@ -140,8 +142,8 @@ const RootPage = ({ children, initLang = "" }) => {
     if (isAuth) {
       timer = new IdleTimer({
         timeout: 60 * 10,
-        onTimeout: _logOut,
-        onExpired: _logOut,
+        onTimeout: () =>recaptcha('logout_on_timeout',_logOut),
+        onExpired: () =>recaptcha('logout_on_expired',_logOut),
       });
     }
 
