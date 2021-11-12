@@ -9,11 +9,13 @@ import {
   getNotificationMessageSelector,
   getNotificationTitleSelector,
 } from "redux/reducers/notification";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const Notification = ({ show }) => {
   const dispatch = useDispatch();
   const message = useSelector(getNotificationMessageSelector);
   const title = useSelector(getNotificationTitleSelector);
+  const language = useSelector(getSelectedLangSelector)
   const handleClose = useCallback(() => {
     dispatch(setNotification(false));
     dispatch(setNotificationMessage(""));
@@ -24,6 +26,14 @@ const Notification = ({ show }) => {
       setTimeout(() => handleClose(), 8000);
     }
   }, [show, handleClose]);
+
+  let _title
+  if(title){
+    _title = title
+  }else{
+    _title = language === 'en' ? 'Error' : 'Tyvärr...'
+  }
+  console.log('_title', _title)
   return (
     <Alert
       variant="danger"
@@ -32,7 +42,7 @@ const Notification = ({ show }) => {
       dismissible
       className="notification"
     >
-      <Alert.Heading>{`${title}`}</Alert.Heading>
+      <Alert.Heading>{_title}</Alert.Heading>
       <p>{Array.isArray(message)?message[0]:message}</p>
     </Alert>
   );

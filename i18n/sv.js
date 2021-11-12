@@ -163,7 +163,7 @@ quiz:{
     title:'För att slutföra registreringen måste du besvara följande frågor:',
     text: 'Vänligen gå igenom din data',
         back_button: "Tillbaka",
-        button_confirm: 'Godkän',
+        button_confirm: 'Godkänn',
 },
 tab_accordion: {
     Idea: "Idé",
