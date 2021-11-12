@@ -47,6 +47,7 @@ import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
+import {getSelectedLangSelector} from "../reducers/language";
 
 const { auth } = api;
 
@@ -283,7 +284,8 @@ function* resetUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "resetPassword"], {token:payload.token, data: payload.data});
-    yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
+    const language = yield select(getSelectedLangSelector)
+    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
     yield put(setShowChangeEmailOrPassword(true))
     yield put(setCanResetPassword(false))
     yield put(clearErrors())
@@ -306,7 +308,8 @@ function* changeUserPassword({ payload }) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "changePassword"], {token:payload.token, data: payload.data});
-    yield put(setChangeEmailOrPasswordText('Your password has been successfully updated.'))
+    const language = yield select(getSelectedLangSelector)
+    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
     yield put(setShowChangeEmailOrPassword(true))
     yield put(setCanChangePassword(false))
     yield put(clearErrors())
@@ -330,7 +333,8 @@ function* changeUserEmail({ payload }) {
     yield put(setFetchingUsers(true));
     yield call([auth, "changeEmail"], {token:payload.token, data: payload.data});
     yield put(setResponseFromApi(true));
-    yield put(setChangeEmailOrPasswordText('Your mail has been successfully updated.'))
+    const language = yield select(getSelectedLangSelector)
+    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your mail has been successfully updated.' : 'Din mail har updateras.'))
     yield put(setShowChangeEmailOrPassword(true))
     yield put(setCanChangeEmail(false))
     yield put(clearErrors())

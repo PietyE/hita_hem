@@ -398,6 +398,7 @@ const PersonalDetails = ({
                           setFieldError("address.country", undefined);
                           handleBlur(e);
                         }}
+                 //       showDefaultOption={true}
                         defaultOptionLabel={values?.address?.country || ""}
                       />
                       <div className="profile_input_arrow">
