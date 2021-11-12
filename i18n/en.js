@@ -162,7 +162,7 @@ denyDeletingAccount: {
       text: 'To delete your account, please contact us. - '
 },
 successfulFaqPopup: {
-  title: 'Your message has been successfully submitted.',
+  title: 'Your message has been successfully sent.',
 },
 quiz:{
   title: 'To start the investment process, please answer the following questions.',
