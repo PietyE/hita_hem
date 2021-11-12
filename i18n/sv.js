@@ -343,6 +343,10 @@ profile_page: {
             cancel_button: "Avbryt",
             submit_button: "Skicka in",
             save_button: "Spara ändringar",
+        footer_text1: 'För att ändra din personliga data, gå till ',
+        footer_link: 'Personliga uppgifter',
+        footer_text2: ' Sektion i ditt personliga konto',
+
     },
 },
 change_email_page: {
@@ -421,5 +425,28 @@ cookie: {
             confirm: 'Ja, jag vill avsluta',
             return: 'Nej, jag vill fortsätta',
         },
-},
+        request_for_change:{
+            title: 'Meddelandet!',
+            text: 'Se i din mailkorg.',
+        },
+        invalid_token: {
+            text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',
+            link: 'Kontoinställningar',
+            text2: 'flik.'
+        },
+        successful_change_email_or_password: {
+            text1: 'Vänligen',
+            link: 'Logga in',
+            text2: 'till ditt konto.',
+        },
+        change_email_saga_title: 'Din mail har updateras.',
+        change_password_saga_title: 'Ditt lösenord har uppdaterats.',
+        denyDeletingAccount: {
+            title: 'Du kan inte ta bort ditt konto.',
+            text: 'För att ta bort ditt konto, vänligen kontakta våran manager - '
+        },
+
+
+
+    },
 };
