@@ -18,9 +18,9 @@
 
 .quiz {
   .quiz_header {
-    height: 231px;
+    //height: 231px;
     background: #89CFF0;
-    padding: 45px 110px;
+    padding: 60px 110px;
 
     .quiz_header_title {
       font-family: Raleway;
@@ -30,6 +30,7 @@
       line-height: 150%;
       text-align: center;
       color: rgba(0, 0, 0, 0.87);
+      margin-bottom: 0;
     }
 
     .quiz_header_text {
