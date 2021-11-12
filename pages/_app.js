@@ -3,6 +3,7 @@ import api from "api";
 
 import "i18n";
 import "../styles/index.scss";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { wrapper } from "redux/store";
 import RootPage from "components/RootPage";
