@@ -97,7 +97,7 @@ const Quiz = ({show, data}) => {
                     <h2 className = 'quiz_header_title'>
                         {t("quiz.title")}
                     </h2>
-                    <p className = 'quiz_header_text'>{t("quiz.text")}</p>
+                    {/*<p className = 'quiz_header_text'>{t("quiz.text")}</p>*/}
                 </header>
                 <div className = 'quiz_body'>
                     {!!quizData?.length &&
