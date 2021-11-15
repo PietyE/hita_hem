@@ -4,7 +4,7 @@ class HomePageCRUD extends CRUD {}
 
 export default function homePageCRUD(request) {
   return new HomePageCRUD({
-    url: "/home-page",
+    url: "/home-page/",
     request,
   });
 }

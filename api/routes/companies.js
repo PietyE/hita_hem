@@ -2,7 +2,7 @@ import CRUD from "../base";
 
 class CompaniesCRUD extends CRUD {
   getCompaniesList(params) {
-    const url = `${this.url}/${params}`;
+    const url = `${this.url}/${params}/`;
     return this.request({
       url,
       method: "GET",

@@ -33,7 +33,6 @@ const Notification = ({ show }) => {
   }else{
     _title = language === 'en' ? 'Error' : 'Tyvärr...'
   }
-  console.log('_title', _title)
   return (
     <Alert
       variant="danger"
