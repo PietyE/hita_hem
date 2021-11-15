@@ -27,7 +27,7 @@ export const sv = {
             form1: {
                 first_name: "Förnamn",
                 last_name: "Efternamn",
-                email: "E-postadres*",
+                email: "E-postadress*",
                 phone: "Telefonnummer*",
                 country: "Land*",
             },
@@ -54,7 +54,7 @@ form4: {
         drop_zone_part2: "eller",
         drop_zone_part3: "klicka för att bläddra",
         comments: "Kommentarer",
-        add_document_button: "Godkän",
+        add_document_button: "Godkänn",
 },
 form_footer: {
     button_next: "Nästa",
