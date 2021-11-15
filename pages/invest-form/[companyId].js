@@ -19,6 +19,7 @@ import {
   getBusinessCurrencySelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
+  getMinimumInvestAmountSelector,
 } from "redux/reducers/companies";
 import {
   getIsSignInUserSelector,
@@ -85,6 +86,7 @@ const InvestFormPage = () => {
   const price = useSelector(getBusinessShapePriceSelector);
   const paymentByCompany = useSelector(getTotalPaymentsByCompanySelector);
   const currency = useSelector(getBusinessCurrencySelector);
+  const minimumInvestAmount = useSelector(getMinimumInvestAmountSelector)
 
   const shares = Math.floor(amount / price);
 
@@ -134,7 +136,10 @@ const InvestFormPage = () => {
                 <p className="invest_form_invest_text">
                   {t("invest_form_page.invest_text")}{" "}
                   <span>
-                  {currency} {moneyFormat.format(price)}
+                  {/*{currency} {moneyFormat.format(price)}*/}
+                      {currency} {minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ``}
+
+
                 </span>
                 </p>
                 <label className="invest_form_invest_label">
@@ -146,7 +151,8 @@ const InvestFormPage = () => {
                       onChange={handleChangeInput}
                       placeholder={`${t(
                           "invest_form_page.invest_placeholder"
-                      )} ${currency} ${moneyFormat.format(price)}`}
+                      // )} ${currency} ${moneyFormat.format(price)}`}
+                          )} ${currency} ${minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ''}`}
                       className="invest_form_invest_input"
                       pattern=""
                   />
@@ -157,6 +163,7 @@ const InvestFormPage = () => {
                 <div className="invest_form_invest_shares_container">
                   <p className="invest_form_invest_shares">
                     {moneyFormat.format(shares)} {t("invest_form_page.statistics_shares")}
+
                   </p>
                   <p className="invest_form_invest_shares_total">
                     {currency} {moneyFormat.format(currentInvestment) || 0}
