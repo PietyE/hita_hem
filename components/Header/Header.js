@@ -118,18 +118,18 @@ const Header = ({ initLang }) => {
                   {t("header.about_us").toLocaleUpperCase()}
                 </Button>
               </span>
-              <span className="menu_item">
-                <Button
-                  className={`menu_item_link ${
-                    pathname.includes(LAUNCHING_SOON) ? "active" : ""
-                  }`}
-                  colorStyle="link"
-                  as={LinkStyled}
-                  to={LAUNCHING_SOON}
-                >
-                  {t("header.launching_soon").toLocaleUpperCase()}
-                </Button>
-              </span>
+              {/*<span className="menu_item">*/}
+              {/*  <Button*/}
+              {/*    className={`menu_item_link ${*/}
+              {/*      pathname.includes(LAUNCHING_SOON) ? "active" : ""*/}
+              {/*    }`}*/}
+              {/*    colorStyle="link"*/}
+              {/*    as={LinkStyled}*/}
+              {/*    to={LAUNCHING_SOON}*/}
+              {/*  >*/}
+              {/*    {t("header.launching_soon").toLocaleUpperCase()}*/}
+              {/*  </Button>*/}
+              {/*</span>*/}
             </nav>
           </div>
           <div className="header_item right">

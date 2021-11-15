@@ -11,6 +11,16 @@
     }
   }
   .input_component_input{
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active  {
+      //-webkit-box-shadow: 0 0 0 60px #fff inset !important;
+      //background-color: rgba(137, 207, 240, 0.2) !important;
+      background-clip: border-box !important;
+    }
+
     &:focus {
       outline: none;
       background: rgba(137, 207, 240, 0.2);

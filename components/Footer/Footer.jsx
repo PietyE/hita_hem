@@ -38,9 +38,9 @@ const Footer = () => {
           <Link href={ABOUT_US_ROUTE} prefetch={false}>
             <a className="footer_nav_link">{t("footer.about_us_link")}</a>
           </Link>
-          <Link href={LAUNCHING_SOON} prefetch={false}>
-            <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>
-          </Link>
+          {/*<Link href={LAUNCHING_SOON} prefetch={false}>*/}
+          {/*  <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>*/}
+          {/*</Link>*/}
           {!!(documentUrl?.file || documentUrl?.url) && (
             <a
               className="footer_nav_link"
