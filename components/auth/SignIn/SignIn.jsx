@@ -110,6 +110,7 @@ const SignIn = ({ show }) => {
               label={t("auth.sign_in.password_label")}
               inputClassName="auth_input"
               inputName="password"
+              autoComplete = "new-password"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}

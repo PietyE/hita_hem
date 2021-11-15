@@ -2,16 +2,17 @@
   position: relative;
   z-index: 1;
   .input_wrapper{
-    border: 1px solid #1F607C;
+
     border-radius: 4px;
     &:focus-within {
       outline: none;
       background: rgba(137, 207, 240, 0.2);
+      border: 1px solid #1F607C;
       resize: none;
     }
   }
   .input_component_input{
-
+    //padding: 0 10px ;
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
@@ -29,7 +30,7 @@
     }
   }
   .input_component_input_psw{
-
+    //padding: 0 10px ;
     &:-webkit-autofill,
     &:-webkit-autofill:hover,
     &:-webkit-autofill:focus,
