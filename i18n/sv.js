@@ -27,7 +27,7 @@ export const sv = {
             form1: {
                 first_name: "Förnamn",
                 last_name: "Efternamn",
-                email: "E-postadres*",
+                email: "E-postadress*",
                 phone: "Telefonnummer*",
                 country: "Land*",
             },
@@ -54,7 +54,7 @@ form4: {
         drop_zone_part2: "eller",
         drop_zone_part3: "klicka för att bläddra",
         comments: "Kommentarer",
-        add_document_button: "Godkän",
+        add_document_button: "Godkänn",
 },
 form_footer: {
     button_next: "Nästa",
@@ -80,7 +80,7 @@ auth: {
             password_label: "Lösenord *",
             password_placeholder: "Ange ditt lösenord",
             forgot_password_link: "Glömt ditt lösenord?",
-            footer_text: "Skapa konto?",
+            footer_text: "Har du inget konto än?",
             sign_up_link: "Bli medlem",
             button: "Logga in",
     },
@@ -116,7 +116,7 @@ progress: {
 sign_up_message: {
     sign_up_text_one: "Du behöver vara",
         sign_up_link: "inloggad",
-        sign_up_text_two: "för att se mer.",
+        sign_up_text_two: "för att delta.",
         sign_in_text: "Har du ett konto?",
     sign_in_link: "Logga in",
 },
@@ -143,7 +143,7 @@ successfulFaqPopup: {
 },
 successful_sign_up: {
     title: "Välkommen till Accumeo!",
-        text: "Vänligen följ instruktionerna skickade via e-post för att bekräfta din registrering.",
+        text: "Vänligen följ de instruktioner vi skicka via mail för att bekräfta din registering.",
 },
 confirmationOfAccountDeletion: {
     title: "Är du säker att du permanent vill ta bort ditt konto?",
@@ -153,7 +153,7 @@ confirmationOfAccountDeletion: {
 },
 quizWrongAnswersModal: {
     title:'Vissa av de valda alternativen är fel.',
-    text: 'Vänligen läs på mer om riskerna associerade med onoterade bolag och ta sedan quizet igen.',
+    text: 'Vänligen besvara frågorna igen.',
 },
 raiseWrongAnswersModal: {
     title:'Vissa av dina svar är ej korrekta.',
@@ -162,7 +162,9 @@ raiseWrongAnswersModal: {
 quiz:{
     title:'För att slutföra registreringen måste du besvara följande frågor:',
     text: 'Vänligen gå igenom din data',
-        back_button: "Tillbaka",
+    error_text: 'Ditt valda svar är ej korrekt.',
+
+    back_button: "Tillbaka",
         button_confirm: 'Godkänn',
 },
 tab_accordion: {
@@ -202,7 +204,7 @@ company_page: {
             Website: "Hemsida:",
     },
     project_info: {
-        text: "Business highlights",
+        text: "Verksamheten i fokus",
     },
     faq: {
         faq_text: "Om du har vidare frågor tar vi gärna emot dem.",
@@ -215,7 +217,7 @@ company_page: {
     },
     tab_sign_up: {
         title: "Vill du se mer?",
-            text: "På grund av finansiella regelverk behöver du bli medlem för att ta del av hela erbjudandet.",
+            text: "På grund av finansiella regelverk måste du bli medlem för att ta del av hela erbjudandet.",
             sign_up: "Bli medlem",
             log_in: "Logga in",
             footer_text: "Har du redan ett konto?",
@@ -234,12 +236,12 @@ home_page: {
 },
 invest_form_page: {
     main_text:
-        "Innan du anmäler intresse att investera behöver du fylla i informationen nedan.",
+        "Innan du kan investera behöver du fylla i formuläret nedan.",
     progress_rise: "Reserverat",
         progress_target: "Mål",
-        invest_title: "Önskat investeringsbelopp",
+        invest_title: "Investeringsbelopp",
     invest_text: "Vänligen notera att det minsta belopp du kan investera är ",
-    invest_label: "Summa*",
+    invest_label: "Belopp*",
         invest_placeholder: "",
         statistics_title: "Din investering",
         statistics_shares: "Aktier",
@@ -276,7 +278,7 @@ not_found_page: {
 },
 profile_page: {
     investment: "Investeringar",
-        personal_details: "Personuppgifter",
+        personal_details: "Personliga uppgifter",
         account_settings: "Kontoinställningar",
         profile_campaigns: "Mina kampanjer",
 
@@ -286,7 +288,7 @@ profile_page: {
             text: "Genom att ta bort kontot kommer all din data försvinna.",
     },
     reset_email: {
-        title: "Byt e-post",
+        title: "Byt email",
         email_label: "Din e-post",
         forgot_password: "Glömt ditt lösenord?",
             password_label: "Lösenord",

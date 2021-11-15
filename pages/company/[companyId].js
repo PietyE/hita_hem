@@ -59,19 +59,13 @@ const CompanyPage = () => {
     };
   }, [_clearError404, isError404]);
 
-  useEffect(() => {
-    if (companyId) {
-      _getCompanyDetail(companyId); /////// id need to get after transfer to this page
-    }
 
+  useEffect(()=>{
+    _getCompanyDetail(companyId)
     return () => {
       _clearCompanyDetail();
       _resetCompanyTab();
     };
-  }, [companyId]);
-
-  useEffect(()=>{
-    _getCompanyDetail(companyId)
   },[isAuth,companyId])
 
   return (

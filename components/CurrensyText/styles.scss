@@ -1,5 +1,5 @@
 .currensy_text {
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -8,7 +8,7 @@
   align-items: center;
   color: #1f607c;
 }
-@media screen and (max-device-width: 648px) {
+@media screen and (max-width: 648px) {
   .currensy_text {
     font-size: 18px;
   }

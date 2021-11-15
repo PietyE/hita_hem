@@ -21,7 +21,7 @@
   }
   .invest_form_section_text{
     width: 415px;
-    font-family: Mulish;
+    font-family: Mulish, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -45,7 +45,7 @@
         .invest_form_invest_progress_bar_label{
           display: flex;
           justify-content: space-between;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 12px;
@@ -71,7 +71,7 @@
           position: relative;
           width: 405px;
           height: 50px;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 16px;
@@ -97,7 +97,7 @@
         }
         .invest_form_invest_label{
           width: 100%;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
@@ -121,7 +121,7 @@
               resize: none;
             }
             &::placeholder{
-              font-family: Mulish;
+              font-family: Mulish, sans-serif;
               font-style: normal;
               font-weight: 600;
               font-size: 14px;
@@ -146,7 +146,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 18px;
@@ -166,7 +166,7 @@
         }
         .invest_form_invest_statistics_text{
           width: 370px;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 12px;
@@ -192,7 +192,7 @@
             margin-bottom: 0;
           }
           .invest_form_content_block_footer_total{
-            font-family: Mulish;
+            font-family: Mulish, sans-serif;
             font-weight: bold;
             line-height: 32px;
           }

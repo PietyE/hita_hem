@@ -104,7 +104,7 @@ position: relative;
 
 }
 
-@media screen and (max-device-width: 1350px) {
+@media screen and (max-width: 1350px) {
   .page_404_container {
     padding-top: 30px;
   }
@@ -113,7 +113,7 @@ position: relative;
   }
   }
 
-@media screen and (max-device-width: 650px) {
+@media screen and (max-width: 650px) {
   .page_404_container {
     padding-top: 50px;
     min-height: 600px;
@@ -152,7 +152,7 @@ position: relative;
 
   }
 
-@media screen and (max-device-width: 500px) {
+@media screen and (max-width: 500px) {
   .page_404_back_block1{
     left: 9px;
     top:11px;
@@ -172,7 +172,7 @@ width: 320px;
 
 }
 
-@media screen and (max-device-width: 350px) {
+@media screen and (max-width: 350px) {
   .page_404_error_block {
     width: 280px;
   }

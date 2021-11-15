@@ -44,18 +44,19 @@
           margin-right: 5px;
           color: #383A48;
         }
+
         .launching_soon_image_top_block_icon{
-          transform: translateY(0);
-          margin-left: 40px;
+          transform: translateY(-11px);
+          //margin-left: 40px;
         }
         .launching_soon_image_top_block_icon2{
-          transform: translateY(0);
+          transform: translateY(-11px);
           height: 22px;
           width: 26px;
 
         }
         .launching_soon_image_top_block_text{
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 16px;
@@ -101,7 +102,7 @@
           background: #FFFFFF;
           box-sizing: border-box;
           height: 40px;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 16px;
@@ -123,7 +124,7 @@
           box-sizing: border-box;
           height: 40px;
           width: 165px;
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 18px;
@@ -197,7 +198,7 @@
           margin-right: 3px;
         }
         .launching_soon_posts_description{
-          font-family: Mulish;
+          font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 14px;
@@ -224,7 +225,7 @@
             font-size: 63px;
           }
           .launching_soon_image_top_block_icon{
-            margin-left: 10px;
+            //margin-left: 10px;
           }
           .launching_soon_image_top_block_text{
             font-size: 15px;

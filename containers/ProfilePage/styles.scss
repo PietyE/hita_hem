@@ -12,7 +12,7 @@
   .profile_tab_bar {
     width: 845px;
     margin-bottom: 32px;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -76,7 +76,7 @@
     cursor: pointer;
 
     button {
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -93,7 +93,7 @@
   }
 
   .profile_form_upload_avatar_button_remove {
-    font-family: Mulish;
+    font-family: Mulish, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -105,7 +105,7 @@
 
 .profile_personal_details {
   .profile_personal_details_title {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -127,7 +127,7 @@
 
 
       .profile_form_input_container {
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -150,7 +150,7 @@
       }
 
       .profile_form_birth_text {
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -251,7 +251,7 @@
     }
 
     .profile_form_footer_text{
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -297,7 +297,7 @@
     }
   }
   .profile_form_button_cancel {
-    font-family: Mulish;
+    font-family: Mulish, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -329,7 +329,7 @@
     //align-items: center;
     padding-left: 45px;
     .account_settings_button_save {
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       margin-top: auto;
       margin-bottom: 25px;
       font-size: 14px;
@@ -341,7 +341,7 @@
     margin-bottom: 15px;
   }
   .account_settings_title {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -361,7 +361,7 @@
     border-radius: 8px;
     padding: 17px 25px 20px 25px;
     .account_settings_form_title {
-      font-family: Raleway;
+      font-family: Raleway, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
@@ -372,7 +372,7 @@
     }
     .account_settings_form_label {
       position: relative;
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -409,7 +409,7 @@
       position: absolute;
       right: 27px;
       top: 160px;
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 12px;
@@ -419,7 +419,7 @@
       z-index: 2;
     }
     .account_settings_text_delete {
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -429,7 +429,7 @@
       cursor: pointer;
     }
     .account_settings_text {
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -451,7 +451,7 @@
         margin-left: auto;
         margin-right: 50px;
         height: 24px;
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 16px;
@@ -468,7 +468,7 @@
   padding: 32px 80px 32px 0;
   max-width: 1338px;
   .profile_campaigns_title {
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -487,7 +487,7 @@
     padding-left: 25px;
     padding-right: 25px;
     .profile_campaigns_table_header_text {
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -559,7 +559,7 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0);
       }
       .profile_campaigns_table_item_text {
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 16px;
@@ -742,7 +742,7 @@
         display: flex;
         justify-content: space-between;
         background: #1f607c;
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -771,7 +771,7 @@
             border-bottom: none;
           }
           .mobile_investments_field_text {
-            font-family: Mulish;
+            font-family: Mulish, sans-serif;
             font-style: normal;
             font-weight: normal;
             font-size: 16px;
@@ -780,7 +780,7 @@
             margin-right: 20px;
           }
           .mobile_investments_field_link {
-            font-family: Mulish;
+            font-family: Mulish, sans-serif;
             font-style: normal;
             font-weight: normal;
             font-size: 14px;
@@ -788,7 +788,7 @@
             color: #3c64b1;
           }
           .mobile_investments_field_values {
-            font-family: Mulish;
+            font-family: Mulish, sans-serif;
             font-style: normal;
             font-weight: bold;
             font-size: 18px;
@@ -805,7 +805,7 @@
             border: 2px solid #89cff0;
             box-sizing: border-box;
             border-radius: 6px;
-            font-family: Mulish;
+            font-family: Mulish, sans-serif;
             font-style: normal;
             font-weight: bold;
             font-size: 14px;
@@ -869,7 +869,7 @@
             .profile_form_name_mobile {
               display: block;
               margin-bottom: 5px;
-              font-family: Mulish;
+              font-family: Mulish, sans-serif;
               font-style: normal;
               font-weight: bold;
               font-size: 20px;

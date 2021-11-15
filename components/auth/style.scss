@@ -10,7 +10,7 @@
 }
 
 .sign_up_title{
-  font-family: Raleway;
+  font-family: Raleway, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -32,7 +32,7 @@
   max-width: 560px;
   margin-right: auto;
   margin-left: auto;
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -61,12 +61,12 @@
   }
 
   &::placeholder{
-    font-family: Mulish;
+    font-family: Mulish, sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
-    color: rgba(0, 0, 0, 0.87);
+    color: rgba(0, 0, 0, 0.38);
   }
 }
 .auth_input_warning{
@@ -86,7 +86,7 @@
   position: absolute;
   top: 100px;
   right: 0;
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -115,7 +115,7 @@ z-index: 2;
 }
 
 .sign_up_password_label{
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -124,7 +124,7 @@ z-index: 2;
 }
 .auth_footer_text{
   margin-bottom: 35px;
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -132,7 +132,7 @@ z-index: 2;
   color: #000;
 }
 .sign_up_password_link{
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -149,7 +149,7 @@ z-index: 2;
 
 }
 .auth_footer_text{
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -158,7 +158,7 @@ z-index: 2;
   color: #000;
 }
 .auth_footer_link{
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
@@ -170,7 +170,7 @@ z-index: 2;
 .reset_password_text{
   margin-bottom: 35px;
   width: 280px;
-  font-family: Mulish;
+  font-family: Mulish, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -179,7 +179,7 @@ z-index: 2;
   color: #000;
 }
 
-@media screen and (max-device-width: 450px) {
+@media screen and (max-width: 450px) {
   .auth_modal{
     padding-top: 90px;
     align-items: flex-start;
@@ -191,7 +191,7 @@ z-index: 2;
 
   }
   .sign_up_title{
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
