@@ -39,6 +39,16 @@ padding: 0 10px;
     border: none;
     background: transparent;
 width: 92%;
+
+    &::placeholder{
+      font-family: Mulish;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 22px;
+      color: rgba(0, 0, 0, 0.38);
+    }
+
     &:focus {
       outline: none;
       background: rgba(137, 207, 240, 0.2);
