@@ -18,9 +18,11 @@ import {
   LAUNCHING_SOON,
 } from "constants/routesConstant";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const Footer = () => {
   const { t } = useTranslation();
+  const language = useSelector(getSelectedLangSelector)
   const documentUrl = useSelector(getPrivacyPolicyDocument);
   return (
     <footer className="footer_container">
@@ -41,6 +43,11 @@ const Footer = () => {
           {/*<Link href={LAUNCHING_SOON} prefetch={false}>*/}
           {/*  <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>*/}
           {/*</Link>*/}
+          <a className="footer_nav_link"
+             target="_blank"
+             rel="noopener noreferrer"
+             href= {language === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
+          >FAQ</a>
           {!!(documentUrl?.file || documentUrl?.url) && (
             <a
               className="footer_nav_link"
