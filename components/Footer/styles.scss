@@ -23,7 +23,7 @@
     align-items: center;
 
     .footer_text {
-      font-family: Quicksand;
+      font-family: Quicksand, sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 18px;
@@ -91,7 +91,7 @@
   }
 }
 
-@media screen and (max-device-width: 1350px) {
+@media screen and (max-width: 1350px) {
   .footer_container {
     .footer_content_container {
       padding: 0 50px;
@@ -107,7 +107,7 @@
   }
 }
 
-@media screen and (max-device-width: 945px) {
+@media screen and (max-width: 945px) {
   .footer_container {
     .footer_item {
       &.footer_nav {
@@ -119,7 +119,7 @@
   }
 }
 
-@media screen and (max-device-width: 750px) {
+@media screen and (max-width: 750px) {
   .footer_container {
     .footer_content_container {
       padding: 0 20px;
@@ -127,7 +127,7 @@
   }
 }
 
-@media screen and (max-device-width: 720px) {
+@media screen and (max-width: 720px) {
   .footer_container {
     height: auto;
 
@@ -160,7 +160,7 @@
 }
 
 
-@media screen and (max-device-width: 355px) {
+@media screen and (max-width: 355px) {
   .footer_container {
     .footer_item.footer_nav {
       .footer_nav_link {

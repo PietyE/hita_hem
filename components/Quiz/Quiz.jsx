@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Modal from '../ui/Modal';
 import {setShowDataLossWarning, setShowQuiz} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
@@ -14,7 +14,7 @@ import {recaptcha} from "../../utils/recaptcha";
 const Quiz = ({show, data}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
-    let history = useRouter();
+    // let history = useRouter();
 
     const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
@@ -103,7 +103,7 @@ const Quiz = ({show, data}) => {
                     {!!quizData?.length &&
                     quizData.map((question, i) =>
 
-                        <QuizItem key = {i}
+                        <QuizItem key = {question.id}
                                   index = {i}
                                   data = {question}
                                   onSelect = {receiveAnswer}

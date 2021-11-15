@@ -64,6 +64,7 @@ const initialState = {
     start_date: "",
     end_date: "",
     invested: null,
+    minimum_invest_amount: null,
     goal: null,
     currency: "",
     price: null,
@@ -164,6 +165,8 @@ const initialState = {
   private_mode: false,
 };
 
+
+export const getMinimumInvestAmountSelector = state => state.companies.companyDetail.minimum_invest_amount;
 export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
 
 export const getCompanyListSelector = (state) => state.companies.companiesList;

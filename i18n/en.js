@@ -167,6 +167,7 @@ successfulFaqPopup: {
 quiz:{
   title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy.',
+    error_text: 'You have to select the right answer.',
   back_button: 'Back',
       button_confirm: 'Confirm',
 },
@@ -238,10 +239,10 @@ home_page: {
 },
 invest_form_page: {
   main_text:
-      "You are only a few steps away from becoming a shareholder.",
+      "In order to invest, you have to fill out the following form.",
   progress_rise: "Raised",
       progress_target: "Target",
-      invest_title: "Preferred investment amount",
+      invest_title: "Invest amount",
       invest_text:
   "Please be informed that the minimum amount you can invest is",
       invest_label: "Total*",

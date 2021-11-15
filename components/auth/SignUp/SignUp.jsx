@@ -93,6 +93,7 @@ const SignUp = ({ show }) => {
                       label = {t("auth.sign_up.email_label")}
                       inputClassName = "auth_input"
                       inputName = "email"
+                      autoComplete = "new-password"
                       values = {values}
                       setFieldValue = {setFieldValue}
                       setFieldError = {setFieldError}
@@ -108,6 +109,7 @@ const SignUp = ({ show }) => {
                       label = {t("auth.sign_up.password_label")}
                       inputClassName = "auth_input"
                       inputName = "password"
+                      autoComplete = "new-password"
                       values = {values}
                       setFieldValue = {setFieldValue}
                       setFieldError = {setFieldError}

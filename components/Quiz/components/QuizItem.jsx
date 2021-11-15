@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import WarningIcon from 'public/images/attention.svg';
+import {useTranslation} from "react-i18next";
 
 const QuizItem = ({data, index, onSelect, warningList}) => {
+    const {t} = useTranslation();
     const {id, text, answers} = data
     const [showWarning, setShowWarning] = useState(null)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
@@ -24,7 +26,7 @@ const QuizItem = ({data, index, onSelect, warningList}) => {
             {showWarning &&
             <div className = 'quiz_item_warning_notification'>
                 <Image src = {WarningIcon} alt = 'attention'/>
-                <span>You have to select right answer</span>
+                <span>{t("quiz.error_text")}</span>
             </div>
             }
             <h3 className = 'quiz_item_title'>{text}</h3>

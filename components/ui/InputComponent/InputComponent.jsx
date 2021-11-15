@@ -54,21 +54,30 @@ const InputComponent = ({
       <label className={`input_component_label ${labelClassName}`}>
         {label}
         <br />
-        
-        <Field
-          type={passInputType}
-          name={inputName}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          autoComplete={autoComplete}
-          disabled={disabled}
-          className={
-            (!!errorValue || errorFromApi)
-              ? ` input_warning input_component_input ${inputClassName}`
-              : `input_component_input ${inputClassName}`
-          }
-          placeholder={placeholder}
-        />
+        <div
+             className={
+               type === "password" ?
+               (!!errorValue || errorFromApi)
+                   ? ` input_warning input_wrapper ${inputClassName}`
+                   : `input_wrapper ${inputClassName}` : ''
+             }
+        >
+          <Field
+              type={passInputType}
+              name={inputName}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              autoComplete={autoComplete}
+              disabled={disabled}
+              className={ type !== "password" ?
+                (!!errorValue || errorFromApi)
+                    ? ` input_warning input_component_input ${inputClassName}`
+                    : `input_component_input ${inputClassName}` :  'input_component_input_psw'
+              }
+              placeholder={placeholder}
+          />
+        </div>
+
 
         {type === "password" ? (
           <IconComponent

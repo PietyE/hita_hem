@@ -23,7 +23,7 @@
     padding: 60px 110px;
 
     .quiz_header_title {
-      font-family: Raleway;
+      font-family: Raleway, sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 24px;
@@ -37,7 +37,7 @@
       margin-right: auto;
       margin-left: auto;
       max-width: 465px;
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -65,7 +65,7 @@
       position: absolute;
       top: -11px;
       right: -11px;
-      font-family: Mulish;
+      font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 12px;
@@ -97,7 +97,7 @@
       }
 
       .quiz_item_title {
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -108,7 +108,7 @@
       .quiz_item_option_label {
         display: flex;
         align-items: center;
-        font-family: Mulish;
+        font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 18px;

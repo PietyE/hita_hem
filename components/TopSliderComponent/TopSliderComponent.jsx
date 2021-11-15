@@ -1,5 +1,4 @@
 import React from "react";
-import uniqueId from "lodash/uniqueId";
 import Carousel from "react-bootstrap/Carousel";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import Button from "../ui/Button";
@@ -17,6 +16,7 @@ const TopSliderComponent = ({
   buttonsContainerClass,
   firstButtonClass,
   secondButtonClass,
+    index
 }) => {
   return (
     <div className={`slider_component_container ${sectionClass}`}>
@@ -39,7 +39,7 @@ const TopSliderComponent = ({
             const _src =  image_list?.header_image || image;
 
             return (
-              <Carousel.Item key={uniqueId()}>
+              <Carousel.Item key={index+title}>
                 <div className='item_component_container'>
                   <img
                     className="item_component_image"

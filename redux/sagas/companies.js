@@ -84,7 +84,7 @@ function* getCompaniesListWorker({ payload }) {
 function* getCompanyByIdWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
-    const { data } = yield call([companies, "one"], payload);
+    const { data } = yield call([companies, "getCompanyById"], payload);
     yield put(setCompanyById(data));
   } catch (error) {
     yield put(

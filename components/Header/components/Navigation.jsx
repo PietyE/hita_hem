@@ -154,17 +154,17 @@ const Navigation = ({ className, initLang }) => {
                   </a>
                 </Link>
               </NavDropdown.Item>
-              <NavDropdown.Item as="div" className="nav_item">
-                <Link href={LAUNCHING_SOON} prefetch={false}>
-                  <a
-                    className={`${
-                      pathname.includes(LAUNCHING_SOON) ? "active" : ""
-                    }`}
-                  >
-                    {t("header.launching_soon").toLocaleUpperCase()}
-                  </a>
-                </Link>
-              </NavDropdown.Item>
+              {/*<NavDropdown.Item as="div" className="nav_item">*/}
+              {/*  <Link href={LAUNCHING_SOON} prefetch={false}>*/}
+              {/*    <a*/}
+              {/*      className={`${*/}
+              {/*        pathname.includes(LAUNCHING_SOON) ? "active" : ""*/}
+              {/*      }`}*/}
+              {/*    >*/}
+              {/*      {t("header.launching_soon").toLocaleUpperCase()}*/}
+              {/*    </a>*/}
+              {/*  </Link>*/}
+              {/*</NavDropdown.Item>*/}
               <NavDropdown.Item as="div" className="nav_item_socials">
                 <SocialTab socials={socials} />
               </NavDropdown.Item>
