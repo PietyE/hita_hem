@@ -22,7 +22,7 @@ const Content = ({ data }) => {
 
   const { matchesAll } = useMediaQueries({
     screen: "screen",
-    width: "(max-device-width: 850px)",
+    width: "(max-width: 850px)",
   });
   const [isShowButton, setiIsShowButton] = useState(false);
   const [isShowMore, setIsShowMore] = useState(false);

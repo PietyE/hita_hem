@@ -10,18 +10,17 @@ import { chooseCorrectResolution } from "utils/utils";
 
 const RaisePageTopSlider = ({ onScrollTo }) => {
   const headerContent = useSelector(getRaisePageHeadersSelector, isEqual);
-
-  return (
+    return (
     <>
       <div className="raise_page_slider_container">
         <Carousel controls={headerContent?.length>1} slide={true} interval={null} touch={true} indicators={headerContent?.length>1}>
           {headerContent.length > 0 &&
-            headerContent.map((content, i) => {
+            headerContent.map((content) => {
                 // const correctImage = chooseCorrectResolution(content?.image_list);
 
                 const correctImage = content?.image;
               return (
-                <Carousel.Item key={i}>
+                <Carousel.Item key={content?.index + content?.title}>
                   <div className="raise_page_slider_item">
                     <img
                       className="raise_page_slider_image"

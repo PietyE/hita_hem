@@ -76,16 +76,22 @@ const ImageBlock = ({ onOpenModal }) => {
               <span className="launching_soon_image_top_block_title">
                 {title}
               </span>
-              <Image
-                src={IconTriangle}
-                alt="icon_triangle"
-                className="launching_soon_image_top_block_icon"
-              />
-              <Image
-                src={IconTriangle}
-                alt="icon_triangle"
-                className="launching_soon_image_top_block_icon2"
-              />
+                {/*<Image*/}
+                {/*    src={IconTriangle}*/}
+                {/*    alt="icon_triangle"*/}
+                {/*    className="launching_soon_image_top_block_icon"*/}
+                {/*/>*/}
+              <svg className="launching_soon_image_top_block_icon" width="28" height="27" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27.5977 13.3689L0.776823 26.7151L0.776825 0.0226736L27.5977 13.3689Z" fill="#E0719E"/>
+              </svg>
+              <svg className="launching_soon_image_top_block_icon2" width="28" height="27" viewBox="0 0 28 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M27.5977 13.3689L0.776823 26.7151L0.776825 0.0226736L27.5977 13.3689Z" fill="#E0719E"/>
+              </svg>
+              {/*<Image*/}
+              {/*      src={IconTriangle}*/}
+              {/*      alt="icon_triangle"*/}
+              {/*      className="launching_soon_image_top_block_icon2"*/}
+              {/*  />*/}
             </>
           )}
           {description && (
