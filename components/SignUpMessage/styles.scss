@@ -16,7 +16,7 @@
   }
 }
 
-@media screen and (max-device-width: 1369px) {
+@media screen and (max-width: 1369px) {
   .sign_up_message_container {
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 
 }
 
-@media screen and (max-device-width: 330px) {
+@media screen and (max-width: 330px) {
   .sign_up_message_container {
     .sign_up_message {
       font-size: 12px;

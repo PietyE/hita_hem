@@ -179,7 +179,7 @@ z-index: 2;
   color: #000;
 }
 
-@media screen and (max-device-width: 450px) {
+@media screen and (max-width: 450px) {
   .auth_modal{
     padding-top: 90px;
     align-items: flex-start;
