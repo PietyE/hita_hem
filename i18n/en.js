@@ -167,6 +167,7 @@ successfulFaqPopup: {
 quiz:{
   title: 'To start the investment process, please answer the following questions.',
       text: 'These questions are to assess your financial literacy.',
+    error_text: 'You have to select the right answer.',
   back_button: 'Back',
       button_confirm: 'Confirm',
 },

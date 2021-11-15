@@ -153,7 +153,7 @@ confirmationOfAccountDeletion: {
 },
 quizWrongAnswersModal: {
     title:'Vissa av de valda alternativen är fel.',
-    text: 'Vänligen läs på mer om riskerna associerade med onoterade bolag och ta sedan quizet igen.',
+    text: 'Vänligen besvara frågorna igen.',
 },
 raiseWrongAnswersModal: {
     title:'Vissa av dina svar är ej korrekta.',
@@ -162,7 +162,9 @@ raiseWrongAnswersModal: {
 quiz:{
     title:'För att slutföra registreringen måste du besvara följande frågor:',
     text: 'Vänligen gå igenom din data',
-        back_button: "Tillbaka",
+    error_text: 'Ditt valda svar är ej korrekt.',
+
+    back_button: "Tillbaka",
         button_confirm: 'Godkänn',
 },
 tab_accordion: {
