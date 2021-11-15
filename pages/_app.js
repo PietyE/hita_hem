@@ -13,7 +13,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Accumeo Next JS</title>
+        <title>Accumeo</title>
       </Head>
       <RootPage initLang={initLang}>
         <Component {...pageProps} />
