@@ -103,7 +103,7 @@ const Quiz = ({show, data}) => {
                     {!!quizData?.length &&
                     quizData.map((question, i) =>
 
-                        <QuizItem key = {i}
+                        <QuizItem key = {question.id}
                                   index = {i}
                                   data = {question}
                                   onSelect = {receiveAnswer}

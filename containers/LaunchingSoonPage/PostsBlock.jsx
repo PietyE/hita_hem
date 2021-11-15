@@ -12,13 +12,13 @@ const PostsBlock = () => {
   const posts = useSelector(getMainPostsSelector, isEqual);
 
   const sortedByIndexPosts = posts.sort((a, b) => a.index - b.index);
-  return (
+    return (
     <div className="launching_soon_posts_block">
       <h2 className="launching_soon_posts_block_title">{title}</h2>
       <ul className="launching_soon_posts_list">
         {sortedByIndexPosts.map((post) => {
           return (
-            <li key={post.index} className="launching_soon_posts_item">
+            <li key={post?.index + post?.title} className="launching_soon_posts_item">
               <h3 className="launching_soon_posts_item_title">
                 <span className="launching_soon_posts_item_title-red">
                   {post.index}

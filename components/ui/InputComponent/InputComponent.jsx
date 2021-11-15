@@ -72,9 +72,7 @@ const InputComponent = ({
               className={ type !== "password" ?
                 (!!errorValue || errorFromApi)
                     ? ` input_warning input_component_input ${inputClassName}`
-                    : `input_component_input ${inputClassName}` :  (!!errorValue || errorFromApi)
-                      ? ` input_warning input_component_input_psw`
-                      : `input_component_input_psw `
+                    : `input_component_input ${inputClassName}` :  'input_component_input_psw'
               }
               placeholder={placeholder}
           />

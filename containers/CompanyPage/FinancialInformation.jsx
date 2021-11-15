@@ -17,7 +17,6 @@ const FinancialInformation = () => {
   const finInfo = useSelector(getCompanyFinInfoSelector, isEqual) || [];
 
   const document = useSelector(getFinDocumentSelector, isEqual) || [];
-
   return (
     <>
       <ul className="financial_info_articles_list">
@@ -30,20 +29,20 @@ const FinancialInformation = () => {
                 {t("company_page.documents")}
             </h2>
             <ul className = "financial_info_documents_list">
-                {document.map((document, index) => (
-                    <li key = {index} className = "fin_document">
+                {document.map((document) => (
+                    <li key = {document?.document} className = "fin_document">
                         <Image
                             src = {IconDocument}
                             alt = "icon_document"
                             className = "fin_document_icon"
                         />
                         <a
-                            href = {document.document}
+                            href = {document?.document}
                             className = "fin_document_link"
                             target = "_blank"
                             rel = "noreferrer"
                         >
-                            {document.name}
+                            {document?.name}
                         </a>
                     </li>
                 ))}
