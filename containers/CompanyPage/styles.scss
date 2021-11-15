@@ -152,6 +152,8 @@
       .project_info_player_wrapper{
         position: relative;
         padding-top: 1080px / 1920px * 100%;
+        //padding-top: math.div(1080px, 1920px);
+
         width:  100%;
         .project_info_player{
           position: absolute;
