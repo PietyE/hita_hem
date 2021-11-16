@@ -33,6 +33,7 @@ import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
+// import ReactGA from 'react-ga';
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -135,6 +136,9 @@ const RootPage = ({ children, initLang = "" }) => {
 
   useEffect(() => {
     dispatch(bootstap(initLang));
+    // ReactGA.initialize('G-49J28G6XF1');
+    //
+    // ReactGA.pageview(window.location.pathname + window.location.search)
   }, []);
 
   useEffect(() => {
