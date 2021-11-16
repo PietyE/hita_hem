@@ -8,11 +8,17 @@ function* setLangWorker({ payload }) {
     Cookies.set("NEXT_LOCALE", payload);
     const pathname = window.location.pathname;
     let newPathName = "";
-    if (payload === "en") {
-      newPathName = pathname.replace(pathname.length === 3 ? "sv" : "/sv", "");
-    }
+    // if (payload === "en") {
+    //   newPathName = pathname.replace(pathname.length === 3 ? "sv" : "/sv", "");
+    // }
+    // if (payload === "sv") {
+    //   newPathName = pathname.replace("/", "/sv/");
+    // }
     if (payload === "sv") {
-      newPathName = pathname.replace("/", "/sv/");
+      newPathName = pathname.replace(pathname.length === 3 ? "en" : "/en", "");
+    }
+    if (payload === "en") {
+      newPathName = pathname.replace("/", "/en/");
     }
     window.location.replace(newPathName);
   } catch (error) {

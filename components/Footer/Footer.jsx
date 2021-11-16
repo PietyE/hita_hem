@@ -20,6 +20,7 @@ import {
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 
+
 const Footer = () => {
   const { t } = useTranslation();
   const language = useSelector(getSelectedLangSelector)
