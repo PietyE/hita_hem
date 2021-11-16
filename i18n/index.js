@@ -27,7 +27,7 @@ export const initLanguage = () => {
     return browserLang;
   }
 
-  return lang.en.code;
+  return lang.sv.code;
 };
 
 i18n

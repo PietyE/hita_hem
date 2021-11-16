@@ -2,7 +2,7 @@ import { SET_LANGUAGE } from "constants/actionsConstant";
 import { lang } from "constants/languageConstant";
 
 const initState = {
-  selectedLanguage: lang.en.code,
+  selectedLanguage: lang.sv.code,
 };
 
 export const getSelectedLangSelector = (state) =>
