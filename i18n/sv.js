@@ -143,7 +143,7 @@ successfulFaqPopup: {
 },
 successful_sign_up: {
     title: "Välkommen till Accumeo!",
-        text: "Vänligen följ de instruktioner vi skicka via mail för att bekräfta din registering.",
+        text: "Vänligen följ de instruktioner vi skickat via e-post för att bekräfta din registrering.",
 },
 confirmationOfAccountDeletion: {
     title: "Är du säker att du permanent vill ta bort ditt konto?",
@@ -224,12 +224,12 @@ company_page: {
     },
 },
 home_page: {
-    featured_button: "Se alla kampanjer",
-        upcoming_button: "Se kommande kampanjer",
+    featured_button: "Se alla projekt",
+        upcoming_button: "Se kommande projekt",
         join_title: "Upptäck onoterat.",
     join_button: "Bli en medlem",
-        featured_campaigns: "Utvalda kampanjer",
-        upcoming_campaigns: "Kommande kampanjer",
+        featured_campaigns: "Utvalda projekt",
+        upcoming_campaigns: "Kommande projekt",
         instructions_title: "Påbörja din resa",
         invest: "Investera",
         raise: "Sök kapital",
