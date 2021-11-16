@@ -12,7 +12,7 @@ module.exports = withBundleAnalyzer({
   },
   i18n: {
     locales: ["en", "sv"],
-    defaultLocale: "sv",
+    defaultLocale: "en",
   },
   async headers() {
     return [
