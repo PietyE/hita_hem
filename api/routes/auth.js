@@ -15,13 +15,14 @@ class AuthCRUD extends CRUD {
   }
 
   signIn(payload) {
-    const {data, token} = payload
+    const {data, token, session_key} = payload
     const url = `${this.url}/login/`;
     return this.request({
       url,
       method: "POST",
       headers: {
         "x-recaptcha-token": token,
+        "x-session-key": session_key,
       },
       data,
     });
