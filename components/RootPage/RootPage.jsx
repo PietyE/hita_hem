@@ -33,7 +33,8 @@ import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
+import {useRouter} from "next/router";
 
 const ScrollToTopButton = dynamic(
   () => import("components/ScrollToTopButton"),
@@ -127,7 +128,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
 
 
-
+  const {pathname} = useRouter()
 
 
   const _logOut = useCallback((data) => {
@@ -136,10 +137,13 @@ const RootPage = ({ children, initLang = "" }) => {
 
   useEffect(() => {
     dispatch(bootstap(initLang));
-    // ReactGA.initialize('G-49J28G6XF1');
-    //
-    // ReactGA.pageview(window.location.pathname + window.location.search)
+    ReactGA.initialize('G-49J28G6XF1');
+
   }, []);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+  }, [pathname]);
 
   useEffect(() => {
     let timer = null;
