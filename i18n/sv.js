@@ -429,7 +429,7 @@ cookie: {
         },
         request_for_change:{
             title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
-            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
         },
         request_for_change_password:{
             title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
