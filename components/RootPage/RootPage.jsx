@@ -11,19 +11,20 @@ import {
     getFullNameSelector
 } from "redux/reducers/user";
 import {
-    getShowSignIn,
-    getShowResetPassword,
-    getShowSignUp,
-    getShowSuccessfulSignUp,
-    getShowSuccessfulCampaignRegistration,
-    getShowSuccessfulInvestment,
-    getShowSuccessfulResetPassword,
-    getShowSuccessfulDeletedAccount,
-    getShowConfirmationOfAccountDeleting,
-    getShowQuizError,
-    getShowSuccessfulSubscribe,
-    getShowRaiseError,
-    getShowRequestForChange,
+  getShowSignIn,
+  getShowResetPassword,
+  getShowSignUp,
+  getShowSuccessfulSignUp,
+  getShowSuccessfulCampaignRegistration,
+  getShowSuccessfulInvestment,
+  getShowSuccessfulResetPassword,
+  getShowSuccessfulDeletedAccount,
+  getShowConfirmationOfAccountDeleting,
+  getShowQuizError,
+  getShowSuccessfulSubscribe,
+  getShowRaiseError,
+  getShowRequestForChangeEmail,
+  getShowRequestForChangePassword,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
     getShowCookiePopup,
@@ -79,6 +80,11 @@ const RaiseWrongAnswerModal = dynamic(() =>
 const SuccessfulRequestForChange = dynamic(() =>
     import("components/SuccessfulRequestForChange")
 );
+
+const SuccessfulRequestForChangePassword = dynamic(() =>
+    import("components/SuccessfulRequestForChangePassword")
+);
+
 const InvalidTokenModal = dynamic(() =>
     import("components/InvalidTokenModal")
 );
@@ -99,42 +105,41 @@ const DataLossWarning = dynamic(() =>
 );
 
 
-const RootPage = ({children, initLang = ""}) => {
-    const dispatch = useDispatch();
-    
-    useGoogleCaptcha()
-    
-    const isAuth = useSelector(getIsSignInUserSelector);
-    const fullName = useSelector(getFullNameSelector)
-    const email = useSelector(getUserEmailSelector)
-    const showSignInWindow = useSelector(getShowSignIn);
-    const showSigUpWindow = useSelector(getShowSignUp);
-    const showSignResetPassWindow = useSelector(getShowResetPassword);
-    const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
-    const showSuccessfullyCampaignRegistrationModal = useSelector(
-        getShowSuccessfulCampaignRegistration
-    );
-    const showSuccessfulInvestment = useSelector(getShowSuccessfulInvestment);
-    const showSuccessfulResetPassword = useSelector(
-        getShowSuccessfulResetPassword
-    );
-    const showSuccessfulDeletedAccount = useSelector(
-        getShowSuccessfulDeletedAccount
-    );
-    const showConfirmationOfAccountDeletion = useSelector(
-        getShowConfirmationOfAccountDeleting
-    );
-    const isNotificationShow = useSelector(getNotificationStatusSelector);
-    const isShowQuizErrorPopup = useSelector(getShowQuizError);
-    const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
-    const isShowQuizRaisePopup = useSelector(getShowRaiseError);
-    const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
-    const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
-    const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
-    const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
-    const isShowCookie = useSelector(getShowCookiePopup)
-    const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
-    const isShowDataLossWarning = useSelector(getShowDataLossWarning)
+const RootPage = ({ children, initLang = "" }) => {
+  const dispatch = useDispatch();
+  useGoogleCaptcha()
+  const isAuth = useSelector(getIsSignInUserSelector);
+  const fullName = useSelector(getFullNameSelector);
+  const email = useSelector(getUserEmailSelector);
+  const showSignInWindow = useSelector(getShowSignIn);
+  const showSigUpWindow = useSelector(getShowSignUp);
+  const showSignResetPassWindow = useSelector(getShowResetPassword);
+  const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
+  const showSuccessfullyCampaignRegistrationModal = useSelector(
+    getShowSuccessfulCampaignRegistration
+  );
+  const showSuccessfulInvestment = useSelector(getShowSuccessfulInvestment);
+  const showSuccessfulResetPassword = useSelector(
+    getShowSuccessfulResetPassword
+  );
+  const showSuccessfulDeletedAccount = useSelector(
+    getShowSuccessfulDeletedAccount
+  );
+  const showConfirmationOfAccountDeletion = useSelector(
+    getShowConfirmationOfAccountDeleting
+  );
+  const isNotificationShow = useSelector(getNotificationStatusSelector);
+  const isShowQuizErrorPopup = useSelector(getShowQuizError);
+  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
+  const isShowQuizRaisePopup = useSelector(getShowRaiseError);
+  const isShowSuccessfulRequestForChangeEmail = useSelector(getShowRequestForChangeEmail)
+  const isShowSuccessfulRequestForChangePassword = useSelector(getShowRequestForChangePassword)
+  const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
+  const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
+  const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
+  const isShowCookie = useSelector(getShowCookiePopup)
+  const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
+  const isShowDataLossWarning = useSelector(getShowDataLossWarning)
 
 
     const router = useRouter()
@@ -152,36 +157,38 @@ const RootPage = ({children, initLang = ""}) => {
         intercomStart(initLang)
     }, []);
 
-    useEffect(()=>{
-        Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
-    },[pathname])
+  useEffect(()=>{
+    Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+  },[pathname])
 
-    useEffect(() => {
-        if(email && fullName && initLang) {
-            window.Intercom('boot', {
-                app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
-                name: fullName,
-                email: email,
-                language_override: initLang,
-            })
-        }
-        ;
-    }, [email, fullName]);
+  useEffect(() => {
+    if(email && fullName && initLang) {
+      window.Intercom('boot', {
+        app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+        name: fullName,
+        email: email,
+        language_override: initLang,
+      })
+    }
+    ;
+  }, [email, fullName]);
 
-    useEffect(() => {
-        const handleRouteChange = (url) => {
-            ga.pageview(url)
-        }
-        //When the component is mounted, subscribe to router changes
-        //and log those page views
-        router.events.on('routeChangeComplete', handleRouteChange)
+  useEffect(() => {
+    if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+      const handleRouteChange = (url) => {
+        ga.pageview(url)
+      }
+      //When the component is mounted, subscribe to router changes
+      //and log those page views
+      router.events.on('routeChangeComplete', handleRouteChange)
 
-        // If the component is unmounted, unsubscribe
-        // from the event with the `off` method
-        return () => {
-            router.events.off('routeChangeComplete', handleRouteChange)
-        }
-    }, [router.events])
+      // If the component is unmounted, unsubscribe
+      // from the event with the `off` method
+      return () => {
+        router.events.off('routeChangeComplete', handleRouteChange)
+      }
+    }
+  }, [router.events])
 
     useEffect(() => {
         let timer = null;
@@ -201,63 +208,65 @@ const RootPage = ({children, initLang = ""}) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuth]);
 
-    return (
-        <div className = "container">
-            <Header initLang = {initLang}/>
-            <main>
-                {children}
-                {!!showSignInWindow && <SignIn show = {showSignInWindow}/>}
-                {!!showSigUpWindow && <SignUp show = {showSigUpWindow}/>}
-                {!!showSignResetPassWindow && (
-                    <ResetPassword show = {showSignResetPassWindow}/>
-                )}
-                {!!showSuccessfulSignUpWindow && (
-                    <SuccessfulSignUpModal show = {showSuccessfulSignUpWindow}/>
-                )}
-                {!!showSuccessfullyCampaignRegistrationModal && (
-                    <SuccessfullyCampaignRegistrationModal
-                        show = {showSuccessfullyCampaignRegistrationModal}
-                    />
-                )}
-                {!!showSuccessfulInvestment && (
-                    <SuccessfulInvestmentModal show = {showSuccessfulInvestment}/>
-                )}
-                {!!showSuccessfulResetPassword && (
-                    <SuccessfulResetPassword show = {showSuccessfulResetPassword}/>
-                )}
-                {!!showSuccessfulDeletedAccount && (
-                    <SuccessfulDeletedAccountModal show = {showSuccessfulDeletedAccount}/>
-                )}
-                {!!showConfirmationOfAccountDeletion && (
-                    <ShowConfirmationOfAccountDeletion
-                        show = {showConfirmationOfAccountDeletion}
-                    />
-                )}
-                {!!isShowQuizErrorPopup && (
-                    <QuizWrongAnswersModal show = {isShowQuizErrorPopup}/>
-                )}
-                {!!isShowSuccessfulSubscribe && (
-                    <SuccessfullySubscribedModal show = {isShowSuccessfulSubscribe}/>
-                )}
-                {!!isShowQuizRaisePopup && (
-                    <RaiseWrongAnswerModal show = {isShowQuizRaisePopup}/>
-                )}
-                {!!isShowSuccessfulRequestForChange && (
-                    <SuccessfulRequestForChange show = {isShowSuccessfulRequestForChange}/>
-                )}
-                {!!isNotificationShow && <Notification show = {isNotificationShow}/>}
-                {!!isShowInvalidTokenModal && <InvalidTokenModal show = {isShowInvalidTokenModal}/>}
-                {!!isShowSuccessfulChangeEmailOrPassword &&
-                <SuccessfulChangeEmailOrPassword show = {isShowSuccessfulChangeEmailOrPassword}/>}
-                {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show = {isShowDenyDeletingAccount}/>}
-                {!!isShowCookie && <ShowCookiePopup show = {isShowCookie}/>}
-                {!!isShowFaqPopup && <SuccessfulFaqPopup show = {isShowFaqPopup}/>}
-                {!!isShowDataLossWarning && <DataLossWarning show = {isShowDataLossWarning}/>}
-                <ScrollToTopButton/>
-            </main>
-            <Footer/>
-        </div>
-    );
+  return (
+    <div className="container">
+      <Header initLang={initLang} />
+      <main>
+        {children}
+        {!!showSignInWindow && <SignIn show={showSignInWindow} />}
+        {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
+        {!!showSignResetPassWindow && (
+          <ResetPassword show={showSignResetPassWindow} />
+        )}
+        {!!showSuccessfulSignUpWindow && (
+          <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
+        )}
+        {!!showSuccessfullyCampaignRegistrationModal && (
+          <SuccessfullyCampaignRegistrationModal
+            show={showSuccessfullyCampaignRegistrationModal}
+          />
+        )}
+        {!!showSuccessfulInvestment && (
+          <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
+        )}
+        {!!showSuccessfulResetPassword && (
+          <SuccessfulResetPassword show={showSuccessfulResetPassword} />
+        )}
+        {!!showSuccessfulDeletedAccount && (
+          <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
+        )}
+        {!!showConfirmationOfAccountDeletion && (
+          <ShowConfirmationOfAccountDeletion
+            show={showConfirmationOfAccountDeletion}
+          />
+        )}
+        {!!isShowQuizErrorPopup && (
+          <QuizWrongAnswersModal show={isShowQuizErrorPopup} />
+        )}
+        {!!isShowSuccessfulSubscribe && (
+          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
+        )}
+        {!!isShowQuizRaisePopup && (
+            <RaiseWrongAnswerModal show={isShowQuizRaisePopup} />
+        )}
+        {!!isShowSuccessfulRequestForChangeEmail && (
+            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChangeEmail}/>
+        )}
+        {!!isShowSuccessfulRequestForChangePassword && (
+            <SuccessfulRequestForChangePassword show={isShowSuccessfulRequestForChangePassword}/>
+        )}
+        {!!isNotificationShow && <Notification show={isNotificationShow} />}
+        {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
+        {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
+        {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
+        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
+        {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
+        {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
+        <ScrollToTopButton />
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 export default RootPage;

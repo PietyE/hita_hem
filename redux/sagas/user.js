@@ -36,11 +36,16 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
-  setShowRequestForChange,
+  // setShowRequestForChange,
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
-  setShowQuiz, setShowQuizError, setShowCookiePopup, setShowDenyDeletingAccount,
+  setShowQuiz,
+  setShowQuizError,
+  setShowCookiePopup,
+  setShowDenyDeletingAccount,
+  setShowRequestForChangeEmail,
+  setShowRequestForChangePassword,
 } from "../actions/authPopupWindows";
 import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -416,7 +421,7 @@ function* requestForChangingEmail({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingEmail"], {token: payload.token});
-    yield put(setShowRequestForChange(true));
+    yield put(setShowRequestForChangeEmail(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
@@ -430,7 +435,7 @@ function* requestForChangingPassword({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingPassword"],{token: payload.token});
-    yield put(setShowRequestForChange(true));
+    yield put(setShowRequestForChangePassword(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
