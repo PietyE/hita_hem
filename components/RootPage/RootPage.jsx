@@ -33,7 +33,7 @@ import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
-// import ReactGA from 'react-ga';
+import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 
 const ScrollToTopButton = dynamic(
@@ -128,7 +128,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
 
 
-  const {pathname} = useRouter()
+  const router = useRouter()
 
 
   const _logOut = useCallback((data) => {
@@ -137,13 +137,23 @@ const RootPage = ({ children, initLang = "" }) => {
 
   useEffect(() => {
     dispatch(bootstap(initLang));
-
-    // ReactGA.initialize('G-49J28G6XF1');
   }, []);
 
-  // useEffect(() => {
-  //   ReactGA.pageview(window.location.pathname + window.location.search)
-  // }, [pathname]);
+  useEffect(() => {
+
+    const handleRouteChange = (url) => {
+      ga.pageview(url)
+    }
+    //When the component is mounted, subscribe to router changes
+    //and log those page views
+    router.events.on('routeChangeComplete', handleRouteChange)
+
+    // If the component is unmounted, unsubscribe
+    // from the event with the `off` method
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange)
+    }
+  }, [router.events])
 
   useEffect(() => {
     let timer = null;
