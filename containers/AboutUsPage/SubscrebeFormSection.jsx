@@ -72,7 +72,7 @@ const SubscrebeFormSection = ({ content = [] }) => {
             </svg>
         )}
         {showWarning && (
-          <p className="subscribe_form_warning_text"> example test@test.com </p>
+          <p className="subscribe_form_warning_text">{t("errors.email_example")}</p>
         )}
       </InputGroup>
       <span className="subscribe_form_section_below_message">

@@ -365,7 +365,7 @@ change_password_page: {
         button_change: 'Ändra lösenord',
 },
 errors: {
-    email_example: 'Exempel test@test.com',
+    email_example: 'Exempel: test@test.com',
         email_required: 'E-postadress ej ifyllt',
         password_required: 'Lösenord är nödvändigt',
         password_example: 'Lösenord måste ha minst 8 tecken och inkludera minst en stor bokstav, ett nummer och ett specialtecken (!@#$%^&*)',
@@ -383,7 +383,7 @@ errors: {
         personal_id_required: 'Personnummer är ett obligatorisk fält',
         personal_id_example: 'Exempel: 12345678-1234',
         phone_required:  'Telefonnummer ej ifyllt',
-        phone_example: 'Exempel +46 1234567890',
+        phone_example: 'Exempel: +46 1234567890',
         city_empty: '"Stad" kan inte vara tomt',
         address_empty: '"Adress" kan inte vara',
         first_name_empty: '"Förnamn" kan inte vara tomt',
@@ -407,11 +407,11 @@ errors: {
     followers_number: 'Antal följare måste vara ett nummer',
         follower_positive: 'Antalet följare måste >= 0',
 
-        website_example: 'Exempel https://accumeo.com',
-        youtube_example: 'Exempel https://youtube.com/.....',
-        facebook_example: 'Exempel https://facebook.com/...',
-        twitter_example: 'Exempel https://twitter.com/...',
-        linkedin_example: 'Exempel https://linkedin.com/...',
+        website_example: 'Exempel: https://accumeo.com',
+        youtube_example: 'Exempel: https://youtube.com/.....',
+        facebook_example: 'Exempel: https://facebook.com/...',
+        twitter_example: 'Exempel: https://twitter.com/...',
+        linkedin_example: 'Exempel: https://linkedin.com/...',
 
     long_error_part1: "Måste vara högst",
     long_error_part2: "tecken",
@@ -429,7 +429,7 @@ cookie: {
         },
         request_for_change:{
             title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
-            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
         },
         request_for_change_password:{
             title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
