@@ -1,11 +1,15 @@
-import { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-import { getIsSignInUserSelector } from "redux/reducers/user";
+import {
+    getIsSignInUserSelector,
+    getUserEmailSelector,
+    getFullNameSelector
+} from "redux/reducers/user";
 import {
   getShowSignIn,
   getShowResetPassword,
@@ -23,12 +27,12 @@ import {
   getShowRequestForChangePassword,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
-  getShowCookiePopup,
-  getShowSuccessfulFaqPopup,
+    getShowCookiePopup,
+    getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
 } from "redux/reducers/authPopupWindows.js";
-import { getNotificationStatusSelector } from "redux/reducers/notification";
-import { bootstap, logOut } from "redux/actions/user";
+import {getNotificationStatusSelector} from "redux/reducers/notification";
+import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
@@ -36,38 +40,39 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
+import {intercomStart} from "../../utils/intercom";
 
 const ScrollToTopButton = dynamic(
-  () => import("components/ScrollToTopButton"),
-  { loading: () => <span></span> }
+    () => import("components/ScrollToTopButton"),
+    {loading: () => <span></span>}
 );
 const SignIn = dynamic(() => import("components/auth/SignIn"));
 const SignUp = dynamic(() => import("components/auth/SignUp"));
 const Notification = dynamic(() => import("components/Notification"));
 const ResetPassword = dynamic(() => import("components/auth/ResetPassword"));
 const SuccessfulSignUpModal = dynamic(() =>
-  import("components/SuccessfulSignUpModal")
+    import("components/SuccessfulSignUpModal")
 );
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
-  import("components/SuccessfullyCampaignRegistrationModal")
+    import("components/SuccessfullyCampaignRegistrationModal")
 );
 const SuccessfulInvestmentModal = dynamic(() =>
-  import("components/SuccessfulInvestmentModal")
+    import("components/SuccessfulInvestmentModal")
 );
 const SuccessfulResetPassword = dynamic(() =>
-  import("components/SuccessfulResetPassword")
+    import("components/SuccessfulResetPassword")
 );
 const SuccessfulDeletedAccountModal = dynamic(() =>
-  import("components/SuccessfulDeletedAccountModal")
+    import("components/SuccessfulDeletedAccountModal")
 );
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
-  import("components/ShowConfirmationOfAccountDeletion")
+    import("components/ShowConfirmationOfAccountDeletion")
 );
 const QuizWrongAnswersModal = dynamic(() =>
-  import("components/QuizWrongAnswersModal")
+    import("components/QuizWrongAnswersModal")
 );
 const SuccessfullySubscribedModal = dynamic(() =>
-  import("components/SuccessfullySubscribedModal")
+    import("components/SuccessfullySubscribedModal")
 );
 const RaiseWrongAnswerModal = dynamic(() =>
     import("components/RaiseWrongAnswersModal")
@@ -104,6 +109,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
   useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
+  const fullName = useSelector(getFullNameSelector);
+  const email = useSelector(getUserEmailSelector);
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);
   const showSignResetPassWindow = useSelector(getShowResetPassword);
@@ -127,7 +134,6 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
   const isShowSuccessfulRequestForChangeEmail = useSelector(getShowRequestForChangeEmail)
   const isShowSuccessfulRequestForChangePassword = useSelector(getShowRequestForChangePassword)
-
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
@@ -136,51 +142,71 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
 
 
-  const router = useRouter()
+    const router = useRouter()
+
+    const {pathname} = router
 
 
-  const _logOut = useCallback((data) => {
-    dispatch(logOut(data));
-  }, [dispatch]);
+
+    const _logOut = useCallback((data) => {
+        dispatch(logOut(data));
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(bootstap(initLang));
+        intercomStart(initLang)
+    }, []);
+
+  useEffect(()=>{
+    Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+  },[pathname])
 
   useEffect(() => {
-    dispatch(bootstap(initLang));
-  }, []);
+    if(email && fullName && initLang) {
+      window.Intercom('boot', {
+        app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+        name: fullName,
+        email: email,
+        language_override: initLang,
+      })
+    }
+    ;
+  }, [email, fullName]);
 
   useEffect(() => {
-if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production"){
-  const handleRouteChange = (url) => {
-    ga.pageview(url)
-  }
-  //When the component is mounted, subscribe to router changes
-  //and log those page views
-  router.events.on('routeChangeComplete', handleRouteChange)
+    if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+      const handleRouteChange = (url) => {
+        ga.pageview(url)
+      }
+      //When the component is mounted, subscribe to router changes
+      //and log those page views
+      router.events.on('routeChangeComplete', handleRouteChange)
 
-  // If the component is unmounted, unsubscribe
-  // from the event with the `off` method
-  return () => {
-    router.events.off('routeChangeComplete', handleRouteChange)
-  }
-}
+      // If the component is unmounted, unsubscribe
+      // from the event with the `off` method
+      return () => {
+        router.events.off('routeChangeComplete', handleRouteChange)
+      }
+    }
   }, [router.events])
 
-  useEffect(() => {
-    let timer = null;
-    if (isAuth) {
-      timer = new IdleTimer({
-        timeout: 60 * 10,
-        onTimeout: () =>recaptcha('logout_on_timeout',_logOut),
-        onExpired: () =>recaptcha('logout_on_expired',_logOut),
-      });
-    }
+    useEffect(() => {
+        let timer = null;
+        if (isAuth) {
+            timer = new IdleTimer({
+                timeout: 60 * 10,
+                onTimeout: () => recaptcha('logout_on_timeout', _logOut),
+                onExpired: () => recaptcha('logout_on_expired', _logOut),
+            });
+        }
 
-    return () => {
-      if (timer && timer instanceof IdleTimer) {
-        timer.cleanUp();
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth]);
+        return () => {
+            if (timer && timer instanceof IdleTimer) {
+                timer.cleanUp();
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuth]);
 
   return (
     <div className="container">
