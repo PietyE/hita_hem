@@ -93,8 +93,8 @@ auth: {
             agreement_text: "Jag har läst och samtycker till",
             agreement_link: "Medlemsavtalet",
             button: "Bli medlem",
-            footer_text: "Har du inget konto än?",
-            sign_up_link: " Logga in",
+            footer_text: "Har du redan ett konto?",
+            sign_up_link: "Logga in",
     },
 },
 campaigns_card: {
@@ -114,11 +114,11 @@ progress: {
         days_left: "Dagar kvar",
 },
 sign_up_message: {
-    sign_up_text_one: "Du behöver vara",
-        sign_up_link: "inloggad",
+    sign_up_text_one: "Du behöver",
+        sign_up_link: "logga in",
         sign_up_text_two: "för att delta.",
-        sign_in_text: "Har du ett konto?",
-    sign_in_link: "Logga in",
+        sign_in_text: "Har du inget konto än?",
+    sign_in_link: "Skapa ett här!",
 },
 successful_campaign_registration: {
     title: "Du har nu slutfört första steget mot att lansera din kampanj!",
@@ -278,7 +278,7 @@ not_found_page: {
 },
 profile_page: {
     investment: "Investeringar",
-        personal_details: "Personliga uppgifter",
+        personal_details: "Personuppgifter",
         account_settings: "Kontoinställningar",
         profile_campaigns: "Mina kampanjer",
 
@@ -345,9 +345,9 @@ profile_page: {
             cancel_button: "Avbryt",
             submit_button: "Skicka in",
             save_button: "Spara ändringar",
-        footer_text1: 'För att ändra din personliga data, gå till ',
-        footer_link: 'Personliga uppgifter',
-        footer_text2: ' Sektion i ditt personliga konto',
+        footer_text1: 'Om du vill ändra dina personuppgifter kan du göra det via ditt konto, eller genom att klicka ',
+        footer_link: 'här',
+        footer_text2: '.',
 
     },
 },
@@ -365,7 +365,7 @@ change_password_page: {
         button_change: 'Ändra lösenord',
 },
 errors: {
-    email_example: 'Exempel test@test.com',
+    email_example: 'Exempel: test@test.com',
         email_required: 'E-postadress ej ifyllt',
         password_required: 'Lösenord är nödvändigt',
         password_example: 'Lösenord måste ha minst 8 tecken och inkludera minst en stor bokstav, ett nummer och ett specialtecken (!@#$%^&*)',
@@ -383,7 +383,7 @@ errors: {
         personal_id_required: 'Personnummer är ett obligatorisk fält',
         personal_id_example: 'Exempel: 12345678-1234',
         phone_required:  'Telefonnummer ej ifyllt',
-        phone_example: 'Exempel +46 1234567890',
+        phone_example: 'Exempel: +46 1234567890',
         city_empty: '"Stad" kan inte vara tomt',
         address_empty: '"Adress" kan inte vara',
         first_name_empty: '"Förnamn" kan inte vara tomt',
@@ -407,11 +407,11 @@ errors: {
     followers_number: 'Antal följare måste vara ett nummer',
         follower_positive: 'Antalet följare måste >= 0',
 
-        website_example: 'Exempel https://accumeo.com',
-        youtube_example: 'Exempel https://youtube.com/.....',
-        facebook_example: 'Exempel https://facebook.com/...',
-        twitter_example: 'Exempel https://twitter.com/...',
-        linkedin_example: 'Exempel https://linkedin.com/...',
+        website_example: 'Exempel: https://accumeo.com',
+        youtube_example: 'Exempel: https://youtube.com/.....',
+        facebook_example: 'Exempel: https://facebook.com/...',
+        twitter_example: 'Exempel: https://twitter.com/...',
+        linkedin_example: 'Exempel: https://linkedin.com/...',
 
     long_error_part1: "Måste vara högst",
     long_error_part2: "tecken",
@@ -428,8 +428,12 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Meddelandet!',
-            text: 'Se i din mailkorg.',
+            title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
+        },
+        request_for_change_password:{
+            title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
         },
         invalid_token: {
             text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',

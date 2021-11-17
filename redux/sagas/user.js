@@ -36,11 +36,16 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
-  setShowRequestForChange,
+  // setShowRequestForChange,
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
-  setShowQuiz, setShowQuizError, setShowCookiePopup, setShowDenyDeletingAccount,
+  setShowQuiz,
+  setShowQuizError,
+  setShowCookiePopup,
+  setShowDenyDeletingAccount,
+  setShowRequestForChangeEmail,
+  setShowRequestForChangePassword,
 } from "../actions/authPopupWindows";
 import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -48,6 +53,7 @@ import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/us
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
+
 
 const { auth } = api;
 
@@ -155,7 +161,15 @@ function* signUp({ payload }) {
 function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
-    const response = yield call([auth, "signIn"], {token:payload.token, data: payload.data});
+
+    const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+    const session_key = session_key_from_LS || new Date().getTime();
+
+    const response = yield call([auth, "signIn"], {token:payload.token, data: payload.data, session_key: session_key,});
+
+    if(!session_key_from_LS){
+      yield call([localStorage, "setItem"], "x_session_key", session_key);
+    }
 
     const { data } = response;
     const { user, token } = data;
@@ -181,6 +195,7 @@ function* signIn({ payload }) {
     yield call([api, "setToken"], token.key);
     const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
     yield call([localStorage, "setItem"], "auth_data", authData);
+
     yield put(setShowSignIn(false));
     yield put(clearErrors())
   } catch (error) {
@@ -404,7 +419,7 @@ function* requestForChangingEmail({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingEmail"], {token: payload.token});
-    yield put(setShowRequestForChange(true));
+    yield put(setShowRequestForChangeEmail(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
@@ -418,7 +433,7 @@ function* requestForChangingPassword({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestForChangingPassword"],{token: payload.token});
-    yield put(setShowRequestForChange(true));
+    yield put(setShowRequestForChangePassword(true));
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })

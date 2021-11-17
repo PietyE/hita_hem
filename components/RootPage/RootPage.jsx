@@ -19,7 +19,8 @@ import {
   getShowQuizError,
   getShowSuccessfulSubscribe,
   getShowRaiseError,
-    getShowRequestForChange,
+  getShowRequestForChangeEmail,
+  getShowRequestForChangePassword,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
   getShowCookiePopup,
@@ -74,6 +75,11 @@ const RaiseWrongAnswerModal = dynamic(() =>
 const SuccessfulRequestForChange = dynamic(() =>
     import("components/SuccessfulRequestForChange")
 );
+
+const SuccessfulRequestForChangePassword = dynamic(() =>
+    import("components/SuccessfulRequestForChangePassword")
+);
+
 const InvalidTokenModal = dynamic(() =>
     import("components/InvalidTokenModal")
 );
@@ -119,7 +125,9 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowQuizErrorPopup = useSelector(getShowQuizError);
   const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
-  const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
+  const isShowSuccessfulRequestForChangeEmail = useSelector(getShowRequestForChangeEmail)
+  const isShowSuccessfulRequestForChangePassword = useSelector(getShowRequestForChangePassword)
+
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
@@ -214,8 +222,11 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowQuizRaisePopup && (
             <RaiseWrongAnswerModal show={isShowQuizRaisePopup} />
         )}
-        {!!isShowSuccessfulRequestForChange && (
-            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChange}/>
+        {!!isShowSuccessfulRequestForChangeEmail && (
+            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChangeEmail}/>
+        )}
+        {!!isShowSuccessfulRequestForChangePassword && (
+            <SuccessfulRequestForChangePassword show={isShowSuccessfulRequestForChangePassword}/>
         )}
         {!!isNotificationShow && <Notification show={isNotificationShow} />}
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}

@@ -155,12 +155,11 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-
-              <a className="footer_nav_link"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-              >FAQ</a>
+                <a className="footer_nav_link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
+                >FAQ</a>
               </NavDropdown.Item>
 
               {/*<NavDropdown.Item as="div" className="nav_item">*/}
