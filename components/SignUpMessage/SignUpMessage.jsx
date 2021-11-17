@@ -18,14 +18,14 @@ const SignUpMessage = ({ className }) => {
     <div className={`sign_up_message_container ${className}`}>
       <span className="sign_up_message">
         {t("sign_up_message.sign_up_text_one")}&nbsp;
-        <Button colorStyle="link" onClick={handleShowSignUp}>
+        <Button colorStyle="link" onClick={handleShowSignIn}>
           {t("sign_up_message.sign_up_link")}
         </Button>
         &nbsp;
         <span>{t("sign_up_message.sign_up_text_two")}</span>
       </span>
 
-      <span className="sign_up_message" onClick={handleShowSignIn}>
+      <span className="sign_up_message" onClick={handleShowSignUp}>
         {t("sign_up_message.sign_in_text")}&nbsp;
         <Button colorStyle="link">{t("sign_up_message.sign_in_link")}</Button>
       </span>
