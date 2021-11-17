@@ -4,7 +4,8 @@ import { useTranslation } from "react-i18next";
 const Progress = ({
   title = "",
   percent = "",
-  dayLeft = "",
+  daysLeftToStart = "",
+  daysLeftToEnd = "",
   target = "",
   status = "",
   currency = 0,
@@ -17,10 +18,10 @@ const Progress = ({
     dayLeftValue = t("company_page.company_completed");
   } else if (status === 4) {
     dayLeftValue = t("company_page.company_successfully_closed");
-  } else if (dayLeft >= 0) {
-    dayLeftValue = `${dayLeft} ${t("company_page.company_days_left")}`;
-  } else {
-    dayLeftValue = `0 ${t("company_page.company_days_left")}`;
+  } else if (status === 3) {
+    dayLeftValue = `${daysLeftToEnd} ${t("company_page.company_days_left")}`;
+  } else if(status === 1) {
+    dayLeftValue = `${daysLeftToStart} ${t("company_page.company_days_left")}`;
   }
 
   return (

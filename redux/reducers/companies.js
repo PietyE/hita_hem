@@ -43,6 +43,8 @@ const initialState = {
     website: "",
     title: "",
     description: "",
+    left_date_start: '',
+    left_date_end: '',
     industry: {
       title: "",
     },
@@ -251,12 +253,18 @@ export const getBusinessCurrencySelector = (state) =>
 export const getPercentageSelector = (state) =>
   state.companies.companyDetail.percentage;
 
-export const getDaysLeftSelector = (state) => {
-  const currentDate = new Date();
-  const endDate = new Date(state.companies.companyDetail.end_date);
-  const diff = endDate - currentDate;
-  return Math.floor(diff / (1000 * 3600 * 24));
-};
+export const getLeftDaysToStartSelector = (state) =>
+    state.companies.companyDetail.left_date_start;
+
+export const getLeftDaysToEndSelector = (state) =>
+    state.companies.companyDetail.left_date_end;
+
+// export const getDaysLeftSelector = (state) => {
+//   const currentDate = new Date();
+//   const endDate = new Date(state.companies.companyDetail.end_date);
+//   const diff = endDate - currentDate;
+//   return Math.floor(diff / (1000 * 3600 * 24));
+// };
 
 export const getValuationSelector = (state) =>
     state.companies.companyDetail.valuation;

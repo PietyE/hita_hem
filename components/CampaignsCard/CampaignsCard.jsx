@@ -34,11 +34,13 @@ const CampaignsCard = (props) => {
     goal,
     currency,
     percentage,
+    left_date_end,
+    left_date_start
   } = props?.content;
   const moneyFormat = useMoneyFormat()
 const isAuth = useSelector(getIsSignInUserSelector)
-  const diff = new Date(props?.content?.end_date) - new Date();
-  const leftDays = Math.floor(diff / (1000 * 3600 * 24));
+  // const diff = new Date(props?.content?.end_date) - new Date();
+  // const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
     <>
       {!!props?.content && (
@@ -108,7 +110,8 @@ const isAuth = useSelector(getIsSignInUserSelector)
             <Progress
               title={t("campaigns_card.progress_title")}
               percent={percentage}
-              dayLeft={leftDays}
+              daysLeftToStart={left_date_start}
+              daysLeftToEnd={left_date_end}
               status={status}
             />
 
