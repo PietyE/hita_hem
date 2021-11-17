@@ -93,8 +93,8 @@ auth: {
             agreement_text: "Jag har läst och samtycker till",
             agreement_link: "Medlemsavtalet",
             button: "Bli medlem",
-            footer_text: "Har du inget konto än?",
-            sign_up_link: " Logga in",
+            footer_text: "Har du redan ett konto?",
+            sign_up_link: "Logga in",
     },
 },
 campaigns_card: {
@@ -114,11 +114,11 @@ progress: {
         days_left: "Dagar kvar",
 },
 sign_up_message: {
-    sign_up_text_one: "Du behöver vara",
-        sign_up_link: "inloggad",
+    sign_up_text_one: "Du behöver",
+        sign_up_link: "logga in",
         sign_up_text_two: "för att delta.",
-        sign_in_text: "Har du ett konto?",
-    sign_in_link: "Logga in",
+        sign_in_text: "Har du inget konto än?",
+    sign_in_link: "Skapa ett här!",
 },
 successful_campaign_registration: {
     title: "Du har nu slutfört första steget mot att lansera din kampanj!",
@@ -278,7 +278,7 @@ not_found_page: {
 },
 profile_page: {
     investment: "Investeringar",
-        personal_details: "Personliga uppgifter",
+        personal_details: "Personuppgifter",
         account_settings: "Kontoinställningar",
         profile_campaigns: "Mina kampanjer",
 
@@ -345,9 +345,9 @@ profile_page: {
             cancel_button: "Avbryt",
             submit_button: "Skicka in",
             save_button: "Spara ändringar",
-        footer_text1: 'För att ändra din personliga data, gå till ',
-        footer_link: 'Personliga uppgifter',
-        footer_text2: ' Sektion i ditt personliga konto',
+        footer_text1: 'Om du vill ändra dina personuppgifter kan du göra det via ditt konto, eller genom att klicka ',
+        footer_link: 'här',
+        footer_text2: '.',
 
     },
 },
@@ -428,8 +428,12 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Meddelandet!',
-            text: 'Se i din mailkorg.',
+            title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+        },
+        request_for_change_password:{
+            title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
         },
         invalid_token: {
             text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',

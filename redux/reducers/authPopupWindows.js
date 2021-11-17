@@ -12,7 +12,9 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
-  SET_SHOW_REQUEST_FOR_CHANGE,
+  // SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
+  SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
   SET_SHOW_INVALID_TOKEN_MODAL,
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
   SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
@@ -36,7 +38,9 @@ const initialValues = {
   showQuizError: false,
   showSuccessfulSubscribe:false,
   showRaiseError: false,
-  showSuccessfulRequestForChange:false,
+  // showSuccessfulRequestForChange:false,
+  showSuccessfulRequestForChangeEmail:false,
+  showSuccessfulRequestForChangePassword:false,
   showInvalidTokenModal: false,
   showSuccessfulChangeEmailOrPassword:false,
   showDenyDeletingAccount:false,
@@ -67,7 +71,11 @@ export const getShowQuiz = state =>  state.authPopupWindows.showQuiz;
 export const getShowQuizError = state =>  state.authPopupWindows.showQuizError;
 export const getShowSuccessfulSubscribe = state =>  state.authPopupWindows.showSuccessfulSubscribe;
 export const getShowRaiseError = state =>  state.authPopupWindows.showRaiseError;
-export const getShowRequestForChange = state =>  state.authPopupWindows.showSuccessfulRequestForChange;
+// export const getShowRequestForChange = state =>  state.authPopupWindows.showSuccessfulRequestForChange;
+
+export const getShowRequestForChangeEmail = state =>  state.authPopupWindows.showSuccessfulRequestForChangeEmail;
+export const getShowRequestForChangePassword = state =>  state.authPopupWindows.showSuccessfulRequestForChangePassword;
+
 export const getShowInvalidTokenModal = state =>  state.authPopupWindows.showInvalidTokenModal;
 export const getShowSuccessfulChangeEmailOrPassword = state =>  state.authPopupWindows.showSuccessfulChangeEmailOrPassword;
 export const getChangeEmailOrPasswordText = state =>  state.authPopupWindows.text;
@@ -106,8 +114,12 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showSuccessfulSubscribe: actions.payload }
     case SET_SHOW_RAISE_ERROR:
       return { ...state, showRaiseError: actions.payload }
-    case SET_SHOW_REQUEST_FOR_CHANGE:
-      return { ...state, showSuccessfulRequestForChange: actions.payload }
+    // case SET_SHOW_REQUEST_FOR_CHANGE:
+    //   return { ...state, showSuccessfulRequestForChange: actions.payload }
+    case SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD:
+      return { ...state, showSuccessfulRequestForChangePassword: actions.payload }
+    case SET_SHOW_REQUEST_FOR_CHANGE_EMAIL:
+      return { ...state, showSuccessfulRequestForChangeEmail: actions.payload }
     case SET_SHOW_INVALID_TOKEN_MODAL:
       return { ...state, showInvalidTokenModal: actions.payload }
     case SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD:
