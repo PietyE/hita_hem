@@ -1,4 +1,4 @@
-import { useCallback, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 import { useRouter } from "next/router";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -154,6 +154,14 @@ const Navigation = ({ className, initLang }) => {
                   </a>
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item as="div" className="nav_item">
+                <a className="footer_nav_link"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
+                >FAQ</a>
+              </NavDropdown.Item>
+
               {/*<NavDropdown.Item as="div" className="nav_item">*/}
               {/*  <Link href={LAUNCHING_SOON} prefetch={false}>*/}
               {/*    <a*/}

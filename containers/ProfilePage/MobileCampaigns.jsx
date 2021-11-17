@@ -56,7 +56,7 @@ const MobileCampaigns = ({ data }) => {
               textLink = `https://accumeo.com/company/${campaign.id}`;
             }
             if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = currentLanguage === 'en'?`https://preprod.accumeo.com/company/${campaign.id}`:`https://preprod.accumeo.com/sv/company/${campaign.id}`
+              _link = currentLanguage === 'en'?`https://accumeo.com/company/${campaign.id}`:`https://accumeo.com/sv/company/${campaign.id}`
               textLink = `https://accumeo.com/company/${campaign.id}`;
             }
             let _status = startCase(

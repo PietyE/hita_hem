@@ -1,4 +1,4 @@
-import { useCallback, forwardRef } from "react";
+import React, { useCallback, forwardRef } from "react";
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
@@ -118,6 +118,11 @@ const Header = ({ initLang }) => {
                   {t("header.about_us").toLocaleUpperCase()}
                 </Button>
               </span>
+              <a className="menu_item_link menu_item_link_faq"
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
+              >FAQ</a>
               {/*<span className="menu_item">*/}
               {/*  <Button*/}
               {/*    className={`menu_item_link ${*/}

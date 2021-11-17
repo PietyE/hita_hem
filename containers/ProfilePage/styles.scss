@@ -10,7 +10,7 @@
     margin-left: auto;
   }
   .profile_tab_bar {
-    width: 845px;
+    width: 911px;
     margin-bottom: 32px;
     font-family: Raleway, sans-serif;
     font-style: normal;
@@ -640,7 +640,7 @@
       padding-left: 168px;
     }
     .profile_tab_bar {
-      width: 845px;
+      width: 911px;
       margin-bottom: 32px;
     }
   }
@@ -813,6 +813,18 @@
             color: #ffffff;
           }
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 925px) {
+  .profile_section {
+    .profile_tab_bar {
+      width: 835px;
+      .tab_bar_item_button{
+        font-size: 14px;
+        padding: 0 22px;
       }
     }
   }
