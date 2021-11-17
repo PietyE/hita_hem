@@ -31,7 +31,7 @@ const Notification = ({ show }) => {
   if(title){
     _title = title
   }else{
-    _title = language === 'en' ? 'Error' : 'Tyvärr...'
+    _title = language === 'en' ? 'Error' : 'Något gick fel.'
   }
   return (
     <Alert

@@ -1,0 +1,3 @@
+import SuccessfulRequestForChangePassword from './SuccessfulRequestForChangePassword'
+
+export default SuccessfulRequestForChangePassword

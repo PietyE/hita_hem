@@ -16,12 +16,14 @@ import {
   // getBusinessShapePriceSelector,
   getBusinessCurrencySelector,
   getPercentageSelector,
-  getDaysLeftSelector,
+  // getDaysLeftSelector,
   getCompanyIdSelector,
   getCompanyStatusInNumbersSelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
   getValuationSelector,
+  getLeftDaysToEndSelector,
+  getLeftDaysToStartSelector,
 } from "redux/reducers/companies";
 // import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
@@ -45,12 +47,14 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   // const price = useSelector(getBusinessShapePriceSelector);
   const currency = useSelector(getBusinessCurrencySelector);
   const percentage = useSelector(getPercentageSelector);
-  const daysLeft = useSelector(getDaysLeftSelector);
+  // const daysLeft = useSelector(getDaysLeftSelector);
+  const daysLeftToStart = useSelector(getLeftDaysToStartSelector)
+  const daysLeftToEnd = useSelector(getLeftDaysToEndSelector)
+
   const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   // const isQuizPassed = useSelector(getQuizIsPassedSelector)
-
   const dataOptions = {
     day: "numeric",
     month: "long",
@@ -212,7 +216,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           <Progress
             title={t("company_page.company_raised")}
             percent={percentage}
-            dayLeft={daysLeft}
+            daysLeftToStart={daysLeftToStart}
+            daysLeftToEnd={daysLeftToEnd}
             status={status}
           />
         </div>

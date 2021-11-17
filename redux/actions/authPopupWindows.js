@@ -12,7 +12,9 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
-  SET_SHOW_REQUEST_FOR_CHANGE,
+  // SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
+  SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
   SET_SHOW_INVALID_TOKEN_MODAL,
   SET_SHOW_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD,
   SET_SUCCESSFUL_CHANGE_EMAIL_OR_PASSWORD_TEXT,
@@ -85,10 +87,20 @@ export const setShowRaiseError= payload =>({
   payload,
 })
 
-export const setShowRequestForChange= payload =>({
-  type: SET_SHOW_REQUEST_FOR_CHANGE,
+// export const setShowRequestForChange= payload =>({
+//   type: SET_SHOW_REQUEST_FOR_CHANGE,
+//   payload,
+// })
+export const setShowRequestForChangePassword= payload =>({
+  type: SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
   payload,
 })
+
+export const setShowRequestForChangeEmail= payload =>({
+  type: SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
+  payload,
+})
+
 
 export const setShowInvalidTokenModal= payload =>({
   type: SET_SHOW_INVALID_TOKEN_MODAL,
