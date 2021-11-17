@@ -134,6 +134,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowQuizRaisePopup = useSelector(getShowRaiseError);
   const isShowSuccessfulRequestForChangeEmail = useSelector(getShowRequestForChangeEmail)
   const isShowSuccessfulRequestForChangePassword = useSelector(getShowRequestForChangePassword)
+
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
