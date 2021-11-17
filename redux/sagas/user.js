@@ -48,7 +48,7 @@ import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/us
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
-
+import {intercomStart} from "../../utils/intercom";
 
 const { auth } = api;
 
@@ -207,6 +207,8 @@ function* logout({payload}) {
     yield put(setFetchingUsers(true));
     yield call([auth, "logOut"], {token: payload.token});
     yield call(clean);
+    // window.Intercom('shutdown')
+    // intercomStart()
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
@@ -531,6 +533,9 @@ function* clean() {
   yield call([api, "deleteToken"]);
   yield call([localStorage, "removeItem"], "auth_data");
   yield put(clearErrors())
+  const initLang = yield select(getSelectedLangSelector)
+  window.Intercom('shutdown')
+  intercomStart(initLang)
 }
 
 const prepareProfile = (data) => {

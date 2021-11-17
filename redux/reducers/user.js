@@ -109,6 +109,13 @@ export const getTotalPaymentsByCompanySelector = (state) => {
 export const isSuccessfulResponseFromApiSelector = state => state.user.isSuccessfulResponseFromApi
 export const getIsPaymentsWasSelector = state => !!state.user?.user?.payments?.length
 export const getUserIdSelector = (state) => state.user.account.id;
+export const getFullNameSelector = (state) => {
+  if(state.user?.user?.first_name && state.user?.user?.second_name){
+    return   state.user?.user?.first_name + ' ' + state.user?.user?.second_name
+  }
+}
+export const getUserEmailSelector = (state) => state.user?.account?.email;
+
 export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;

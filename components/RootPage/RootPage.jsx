@@ -1,33 +1,37 @@
-import { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useEffect, useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
 import Header from "components/Header";
 import Footer from "components/Footer";
 
-import { getIsSignInUserSelector } from "redux/reducers/user";
 import {
-  getShowSignIn,
-  getShowResetPassword,
-  getShowSignUp,
-  getShowSuccessfulSignUp,
-  getShowSuccessfulCampaignRegistration,
-  getShowSuccessfulInvestment,
-  getShowSuccessfulResetPassword,
-  getShowSuccessfulDeletedAccount,
-  getShowConfirmationOfAccountDeleting,
-  getShowQuizError,
-  getShowSuccessfulSubscribe,
-  getShowRaiseError,
+    getIsSignInUserSelector,
+    getUserEmailSelector,
+    getFullNameSelector
+} from "redux/reducers/user";
+import {
+    getShowSignIn,
+    getShowResetPassword,
+    getShowSignUp,
+    getShowSuccessfulSignUp,
+    getShowSuccessfulCampaignRegistration,
+    getShowSuccessfulInvestment,
+    getShowSuccessfulResetPassword,
+    getShowSuccessfulDeletedAccount,
+    getShowConfirmationOfAccountDeleting,
+    getShowQuizError,
+    getShowSuccessfulSubscribe,
+    getShowRaiseError,
     getShowRequestForChange,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
-  getShowCookiePopup,
-  getShowSuccessfulFaqPopup,
+    getShowCookiePopup,
+    getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
 } from "redux/reducers/authPopupWindows.js";
-import { getNotificationStatusSelector } from "redux/reducers/notification";
-import { bootstap, logOut } from "redux/actions/user";
+import {getNotificationStatusSelector} from "redux/reducers/notification";
+import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
@@ -35,38 +39,39 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
+import {intercomStart} from "../../utils/intercom";
 
 const ScrollToTopButton = dynamic(
-  () => import("components/ScrollToTopButton"),
-  { loading: () => <span></span> }
+    () => import("components/ScrollToTopButton"),
+    {loading: () => <span></span>}
 );
 const SignIn = dynamic(() => import("components/auth/SignIn"));
 const SignUp = dynamic(() => import("components/auth/SignUp"));
 const Notification = dynamic(() => import("components/Notification"));
 const ResetPassword = dynamic(() => import("components/auth/ResetPassword"));
 const SuccessfulSignUpModal = dynamic(() =>
-  import("components/SuccessfulSignUpModal")
+    import("components/SuccessfulSignUpModal")
 );
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
-  import("components/SuccessfullyCampaignRegistrationModal")
+    import("components/SuccessfullyCampaignRegistrationModal")
 );
 const SuccessfulInvestmentModal = dynamic(() =>
-  import("components/SuccessfulInvestmentModal")
+    import("components/SuccessfulInvestmentModal")
 );
 const SuccessfulResetPassword = dynamic(() =>
-  import("components/SuccessfulResetPassword")
+    import("components/SuccessfulResetPassword")
 );
 const SuccessfulDeletedAccountModal = dynamic(() =>
-  import("components/SuccessfulDeletedAccountModal")
+    import("components/SuccessfulDeletedAccountModal")
 );
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
-  import("components/ShowConfirmationOfAccountDeletion")
+    import("components/ShowConfirmationOfAccountDeletion")
 );
 const QuizWrongAnswersModal = dynamic(() =>
-  import("components/QuizWrongAnswersModal")
+    import("components/QuizWrongAnswersModal")
 );
 const SuccessfullySubscribedModal = dynamic(() =>
-  import("components/SuccessfullySubscribedModal")
+    import("components/SuccessfullySubscribedModal")
 );
 const RaiseWrongAnswerModal = dynamic(() =>
     import("components/RaiseWrongAnswersModal")
@@ -94,141 +99,165 @@ const DataLossWarning = dynamic(() =>
 );
 
 
-const RootPage = ({ children, initLang = "" }) => {
-  const dispatch = useDispatch();
-  useGoogleCaptcha()
-  const isAuth = useSelector(getIsSignInUserSelector);
-  const showSignInWindow = useSelector(getShowSignIn);
-  const showSigUpWindow = useSelector(getShowSignUp);
-  const showSignResetPassWindow = useSelector(getShowResetPassword);
-  const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
-  const showSuccessfullyCampaignRegistrationModal = useSelector(
-    getShowSuccessfulCampaignRegistration
-  );
-  const showSuccessfulInvestment = useSelector(getShowSuccessfulInvestment);
-  const showSuccessfulResetPassword = useSelector(
-    getShowSuccessfulResetPassword
-  );
-  const showSuccessfulDeletedAccount = useSelector(
-    getShowSuccessfulDeletedAccount
-  );
-  const showConfirmationOfAccountDeletion = useSelector(
-    getShowConfirmationOfAccountDeleting
-  );
-  const isNotificationShow = useSelector(getNotificationStatusSelector);
-  const isShowQuizErrorPopup = useSelector(getShowQuizError);
-  const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
-  const isShowQuizRaisePopup = useSelector(getShowRaiseError);
-  const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
-  const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
-  const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
-  const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
-  const isShowCookie = useSelector(getShowCookiePopup)
-  const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
-  const isShowDataLossWarning = useSelector(getShowDataLossWarning)
+const RootPage = ({children, initLang = ""}) => {
+    const dispatch = useDispatch();
+    
+    useGoogleCaptcha()
+    
+    const isAuth = useSelector(getIsSignInUserSelector);
+    const fullName = useSelector(getFullNameSelector)
+    const email = useSelector(getUserEmailSelector)
+    const showSignInWindow = useSelector(getShowSignIn);
+    const showSigUpWindow = useSelector(getShowSignUp);
+    const showSignResetPassWindow = useSelector(getShowResetPassword);
+    const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
+    const showSuccessfullyCampaignRegistrationModal = useSelector(
+        getShowSuccessfulCampaignRegistration
+    );
+    const showSuccessfulInvestment = useSelector(getShowSuccessfulInvestment);
+    const showSuccessfulResetPassword = useSelector(
+        getShowSuccessfulResetPassword
+    );
+    const showSuccessfulDeletedAccount = useSelector(
+        getShowSuccessfulDeletedAccount
+    );
+    const showConfirmationOfAccountDeletion = useSelector(
+        getShowConfirmationOfAccountDeleting
+    );
+    const isNotificationShow = useSelector(getNotificationStatusSelector);
+    const isShowQuizErrorPopup = useSelector(getShowQuizError);
+    const isShowSuccessfulSubscribe = useSelector(getShowSuccessfulSubscribe);
+    const isShowQuizRaisePopup = useSelector(getShowRaiseError);
+    const isShowSuccessfulRequestForChange = useSelector(getShowRequestForChange)
+    const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
+    const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
+    const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
+    const isShowCookie = useSelector(getShowCookiePopup)
+    const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
+    const isShowDataLossWarning = useSelector(getShowDataLossWarning)
 
 
-  const router = useRouter()
+    const router = useRouter()
+
+    const {pathname} = router
 
 
-  const _logOut = useCallback((data) => {
-    dispatch(logOut(data));
-  }, [dispatch]);
 
-  useEffect(() => {
-    dispatch(bootstap(initLang));
-  }, []);
+    const _logOut = useCallback((data) => {
+        dispatch(logOut(data));
+    }, [dispatch]);
 
-  useEffect(() => {
+    useEffect(() => {
+        dispatch(bootstap(initLang));
+        intercomStart(initLang)
+    }, []);
 
-    const handleRouteChange = (url) => {
-      ga.pageview(url)
-    }
-    //When the component is mounted, subscribe to router changes
-    //and log those page views
-    router.events.on('routeChangeComplete', handleRouteChange)
+    useEffect(()=>{
+        Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+    },[pathname])
 
-    // If the component is unmounted, unsubscribe
-    // from the event with the `off` method
-    return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
+    useEffect(() => {
+        if(email && fullName && initLang) {
+            window.Intercom('boot', {
+                app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+                name: fullName,
+                email: email,
+                language_override: initLang,
+            })
+        }
+        ;
+    }, [email, fullName]);
 
-  useEffect(() => {
-    let timer = null;
-    if (isAuth) {
-      timer = new IdleTimer({
-        timeout: 60 * 10,
-        onTimeout: () =>recaptcha('logout_on_timeout',_logOut),
-        onExpired: () =>recaptcha('logout_on_expired',_logOut),
-      });
-    }
+    useEffect(() => {
+        const handleRouteChange = (url) => {
+            ga.pageview(url)
+        }
+        //When the component is mounted, subscribe to router changes
+        //and log those page views
+        router.events.on('routeChangeComplete', handleRouteChange)
 
-    return () => {
-      if (timer && timer instanceof IdleTimer) {
-        timer.cleanUp();
-      }
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAuth]);
+        // If the component is unmounted, unsubscribe
+        // from the event with the `off` method
+        return () => {
+            router.events.off('routeChangeComplete', handleRouteChange)
+        }
+    }, [router.events])
 
-  return (
-    <div className="container">
-      <Header initLang={initLang} />
-      <main>
-        {children}
-        {!!showSignInWindow && <SignIn show={showSignInWindow} />}
-        {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-        {!!showSignResetPassWindow && (
-          <ResetPassword show={showSignResetPassWindow} />
-        )}
-        {!!showSuccessfulSignUpWindow && (
-          <SuccessfulSignUpModal show={showSuccessfulSignUpWindow} />
-        )}
-        {!!showSuccessfullyCampaignRegistrationModal && (
-          <SuccessfullyCampaignRegistrationModal
-            show={showSuccessfullyCampaignRegistrationModal}
-          />
-        )}
-        {!!showSuccessfulInvestment && (
-          <SuccessfulInvestmentModal show={showSuccessfulInvestment} />
-        )}
-        {!!showSuccessfulResetPassword && (
-          <SuccessfulResetPassword show={showSuccessfulResetPassword} />
-        )}
-        {!!showSuccessfulDeletedAccount && (
-          <SuccessfulDeletedAccountModal show={showSuccessfulDeletedAccount} />
-        )}
-        {!!showConfirmationOfAccountDeletion && (
-          <ShowConfirmationOfAccountDeletion
-            show={showConfirmationOfAccountDeletion}
-          />
-        )}
-        {!!isShowQuizErrorPopup && (
-          <QuizWrongAnswersModal show={isShowQuizErrorPopup} />
-        )}
-        {!!isShowSuccessfulSubscribe && (
-          <SuccessfullySubscribedModal show={isShowSuccessfulSubscribe} />
-        )}
-        {!!isShowQuizRaisePopup && (
-            <RaiseWrongAnswerModal show={isShowQuizRaisePopup} />
-        )}
-        {!!isShowSuccessfulRequestForChange && (
-            <SuccessfulRequestForChange show={isShowSuccessfulRequestForChange}/>
-        )}
-        {!!isNotificationShow && <Notification show={isNotificationShow} />}
-        {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
-        {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
-        {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
-        {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
-        {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
-        <ScrollToTopButton />
-      </main>
-      <Footer />
-    </div>
-  );
+    useEffect(() => {
+        let timer = null;
+        if (isAuth) {
+            timer = new IdleTimer({
+                timeout: 60 * 10,
+                onTimeout: () => recaptcha('logout_on_timeout', _logOut),
+                onExpired: () => recaptcha('logout_on_expired', _logOut),
+            });
+        }
+
+        return () => {
+            if (timer && timer instanceof IdleTimer) {
+                timer.cleanUp();
+            }
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isAuth]);
+
+    return (
+        <div className = "container">
+            <Header initLang = {initLang}/>
+            <main>
+                {children}
+                {!!showSignInWindow && <SignIn show = {showSignInWindow}/>}
+                {!!showSigUpWindow && <SignUp show = {showSigUpWindow}/>}
+                {!!showSignResetPassWindow && (
+                    <ResetPassword show = {showSignResetPassWindow}/>
+                )}
+                {!!showSuccessfulSignUpWindow && (
+                    <SuccessfulSignUpModal show = {showSuccessfulSignUpWindow}/>
+                )}
+                {!!showSuccessfullyCampaignRegistrationModal && (
+                    <SuccessfullyCampaignRegistrationModal
+                        show = {showSuccessfullyCampaignRegistrationModal}
+                    />
+                )}
+                {!!showSuccessfulInvestment && (
+                    <SuccessfulInvestmentModal show = {showSuccessfulInvestment}/>
+                )}
+                {!!showSuccessfulResetPassword && (
+                    <SuccessfulResetPassword show = {showSuccessfulResetPassword}/>
+                )}
+                {!!showSuccessfulDeletedAccount && (
+                    <SuccessfulDeletedAccountModal show = {showSuccessfulDeletedAccount}/>
+                )}
+                {!!showConfirmationOfAccountDeletion && (
+                    <ShowConfirmationOfAccountDeletion
+                        show = {showConfirmationOfAccountDeletion}
+                    />
+                )}
+                {!!isShowQuizErrorPopup && (
+                    <QuizWrongAnswersModal show = {isShowQuizErrorPopup}/>
+                )}
+                {!!isShowSuccessfulSubscribe && (
+                    <SuccessfullySubscribedModal show = {isShowSuccessfulSubscribe}/>
+                )}
+                {!!isShowQuizRaisePopup && (
+                    <RaiseWrongAnswerModal show = {isShowQuizRaisePopup}/>
+                )}
+                {!!isShowSuccessfulRequestForChange && (
+                    <SuccessfulRequestForChange show = {isShowSuccessfulRequestForChange}/>
+                )}
+                {!!isNotificationShow && <Notification show = {isNotificationShow}/>}
+                {!!isShowInvalidTokenModal && <InvalidTokenModal show = {isShowInvalidTokenModal}/>}
+                {!!isShowSuccessfulChangeEmailOrPassword &&
+                <SuccessfulChangeEmailOrPassword show = {isShowSuccessfulChangeEmailOrPassword}/>}
+                {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show = {isShowDenyDeletingAccount}/>}
+                {!!isShowCookie && <ShowCookiePopup show = {isShowCookie}/>}
+                {!!isShowFaqPopup && <SuccessfulFaqPopup show = {isShowFaqPopup}/>}
+                {!!isShowDataLossWarning && <DataLossWarning show = {isShowDataLossWarning}/>}
+                <ScrollToTopButton/>
+            </main>
+            <Footer/>
+        </div>
+    );
 };
 
 export default RootPage;
