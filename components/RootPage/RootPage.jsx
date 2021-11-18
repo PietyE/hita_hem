@@ -195,7 +195,7 @@ const RootPage = ({ children, initLang = "" }) => {
         let timer = null;
         if (isAuth) {
             timer = new IdleTimer({
-                timeout: 60 * 10,
+                timeout: 60 * 60 * 24,
                 onTimeout: () => recaptcha('logout_on_timeout', _logOut),
                 onExpired: () => recaptcha('logout_on_expired', _logOut),
             });
