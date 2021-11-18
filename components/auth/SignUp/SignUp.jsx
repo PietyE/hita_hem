@@ -87,8 +87,10 @@ const SignUp = ({ show }) => {
           return (
               <>
                 {!!isQuizShow && <Quiz show = {isQuizShow} data = {values}/>}
-                <Form className = "auth_form">
+                <Form className = "auth_form"
+                autoComplete='off'>
                   <InputComponent
+                      type = "email"
                       labelClassName = "auth_login_container auth_container"
                       label = {t("auth.sign_up.email_label")}
                       inputClassName = "auth_input"
