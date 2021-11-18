@@ -88,11 +88,12 @@ const SignIn = ({ show }) => {
         {({ touched, errors, values, setFieldValue, setFieldError }) => (
           <Form className="auth_form">
             <InputComponent
+                type = "email"
               labelClassName="auth_login_container auth_container"
               label={t("auth.sign_in.email_label")}
               inputClassName="auth_input"
               inputName="email"
-              autoComplete = "new-password"
+                // autoComplete = "new-password"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}
@@ -111,7 +112,7 @@ const SignIn = ({ show }) => {
               label={t("auth.sign_in.password_label")}
               inputClassName="auth_input"
               inputName="password"
-              autoComplete = "new-password"
+              // autoComplete = "new-password"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}

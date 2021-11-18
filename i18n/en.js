@@ -373,7 +373,7 @@ export const en = {
             personal_id_required: 'Personal ID is a required field',
             personal_id_example: 'Example: 12345678-1234',
             phone_required: 'Phone number is a required field',
-            phone_example: 'example: +46 1234567890',
+            phone_example: 'Example: +46 1234567890',
             city_empty: '"City" cannot be empty',
             address_empty: '"Address" cannot be empty',
             first_name_empty: '"First name" cannot be empty',
