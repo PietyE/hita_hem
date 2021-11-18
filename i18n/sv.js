@@ -128,8 +128,8 @@ successful_subscribe: {
     text: "Du prenumererar nu på vårt nyhetsbrev!",
 },
 successful_reset_password: {
-    title: "Förfrågan är lyckad.",
-    text: "Var vänlig att följa instruktionerna du fått per e-post.",
+    title: "Förfrågan lyckades!",
+    text: "Vänligen följ instruktionerna skickade via e-post.",
 },
 successfulInvestment: {
     title: "Vi har nu tagit emot dina uppgifter.",
@@ -428,12 +428,12 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
-            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
+            title: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+            text: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
         },
         request_for_change_password:{
-            title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
-            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+            title: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
+            text: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
         },
         invalid_token: {
             text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',
