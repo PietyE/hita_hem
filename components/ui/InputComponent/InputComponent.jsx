@@ -24,8 +24,18 @@ const InputComponent = ({
   restrictInput,
   disabled
 }) => {
+
+  const checkType = () => {
+    if(type === "email"){
+      return "email"
+    }else{
+      return type === "password" ? "password" : "text"
+    }
+  }
+
   const [passInputType, setPassInputType] = useState(
-    type === "password" ? "password" : "text"
+    // type === "password" ? "password" : "text"
+      checkType()
   );
   const setShowPassword = () => {
     setPassInputType(passInputType === "password" ? "text" : "password");
