@@ -84,6 +84,7 @@ const Navigation = ({ className, initLang }) => {
   // };
 
   const handleSelectLang = (e) => {
+    if (locale === lang[e.target.dataset.ln].code) return;
     dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
   };
 
