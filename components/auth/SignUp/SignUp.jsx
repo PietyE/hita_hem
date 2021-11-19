@@ -87,7 +87,7 @@ const SignUp = ({ show }) => {
           return (
               <>
                 {!!isQuizShow && <Quiz show = {isQuizShow} data = {values}/>}
-                <Form className = "auth_form"c>
+                <Form className = "auth_form">
                   <InputComponent
                       type = "email"
                       labelClassName = "auth_login_container auth_container"
