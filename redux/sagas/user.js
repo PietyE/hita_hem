@@ -37,7 +37,6 @@ import {
   setShowResetPassword,
   setShowSuccessfulDeletedAccount,
   setShowConfirmationOfAccountDeleting,
-  // setShowRequestForChange,
   setShowInvalidTokenModal,
   setShowChangeEmailOrPassword,
   setChangeEmailOrPasswordText,
@@ -46,7 +45,7 @@ import {
   setShowCookiePopup,
   setShowDenyDeletingAccount,
   setShowRequestForChangeEmail,
-  setShowRequestForChangePassword,
+  setShowRequestForChangePassword, setShowFirstLoginPopup,
 } from "../actions/authPopupWindows";
 import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -536,16 +535,11 @@ function* activationTokenVerificationRequest({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "requestActivationTokenVerification"], payload);
-    // yield put(setCanResetPassword(true))
-    // yield call([api, "setToken"], payload?.key);
+    yield put(setShowFirstLoginPopup(true))
   } catch (error) {
-    // if(error?.response?.status === 401 || error?.response?.status === 404){
-    //   yield put(setShowInvalidTokenModal(true))
-    // }else{
-    //   yield put(
+      yield put(
           setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      // );
-    // }
+      );
   } finally {
     yield put(setFetchingUsers(false));
   }

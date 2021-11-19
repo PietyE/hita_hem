@@ -236,7 +236,7 @@ class AuthCRUD extends CRUD {
     return this.request({
       url,
       method: "POST",
-     data,
+      data
     });
   }
 
