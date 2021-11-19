@@ -451,7 +451,10 @@ cookie: {
             title: 'Du kan inte ta bort ditt konto.',
             text: 'För att ta bort ditt konto, vänligen kontakta våran manager - '
         },
-
+        successful_first_login: {
+            title: 'Välkommen till Accumeo!',
+            text: 'Du kan nu logga in på ditt konto.',
+        },
 
 
     },

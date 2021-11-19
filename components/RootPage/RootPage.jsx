@@ -30,6 +30,7 @@ import {
     getShowCookiePopup,
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
+    getShowFirstLoginPopup,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -103,6 +104,9 @@ const SuccessfulFaqPopup = dynamic(() =>
 const DataLossWarning = dynamic(() =>
     import("components/DataLossWarning")
 );
+const FirstLoginPopup = dynamic(() =>
+    import("components/SuccessfulFirstLogin")
+);
 
 
 const RootPage = ({ children, initLang = "" }) => {
@@ -141,6 +145,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowCookie = useSelector(getShowCookiePopup)
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
+
+    const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
 
 
     const router = useRouter()
@@ -263,6 +269,7 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
+          {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
         <ScrollToTopButton />
       </main>
       <Footer />
