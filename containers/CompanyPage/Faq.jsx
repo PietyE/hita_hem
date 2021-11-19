@@ -55,7 +55,7 @@ const Faq = () => {
         {posts &&
           posts?.length > 0 &&
           posts?.map((comment) => (
-            <CommentBlock key={comment.id} item={comment} />
+            <CommentBlock key={comment.pk} item={comment} />
           ))}
       </ul>
       <div className="faq_post_block">

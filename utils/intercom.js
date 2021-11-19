@@ -1,9 +1,9 @@
 import React from "react";
 
-export const intercomStart = ({initLang}) => {
+export const intercomStart = (initLang) => {
     window.intercomSettings = {
         app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
-        language_override: initLang,
+        language_override: initLang || 'sv',
     }
 
     const w = window;

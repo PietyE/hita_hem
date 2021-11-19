@@ -93,7 +93,7 @@ const SignIn = ({ show }) => {
               label={t("auth.sign_in.email_label")}
               inputClassName="auth_input"
               inputName="email"
-                // autoComplete = "new-password"
+                autoComplete = "username"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}
@@ -112,7 +112,7 @@ const SignIn = ({ show }) => {
               label={t("auth.sign_in.password_label")}
               inputClassName="auth_input"
               inputName="password"
-              // autoComplete = "new-password"
+              autoComplete = "current-password"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}

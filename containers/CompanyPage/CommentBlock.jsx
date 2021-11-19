@@ -6,7 +6,7 @@ import isEqual from "lodash/isEqual";
 
 const CommentBlock = ({ item }) => {
   const allPosts = useSelector(getFaqAllPostsSelector, isEqual);
-  const answer = allPosts.find((el) => el.question === item.id);
+  const answer = allPosts.find((el) => el.question === item.pk);
 
   return (
     <li className="faq_comment_item">
