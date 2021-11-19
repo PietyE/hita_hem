@@ -95,7 +95,7 @@ const SignUp = ({ show }) => {
                       label = {t("auth.sign_up.email_label")}
                       inputClassName = "auth_input"
                       inputName = "email"
-                      autoComplete = "new-password"
+                      autoComplete = "email"
                       values = {values}
                       setFieldValue = {setFieldValue}
                       setFieldError = {setFieldError}
