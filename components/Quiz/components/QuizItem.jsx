@@ -5,11 +5,11 @@ import {useTranslation} from "react-i18next";
 
 const QuizItem = ({data, index, onSelect, warningList}) => {
     const {t} = useTranslation();
-    const {id, text, answers} = data
+    const {pk, text, answers} = data
     const [showWarning, setShowWarning] = useState(null)
     const [selectedAnswer, setSelectedAnswer] = useState(null)
     useEffect(() => {
-        if (warningList.includes(id.toString())) {
+        if (warningList.includes(pk.toString())) {
             setShowWarning(true)
         }
     }, [warningList])
@@ -35,8 +35,8 @@ const QuizItem = ({data, index, onSelect, warningList}) => {
                     const _textWarning = showWarning && option.text === selectedAnswer ? 'quiz_text_warning' : null
                     const _radioWarning = showWarning && option.text === selectedAnswer ? 'quiz_item_option_radio_check_warning' : 'quiz_item_option_radio_check'
                     return (
-                        <label key = {option?.id} className = {`quiz_item_option_label ${_textWarning}`}>
-                            <input type = 'radio' value = {option.text} name = {id} data-id = {option.id}
+                        <label key = {option?.pk} className = {`quiz_item_option_label ${_textWarning}`}>
+                            <input type = 'radio' value = {option.text} name = {pk} data-id = {option.pk}
                                    onChange = {saveAnswer}
                                    className = 'quiz_item_option_radio'/>
                             <div className = {_radioWarning}>

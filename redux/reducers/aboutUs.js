@@ -11,7 +11,7 @@ const initialState = {
     header_image: "",
     header_image_list: [],
     header_title: "",
-    id: "",
+    pk: "",
     name: "",
     subscribe_title: "",
     flat_blocks: [],

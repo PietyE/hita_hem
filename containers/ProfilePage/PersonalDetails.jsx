@@ -284,7 +284,7 @@ const PersonalDetails = ({
                           />
                           {months.map((el) => {
                             return (
-                              <option key={el.id} value={el.id}>
+                              <option key={el.pk} value={el.pk}>
                                 {language === "en" ? el.month : el.monthSw}
                               </option>
                             );

@@ -30,7 +30,7 @@ const initialsState = {
   quizQuestions:[],
   quizErrors: null,
   account: {
-    id: "",
+    pk: "",
     email: "",
     quiz: false,
 
@@ -89,7 +89,7 @@ export const getUserSelector = (state) => state.user;
 export const getUserCampaignsSelector = (state) => state.user.user?.companies;
 export const getUserPaymentsSelector = (state) => state.user.user?.payments;
 export const getPaymentsByCurrentCompanySelector = (state) => {
-  const companyId = state.companies.companyDetail.id;
+  const companyId = state.companies.companyDetail.pk;
   let filteredPayments = [];
   if (state.user?.user?.payments?.length > 0) {
     filteredPayments = state.user?.user?.payments?.filter(
@@ -108,7 +108,7 @@ export const getTotalPaymentsByCompanySelector = (state) => {
 
 export const isSuccessfulResponseFromApiSelector = state => state.user.isSuccessfulResponseFromApi
 export const getIsPaymentsWasSelector = state => !!state.user?.user?.payments?.length
-export const getUserIdSelector = (state) => state.user.account.id;
+export const getUserIdSelector = (state) => state.user.account.pk;
 export const getFullNameSelector = (state) => {
   if(state.user?.user?.first_name && state.user?.user?.second_name){
     return   state.user?.user?.first_name + ' ' + state.user?.user?.second_name
