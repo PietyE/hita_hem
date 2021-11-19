@@ -22,6 +22,7 @@ import {
   SET_SHOW_COOKIE,
   SET_SHOW_SUCCESSFUL_FAQ_POST,
   SET_SHOW_DATA_LOSS_WARNING,
+  SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -134,5 +135,10 @@ export const setShowSuccessfulFAQPopup = payload =>({
 
 export const setShowDataLossWarning = payload =>({
   type: SET_SHOW_DATA_LOSS_WARNING,
+  payload,
+})
+
+export const setShowFirstLoginPopup = payload =>({
+  type: SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
   payload,
 })

@@ -32,6 +32,7 @@ import {
   SET_CAN_RESET_PASSWORD,
   REQUEST_FOR_RESET_PASSWORD,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
+  CHECK_ACTIVATION_TOKEN,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -192,4 +193,10 @@ export const setQuizIsPassed = payload => ({
 export const fetchProfileFromApi = () => ({
   type: GET_PROFILE_FROM_API,
 })
+
+export const checkActivationToken = payload => ({
+  type: CHECK_ACTIVATION_TOKEN,
+  payload
+})
+
 

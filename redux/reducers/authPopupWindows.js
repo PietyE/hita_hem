@@ -22,6 +22,7 @@ import {
   SET_SHOW_COOKIE,
   SET_SHOW_SUCCESSFUL_FAQ_POST,
   SET_SHOW_DATA_LOSS_WARNING,
+  SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -46,6 +47,7 @@ const initialValues = {
   showDenyDeletingAccount:false,
   showSuccessfulFaqPopup: false,
   showDataLossWarning: false,
+  showFirstLoginPopup: false,
   text: '',
   showCookie: false,
 };
@@ -82,6 +84,7 @@ export const getChangeEmailOrPasswordText = state =>  state.authPopupWindows.tex
 export const getShowDenyDeletingAccount = state =>  state.authPopupWindows.showDenyDeletingAccount;
 export const getShowSuccessfulFaqPopup = state =>  state.authPopupWindows.showSuccessfulFaqPopup;
 export const getShowDataLossWarning = state =>  state.authPopupWindows.showDataLossWarning;
+export const getShowFirstLoginPopup = state => state.authPopupWindows.showFirstLoginPopup;
 
 
 
@@ -132,6 +135,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showDenyDeletingAccount: actions.payload }
     case SET_SHOW_DATA_LOSS_WARNING:
       return { ...state, showDataLossWarning: actions.payload }
+    case SET_SHOW_SUCCESSFUL_FIRST_LOGIN:
+      return { ...state, showFirstLoginPopup: actions.payload }
     case SET_SHOW_COOKIE:
       return { ...state, showCookie: actions.payload }
     default:
