@@ -93,7 +93,7 @@ const SignIn = ({ show }) => {
               label={t("auth.sign_in.email_label")}
               inputClassName="auth_input"
               inputName="email"
-                autoComplete = "email"
+                autoComplete = "username"
               values={values}
               setFieldValue={setFieldValue}
               setFieldError={setFieldError}
