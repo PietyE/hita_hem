@@ -42,13 +42,13 @@ function* getCompaniesHeaderListWorker() {
     const _title =
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
     const investCampaignList = data?.results?.map((el) => ({
-      id: el.id,
+      pk: el.pk,
       status: el.status,
       title: el.investment_page_title,
       description: el.investment_page_description,
       image_list: el.header_image_list,
       first_button_title: _title,
-      first_button_url: language === "en"?`/company/${el.id}`:`/sv/company/${el.id}`,
+      first_button_url: language === "en"?`/company/${el.pk}`:`/sv/company/${el.pk}`,
     }));
     yield put(setInvestCompaniesList(investCampaignList));
   } catch (error) {
@@ -126,7 +126,7 @@ function* addAnswer({ payload }) {
     let userId = yield select(getUserIdSelector);
     yield call([companies, "addFaqPost"], {
    data: {
-      question: payload?.data?.id,
+      question: payload?.data?.pk,
           company: campaignId,
         user: userId,
         description: payload?.data?.post,

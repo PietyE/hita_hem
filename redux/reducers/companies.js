@@ -37,7 +37,7 @@ const setFilter = (state, actions) => {
 const initialState = {
   companiesList: [],
   companyDetail: {
-    id: "",
+    pk: "",
     logo: "",
     short_description: "",
     website: "",
@@ -52,7 +52,7 @@ const initialState = {
     country: "",
     valuation: null,
     user: {
-      id: "",
+      pk: "",
       username: "",
       email: "",
       last_login: "",
@@ -178,7 +178,7 @@ export const getInvestHeaderCompanyListSelector = (state) =>
 
 export const getFilterSelector = (state) => state.companies.filter;
 
-export const getCompanyIdSelector = (state) => state.companies.companyDetail.id;
+export const getCompanyIdSelector = (state) => state.companies.companyDetail.pk;
 
 export const getFinDocumentSelector = (state) =>
   state.companies.companyDetail.companydocument_set;
@@ -277,7 +277,7 @@ export const getBusinessShapePriceSelector = (state) =>
   state.companies.companyDetail.price;
 
 export const getIsOwnerSelector = (state) => {
-  return state.user.account.id === state.companies.companyDetail.user;
+  return state.user.account.pk === state.companies.companyDetail.user;
 };
 
 export const getFaqAllPostsSelector = (state) => state.companies.faq_posts;
@@ -295,9 +295,9 @@ export const canUserInvestSelector = (state) => {
   const status = state.companies.companyDetail.status;
   if (status === 1) {
     if (state.companies.companyDetail.private_mode) {
-      const currentUserId = state.user?.account?.id;
+      const currentUserId = state.user?.account?.pk;
       return state.companies.companyDetail.private_mode_viewers.find((el) => {
-        return el.id === currentUserId;
+        return el.pk === currentUserId;
       });
     } else {
       return true;

@@ -22,7 +22,7 @@ const CampaignsCard = (props) => {
   const { t } = useTranslation();
   const { className } = props;
   const {
-    id,
+    pk,
     logo,
     status,
     country,
@@ -46,7 +46,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
       {!!props?.content && (
         <li className={`campaigns_card ${className}`}>
           <Link
-            as={`/company/${id}`}
+            as={`/company/${pk}`}
             href={"/company/[companyId]"}
             prefetch={false}
           >
@@ -59,7 +59,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
             />
           </Link>
           <Link
-            as={`/company/${id}`}
+            as={`/company/${pk}`}
             href={"/company/[companyId]"}
             prefetch={false}
           >
@@ -96,7 +96,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
 
             <div className="campaigns_card_text_wrapper">
               <Link
-                as={`/company/${id}`}
+                as={`/company/${pk}`}
                 href={"/company/[companyId]"}
                 prefetch={false}
               >
@@ -129,7 +129,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
               colorStyle="outline-green"
               className="campaigns_card_button"
               as={LinkStyled}
-              to={`/company/${id}`}
+              to={`/company/${pk}`}
               title="This link leads to the company detail page"
             >
               {t("campaigns_card.button")}
