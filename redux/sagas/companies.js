@@ -126,7 +126,7 @@ function* addAnswer({ payload }) {
     let userId = yield select(getUserIdSelector);
     yield call([companies, "addFaqPost"], {
    data: {
-      question: payload?.data?.pk,
+      question: payload?.data?.id,
           company: campaignId,
         user: userId,
         description: payload?.data?.post,
