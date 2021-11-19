@@ -230,6 +230,16 @@ class AuthCRUD extends CRUD {
             },
         });
     }
+
+  requestActivationTokenVerification(data) {
+    const url = `${this.url}/activation/`;
+    return this.request({
+      url,
+      method: "POST",
+     data,
+    });
+  }
+
 }
 
 export default function authCRUD(request) {

@@ -19,6 +19,7 @@ import {
     GET_QUIZ, CHECK_QUIZ_ANSWERS,
   GET_PROFILE_FROM_API,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
+  CHECK_ACTIVATION_TOKEN,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -530,6 +531,29 @@ function* passwordResetTokenVerificationRequest({payload}) {
 
 
 
+
+function* activationTokenVerificationRequest({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "requestActivationTokenVerification"], payload);
+    // yield put(setCanResetPassword(true))
+    // yield call([api, "setToken"], payload?.key);
+  } catch (error) {
+    // if(error?.response?.status === 401 || error?.response?.status === 404){
+    //   yield put(setShowInvalidTokenModal(true))
+    // }else{
+    //   yield put(
+          setAuthError({ status: error?.response?.status, data: error?.response?.data })
+      // );
+    // }
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
+
+
 function* clean() {
   yield put(setAccount({}));
   yield put(setToken({}));
@@ -573,6 +597,9 @@ export function* userWorker() {
   yield takeEvery(GET_QUIZ, requestForQuiz)
   yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
   yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
+  yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
+
+
 
 }
 

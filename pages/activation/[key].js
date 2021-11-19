@@ -1,8 +1,8 @@
 import React, {useCallback, useEffect} from 'react';
 import {useRouter} from 'next/router'
 import {useDispatch, useSelector} from "react-redux";
-import {makeRequestForCheckingToken} from "redux/actions/user";
-import {CHANGE_EMAIL} from "constants/routesConstant";
+import {checkActivationToken} from "redux/actions/user";
+import {CHANGE_EMAIL, HOME_ROUTE} from "constants/routesConstant";
 import {getCanChangeEmailSelector, getIsFetchingAuthSelector, getIsSignInUserSelector} from "redux/reducers/user";
 import SpinnerStyled from "../../components/ui/Spinner";
 import {setShowSignIn} from "redux/actions/authPopupWindows";
@@ -12,13 +12,13 @@ const firstLoginCheckKey = () => {
     const dispatch = useDispatch();
     const history = useRouter();
     const router = useRouter()
-    const isFetching = useSelector(getIsFetchingAuthSelector)
+    // const isFetching = useSelector(getIsFetchingAuthSelector)
     // const canChangeEmail = useSelector(getCanChangeEmailSelector)
     // const isAuth = useSelector(getIsSignInUserSelector);
 
-    const _makeRequestForCheckingToken = useCallback(
+    const _checkActivationToken = useCallback(
         (data) => {
-            dispatch(makeRequestForCheckingToken(data));
+            dispatch(checkActivationToken(data));
         },
         [dispatch]
     );
@@ -34,10 +34,11 @@ const firstLoginCheckKey = () => {
     // }, [isAuth])
 
     useEffect(() => {
-        if (router?.query?.key ) {
-            _makeRequestForCheckingToken({key:router?.query?.key , type:'email'})
-        }
-    }, [_makeRequestForCheckingToken])
+        // if (router?.query?.key ) {
+            _checkActivationToken({key:router?.query?.key})
+        history.push(HOME_ROUTE)
+        // }
+    }, [_checkActivationToken])
 
     // useEffect(() => {
     //     if (canChangeEmail) {
@@ -47,7 +48,7 @@ const firstLoginCheckKey = () => {
     return (
         <>
 
-            {isFetching && <SpinnerStyled/>}
+            <SpinnerStyled/>
         </>
     );
 }
