@@ -52,7 +52,7 @@ const CommentItem = ({ data, className, complete }) => {
             <Button
               colorStyle="outline-green"
               className="comment_item_button"
-              onClick={() => setShowModal(data.id)}
+              onClick={() => setShowModal(data.pk)}
             >
               {t("company_page.faq.button")}
             </Button>
