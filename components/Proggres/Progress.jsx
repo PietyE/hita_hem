@@ -21,7 +21,7 @@ const Progress = ({
   } else if (status === 3) {
     dayLeftValue = `${daysLeftToEnd} ${t("company_page.company_days_left")}`;
   } else if(status === 1) {
-    dayLeftValue = `${daysLeftToStart} ${t("company_page.company_days_left")}`;
+    dayLeftValue = `${daysLeftToStart} ${t("company_page.company_days_left_to_start")}`;
   }
 
   return (

@@ -196,6 +196,7 @@ export const en = {
             company_completed: "Completed",
             company_successfully_closed: "Successfully closed",
             company_days_left: "days left",
+            company_days_left_to_start: "days left until launch",
             button_invest: "I am interested",
             button_contact: "Contact sales",
             button_read_more: "Read more",
