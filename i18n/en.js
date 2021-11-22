@@ -359,7 +359,7 @@ export const en = {
             email_example: 'Example: test@test.com',
             email_required: 'Email is a required field',
             password_required: 'Password is a required field',
-            password_example: 'Password must have at least 8 characters that include at least 1 uppercase character, 1 number and 1 special character in (!@#$%^&*)',
+            password_example: 'The password must contain at least eight characters, at least one capital letter and at least one number.',
             new_password_required: 'New password is a required field',
             confirm_password_required: 'Confirm password is a required field',
             password_match: 'Password does not match',
