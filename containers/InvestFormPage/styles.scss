@@ -428,13 +428,13 @@
             }
             .profile_form_footer {
               position: absolute;
-              bottom: -65px;
+              bottom: -85px;
               width: 100%;
               transform: translateX(-23px);
               padding-left: 8px;
             }
             .profile_form_agreement{
-              font-size: 12px;
+              font-size: 10px;
               .profile_form_checkbox{
                 height: 14px;
                 width: 14px;
@@ -454,6 +454,39 @@
     .profile_form_button_cancel{
       margin-right: auto;
       margin-left: 0;
+    }
+  }
+}
+
+
+@media screen and (max-width: 470px) {
+  .invest_form_section {
+    .invest_form_profile_container {
+      .profile_personal_details {
+        .profile_form {
+          .profile_form_data_container {
+            .profile_form_footer{
+              bottom: -97px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .invest_form_section {
+    .invest_form_profile_container {
+      .profile_personal_details {
+        .profile_form {
+          .profile_form_data_container {
+            .profile_form_footer{
+              bottom: -105px;
+            }
+          }
+        }
+      }
     }
   }
 }

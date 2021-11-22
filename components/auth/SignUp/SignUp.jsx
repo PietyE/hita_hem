@@ -14,6 +14,7 @@ import {passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {getQuiz} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 
 const Quiz = dynamic(() =>
     import("components/Quiz")
@@ -137,13 +138,14 @@ const SignUp = ({ show }) => {
               </span>
                   </label>
                   <a
-                      target = "_blank"
-                      rel = "noopener noreferrer"
+                        target = "_blank"
+                        rel = "noopener noreferrer"
                       href = {documentUrl?.file || documentUrl?.url}
                       className = "sign_up_password_link"
                   >
                     {t("auth.sign_up.agreement_link")}
                   </a>
+                  <CaptchaPrivacyBlock/>
                   <Button
                       type = "submit"
                       colorStyle = {"dark-green"}

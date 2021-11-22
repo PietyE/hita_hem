@@ -19,9 +19,9 @@ const Progress = ({
   } else if (status === 4) {
     dayLeftValue = t("company_page.company_successfully_closed");
   } else if (status === 3) {
-    dayLeftValue = `${daysLeftToEnd} ${t("company_page.company_days_left")}`;
+    dayLeftValue = daysLeftToEnd === 1 ? `${daysLeftToEnd} ${t("company_page.company_day_left")}` : `${daysLeftToEnd} ${t("company_page.company_days_left")}`;
   } else if(status === 1) {
-    dayLeftValue = `${daysLeftToStart} ${t("company_page.company_days_left_to_start")}`;
+    dayLeftValue = daysLeftToStart === 1 ? `${daysLeftToStart} ${t("company_page.company_day_left_to_start")}` :`${daysLeftToStart} ${t("company_page.company_days_left_to_start")}`;
   }
 
   return (

@@ -196,7 +196,9 @@ export const en = {
             company_completed: "Completed",
             company_successfully_closed: "Successfully closed",
             company_days_left: "days left",
+            company_day_left: "day left",
             company_days_left_to_start: "days left until launch",
+            company_day_left_to_start: "day left until launch",
             button_invest: "I am interested",
             button_contact: "Contact sales",
             button_read_more: "Read more",
@@ -457,6 +459,14 @@ export const en = {
         successful_first_login: {
             title: 'Welcome to Accumeo!',
             text: 'You can now access your account.',
+        },
+        privacy_policy: {
+            text1: 'This site is protected by reCAPTCHA and the Google ',
+            link1:'Privacy Policy ',
+            text2:'and ',
+            link2:"Terms of Service ",
+            text3: 'apply.',
+
         },
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',

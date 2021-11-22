@@ -13,6 +13,7 @@ import { addFaqPost, getFaqPosts } from "redux/actions/companies";
 import { useTranslation } from "react-i18next";
 // import {filterComments} from "../../utils/restrictInput";
 import {recaptcha} from "../../utils/recaptcha";
+import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
 
 const Faq = () => {
   const { t } = useTranslation();
@@ -62,6 +63,7 @@ const Faq = () => {
         <h3 className="faq_post_title">{t("company_page.faq.faq_title")}</h3>
         <form className="faq_post_form" onSubmit={handleSubmit}>
           <textarea className="faq_post_input"></textarea>
+
           <Button
             type="submit"
             colorStyle="dark-green"
@@ -78,6 +80,8 @@ const Faq = () => {
             <Image src={iconMessage} alt="message" />
           </Button>
         </form>
+        <CaptchaPrivacyBlock className='faq_pos_captcha_text'/>
+
       </div>
     </section>
   );

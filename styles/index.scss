@@ -85,3 +85,17 @@ button {
   z-index: 9999;
   bottom: 122px !important;
 }
+
+.captcha_text{
+  font-family: Mulish, sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 22px;
+  margin-bottom: 0;
+  color: rgba(0, 0, 0, 0.38);
+}
+
+.captcha_link{
+  color: #3C64B1;
+}

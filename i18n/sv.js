@@ -193,8 +193,11 @@ company_page: {
         company_completed: "Avslutad",
         company_successfully_closed: "Stängd",
         company_days_left: "dagar kvar",
+    company_day_left: "dag kvar",
     company_days_left_to_start: "dagar tills lansering",
-        button_invest: "Anmäl intresse",
+    company_day_left_to_start: "dag tills lansering",
+
+    button_invest: "Anmäl intresse",
         button_contact: "Fortfarande intresserad? Kontakta oss",
     button_read_more: "Läs mer",
         button_show_more: "Visa mer",
@@ -455,6 +458,14 @@ cookie: {
         successful_first_login: {
             title: 'Välkommen till Accumeo!',
             text: 'Du kan nu logga in på ditt konto.',
+        },
+        privacy_policy: {
+            text1: 'Den här webbplatsen skyddas av reCAPTCHA - Googles ',
+            link1:'sekretesspolicy ',
+            text2:'och ',
+            link2:"användarvillkor ",
+            text3: 'gäller.',
+
         },
 
 
