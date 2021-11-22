@@ -369,7 +369,7 @@ errors: {
     email_example: 'Exempel: test@test.com',
         email_required: 'E-postadress ej ifyllt',
         password_required: 'Lösenord är nödvändigt',
-        password_example: 'Lösenord måste ha minst 8 tecken och inkludera minst en stor bokstav, ett nummer och ett specialtecken (!@#$%^&*)',
+        password_example: 'Lösenordet måste innehålla minst åtta tecken, minst en stor bokstav och minst en siffra.',
         new_password_required: 'Du måste fylla i ett nytt lösenord',
         confirm_password_required: 'Bekräfta lösenord är ett obligatoriskt fält',
         password_match: 'Lösenord matchar inte',
