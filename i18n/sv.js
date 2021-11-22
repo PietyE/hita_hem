@@ -193,6 +193,7 @@ company_page: {
         company_completed: "Avslutad",
         company_successfully_closed: "Stängd",
         company_days_left: "dagar kvar",
+    company_days_left_to_start: "dagar tills lansering",
         button_invest: "Anmäl intresse",
         button_contact: "Fortfarande intresserad? Kontakta oss",
     button_read_more: "Läs mer",
