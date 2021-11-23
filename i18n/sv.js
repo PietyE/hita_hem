@@ -196,8 +196,7 @@ company_page: {
     company_day_left: "dag kvar",
     company_days_left_to_start: "dagar tills lansering",
     company_day_left_to_start: "dag tills lansering",
-
-    button_invest: "Anmäl intresse",
+        button_invest: "Anmäl intresse",
         button_contact: "Fortfarande intresserad? Kontakta oss",
     button_read_more: "Läs mer",
         button_show_more: "Visa mer",
