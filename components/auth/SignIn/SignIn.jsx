@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
 
 import InputComponent from "components/ui/InputComponent";
+import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import Modal from "components/ui/Modal";
 import Button from "components/ui/Button";
 import {
@@ -123,6 +124,7 @@ const SignIn = ({ show }) => {
               placeholder={t("auth.sign_in.password_placeholder")}
               iconClassName="auth_password_eye"
             />
+            <CaptchaPrivacyBlock/>
             <Button
               type="submit"
               colorStyle={"dark-green"}

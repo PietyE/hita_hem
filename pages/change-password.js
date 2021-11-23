@@ -17,6 +17,7 @@ import Button from "../components/ui/Button";
 import {useRouter} from "next/router";
 import {HOME_ROUTE} from "../constants/routesConstant";
 import {recaptcha} from "../utils/recaptcha";
+import CaptchaPrivacyBlock from "../components/CaptchaPrivacyBlock";
 
 const ChangePassword = () => {
     const history = useRouter();
@@ -166,6 +167,7 @@ const ChangePassword = () => {
                     );
                 }}
             </Formik>
+            <CaptchaPrivacyBlock/>
         </Modal>)
             }
             </>

@@ -351,6 +351,8 @@ profile_page: {
         footer_text1: 'Om du vill ändra dina personuppgifter kan du göra det via ditt konto, eller genom att klicka ',
         footer_link: 'här',
         footer_text2: '.',
+        company_number_text: 'Jag investerar genom juridisk person',
+        company_number_placeholder: 'Organisationsnummer',
 
     },
 },
@@ -457,6 +459,14 @@ cookie: {
         successful_first_login: {
             title: 'Välkommen till Accumeo!',
             text: 'Du kan nu logga in på ditt konto.',
+        },
+        privacy_policy: {
+            text1: 'Den här webbplatsen skyddas av reCAPTCHA - Googles ',
+            link1:'sekretesspolicy ',
+            text2:'och ',
+            link2:"användarvillkor ",
+            text3: 'gäller.',
+
         },
 
 

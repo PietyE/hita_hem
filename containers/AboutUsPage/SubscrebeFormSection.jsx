@@ -7,6 +7,7 @@ import Button from "components/ui/Button";
 import { validateEmail } from "utils/utils";
 import { addEmail } from "redux/actions/aboutUs";
 import {recaptcha} from "../../utils/recaptcha";
+import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
 
 const SubscrebeFormSection = ({ content = [] }) => {
   const { t } = useTranslation();
@@ -75,6 +76,7 @@ const SubscrebeFormSection = ({ content = [] }) => {
           <p className="subscribe_form_warning_text">{t("errors.email_example")}</p>
         )}
       </InputGroup>
+        <CaptchaPrivacyBlock className='about_us_captcha_text'/>
       <span className="subscribe_form_section_below_message">
         {t("about_us_page.text")}
       </span>
