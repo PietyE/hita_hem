@@ -355,6 +355,8 @@ export const en = {
                 footer_text1: 'To edit your personal data, go to the ',
                 footer_link: 'Personal details',
                 footer_text2: ' section in your Personal Account',
+                company_number_text: 'I invest through a company',
+                company_number_placeholder: 'Company number',
             },
         },
         errors: {
@@ -468,6 +470,7 @@ export const en = {
             text3: 'apply.',
 
         },
+
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
     },
