@@ -175,7 +175,8 @@ function* makePayment({ payload }) {
           yield call([companies, "makePayment"], {
           data: {user: userId,
             company: campaignId,
-            amount: payload?.data?.data.amount,
+            amount: payload?.data?.data?.amount,
+            company_number_invest: payload?.data?.data?.company_number_invest
           },
             token: payload.token,
           });
@@ -187,7 +188,8 @@ function* makePayment({ payload }) {
         yield call([companies, "makePayment"], {
         data:{user: userId,
           company: campaignId,
-          amount: payload.data.data.amount,
+          amount: payload?.data?.data?.amount,
+          company_number_invest: payload?.data?.data?.company_number_invest
         },
           token: payload.token
         });

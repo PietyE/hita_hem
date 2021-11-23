@@ -351,6 +351,8 @@ profile_page: {
         footer_text1: 'Om du vill ändra dina personuppgifter kan du göra det via ditt konto, eller genom att klicka ',
         footer_link: 'här',
         footer_text2: '.',
+        company_number_text: 'Jag investerar genom juridisk person',
+        company_number_placeholder: 'Organisationsnummer',
 
     },
 },

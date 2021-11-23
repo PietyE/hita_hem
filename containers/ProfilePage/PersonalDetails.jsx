@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import {Formik, Form, Field} from "formik";
@@ -40,7 +40,7 @@ const PersonalDetails = ({
                          }) => {
     const {t} = useTranslation();
     const history = useRouter();
-
+    const companyInputRef = useRef(null)
     const errorHandlerHook = useProfileErrorHandler();
     const dispatch = useDispatch();
     const profile = useSelector(getProfile, isEqual);
@@ -93,6 +93,8 @@ const PersonalDetails = ({
     })
 
     const [valuesFromApi, setValuesFromApi] = useState(null);
+    const [companyNumber, setCompanyNumber] = useState('')
+    const [isCompanyInvest, setIsCompanyInvest] = useState(false)
     useEffect(() => {
         if (!isEmpty(profile)) {
             setValuesFromApi(profile);
@@ -115,6 +117,20 @@ const PersonalDetails = ({
 
     const documentUrl = useSelector(getPrivacyPolicyDocument);
     const usersId = useSelector(getUserIdSelector)
+
+    const handleInput = (e) => {
+        setCompanyNumber(e.target.value)
+    }
+
+    useEffect(()=>{
+        if(isCompanyInvest){
+            companyInputRef.current.focus()
+        }
+    },[isCompanyInvest])
+
+    const handleChangeCompanyCheckbox = () => {
+        setIsCompanyInvest(!isCompanyInvest)
+    }
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -146,7 +162,6 @@ const PersonalDetails = ({
         } else {
             dataForApi.image = null;
         }
-
         return dataForApi;
     };
 
@@ -164,7 +179,8 @@ const PersonalDetails = ({
 
     const onSubmitInvest = (values) => {
         const dataForApi = prepareDataForApi(values);
-        recaptcha('create_profile_in_invest_form', onMakePayment, {profile: dataForApi, amount: currentInvestment})
+        const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber} : {profile: dataForApi, amount: currentInvestment}
+        recaptcha('create_profile_in_invest_form', onMakePayment, investData)
         // onMakePayment({ profile: dataForApi, amount: currentInvestment });
     };
 
@@ -176,7 +192,6 @@ const PersonalDetails = ({
     }
 
     const years = createYearList();
-
     return (
         <section className = {`profile_personal_details ${sectionClassName}`}>
             {!type && (
@@ -511,7 +526,35 @@ const PersonalDetails = ({
                                             </a>
                                         </div>
                                     )}
-                                    <SplitLine className = "profile_form_split_line"/>
+                                        {!type && <SplitLine className = "profile_form_split_line"/>}
+                                        {type && (
+                                            <div className="company_number_block">
+                                                <label className='company_number_label'>
+                                                    <input
+                                                        type='checkbox'
+                                                        className='company_number_block_checkbox'
+                                                        checked={isCompanyInvest}
+                                                        onChange={handleChangeCompanyCheckbox}
+                                                    />
+                                                    {t("profile_page.personal.company_number_text")}
+                                                </label>
+                                                <input
+                                                    type='text'
+                                                    className='profile_form_input company_number_block_input'
+                                                    placeholder={t("profile_page.personal.company_number_placeholder")}
+                                                    value={companyNumber}
+                                                    autoFocus={true}
+                                                    onChange={handleInput}
+                                                    disabled={!isCompanyInvest}
+                                                    // ref={companyInputRef => {
+                                                    //     if(isCompanyInvest){
+                                                    //         companyInputRef?.focus()
+                                                    //     }
+                                                    // }}
+                                                    ref={companyInputRef}
+                                                />
+                                            </div>
+                                        )}
                                     <div className = {_footerStyles}>
                                         <CaptchaPrivacyBlock className='profile_form_captcha_text'/>
                                         <div className='profile_form_footer_button_wrapper'>
