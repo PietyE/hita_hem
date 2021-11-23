@@ -458,6 +458,14 @@ cookie: {
             title: 'Välkommen till Accumeo!',
             text: 'Du kan nu logga in på ditt konto.',
         },
+        privacy_policy: {
+            text1: 'Den här webbplatsen skyddas av reCAPTCHA - Googles ',
+            link1:'sekretesspolicy ',
+            text2:'och ',
+            link2:"användarvillkor ",
+            text3: 'gäller.',
+
+        },
 
 
     },

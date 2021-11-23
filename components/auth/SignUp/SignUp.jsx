@@ -15,7 +15,7 @@ import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {checkEmailAndPassword} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
-
+import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
@@ -146,6 +146,7 @@ const SignUp = ({ show }) => {
                   >
                     {t("auth.sign_up.agreement_link")}
                   </a>
+                  <CaptchaPrivacyBlock/>
                   <Button
                       type = "submit"
                       colorStyle = {"dark-green"}

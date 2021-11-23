@@ -15,6 +15,7 @@ import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {checkingAndEditingLink} from "../../utils/utils";
 import {recaptcha} from "../../utils/recaptcha";
 import * as yup from 'yup';
+import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
 
 const FormPage4 = ({ changePage, formNumber, data }) => {
   const { t } = useTranslation();
@@ -108,6 +109,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
             className="raise_form_comment_area"
           />
           <SplitLine className="raise_form_split_line" />
+          <CaptchaPrivacyBlock/>
           <div className="raise_form_footer">
             <label className="raise_agreement">
               <Field

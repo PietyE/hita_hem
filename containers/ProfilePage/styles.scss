@@ -248,6 +248,26 @@
         background: rgba(246, 86, 71, 0.1);
         border: 1px solid #ff4d4f;
       }
+      .profile_form_agreement {
+        display: flex;
+        align-items: center;
+        color: #000;
+
+        .profile_form_checkbox {
+          margin-right: 8px;
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          background: #1f607c;
+          border-radius: 2px;
+        }
+
+        .profile_form_agreement_link {
+          color: #3e77b5;
+          margin-left: 5px;
+          cursor: pointer;
+        }
+      }
     }
 
     .profile_form_footer_text{
@@ -274,25 +294,14 @@
       align-items: center;
       justify-content: space-between;
 
-      .profile_form_agreement {
+      .profile_form_captcha_text{
+        max-width: 80%;
+        padding-right: 5px;
+        text-align: left;
+        font-size: 12px;
+      }
+      .profile_form_footer_button_wrapper{
         display: flex;
-        align-items: center;
-        color: #000;
-
-        .profile_form_checkbox {
-          margin-right: 8px;
-          cursor: pointer;
-          width: 20px;
-          height: 20px;
-          background: #1f607c;
-          border-radius: 2px;
-        }
-
-        .profile_form_agreement_link {
-          color: #3e77b5;
-          margin-left: 5px;
-          cursor: pointer;
-        }
       }
     }
   }
@@ -303,11 +312,15 @@
     font-size: 16px;
     line-height: 150%;
     color: #1f607c;
-    margin-left: auto;
-    margin-right: 40px;
+    margin-left: 25px;
+    margin-right: 25px;
   }
   .profile_form_agreement_button {
     height: 48px;
+    min-width: 86px;
+  }
+  .profile_form_agreement_button_big{
+    min-width: 135px;
   }
 }
 
@@ -926,7 +939,7 @@
 @media screen and (max-width: 580px) {
   .profile_section {
   }
-  .profile_section_mobile {
+  .profile_section_mobile, .invest_form_section  {
     .profile_personal_details {
       .profile_form {
         .profile_form_upload_avatar_settings {
@@ -1031,16 +1044,45 @@
             transform: translateX(-23px);
             padding-left: 8px;
             padding-right: 8px;
+
+            .profile_form_captcha_text{
+              padding-left: 23px;
+              font-size: 10px;
+            }
+
           }
-          .profile_form_agreement {
-            padding-left: 15px;
-            font-size: 12px;
-            .profile_form_checkbox {
-              height: 14px;
-              width: 14px;
-              margin-right: 3px;
+          .profile_form_footer_column{
+            flex-direction: column-reverse;
+            bottom: -113px;
+            .profile_form_footer_button_wrapper{
+              margin-bottom: 15px;
+              width: 100%;
+              .profile_form_button_cancel{
+                margin-right: auto;
+              }
+              .profile_form_agreement_button{
+                margin-right: 25px;
+              }
+            }
+            .profile_form_captcha_text{
+              text-align: center;
+              padding-right: 0;
+              padding-left: 0;
+              width: 100%;
             }
           }
+          .profile_form_agreement {
+            //padding-left: 15px;
+            //font-size: 12px;
+            .profile_form_checkbox {
+              //height: 14px;
+              //width: 14px;
+              //margin-right: 3px;
+            }
+          }
+        }
+        .data_container_for_edit{
+          margin-bottom: 130px;
         }
 
         .profile_form_upload_avatar_settings {
@@ -1049,11 +1091,15 @@
       }
       .profile_form_button_cancel {
         margin-left: 25px;
-        margin-right: auto;
+        margin-right: 25px;
       }
     }
     .profile_form_agreement_button {
       height: 42px;
+      min-width: 86px;
+    }
+    .profile_form_agreement_button_big{
+      min-width: 135px;
     }
   }
   .account_settings_container {
@@ -1199,10 +1245,16 @@
           }
           .profile_form_footer {
             padding-left: 0;
+
+            .profile_form_captcha_text{
+              font-size: 8px;
+            }
+
+
           }
           .profile_form_agreement {
-            padding-left: 5px;
-            font-size: 9px;
+            //padding-left: 5px;
+            font-size: 11px;
           }
         }
       }
@@ -1243,6 +1295,22 @@
       .profile_form {
         .profile_form_input_container {
             font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 317px) {
+  .profile_section_mobile {
+    .profile_personal_details {
+      .profile_form {
+        .profile_form_data_container {
+          .profile_form_footer {
+            .profile_form_captcha_text {
+              font-size: 7px;
+            }
+          }
         }
       }
     }

@@ -13,6 +13,7 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import {recaptcha} from "../../../utils/recaptcha";
 import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
 import * as yup from "yup";
+import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
@@ -83,6 +84,7 @@ const ResetPassword = ({ show }) => {
                     clearError = {errorHandlerHook?.clearAuthErrorFromApi}
                     placeholder = {t("auth.resetPasswordPopup.placeholder")}
                 />
+                <CaptchaPrivacyBlock/>
                 <Button
                     type = "submit"
                     colorStyle = {"dark-green"}

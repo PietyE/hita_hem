@@ -781,7 +781,7 @@
   }
   .faq_post_block {
     width: calc(100% + 460px);
-    padding: 30px 230px 70px 230px;
+    padding: 30px 230px 40px 230px;
     transform: translateX(-230px);
     background: rgba(220, 232, 248, 0.5);
 
@@ -825,11 +825,18 @@
     .faq_post_button_small {
       display: none;
     }
+    .faq_pos_captcha_text{
+      padding-top: 15px;
+    }
+
   }
 }
 .faq_answer_modal {
   padding-top: 0;
   padding-right: 0 !important;
+  .faq_answer_captcha_text{
+    margin-bottom: 15px;
+  }
   .faq_answer_modal_dialog {
     box-shadow: 0 0 rgba(0, 0, 0, 0);
 
