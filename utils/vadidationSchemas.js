@@ -10,3 +10,5 @@ export const websiteRegExp = /^(http:\/\/|https:\/\/|)+[a-z0-9]+([\-\.]{1}[a-z0-
 const urlRegExp = /^(http:\/\/|https:\/\/)+[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
 //eslint-disable-next-line
 export const personalIdRegExp =  /^([a-zA-Z\d]{1})([+/a-z A-Z\d-\.,]{6,11})([a-zA-z1\d]{1})$/
+
+export const emailRegExp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,6}))$/
