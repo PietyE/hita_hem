@@ -168,6 +168,13 @@ const PersonalDetails = ({
         // onMakePayment({ profile: dataForApi, amount: currentInvestment });
     };
 
+    let _footerStyles
+    if(isInputsReadOnly){
+        _footerStyles = 'profile_form_footer profile_form_footer_column'
+    }else{
+        _footerStyles = isEmpty(profile) || type ? "profile_form_footer": 'profile_form_footer profile_form_footer_column'
+    }
+
     const years = createYearList();
 
     return (
@@ -212,7 +219,6 @@ const PersonalDetails = ({
                     } else {
                         isButtonDisabled = !(dirty);
                     }
-
                     return (
                         <>
                             <Form className = "profile_form" action = 'make_payment'>
@@ -222,7 +228,8 @@ const PersonalDetails = ({
                                         values = {values}
                                     />
                                 )}
-                                <div className = "profile_form_data_container">
+                                    <div className = {isEmpty(profile) || type ? "profile_form_data_container": 'profile_form_data_container data_container_for_edit'}>
+
                                     <h3 className = "profile_form_data_container_title">
                                         {t("profile_page.personal.profile_title")}
                                     </h3>
@@ -505,29 +512,33 @@ const PersonalDetails = ({
                                         </div>
                                     )}
                                     <SplitLine className = "profile_form_split_line"/>
-                                    <div className = "profile_form_footer">
+                                    <div className = {_footerStyles}>
                                         <CaptchaPrivacyBlock className='profile_form_captcha_text'/>
-                                        {!isEmpty(profile) && (
+                                        <div className='profile_form_footer_button_wrapper'>
+                                            {!isEmpty(profile) && (
+                                                <Button
+                                                    colorStyle = "link"
+                                                    className = "profile_form_button_cancel"
+                                                    onClick = {() =>
+                                                        setValues(valuesFromApi || initialValues)
+                                                    }
+                                                >
+                                                    {t("profile_page.personal.cancel_button")}
+                                                </Button>
+                                            )}
                                             <Button
-                                                colorStyle = "link"
-                                                className = "profile_form_button_cancel"
-                                                onClick = {() =>
-                                                    setValues(valuesFromApi || initialValues)
-                                                }
+                                                colorStyle = "dark-green"
+                                                type = "submit"
+                                                disabled = {isButtonDisabled}
+                                                className = {isEmpty(profile) || type ? "profile_form_agreement_button" : "profile_form_agreement_button profile_form_agreement_button_big"}
                                             >
-                                                {t("profile_page.personal.cancel_button")}
+                                                {isEmpty(profile) || type
+                                                    ? t("profile_page.personal.submit_button")
+                                                    : t("profile_page.personal.save_button")}
                                             </Button>
-                                        )}
-                                        <Button
-                                            colorStyle = "dark-green"
-                                            type = "submit"
-                                            disabled = {isButtonDisabled}
-                                            className = "profile_form_agreement_button"
-                                        >
-                                            {isEmpty(profile) || type
-                                                ? t("profile_page.personal.submit_button")
-                                                : t("profile_page.personal.save_button")}
-                                        </Button>
+
+                                        </div>
+
                                     </div>
                                 </div>
                             </Form>
