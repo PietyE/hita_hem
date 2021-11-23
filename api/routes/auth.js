@@ -240,6 +240,21 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  checkEmailAndPassword(payload) {
+    const {data, token} = payload
+    const url = `${this.url}/verification_for_registration/`;
+    return this.request({
+      url,
+      method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
+      data
+    });
+  }
+
+
+
 }
 
 export default function authCRUD(request) {

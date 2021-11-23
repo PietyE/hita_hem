@@ -33,6 +33,7 @@ import {
   REQUEST_FOR_RESET_PASSWORD,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
   CHECK_ACTIVATION_TOKEN,
+  CHECK_EMAIL_AND_PASSWORD,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -199,4 +200,7 @@ export const checkActivationToken = payload => ({
   payload
 })
 
-
+export const checkEmailAndPassword = payload => ({
+  type: CHECK_EMAIL_AND_PASSWORD,
+  payload
+})

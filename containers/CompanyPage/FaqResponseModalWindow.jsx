@@ -5,6 +5,7 @@ import { addFaqAnswer } from "redux/actions/companies";
 import { useDispatch } from "react-redux";
 import {filterComments} from "../../utils/restrictInput";
 import {recaptcha} from "../../utils/recaptcha";
+import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
 
 const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
   const dispatch = useDispatch();
@@ -37,6 +38,8 @@ const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
           className="faq_answer_modal_input"
           autoFocus={true}
         ></textarea>
+        <CaptchaPrivacyBlock className='faq_answer_captcha_text'/>
+
         <Button
           type="submit"
           colorStyle="dark-green"

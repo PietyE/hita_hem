@@ -16,10 +16,10 @@ import {
   REQUEST_FOR_CHANGING_PASSWORD,
   REQUEST_FOR_RESET_PASSWORD,
   CHECK_TOKEN, CLEAN_AUTH_DATA,
-    GET_QUIZ, CHECK_QUIZ_ANSWERS,
+  GET_QUIZ, CHECK_QUIZ_ANSWERS,
   GET_PROFILE_FROM_API,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
-  CHECK_ACTIVATION_TOKEN,
+  CHECK_ACTIVATION_TOKEN, CHECK_EMAIL_AND_PASSWORD,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -545,6 +545,21 @@ function* activationTokenVerificationRequest({payload}) {
   }
 }
 
+function* checkEmailAndPassword({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    yield call([auth, "checkEmailAndPassword"], payload);
+    yield call(requestForQuiz)
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
 
 
 
@@ -592,7 +607,7 @@ export function* userWorker() {
   yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
   yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
   yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
-
+  yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
 
 
 }

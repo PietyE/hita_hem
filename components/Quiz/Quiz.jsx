@@ -10,6 +10,7 @@ import {getQuiz, getQuizErrorsSelector, getQuizIsPassedSelector} from "../../red
 import {setQuizErrors, signUp} from "../../redux/actions/user";
 import {getCompanyIdSelector} from "../../redux/reducers/companies";
 import {recaptcha} from "../../utils/recaptcha";
+import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
 
 const Quiz = ({show, data}) => {
     const {t} = useTranslation();
@@ -31,16 +32,16 @@ const Quiz = ({show, data}) => {
         }
     }, [quizErrors])
 
-    useEffect(()=>{
-        if(quizIsPassed ){
+    useEffect(() => {
+        if (quizIsPassed) {
             _setShowQuiz(false)
         }
-    },[quizIsPassed,companyId])
+    }, [quizIsPassed, companyId])
 
-    useEffect(()=>{
+    useEffect(() => {
         return () => _setQuizErrors(null)
 
-    },[])
+    }, [])
 
     const _setShowQuiz = useCallback((data) => {
         dispatch(setShowQuiz(data));
@@ -77,7 +78,12 @@ const Quiz = ({show, data}) => {
         }
         recaptcha('check_quiz_answers',
             _signUp,
-            {answers: arrayOfAnswer, email: `${data.email.toLowerCase()}`, is_agree: `${data.is_agree}`, password: `${data.password}`})
+            {
+                answers: arrayOfAnswer,
+                email: `${data.email.toLowerCase()}`,
+                is_agree: `${data.is_agree}`,
+                password: `${data.password}`
+            })
         // _checkQuizAnswers({answers: arrayOfAnswer})
     }
     return (
@@ -113,11 +119,18 @@ const Quiz = ({show, data}) => {
                     }
                 </div>
                 <footer className = 'quiz_footer'>
-                    <ButtonStyled colorStyle = 'outline-green' className = 'quiz_footer_button_back quiz_footer_button'
-                                  onClick = {handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
-                    <ButtonStyled colorStyle = 'dark-green' className = 'quiz_footer_button_confirm quiz_footer_button'
-                                  disabled={Object.keys(quizResults).length !== quizData.length}
-                                  onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
+                    <CaptchaPrivacyBlock/>
+                    <div className='quiz_footer_buttons_wrapper'>
+                        <ButtonStyled colorStyle = 'outline-green'
+                                      className = 'quiz_footer_button_back quiz_footer_button'
+                                      onClick = {handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
+                        <ButtonStyled colorStyle = 'dark-green'
+                                      className = 'quiz_footer_button_confirm quiz_footer_button'
+                                      disabled = {Object.keys(quizResults).length !== quizData.length}
+                                      onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
+
+                    </div>
+
                 </footer>
             </section>
         </Modal>
