@@ -17,6 +17,7 @@ import Modal from "../components/ui/Modal";
 import {HOME_ROUTE} from "../constants/routesConstant";
 import {useRouter} from "next/router";
 import {recaptcha} from "../utils/recaptcha";
+import CaptchaPrivacyBlock from "../components/CaptchaPrivacyBlock";
 
 function ChangeEmail() {
     const history = useRouter();
@@ -155,6 +156,7 @@ function ChangeEmail() {
                 );
             }}
         </Formik>
+        <CaptchaPrivacyBlock/>
     </Modal>)
 }
 </>
