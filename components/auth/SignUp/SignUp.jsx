@@ -12,8 +12,9 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
-import {getQuiz} from "redux/actions/user";
+import {checkEmailAndPassword} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import {recaptcha} from "../../../utils/recaptcha";
 
 const Quiz = dynamic(() =>
     import("components/Quiz")
@@ -42,14 +43,15 @@ const SignUp = ({ show }) => {
     dispatch(setShowSignIn(true));
     errorHandlerHook?._clearErrors()
   };
-  const _showQuiz = useCallback(
-      () => {
-        dispatch(getQuiz());
+
+  const _checkEmailAndPassword = useCallback(
+      (data) => {
+        dispatch(checkEmailAndPassword(data));
       },
       [dispatch]
   );
-  const onSubmit = () => {
-    _showQuiz()
+  const onSubmit = (values) => {
+    recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password})
 
   };
   const signUpSchema = yup.object({
