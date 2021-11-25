@@ -25,6 +25,7 @@ import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
 import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
+import {validateCampaignNumber} from "utils/utils";
 import {restrictOnlyLetters, restrictCity, restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import {getPrivacyPolicyDocument} from "redux/reducers/documents";
 import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
@@ -95,6 +96,7 @@ const PersonalDetails = ({
     const [valuesFromApi, setValuesFromApi] = useState(null);
     const [companyNumber, setCompanyNumber] = useState('')
     const [isCompanyInvest, setIsCompanyInvest] = useState(false)
+    const [campaignNumberWarning, setCampaignNumberWarning] = useState(false)
     useEffect(() => {
         if (!isEmpty(profile)) {
             setValuesFromApi(profile);
@@ -119,6 +121,9 @@ const PersonalDetails = ({
     const usersId = useSelector(getUserIdSelector)
 
     const handleInput = (e) => {
+        if(campaignNumberWarning){
+            setCampaignNumberWarning(false)
+        }
         setCompanyNumber(e.target.value)
     }
 
@@ -129,6 +134,9 @@ const PersonalDetails = ({
     },[isCompanyInvest])
 
     const handleChangeCompanyCheckbox = () => {
+        if(isCompanyInvest){
+            setCompanyNumber('')
+        }
         setIsCompanyInvest(!isCompanyInvest)
     }
 
@@ -178,10 +186,14 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-        const dataForApi = prepareDataForApi(values);
-        const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber} : {profile: dataForApi, amount: currentInvestment}
-        recaptcha('create_profile_in_invest_form', onMakePayment, investData)
-        // onMakePayment({ profile: dataForApi, amount: currentInvestment });
+        if(validateCampaignNumber(companyNumber.toUpperCase())){
+            const dataForApi = prepareDataForApi(values);
+            const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber.toUpperCase()} : {profile: dataForApi, amount: currentInvestment}
+            recaptcha('create_profile_in_invest_form', onMakePayment, investData)
+        }else{
+            setCampaignNumberWarning(true)
+        }
+
     };
 
     let _footerStyles
@@ -540,7 +552,7 @@ const PersonalDetails = ({
                                                 </label>
                                                 <input
                                                     type='text'
-                                                    className='profile_form_input company_number_block_input'
+                                                    className= {campaignNumberWarning? 'profile_form_input company_number_block_input profile_form_input_warning': 'profile_form_input company_number_block_input'}
                                                     placeholder={t("profile_page.personal.company_number_placeholder")}
                                                     value={companyNumber}
                                                     autoFocus={true}
@@ -553,7 +565,11 @@ const PersonalDetails = ({
                                                     // }}
                                                     ref={companyInputRef}
                                                 />
+
                                             </div>
+                                        )}
+                                        {campaignNumberWarning && (
+                                            <p className='profile_form_campaign_number_warning input_warning_text'>{t("profile_page.personal.company_number_warning")}</p>
                                         )}
                                     <div className = {_footerStyles}>
                                         <CaptchaPrivacyBlock className='profile_form_captcha_text'/>

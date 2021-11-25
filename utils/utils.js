@@ -5,6 +5,12 @@ export const validateEmail = (email) => {
   return re.test(email);
 };
 
+export const validateCampaignNumber = (number) => {
+  //eslint-disable-next-line
+  const re =/^([A-Z]{1,3}[0-9]{1,10}|[0-9]{5,13}|[0-9]{1,6}[A-Z]{1,1}|[A-Z]{1,3}[0-9]{1,6}[A-Z]{1,2}|[0-9]{3}\s[0-9]{2}\s[0-9]{3})$/;
+  return re.test(number);
+};
+
 //eslint-disable-next-line
 export const urlRegExp =
     /^(http:\/\/|https:\/\/)+[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/;
