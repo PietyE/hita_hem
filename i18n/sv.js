@@ -353,6 +353,7 @@ profile_page: {
         footer_text2: '.',
         company_number_text: 'Jag investerar genom juridisk person',
         company_number_placeholder: 'Organisationsnummer',
+        company_number_warning: 'Uppgifterna är inte giltiga.',
 
     },
 },

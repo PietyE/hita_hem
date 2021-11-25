@@ -330,7 +330,9 @@
         width: 40%;
       }
     }
-
+    .profile_form_campaign_number_warning{
+      margin-left: 60%;
+    }
     .profile_form_footer {
       display: flex;
       align-items: center;
@@ -979,11 +981,12 @@
 }
 
 @media screen and (max-width: 580px) {
-  .profile_section {
-  }
   .profile_section_mobile, .invest_form_section  {
     .profile_personal_details {
       .profile_form {
+        .profile_form_campaign_number_warning{
+          margin-left: 0;
+        }
         .profile_form_upload_avatar_settings {
           .profile_form_upload_avatar_container {
             margin-right: 0;
@@ -1094,10 +1097,10 @@
 
           }
           .company_number_block{
-            flex-direction: column-reverse;
+            flex-direction: column;
             .company_number_label{
               width: 100%;
-              font-size: 10px;
+              font-size: 12px;
               .company_number_block_checkbox{
                 height: 14px;
                 width: 14px;
@@ -1339,6 +1342,22 @@
         .mobile_investments_field {
           .mobile_investments_field_link {
             font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 354px){
+  .profile_section_mobile, .invest_form_section {
+    .profile_personal_details {
+      .profile_form {
+        .profile_form_data_container {
+          .company_number_block {
+            .company_number_label{
+              font-size: 9px;
+            }
           }
         }
       }
