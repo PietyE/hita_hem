@@ -116,7 +116,7 @@ progress: {
 sign_up_message: {
     sign_up_text_one: "Du behöver",
         sign_up_link: "logga in",
-        sign_up_text_two: "för att delta.",
+        sign_up_text_two: "för att investera.",
         sign_in_text: "Har du inget konto än?",
     sign_in_link: "Skapa ett här!",
 },
