@@ -47,7 +47,7 @@ const Footer = () => {
                target="_blank"
                rel="noopener noreferrer"
                href= {language === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-            >FAQ</a>
+            >{t("faq")}</a>
           {!!(documentUrl?.file || documentUrl?.url) && (
             <a
               className="footer_nav_link"

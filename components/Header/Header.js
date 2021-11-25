@@ -122,7 +122,7 @@ const Header = ({ initLang }) => {
                  target="_blank"
                  rel="noopener noreferrer"
                  href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-              >FAQ</a>
+              >{t("faq")}</a>
               {/*<span className="menu_item">*/}
               {/*  <Button*/}
               {/*    className={`menu_item_link ${*/}
