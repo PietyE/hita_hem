@@ -574,7 +574,7 @@
       }
 
       .fin_article_image img {
-        object-fit: cover;
+        object-fit: scale-down;
       }
 
       .fin_article_text_wrapper {
@@ -1402,6 +1402,7 @@
       padding: 30px 0 0 0;
     }
     .team_section_container {
+      flex-direction: column;
       .member_card_item {
         padding-left: 0;
         padding-bottom: 40px;
@@ -1410,7 +1411,7 @@
         margin-bottom: 40px;
         align-items: center;
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
+        width: 100%;
         &:last-child {
           margin-bottom: 0;
           border-bottom: none;

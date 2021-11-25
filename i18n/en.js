@@ -357,6 +357,7 @@ export const en = {
                 footer_text2: ' section in your Personal Account',
                 company_number_text: 'I invest through a company',
                 company_number_placeholder: 'Company number',
+                company_number_warning: 'The data is not valid.',
             },
         },
         errors: {
@@ -470,7 +471,7 @@ export const en = {
             text3: 'apply.',
 
         },
-
+faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
     },

@@ -455,7 +455,7 @@
             }
 
             .profile_form_agreement{
-              font-size: 10px;
+              font-size: 12px;
               .profile_form_checkbox{
                 height: 14px;
                 width: 14px;
@@ -486,6 +486,10 @@
       .profile_personal_details {
         .profile_form {
           .profile_form_data_container {
+
+            .profile_form_agreement{
+              font-size: 9px;
+            }
             .profile_form_footer{
               bottom: -105px;
             }

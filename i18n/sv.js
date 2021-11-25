@@ -116,7 +116,7 @@ progress: {
 sign_up_message: {
     sign_up_text_one: "Du behöver",
         sign_up_link: "logga in",
-        sign_up_text_two: "för att delta.",
+        sign_up_text_two: "för att investera.",
         sign_in_text: "Har du inget konto än?",
     sign_in_link: "Skapa ett här!",
 },
@@ -353,6 +353,7 @@ profile_page: {
         footer_text2: '.',
         company_number_text: 'Jag investerar genom juridisk person',
         company_number_placeholder: 'Organisationsnummer',
+        company_number_warning: 'Uppgifterna är inte giltiga.',
 
     },
 },
@@ -468,6 +469,7 @@ cookie: {
             text3: 'gäller.',
 
         },
+        faq:'Frågor & svar',
 
 
     },
