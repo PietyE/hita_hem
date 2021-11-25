@@ -160,7 +160,7 @@ const Navigation = ({ className, initLang }) => {
                    target="_blank"
                    rel="noopener noreferrer"
                    href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-                >FAQ</a>
+                >{t("faq")}</a>
               </NavDropdown.Item>
 
               {/*<NavDropdown.Item as="div" className="nav_item">*/}

@@ -468,6 +468,7 @@ cookie: {
             text3: 'gäller.',
 
         },
+        faq:'Frågor & svar',
 
 
     },
