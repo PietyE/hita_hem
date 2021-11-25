@@ -470,7 +470,7 @@ export const en = {
             text3: 'apply.',
 
         },
-
+faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
     },
