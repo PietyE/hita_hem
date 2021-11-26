@@ -25,6 +25,7 @@ const TopSliderComponent = ({
           data?.map((headerItem) => {
             const {
               image_list,
+                header_image,
               image,
               title,
               description,
@@ -34,9 +35,9 @@ const TopSliderComponent = ({
               second_button_url,
               status,
             } = headerItem;
-            const correct_image = chooseCorrectResolution(image_list);
+            // const correct_image = chooseCorrectResolution(image_list);
             // const _src = correct_image || image;
-            const _src =  image_list?.header_image || image;
+            const _src =  image_list?.header_image || image || header_image;
 
             return (
               <Carousel.Item key={index+title}>

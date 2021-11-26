@@ -254,10 +254,10 @@ export const getPercentageSelector = (state) =>
   state.companies.companyDetail.percentage;
 
 export const getLeftDaysToStartSelector = (state) =>
-    state.companies.companyDetail.left_date_start;
+    state.companies.companyDetail?.left_date_start;
 
 export const getLeftDaysToEndSelector = (state) =>
-    state.companies.companyDetail.left_date_end;
+    state.companies.companyDetail?.left_date_end;
 
 // export const getDaysLeftSelector = (state) => {
 //   const currentDate = new Date();

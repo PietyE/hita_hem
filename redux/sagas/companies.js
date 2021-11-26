@@ -38,17 +38,19 @@ function* getCompaniesHeaderListWorker() {
       [companies, "getCompaniesList"],
       "?view_on_investment_page_header=true"
     );
+    console.log('data', data)
     const language = yield select(getSelectedLangSelector);
     const _title =
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
     const investCampaignList = data?.results?.map((el) => ({
-      pk: el.pk,
-      status: el.status,
-      title: el.investment_page_title,
-      description: el.investment_page_description,
-      image_list: el.header_image_list,
+      pk: el?.pk,
+      status: el?.status,
+      title: el?.investment_page_title,
+      description: el?.investment_page_description,
+      // image_list: el?.header_image,
+      header_image: el?.header_image,
       first_button_title: _title,
-      first_button_url: language === "en"?`/company/${el.pk}`:`/sv/company/${el.pk}`,
+      first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,
     }));
     yield put(setInvestCompaniesList(investCampaignList));
   } catch (error) {
