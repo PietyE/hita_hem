@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
-import {passwordRegExp} from "../../../utils/vadidationSchemas";
+import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {checkEmailAndPassword} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
@@ -55,7 +55,7 @@ const SignUp = ({ show }) => {
 
   };
   const signUpSchema = yup.object({
-    email: yup.string().email(t("errors.email_example")).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`).required(t("errors.email_required")),
+    email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80, `${t("errors.long_error_part1")} 80 ${t("errors.long_error_part2")}`).required(t("errors.email_required")),
     password: yup
         .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .matches(passwordRegExp, t("errors.password_example"))
