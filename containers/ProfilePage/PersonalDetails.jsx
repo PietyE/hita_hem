@@ -186,13 +186,20 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-        if(validateCampaignNumber(companyNumber.toUpperCase())){
-            const dataForApi = prepareDataForApi(values);
-            const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber.toUpperCase()} : {profile: dataForApi, amount: currentInvestment}
-            recaptcha('create_profile_in_invest_form', onMakePayment, investData)
+        if(companyNumber){
+            if(validateCampaignNumber(companyNumber.toUpperCase())){
+                const dataForApi = prepareDataForApi(values);
+                const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber.toUpperCase()} : {profile: dataForApi, amount: currentInvestment}
+                recaptcha('create_profile_in_invest_form', onMakePayment, investData)
+            }else{
+                setCampaignNumberWarning(true)
+            }
         }else{
-            setCampaignNumberWarning(true)
+            const dataForApi = prepareDataForApi(values);
+            const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment} : {profile: dataForApi, amount: currentInvestment}
+            recaptcha('create_profile_in_invest_form', onMakePayment, investData)
         }
+
 
     };
 
