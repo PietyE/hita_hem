@@ -96,6 +96,11 @@ auth: {
             footer_text: "Har du redan ett konto?",
             sign_up_link: "Logga in",
     },
+    session_sign_up: {
+        header_title: 'Bli medlem och investera!',
+        header_text: 'Gå med idag för att upptäcka och investera i onoterat. ',
+        header_text_accent: 'Helt gratis!',
+    },
 },
 campaigns_card: {
     progress_title: "Reserverat",

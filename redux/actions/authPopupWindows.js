@@ -1,6 +1,7 @@
 import {
   SET_SHOW_SIGN_IN,
   SET_SHOW_SIGN_UP,
+  SET_SHOW_SESSION_SIGN_UP,
   SET_SHOW_RESET_PASSWORD,
   SET_SHOW_SUCCESSFUL_SIGN_UP,
   SET_SHOW_SUCCESSFUL_CAMPAIGN_REGISTRATION,
@@ -34,6 +35,12 @@ export const setShowSignUp = (payload) => ({
   type: SET_SHOW_SIGN_UP,
   payload,
 });
+
+export const setShowSessionSignUp = (payload) => ({
+  type: SET_SHOW_SESSION_SIGN_UP,
+  payload,
+});
+
 
 export const setShowResetPassword = (payload) => ({
   type: SET_SHOW_RESET_PASSWORD,

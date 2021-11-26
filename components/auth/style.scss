@@ -9,6 +9,39 @@
 
 }
 
+.auth_session_header{
+  height: 210px;
+  width: calc(100% + 70px);
+  transform: translateY(-35px);
+  padding: 36px;
+  background-color: #FB7F73;
+  background-image: url('../../public/images/security_woman.png');
+  background-repeat: no-repeat;
+  background-position: right;
+  .auth_session_header_title{
+    max-width: 300px;
+    font-family: Raleway;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 40px;
+    letter-spacing: 0.1px;
+    color: #F3F6E6;
+  }
+  .auth_session_header_text{
+    max-width: 300px;
+    font-family: Mulish;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 140%;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .auth_session_header_text_accent{
+    color: #fff;
+  }
+}
+
 .sign_up_title{
   font-family: Raleway, sans-serif;
   font-style: normal;
@@ -181,6 +214,23 @@ z-index: 2;
 
 .sign_up_checkbox{
   margin-bottom: 15px;
+}
+
+@media screen and (max-width: 510px){
+  .auth_session_header{
+    background-position: right;
+    padding: 20px 15px;
+    .auth_session_header_title{
+      max-width: 230px;
+      font-size: 28px;
+      line-height: 120%;
+    }
+    .auth_session_header_text{
+      max-width: 230px;
+      font-size: 16px;
+      line-height: 140%;
+    }
+  }
 }
 
 @media screen and (max-width: 450px) {

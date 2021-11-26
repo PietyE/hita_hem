@@ -14,6 +14,7 @@ import {
   getShowSignIn,
   getShowResetPassword,
   getShowSignUp,
+  getShowSessionSignUp,
   getShowSuccessfulSignUp,
   getShowSuccessfulCampaignRegistration,
   getShowSuccessfulInvestment,
@@ -49,6 +50,8 @@ const ScrollToTopButton = dynamic(
 );
 const SignIn = dynamic(() => import("components/auth/SignIn"));
 const SignUp = dynamic(() => import("components/auth/SignUp"));
+const SessionSignUp = dynamic(() => import("components/auth/SessionSignUp"));
+
 const Notification = dynamic(() => import("components/Notification"));
 const ResetPassword = dynamic(() => import("components/auth/ResetPassword"));
 const SuccessfulSignUpModal = dynamic(() =>
@@ -117,7 +120,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const email = useSelector(getUserEmailSelector);
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);
-  const showSignResetPassWindow = useSelector(getShowResetPassword);
+    const showSessionSigUpWindow = useSelector(getShowSessionSignUp);
+    const showSignResetPassWindow = useSelector(getShowResetPassword);
   const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
   const showSuccessfullyCampaignRegistrationModal = useSelector(
     getShowSuccessfulCampaignRegistration
@@ -222,7 +226,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {children}
         {!!showSignInWindow && <SignIn show={showSignInWindow} />}
         {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-        {!!showSignResetPassWindow && (
+          {!!showSessionSigUpWindow && <SessionSignUp show={showSessionSigUpWindow} />}
+
+          {!!showSignResetPassWindow && (
           <ResetPassword show={showSignResetPassWindow} />
         )}
         {!!showSuccessfulSignUpWindow && (
