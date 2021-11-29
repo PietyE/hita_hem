@@ -218,7 +218,6 @@ z-index: 2;
 
 @media screen and (max-width: 510px){
   .auth_session_header{
-    background-position: right;
     padding: 20px 15px;
     .auth_session_header_title{
       max-width: 230px;
@@ -239,6 +238,12 @@ z-index: 2;
     align-items: flex-start;
 
   }
+  .auth_session_header{
+    width: calc(100% + 30px);
+    background-position: 110%;
+    background-size: 153px;
+
+  }
 
   .modal_container .auth_modal_container {
     padding: 35px 15px 25px 15px;
@@ -254,5 +259,25 @@ z-index: 2;
     letter-spacing: 0.1px;
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .auth_session_header {
+    //background-position: 125%;
+    .auth_session_header_title{
+      font-size: 23px;
+      max-width: 210px;
+    }
+    .auth_session_header_text{
+      font-size: 14px;
+      max-width: 158px;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .auth_session_header {
+    background-position: 125%;
   }
 }
