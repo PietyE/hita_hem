@@ -16,7 +16,6 @@ const TopSliderComponent = ({
   buttonsContainerClass,
   firstButtonClass,
   secondButtonClass,
-    index
 }) => {
   return (
     <div className={`slider_component_container ${sectionClass}`}>
@@ -24,7 +23,7 @@ const TopSliderComponent = ({
         {!!data?.length &&
           data?.map((headerItem) => {
             const {
-              image_list,
+              images,
                 header_image,
               image,
               title,
@@ -34,13 +33,12 @@ const TopSliderComponent = ({
               first_button_url,
               second_button_url,
               status,
+                pk
             } = headerItem;
-            // const correct_image = chooseCorrectResolution(image_list);
-            // const _src = correct_image || image;
-            const _src =  image_list?.header_image || image || header_image;
-
+            const correct_image = chooseCorrectResolution(images);
+            const _src = correct_image || header_image || image;
             return (
-              <Carousel.Item key={index+title}>
+              <Carousel.Item key={pk+title}>
                 <div className='item_component_container'>
                   <img
                     className="item_component_image"
