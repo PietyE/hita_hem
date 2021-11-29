@@ -95,6 +95,11 @@ export const en = {
                 footer_text: "Already have an account?",
                 sign_up_link: "Log in",
             },
+            session_sign_up: {
+                header_title: 'Become a member and invest!',
+                header_text: 'Join today to discover and invest in unlisted stocks. ',
+                header_text_accent: 'Totally free!',
+            },
         },
         campaigns_card: {
             progress_title: "Raised",

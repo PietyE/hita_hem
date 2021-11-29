@@ -1,6 +1,7 @@
 import {
   SET_SHOW_SIGN_IN,
   SET_SHOW_SIGN_UP,
+  SET_SHOW_SESSION_SIGN_UP,
   SET_SHOW_RESET_PASSWORD,
   SET_SHOW_SUCCESSFUL_SIGN_UP,
   SET_SHOW_SUCCESSFUL_CAMPAIGN_REGISTRATION,
@@ -28,6 +29,7 @@ import {
 const initialValues = {
   showSignIn: false,
   showSignUp: false,
+  showSessionSignUp: false,
   showResetPassword: false,
   showSuccessfulSignUp: false,
   showSuccessfulCampaignRegistration: false,
@@ -55,6 +57,8 @@ const initialValues = {
 export const getShowCookiePopup = state => state.authPopupWindows.showCookie;
 export const getShowSignIn = (state) => state.authPopupWindows.showSignIn;
 export const getShowSignUp = (state) => state.authPopupWindows.showSignUp;
+export const getShowSessionSignUp = (state) => state.authPopupWindows.showSessionSignUp;
+
 export const getShowResetPassword = (state) =>
   state.authPopupWindows.showResetPassword;
 export const getShowSuccessfulSignUp = (state) =>
@@ -95,6 +99,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showSignIn: actions.payload };
     case SET_SHOW_SIGN_UP:
       return { ...state, showSignUp: actions.payload };
+    case SET_SHOW_SESSION_SIGN_UP:
+      return { ...state, showSessionSignUp: actions.payload };
     case SET_SHOW_RESET_PASSWORD:
       return { ...state, showResetPassword: actions.payload };
     case SET_SHOW_SUCCESSFUL_SIGN_UP:
