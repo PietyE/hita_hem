@@ -62,6 +62,7 @@ const initialState = {
     name: "",
     header_image: "",
     header_image_list: [],
+    images: [],
     header_title: "",
     start_date: "",
     end_date: "",
@@ -208,8 +209,10 @@ export const getAboutProjectDescriptionSelector = (state) =>
 export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
 
-// export const getHeaderImageSelector = (state) =>
-//   chooseCorrectResolution(state.companies.companyDetail.header_image_list);
+export const getHeaderImageSelector = (state) =>
+  chooseCorrectResolution(state.companies.companyDetail.images);
+
+
 
 export const getHeaderImage1Selector = (state) =>
   state.companies.companyDetail.header_image;

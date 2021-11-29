@@ -46,7 +46,7 @@ function* getCompaniesHeaderListWorker() {
       status: el?.status,
       title: el?.investment_page_title,
       description: el?.investment_page_description,
-      // image_list: el?.header_image,
+      images: el?.images,
       header_image: el?.header_image,
       first_button_title: _title,
       first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,

@@ -30,33 +30,45 @@ export const validateUrl = (url) => {
 export const checkCurrentResolution = () => {
   if (typeof window !== "undefined") {
     if (screen.width > 1280) {
-      return 1920;
+      return 'desktop';
     }
-    if (screen.width > 1024 && screen.width <= 1280) {
-      return 1280;
+    // if (screen.width > 1024 && screen.width <= 1280) {
+    //   return 1280;
+    // }
+    if (screen.width > 640 && screen.width <= 1280) {
+      return 'laptop';
     }
-    if (screen.width > 768 && screen.width <= 1024) {
-      return 1024;
-    }
-    if (screen.width > 480 && screen.width <= 768) {
-      return 768;
-    }
-    if (screen.width <= 480) {
-      return 480;
+    // if (screen.width > 480 && screen.width <= 768) {
+    //   return 768;
+    // }
+    if (screen.width <= 640) {
+      return 'mobile';
     }
   }
-  return 1920;
+  return 'mobile';
 };
 
 export const chooseCorrectResolution = (imageList) => {
   const imageSize = checkCurrentResolution();
-  for (let key in imageList) {
-    if (Number(key.replace(/\D/g, "")) === Number(imageSize)) {
-      return imageList[key]
-        ? imageList[key]
-        : imageList[Object.keys(imageList)[0]];
+  /////////remove after fix on beck-end
+  if(Array.isArray(imageList)){
+    if(imageList?.length === 0){
+      return null
     }
+    const images = imageList[0]
+    return images[imageSize]
+  }else if(!imageList){
+    return null
+  }else{
+    return imageList[imageSize]
   }
+  // for (let key in imageList) {
+    // if (Number(key.replace(/\D/g, "")) === Number(imageSize)) {
+    //   return imageList[key]
+    //     ? imageList[key]
+    //     : imageList[Object.keys(imageList)[0]];
+    // }
+  // }
 };
 
 export const convertStatusToText = (status, language='en') => {
@@ -68,7 +80,7 @@ export const convertStatusToText = (status, language='en') => {
     case 3:
       return "LIVE";
     case 4:
-      return  language === 'en'?"SUCCESSFULLY CLOSED":"Stängt";
+      return  language === 'en'?"SUCCESSFULLY CLOSED":"Stängd";
     default:
       return null;
   }

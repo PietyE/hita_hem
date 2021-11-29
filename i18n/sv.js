@@ -263,7 +263,7 @@ investment_opportunities_page: {
         status: "Status",
         live: "Live",
         upcoming: "Kommande",
-        closed: "Stängt",
+        closed: "Stängd",
     completed: "Avslutad",
         dropdown_button: "Filtrera",
         filter_button: "Filter",
