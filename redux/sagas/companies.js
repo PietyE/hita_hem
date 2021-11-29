@@ -38,7 +38,6 @@ function* getCompaniesHeaderListWorker() {
       [companies, "getCompaniesList"],
       "?view_on_investment_page_header=true"
     );
-    console.log('data', data)
     const language = yield select(getSelectedLangSelector);
     const _title =
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";

@@ -97,7 +97,7 @@ const initialState = {
         },
       },
     ],
-    teammate_set: [
+    teammates: [
       {
         title: "",
         description: "",
@@ -114,7 +114,7 @@ const initialState = {
         index: 3,
       },
     ],
-    companypageidea_set: [
+    ideas: [
       {
         title: "",
         description: "",
@@ -136,7 +136,7 @@ const initialState = {
         index: 4,
       },
     ],
-    companypagefininfo_set: [
+    fininfo: [
       {
         title: "",
         description: "",
@@ -181,16 +181,16 @@ export const getFilterSelector = (state) => state.companies.filter;
 export const getCompanyIdSelector = (state) => state.companies.companyDetail.pk;
 
 export const getFinDocumentSelector = (state) =>
-  state.companies.companyDetail.companydocument_set;
+  state.companies.companyDetail.documents;
 
 export const getCompanyTabSelected = (state) =>
   state.companies.companyTabSelected;
 
 export const getCompanyFinInfoSelector = (state) =>
-  state.companies.companyDetail.companypagefininfo_set;
+  state.companies.companyDetail.fininfo;
 
 export const getTeatMateSetSelector = (state) =>
-  state.companies.companyDetail.teammate_set;
+  state.companies.companyDetail.teammates;
 
 export const getFaqSetSelector = (state) =>
   state.companies.companyDetail.faq_set;
@@ -206,10 +206,10 @@ export const getAboutProjectDescriptionSelector = (state) =>
   state.companies.companyDetail.description;
 
 export const getIdeaSectionContentSelector = (state) =>
-  state.companies.companyDetail.companypageidea_set;
+  state.companies.companyDetail.ideas;
 
-export const getHeaderImageSelector = (state) =>
-  chooseCorrectResolution(state.companies.companyDetail.header_image_list);
+// export const getHeaderImageSelector = (state) =>
+//   chooseCorrectResolution(state.companies.companyDetail.header_image_list);
 
 export const getHeaderImage1Selector = (state) =>
   state.companies.companyDetail.header_image;
@@ -253,12 +253,12 @@ export const getBusinessCurrencySelector = (state) =>
 export const getPercentageSelector = (state) =>
   state.companies.companyDetail.percentage;
 
-export const getLeftDaysToStartSelector = (state) =>
-    state.companies.companyDetail?.left_date_start;
-
-export const getLeftDaysToEndSelector = (state) =>
-    state.companies.companyDetail?.left_date_end;
-
+// export const getLeftDaysToStartSelector = (state) =>
+//     state.companies.companyDetail?.left_date_start;
+//
+// export const getLeftDaysToEndSelector = (state) =>
+//     state.companies.companyDetail?.left_date_end;
+export const getLeftDate = state => state.companies?.companyDetail?.left_date;
 // export const getDaysLeftSelector = (state) => {
 //   const currentDate = new Date();
 //   const endDate = new Date(state.companies.companyDetail.end_date);

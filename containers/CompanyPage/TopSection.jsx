@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 
 import StatusCompanyBadge from "components/StatusCompany";
 import {
-  getHeaderImageSelector,
+  // getHeaderImageSelector,
   getHeaderTitleSelector,
   getCompanyStatusSelector,
   getHeaderImage1Selector,
 } from "redux/reducers/companies";
 
 const TopSection = () => {
-  const imageUrlCorrenct = useSelector(getHeaderImageSelector);
+  // const imageUrlCorrenct = useSelector(getHeaderImageSelector);
   const imageUrl = useSelector(getHeaderImage1Selector);
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
