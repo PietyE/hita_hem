@@ -14,6 +14,7 @@ import {
   getShowSignIn,
   getShowResetPassword,
   getShowSignUp,
+  getShowSessionSignUp,
   getShowSuccessfulSignUp,
   getShowSuccessfulCampaignRegistration,
   getShowSuccessfulInvestment,
@@ -33,7 +34,7 @@ import {
     getShowFirstLoginPopup,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
-import {bootstap, logOut} from "redux/actions/user";
+import {bootstap, checkEmailAndPassword, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
@@ -42,6 +43,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {intercomStart} from "../../utils/intercom";
+import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -49,6 +51,8 @@ const ScrollToTopButton = dynamic(
 );
 const SignIn = dynamic(() => import("components/auth/SignIn"));
 const SignUp = dynamic(() => import("components/auth/SignUp"));
+const SessionSignUp = dynamic(() => import("components/auth/SessionSignUp"));
+
 const Notification = dynamic(() => import("components/Notification"));
 const ResetPassword = dynamic(() => import("components/auth/ResetPassword"));
 const SuccessfulSignUpModal = dynamic(() =>
@@ -117,7 +121,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const email = useSelector(getUserEmailSelector);
   const showSignInWindow = useSelector(getShowSignIn);
   const showSigUpWindow = useSelector(getShowSignUp);
-  const showSignResetPassWindow = useSelector(getShowResetPassword);
+    const showSessionSigUpWindow = useSelector(getShowSessionSignUp);
+    const showSignResetPassWindow = useSelector(getShowResetPassword);
   const showSuccessfulSignUpWindow = useSelector(getShowSuccessfulSignUp);
   const showSuccessfullyCampaignRegistrationModal = useSelector(
     getShowSuccessfulCampaignRegistration
@@ -153,6 +158,12 @@ const RootPage = ({ children, initLang = "" }) => {
 
     const {pathname} = router
 
+    const _showSessionSignUp = useCallback(
+        (data) => {
+            dispatch(setShowSessionSignUp(data));
+        },
+        [dispatch]
+    );
 
 
     const _logOut = useCallback((data) => {
@@ -197,6 +208,31 @@ const RootPage = ({ children, initLang = "" }) => {
     }
   }, [router.events])
 
+
+    
+    useEffect(()=>{
+        const isServiceStart = sessionStorage.getItem('isServiceWork')
+        let timerId = null
+        if(!isAuth && (!isServiceStart || isServiceStart === 'true') && window?.localStorage){
+            sessionStorage.setItem('isServiceWork', "true")
+            timerId = setTimeout(()=>{
+                _showSessionSignUp(true)
+                sessionStorage.setItem('isServiceWork', "false")
+            },120000)
+        }
+
+        if(isAuth && isServiceStart === 'true'){
+            sessionStorage.setItem('isServiceWork', "false")
+            clearTimeout(timerId)
+        }
+
+        return () => {
+            clearTimeout(timerId)
+        }
+        
+    },[isAuth])
+    
+
     useEffect(() => {
         let timer = null;
         if (isAuth) {
@@ -222,7 +258,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {children}
         {!!showSignInWindow && <SignIn show={showSignInWindow} />}
         {!!showSigUpWindow && <SignUp show={showSigUpWindow} />}
-        {!!showSignResetPassWindow && (
+          {!!showSessionSigUpWindow && <SessionSignUp show={showSessionSigUpWindow} />}
+
+          {!!showSignResetPassWindow && (
           <ResetPassword show={showSignResetPassWindow} />
         )}
         {!!showSuccessfulSignUpWindow && (

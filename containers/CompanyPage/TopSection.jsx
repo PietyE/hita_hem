@@ -10,13 +10,13 @@ import {
 } from "redux/reducers/companies";
 
 const TopSection = () => {
-  const imageUrlCorrenct = useSelector(getHeaderImageSelector);
+  const imageUrlCorrect = useSelector(getHeaderImageSelector);
+
   const imageUrl = useSelector(getHeaderImage1Selector);
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
-    // const _src = imageUrlCorrenct || imageUrl;
+    const _src = imageUrlCorrect || imageUrl;
 
-  const _src = imageUrl;
 
   return (
     <div className="company_top_section_container">

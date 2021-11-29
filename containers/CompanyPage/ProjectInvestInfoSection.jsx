@@ -18,16 +18,17 @@ import {
   getPercentageSelector,
   // getDaysLeftSelector,
   getCompanyIdSelector,
-  getCompanyStatusInNumbersSelector,
+  // getCompanyStatusInNumbersSelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
   getValuationSelector,
-  getLeftDaysToEndSelector,
-  getLeftDaysToStartSelector,
+  // getLeftDaysToEndSelector,
+  // getLeftDaysToStartSelector,
 } from "redux/reducers/companies";
 // import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getLeftDate} from "../../redux/reducers/companies";
 // import {setShowQuiz} from "../../redux/actions/authPopupWindows";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
@@ -48,10 +49,10 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const currency = useSelector(getBusinessCurrencySelector);
   const percentage = useSelector(getPercentageSelector);
   // const daysLeft = useSelector(getDaysLeftSelector);
-  const daysLeftToStart = useSelector(getLeftDaysToStartSelector)
-  const daysLeftToEnd = useSelector(getLeftDaysToEndSelector)
-
-  const status = useSelector(getCompanyStatusInNumbersSelector);
+  // const daysLeftToStart = useSelector(getLeftDaysToStartSelector)
+  // const daysLeftToEnd = useSelector(getLeftDaysToEndSelector)
+  const leftDate = useSelector(getLeftDate)
+  // const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   // const isQuizPassed = useSelector(getQuizIsPassedSelector)
@@ -216,9 +217,10 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
           <Progress
             title={t("company_page.company_raised")}
             percent={percentage}
-            daysLeftToStart={daysLeftToStart}
-            daysLeftToEnd={daysLeftToEnd}
-            status={status}
+            // daysLeftToStart={daysLeftToStart}
+            // daysLeftToEnd={daysLeftToEnd}
+            left_date={leftDate}
+            // status={status}
           />
         </div>
       </div>

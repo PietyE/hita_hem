@@ -10,6 +10,7 @@ const initialState = {
     header_description: "",
     header_image: "",
     header_image_list: [],
+    images: [],
     header_title: "",
     pk: "",
     name: "",
@@ -25,10 +26,8 @@ const sortedByIndex = (data = []) => data.sort((a, b) => a.index - b.index);
 
 export const getHeaderDescriptionSelector = (state) =>
   state.aboutUs.aboutUsContent.header_description;
-// export const getHeaderImageSelector = (state) =>
-//   chooseCorrectResolution(state.aboutUs.aboutUsContent.header_image_list) ||
-//   state.aboutUs.aboutUsContent.header_image;
 export const getHeaderImageSelector = (state) =>
+  chooseCorrectResolution(state.aboutUs.aboutUsContent.images) ||
   state.aboutUs.aboutUsContent.header_image;
 ////////////////////////////////////////////////////
 
