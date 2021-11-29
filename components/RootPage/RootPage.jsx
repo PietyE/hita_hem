@@ -213,7 +213,7 @@ const RootPage = ({ children, initLang = "" }) => {
     useEffect(()=>{
         const isServiceStart = sessionStorage.getItem('isServiceWork')
         let timerId = null
-        if(!isAuth && !isServiceStart && window?.localStorage){
+        if(!isAuth && (!isServiceStart || isServiceStart === 'true') && window?.localStorage){
             sessionStorage.setItem('isServiceWork', "true")
             timerId = setTimeout(()=>{
                 _showSessionSignUp(true)
