@@ -29,7 +29,7 @@ import {
 const initialValues = {
   showSignIn: false,
   showSignUp: false,
-  showSessionSignUp: true,
+  showSessionSignUp: false,
   showResetPassword: false,
   showSuccessfulSignUp: false,
   showSuccessfulCampaignRegistration: false,
@@ -100,7 +100,7 @@ export const authPopupWindows = (state = initialValues, actions) => {
     case SET_SHOW_SIGN_UP:
       return { ...state, showSignUp: actions.payload };
     case SET_SHOW_SESSION_SIGN_UP:
-      return { ...state, showSessionSignUpSignUp: actions.payload };
+      return { ...state, showSessionSignUp: actions.payload };
     case SET_SHOW_RESET_PASSWORD:
       return { ...state, showResetPassword: actions.payload };
     case SET_SHOW_SUCCESSFUL_SIGN_UP:

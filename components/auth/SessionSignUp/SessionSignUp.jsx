@@ -34,6 +34,7 @@ const SessionSignUp = ({show}) => {
     };
 
     const handleClose = () => {
+        console.log('-----------------  1 --------------------')
         dispatch(setShowSessionSignUp(false));
         errorHandlerHook?._clearErrors()
     };

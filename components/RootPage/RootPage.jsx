@@ -34,7 +34,7 @@ import {
     getShowFirstLoginPopup,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
-import {bootstap, logOut} from "redux/actions/user";
+import {bootstap, checkEmailAndPassword, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
@@ -43,6 +43,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {intercomStart} from "../../utils/intercom";
+import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -157,6 +158,12 @@ const RootPage = ({ children, initLang = "" }) => {
 
     const {pathname} = router
 
+    const _showSessionSignUp = useCallback(
+        (data) => {
+            dispatch(setShowSessionSignUp(data));
+        },
+        [dispatch]
+    );
 
 
     const _logOut = useCallback((data) => {
@@ -200,6 +207,31 @@ const RootPage = ({ children, initLang = "" }) => {
       }
     }
   }, [router.events])
+
+
+    
+    useEffect(()=>{
+        const isServiceStart = sessionStorage.getItem('isServiceWork')
+        let timerId = null
+        if(!isAuth && !isServiceStart && window?.localStorage){
+            sessionStorage.setItem('isServiceWork', "true")
+            timerId = setTimeout(()=>{
+                _showSessionSignUp(true)
+                sessionStorage.setItem('isServiceWork', "false")
+            },120000)
+        }
+
+        if(isAuth && isServiceStart === 'true'){
+            sessionStorage.setItem('isServiceWork', "false")
+            clearTimeout(timerId)
+        }
+
+        return () => {
+            clearTimeout(timerId)
+        }
+        
+    },[isAuth])
+    
 
     useEffect(() => {
         let timer = null;
