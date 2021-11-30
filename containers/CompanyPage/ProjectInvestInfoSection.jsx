@@ -250,8 +250,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
       {!isAuth && <SignUpMessage />}
     </div>
-        {!isCompanyClosed &&  (
-            <div className={`sticky_invest_button_container ${classNameVisible}`}>
+        {!isCompanyClosed &&   (
+            <div className={userCanInvest ? `sticky_invest_button_container ${classNameVisible}` : `sticky_invest_button_container sticky_invest_button_container_closed ${classNameVisible}`}>
               <div className='sticky_invest_content_wrapper'>
                 {userCanInvest && <Button
                     colorStyle = "dark-green"
