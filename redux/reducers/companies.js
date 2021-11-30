@@ -300,9 +300,7 @@ export const canUserInvestSelector = (state) => {
   if (status === 1) {
     if (state?.companies?.companyDetail?.private_mode) {
       const currentUserId = state.user?.account?.pk;
-      return state?.companies?.companyDetail.private_mode_viewers.find((el) => {
-        return el === currentUserId;
-      });
+      return !!state?.companies?.companyDetail.private_mode_viewers.find((el) => el === currentUserId);
     } else {
       return false;
     }
