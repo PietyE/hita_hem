@@ -200,6 +200,7 @@ const PersonalDetails = ({
             recaptcha('create_profile_in_invest_form', onMakePayment, investData)
         }
 
+
     };
 
     let _footerStyles

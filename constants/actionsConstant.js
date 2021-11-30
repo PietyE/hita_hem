@@ -88,6 +88,7 @@ export const SET_HOME_PAGE = "homePage/SET_HOME_PAGE";
 
 export const SET_SHOW_SIGN_IN = "authPopupWindows/SET_SHOW_SIGN_IN";
 export const SET_SHOW_SIGN_UP = "authPopupWindows/SET_SHOW_SIGN_UP";
+export const SET_SHOW_SESSION_SIGN_UP = "authPopupWindows/SET_SHOW_SESSION_SIGN_UP";
 export const SET_SHOW_RESET_PASSWORD =
   "authPopupWindows/SET_SHOW_RESET_PASSWORD";
 export const SET_SHOW_SUCCESSFUL_SIGN_UP =

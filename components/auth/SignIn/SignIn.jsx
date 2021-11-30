@@ -17,6 +17,7 @@ import {recaptcha} from "../../../utils/recaptcha";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
+import {emailRegExp} from "../../../utils/vadidationSchemas";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ const SignIn = ({ show }) => {
     password: "",
   };
   const signInSchema = yup.object({
-    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
     password: yup
         .string().max(128)
         .required(t("errors.password_required")),

@@ -14,6 +14,7 @@ import {recaptcha} from "../../../utils/recaptcha";
 import useTranslateFormErrors from "../../../customHooks/useTranslateFormErrors";
 import * as yup from "yup";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
+import {emailRegExp} from "../../../utils/vadidationSchemas";
 
 const ResetPassword = ({ show }) => {
   const { t } = useTranslation();
@@ -40,7 +41,7 @@ const ResetPassword = ({ show }) => {
 
   };
   const resetPasswordSchema = yup.object({
-    email: yup.string().email(t("errors.email_example")).max(80).required(t("errors.email_required")),
+    email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
   })
   return (
     <Modal

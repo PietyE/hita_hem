@@ -34,8 +34,9 @@ const CampaignsCard = (props) => {
     goal,
     currency,
     percentage,
-    left_date_end,
-    left_date_start
+    // left_date_end,
+    // left_date_start
+    left_date
   } = props?.content;
   const moneyFormat = useMoneyFormat()
 const isAuth = useSelector(getIsSignInUserSelector)
@@ -110,9 +111,10 @@ const isAuth = useSelector(getIsSignInUserSelector)
             <Progress
               title={t("campaigns_card.progress_title")}
               percent={percentage}
-              daysLeftToStart={left_date_start}
-              daysLeftToEnd={left_date_end}
-              status={status}
+              // daysLeftToStart={left_date_start}
+              // daysLeftToEnd={left_date_end}
+              leftDate={left_date}
+              // status={status}
             />
 
             {isAuth && (
