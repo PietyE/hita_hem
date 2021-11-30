@@ -45,6 +45,7 @@ const initialState = {
     description: "",
     left_date_start: '',
     left_date_end: '',
+    private_mode_viewers: [],
     industry: {
       title: "",
     },
@@ -297,13 +298,11 @@ export const getPaymentDetailsSelector = (state) =>
 export const canUserInvestSelector = (state) => {
   const status = state.companies.companyDetail.status;
   if (status === 1) {
-    if (state.companies.companyDetail.private_mode) {
+    if (state?.companies?.companyDetail?.private_mode) {
       const currentUserId = state.user?.account?.pk;
-      return state.companies.companyDetail.private_mode_viewers.find((el) => {
-        return el.pk === currentUserId;
-      });
+      return !!state?.companies?.companyDetail.private_mode_viewers.find((el) => el === currentUserId);
     } else {
-      return true;
+      return false;
     }
   } else {
     return true;
