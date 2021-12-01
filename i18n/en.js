@@ -240,7 +240,7 @@ export const en = {
             join_title: "Discover unlisted opportunities today.",
             join_button: "Become a member",
             instructions_title: "Start your journey",
-            featured_campaigns: "Featured campaigns",
+            featured_campaigns: "Popular campaigns",
             upcoming_campaigns: "Upcoming campaigns",
             invest: "Invest",
             raise: "Raise",
