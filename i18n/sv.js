@@ -236,7 +236,7 @@ home_page: {
         upcoming_button: "Se kommande projekt",
         join_title: "Upptäck onoterat.",
     join_button: "Bli en medlem",
-        featured_campaigns: "Utvalda projekt",
+        featured_campaigns: "Populära projekt",
         upcoming_campaigns: "Kommande projekt",
         instructions_title: "Påbörja din resa",
         invest: "Investera",
@@ -296,7 +296,7 @@ profile_page: {
             text: "Genom att ta bort kontot kommer all din data försvinna.",
     },
     reset_email: {
-        title: "Byt email",
+        title: "Byt e-post",
         email_label: "Din e-post",
         forgot_password: "Glömt ditt lösenord?",
             password_label: "Lösenord",
@@ -439,12 +439,12 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
-            text: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
+            title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
         },
         request_for_change_password:{
-            title: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
-            text: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
+            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
+            title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
         },
         invalid_token: {
             text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',

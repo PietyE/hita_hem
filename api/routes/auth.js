@@ -191,7 +191,7 @@ class AuthCRUD extends CRUD {
   }
 
   requestForTokenVerification(params) {
-    const url = `/tokens/${params}`;
+    const url = `/tokens/${params}/`;
     return this.request({
       url,
       method: "DELETE",
@@ -221,7 +221,7 @@ class AuthCRUD extends CRUD {
   }
 
     requestForPasswordResetTokenVerification(params) {
-        const url = `/tokens/${params?.key}`;
+        const url = `/tokens/${params?.key}/`;
         return this.request({
             url,
             method: "GET",

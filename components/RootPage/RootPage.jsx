@@ -22,6 +22,7 @@ import {
   getShowSuccessfulDeletedAccount,
   getShowConfirmationOfAccountDeleting,
   getShowQuizError,
+    getShowQuiz,
   getShowSuccessfulSubscribe,
   getShowRaiseError,
   getShowRequestForChangeEmail,
@@ -34,7 +35,7 @@ import {
     getShowFirstLoginPopup,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
-import {bootstap, checkEmailAndPassword, logOut} from "redux/actions/user";
+import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
@@ -150,9 +151,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowCookie = useSelector(getShowCookiePopup)
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
-
+    const isShowQuiz = useSelector(getShowQuiz)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
-
 
     const router = useRouter()
 
@@ -218,11 +218,14 @@ const RootPage = ({ children, initLang = "" }) => {
             timerId = setTimeout(()=>{
                 _showSessionSignUp(true)
                 sessionStorage.setItem('isServiceWork', "false")
-            },120000)
+            },30000)
         }
 
         if(isAuth && isServiceStart === 'true'){
             sessionStorage.setItem('isServiceWork', "false")
+            clearTimeout(timerId)
+        }
+        if(isShowQuiz || showSignInWindow || showSigUpWindow){
             clearTimeout(timerId)
         }
 
@@ -230,7 +233,7 @@ const RootPage = ({ children, initLang = "" }) => {
             clearTimeout(timerId)
         }
         
-    },[isAuth])
+    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow])
     
 
     useEffect(() => {
