@@ -1287,6 +1287,9 @@
             .project_info_title {
               font-size: 24px;
             }
+            a{
+              word-break: break-all;
+            }
           }
         }
         .project_info_right_section {
