@@ -134,7 +134,9 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
                 setFieldError("country", undefined);
                 handleBlur(e);
               }}
-              defaultOptionLabel=""
+              showDefaultOption={!values.country}
+              style={{color: !values.country ? 'rgba(0, 0, 0, 0.38)' : ''}}
+              defaultOptionLabel={t("profile_page.personal.country_placeholder")}
               valueType="short"
             />
             <div className="raise_form_country_arrow">

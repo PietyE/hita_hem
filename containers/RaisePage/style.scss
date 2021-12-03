@@ -371,6 +371,9 @@
         }
         .raise_form_country{
           padding-right: 43px;
+          option{
+            color: #000 !important;
+          }
         }
         .raise_form_input {
           border: unset;
@@ -442,6 +445,7 @@
           border-radius: 0 3px 3px 0;
           cursor: pointer;
           z-index: 100;
+
         }
       }
     }
