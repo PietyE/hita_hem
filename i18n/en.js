@@ -348,6 +348,7 @@ export const en = {
                 year_label: "Year",
                 year_placeholder: "Select year",
                 country_label: "Country*",
+                country_placeholder: 'Select country',
                 city_label: "City*",
                 address_label: "Address*",
                 personal_id_label: "Personal ID number*",

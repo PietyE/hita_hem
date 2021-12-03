@@ -440,8 +440,9 @@ const PersonalDetails = ({
                                                     setFieldError("address.country", undefined);
                                                     handleBlur(e);
                                                 }}
-                                                //       showDefaultOption={true}
-                                                defaultOptionLabel = {values?.address?.country || ""}
+                                                      showDefaultOption={isEmpty(profile) && !values?.address?.country }
+                                                defaultOptionLabel = {t("profile_page.personal.country_placeholder")}
+
                                             />
                                             <div className = "profile_input_arrow">
                                                 <IconComponent icon = {faCaretDown}/>
