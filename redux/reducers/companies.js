@@ -11,6 +11,7 @@ import {
   RESET_COMPANY_TAB,
   RESET_COMPANY_LIST,
   IS_MORE_COMPANIES,
+  SET_IS_REDIRECT,
 } from "constants/actionsConstant";
 
 import { companyTabConstants } from "constants/companyTabConstant";
@@ -158,6 +159,7 @@ const initialState = {
     ],
     faq_set: [],
   },
+  is_redirect_on: false,
   paymentDetails: {},
   isMoreCampaignsOnTheApi: true,
   faq_posts: [],
@@ -170,7 +172,9 @@ const initialState = {
   private_mode: false,
 };
 
-export const getHiddenModeSelector = state => state.companies.companyDetail.hidden_mode;
+
+export const getIsRedirectOnSelector = state => state?.companies?.is_redirect_on;
+
 
 export const getMinimumInvestAmountSelector = state => state.companies.companyDetail.minimum_invest_amount;
 export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
@@ -346,6 +350,8 @@ export const companies = (state = initialState, actions) => {
       return setFilter(state, actions);
     case SET_POSTS:
       return { ...state, faq_posts: actions.payload };
+    case SET_IS_REDIRECT:
+      return { ...state, is_redirect_on: actions.payload};
     default:
       return state;
   }
