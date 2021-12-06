@@ -8,7 +8,7 @@ import Footer from "components/Footer";
 import {
     getIsSignInUserSelector,
     getUserEmailSelector,
-    getFullNameSelector
+    getFullNameSelector, getCanResetPasswordSelector
 } from "redux/reducers/user";
 import {
   getShowSignIn,
@@ -154,6 +154,9 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowQuiz = useSelector(getShowQuiz)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
 
+
+    const canResetPassword = useSelector(getCanResetPasswordSelector)
+
     const router = useRouter()
 
     const {pathname} = router
@@ -188,7 +191,6 @@ const RootPage = ({ children, initLang = "" }) => {
         language_override: initLang,
       })
     }
-    ;
   }, [email, fullName]);
 
   useEffect(() => {
@@ -225,7 +227,7 @@ const RootPage = ({ children, initLang = "" }) => {
             sessionStorage.setItem('isServiceWork', "false")
             clearTimeout(timerId)
         }
-        if(isShowQuiz || showSignInWindow || showSigUpWindow){
+        if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword){
             clearTimeout(timerId)
         }
 
@@ -233,7 +235,7 @@ const RootPage = ({ children, initLang = "" }) => {
             clearTimeout(timerId)
         }
         
-    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow])
+    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword])
     
 
     useEffect(() => {
