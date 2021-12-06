@@ -25,7 +25,6 @@ import { getCompanyIdSelector } from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import { setFaqPosts } from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
-// import isEqual from "lodash/isEqual"
 import { setError } from "../actions/errors";
 import { getSelectedLangSelector } from "../reducers/language";
 

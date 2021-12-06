@@ -40,6 +40,7 @@ const initialState = {
     pk: "",
     logo: "",
     short_description: "",
+    hidden_mode: false,
     website: "",
     title: "",
     description: "",
@@ -169,6 +170,7 @@ const initialState = {
   private_mode: false,
 };
 
+export const getHiddenModeSelector = state => state.companies.companyDetail.hidden_mode;
 
 export const getMinimumInvestAmountSelector = state => state.companies.companyDetail.minimum_invest_amount;
 export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
