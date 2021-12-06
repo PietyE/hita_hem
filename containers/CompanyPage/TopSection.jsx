@@ -13,21 +13,13 @@ import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 const TopSection = () => {
   const images = useSelector(getHeaderImageSelector);
 
-  // const imageUrl = useSelector(getHeaderImage1Selector);
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
-    // const _src = imageUrlCorrect || imageUrl;
     const screenSize = checkCurrentResolution()
-const img = getCorrectImage(images)
+    const img = getCorrectImage(images)
 
   return (
     <div className="company_top_section_container" style={{  position: 'relative'}}>
-      {/*<img*/}
-      {/*  src={_src}*/}
-      {/*  alt="company_foto"*/}
-      {/*  className="company_top_section_foto"*/}
-      {/*  loading="lazy"*/}
-      {/*/>*/}
         {screenSize === 'desktop' && img &&
         (<Image
             src = {img}
