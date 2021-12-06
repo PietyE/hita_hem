@@ -11,7 +11,7 @@ import Image from "next/image";
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 
 const TopSection = () => {
-  const images = useSelector(getHeaderImageSelector);
+  const images = useSelector(getHeaderImageSelector) || [];
 
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";

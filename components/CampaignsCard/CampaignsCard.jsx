@@ -28,20 +28,14 @@ const CampaignsCard = (props) => {
     industry,
     title,
     short_description,
-    // card_image,
-    // header_image,
-      images,
+      images=[],
     goal,
     currency,
     percentage,
-    // left_date_end,
-    // left_date_start
     left_date
   } = props?.content;
   const moneyFormat = useMoneyFormat()
 const isAuth = useSelector(getIsSignInUserSelector)
-  // const diff = new Date(props?.content?.end_date) - new Date();
-  // const leftDays = Math.floor(diff / (1000 * 3600 * 24));
   return (
     <>
       {!!props?.content && (
@@ -59,13 +53,14 @@ const isAuth = useSelector(getIsSignInUserSelector)
             {/*  alt="company_foto"*/}
             {/*/>*/}
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
-              <Image
-                  src={images['desktop']}
-                  layout="fill"
-                  objectFit="cover"
-                  priority={true}
+              {images['desktop'] && (
+                  <Image
+                  src = {images['desktop']}
+                  layout = "fill"
+                  objectFit = "cover"
+                  priority = {true}
 
-              />
+              />)}
             </div>
           
           </Link>
@@ -74,20 +69,24 @@ const isAuth = useSelector(getIsSignInUserSelector)
             href={"/company/[companyId]"}
             prefetch={false}
           >
-            <span className="campaigns_card_logo" style={{  position: 'relative'}}>
+            <span className="campaigns_card_logo" >
               {/*<img*/}
               {/*  className="featured_campaigns_logo_img"*/}
               {/*  src={logo}*/}
               {/*  alt="campaigns_logo"*/}
               {/*  loading="lazy"*/}
               {/*/>*/}
-              <Image
-                  src={logo}
-                  layout="fill"
-                  objectFit="cover"
-                  // priority={true}
+              <div className="featured_campaigns_logo_img" style={{  position: 'relative'}}>
+                 <Image
 
-              />
+                     src={logo}
+                     layout="fill"
+                     objectFit="cover"
+                     // priority={true}
+
+                 />
+              </div>
+
             </span>
           </Link>
 
