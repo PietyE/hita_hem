@@ -3,7 +3,6 @@ import {
   SET_EMAIL,
   SET_IS_FETCHING_ABOUT_US,
 } from "constants/actionsConstant";
-import { chooseCorrectResolution } from "../../utils/utils";
 
 const initialState = {
   aboutUsContent: {
@@ -26,9 +25,7 @@ const sortedByIndex = (data = []) => data.sort((a, b) => a.index - b.index);
 
 export const getHeaderDescriptionSelector = (state) =>
   state.aboutUs.aboutUsContent.header_description;
-export const getHeaderImageSelector = (state) =>
-  chooseCorrectResolution(state.aboutUs.aboutUsContent.images) ||
-  state.aboutUs.aboutUsContent.header_image;
+export const getHeaderImageSelector = (state) =>state.aboutUs.aboutUsContent.images
 ////////////////////////////////////////////////////
 
 export const getHeaderTitleSelector = (state) =>

@@ -5,7 +5,6 @@ import Image from "next/image";
 
 import { useTranslation } from "react-i18next";
 
-import ImageComponent from "../ui/ImageComponent";
 import StatusCompanyBadge from "../StatusCompany";
 import IconBag from "public/images/icon_bag.svg";
 import IconLocation from "public/images/icon_location.svg";
@@ -29,8 +28,9 @@ const CampaignsCard = (props) => {
     industry,
     title,
     short_description,
-    card_image,
-    header_image,
+    // card_image,
+    // header_image,
+      images,
     goal,
     currency,
     percentage,
@@ -51,25 +51,42 @@ const isAuth = useSelector(getIsSignInUserSelector)
             href={"/company/[companyId]"}
             prefetch={false}
           >
-            <ImageComponent
-              className="campaigns_card_image"
-              // src={card_image || header_image}
-              src={header_image || card_image}
+            {/*<ImageComponent*/}
+            {/*  className="campaigns_card_image"*/}
+            {/*  // src={card_image || header_image}*/}
+            {/*  src={header_image || card_image}*/}
+            
+            {/*  alt="company_foto"*/}
+            {/*/>*/}
+            <div className='campaigns_card_image' style={{  position: 'relative'}}>
+              <Image
+                  src={images['desktop']}
+                  layout="fill"
+                  objectFit="cover"
+                  priority={true}
 
-              alt="company_foto"
-            />
+              />
+            </div>
+          
           </Link>
           <Link
             as={`/company/${pk}`}
             href={"/company/[companyId]"}
             prefetch={false}
           >
-            <span className="campaigns_card_logo">
-              <img
-                className="featured_campaigns_logo_img"
-                src={logo}
-                alt="campaigns_logo"
-                loading="lazy"
+            <span className="campaigns_card_logo" style={{  position: 'relative'}}>
+              {/*<img*/}
+              {/*  className="featured_campaigns_logo_img"*/}
+              {/*  src={logo}*/}
+              {/*  alt="campaigns_logo"*/}
+              {/*  loading="lazy"*/}
+              {/*/>*/}
+              <Image
+                  src={logo}
+                  layout="fill"
+                  objectFit="cover"
+                  // priority={true}
+
               />
             </span>
           </Link>
