@@ -17,6 +17,7 @@ import {
 } from "redux/actions/companies";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 import {
+  getHiddenModeSelector,
   getIsError404Selector,
   getIsFetchingCampaignsSelector,
 } from "redux/reducers/companies";
@@ -30,6 +31,7 @@ const CompanyPage = () => {
   const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
   const isFetching = useSelector(getIsFetchingCampaignsSelector);
+  const isInHiddenMode = useSelector(getHiddenModeSelector)
 
   const _getCompanyDetail = useCallback(
     (id) => {
@@ -59,6 +61,12 @@ const CompanyPage = () => {
     };
   }, [_clearError404, isError404]);
 
+
+  useEffect(()=>{
+    if(isInHiddenMode && !isAuth){
+      router.push("/404");
+    }
+  },[isInHiddenMode, isAuth])
 
   useEffect(()=>{
     _getCompanyDetail(companyId)
