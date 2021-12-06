@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { getIsOwnerSelector } from "redux/reducers/companies";
 import { useTranslation } from "react-i18next";
+import Image from "next/image";
 
 const dataOptions = {
   day: "numeric",
@@ -31,9 +32,16 @@ const CommentItem = ({ data, className, complete }) => {
   return (
     <>
       <div className={`comment_item ${className}`}>
-        <div className="comment_item_image">
+        <div className="comment_item_image" style={{  position: 'relative'}}>
           {data?.user?.image && (
-            <img src={data?.user?.image} alt="user_avatar" loading="lazy" />
+            // <img src={data?.user?.image} alt="user_avatar" loading="lazy" />
+              <Image
+                  src = {data?.user?.image}
+                  layout = "fill"
+                  objectFit = "cover"
+                  // priority = {true}
+                  alt = "User avatar"
+              />
           )}
         </div>
         <div className="comment_item_text_wrapper">

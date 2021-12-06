@@ -32,21 +32,20 @@ export const checkCurrentResolution = () => {
     if (screen.width > 1280) {
       return 'desktop';
     }
-    // if (screen.width > 1024 && screen.width <= 1280) {
-    //   return 1280;
-    // }
     if (screen.width > 640 && screen.width <= 1280) {
       return 'laptop';
     }
-    // if (screen.width > 480 && screen.width <= 768) {
-    //   return 768;
-    // }
     if (screen.width <= 640) {
       return 'mobile';
     }
   }
-  return 'mobile';
+  return null
 };
+
+export const getCorrectImage = (images) => {
+  const imageSize = checkCurrentResolution();
+return images[imageSize] || images['desktop'] || images['laptop'] || images['mobile']
+}
 
 export const chooseCorrectResolution = (imageList) => {
   const imageSize = checkCurrentResolution();
@@ -60,7 +59,9 @@ export const chooseCorrectResolution = (imageList) => {
   }else if(!imageList){
     return null
   }else{
-    return imageList[imageSize]
+      return imageList[imageSize]
+    // return imageList['desktop']
+
   }
   // for (let key in imageList) {
     // if (Number(key.replace(/\D/g, "")) === Number(imageSize)) {

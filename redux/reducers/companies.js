@@ -14,9 +14,7 @@ import {
 } from "constants/actionsConstant";
 
 import { companyTabConstants } from "constants/companyTabConstant";
-import {
-  chooseCorrectResolution,
-} from "../../utils/utils";
+
 
 const setFilter = (state, actions) => {
   if (Array.isArray(actions.payload)) {
@@ -210,13 +208,12 @@ export const getAboutProjectDescriptionSelector = (state) =>
 export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
 
-export const getHeaderImageSelector = (state) =>
-  chooseCorrectResolution(state.companies.companyDetail.images);
+export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
 
 
 
-export const getHeaderImage1Selector = (state) =>
-  state.companies.companyDetail.header_image;
+// export const getHeaderImage1Selector = (state) =>
+//   state.companies.companyDetail.header_image;
 
 export const getHeaderTitleSelector = (state) =>
   state.companies.companyDetail.header_title;

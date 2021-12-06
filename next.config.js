@@ -4,7 +4,8 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 
 module.exports = withBundleAnalyzer({
   images: {
-    domains: ["dev-api.accumeo.com", "accumeo-media-dev.s3.amazonaws.com"],
+    domains: ["dev-api.accumeo.com", "accumeo-media-dev.s3.amazonaws.com", "d190e604gdbcnz.cloudfront.net"],
+    minimumCacheTTL: 31536000,
   },
   devIndicators: {
     autoPrerender: false,
@@ -15,6 +16,7 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "sv",
     localeDetection: false,
   },
+
   async headers() {
     return [
       {
