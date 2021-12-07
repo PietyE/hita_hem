@@ -7,6 +7,8 @@ import InfoBlockColor from "components/ui/InfoBlockColor";
 import ImageComponent from "components/ui/ImageComponent";
 import { getIdeaSectionContentSelector } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
+import Image from "next/image";
+import {getCorrectImage} from "../../utils/utils";
 
 const Idea = () => {
   const ideaContents =
@@ -16,13 +18,18 @@ const Idea = () => {
       {ideaContents.map((section, i) => {
         const {
           type,
-          first_image,
-          second_image,
-          third_image,
-          fourth_image,
+          first_images,
+          second_images,
+          third_images,
+          fourth_images,
           title,
           description,
         } = section;
+
+        const img1 = getCorrectImage(first_images)
+        const img2 = getCorrectImage(second_images)
+        const img3= getCorrectImage(third_images)
+        const img4 = getCorrectImage(fourth_images)
 
         if (type === "Challenge") {
           return (
@@ -52,48 +59,54 @@ const Idea = () => {
               />
               {type === "Solution" && (
                 <>
-                  {!!first_image && (
+                  {!!img1 && (
                     <ImageComponent
                       alt="foto1"
-                      src={first_image}
+                      src={img1}
                       className="mb-4"
                     />
+
                   )}
-                  {!!second_image && (
-                    <ImageComponent alt="foto1" src={second_image} />
+                  {!!img2 && (
+                    <ImageComponent alt="foto1" src={img2} />
+
                   )}
                 </>
               )}
             </section>
             {type === "Result" && (
               <div className="idea_image_container">
-                {!!first_image && (
-                  <ImageComponent
+                {!!img1 && (
+                   <ImageComponent
                     alt="foto1"
-                    src={first_image}
+                    src={img1}
                     className="middle_foto"
                   />
+
                 )}
-                {!!second_image && (
+                {!!img2 && (
                   <ImageComponent
                     alt="foto1"
-                    src={second_image}
+                    src={img2}
                     className="middle_foto"
                   />
+
                 )}
-                {!!third_image && (
+                {!!img3 && (
                   <ImageComponent
                     alt="foto1"
-                    src={third_image}
+                    src={img3}
                     className="middle_foto"
                   />
+
                 )}
-                {!!fourth_image && (
+                {!!img4 && (
                   <ImageComponent
                     alt="foto1"
-                    src={fourth_image}
+                    src={img4}
                     className="middle_foto"
                   />
+
                 )}
               </div>
             )}
