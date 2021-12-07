@@ -44,6 +44,11 @@
   border-radius: 50px;
   overflow: hidden;
   cursor: pointer;
+  .featured_campaigns_logo_img{
+    width: 80px;
+    height: 80px;
+  }
+
   .featured_campaigns_logo_img {
     height: 100%;
     object-fit: cover;
@@ -171,6 +176,10 @@
     top: 180px;
     //left: 24px;
     //top: 214px;
+    .featured_campaigns_logo_img{
+      width: 64px;
+      height: 64px;
+    }
   }
   .campaigns_card_status {
     top: 195px;

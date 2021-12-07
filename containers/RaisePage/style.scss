@@ -43,6 +43,7 @@
         max-width: 1920px;
         margin-right: auto;
         margin-left: auto;
+        z-index: 1;
       }
     }
 
@@ -54,7 +55,7 @@
       left: 0;
       object-fit: cover;
       z-index: -1;
-      background-color: #939393;
+      background-color: #fff;
     }
 
     .raise_page_slider_title {
