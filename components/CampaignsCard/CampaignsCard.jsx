@@ -53,7 +53,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
             {/*  alt="company_foto"*/}
             {/*/>*/}
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
-              {images['desktop'] && (
+              {images && images['desktop'] && (
                   <Image
                   src = {images['desktop']}
                   layout = "fill"
