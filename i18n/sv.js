@@ -344,6 +344,7 @@ profile_page: {
             year_label: "År",
             year_placeholder: "År",
             country_label: "Land*",
+            country_placeholder: 'Välj land',
             city_label: "Stad*",
             address_label: "Adress*",
             personal_id_label: "Personnummer*",

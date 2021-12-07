@@ -3,8 +3,8 @@ import Carousel from "react-bootstrap/Carousel";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
-
-import { chooseCorrectResolution } from "../../utils/utils";
+import Image from 'next/image'
+import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 
 const TopSliderComponent = ({
   data,
@@ -17,6 +17,8 @@ const TopSliderComponent = ({
   firstButtonClass,
   secondButtonClass,
 }) => {
+  const screenSize = checkCurrentResolution()
+
   return (
     <div className={`slider_component_container ${sectionClass}`}>
       <Carousel controls={data?.length>1} slide={true} interval={8000} touch={true} indicators={data?.length>1}>
@@ -24,8 +26,6 @@ const TopSliderComponent = ({
           data?.map((headerItem) => {
             const {
               images,
-                header_image,
-              image,
               title,
               description,
               first_button_title,
@@ -35,17 +35,38 @@ const TopSliderComponent = ({
               status,
                 pk
             } = headerItem;
-            const correct_image = chooseCorrectResolution(images);
-            const _src = correct_image || header_image || image;
+
+            const img = getCorrectImage(images)
             return (
               <Carousel.Item key={pk+title}>
-                <div className='item_component_container'>
-                  <img
-                    className="item_component_image"
-                    src={_src}
-                    alt="First slide"
-                    loading="lazy"
-                  />
+                <div className='item_component_container' style={{  position: 'relative'}}>
+                  {( screenSize === 'desktop' && img &&
+                      <Image
+                      src = {img}
+                      layout = "fill"
+                      objectFit = "cover"
+                      priority = {true}
+                      alt = 'header image'
+
+                  />)}
+                  {( screenSize === 'laptop' && img &&
+                      <Image
+                          src = {img}
+                          layout = "fill"
+                          objectFit = "cover"
+                          priority = {true}
+                          alt = 'header image'
+
+                      />)}
+                  {( screenSize === 'mobile' && img &&
+                      <Image
+                          src = {img}
+                          layout = "fill"
+                          objectFit = "cover"
+                          priority = {true}
+                          alt = 'header image'
+
+                      />)}
                   <div className= {`item_component_content_container ${containerClass}`}>
                   {status && (
                     <StatusCompanyBadge

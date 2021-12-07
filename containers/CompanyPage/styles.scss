@@ -1260,6 +1260,9 @@
   }
 }
 @media screen and (max-width: 900px) {
+  .project_info_bussines_highlights, .project_info_description{
+    word-break: break-word;
+  }
   .sticky_invest_button_container{
     width: 100vw;
     right: 0;
@@ -1298,9 +1301,7 @@
             .project_info_title {
               font-size: 24px;
             }
-            a{
-              word-break: break-all;
-            }
+
           }
         }
         .project_info_right_section {

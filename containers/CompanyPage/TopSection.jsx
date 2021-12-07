@@ -6,26 +6,48 @@ import {
   getHeaderImageSelector,
   getHeaderTitleSelector,
   getCompanyStatusSelector,
-  getHeaderImage1Selector,
 } from "redux/reducers/companies";
+import Image from "next/image";
+import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 
 const TopSection = () => {
-  const imageUrlCorrect = useSelector(getHeaderImageSelector);
+  const images = useSelector(getHeaderImageSelector) || [];
 
-  const imageUrl = useSelector(getHeaderImage1Selector);
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
-    const _src = imageUrlCorrect || imageUrl;
-
+    const screenSize = checkCurrentResolution()
+    const img = getCorrectImage(images)
 
   return (
-    <div className="company_top_section_container">
-      <img
-        src={_src}
-        alt="company_foto"
-        className="company_top_section_foto"
-        loading="lazy"
-      />
+    <div className="company_top_section_container" style={{  position: 'relative'}}>
+        {screenSize === 'desktop' && img &&
+        (<Image
+            src = {img}
+            layout = "fill"
+            objectFit = "cover"
+            priority = {true}
+            className="company_top_section_foto"
+            alt = "Company photo"
+        />)}
+        {screenSize === 'laptop' && img &&
+        (<Image
+            src = {img}
+            layout = "fill"
+            objectFit = "cover"
+            priority = {true}
+            className="company_top_section_foto"
+            alt = "Company photo"
+        />)}
+        {screenSize === 'mobile' && img &&
+        (<Image
+            src = {img}
+            layout = "fill"
+            objectFit = "cover"
+            priority = {true}
+            className="company_top_section_foto"
+            alt = "Company photo"
+        />)}
+
         <div className='company_top_content_container'>
             <StatusCompanyBadge
              status={status}

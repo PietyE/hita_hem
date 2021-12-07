@@ -13,12 +13,13 @@ import {
   getCompanyById,
   clearCompany,
   setError404,
-  resetCompanyTab,
+  resetCompanyTab, setRedirect,
 } from "redux/actions/companies";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 import {
   getIsError404Selector,
   getIsFetchingCampaignsSelector,
+  getIsRedirectOnSelector,
 } from "redux/reducers/companies";
 
 const CompanyPage = () => {
@@ -30,6 +31,8 @@ const CompanyPage = () => {
   const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
   const isFetching = useSelector(getIsFetchingCampaignsSelector);
+
+  const isRedirectOnSelector = useSelector(getIsRedirectOnSelector)
 
   const _getCompanyDetail = useCallback(
     (id) => {
@@ -46,6 +49,10 @@ const CompanyPage = () => {
     dispatch(resetCompanyTab());
   }, [dispatch]);
 
+  const _resetRedirectIsOn = useCallback((data) => {
+    dispatch(setRedirect(data));
+  }, [dispatch]);
+
   const _clearError404 = useCallback(() => {
     dispatch(setError404(false));
   }, [dispatch]);
@@ -59,6 +66,13 @@ const CompanyPage = () => {
     };
   }, [_clearError404, isError404]);
 
+  useEffect(()=>{
+    if(isRedirectOnSelector){
+      _resetRedirectIsOn(false)
+        router.push("/404");
+
+    }
+  },[isRedirectOnSelector])
 
   useEffect(()=>{
     _getCompanyDetail(companyId)

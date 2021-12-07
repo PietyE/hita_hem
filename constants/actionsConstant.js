@@ -83,6 +83,8 @@ export const RESET_COMPANY_LIST = "companies/RESET_COMPANY_LIST";
 export const IS_MORE_COMPANIES = "companies/IS_MORE_COMPANIES";
 export const MAKE_PAYMENT = "companies/MAKE_PAYMENT";
 
+export const SET_IS_REDIRECT = 'companies/SET_IS_REDIRECT'
+
 export const GET_HOME_PAGE = "homePage/GET_HOME_PAGE";
 export const SET_HOME_PAGE = "homePage/SET_HOME_PAGE";
 
