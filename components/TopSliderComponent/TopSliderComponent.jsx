@@ -40,33 +40,41 @@ const TopSliderComponent = ({
             return (
               <Carousel.Item key={pk+title}>
                 <div className='item_component_container' style={{  position: 'relative'}}>
-                  {( screenSize === 'desktop' && img &&
-                      <Image
-                      src = {img}
-                      layout = "fill"
-                      objectFit = "cover"
-                      priority = {true}
-                      alt = 'header image'
+                  {img && (
+                      <>
+                      {( screenSize === 'desktop' &&
+                          <Image
+                              className="item_component_image"
+                              src = {img}
+                              layout = "fill"
+                              objectFit = "cover"
+                              priority = {true}
+                              alt = 'header image'
 
-                  />)}
-                  {( screenSize === 'laptop' && img &&
-                      <Image
-                          src = {img}
-                          layout = "fill"
-                          objectFit = "cover"
-                          priority = {true}
-                          alt = 'header image'
+                          />)}
+                  {( screenSize === 'laptop' &&
+                    <Image
+                        className="item_component_image"
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "cover"
+                    priority = {true}
+                    alt = 'header image'
 
-                      />)}
-                  {( screenSize === 'mobile' && img &&
-                      <Image
-                          src = {img}
-                          layout = "fill"
-                          objectFit = "cover"
-                          priority = {true}
-                          alt = 'header image'
+                    />)}
+                  {( screenSize === 'mobile' &&
+                    <Image
+                        className="item_component_image"
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "cover"
+                    priority = {true}
+                    alt = 'header image'
 
-                      />)}
+                    />)}
+                    </>
+                  )}
+
                   <div className= {`item_component_content_container ${containerClass}`}>
                   {status && (
                     <StatusCompanyBadge
