@@ -59,7 +59,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                       colorStyle="white"
                       onClick={onScrollTo}
                     >
-                      {content?.button_title}
+                      {content?.button_title.toUpperCase()}
                     </Button>
                       </div>
                   </div>

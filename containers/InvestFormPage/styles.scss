@@ -44,6 +44,7 @@
         margin-bottom: 25px;
         .invest_form_invest_progress_bar_label{
           display: flex;
+          flex-direction: row-reverse;
           justify-content: space-between;
           font-family: Mulish, sans-serif;
           font-style: normal;

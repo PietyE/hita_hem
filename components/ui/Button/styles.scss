@@ -43,7 +43,7 @@
     box-sizing: border-box;
     border: 1px solid #1f607c;
     box-sizing: border-box;
-    font-family: Mulish, sans-serif;
+    font-family:'Source sans Pro',Mulish, sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -175,6 +175,33 @@
     color: #ffffff;
     transform: rotate(-0.14deg);
   }
+  &.dark-blue {
+    background: #005fb3;
+    font-family: Source Sans Pro;
+    font-weight: 600;
+    font-size: 16px;
+    &:focus {
+      filter: brightness(1);
+      transition: 0.3s;
+      outline: none;
+      box-shadow: none;
+    }
+    &:hover {
+      filter: brightness(1.2);
+      transition: 0.3s;
+      outline: none;
+      box-shadow: none;
+    }
+    &:active {
+      background: #1f607c !important;
+      filter: brightness(1.4);
+      transition: 0.3s;
+    }
+    &:hover:focus:active {
+      box-shadow: none;
+    }
+  }
+
   &.red {
     background: #e0719e;
     border: 6px solid #383a48;

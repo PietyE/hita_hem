@@ -86,13 +86,14 @@
       justify-content: flex-start;
 
       .company_name {
-        font-family: Raleway, sans-serif;
+        font-family: 'Source sans Pro',Raleway, sans-serif;
         font-style: normal;
         font-weight: 700;
-        font-size: 40px;
-        line-height: 40px;
+        text-transform: none;
+        color: #000000;
+        font-size: 48px;
+        line-height: 50px;
         letter-spacing: 0.1px;
-        color: #000;
         margin-bottom: 15px;
       }
 
@@ -164,8 +165,11 @@
 
       .project_info_description_section {
         .project_info_title {
-          font-size: 22px;
+          line-height: 54px;
           font-weight: 700;
+          font-style: normal;
+          font-size: 22px;
+
         }
       }
 
@@ -179,6 +183,7 @@
       }
 
       .project_info_bussines_highlights {
+
         margin-bottom: 40px;
 
         .project_info_title {
@@ -197,14 +202,14 @@
 
       .project_info_bussines_highlights {
         padding: 20px 25px;
-        background: #f0f0ff;
+        background-color: #f5fbff;
         border-radius: 8px;
         width: 100%;
 
         .project_info_bussines_highlights_title {
-          font-family: Raleway, sans-serif;
+          font-weight: 700;
+          font-family: 'Source sans Pro',Raleway, sans-serif;
           font-style: normal;
-          font-weight: bold;
           font-size: 24px;
           line-height: 32px;
           font-feature-settings: "pnum" on, "lnum" on;
@@ -307,6 +312,7 @@
       }
 
       .invest_button {
+        background-color: #0b5394;
         width: 100%;
         height: 56px;
         margin-bottom: 23px;
@@ -347,9 +353,13 @@
       }
 
       .idea_title {
-        margin-bottom: 10px;
-      font-size: 40px;
         font-weight: 700;
+        font-family: 'Source sans Pro';
+        font-style: normal;
+        line-height: 70px;
+        font-size: 40px;
+
+        margin-bottom: 10px;
       }
 
 
@@ -374,10 +384,9 @@
         }
         ul {
           list-style: none;
-          margin: 0;
-          padding: 0;
-          padding-left: 80px;
+          padding: 0 0 0 20px;
           margin: 22px 0;
+
 
           li {
             font-family: Mulish, sans-serif;
@@ -502,30 +511,30 @@
     }
 
     .member_card_item_name {
-      font-family: Raleway, sans-serif;
+      font-family: 'Source sans Pro',Raleway, sans-serif;
       font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 32px;
-      font-feature-settings: "pnum" on, "lnum" on;
-      color: rgba(0, 0, 0, 0.87);
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 120%;
+      color: #000;
     }
 
     .member_card_item_position {
-      font-family: Mulish, sans-serif;
       font-style: normal;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 150%;
-      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 100%;
+      color: #616161;
+      font-family: 'Source sans Pro',Mulish, sans-serif;
       margin-bottom: 15px;
     }
 
     .member_card_item_email {
-      font-family: Mulish, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 150%;
+      font-family: 'Source sans Pro',Mulish, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 100%;
       color: #000;
       margin-bottom: 15px;
       &:hover {
@@ -535,12 +544,13 @@
     }
 
     .member_card_item_description {
-      font-family: Mulish, sans-serif;
       font-style: normal;
-      font-weight: 400;
+      font-weight: 500;
+      line-height: 120%;
+      color: #616161;
       font-size: 16px;
-      line-height: 150%;
-      color: #000;
+
+      font-family: 'Source sans Pro',Mulish, sans-serif;
       margin-bottom: 15px;
     }
   }
@@ -605,10 +615,10 @@
       }
 
       .fin_article_title {
-        font-family: Raleway, sans-serif;
+        font-family: 'Source sans Pro',Raleway, sans-serif;
+        font-weight: 700;
+        font-size: 36px;
         font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
         line-height: 64px;
         font-feature-settings: "pnum" on, "lnum" on;
         color: rgba(0, 0, 0, 0.87);
@@ -705,6 +715,7 @@
     margin-bottom: 25px;
   }
   .campaigns_tab_sign-up_button {
+    background-color: #0e5394;
     width: 145px;
     height: 48px;
     margin-bottom: 45px;
@@ -897,6 +908,7 @@
   }
 }
 .sticky_invest_button{
+  background-color: #0b5394;
   margin-left: auto;
   margin-right: 75px;
   width: 350px;
@@ -1409,7 +1421,7 @@
         }
         .idea_section_description_container {
           ul {
-            padding-left: 30px;
+            padding-left: 10px;
           }
           img{
             max-width: calc(100vw - 2rem);

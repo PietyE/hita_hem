@@ -58,10 +58,15 @@
     }
 
     .raise_page_slider_title {
+      font-kerning: normal;
+      font-family: 'Source sans Pro';
+      font-size: 48px;
+      font-weight: 900;
+      font-style: normal;
+
+      //
       width: 450px;
       margin-bottom: 20px;
-      font-weight: 800;
-      font-size: 48px;
       line-height: 56px;
       letter-spacing: 0.2px;
       color: #ffffff;
@@ -85,13 +90,14 @@
 
   .raise_instructions_container {
     padding-top: 55px;
-    //padding-bottom: 110px;
 
     .raise_instructions_title {
-      font-family: Raleway;
+      font-kerning: normal;
+      font-family: 'Source Sans Pro', Raleway, sans-serif;
+      font-size: 40px;
+      font-weight: 500;
       font-style: normal;
-      font-weight: bold;
-      font-size: 32px;
+//
       line-height: 40px;
       text-align: center;
       letter-spacing: 1px;
@@ -103,7 +109,6 @@
       width: 450px;
       margin-right: auto;
       margin-left: auto;
-      //display: none;
       font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: normal;
@@ -162,25 +167,27 @@
         }
 
         .rise_item_title {
-          font-family: Mulish, sans-serif;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 18px;
+          font-family: 'Source sans Pro',Mulish, sans-serif;
           line-height: 22px;
           text-align: center;
           font-feature-settings: "pnum" on, "lnum" on;
-          color: rgba(0, 0, 0, 0.87);
           margin-bottom: 20px;
           //padding: 0 20px;
           max-height: 60px;
           overflow: hidden;
+
+          font-weight: 600;
+          font-style: normal;
+          color: #424242;
+          font-size: 24px;
+
         }
 
         .raise_item_text {
           font-family: Mulish, sans-serif;
           font-style: normal;
           font-weight: normal;
-          font-size: 14px;
+          font-size: 18px;
           line-height: 150%;
           text-align: center;
           color: #000;
@@ -282,10 +289,11 @@
 
   .raise_form_container {
     .raise_form_title {
-      font-family: Mulish, sans-serif;
+      font-kerning: normal;
+      font-family: 'Source sans Pro',Mulish, sans-serif;
+      font-size: 40px;
+      font-weight: 500;
       font-style: normal;
-      font-weight: bold;
-      font-size: 32px;
       line-height: 36px;
       text-align: center;
       color: rgba(0, 0, 0, 0.87);
@@ -296,7 +304,7 @@
       font-family: Mulish, sans-serif;
       font-style: normal;
       font-weight: normal;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 150%;
       text-align: center;
       color: #000;
@@ -306,7 +314,7 @@
     }
 
     .raise_form_bottom_block {
-      background-color: rgba(220, 232, 248, 0.5);
+      background-color: #f5fbff;
       padding-top: 35px;
       padding-bottom: 80px;
 
@@ -662,7 +670,7 @@
     .raise_form_button {
       min-width: 80px;
       position: relative;
-
+      background-color: #1155cc;
       .raise_form_button_arrow_right {
         display: none;
       }
@@ -670,10 +678,12 @@
 
     .raise_form_button_alone {
       margin-left: auto;
+      background-color: #0e5394;
+
     }
 
     .raise_form_button_back {
-      color: #1f607c;
+      color: #1155cc;
       width: 80px;
       box-shadow: none;
       background-color: #fff;

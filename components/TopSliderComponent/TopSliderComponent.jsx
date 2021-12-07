@@ -97,7 +97,7 @@ const TopSliderComponent = ({
                             className={`slider_component_first_btn ${firstButtonClass}`}
                             colorStyle="white"
                           >
-                            {first_button_title}
+                            {first_button_title.toUpperCase()}
                           </Button>
                         </a>
                       )}
@@ -107,7 +107,7 @@ const TopSliderComponent = ({
                             className={`slider_component_second_btn ${secondButtonClass}`}
                             colorStyle="outline-white"
                           >
-                            {second_button_title}
+                            {second_button_title.toUpperCase()}
                           </Button>
                         </a>
                       )}

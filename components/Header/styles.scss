@@ -81,10 +81,14 @@
 
       .menu_item_link,
       .menu_item_link > button {
-        font-family: Mulish, sans-serif;
+
+        font-kerning: normal;
+        font-family: 'Source sans Pro', Mulish, sans-serif;
+        font-size: 16px;
+        font-weight: 500;
         font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
+        line-height: 28px;
+
         letter-spacing: 0.07em;
         text-transform: uppercase;
         color: rgba(0, 0, 0, 0.87);
