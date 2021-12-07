@@ -40,11 +40,58 @@ const TopSliderComponent = ({
             return (
               <Carousel.Item key={pk+title}>
                 <div className='item_component_container' style={{  position: 'relative'}}>
-                  {/*{img && (*/}
-                      <>
-                      {( screenSize === 'desktop' &&
+                  <div className= {`item_component_content_container ${containerClass}`}>
+                    {status && (
+                        <StatusCompanyBadge
+                            status={status}
+                            classNameContainer={`item_component_status ${statusClass}`}
+                        />
+                    )}
+                    {title && (
+                        <h3 className={`item_component_title ${itemTitleClass}`}>
+                          {title}
+                        </h3>
+                    )}
+                    {description && (
+                        <div
+                            className={`item_component_description ${itemDescriptionClass}`}
+                            dangerouslySetInnerHTML={{
+                              __html: sanitizeHtmlFromBack(description),
+                            }}
+                        />
+                    )}
+                    {(first_button_title || second_button_title) && (
+                        <div
+                            className={`slider_component_buttons_container ${buttonsContainerClass}`}
+                        >
+                          {first_button_title && (
+                              <a href={first_button_url}>
+                                <Button
+                                    className={`slider_component_first_btn ${firstButtonClass}`}
+                                    colorStyle="white"
+                                >
+                                  {first_button_title}
+                                </Button>
+                              </a>
+                          )}
+                          {second_button_title && (
+                              <a href={second_button_url}>
+                                <Button
+                                    className={`slider_component_second_btn ${secondButtonClass}`}
+                                    colorStyle="outline-white"
+                                >
+                                  {second_button_title}
+                                </Button>
+                              </a>
+                          )}
+                        </div>
+                    )}
+                  </div>
+
+                  {img && (
+                      <div className='item_component_image' style={{  position: 'absolute'}}>
+                      {( screenSize === 'desktop' && img &&
                           <Image
-                              className="item_component_image"
                               src = {img || null}
                               layout = "fill"
                               objectFit = "cover"
@@ -52,9 +99,8 @@ const TopSliderComponent = ({
                               alt = 'header image'
 
                           />)}
-                  {( screenSize === 'laptop' &&
+                  {( screenSize === 'laptop' && img &&
                     <Image
-                        className="item_component_image"
                     src = {img || null}
                     layout = "fill"
                     objectFit = "cover"
@@ -62,9 +108,8 @@ const TopSliderComponent = ({
                     alt = 'header image'
 
                     />)}
-                  {( screenSize === 'mobile' &&
+                  {( screenSize === 'mobile' && img &&
                     <Image
-                        className="item_component_image"
                     src = {img || null}
                     layout = "fill"
                     objectFit = "cover"
@@ -72,56 +117,9 @@ const TopSliderComponent = ({
                     alt = 'header image'
 
                     />)}
-                    </>
-                  {/*)}*/}
-
-                  <div className= {`item_component_content_container ${containerClass}`}>
-                  {status && (
-                    <StatusCompanyBadge
-                      status={status}
-                      classNameContainer={`item_component_status ${statusClass}`}
-                    />
-                  )}
-                  {title && (
-                    <h3 className={`item_component_title ${itemTitleClass}`}>
-                      {title}
-                    </h3>
-                  )}
-                  {description && (
-                    <div
-                      className={`item_component_description ${itemDescriptionClass}`}
-                      dangerouslySetInnerHTML={{
-                        __html: sanitizeHtmlFromBack(description),
-                      }}
-                    />
-                  )}
-                  {(first_button_title || second_button_title) && (
-                    <div
-                      className={`slider_component_buttons_container ${buttonsContainerClass}`}
-                    >
-                      {first_button_title && (
-                        <a href={first_button_url}>
-                          <Button
-                            className={`slider_component_first_btn ${firstButtonClass}`}
-                            colorStyle="white"
-                          >
-                            {first_button_title}
-                          </Button>
-                        </a>
-                      )}
-                      {second_button_title && (
-                        <a href={second_button_url}>
-                          <Button
-                            className={`slider_component_second_btn ${secondButtonClass}`}
-                            colorStyle="outline-white"
-                          >
-                            {second_button_title}
-                          </Button>
-                        </a>
-                      )}
                     </div>
                   )}
-                  </div>
+
                 </div>
               </Carousel.Item>
             );
