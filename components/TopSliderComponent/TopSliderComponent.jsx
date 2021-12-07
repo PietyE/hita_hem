@@ -40,12 +40,12 @@ const TopSliderComponent = ({
             return (
               <Carousel.Item key={pk+title}>
                 <div className='item_component_container' style={{  position: 'relative'}}>
-                  {img && (
+                  {/*{img && (*/}
                       <>
                       {( screenSize === 'desktop' &&
                           <Image
                               className="item_component_image"
-                              src = {img}
+                              src = {img || null}
                               layout = "fill"
                               objectFit = "cover"
                               priority = {true}
@@ -55,7 +55,7 @@ const TopSliderComponent = ({
                   {( screenSize === 'laptop' &&
                     <Image
                         className="item_component_image"
-                    src = {img}
+                    src = {img || null}
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
@@ -65,7 +65,7 @@ const TopSliderComponent = ({
                   {( screenSize === 'mobile' &&
                     <Image
                         className="item_component_image"
-                    src = {img}
+                    src = {img || null}
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
@@ -73,7 +73,7 @@ const TopSliderComponent = ({
 
                     />)}
                     </>
-                  )}
+                  {/*)}*/}
 
                   <div className= {`item_component_content_container ${containerClass}`}>
                   {status && (
