@@ -4,11 +4,15 @@ import Button from "components/ui/Button";
 import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
+import {getCorrectImage} from "../../utils/utils";
+import Image from "next/image";
+import Link from "next/link";
 
 const FinArticle = ({ item }) => {
   const { t } = useTranslation();
 
-  const { title, description, image } = item;
+  const { title, description, images } = item;
+  const img = getCorrectImage(images)
 
   const contentRef = useRef();
   const [isShowButton, setIsShowButton] = useState(false);
@@ -58,7 +62,7 @@ const FinArticle = ({ item }) => {
       : {};
   }
   if (!matchesAll) {
-    if (image) {
+    if (img) {
       _style = isShowButton
         ? {
             height: isShowMore ? "auto" : "458px",
@@ -66,7 +70,7 @@ const FinArticle = ({ item }) => {
           }
         : {};
     }
-    if (!image) {
+    if (!img) {
       _style = { height: "auto" };
     }
   }
@@ -76,21 +80,31 @@ const FinArticle = ({ item }) => {
   return (
     <section className="fin_article_wrapper">
       <li className="fin_article">
-        {!!image && (
-          <ImageComponent
-            className="fin_article_image"
-            src={image}
-            alt="article_img"
-          />
+        {!!img && (
+          // <ImageComponent
+          //   className="fin_article_image"
+          //   src={img}
+          //   alt="article_img"
+          // />
+            <div className='fin_article_image' style={{  position: 'relative'}}>
+
+            <Image
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "contain"
+                    // priority = {true}
+
+                />
+            </div>
         )}
         <div
           className={
-            image
+            img
               ? "fin_article_text_wrapper"
               : "fin_article_text_wrapper_alone"
           }
           ref={contentRef}
-          style={image ? _style : null}
+          style={img ? _style : null}
         >
           <h3 className="fin_article_title">{title}</h3>
           <span
@@ -102,7 +116,7 @@ const FinArticle = ({ item }) => {
             }}
           />
         </div>
-        {matchesAll && isShowButton && image && (
+        {matchesAll && isShowButton && img && (
           <div className="show_more">
             <span
               className="show_more_button fin_show_more"
@@ -112,7 +126,7 @@ const FinArticle = ({ item }) => {
             </span>
           </div>
         )}
-        {!matchesAll && isShowButton && image && (
+        {!matchesAll && isShowButton && img && (
           <Button
             onClick={_handleClickShowMore}
             colorStyle="red-without-border"
