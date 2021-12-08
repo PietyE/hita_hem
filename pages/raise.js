@@ -45,12 +45,12 @@ const RaisePage = () => {
         <RaiseOpportunities />
         {/*{img && <ImageComponent src = {img} className = 'raise_page_image'/>}*/}
           {img && (
-              // <div className = "raise_page_image ">
+              <div className = "raise_page_image ">
               <Image
                   src = {img}
                   width="100vw" height="40" layout="responsive" objectFit="contain"
               />
-           // </div>
+            </div>
           )}
         <RaiseAdvantages />
         <RaiseFeatures />

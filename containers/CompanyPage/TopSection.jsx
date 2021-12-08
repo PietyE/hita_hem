@@ -6,6 +6,7 @@ import {
   getHeaderImageSelector,
   getHeaderTitleSelector,
   getCompanyStatusSelector,
+    getPercentageSelector,
 } from "redux/reducers/companies";
 import Image from "next/image";
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
@@ -15,6 +16,7 @@ const TopSection = () => {
 
   const title = useSelector(getHeaderTitleSelector);
   const status = useSelector(getCompanyStatusSelector) || "";
+  const percentage = useSelector(getPercentageSelector) || ''
     const screenSize = checkCurrentResolution()
     const img = getCorrectImage(images)
 
@@ -51,6 +53,7 @@ const TopSection = () => {
         <div className='company_top_content_container'>
             <StatusCompanyBadge
              status={status}
+             percentage={percentage}
              classNameContainer="company_top_section_status"
              />
             <h1 className="company_top_section_title">{title}</h1>

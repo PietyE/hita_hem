@@ -230,12 +230,16 @@ const RootPage = ({ children, initLang = "" }) => {
         if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword){
             clearTimeout(timerId)
         }
+        if(showSuccessfulSignUpWindow && isServiceStart === 'true'){
+            clearTimeout(timerId)
+            sessionStorage.setItem('isServiceWork', "false")
+        }
 
         return () => {
             clearTimeout(timerId)
         }
         
-    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword])
+    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, showSuccessfulSignUpWindow])
     
 
     useEffect(() => {
