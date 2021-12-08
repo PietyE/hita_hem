@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import ImageComponent from "components/ui/ImageComponent";
 import Button from "components/ui/Button";
 import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
 import Image from "next/image";
-import Link from "next/link";
 
 const FinArticle = ({ item }) => {
   const { t } = useTranslation();
