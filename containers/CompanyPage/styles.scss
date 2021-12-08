@@ -448,7 +448,9 @@
         height: auto;
         max-height: 270px;
         width: 24%;
-        \margin-right: 20px;
+        margin-right: 20px;
+        border-radius: 6px;
+        overflow: hidden;
         &:last-child {
           margin-right: 0;
         }
@@ -572,6 +574,7 @@
         align-items: flex-start;
         width: calc(100vw - 460px / 2);
         border-radius: 6px;
+        overflow: hidden;
       }
 
       .fin_article_image img {

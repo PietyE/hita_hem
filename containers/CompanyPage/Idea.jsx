@@ -61,15 +61,32 @@ const Idea = () => {
                 <>
                   {!!img1 && (
                     <ImageComponent
-                      alt="foto1"
+                      alt="first photo"
                       src={img1}
                       className="mb-4"
                     />
+                    //     <Image
+                    //         src = {img1}
+                    //         width='100%'
+                    //         height='60'
+                    //         layout="responsive"
+                    //         objectFit="contain"
+                    //         alt = 'first idea photo'
+                    //         className='idea_next_image'
+                    //     />
 
                   )}
                   {!!img2 && (
-                    <ImageComponent alt="foto1" src={img2} />
-
+                    <ImageComponent alt="second photo" src={img2} />
+                    // <Image
+                    // src = {img2}
+                    // width='100vw'
+                    // height='60'
+                    // layout="responsive"
+                    // objectFit="contain"
+                    // alt = 'second idea photo'
+                    // className='idea_next_image'
+                    // />
                   )}
                 </>
               )}
@@ -78,35 +95,75 @@ const Idea = () => {
               <div className="idea_image_container">
                 {!!img1 && (
                    <ImageComponent
-                    alt="foto1"
+                    alt="first photo"
                     src={img1}
                     className="middle_foto"
                   />
-
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img1}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'first photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
                 {!!img2 && (
                   <ImageComponent
-                    alt="foto1"
+                    alt="second photo"
                     src={img2}
                     className="middle_foto"
                   />
-
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img2}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'second photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
                 {!!img3 && (
                   <ImageComponent
-                    alt="foto1"
+                    alt="third photo"
                     src={img3}
                     className="middle_foto"
                   />
-
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img3}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'third photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
                 {!!img4 && (
                   <ImageComponent
-                    alt="foto1"
+                    alt="fourth photo"
                     src={img4}
                     className="middle_foto"
                   />
 
+                      // <div className="middle_foto"  style={{  position: 'relative',}}>
+                      //   <Image
+                      //       src = {img4}
+                      //       width='100%'
+                      //       height='56%'
+                      //       layout = "responsive"
+                      //       objectFit = "cover"
+                      //       alt = 'fourth idea photo'
+                      //   />
+                      // </div>
                 )}
               </div>
             )}
