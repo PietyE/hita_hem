@@ -33,9 +33,9 @@ const TopSliderComponent = ({
               first_button_url,
               second_button_url,
               status,
-                pk
+                pk,
+                percentage,
             } = headerItem;
-
             const img = getCorrectImage(images)
             return (
               <Carousel.Item key={pk+title}>
@@ -44,6 +44,7 @@ const TopSliderComponent = ({
                     {status && (
                         <StatusCompanyBadge
                             status={status}
+                            percentage={percentage}
                             classNameContainer={`item_component_status ${statusClass}`}
                         />
                     )}

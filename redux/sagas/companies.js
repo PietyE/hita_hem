@@ -48,6 +48,7 @@ function* getCompaniesHeaderListWorker() {
       description: el?.investment_page_description,
       images: el?.images,
       header_image: el?.header_image,
+      percentage: el?.percentage,
       first_button_title: _title,
       first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,
     }));
