@@ -4,7 +4,8 @@ import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
-import Image from "next/image";
+// import Image from "next/image";
+import ImageComponent from "../../components/ui/ImageComponent";
 
 const FinArticle = ({ item }) => {
   const { t } = useTranslation();
@@ -79,21 +80,21 @@ const FinArticle = ({ item }) => {
     <section className="fin_article_wrapper">
       <li className="fin_article">
         {!!img && (
-          // <ImageComponent
-          //   className="fin_article_image"
-          //   src={img}
-          //   alt="article_img"
-          // />
-            <div className='fin_article_image' style={{  position: 'relative'}}>
-
-            <Image
-                    src = {img}
-                    layout = "fill"
-                    objectFit = "contain"
-                    // priority = {true}
-
-                />
-            </div>
+          <ImageComponent
+            className="fin_article_image"
+            src={img}
+            alt="article_img"
+          />
+          //   <div className='fin_article_image' style={{  position: 'relative'}}>
+          //
+          //   <Image
+          //           src = {img}
+          //           layout = "fill"
+          //           objectFit = "contain"
+          //           // priority = {true}
+          //
+          //       />
+          //   </div>
         )}
         <div
           className={
