@@ -26,7 +26,6 @@ const Notification = ({ show }) => {
       setTimeout(() => handleClose(), 8000);
     }
   }, [show, handleClose]);
-
   let _title
   if(title){
     _title = title
