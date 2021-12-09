@@ -117,7 +117,7 @@
 //}
 .auth_forgot_link{
   position: absolute;
-  top: 100px;
+  top: 0;
   right: 0;
   font-family: Mulish, sans-serif;
   font-style: normal;
@@ -280,4 +280,9 @@ z-index: 2;
   .auth_session_header {
     background-position: 125%;
   }
+}
+
+
+.auth_login_password_wrapper{
+  position: relative;
 }
