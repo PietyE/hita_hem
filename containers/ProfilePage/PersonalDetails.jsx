@@ -78,7 +78,7 @@ const PersonalDetails = ({
         year: yup.number().required(t("errors.year_required")),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).required(t("errors.personal_id_required")),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
-        zip_code: yup.string().matches(zipCodeRegExp, t("errors.phone_example")).required(t("errors.zip_required"))
+        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).required(t("errors.zip_required"))
     })
     const personalDetailsUpdateSchema = yup.object({
         address: yup.object().shape({
@@ -93,7 +93,7 @@ const PersonalDetails = ({
         year: yup.number(),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
-        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('phone_number', t("errors.zip_empty"), val => val?.length),
+        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length),
 
     })
 

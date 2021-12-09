@@ -364,7 +364,7 @@ export const en = {
                 company_number_text: 'I invest through a company',
                 company_number_placeholder: 'Company number',
                 company_number_warning: 'The data is not valid.',
-                zip: 'Zip code*',
+                zip: 'Postal code',
             },
         },
         errors: {
@@ -386,7 +386,7 @@ export const en = {
             personal_id_required: 'Personal ID is a required field',
             personal_id_example: 'Example: 12345678-1234',
             phone_required: 'Phone number is a required field',
-            zip_required: 'Zip code is a required field',
+            zip_required: 'Postal code is a required field',
             phone_example: 'Example: +46 1234567890',
             zip_example: 'Example: 123 45',
             city_empty: '"City" cannot be empty',
@@ -395,7 +395,7 @@ export const en = {
             second_name_empty: '"Last name" cannot be empty',
             personal_id_empty: '"Personal ID" cannot be empty',
             phone_empty: '"Phone number" cannot be empty',
-            zip_empty: '"Zip code" cannot be empty',
+            zip_empty: '"Postal code" cannot be empty',
 
             company_name_required: 'Company name is a required field',
             company_form_required: 'Form of the company is a required field',
