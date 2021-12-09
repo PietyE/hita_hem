@@ -85,6 +85,11 @@
       color: #ffffff;
     }
   }
+  .profile_form_upload_avatar_warning{
+    max-width: 255px;
+    text-align: center;
+    color:red;
+  }
 
   .profile_form_upload_avatar_button {
     width: 100%;
@@ -175,7 +180,8 @@
 
       .profile_first_name,
       .profile_country,
-      .profile_id_number {
+      .profile_id_number,
+      .profile_address{
         margin-right: 20px;
       }
 
@@ -917,6 +923,11 @@
           margin-right: auto;
           margin-left: auto;
           padding-top: 87px;
+          .profile_form_upload_avatar_warning{
+            max-width: 540px;
+            padding-right: 10px;
+            padding-left: 10px;
+          }
           .profile_form_upload_avatar_container {
             flex-direction: column;
             position: relative;
@@ -1069,6 +1080,13 @@
           .profile_address {
             width: 100%;
             margin-bottom: 20px;
+            margin-right: 0;
+
+          }
+          .profile_zip {
+            width: 100%;
+            margin-bottom: 20px;
+
           }
 
           .profile_id_number {

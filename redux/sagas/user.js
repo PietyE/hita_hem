@@ -236,13 +236,11 @@ function* createUserProfile({ payload }) {
     yield put(clearErrors())
 
   } catch (error) {
-    yield put(
       yield put(
         setProfileError({
           status: error.response.status,
           data: error.response.data,
         })
-      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -265,12 +263,10 @@ function* changeUserProfile({ payload }) {
 
   } catch (error) {
     yield put(
-      yield put(
         setProfileError({
           status: error.response.status,
           data: error.response.data,
         })
-      )
     );
   } finally {
     yield put(setFetchingUsers(false));
