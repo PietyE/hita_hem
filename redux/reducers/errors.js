@@ -38,6 +38,7 @@ import {
   SET_FORM3_FOLLOWERS_TWO_ERROR,
   SET_FORM3_FOLLOWERS_THREE_ERROR,
   SET_PROFILE_ZIP_ERROR,
+  SET_PROFILE_AVATAR_ERROR,
 } from "constants/actionsConstant";
 import isEmpty from "lodash/isEmpty";
 
@@ -137,6 +138,9 @@ export const getPhoneErrorSelector = (state) =>
   state.errors?.profile?.companies;
 export const getZipErrorSelector = (state) =>
     state.errors?.profile?.zip_code;
+export const getImageErrorSelector = (state) =>
+    state.errors?.profile?.image;
+
 export const getAuthEmailErrorSelector = (state) => state.errors?.auth?.email;
 export const getAuthPasswordErrorSelector = (state) =>
   state.errors?.auth?.password;
@@ -225,6 +229,9 @@ export const errors = (state = initialState, actions) => {
       return { ...state, profile: { ...state.profile, phone: "" } };
     case SET_PROFILE_ZIP_ERROR:
       return { ...state, profile: { ...state.profile, zip_code: "" } };
+    case SET_PROFILE_AVATAR_ERROR:
+      return { ...state, profile: { ...state.profile, image: "" } };
+
     case SET_FORM1_FIRST_NAME_ERROR:
       return { ...state, raise: { ...state.raise, first_name: "" } };
     case SET_FORM1_SECOND_NAME_ERROR:
