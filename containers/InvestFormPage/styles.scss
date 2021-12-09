@@ -72,7 +72,8 @@
           position: relative;
           width: 405px;
           height: 50px;
-          font-family: Mulish, sans-serif;
+          //font-family: Mulish, sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 16px;
@@ -118,7 +119,7 @@
             &:focus {
               outline: none;
               background: rgba(137, 207, 240, 0.2);
-              border: 1px solid #1F607C;
+              border: 1px solid #0E5394;
               resize: none;
             }
             &::placeholder{

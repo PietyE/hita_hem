@@ -234,7 +234,7 @@
         &:focus {
           outline: none;
           background: rgba(137, 207, 240, 0.2);
-          border: 1px solid #1f607c;
+          border: 1px solid #0E5394;
           resize: none;
         }
       }
@@ -267,7 +267,7 @@
           cursor: pointer;
           width: 20px;
           height: 20px;
-          background: #1f607c;
+          background: #0E5394;
           border-radius: 2px;
         }
 
@@ -451,7 +451,7 @@
         &:focus {
           outline: none;
           background: rgba(137, 207, 240, 0.2);
-          border: 1px solid #1f607c;
+          border: 1px solid #0E5394;
         }
       }
       .input_warning_text {
@@ -801,7 +801,7 @@
       .mobile_investments_toggle {
         display: flex;
         justify-content: space-between;
-        background: #1f607c;
+        background: #0E5394;
         font-family: Mulish, sans-serif;
         font-style: normal;
         font-weight: bold;

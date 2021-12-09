@@ -41,7 +41,7 @@
   &.outline-green {
     background: #ffffff;
     box-sizing: border-box;
-    border: 1px solid #1f607c;
+    border: 1px solid #0E5394;
     box-sizing: border-box;
     font-family:'Source sans Pro',Mulish, sans-serif;
     font-style: normal;
@@ -52,7 +52,7 @@
     align-items: center;
     text-align: center;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #1f607c;
+    color: #0E5394;
     &:focus {
       transition: 0.3s;
       background-color: #89cff0;
@@ -101,7 +101,7 @@
     }
   }
   &.dark-green {
-    background: #1f607c;
+    background: #0E5394;
     font-family: Source Sans Pro;
     font-weight: 600;
     font-size: 16px;
@@ -118,7 +118,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #1f607c !important;
+      background: #0E5394 !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -193,7 +193,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #1f607c !important;
+      background: #0E5394 !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
