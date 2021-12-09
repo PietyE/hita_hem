@@ -18,6 +18,7 @@ import {ERROR,
   SET_PROFILE_PERSONAL_ID_ERROR,
   SET_PROFILE_PHONE_ERROR,
     SET_PROFILE_ZIP_ERROR,
+  SET_PROFILE_AVATAR_ERROR,
   SET_FORM1_FIRST_NAME_ERROR,
   SET_FORM1_SECOND_NAME_ERROR,
   SET_FORM1_EMAIL_ERROR,
@@ -104,7 +105,9 @@ export const setPhoneError = () => ({
 export const setZipError = () => ({
   type: SET_PROFILE_ZIP_ERROR,
 })
-
+export const setAvatarError = () => ({
+  type: SET_PROFILE_AVATAR_ERROR,
+})
 
 //////////////RAISE FORM////////////////////////////
 export const setRaiseFirstNameError = () => ({
