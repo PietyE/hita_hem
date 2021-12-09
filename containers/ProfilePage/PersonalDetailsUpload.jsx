@@ -26,8 +26,8 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
       if(showWarning){
           setShowWarning(false)
       }
-      if(errorHandlerHook?.image){
-          errorHandlerHook.clearError('image')
+      if(errorHandlerHook?.avatarError){
+          errorHandlerHook.clearProfileErrorFromApi('image')
       }
     if (e?.target?.dataset?.value === "del") {
       setFieldValue("image", null);
@@ -37,7 +37,7 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
 
         if(!imageFile.name.match(/\.(jpg|jpeg|png|webp)$/)){
             setShowWarning(true)
-            // return
+            return
         }
         setFieldValue("image", imageFile);
         blob = new Blob([imageFile]);
@@ -59,7 +59,7 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
     }
   }
 
-  return (
+    return (
     <div className="profile_form_upload_avatar_settings">
       <div className="profile_form_upload_avatar_container">
         <div
@@ -121,8 +121,11 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
           &#43; {t("profile_page.personal.upload_photo")}
         </Button>
       </label>
-        {(showWarning || errorHandlerHook?.image) && (
+        {(showWarning) && (
             <p className='profile_form_upload_avatar_warning'>{t("profile_page.personal.avatar_warning")}</p>
+        )}
+        {(errorHandlerHook?.avatarError) && (
+            <p className='profile_form_upload_avatar_warning'>{errorHandlerHook?.avatarError}</p>
         )}
       <Button
         colorStyle="link"
