@@ -85,6 +85,11 @@
       color: #ffffff;
     }
   }
+  .profile_form_upload_avatar_warning{
+    max-width: 255px;
+    text-align: center;
+    color:red;
+  }
 
   .profile_form_upload_avatar_button {
     width: 100%;
@@ -918,6 +923,11 @@
           margin-right: auto;
           margin-left: auto;
           padding-top: 87px;
+          .profile_form_upload_avatar_warning{
+            max-width: 540px;
+            padding-right: 10px;
+            padding-left: 10px;
+          }
           .profile_form_upload_avatar_container {
             flex-direction: column;
             position: relative;
