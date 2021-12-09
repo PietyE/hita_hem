@@ -98,6 +98,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
           <StatusCompanyBadge
             status={status}
             classNameContainer="campaigns_card_status"
+            percentage={percentage}
           />
 
           <div className="campaigns_card_content_wrapper">

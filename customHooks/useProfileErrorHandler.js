@@ -9,10 +9,12 @@ import {
     getAddressErrorSelector,
     getPersonalIdErrorSelector,
     getPhoneErrorSelector,
+    getZipErrorSelector,
 } from '../redux/reducers/errors';
 import {
     setFirstNameError, setSecondNameError, setDateOfBirthError, setCountryError,
     setCityError, setAddressError, setPersonalIdError, setPhoneError, clearErrors,
+    setZipError,
 } from '../redux/actions/errors';
 
 const useProfileErrorHandler = () => {
@@ -26,6 +28,7 @@ const useProfileErrorHandler = () => {
     const addressError = useSelector(getAddressErrorSelector)
     const personalIdError = useSelector(getPersonalIdErrorSelector)
     const phoneError = useSelector(getPhoneErrorSelector)
+    const zipError = useSelector(getZipErrorSelector)
 
     const _clearErrors = useCallback(
         () => {
@@ -82,6 +85,12 @@ const useProfileErrorHandler = () => {
         },
         [dispatch]
     )
+    const _setZipError = useCallback(
+        () => {
+            dispatch(setZipError())
+        },
+        [dispatch]
+    )
     const clearProfileErrorFromApi = (error) => {
         switch (error) {
             case 'first_name':
@@ -108,12 +117,15 @@ const useProfileErrorHandler = () => {
             case 'phone_number':
                 _setPhoneError()
                 break
+            case 'zip_code':
+                _setZipError()
+                break
             default:
                 return null
         }
     }
     return {clearProfileErrorFromApi, _clearErrors, firstNameError, secondNameError,
-        dateOfBirthError, countryError, cityError, addressError, personalIdError, phoneError}
+        dateOfBirthError, countryError, cityError, addressError, personalIdError, phoneError, zipError}
 }
 
 

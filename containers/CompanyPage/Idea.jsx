@@ -7,6 +7,8 @@ import InfoBlockColor from "components/ui/InfoBlockColor";
 import ImageComponent from "components/ui/ImageComponent";
 import { getIdeaSectionContentSelector } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
+import Image from "next/image";
+import {getCorrectImage} from "../../utils/utils";
 
 const Idea = () => {
   const ideaContents =
@@ -16,13 +18,18 @@ const Idea = () => {
       {ideaContents.map((section, i) => {
         const {
           type,
-          first_image,
-          second_image,
-          third_image,
-          fourth_image,
+          first_images,
+          second_images,
+          third_images,
+          fourth_images,
           title,
           description,
         } = section;
+
+        const img1 = getCorrectImage(first_images)
+        const img2 = getCorrectImage(second_images)
+        const img3= getCorrectImage(third_images)
+        const img4 = getCorrectImage(fourth_images)
 
         if (type === "Challenge") {
           return (
@@ -52,48 +59,111 @@ const Idea = () => {
               />
               {type === "Solution" && (
                 <>
-                  {!!first_image && (
+                  {!!img1 && (
                     <ImageComponent
-                      alt="foto1"
-                      src={first_image}
+                      alt="first photo"
+                      src={img1}
                       className="mb-4"
                     />
+                    //     <Image
+                    //         src = {img1}
+                    //         width='100%'
+                    //         height='60'
+                    //         layout="responsive"
+                    //         objectFit="contain"
+                    //         alt = 'first idea photo'
+                    //         className='idea_next_image'
+                    //     />
+
                   )}
-                  {!!second_image && (
-                    <ImageComponent alt="foto1" src={second_image} />
+                  {!!img2 && (
+                    <ImageComponent alt="second photo" src={img2} />
+                    // <Image
+                    // src = {img2}
+                    // width='100vw'
+                    // height='60'
+                    // layout="responsive"
+                    // objectFit="contain"
+                    // alt = 'second idea photo'
+                    // className='idea_next_image'
+                    // />
                   )}
                 </>
               )}
             </section>
             {type === "Result" && (
               <div className="idea_image_container">
-                {!!first_image && (
-                  <ImageComponent
-                    alt="foto1"
-                    src={first_image}
+                {!!img1 && (
+                   <ImageComponent
+                    alt="first photo"
+                    src={img1}
                     className="middle_foto"
                   />
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img1}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'first photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
-                {!!second_image && (
+                {!!img2 && (
                   <ImageComponent
-                    alt="foto1"
-                    src={second_image}
+                    alt="second photo"
+                    src={img2}
                     className="middle_foto"
                   />
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img2}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'second photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
-                {!!third_image && (
+                {!!img3 && (
                   <ImageComponent
-                    alt="foto1"
-                    src={third_image}
+                    alt="third photo"
+                    src={img3}
                     className="middle_foto"
                   />
+                  //   <div className="middle_foto"  style={{  position: 'relative',}}>
+                  //     <Image
+                  //         src = {img3}
+                  //         width='100%'
+                  //         height='56%'
+                  //         layout = "responsive"
+                  //         objectFit = "cover"
+                  //         alt = 'third photo'
+                  //         className="middle_foto"
+                  //     />
+                  //   </div>
                 )}
-                {!!fourth_image && (
+                {!!img4 && (
                   <ImageComponent
-                    alt="foto1"
-                    src={fourth_image}
+                    alt="fourth photo"
+                    src={img4}
                     className="middle_foto"
                   />
+
+                      // <div className="middle_foto"  style={{  position: 'relative',}}>
+                      //   <Image
+                      //       src = {img4}
+                      //       width='100%'
+                      //       height='56%'
+                      //       layout = "responsive"
+                      //       objectFit = "cover"
+                      //       alt = 'fourth idea photo'
+                      //   />
+                      // </div>
                 )}
               </div>
             )}
