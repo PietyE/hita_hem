@@ -26,7 +26,7 @@ const AboutUsPage = () => {
 
   const isFetching = useSelector(getIsFetchingAboutUsSelector);
 
-  const header_image = useSelector(getHeaderImageSelector);
+  const header_images = useSelector(getHeaderImageSelector);
   const header_title = useSelector(getHeaderTitleSelector);
   const header_description = useSelector(getHeaderDescriptionSelector);
   const flat_blocks = useSelector(getFlatBlocksSelector);
@@ -36,7 +36,7 @@ const AboutUsPage = () => {
   const topSectionContent = {
     title: header_title,
     description: header_description,
-    image: header_image,
+    images: header_images,
   };
 
   useEffect(() => {

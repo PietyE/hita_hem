@@ -1,4 +1,5 @@
 import { call, put, select, takeEvery } from "redux-saga/effects";
+import { useRouter } from "next/router";
 
 import {
   GET_COMPANIES_LIST,
@@ -23,9 +24,8 @@ import { getProfileFromApi } from "./user";
 import api from "api";
 import { getCompanyIdSelector } from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
-import { setFaqPosts } from "../actions/companies";
+import {setFaqPosts, setRedirect} from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
-// import isEqual from "lodash/isEqual"
 import { setError } from "../actions/errors";
 import { getSelectedLangSelector } from "../reducers/language";
 
@@ -48,6 +48,7 @@ function* getCompaniesHeaderListWorker() {
       description: el?.investment_page_description,
       images: el?.images,
       header_image: el?.header_image,
+      percentage: el?.percentage,
       first_button_title: _title,
       first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,
     }));
@@ -86,6 +87,11 @@ function* getCompanyByIdWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
     const { data } = yield call([companies, "getCompanyById"], payload);
+
+    if(data?.hidden_mode && typeof window !== 'undefined'){
+      yield put(setRedirect(true))
+    }
+    
     yield put(setCompanyById(data));
   } catch (error) {
     yield put(

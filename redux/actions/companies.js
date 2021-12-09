@@ -18,6 +18,7 @@ import {
   RESET_COMPANY_LIST,
   IS_MORE_COMPANIES,
   MAKE_PAYMENT,
+  SET_IS_REDIRECT,
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -107,3 +108,10 @@ export const makePayment = (payload) => ({
   type: MAKE_PAYMENT,
   payload,
 });
+
+export const setRedirect = (payload) => ({
+  type: SET_IS_REDIRECT,
+  payload,
+});
+
+

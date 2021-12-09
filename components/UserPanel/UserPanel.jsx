@@ -5,6 +5,7 @@ import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 
 import UserPanelMenu from "components/ui/UserPanelMenu";
+import Image from "next/image";
 
 const DropDownComponent = dynamic(() =>
   import("components/ui/DropDownComponent")
@@ -26,14 +27,21 @@ function UserPanel() {
         {(!user?.first_name || !user?.second_name) && (
           <span className="user_panel_text"> {account.email}</span>
         )}
-        <div className="user_panel_avatar_wrapper">
+        <div className="user_panel_avatar_wrapper" style={{  position: 'relative'}}>
           {user?.image && (
-            <img
-              src={user?.image}
-              alt="avatar"
-              className="user_panel_avatar"
-              loading="lazy"
-            />
+            // <img
+            //   src={user?.image}
+            //   alt="avatar"
+            //   className="user_panel_avatar"
+            //   loading="lazy"
+            // />
+              <Image
+                  src = {user?.image}
+                  layout = "fill"
+                  objectFit = "cover"
+                  priority = {true}
+                  alt = "avatar"
+              />
           )}
         </div>
       </DropdownToggle>

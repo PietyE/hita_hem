@@ -13,15 +13,18 @@ import RaiseForm from "containers/RaisePage/RaiseForm";
 import SpinnerStyled from "components/ui/Spinner";
 import { getRaisePage } from "redux/actions/raisePage";
 import {getIsFetchingRaisePageSelector, getRaisePageImageSelector} from "redux/reducers/raisePage";
+import {getCorrectImage} from "../utils/utils";
+import Image from "next/image";
 
 const RaisePage = () => {
   const myRef = useRef(null);
   const dispatch = useDispatch();
 
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
-  const image = useSelector(getRaisePageImageSelector)
+  const images = useSelector(getRaisePageImageSelector)
+    const img = getCorrectImage(images)
 
-  const _getRaisePage = useCallback(() => {
+    const _getRaisePage = useCallback(() => {
     dispatch(getRaisePage());
   }, [dispatch]);
 
@@ -40,7 +43,15 @@ const RaisePage = () => {
       <section className="raise_page_container">
         <RaisePageTopSlider onScrollTo={scrollTo} />
         <RaiseOpportunities />
-        {image && <ImageComponent src = {image} className = 'raise_page_image'/>}
+        {/*{img && <ImageComponent src = {img} className = 'raise_page_image'/>}*/}
+          {img && (
+              <div className = "raise_page_image ">
+              <Image
+                  src = {img}
+                  width="100vw" height="40" layout="responsive" objectFit="contain"
+              />
+            </div>
+          )}
         <RaiseAdvantages />
         <RaiseFeatures />
         <RaiseForm myRef={myRef} />

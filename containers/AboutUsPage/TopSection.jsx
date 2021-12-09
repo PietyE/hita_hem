@@ -1,22 +1,45 @@
 import React from "react";
+import Image from "next/image";
+import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 
 const TopSection = ({ content = {} }) => {
+  const screenSize = checkCurrentResolution()
+    const img = getCorrectImage(content?.images)
   return (
     <>
-      {content?.image && (
-        <div className="top_section">
-          <img
-            alt="foto"
-            src={content?.image}
-            className="backgroung_pic"
-            loading="lazy"
-          />
+        <div className="top_section" style={{position: 'relative'}}>
+
+            {screenSize === 'desktop' && img &&(<Image
+                src = {img}
+                layout = "fill"
+                objectFit = "cover"
+                priority = {true}
+                alt = 'photo'
+                className = "backgroung_pic"
+            />)}
+          {screenSize === 'laptop'&& img &&(
+              <Image
+              src = {img}
+              layout = "fill"
+              objectFit = "cover"
+              priority = {true}
+              alt = 'foto'
+              className = "backgroung_pic"
+          />)}
+          {screenSize === 'mobile' && img &&(
+              <Image
+              src = {img}
+              layout = "fill"
+              objectFit = "cover"
+              priority = {true}
+              alt = 'foto'
+              className = "backgroung_pic"
+          />)}
           <div className='top_section_content_container'>
             <h1 className="top_section_title">{content?.title}</h1>
             <span className="top_section_description">{content?.description}</span>
           </div>
         </div>
-      )}
     </>
   );
 };

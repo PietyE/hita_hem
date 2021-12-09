@@ -11,12 +11,11 @@ import {
   RESET_COMPANY_TAB,
   RESET_COMPANY_LIST,
   IS_MORE_COMPANIES,
+  SET_IS_REDIRECT,
 } from "constants/actionsConstant";
 
 import { companyTabConstants } from "constants/companyTabConstant";
-import {
-  chooseCorrectResolution,
-} from "../../utils/utils";
+
 
 const setFilter = (state, actions) => {
   if (Array.isArray(actions.payload)) {
@@ -40,6 +39,7 @@ const initialState = {
     pk: "",
     logo: "",
     short_description: "",
+    hidden_mode: false,
     website: "",
     title: "",
     description: "",
@@ -157,6 +157,7 @@ const initialState = {
     ],
     faq_set: [],
   },
+  is_redirect_on: false,
   paymentDetails: {},
   isMoreCampaignsOnTheApi: true,
   faq_posts: [],
@@ -168,6 +169,9 @@ const initialState = {
   private_mod_viewers: [],
   private_mode: false,
 };
+
+
+export const getIsRedirectOnSelector = state => state?.companies?.is_redirect_on;
 
 
 export const getMinimumInvestAmountSelector = state => state.companies.companyDetail.minimum_invest_amount;
@@ -210,13 +214,12 @@ export const getAboutProjectDescriptionSelector = (state) =>
 export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
 
-export const getHeaderImageSelector = (state) =>
-  chooseCorrectResolution(state.companies.companyDetail.images);
+export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
 
 
 
-export const getHeaderImage1Selector = (state) =>
-  state.companies.companyDetail.header_image;
+// export const getHeaderImage1Selector = (state) =>
+//   state.companies.companyDetail.header_image;
 
 export const getHeaderTitleSelector = (state) =>
   state.companies.companyDetail.header_title;
@@ -344,6 +347,8 @@ export const companies = (state = initialState, actions) => {
       return setFilter(state, actions);
     case SET_POSTS:
       return { ...state, faq_posts: actions.payload };
+    case SET_IS_REDIRECT:
+      return { ...state, is_redirect_on: actions.payload};
     default:
       return state;
   }

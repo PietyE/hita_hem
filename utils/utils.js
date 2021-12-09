@@ -7,7 +7,7 @@ export const validateEmail = (email) => {
 
 export const validateCampaignNumber = (number) => {
   //eslint-disable-next-line
-  const re =/^([A-Z]{1,3}[0-9]{1,10}|[0-9]{5,14}|[0-9]{1,6}[A-Z]{1,1}|[A-Z]{1,3}[0-9]{1,6}[A-Z]{1,2}|[A-Z]{1}[0-9]{7}[A-Z]{1}|[0-9]{3}\s[0-9]{2}\s[0-9]{3})$/;
+  const re =/^([A-Z]{1,3}[0-9]{1,10}|[0-9]{5,14}|[0-9]{1,6}[A-Z]{1,1}|[0-9]{7}-[0-9]{4}|[A-Z]{1,3}[0-9]{1,6}[A-Z]{1,2}|[A-Z]{1}[0-9]{7}[A-Z]{1}|[0-9]{3}\s[0-9]{2}\s[0-9]{3})$/;
   return re.test(number);
 };
 
@@ -32,21 +32,26 @@ export const checkCurrentResolution = () => {
     if (screen.width > 1280) {
       return 'desktop';
     }
-    // if (screen.width > 1024 && screen.width <= 1280) {
-    //   return 1280;
-    // }
     if (screen.width > 640 && screen.width <= 1280) {
       return 'laptop';
     }
-    // if (screen.width > 480 && screen.width <= 768) {
-    //   return 768;
-    // }
     if (screen.width <= 640) {
       return 'mobile';
     }
   }
-  return 'mobile';
+  return null
 };
+
+export const getCorrectImage = (images) => {
+  const imageSize = checkCurrentResolution();
+  let img;
+  if (typeof window !== "undefined" && images){
+    img = images[imageSize] || images['desktop'] || images['laptop'] || images['mobile']
+  }else{
+    img=null
+  }
+return img
+}
 
 export const chooseCorrectResolution = (imageList) => {
   const imageSize = checkCurrentResolution();
@@ -60,7 +65,9 @@ export const chooseCorrectResolution = (imageList) => {
   }else if(!imageList){
     return null
   }else{
-    return imageList[imageSize]
+      return imageList[imageSize]
+    // return imageList['desktop']
+
   }
   // for (let key in imageList) {
     // if (Number(key.replace(/\D/g, "")) === Number(imageSize)) {

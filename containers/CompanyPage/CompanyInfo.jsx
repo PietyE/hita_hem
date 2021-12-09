@@ -15,6 +15,7 @@ import {
   getWebSiteCompanySelector,
   getSocialsCompanySelector,
 } from "redux/reducers/companies";
+import Image from "next/image";
 
 const CompanyInfo = () => {
   const { t } = useTranslation();
@@ -25,16 +26,24 @@ const CompanyInfo = () => {
   const countryTitle = useSelector(getCountryTitleSelector);
   const webSite = useSelector(getWebSiteCompanySelector);
   const socials = useSelector(getSocialsCompanySelector, isEqual);
-
   return (
     <div className="company_info_container">
-      <div className="company_info_logo">
-        <img
-          src={logoUrl}
-          alt="Company logo"
-          className="company_info_logo_img"
-          loading="lazy"
-        />
+      <div className="company_info_logo" style={{  position: 'relative'}}>
+        {/*<img*/}
+        {/*  src={logoUrl}*/}
+        {/*  alt="Company logo"*/}
+        {/*  className="company_info_logo_img"*/}
+        {/*  loading="lazy"*/}
+        {/*/>*/}
+        {logoUrl &&
+        (<Image
+            src = {logoUrl}
+            layout = "fill"
+            objectFit = "cover"
+            priority = {true}
+
+            alt = "Company logo"
+        />)}
       </div>
       <div className="company_info_sig_container">
         <Title title={companyName} className="company_name" />
