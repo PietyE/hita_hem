@@ -175,7 +175,8 @@
 
       .profile_first_name,
       .profile_country,
-      .profile_id_number {
+      .profile_id_number,
+      .profile_address{
         margin-right: 20px;
       }
 
@@ -1069,6 +1070,13 @@
           .profile_address {
             width: 100%;
             margin-bottom: 20px;
+            margin-right: 0;
+
+          }
+          .profile_zip {
+            width: 100%;
+            margin-bottom: 20px;
+
           }
 
           .profile_id_number {

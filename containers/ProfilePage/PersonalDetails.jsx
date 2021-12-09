@@ -24,7 +24,7 @@ import isEmpty from "lodash/isEmpty";
 import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
-import {phoneRegExp, personalIdRegExp} from "../../utils/vadidationSchemas";
+import {phoneRegExp, personalIdRegExp, zipCodeRegExp} from "../../utils/vadidationSchemas";
 import {validateCampaignNumber} from "utils/utils";
 import {restrictOnlyLetters, restrictCity, restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import {getPrivacyPolicyDocument} from "redux/reducers/documents";
@@ -61,6 +61,7 @@ const PersonalDetails = ({
         personal_id: "",
         phone_number: "",
         image: "",
+        zip_code: '',
     };
 
     const personalDetailsCreateSchema = yup.object({
@@ -77,6 +78,7 @@ const PersonalDetails = ({
         year: yup.number().required(t("errors.year_required")),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).required(t("errors.personal_id_required")),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
+        zip_code: yup.string().matches(zipCodeRegExp, t("errors.phone_example")).required(t("errors.zip_required"))
     })
     const personalDetailsUpdateSchema = yup.object({
         address: yup.object().shape({
@@ -91,6 +93,8 @@ const PersonalDetails = ({
         year: yup.number(),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
+        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('phone_number', t("errors.zip_empty"), val => val?.length),
+
     })
 
     const [valuesFromApi, setValuesFromApi] = useState(null);
@@ -477,7 +481,7 @@ const PersonalDetails = ({
                                             clearError = {errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_big profile_address"
+                                            labelClassName = "profile_input_middle profile_address"
                                             label = {t("profile_page.personal.address_label")}
                                             inputClassName = "profile_form_input"
                                             errorClassName = "profile_form_warning_text"
@@ -490,6 +494,22 @@ const PersonalDetails = ({
                                             errors = {errors}
                                             disabled = {isInputsReadOnly}
                                             errorFromApi = {errorHandlerHook?.addressError}
+                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                        />
+                                        <InputComponent
+                                            labelClassName = "profile_input_middle profile_zip"
+                                            label = {t("profile_page.personal.zip")}
+                                            inputClassName = "profile_form_input"
+                                            errorClassName = "profile_form_warning_text"
+                                            inputName = "zip_code"
+                                            values = {values}
+                                            restrictInput = {restrictLettersNumbersAndSpecialCharacters}
+                                            setFieldValue = {setFieldValue}
+                                            setFieldError = {setFieldError}
+                                            touched = {touched}
+                                            errors = {errors}
+                                            disabled = {isInputsReadOnly}
+                                            errorFromApi = {errorHandlerHook?.zipError}
                                             clearError = {errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
