@@ -52,7 +52,6 @@ const SignUp = ({ show }) => {
       [dispatch]
   );
   const onSubmit = (values) => {
-    console.log('values', values)
     recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password, confirm_password:values?.confirm_password})
 
   };
@@ -138,7 +137,7 @@ const SignUp = ({ show }) => {
                   <InputComponent
                       type = "password"
                       labelClassName = "auth_password_container auth_container"
-                      label = {t("change_password_page.confirm_password")}
+                      label = {t("auth.sign_up.confirm_password_label")}
                       inputClassName = "auth_input"
                       inputName = "confirm_password"
                       autoComplete = "new-password"
@@ -149,7 +148,7 @@ const SignUp = ({ show }) => {
                       errors = {errors}
                       errorFromApi = {errorHandlerHook?.confirm_password}
                       clearError = {errorHandlerHook?.clearAuthErrorFromApi}
-                      placeholder = {t("auth.sign_up.password_placeholder")}
+                      placeholder = {t("auth.sign_up.confirm_password_placeholder")}
                       iconClassName = "auth_password_eye"
                   />
                   <label className = "sign_up_checkbox">

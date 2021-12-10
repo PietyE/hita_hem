@@ -82,7 +82,8 @@ const Quiz = ({show, data}) => {
                 answers: arrayOfAnswer,
                 email: `${data.email.toLowerCase()}`,
                 is_agree: `${data.is_agree}`,
-                password: `${data.password}`
+                password: `${data.password}`,
+                confirm_password: `${data.confirm_password}`
             })
         // _checkQuizAnswers({answers: arrayOfAnswer})
     }
