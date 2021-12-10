@@ -77,6 +77,7 @@ const Header = ({ initLang }) => {
           <Logo
             classNameContainer={"header_logo_container"}
             classNameText={"header_logo_text"}
+            type='header'
           />
         </div>
         <>
@@ -106,22 +107,22 @@ const Header = ({ initLang }) => {
                   {t("header.raise").toLocaleUpperCase()}
                 </Button>
               </span>
-              <span className="menu_item ">
-                <Button
-                  colorStyle="link"
-                  as={LinkStyled}
-                  to={ABOUT_US_ROUTE}
-                  className={`menu_item_link menu_item_link_about ${
-                    pathname.includes(ABOUT_US_ROUTE) ? "active" : ""
-                  }`}
-                >
-                  {t("header.about_us").toLocaleUpperCase()}
-                </Button>
-              </span>
+              {/*<span className="menu_item ">*/}
+              {/*  <Button*/}
+              {/*    colorStyle="link"*/}
+              {/*    as={LinkStyled}*/}
+              {/*    to={ABOUT_US_ROUTE}*/}
+              {/*    className={`menu_item_link menu_item_link_about ${*/}
+              {/*      pathname.includes(ABOUT_US_ROUTE) ? "active" : ""*/}
+              {/*    }`}*/}
+              {/*  >*/}
+              {/*    {t("header.about_us").toLocaleUpperCase()}*/}
+              {/*  </Button>*/}
+              {/*</span>*/}
               <a className="menu_item_link menu_item_link_faq"
                  target="_blank"
                  rel="noopener noreferrer"
-                 href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
+                 href= {selectedLanguage === 'en' ? 'https://help.accumeo.com/en/' : 'https://help.accumeo.com/sv/'}
               >{t("faq")}</a>
               {/*<span className="menu_item">*/}
               {/*  <Button*/}
@@ -145,21 +146,21 @@ const Header = ({ initLang }) => {
                   className="logn_in_button_container sign_in_item"
                   onClick={handleShowSignIn}
                 >
-                  {t("header.log_in")}
+                  {t("header.log_in").toUpperCase()}
                 </Button>
                 <Button
                   className="sing_up_button_container sign_in_item"
                   colorStyle="dark-green"
                   onClick={handleShowSignUp}
                 >
-                  {t("header.sign_up")}
+                  {t("header.sign_up").toUpperCase()}
                 </Button>
               </>
             )}
             {!!isAuth && <UserPanel />}
             <DropDownComponent className="ln_button_container sign_in_item">
               <DropdownToggle as={CustomToggle}>
-                {lang[selectedLanguage]?.name}
+                {lang[selectedLanguage]?.name.toUpperCase()}
               </DropdownToggle>
               <DropdownMenu
                 className="dropdown_menu"
@@ -172,7 +173,7 @@ const Header = ({ initLang }) => {
                       className="dropdown_menu_item"
                       data-ln={lang[l].code}
                     >
-                      {lang[l].name}
+                      {lang[l].name.toUpperCase()}
                     </DropdownItem>
                   );
                 })}

@@ -17,6 +17,11 @@
     align-items: center;
     position: relative;
     .tab_bar_item_button {
+      font-kerning: normal;
+      font-weight: 400;
+      font-style: normal;
+      line-height: 28px;
+
       white-space: nowrap;
       width: 100%;
       height: 36px;
@@ -24,14 +29,14 @@
       outline: none;
       cursor: pointer;
       margin: 0;
-      font-family: Raleway, sans-serif;
-      font-size: 16px;
+      font-family:"Source Sans Pro",sans-serif;
+      font-size: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       letter-spacing: 0.02em;
       text-transform: uppercase;
-      color: #000;
+      color: #616161;
       padding: 0 30px;
       &:hover {
         background-color: rgba(255, 255, 255, 0.4);
@@ -50,13 +55,14 @@
 
       .tab_bar_item_button {
         transition: 0.3s;
-        background: #ffffff;
+        background: #0e5394;
         box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06),
           0px 3px 8px rgba(0, 0, 0, 0.15);
         border-radius: 7px;
         border: none;
-        font-weight: 600;
-        color: #1F607C;
+        font-weight: 500;
+        color: #fff;
+
       }
     }
   }

@@ -22,7 +22,7 @@
     z-index: -1;
   }
   .top_section_title {
-    font-family: Raleway;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 48px;
@@ -34,7 +34,7 @@
   }
   .top_section_description {
     display: block;
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -63,11 +63,12 @@
   }
 
   .middle_section_content {
-    font-family: Mulish, sans-serif;
+
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 160%;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 28px;
     color: #000;
     width: 100%;
     max-width: 844px;
@@ -80,7 +81,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: rgba(220, 232, 248, 0.5);
+  background-color: #f5fbff;
+
   padding-top: 55px;
   margin-bottom: 60px;
   .bottom_section_title {
@@ -103,6 +105,12 @@
   align-items: center;
   width: 16%;
   margin-bottom: 50px;
+  font-kerning: normal;
+  font-family: 'Source sans Pro';
+  font-size: 40px;
+  font-weight: 900;
+  font-style: normal;
+
 
   .team_item_foto {
     width: 160px;
@@ -111,17 +119,18 @@
     margin-bottom: 35px;
   }
   .team_item_name {
-    font-family: Raleway;
+    font-kerning: normal;
+    font-family: 'Source sans Pro', sans-serif;
+    font-size: 28px;
+    font-weight: 900;
     font-style: normal;
-    font-weight: bold;
-    font-size: 24px;
     line-height: 32px;
     text-align: center;
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 9px;
   }
   .team_item_position {
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 18px;
@@ -131,7 +140,8 @@
     margin-bottom: 12px;
   }
   .team_item_description {
-    font-family: Mulish, sans-serif;
+
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -141,7 +151,7 @@
     margin-bottom: 12px;
   }
   .team_item_email {
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -153,6 +163,7 @@
     }
   }
 }
+
 
 .subscribe_form_section {
   width: 100%;
@@ -168,37 +179,40 @@
   background-position: 15% 30px;
   background-size: 200px auto;
   .subscribe_form_section_title {
-    font-family: Raleway;
+    margin-bottom: 10px;
+    font-weight: 900;
+    font-family: 'Source sans Pro', sans-serif;
+    font-size: 34px;
+
     font-style: normal;
-    font-weight: bold;
-    font-size: 32px;
     line-height: 44px;
     text-align: center;
     letter-spacing: 0.2px;
     color: rgba(0, 0, 0, 0.87);
-    margin-bottom: 25px;
   }
   .subscribe_form_section_subtitle {
-    margin-bottom: 50px;
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro',Mulish, sans-serif;
     font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
     line-height: 150%;
     text-align: center;
     color: #000;
+
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 16px;
+
   }
   .subscribe_form_section_from {
     width: 488px;
     height: 48px;
     display: flex;
     align-items: stretch;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     .subscribe_form_section_button {
       padding: 0 42px;
-      background: #1f607c;
+      background: #0E5394;
       border-radius: 6px;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -216,7 +230,7 @@
       z-index: 5;
     }
     .subscribe_form_warning_text{
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -231,7 +245,7 @@
       border: 1px solid #949494;
       border-right: none;
       border-radius: 4px;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -257,17 +271,20 @@
     }
   }
   .subscribe_form_section_below_message {
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro',Mulish, sans-serif;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 16px;
     line-height: 150%;
     text-align: center;
-    color: #000;
-
+    color: #b0bec5;
   }
   .about_us_captcha_text{
-    margin-bottom: 20px;
+      margin-bottom: 10px;
+      font-weight: 500;
+      font-family: 'Source sans Pro';
+      font-size: 16px;
+
     max-width: 488px;
     text-align: center;
   }
@@ -417,7 +434,7 @@
     width: 100%;
     height: 1px;
     .show_more_button {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;

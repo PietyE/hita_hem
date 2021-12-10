@@ -11,7 +11,7 @@
   &.outline-white {
     background-color: transparent;
     border: 2px solid #ffffff;
-    font-family: Mulish, sans-serif;
+    font-family: "Source Sans Pro",sans-serif;
     font-weight: 600;
     font-size: 16px;
     &:focus {
@@ -41,9 +41,9 @@
   &.outline-green {
     background: #ffffff;
     box-sizing: border-box;
-    border: 1px solid #1f607c;
+    border: 1px solid #0E5394;
     box-sizing: border-box;
-    font-family: Mulish, sans-serif;
+    font-family:"Source Sans Pro",sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -52,7 +52,7 @@
     align-items: center;
     text-align: center;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #1f607c;
+    color: #0E5394;
     &:focus {
       transition: 0.3s;
       background-color: #89cff0;
@@ -73,7 +73,7 @@
   &.white {
     background: #ffffff;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-    font-family: DM Sans;
+    font-family: "Source Sans Pro",sans-serif;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.87);
     border: none;
@@ -101,8 +101,8 @@
     }
   }
   &.dark-green {
-    background: #1f607c;
-    font-family: Source Sans Pro;
+    background: #0E5394;
+    font-family: "Source Sans Pro",sans-serif;
     font-weight: 600;
     font-size: 16px;
     &:focus {
@@ -118,7 +118,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #1f607c !important;
+      background: #0E5394 !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -169,17 +169,44 @@
   &.blue {
     background: #89cff0;
     box-shadow: 0px 1px 12px rgba(74, 87, 133, 0.25);
-    font-family: Mulish, sans-serif;
+    font-family:"Source Sans Pro",sans-serif;
     font-weight: bold;
     font-size: 18px;
     color: #ffffff;
     transform: rotate(-0.14deg);
   }
+  &.dark-blue {
+    background: #005fb3;
+    font-family:"Source Sans Pro",sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    &:focus {
+      filter: brightness(1);
+      transition: 0.3s;
+      outline: none;
+      box-shadow: none;
+    }
+    &:hover {
+      filter: brightness(1.2);
+      transition: 0.3s;
+      outline: none;
+      box-shadow: none;
+    }
+    &:active {
+      background: #0E5394 !important;
+      filter: brightness(1.4);
+      transition: 0.3s;
+    }
+    &:hover:focus:active {
+      box-shadow: none;
+    }
+  }
+
   &.red {
     background: #e0719e;
     border: 6px solid #383a48;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: 18px;
@@ -233,7 +260,7 @@
   }
   &.light-blue {
     background: #89cff0;
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -262,7 +289,7 @@
   }
   &.grey {
     background: rgba(220, 232, 248, 0.5);
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -293,7 +320,7 @@
     border: 1px solid #89cff0;
     box-sizing: border-box;
     border-radius: 6px;
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 15px;
@@ -325,7 +352,7 @@
   }
   &.light-blue-white-text {
     background: #89cff0;
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 15px;

@@ -159,7 +159,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
           <SplitLine className="raise_form_split_line" />
           <Button
             type="submit"
-            colorStyle="dark-green"
+            colorStyle="dark-blue"
             className="raise_form_button raise_form_button_alone"
           >
             {t("raisePage.form_footer.button_next")}
