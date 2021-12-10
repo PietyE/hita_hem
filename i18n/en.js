@@ -397,6 +397,7 @@ export const en = {
             personal_id_empty: '"Personal ID" cannot be empty',
             phone_empty: '"Phone number" cannot be empty',
             zip_empty: '"Postal code" cannot be empty',
+            zip_invest_empty: '"Postal code" cannot be empty please change this in your profile',
 
             company_name_required: 'Company name is a required field',
             company_form_required: 'Form of the company is a required field',
