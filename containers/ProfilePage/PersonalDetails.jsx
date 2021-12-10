@@ -63,7 +63,6 @@ const PersonalDetails = ({
         image: "",
         zip_code: '',
     };
-
     const personalDetailsCreateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string().required(t("errors.country_required")),
@@ -93,8 +92,7 @@ const PersonalDetails = ({
         year: yup.number(),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
-        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length),
-
+        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', type !== 'invest-form' ? t("errors.zip_empty") : t("errors.zip_invest_empty") , val => val?.length),
     })
 
     const [valuesFromApi, setValuesFromApi] = useState(null);
