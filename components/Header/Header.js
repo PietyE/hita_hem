@@ -10,10 +10,10 @@ import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 
 import {
-  ABOUT_US_ROUTE,
+  // ABOUT_US_ROUTE,
   RAISE_ROUTE,
   INVEST_ROUTE,
-  LAUNCHING_SOON,
+  // LAUNCHING_SOON,
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
