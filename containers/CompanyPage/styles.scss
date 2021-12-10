@@ -178,9 +178,9 @@
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 22px;
         line-height: 150%;
-        color: #000;
+        color: #424242;
       }
 
       .project_info_bussines_highlights {
@@ -244,7 +244,7 @@
                 content: "";
                 position: absolute;
                 left: 0;
-                top: 13px;
+                top: 14px;
                 width: 6px;
                 height: 6px;
                 background: #0E5394;
@@ -369,9 +369,9 @@
           font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: 400;
-          font-size: 15px;
+          font-size: 22px;
           line-height: 150%;
-          color: #000;
+          color: #424242;
         }
         h3 {
           margin-bottom: 10px;
@@ -393,20 +393,20 @@
             font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
             font-weight: normal;
-            font-size: 15px;
+            font-size: 22px;
             line-height: 170%;
             position: relative;
             //display: flex;
             //align-items: center;
             padding-left: 20px;
-            color: #000;
+            color: #424242;
 
             &::before {
               content: "";
               display: block;
               position: absolute;
               left: 0;
-              top: 10px;
+              top: 18px;
               width: 6px;
               height: 6px;
               background: #fb7f73;
@@ -632,9 +632,9 @@
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 22px;
         line-height: 160%;
-        color: #000;
+        color: #424242;
       }
 
       .fin_article_large_button {
@@ -1276,6 +1276,59 @@
   }
 }
 @media screen and (max-width: 900px) {
+  .company-page-container{
+    .project_info_container {
+      .project_info_left_section {
+        .project_info_description{
+          font-size: 18px;
+
+        }
+        .project_info_bussines_highlights {
+          .list_container {
+            p{
+              font-size: 18px;
+            }
+            ul{
+              li{
+                font-size: 18px;
+                &:before{
+                  top:12px;
+                }
+            }
+            }
+          }
+        }
+      }
+    }
+    .middle_section_container {
+      .idea_section_container {
+        .idea_section_description_container {
+          p{
+            font-size: 18px;
+          }
+          ul{
+            font-size: 18px;
+
+            li{
+              font-size: 18px;
+              &:before{
+                top:13px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .financial_info_articles_list {
+      .fin_article_wrapper {
+        .fin_article_text {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+
   .project_info_bussines_highlights, .project_info_description{
     word-break: break-word;
   }
