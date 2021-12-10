@@ -13,7 +13,7 @@
     align-items: center;
     .campaigns_title {
       font-kerning: normal;
-      font-family: "Source Sans Pro", Raleway, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 900;
       font-size: 40px;
@@ -30,8 +30,8 @@
       margin-bottom: 60px;
       width: 260px;
       height: 56px;
-      //font-family: Mulish, sans-serif;
-      font-family: "Source Sans Pro", Raleway, sans-serif;
+
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       //font-weight: bold;
       font-size: 16px;
@@ -51,8 +51,8 @@
 
     .raise_step {
       position: relative;
-      //font-family: Mulish, sans-serif;
-      font-family: "Source Sans Pro", Raleway, sans-serif;
+
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       width: 335px;
       overflow: hidden;
@@ -132,8 +132,8 @@
     width: 100%;
 
     .instructions_title {
-      //font-family: Raleway;
-      font-family: "Source Sans Pro", Raleway, sans-serif;
+
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 32px;
@@ -163,8 +163,8 @@
     background-position: center 82%,-10% 45% , 110% 45%;
 
     .join-us_title {
-      //font-family: Raleway;
-      font-family: "Source Sans Pro", Raleway, sans-serif;
+
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 32px;
@@ -202,6 +202,9 @@
 }
 @media screen and (max-width: 1440px) {
   .home_page_container{
+    .home_page_top_title{
+      font-size: 370%;
+    }
     .raise_instruction_container {
       width: 1165px;
       .raise_step {
@@ -221,6 +224,10 @@
 }
 @media screen and (max-width: 1165px) {
   .home_page_container {
+    .home_page_top_title{
+      font-size: 300%;
+      line-height: 50px;
+    }
     .home_page_top_container{
       padding-top: 100px;
     }
@@ -239,6 +246,15 @@
 }
 @media screen and (max-width: 775px) {
   .home_page_container {
+    .home_page_top_title{
+      font-size: 260%;
+      line-height: 40px;
+    }
+    .campaigns_container {
+      .campaigns_title{
+        font-size: 34px;
+      }
+    }
     .home_page_top_container{
       padding-top: 80px;
     }
@@ -260,7 +276,10 @@
 
 @media screen and (max-width: 550px) {
   .home_page_container{
-
+    .home_page_top_title{
+      font-size: 200%;
+      line-height: 35px;
+    }
     .instructions_container{
       .instructions_title {
         font-size: 30px;

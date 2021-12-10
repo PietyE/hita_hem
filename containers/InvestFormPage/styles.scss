@@ -11,7 +11,7 @@
     margin-left: auto;
   }
   .invest_form_section_title{
-    font-family: Raleway;
+    font-family:"Source Sans Pro",sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 32px;
@@ -21,7 +21,7 @@
   }
   .invest_form_section_text{
     width: 415px;
-    font-family: Mulish, sans-serif;
+    font-family: "Source Sans Pro",sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
@@ -46,7 +46,7 @@
           display: flex;
           flex-direction: row-reverse;
           justify-content: space-between;
-          font-family: Mulish, sans-serif;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 12px;
@@ -60,7 +60,7 @@
         border-radius: 6px;
         padding: 26px;
         .invest_form_invest_title{
-          font-family: Raleway;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 20px;
@@ -72,8 +72,8 @@
           position: relative;
           width: 405px;
           height: 50px;
-          //font-family: Mulish, sans-serif;
-          font-family: "Source Sans Pro", sans-serif;
+
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 16px;
@@ -99,7 +99,7 @@
         }
         .invest_form_invest_label{
           width: 100%;
-          font-family: Mulish, sans-serif;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
@@ -123,7 +123,7 @@
               resize: none;
             }
             &::placeholder{
-              font-family: Mulish, sans-serif;
+              font-family: "Source Sans Pro",sans-serif;
               font-style: normal;
               font-weight: 600;
               font-size: 14px;
@@ -133,7 +133,7 @@
           }
         }
         .invest_form_invest_statistics_title{
-          font-family: Raleway;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 20px;
@@ -148,7 +148,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-family: Mulish, sans-serif;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 18px;
@@ -168,7 +168,7 @@
         }
         .invest_form_invest_statistics_text{
           width: 370px;
-          font-family: Mulish, sans-serif;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 12px;
@@ -184,7 +184,7 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          font-family: Raleway;
+          font-family: "Source Sans Pro",sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 22px;
@@ -194,7 +194,7 @@
             margin-bottom: 0;
           }
           .invest_form_content_block_footer_total{
-            font-family: Mulish, sans-serif;
+            font-family: "Source Sans Pro",sans-serif;
             font-weight: bold;
             line-height: 32px;
           }

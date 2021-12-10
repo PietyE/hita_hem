@@ -1,6 +1,6 @@
 .raise_page_container {
   .raise_page_slider_container {
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     position: relative;
     overflow: hidden;
@@ -38,7 +38,8 @@
 
     .raise_page_slider_item {
       padding: 170px 0 230px 230px;
-      height: 750px;
+      min-height: 750px;
+      height: auto;
       .raise_page_slider_content_container {
         max-width: 1920px;
         margin-right: auto;
@@ -94,11 +95,11 @@
 
     .raise_instructions_title {
       font-kerning: normal;
-      font-family: 'Source Sans Pro', Raleway, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-size: 40px;
       font-weight: 500;
       font-style: normal;
-//
+
       line-height: 40px;
       text-align: center;
       letter-spacing: 1px;
@@ -110,7 +111,7 @@
       width: 450px;
       margin-right: auto;
       margin-left: auto;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 16px;
@@ -185,7 +186,7 @@
         }
 
         .raise_item_text {
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 18px;
@@ -240,7 +241,7 @@
 
       .raise_advantages_title {
         width: 460px;
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: 800;
         font-size: 48px;
@@ -264,7 +265,7 @@
         //height: 328px;
 
         .raise_advantages_item_title {
-          font-family: Raleway;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 24px;
@@ -276,7 +277,7 @@
         }
 
         .raise_advantages_text {
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 16px;
@@ -302,7 +303,7 @@
     }
 
     .raise_form_description {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -353,7 +354,7 @@
       margin-left: auto;
       padding: 30px 25px;
 
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -473,7 +474,7 @@
     }
 
     .form4_title {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -548,7 +549,7 @@
           margin-right: auto;
           margin-left: auto;
           margin-bottom: 0;
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
@@ -634,7 +635,7 @@
       padding-top: 10px;
 
       .raise_agreement {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 12px;
@@ -726,7 +727,8 @@
     .raise_page_slider_container {
       .raise_page_slider_item {
         padding: 60px 0 200px 180px;
-        height: 440px;
+        min-height: 440px;
+        height: auto;
 
         .raise_page_slider_title {
           font-size: 44px;
@@ -797,6 +799,18 @@
     }
   }
   @media screen and (max-width: 960px) {
+    .raise_form_container {
+      .raise_form_title {
+        font-size: 32px;
+
+      }
+    }
+      .raise_instructions_container {
+          .raise_instructions_title {
+            font-size: 32px;
+        }
+
+      }
     .raise_features_container {
       .raise_instructions_container {
         .raise_item-list_instructions_container {
@@ -1086,8 +1100,18 @@
       }
     }
   }
+  @media screen and (max-width: 550px) {
+
+      .raise_page_slider_container {
+        .raise_page_slider_item{
+          min-height: calc(100vh - 80px);
+          height: auto;
+        }
+      }
+  }
 
   @media screen and (max-width: 435px) {
+
     .raise_page_slider_container {
       .raise_page_slider_item {
         .raise_page_slider_title {

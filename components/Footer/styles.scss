@@ -1,7 +1,7 @@
 .footer_container {
   width: 100%;
   height: 100px;
-  background: #0E5394;
+  background: #3c4a67;
   position: absolute;
   bottom: 0;
 
@@ -27,7 +27,7 @@
     align-items: center;
 
     .footer_text {
-      font-family: Quicksand, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 18px;
@@ -42,7 +42,7 @@
       .footer_nav_link {
         color: #ffffff;
         font-kerning: normal;
-        font-family: 'Source sans Pro', DM Sans;
+        font-family: 'Source sans Pro', sans-serif;
         font-size: 16px;
         font-weight: 500;
         font-style: normal;
@@ -177,7 +177,7 @@
 }
 
 .menu_item_link_faq{
-  font-family: Mulish, sans-serif;
+  font-family: 'Source sans Pro', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
