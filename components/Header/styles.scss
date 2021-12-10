@@ -25,6 +25,13 @@
     align-items: center;
     justify-content: center;
 
+    .menu_item_link_faq{
+      color: rgba(0, 0, 0, 0.87);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 28px;
+    }
+
     &.right {
       flex: 1;
       justify-content: flex-end;
@@ -78,6 +85,7 @@
       .menu_item_link_about {
         margin-right: 30px;
       }
+
 
       .menu_item_link,
       .menu_item_link > button {
