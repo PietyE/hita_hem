@@ -31,6 +31,7 @@ const SignUp = ({ show }) => {
   const initialValues = {
     email: "",
     password: "",
+    confirm_password: '',
     is_agree: false,
   };
 
@@ -51,7 +52,7 @@ const SignUp = ({ show }) => {
       [dispatch]
   );
   const onSubmit = (values) => {
-    recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password})
+    recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password, confirm_password:values?.confirm_password})
 
   };
   const signUpSchema = yup.object({
@@ -60,8 +61,13 @@ const SignUp = ({ show }) => {
         .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .matches(passwordRegExp, t("errors.password_example"))
         .required(t("errors.password_required")),
-    is_agree: yup.bool().oneOf([true])
+    is_agree: yup.bool().oneOf([true]),
+    confirm_password: yup.string().required(t("errors.confirm_password_required")).max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
+        .when('password', {
+          is: password => (password && password.length > 0 ? true : false),
+          then: yup.string().oneOf([yup.ref('password')], t("errors.password_match"))
   })
+      })
 
   return (
         <Modal
@@ -126,6 +132,23 @@ const SignUp = ({ show }) => {
                       errorFromApi = {errorHandlerHook?.passwordError}
                       clearError = {errorHandlerHook?.clearAuthErrorFromApi}
                       placeholder = {t("auth.sign_up.password_placeholder")}
+                      iconClassName = "auth_password_eye"
+                  />
+                  <InputComponent
+                      type = "password"
+                      labelClassName = "auth_password_container auth_container"
+                      label = {t("auth.sign_up.confirm_password_label")}
+                      inputClassName = "auth_input"
+                      inputName = "confirm_password"
+                      autoComplete = "new-password"
+                      values = {values}
+                      setFieldValue = {setFieldValue}
+                      setFieldError = {setFieldError}
+                      touched = {touched}
+                      errors = {errors}
+                      errorFromApi = {errorHandlerHook?.confirm_password}
+                      clearError = {errorHandlerHook?.clearAuthErrorFromApi}
+                      placeholder = {t("auth.sign_up.confirm_password_placeholder")}
                       iconClassName = "auth_password_eye"
                   />
                   <label className = "sign_up_checkbox">
