@@ -47,11 +47,11 @@ const Campaigns = ({ title, type, buttonText }) => {
               <Link href={INVEST_ROUTE} prefetch={false}>
                   <a>
                       <Button
-                          colorStyle="dark-green"
+                          colorStyle="dark-blue"
                           className="campaigns_button"
                           onClick={handleUpcomingButtonClick}
                       >
-                          {buttonText}
+                          {buttonText.toUpperCase()}
                       </Button>
                   </a>
               </Link>

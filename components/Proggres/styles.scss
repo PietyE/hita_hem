@@ -9,6 +9,7 @@
     font-size: 14px;
     line-height: 100%;
     color: rgba(0, 0, 0, 0.38);
+    margin-left: auto;
   }
   .values {
     width: 100%;
@@ -16,7 +17,7 @@
     justify-content: space-between;
     align-items: center;
     .percent {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 24px;
@@ -25,9 +26,9 @@
       color: rgba(0, 0, 0, 0.87);
     }
     .day_left {
-      font-family: Mulish, sans-serif;
+      font-weight: 500;
+      font-family: 'Source sans Pro',Mulish, sans-serif;
       font-style: normal;
-      font-weight: 600;
       font-size: 18px;
       line-height: 24px;
       text-align: right;
@@ -43,7 +44,7 @@
     overflow: hidden;
     .progress_end_line {
       height: inherit;
-      background: #1f607c;
+      background: #6aa84f;
       display: block;
     }
   }

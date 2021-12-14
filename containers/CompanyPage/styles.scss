@@ -38,7 +38,7 @@
     }
 
     .company_top_section_title {
-      font-family: Raleway, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 48px;
@@ -88,13 +88,14 @@
       justify-content: flex-start;
 
       .company_name {
-        font-family: Raleway, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 40px;
+        font-weight: 700;
+        text-transform: none;
+        color: #000000;
+        font-size: 40px;
+        line-height: 50px;
         letter-spacing: 0.1px;
-        color: rgba(0, 0, 0, 0.87);
         margin-bottom: 15px;
       }
 
@@ -164,20 +165,31 @@
         }
       }
 
+      .project_info_description_section {
+        .project_info_title {
+          line-height: 54px;
+          font-weight: 700;
+          font-style: normal;
+          font-size: 22px;
+
+        }
+      }
+
       .project_info_description {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 15px;
+        font-size: 22px;
         line-height: 150%;
-        color: #000;
+        color: #424242;
       }
 
       .project_info_bussines_highlights {
+
         margin-bottom: 40px;
 
         .project_info_title {
-          font-family: Raleway, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 32px;
@@ -192,14 +204,14 @@
 
       .project_info_bussines_highlights {
         padding: 20px 25px;
-        background: rgba(220, 232, 248, 0.5);
+        background-color: #f0f0ff;
         border-radius: 8px;
         width: 100%;
 
         .project_info_bussines_highlights_title {
-          font-family: Raleway, sans-serif;
+          font-weight: 700;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
-          font-weight: bold;
           font-size: 24px;
           line-height: 32px;
           font-feature-settings: "pnum" on, "lnum" on;
@@ -207,18 +219,19 @@
         }
         .list_container {
           p{
-            font-family: Mulish, sans-serif;
+            font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
-            font-weight: normal;
-            font-size: 15px;
+            font-weight: 500;
+            font-size: 22px;
             line-height: 150%;
+            color: #424242;
           }
           ul {
             padding: 0;
             list-style: none;
 
             li {
-              font-family: Mulish, sans-serif;
+              font-family: 'Source sans Pro', sans-serif;
               font-style: normal;
               font-weight: 600;
               font-size: 16px;
@@ -232,10 +245,10 @@
                 content: "";
                 position: absolute;
                 left: 0;
-                top: 13px;
+                top: 14px;
                 width: 6px;
                 height: 6px;
-                background: #1f607c;
+                background: #0E5394;
                 border-radius: 50px;
               }
             }
@@ -267,7 +280,7 @@
           border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 
           &:first-child {
-            background: rgba(220, 232, 248, 0.5);
+            //background: rgba(220, 232, 248, 0.5);
           }
           &:last-child {
             height: 125px;
@@ -283,7 +296,7 @@
             display: flex;
             flex-direction: column;
             .date {
-              color: #fb7f73;
+              color: #6e6e6e;
               font-weight: 700;
             }
           }
@@ -301,6 +314,7 @@
       }
 
       .invest_button {
+        background-color: #0b5394;
         width: 100%;
         height: 56px;
         margin-bottom: 23px;
@@ -341,21 +355,28 @@
       }
 
       .idea_title {
+        font-weight: 700;
+        font-family: 'Source sans Pro';
+        font-style: normal;
+        line-height: 70px;
+        font-size: 40px;
+
         margin-bottom: 10px;
       }
 
+
       .idea_section_description_container {
         p {
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: 400;
-          font-size: 15px;
+          font-size: 22px;
           line-height: 150%;
-          color: #000;
+          color: #424242;
         }
         h3 {
           margin-bottom: 10px;
-          font-family: Raleway, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 32px;
@@ -365,29 +386,28 @@
         }
         ul {
           list-style: none;
-          margin: 0;
-          padding: 0;
-          padding-left: 80px;
+          padding: 0 0 0 20px;
           margin: 22px 0;
 
+
           li {
-            font-family: Mulish, sans-serif;
+            font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
             font-weight: normal;
-            font-size: 15px;
+            font-size: 22px;
             line-height: 170%;
             position: relative;
             //display: flex;
             //align-items: center;
             padding-left: 20px;
-            color: #000;
+            color: #424242;
 
             &::before {
               content: "";
               display: block;
               position: absolute;
               left: 0;
-              top: 10px;
+              top: 18px;
               width: 6px;
               height: 6px;
               background: #fb7f73;
@@ -404,12 +424,12 @@
       .idea_list_container {
         list-style: none;
         margin: 0;
-        padding: 0;
-        padding-left: 80px;
+        padding: 0 0 0 80px;
+        //padding-left: 80px;
         margin: 22px 0;
 
         .list_item {
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: normal;
           font-size: 15px;
@@ -495,30 +515,30 @@
     }
 
     .member_card_item_name {
-      font-family: Raleway, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
-      font-weight: bold;
-      font-size: 24px;
-      line-height: 32px;
-      font-feature-settings: "pnum" on, "lnum" on;
-      color: rgba(0, 0, 0, 0.87);
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 120%;
+      color: #000;
     }
 
     .member_card_item_position {
-      font-family: Mulish, sans-serif;
       font-style: normal;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 150%;
-      color: #000;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 100%;
+      color: #616161;
+      font-family: 'Source sans Pro', sans-serif;
       margin-bottom: 15px;
     }
 
     .member_card_item_email {
-      font-family: Mulish, sans-serif;
-      font-weight: bold;
-      font-size: 14px;
-      line-height: 150%;
+      font-family: 'Source sans Pro', sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 18px;
+      line-height: 100%;
       color: #000;
       margin-bottom: 15px;
       &:hover {
@@ -528,12 +548,13 @@
     }
 
     .member_card_item_description {
-      font-family: Mulish, sans-serif;
       font-style: normal;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 150%;
-      color: #000;
+      font-weight: 500;
+      line-height: 120%;
+      color: #616161;
+      font-size: 18px;
+
+      font-family: 'Source sans Pro', sans-serif;
       margin-bottom: 15px;
     }
   }
@@ -599,22 +620,22 @@
       }
 
       .fin_article_title {
-        font-family: Raleway, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
+        font-weight: 700;
+        font-size: 36px;
         font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
         line-height: 64px;
         font-feature-settings: "pnum" on, "lnum" on;
         color: rgba(0, 0, 0, 0.87);
       }
 
       .fin_article_text {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
-        font-size: 16px;
+        font-size: 22px;
         line-height: 160%;
-        color: #000;
+        color: #424242;
       }
 
       .fin_article_large_button {
@@ -634,7 +655,7 @@
     height: 300px;
 
     .financial_info_documents_title {
-      font-family: Raleway, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 24px;
@@ -678,7 +699,7 @@
 
   .campaigns_tab_sign-up_title {
     margin-bottom: 25px;
-    font-family: Raleway, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 32px;
@@ -689,7 +710,7 @@
   .campaigns_tab_sign-up_text {
     width: 380px;
 
-    font-family: Mulish, sans-serif;
+    font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -699,6 +720,7 @@
     margin-bottom: 25px;
   }
   .campaigns_tab_sign-up_button {
+    background-color: #0e5394;
     width: 145px;
     height: 48px;
     margin-bottom: 45px;
@@ -748,7 +770,7 @@
 
       .comment_item_name {
         margin-bottom: 0;
-        font-family: Raleway, sans-serif;
+        font-family:'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -757,7 +779,7 @@
         color: rgba(0, 0, 0, 0.87);
       }
       .comment_item_date {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 12px;
@@ -765,7 +787,7 @@
         color: rgba(0, 0, 0, 0.38);
       }
       comment_item_text {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -788,10 +810,10 @@
     width: calc(100% + 460px);
     padding: 30px 230px 40px 230px;
     transform: translateX(-230px);
-    background: rgba(220, 232, 248, 0.5);
+    background: #f0f0ff;
 
     .faq_post_title {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 16px;
@@ -813,7 +835,7 @@
       height: 100%;
       width: calc(100% - 100px);
       wrap: soft;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 14px;
@@ -891,6 +913,7 @@
   }
 }
 .sticky_invest_button{
+  background-color: #0b5394;
   margin-left: auto;
   margin-right: 75px;
   width: 350px;
@@ -940,7 +963,7 @@
   }
   .faq {
     .faq_comments_answer {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 15px;
@@ -1254,6 +1277,59 @@
   }
 }
 @media screen and (max-width: 900px) {
+  .company-page-container{
+    .project_info_container {
+      .project_info_left_section {
+        .project_info_description{
+          font-size: 18px;
+
+        }
+        .project_info_bussines_highlights {
+          .list_container {
+            p{
+              font-size: 18px;
+            }
+            ul{
+              li{
+                font-size: 18px;
+                &:before{
+                  top:12px;
+                }
+            }
+            }
+          }
+        }
+      }
+    }
+    .middle_section_container {
+      .idea_section_container {
+        .idea_section_description_container {
+          p{
+            font-size: 18px;
+          }
+          ul{
+            font-size: 18px;
+
+            li{
+              font-size: 18px;
+              &:before{
+                top:13px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .financial_info_articles_list {
+      .fin_article_wrapper {
+        .fin_article_text {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
+
   .project_info_bussines_highlights, .project_info_description{
     word-break: break-word;
   }
@@ -1403,7 +1479,7 @@
         }
         .idea_section_description_container {
           ul {
-            padding-left: 30px;
+            padding-left: 10px;
           }
           img{
             max-width: calc(100vw - 2rem);
@@ -1578,6 +1654,7 @@
       padding-left: 0;
       .project_info_left_section {
         padding: 0 25px;
+
       }
       .project_info_section_container {
         .project_info_right_section {
@@ -1762,7 +1839,7 @@
 }
 
 .middle_section_text {
-  font-family: Mulish, sans-serif;
+  font-family: 'Source sans Pro', sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
@@ -1788,7 +1865,7 @@
   border-radius: 32px;
 
   //margin-top: 20px;
-  font-family: Mulish, sans-serif;
+  font-family: 'Source sans Pro', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

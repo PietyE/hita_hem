@@ -4,21 +4,21 @@
   align-items: flex-start;
   justify-content: flex-start;
   .title {
-    font-family: Source Sans Pro;
+    font-family: "Source Sans Pro",sans-serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 17px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.38);
   }
   .info {
-    font-family: Source Sans Pro;
+    font-family: "Source Sans Pro",sans-serif;
     font-style: normal;
     font-weight: 600;
-    font-size: 14px;
+    color: #0e5394;
+    font-size: 17px;
     line-height: 150%;
     letter-spacing: 0.002em;
-    color: #1f607c;
     &.link {
       cursor: pointer;
     }

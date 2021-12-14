@@ -39,12 +39,17 @@ const isAuth = useSelector(getIsSignInUserSelector)
   return (
     <>
       {!!props?.content && (
-        <li className={`campaigns_card ${className}`}>
           <Link
-            as={`/company/${pk}`}
-            href={"/company/[companyId]"}
-            prefetch={false}
+              as={`/company/${pk}`}
+              href={"/company/[companyId]"}
+              prefetch={false}
           >
+        <li className={`campaigns_card ${className}`}>
+          {/*<Link*/}
+          {/*  as={`/company/${pk}`}*/}
+          {/*  href={"/company/[companyId]"}*/}
+          {/*  prefetch={false}*/}
+          {/*>*/}
             {/*<ImageComponent*/}
             {/*  className="campaigns_card_image"*/}
             {/*  // src={card_image || header_image}*/}
@@ -63,7 +68,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
               />)}
             </div>
           
-          </Link>
+          {/*</Link>*/}
           <Link
             as={`/company/${pk}`}
             href={"/company/[companyId]"}
@@ -97,20 +102,20 @@ const isAuth = useSelector(getIsSignInUserSelector)
           />
 
           <div className="campaigns_card_content_wrapper">
-            <div className="campaigns_card_links_wrapper">
-              <Image
-                src={IconBag}
-                alt="icon_bag"
-                className="campaigns_card_icon"
-              />
-              <span className="campaigns_card_industry">{industry?.title}</span>
-              <Image
-                src={IconLocation}
-                alt="icon_location"
-                className="campaigns_card_icon"
-              />
-              <span className="campaigns_card_location">{country}</span>
-            </div>
+            {/*<div className="campaigns_card_links_wrapper">*/}
+            {/*  <Image*/}
+            {/*    src={IconBag}*/}
+            {/*    alt="icon_bag"*/}
+            {/*    className="campaigns_card_icon"*/}
+            {/*  />*/}
+            {/*  <span className="campaigns_card_industry">{industry?.title}</span>*/}
+            {/*  <Image*/}
+            {/*    src={IconLocation}*/}
+            {/*    alt="icon_location"*/}
+            {/*    className="campaigns_card_icon"*/}
+            {/*  />*/}
+            {/*  <span className="campaigns_card_location">{country}</span>*/}
+            {/*</div>*/}
 
             <div className="campaigns_card_text_wrapper">
               <Link
@@ -123,38 +128,37 @@ const isAuth = useSelector(getIsSignInUserSelector)
               <p className="campaigns_card_description">{short_description}</p>
             </div>
 
-            <SplitLine className="campaigns_card_split_line" />
+            {/*<SplitLine className="campaigns_card_split_line" />*/}
 
             <Progress
               title={t("campaigns_card.progress_title")}
               percent={percentage}
-              // daysLeftToStart={left_date_start}
-              // daysLeftToEnd={left_date_end}
+              className='card_progress'
               leftDate={left_date}
-              // status={status}
             />
 
-            {isAuth && (
-                <div className = "campaigns_card_target">
-              <p className = "campaigns_card_target_title">
-                {t("campaigns_card.target_title")}
-              </p>
-              <p className = "campaigns_card_target_value">
-                {currency} {moneyFormat.format(goal)}
-              </p>
-            </div>)}
+            {/*{isAuth && (*/}
+            {/*    <div className = "campaigns_card_target">*/}
+            {/*  <p className = "campaigns_card_target_title">*/}
+            {/*    {t("campaigns_card.target_title")}*/}
+            {/*  </p>*/}
+            {/*  <p className = "campaigns_card_target_value">*/}
+            {/*    {currency} {moneyFormat.format(goal)}*/}
+            {/*  </p>*/}
+            {/*</div>)}*/}
 
-            <Button
-              colorStyle="outline-green"
-              className="campaigns_card_button"
-              as={LinkStyled}
-              to={`/company/${pk}`}
-              title="This link leads to the company detail page"
-            >
-              {t("campaigns_card.button")}
-            </Button>
+            {/*<Button*/}
+            {/*  colorStyle="outline-green"*/}
+            {/*  className="campaigns_card_button"*/}
+            {/*  as={LinkStyled}*/}
+            {/*  to={`/company/${pk}`}*/}
+            {/*  title="This link leads to the company detail page"*/}
+            {/*>*/}
+            {/*  {t("campaigns_card.button")}*/}
+            {/*</Button>*/}
           </div>
         </li>
+          </Link>
       )}
     </>
   );

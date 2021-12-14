@@ -13,7 +13,9 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Accumeo</title>
+        <title>Title: Accumeo - Investera i onoterade tillväxtbolag idag</title>
+          <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
+
       </Head>
       <RootPage initLang={initLang}>
         <Component {...pageProps} />
