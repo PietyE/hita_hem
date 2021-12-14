@@ -367,7 +367,7 @@ export const en = {
                 company_number_placeholder: 'Company number',
                 company_number_warning: 'The data is not valid.',
                 zip: 'Postal code*',
-                avatar_warning: 'Please make sure the file you uploaded are one of the following formats: png, jpeg, jpg or webp. The uploaded image must be smaller than 400px by 400px. Please upload another image.',
+                avatar_warning: 'Please make sure the file you uploaded are one of the following formats: png, jpeg, jpg or webp.',
             },
         },
         errors: {
