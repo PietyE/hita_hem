@@ -40,6 +40,9 @@
       padding: 170px 0 230px 230px;
       min-height: 750px;
       height: auto;
+      //&:first-child{
+      //  pointer-events: none;
+      //}
       .raise_page_slider_content_container {
         max-width: 1920px;
         margin-right: auto;
@@ -672,7 +675,7 @@
     .raise_form_button {
       min-width: 80px;
       position: relative;
-      background-color: #1155cc;
+      //background-color: #1155cc;
       .raise_form_button_arrow_right {
         display: none;
       }
@@ -685,7 +688,7 @@
     }
 
     .raise_form_button_back {
-      color: #1155cc;
+      color: #0E5394;
       width: 80px;
       box-shadow: none;
       background-color: #fff;
