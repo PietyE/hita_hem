@@ -164,6 +164,8 @@ function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
 
+    yield call([localStorage,'removeItem'], '_expiredTime')
+
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
     const session_key = session_key_from_LS || new Date().getTime();
 
