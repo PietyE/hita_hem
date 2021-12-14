@@ -6,7 +6,6 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <meta charSet="utf-8" />
-          <meta name="description" content="Accumeo - upptäck onoterat!" />
           <link rel="manifest" href="/manifest.json" />
           <link
             rel="icon"
