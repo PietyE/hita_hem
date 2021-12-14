@@ -13,7 +13,7 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Title: Accumeo - Investera i onoterade tillväxtbolag idag</title>
+        <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
           <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
 
       </Head>
