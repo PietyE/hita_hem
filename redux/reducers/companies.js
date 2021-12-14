@@ -209,7 +209,7 @@ export const getIsFetchingCampaignsSelector = (state) =>
 export const getAboutProjectTitleSelector = (state) =>
   state.companies.companyDetail.title;
 export const getAboutProjectDescriptionSelector = (state) =>
-  state.companies.companyDetail.description;
+  state.companies.companyDetail?.description;
 
 export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
@@ -234,6 +234,8 @@ export const getCompanyLogoUrlSelector = (state) =>
   state.companies.companyDetail.logo;
 export const getCompanyNameSelector = (state) =>
   state.companies.companyDetail.name;
+// export const getCompanyShortDescriptionSelector = state =>
+//     state.companies.companyDetail?.description
 export const getCompanyIndustryTitleSelector = (state) =>
   state.companies.companyDetail?.industry?.title || "";
 export const getCountryTitleSelector = (state) =>
