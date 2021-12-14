@@ -363,7 +363,7 @@ profile_page: {
         company_number_placeholder: 'Organisationsnummer',
         company_number_warning: 'Uppgifterna är inte giltiga.',
         zip: 'Postnummer*',
-        avatar_warning: 'Vänligen se till att filen du laddar upp är i något av följande format: png, jpeg, jpg eller webp. Den uppladdade bilden måste vara mindre än 400px gånger 400px. Ladda upp en annan bild.',
+        avatar_warning: 'Vänligen se till att filen du laddar upp är i något av följande format: png, jpeg, jpg eller webp.',
 
     },
 },
