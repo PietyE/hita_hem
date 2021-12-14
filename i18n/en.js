@@ -102,7 +102,7 @@ export const en = {
             },
         },
         campaigns_card: {
-            progress_title: "Raised",
+            progress_title: "Raised of min. goal",
             target_title: "Target",
             button: "Learn More",
         },
@@ -196,7 +196,7 @@ export const en = {
             company_valuation: " Valuation",
             company_goal: "Goal",
             company_share_price: "Share price",
-            company_raised: "Raised",
+            company_raised: "Raised of min. goal",
             company_closed: "Closed",
             company_completed: "Completed",
             company_successfully_closed: "Successfully closed",

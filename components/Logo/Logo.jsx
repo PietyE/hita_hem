@@ -2,7 +2,7 @@ import React from "react";
 
 import Link from "next/link";
 
-const Logo = ({ classNameContainer, classNameText, type }) => {
+const Logo = ({ classNameContainer, classNameText }) => {
   return (
     <Link href="/" prefetch={false}>
       <a className={`logo_container ${classNameContainer}`}>
@@ -50,8 +50,7 @@ const Logo = ({ classNameContainer, classNameText, type }) => {
             />
           </svg>
         </div>
-
-        {type !== 'header' && <span className = {`logo_text ${classNameText}`}>Accumeo</span>}
+        <span className = {`logo_text ${classNameText}`}>Accumeo</span>
       </a>
     </Link>
   );

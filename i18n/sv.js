@@ -103,7 +103,7 @@ auth: {
     },
 },
 campaigns_card: {
-    progress_title: "Reserverat",
+    progress_title: "Rest av min. mål",
         target_title: "Mål",
         button: "Läs mer",
 },
@@ -193,7 +193,7 @@ company_page: {
         company_invested: 'Investerat',
         company_goal: "Mål",
         company_share_price: "Aktiepris",
-        company_raised: "Rest kapital",
+        company_raised: "Rest av min. mål",
         company_closed: "Stängd",
         company_completed: "Avslutad",
         company_successfully_closed: "Stängd",

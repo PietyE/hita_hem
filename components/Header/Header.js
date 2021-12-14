@@ -77,7 +77,6 @@ const Header = ({ initLang }) => {
           <Logo
             classNameContainer={"header_logo_container"}
             classNameText={"header_logo_text"}
-            type='header'
           />
         </div>
         <>
