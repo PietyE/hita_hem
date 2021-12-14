@@ -1,12 +1,13 @@
 .currensy_text {
-  font-family: Mulish, sans-serif;
+  font-weight: 700;
+  font-family: "Source Sans Pro",sans-serif;
   font-style: normal;
-  font-weight: bold;
-  font-size: 24px;
+  font-size: 28px;
+  color: #424242;
+  text-transform: none;
   line-height: 150%;
   display: flex;
   align-items: center;
-  color: #1f607c;
 }
 @media screen and (max-width: 648px) {
   .currensy_text {

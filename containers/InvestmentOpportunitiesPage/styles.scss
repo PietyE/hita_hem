@@ -52,15 +52,21 @@
     margin-bottom: 55px;
 
     .invest_opp_middle_title {
-      font-family: Raleway;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 32px;
-      line-height: 40px;
       color: rgba(0, 0, 0, 0.87);
-    }
+      font-kerning: normal;
+      font-family: 'Source sans Pro';
+      font-size: 40px;
+      font-weight: 900;
+      font-style: normal;
+      line-height: 70px;
+      overflow-wrap: break-word;
 
-    .invest_opp_select {
+    }
+.invest_opp_dropdown{
+  display: flex;
+  align-items: center;
+}
+.invest_opp_select {
       display: flex;
       align-items: center;
       position: relative;
@@ -71,7 +77,7 @@
       box-sizing: border-box;
       border-radius: 4px;
       padding-left: 15px;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -138,7 +144,7 @@
         .invest_opp_label {
           display: flex;
           align-items: center;
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: 600;
           font-size: 14px;
@@ -179,7 +185,7 @@
     margin-left: auto;
 
     .invest_opp_filters_list_text {
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -194,7 +200,7 @@
       padding: 9px;
       height: 40px;
       margin-right: 17px;
-      font-family: Mulish, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -353,7 +359,12 @@
       }
     }
 
-    .invest_opp_filters_list, .invest_opp_dropdown {
+    .invest_opp_nav{
+      .invest_opp_dropdown {
+        display: none;
+      }
+    }
+    .invest_opp_filters_list{
       display: none;
     }
 
@@ -394,7 +405,7 @@
       }
 
       .filter_mobile_menu_title {
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 20px;
@@ -409,7 +420,7 @@
         align-items: center;
         width: 100%;
         text-align: left;
-        font-family: Mulish, sans-serif;
+        font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: bold;
         font-size: 18px;
@@ -454,7 +465,7 @@
 
         .filter_mobile_menu_buttons_cancel {
           margin-right: 30px;
-          font-family: Mulish, sans-serif;
+          font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
           font-weight: bold;
           font-size: 15px;
@@ -520,7 +531,7 @@
       .invest_opp_top_description {
         padding-right: 25px;
         padding-left: 25px;
-        margin-bottom: 15px;
+        margin-bottom: 35px;
       }
     }
     .invest_opp_middle_container {

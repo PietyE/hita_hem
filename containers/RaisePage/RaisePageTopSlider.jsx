@@ -23,6 +23,23 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
               return (
                 <Carousel.Item key={content?.index + content?.title}>
                   <div className="raise_page_slider_item" style={{  position: 'relative'}}>
+
+                      <div className='raise_page_slider_content_container'>
+                    <h1 className="raise_page_slider_title">
+                      {content?.title}
+                    </h1>
+                    <p className="raise_page_slider_text">
+                      {content?.description}
+                    </p>
+                    <Button
+                      className="raise_page_slider_button"
+                      colorStyle="white"
+                      onClick={onScrollTo}
+                    >
+                      {content?.button_title.toUpperCase()}
+                    </Button>
+                      </div>
+                    <div className = "raise_page_slider_image ">
                       {screenSize === 'desktop' && img &&(<Image
                           src = {img}
                           layout = "fill"
@@ -47,22 +64,9 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                           className = "raise_page_slider_image "
                           alt = "raise_page_slider_image"
                       />)}
-                      <div className='raise_page_slider_content_container'>
-                    <h1 className="raise_page_slider_title">
-                      {content?.title}
-                    </h1>
-                    <p className="raise_page_slider_text">
-                      {content?.description}
-                    </p>
-                    <Button
-                      className="raise_page_slider_button"
-                      colorStyle="white"
-                      onClick={onScrollTo}
-                    >
-                      {content?.button_title}
-                    </Button>
-                      </div>
-                  </div>
+                    </div>
+                    </div>
+
                 </Carousel.Item>
               );
             })}

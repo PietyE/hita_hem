@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Jost:wght@500&family=Mulish:wght@600;700&family=Quicksand:wght@700&family=Raleway:wght@400;700&family=Source+Sans+Pro:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@500&family=Jost:wght@500&family=Mulish:wght@500;600;700&family=Quicksand:wght@700&family=Raleway:wght@400;500;700;900&family=Source+Sans+Pro:wght@400;500;600;700;900&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
 @import '~bootstrap/scss/bootstrap';
 //@import url('https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css');
 
@@ -89,11 +91,11 @@ button {
 }
 
 .captcha_text{
-  font-family: Mulish, sans-serif;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 22px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  font-family: 'Source sans Pro',Mulish, sans-serif;
   margin-bottom: 0;
   color: rgba(0, 0, 0, 0.38);
 

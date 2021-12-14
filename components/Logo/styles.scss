@@ -11,10 +11,10 @@
     align-items: center;
   }
   .logo_text {
-    @extend .quicksand-font;
+    font-family: Quicksand,sans-serif;
     font-size: 1.25rem;
     line-height: 1.4rem;
-    font-weight: bold;
+    font-weight: 700;
     margin-left: 10px;
     color: $DARK_GREY_LOGO_TEXT;
   }

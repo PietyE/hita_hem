@@ -50,8 +50,7 @@ const Logo = ({ classNameContainer, classNameText }) => {
             />
           </svg>
         </div>
-
-        <span className={`logo_text ${classNameText}`}>Accumeo</span>
+        <span className = {`logo_text ${classNameText}`}>Accumeo</span>
       </a>
     </Link>
   );

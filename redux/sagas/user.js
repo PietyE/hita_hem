@@ -32,6 +32,7 @@ import {
 import {
   setShowSignIn,
   setShowSignUp,
+    setShowSessionSignUp,
   setShowSuccessfulSignUp,
   setShowSuccessfulResetPassword,
   setShowResetPassword,
@@ -135,7 +136,8 @@ function* signUp({ payload }) {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "signUp"], {token:payload.token, data: payload.data});
     if (response.status === 201) {
-      yield put(setShowSignUp(false));
+        yield put(setShowSignUp(false));
+        yield put(setShowSessionSignUp(false));
       yield put (setShowQuiz(false));
       yield put(setShowSuccessfulSignUp(true));
     }
@@ -161,6 +163,8 @@ function* signUp({ payload }) {
 function* signIn({ payload }) {
   try {
     yield put(setFetchingUsers(true));
+
+    yield call([localStorage,'removeItem'], '_expiredTime')
 
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
     const session_key = session_key_from_LS || new Date().getTime();

@@ -1,7 +1,7 @@
 .footer_container {
   width: 100%;
   height: 100px;
-  background: #1f607c;
+  background: #3c4a67;
   position: absolute;
   bottom: 0;
 
@@ -15,6 +15,10 @@
     padding: 0 230px;
     height: 100px;
     align-items: center;
+    background-color: #3c4a67;
+    border-style: none;
+    color: #ffffff;
+
   }
 
   .footer_item {
@@ -23,7 +27,7 @@
     align-items: center;
 
     .footer_text {
-      font-family: Quicksand, sans-serif;
+      font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 18px;
@@ -36,13 +40,15 @@
     &.footer_nav {
       justify-content: space-evenly;
       .footer_nav_link {
-        font-family: DM Sans;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 18px;
-        letter-spacing: 0.2px;
         color: #ffffff;
+        font-kerning: normal;
+        font-family: 'Source sans Pro', sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        font-style: normal;
+        line-height: 28px;
+
+        letter-spacing: 0.2px;
         margin-right: 18px;
 
         &:hover {
@@ -70,7 +76,7 @@
         }
 
         .social_icon {
-          background-color: #1f607c;
+          //background-color: #1f607c;
           color: #ffffff;
           height: 28px;
           width: auto;
@@ -171,7 +177,7 @@
 }
 
 .menu_item_link_faq{
-  font-family: Mulish, sans-serif;
+  font-family: 'Source sans Pro', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 14px;

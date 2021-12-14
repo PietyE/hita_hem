@@ -40,6 +40,33 @@ const TopSliderComponent = ({
             return (
               <Carousel.Item key={pk+title}>
                 <div className='item_component_container' style={{  position: 'relative'}}>
+                  {/*{( screenSize === 'desktop' && img &&*/}
+                  {/*    <Image*/}
+                  {/*    src = {img}*/}
+                  {/*    layout = "fill"*/}
+                  {/*    objectFit = "cover"*/}
+                  {/*    priority = {true}*/}
+                  {/*    alt = 'header image'*/}
+
+                  {/*/>)}*/}
+                  {/*{( screenSize === 'laptop' && img &&*/}
+                  {/*    <Image*/}
+                  {/*        src = {img}*/}
+                  {/*        layout = "fill"*/}
+                  {/*        objectFit = "cover"*/}
+                  {/*        priority = {true}*/}
+                  {/*        alt = 'header image'*/}
+
+                  {/*    />)}*/}
+                  {/*{( screenSize === 'mobile' && img &&*/}
+                  {/*    <Image*/}
+                  {/*        src = {img}*/}
+                  {/*        layout = "fill"*/}
+                  {/*        objectFit = "cover"*/}
+                  {/*        priority = {true}*/}
+                  {/*        alt = 'header image'*/}
+
+                  {/*    />)}*/}
                   <div className= {`item_component_content_container ${containerClass}`}>
                     {status && (
                         <StatusCompanyBadge
@@ -71,7 +98,7 @@ const TopSliderComponent = ({
                                     className={`slider_component_first_btn ${firstButtonClass}`}
                                     colorStyle="white"
                                 >
-                                  {first_button_title}
+                                  {first_button_title.toUpperCase()}
                                 </Button>
                               </a>
                           )}
@@ -81,7 +108,7 @@ const TopSliderComponent = ({
                                     className={`slider_component_second_btn ${secondButtonClass}`}
                                     colorStyle="outline-white"
                                 >
-                                  {second_button_title}
+                                  {second_button_title.toUpperCase()}
                                 </Button>
                               </a>
                           )}
