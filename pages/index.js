@@ -13,6 +13,7 @@ import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
 import InstructionSection from "containers/HomePage/InstructionSection";
 import JoinSection from "containers/HomePage/JoinSection";
 import SpinnerStyled from "components/ui/Spinner";
+import Head from "next/head";
 
 const Index = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ const Index = () => {
   }, []);
 
   return (
+      <>
+          <Head>
+              <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
+              <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
+
+          </Head>
     <div className="home_page_container">
       {isFetching && <SpinnerStyled />}
       <div className="home_page_container">
@@ -41,6 +48,7 @@ const Index = () => {
         {!isAuth && <JoinSection />}
       </div>
     </div>
+          </>
   );
 };
 
