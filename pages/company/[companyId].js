@@ -93,11 +93,11 @@ const CompanyPage = () => {
     <>
       <Head>
         <title>{`Accumeo - ${companyName}`}</title>
-        <meta name="description" content= {`${shortDescription}`} />
+        {/*<meta name="description" content= {`${shortDescription}`} />*/}
         <meta property="og:title" content={`Accumeo - ${companyName}`} />
-        <meta property="og:description" content={`${shortDescription}`} />
+        {/*<meta property="og:description" content={`${shortDescription}`} />*/}
         <meta property="og:url"  content={`https://accumeo.com/company/${id}`} />
-        <meta property="og:type" content="company" />
+        {/*<meta property="og:type" content="company" />*/}
         <meta property="og:image" content= {`${images['desktop']}` || `${images['laptop']}` || `${images['mobile']}`} />
       </Head>
       {isFetching && <SpinnerStyled />}
