@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useDropzone } from "react-dropzone";
 import Button from "components/ui/Button";
 import { useSelector } from "react-redux";
@@ -18,6 +18,13 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
   const onDrop = (file) => {
     setFieldValue("image", file);
   };
+  const avatarError = errorHandlerHook?.avatarError
+
+    useEffect(()=>{
+        if(avatarError){
+            setShowWarning(false)
+        }
+    },[avatarError])
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -26,12 +33,14 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
       if(showWarning){
           setShowWarning(false)
       }
-      if(errorHandlerHook?.avatarError){
+      if(avatarError){
           errorHandlerHook.clearProfileErrorFromApi('image')
       }
     if (e?.target?.dataset?.value === "del") {
       setFieldValue("image", null);
-      return
+        setHasAvatarUpload(false);
+
+        return
     }else if(e?.target?.files[0]){
         const imageFile = e?.target?.files[0]
 
@@ -124,8 +133,8 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
         {(showWarning) && (
             <p className='profile_form_upload_avatar_warning'>{t("profile_page.personal.avatar_warning")}</p>
         )}
-        {(errorHandlerHook?.avatarError) && (
-            <p className='profile_form_upload_avatar_warning'>{errorHandlerHook?.avatarError}</p>
+        {(avatarError) && (
+            <p className='profile_form_upload_avatar_warning'>{avatarError}</p>
         )}
       <Button
         colorStyle="link"
