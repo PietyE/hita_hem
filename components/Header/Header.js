@@ -14,6 +14,7 @@ import {
   RAISE_ROUTE,
   INVEST_ROUTE,
   // LAUNCHING_SOON,
+  BLOG,
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
@@ -118,6 +119,18 @@ const Header = ({ initLang }) => {
               {/*    {t("header.about_us").toLocaleUpperCase()}*/}
               {/*  </Button>*/}
               {/*</span>*/}
+              <span className="menu_item">
+                <Button
+                    className={`menu_item_link menu_item_link_blog ${
+                        pathname.includes(BLOG) ? "active" : ""
+                    }`}
+                    colorStyle="link"
+                    as={LinkStyled}
+                    to={BLOG}
+                >
+                  {t("header.blog").toLocaleUpperCase()}
+                </Button>
+              </span>
               <a className="menu_item_link menu_item_link_faq"
                  target="_blank"
                  rel="noopener noreferrer"
@@ -135,6 +148,7 @@ const Header = ({ initLang }) => {
               {/*    {t("header.launching_soon").toLocaleUpperCase()}*/}
               {/*  </Button>*/}
               {/*</span>*/}
+
             </nav>
           </div>
           <div className="header_item right">
