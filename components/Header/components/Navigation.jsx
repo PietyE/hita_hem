@@ -7,7 +7,7 @@ import {
   RAISE_ROUTE,
   INVEST_ROUTE,
   ABOUT_US_ROUTE,
-  LAUNCHING_SOON,
+  LAUNCHING_SOON, BLOG,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -145,16 +145,27 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={ABOUT_US_ROUTE} prefetch={false}>
+                <Link href={BLOG} prefetch={false}>
                   <a
-                    className={`${
-                      pathname.includes(ABOUT_US_ROUTE) ? "active" : ""
-                    }`}
+                      className={`${
+                          pathname.includes(BLOG) ? "active" : ""
+                      }`}
                   >
-                    {t("header.about_us").toLocaleUpperCase()}
+                    {t("header.blog").toLocaleUpperCase()}
                   </a>
                 </Link>
               </NavDropdown.Item>
+              {/*<NavDropdown.Item as="div" className="nav_item">*/}
+              {/*  <Link href={ABOUT_US_ROUTE} prefetch={false}>*/}
+              {/*    <a*/}
+              {/*      className={`${*/}
+              {/*        pathname.includes(ABOUT_US_ROUTE) ? "active" : ""*/}
+              {/*      }`}*/}
+              {/*    >*/}
+              {/*      {t("header.about_us").toLocaleUpperCase()}*/}
+              {/*    </a>*/}
+              {/*  </Link>*/}
+              {/*</NavDropdown.Item>*/}
               <NavDropdown.Item as="div" className="nav_item">
                 <a className="footer_nav_link"
                    target="_blank"

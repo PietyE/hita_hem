@@ -8,5 +8,6 @@ export const LAUNCHING_SOON = "/launching-soon";
 export const CHANGE_EMAIL = "/change-email"
 export const CHANGE_PASSWORD = "/change-password"
 export const RESET_PASSWORD = "/reset-password"
+export const BLOG = "/blog"
 
 export const COMPANY_ROUTE = "/company";
