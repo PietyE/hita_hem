@@ -14,13 +14,16 @@ import InstructionSection from "containers/HomePage/InstructionSection";
 import JoinSection from "containers/HomePage/JoinSection";
 import SpinnerStyled from "components/ui/Spinner";
 import Head from "next/head";
+import useDropInBlog from "../customHooks/useDropInBlog";
 
 const Index = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingHomePageSelector);
 
-  const _getHomePage = useCallback(
+    useDropInBlog()
+
+    const _getHomePage = useCallback(
     (id) => {
       dispatch(getHomePage(id));
     },
@@ -36,16 +39,18 @@ const Index = () => {
           <Head>
               <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
               <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
-
           </Head>
     <div className="home_page_container">
       {isFetching && <SpinnerStyled />}
       <div className="home_page_container">
-        <TopSlider />
-        <FeaturedCampaigns />
+
+          <TopSlider />
+
+          <FeaturedCampaigns />
         <UpcomingCampaigns />
         <InstructionSection />
         {!isAuth && <JoinSection />}
+          <div id="dib-specific-posts"></div>
       </div>
     </div>
           </>
