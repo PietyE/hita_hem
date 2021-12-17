@@ -17,7 +17,7 @@ const useDropInBlog = () => {
         const script = document.createElement('script');
         if(typeof window !== 'undefined'){
             window.dib_id = process.env.NEXT_PUBLIC_DIP_ID;
-            window.dib_specific_posts = '1,2';
+            window.dib_specific_posts = '2,3';
         }
         script.src = "https://io.dropinblog.com/js/embed.js";
         script.async = true;
