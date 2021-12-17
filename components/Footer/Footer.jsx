@@ -16,6 +16,7 @@ import {
   INVEST_ROUTE,
   ABOUT_US_ROUTE,
   LAUNCHING_SOON,
+  BLOG,
 } from "constants/routesConstant";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
@@ -39,6 +40,9 @@ const Footer = () => {
           </Link>
           <Link href={ABOUT_US_ROUTE} prefetch={false}>
             <a className="footer_nav_link">{t("footer.about_us_link")}</a>
+          </Link>
+          <Link href={BLOG} prefetch={false}>
+            <a className="footer_nav_link">{t("header.blog")}</a>
           </Link>
           {/*<Link href={LAUNCHING_SOON} prefetch={false}>*/}
           {/*  <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>*/}
