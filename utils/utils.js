@@ -164,3 +164,12 @@ export const months = [
   { id: 11, month: "November", monthSw: 'November' },
   { id: 12, month: "December", monthSw: 'December' },
 ];
+
+
+export const getYoutubeId = (link) => {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = link.match(regExp);
+    return (match && match[2].length === 11)
+        ? match[2]
+        : null;
+}

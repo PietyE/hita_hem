@@ -13,6 +13,7 @@ import {
 } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import { useTranslation } from "react-i18next";
+import {getYoutubeId} from "../../utils/utils";
 
 const ProjectInfo = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -47,22 +48,23 @@ const ProjectInfo = ({ isAuth }) => {
       }
     : {};
 
+  const youtubeId = getYoutubeId(videoLink)
   return (
     <div className="project_info_container">
       <div className="project_info_section_container">
         <div className="project_info_left_section">
-
-          <div
-              className="project_info_player_wrapper"
-          >
-            <iframe
-                className='project_info_player'
-
-                src='https://www.youtube.com/embed/_EOrSmjdOZQ'
-                frameBorder="0"
-            />
-          </div>
-
+          {youtubeId &&
+            (<div
+                className = "project_info_player_wrapper"
+            >
+              <iframe
+                  className = 'project_info_player'
+                  src = {`https://www.youtube.com/embed/${youtubeId}`}
+                  frameBorder = "0"
+                  allowFullScreen
+              />
+            </div>)
+          }
           {!!businessHighlights && (
               <div style={videoLink ? {marginTop: '30px'} : {} } className="project_info_bussines_highlights">
                 <h4 className="project_info_bussines_highlights_title">
