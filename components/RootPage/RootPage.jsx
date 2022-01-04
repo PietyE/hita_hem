@@ -180,6 +180,14 @@ const RootPage = ({ children, initLang = "" }) => {
 
   useEffect(()=>{
     Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+
+      const pie = document.getElementById('dib-pie');
+
+      if(pathname !== '/blog' && !router?.query?.p && pie){
+          pie?.classList?.add('hide')
+      }else if(pie && pathname === '/blog' && router?.query?.p ){
+          pie?.classList?.remove('hide')
+      }
   },[pathname])
 
   useEffect(() => {
