@@ -19,7 +19,9 @@ import {
   GET_QUIZ, CHECK_QUIZ_ANSWERS,
   GET_PROFILE_FROM_API,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
-  CHECK_ACTIVATION_TOKEN, CHECK_EMAIL_AND_PASSWORD,
+  CHECK_ACTIVATION_TOKEN, 
+  CHECK_EMAIL_AND_PASSWORD,
+  SIGN_IN_WITH_BANK_ID,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -202,6 +204,21 @@ function* signIn({ payload }) {
 
     yield put(setShowSignIn(false));
     yield put(clearErrors())
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* signInWithBankIdWorker() {
+  try {
+    yield put(setFetchingUsers(true));
+    console.log('-----------------  1 --------------------')
+    // yield call([auth, "checkEmailAndPassword"], payload);
+    // yield call(requestForQuiz)
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
@@ -608,6 +625,8 @@ export function* userWorker() {
   yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
   yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
   yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
+  yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
+
 
 
 }
