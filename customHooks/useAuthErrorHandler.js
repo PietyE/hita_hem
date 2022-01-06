@@ -7,6 +7,7 @@ import {
     getAuthOldPasswordErrorSelector,
     getAuthNewPassword1ErrorSelector,
     getAuthNewPassword2ErrorSelector,
+    getAuthConfirmPasswordErrorSelector,
 } from '../redux/reducers/errors';
 import {
     clearAuthEmailError, clearAuthPasswordError, clearAuthUserError, clearErrors,
@@ -22,7 +23,7 @@ const useAuthErrorHandler = () => {
     const oldPasswordError = useSelector(getAuthOldPasswordErrorSelector)
     const newPassword1Error = useSelector(getAuthNewPassword1ErrorSelector)
     const newPassword2Error = useSelector(getAuthNewPassword2ErrorSelector)
-
+    const confirmPasswordError = useSelector(getAuthConfirmPasswordErrorSelector)
 
     const _clearErrors = useCallback(
         () => {
@@ -103,7 +104,7 @@ const useAuthErrorHandler = () => {
 
     return {
         clearAuthErrorFromApi, _clearErrors, passwordError, emailError, userError,
-        oldPasswordError, newPassword1Error, newPassword2Error
+        oldPasswordError, newPassword1Error, newPassword2Error, confirmPasswordError
     }
 }
 export default useAuthErrorHandler;

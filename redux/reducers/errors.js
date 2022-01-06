@@ -120,6 +120,7 @@ export const getRaiseFollowersThreeSelector = (state) =>
   state.errors?.raise?.followers_count_three;
 export const getRaiseFormDocumentsErrorSelector = (state) =>
   isEmpty(state.errors?.raise?.documents);
+
 export const getFirstNameErrorSelector = (state) =>
   state.errors?.profile?.first_name;
 export const getSecondNameErrorSelector = (state) =>
@@ -151,6 +152,8 @@ export const getAuthNewPassword1ErrorSelector = (state) =>
 export const getAuthNewPassword2ErrorSelector = (state) =>
   state.errors?.auth?.new_password2;
 export const getAuthUserErrorSelector = (state) => state.errors?.auth?.user;
+export const getAuthConfirmPasswordErrorSelector = state => state.errors?.auth?.confirm_password
+
 export const getErrorSelector = (state) => state.errors;
 
 export const errors = (state = initialState, actions) => {
@@ -168,18 +171,21 @@ export const errors = (state = initialState, actions) => {
         ...state,
         status: actions.payload.status,
         raise: actions.payload.data,
+        hideNotification: actions?.payload?.hideNotification,
       };
     case SET_PROFILE_ERROR:
       return {
         ...state,
         status: actions.payload.status,
         profile: actions.payload.data,
+        hideNotification: actions?.payload?.hideNotification,
       };
     case SET_AUTH_ERROR:
       return {
         ...state,
         status: actions.payload.status,
         auth: actions.payload.data,
+        hideNotification: actions?.payload?.hideNotification,
       };
     case SET_AUTH_EMAIL_ERROR:
       return { ...state, auth: { ...state.auth, email: "" } };
