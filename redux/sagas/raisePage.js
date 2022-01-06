@@ -34,8 +34,11 @@ function* sendForm({ payload }) {
     }
   } catch (error) {
     yield put(setShowRaiseError(true))
+    const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.email || !!error?.response?.data?.phone || !!error?.response?.data?.country || !!error?.response?.data?.company_name || !!error?.response?.data?.company_form || !!error?.response?.data?.role || !!error?.response?.data?.share_price || !!error?.response?.data?.revenue || !!error?.response?.data?.amount || !!error?.response?.data?.website || !!error?.response?.data?.video_preview || !!error?.response?.data?.social_one || !!error?.response?.data?.social_two || !!error?.response?.data?.social_three || !!error?.response?.data?.followers_count_one || !!error?.response?.data?.followers_count_two || !!error?.response?.data?.followers_count_three
+
     yield put(
-        yield put(setRaiseError({status:error?.response?.status, data:error?.response?.data}))
+        yield put(setRaiseError({status:error?.response?.status, data:error?.response?.data, hideNotification: hideNotification,
+        }))
     );
   } finally {
     yield put(setIsFetchingRaisePage(false));
