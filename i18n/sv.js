@@ -448,12 +448,12 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            text: 'Vänligen följ dessa instruktioner för att ändra din e-postadress.',
-            title: 'Ett meddelande med instruktioner kommer att skickas till din nuvarande e-postadress.',
+            title: 'Instruktionerna för att ändra din registrerade mailadress kommer skickas till din för närvarande registrerade mailadress',
+            text: 'Var vänlig att inte logga inte ut från Accumeo innan du är klar med ändringen av din e-post.',
         },
         request_for_change_password:{
-            text: 'Vänligen följ dessa instruktioner för att ändra ditt lösenord.',
-            title: 'Ett meddelande med instruktioner kommer att skickas till din e-postadress.',
+            title: 'Instruktionerna för att byta ditt lösenord kommer skickas till din registrerade mailadress.',
+            text: 'Vänligen logga inte ut från Accumeo innan du har slutfört bytet av ditt lösenord.',
         },
         invalid_token: {
             text1: 'Din länk är inte giltig. Testa att begära din data igen i personliga konto i',

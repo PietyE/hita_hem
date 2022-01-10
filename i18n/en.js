@@ -456,12 +456,12 @@ export const en = {
             text: 'Your link is not valid. Try to request data change again in your Personal Account in the Account Settings tab.',
         },
         request_for_change: {
-            title: 'Message sent!',
-            text: 'Check your registered mail.',
+            title: 'The instructions to change your email will be sent to your currently registered email.',
+            text: 'Please don’t log out from Accumeo before you finish the change of your email.',
         },
         request_for_change_password: {
-            title: 'Message sent!',
-            text: 'Check your registered mail.',
+            title: 'The instructions to change your password will be sent to your registered email.',
+            text: 'Please don’t log out from Accumeo before you finish the change of your password.',
         },
         invalid_token: {
             text1: 'Your link is not valid. Try to request data change again in your Personal Account in the',
