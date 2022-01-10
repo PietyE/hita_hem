@@ -101,6 +101,8 @@
         letter-spacing: 0.07em;
         text-transform: uppercase;
         color: rgba(0, 0, 0, 0.87);
+        background-color: transparent;
+        box-shadow: transparent;
         &.invest_item_link {
           .menu_item_button {
             margin-left: 10px;
@@ -108,6 +110,7 @@
         }
         &.active {
           color: #fb7f73;
+          box-shadow: none;
         }
       }
     }
@@ -197,14 +200,12 @@
       .nav_dropdown {
         .dropdown-menu {
           top: 58px;
-          left: -10px;
-          width: 100vw;
+          left: -25px;
+          width: calc(100vw - 2px);
           background-color: #fff;
-          padding-left: 15px;
-          padding-right: 15px;
-          padding-top: 0;
-          padding-bottom: 0;
+          padding: 0 15px;
           z-index: 99;
+          box-sizing: border-box;
         }
       }
 
