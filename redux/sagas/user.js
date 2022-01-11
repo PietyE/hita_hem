@@ -219,7 +219,6 @@ function* signInWithBankIdWorker() {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "requestLoginWithBankId"]);
-    console.dir(response)
     if(response?.data?.redirectUrl){
       window.open(response?.data?.redirectUrl, '_self');
     }
