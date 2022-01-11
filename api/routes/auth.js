@@ -254,6 +254,13 @@ class AuthCRUD extends CRUD {
   }
 
 
+  requestLoginWithBankId() {
+    const url = `${this.url}/get_redirect_url_bank_id/`;
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
 
 }
 

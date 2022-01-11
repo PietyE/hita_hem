@@ -218,8 +218,11 @@ function* signIn({ payload }) {
 function* signInWithBankIdWorker() {
   try {
     yield put(setFetchingUsers(true));
-    console.log('-----------------  1 --------------------')
-    // yield call([auth, "checkEmailAndPassword"], payload);
+    const response = yield call([auth, "requestLoginWithBankId"]);
+    console.dir(response)
+    if(response?.data?.redirectUrl){
+      window.open(response?.data?.redirectUrl, '_self');
+    }
     // yield call(requestForQuiz)
   } catch (error) {
     yield put(
