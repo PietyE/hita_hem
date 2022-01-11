@@ -146,7 +146,7 @@ const SignUp = ({ show }) => {
                       setFieldError = {setFieldError}
                       touched = {touched}
                       errors = {errors}
-                      errorFromApi = {errorHandlerHook?.confirm_password}
+                      errorFromApi = {errorHandlerHook?.confirmPasswordError}
                       clearError = {errorHandlerHook?.clearAuthErrorFromApi}
                       placeholder = {t("auth.sign_up.confirm_password_placeholder")}
                       iconClassName = "auth_password_eye"

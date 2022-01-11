@@ -102,7 +102,10 @@ const CompanyPage = () => {
 
         <meta property="og:url"  content={`https://accumeo.com/company/${id}`} />
         {/*<meta property="og:type" content="company" />*/}
-        <meta property="og:image" content= {`${images['desktop']}` || `${images['laptop']}` || `${images['mobile']}`} />
+        {images && (
+            <meta property="og:image" content= {`${images['desktop']}` || `${images['laptop']}` || `${images['mobile']}`} />
+
+        )}
       </Head>
       {isFetching && <SpinnerStyled />}
       <div className="company-page-container">

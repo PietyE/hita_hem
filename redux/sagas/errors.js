@@ -15,7 +15,9 @@ import {getSelectedLangSelector} from "../reducers/language";
 function* errorHandler() {
     const error = yield select(getErrorSelector);
     const language = yield select(getSelectedLangSelector)
-    yield put(setNotification(true));
+    if(!error?.hideNotification){
+        yield put(setNotification(true));
+    }
     switch (error?.status) {
         case 500:
             yield put(setNotificationTitle("Internal Server Error: 500"));
