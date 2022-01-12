@@ -38,7 +38,7 @@ import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
-import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
+// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
@@ -115,7 +115,7 @@ const FirstLoginPopup = dynamic(() =>
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
-  useGoogleCaptcha()
+  // useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const fullName = useSelector(getFullNameSelector);
   const email = useSelector(getUserEmailSelector);

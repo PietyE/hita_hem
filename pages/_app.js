@@ -4,30 +4,54 @@ import Script from 'next/script'
 import "i18n";
 import "../styles/index.scss";
 
-import { wrapper } from "redux/store";
+import {wrapper} from "redux/store";
 import RootPage from "components/RootPage";
+import React from "react";
 
-function App({ Component, pageProps }) {
-  const initLang = pageProps?.initialLang;
+function App({Component, pageProps}) {
+    const initLang = pageProps?.initialLang;
 
-  return (
-    <>
-      <Head>
-        <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
-          <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
+    return (
+        <>
+            <Head>
+                <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
+                <meta name = "description"
+                      content = "Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering"/>
 
-      </Head>
-        <Script id='intercom_settings'>
-            {` window.intercomSettings = {
+            </Head>
+
+            {/*Recaptcha*/}
+            <Script src="https://www.google.com/recaptcha/api.js?render=6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP" strategy="afterInteractive" id='recaptcha_loading'/>
+
+            {/* Global Site Tag (gtag.js) - Google Analytics */}
+            <Script
+                strategy="afterInteractive"
+                dangerouslySetInnerHTML={{
+                    __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+                }}
+            />
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+                    strategy="afterInteractive"/>
+
+            {/*Intercom*/}
+            <Script id = 'intercom_settings'>
+                {` window.intercomSettings = {
     app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
     language_override: '${initLang}' || 'sv',
   };`}
-        </Script>
-        <Script
-            id='intercom_boot'
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-                __html: `
+            </Script>
+            <Script
+                id = 'intercom_boot'
+                strategy = "lazyOnload"
+                dangerouslySetInnerHTML = {{
+                    __html: `
 (function(){const w=window;
 const ic=w.Intercom;
 if(typeof ic==="function"){
@@ -53,26 +77,26 @@ if(document.readyState==='complete'){l();
 }}})();
 
   `,
-            }}
-        />
+                }}
+            />
 
-      <RootPage initLang={initLang}>
-        <Component {...pageProps} />
-      </RootPage>
-    </>
-  );
+            <RootPage initLang = {initLang}>
+                <Component {...pageProps} />
+            </RootPage>
+        </>
+    );
 }
 
-App.getInitialProps = wrapper.getInitialAppProps(() => async ({ ctx }) => {
-  const locale = ctx.locale;
+App.getInitialProps = wrapper.getInitialAppProps(() => async ({ctx}) => {
+    const locale = ctx.locale;
 
-  api.setLanguage(locale);
+    api.setLanguage(locale);
 
-  return {
-    pageProps: {
-      initialLang: locale,
-    },
-  };
+    return {
+        pageProps: {
+            initialLang: locale,
+        },
+    };
 });
 
 export default wrapper.withRedux(App);
