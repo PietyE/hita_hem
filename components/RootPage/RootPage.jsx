@@ -176,8 +176,12 @@ const RootPage = ({ children, initLang = "" }) => {
         dispatch(bootstap(initLang));
     }, []);
 
-  useEffect(()=>{
-    Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+    const isIntercomLoaded = typeof Intercom === 'function'
+
+    useEffect(()=>{
+      if(isIntercomLoaded){
+          Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+      }
 
       const pie = document.getElementById('dib-pie');
 
@@ -189,7 +193,7 @@ const RootPage = ({ children, initLang = "" }) => {
   },[pathname])
 
   useEffect(() => {
-    if(email && fullName && initLang) {
+    if(email && fullName && initLang && isIntercomLoaded) {
       window.Intercom('boot', {
         app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
         name: fullName,

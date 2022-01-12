@@ -17,7 +17,7 @@ function App({ Component, pageProps }) {
           <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
 
       </Head>
-        <Script id='intercom_settings' strategy="lazyOnload">
+        <Script id='intercom_settings'>
             {` window.intercomSettings = {
     app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
     language_override: '${initLang}' || 'sv',
