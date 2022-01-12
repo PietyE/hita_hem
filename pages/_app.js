@@ -17,14 +17,15 @@ function App({ Component, pageProps }) {
           <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
 
       </Head>
-        <Script>
+        <Script id='intercom_settings'>
             {` window.intercomSettings = {
     app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
     language_override: '${initLang}' || 'sv',
   };`}
         </Script>
         <Script
-            strategy="afterInteractive"
+            id='intercom_boot'
+            strategy="lazyOnload"
             dangerouslySetInnerHTML={{
                 __html: `
 (function(){const w=window;
