@@ -43,7 +43,6 @@ import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
-import {intercomStart} from "../../utils/intercom";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
@@ -175,7 +174,6 @@ const RootPage = ({ children, initLang = "" }) => {
 
     useEffect(() => {
         dispatch(bootstap(initLang));
-        intercomStart(initLang)
     }, []);
 
   useEffect(()=>{

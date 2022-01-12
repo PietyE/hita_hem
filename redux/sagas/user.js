@@ -54,7 +54,6 @@ import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/us
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
-import {intercomStart} from "../../utils/intercom";
 
 const { auth } = api;
 
@@ -587,7 +586,10 @@ function* clean() {
   yield put(clearErrors())
   const initLang = yield select(getSelectedLangSelector)
   window.Intercom('shutdown')
-  intercomStart(initLang)
+  window.Intercom('boot', {
+    app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+    language_override: initLang,
+  })
 }
 
 const prepareProfile = (data) => {
