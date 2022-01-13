@@ -12,7 +12,7 @@ import {
   setShowSignUp,
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
-import { signIn, signInWithBankId } from "redux/actions/user";
+import { signIn, makeRequestForSignInWithBankId } from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
@@ -61,7 +61,7 @@ const SignIn = ({ show }) => {
 
   const _signInWithBankId = useCallback(
       () => {
-        dispatch(signInWithBankId());
+        dispatch(makeRequestForSignInWithBankId());
       },
       [dispatch]
   );

@@ -22,6 +22,7 @@ import {
   CHECK_ACTIVATION_TOKEN, 
   CHECK_EMAIL_AND_PASSWORD,
   SIGN_IN_WITH_BANK_ID,
+  REQUEST_SIGN_IN_WITH_BANK_ID,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -215,7 +216,7 @@ function* signIn({ payload }) {
   }
 }
 
-function* signInWithBankIdWorker() {
+function* makeRequestForSignInWithBankIdWorker() {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "requestLoginWithBankId"]);
@@ -231,6 +232,25 @@ function* signInWithBankIdWorker() {
     yield put(setFetchingUsers(false));
   }
 }
+function* signInWithBankIdWorker({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    const response = yield call([auth, "loginWithBankId"]);
+    console.log('response', response)
+    // if(response?.data?.redirectUrl){
+    //   window.open(response?.data?.redirectUrl, '_self');
+    // }
+    // yield call(requestForQuiz)
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
 
 function* logout({payload}) {
   try {
@@ -642,6 +662,9 @@ export function* userWorker() {
   yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
   yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
   yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
+  yield takeEvery(  REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
+
+
 
 
 
