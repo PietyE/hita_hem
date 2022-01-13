@@ -262,12 +262,12 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  loginWithBankId(payload) {
+  loginWithBankId(data) {
     const url = `${this.url}/sign_in_bank_id/`;
     return this.request({
       url,
+      data,
       method: "POST",
-      payload,
     });
   }
 
