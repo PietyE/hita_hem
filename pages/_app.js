@@ -41,7 +41,7 @@ function App({Component, pageProps}) {
                     strategy="afterInteractive"/>
 
             {/*Intercom*/}
-            <Script id = 'intercom_settings'>
+            <Script strategy = "lazyOnload" id = 'intercom_settings'>
                 {` window.intercomSettings = {
     app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
     language_override: '${initLang}' || 'sv',
