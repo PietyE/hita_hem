@@ -151,8 +151,9 @@ function* signUp({ payload }) {
       if(error?.response?.data?.email || error?.response?.data?.password){
         yield put(setShowQuiz(false))
       }
+      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
       yield put(
-          setAuthError({ status: error.response.status, data: error.response.data })
+          setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification })
       );
     }
   } finally {
@@ -203,9 +204,10 @@ function* signIn({ payload }) {
     yield put(setShowSignIn(false));
     yield put(clearErrors())
   } catch (error) {
+    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
     yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
+          setAuthError({ status: error?.response?.status, data: error?.response?.data,  hideNotification: hideNotification  })
+      );
   } finally {
     yield put(setFetchingUsers(false));
   }
@@ -216,11 +218,9 @@ function* logout({payload}) {
     yield put(setFetchingUsers(true));
     yield call([auth, "logOut"], {token: payload.token});
     yield call(clean);
-    // window.Intercom('shutdown')
-    // intercomStart()
   } catch (error) {
     yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+        setAuthError({ status: error?.response?.status, data: error?.response?.data})
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -240,10 +240,13 @@ function* createUserProfile({ payload }) {
     yield put(clearErrors())
 
   } catch (error) {
-      yield put(
+    const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
+    yield put(
         setProfileError({
           status: error.response.status,
           data: error.response.data,
+          hideNotification: hideNotification,
+
         })
     );
   } finally {
@@ -266,10 +269,13 @@ function* changeUserProfile({ payload }) {
     yield put(clearErrors())
 
   } catch (error) {
+    const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
     yield put(
         setProfileError({
           status: error.response.status,
           data: error.response.data,
+          hideNotification: hideNotification,
+
         })
     );
   } finally {
@@ -286,8 +292,10 @@ function* requestForResetUserPassword({ payload }) {
     yield put(clearErrors())
 
   } catch (error) {
+    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user
     yield put(
-      setAuthError({ status: error.response.status, data: error.response.data })
+      setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification,
+      })
     );
     // if(error?.response?.status === 400){
     //     yield put(setNotificationMessage(error.response.data.user[0]))
@@ -308,13 +316,14 @@ function* resetUserPassword({ payload }) {
     yield put(clearErrors())
     yield put(cleanAuthData())
   } catch (error) {
+    const hideNotification = !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
+
     yield put(
-        yield put(
             setAuthError({
               status: error.response.status,
               data: error.response.data,
+              hideNotification: hideNotification,
             })
-        )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -332,13 +341,13 @@ function* changeUserPassword({ payload }) {
     yield put(clearErrors())
     yield put(cleanAuthData())
   } catch (error) {
-    yield put(
+    const hideNotification = !!error?.response?.data?.old_password || !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
       yield put(
         setAuthError({
           status: error.response.status,
           data: error.response.data,
+          hideNotification: hideNotification,
         })
-      )
     );
   } finally {
     yield put(setFetchingUsers(false));
@@ -357,10 +366,13 @@ function* changeUserEmail({ payload }) {
     yield put(clearErrors())
     yield put(cleanAuthData())
   } catch (error) {
-      yield put(
+    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user || !!error?.response?.data?.password
+
+    yield put(
         setAuthError({
           status: error?.response?.status,
           data: error?.response?.data,
+          hideNotification: hideNotification,
         })
     );
   } finally {
@@ -551,8 +563,10 @@ function* checkEmailAndPassword({payload}) {
     yield call([auth, "checkEmailAndPassword"], payload);
     yield call(requestForQuiz)
   } catch (error) {
+    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
+
     yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+        setAuthError({ status: error?.response?.status, data: error?.response?.data, hideNotification: hideNotification })
     );
   } finally {
     yield put(setFetchingUsers(false));
