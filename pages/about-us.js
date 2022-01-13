@@ -1,16 +1,23 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { END } from "redux-saga";
+import dynamic from "next/dynamic";
 
 import { wrapper } from "/redux/store";
 
 import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
-import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
-import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
+// import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
+// import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingAboutUsSelector } from "redux/reducers/aboutUs";
 
+const SubscrebeFormSection = dynamic(() => import("containers/AboutUsPage/SubscrebeFormSection"), {
+  ssr: false,
+});
+const AboutTeamSection = dynamic(() => import("containers/AboutUsPage/AboutTeamSection"), {
+  ssr: false,
+});
 import { getAboutUs } from "redux/actions/aboutUs";
 import {
   getFlatBlocksSelector,

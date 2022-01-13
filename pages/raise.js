@@ -2,19 +2,29 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { wrapper } from "redux/store";
-import ImageComponent from "components/ui/ImageComponent";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+// import ImageComponent from "components/ui/ImageComponent";
 
 
 import RaisePageTopSlider from "containers/RaisePage/RaisePageTopSlider";
 import RaiseOpportunities from "containers/RaisePage/RaiseOpportunities";
 import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
-import RaiseFeatures from "containers/RaisePage/RaiseFeatures";
-import RaiseForm from "containers/RaisePage/RaiseForm";
+// import RaiseFeatures from "containers/RaisePage/RaiseFeatures";
+// import RaiseForm from "containers/RaisePage/RaiseForm";
 import SpinnerStyled from "components/ui/Spinner";
+
 import { getRaisePage } from "redux/actions/raisePage";
 import {getIsFetchingRaisePageSelector, getRaisePageImageSelector} from "redux/reducers/raisePage";
 import {getCorrectImage} from "../utils/utils";
-import Image from "next/image";
+
+
+const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
+    ssr: false,
+});
+const RaiseFeatures = dynamic(() => import("containers/RaisePage/RaiseFeatures"), {
+    ssr: false,
+});
 
 const RaisePage = () => {
   const myRef = useRef(null);

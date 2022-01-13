@@ -20,9 +20,6 @@ function App({Component, pageProps}) {
 
             </Head>
 
-            {/*Recaptcha*/}
-            {/*<Script src="https://www.google.com/recaptcha/api.js?render=6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP" strategy="lazyOnload" id='recaptcha_loading'/>*/}
-
             {/* Global Site Tag (gtag.js) - Google Analytics */}
             <Script
                 strategy="afterInteractive"
