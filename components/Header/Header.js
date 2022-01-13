@@ -25,16 +25,16 @@ import { getIsSignInUserSelector } from "redux/reducers/user";
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
 const DropDownComponent = dynamic(() =>
-  import("components/ui/DropDownComponent")
+  import("components/ui/DropDownComponent"), { ssr: false }
 );
 const DropdownToggle = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle), { ssr: false }
 );
 const DropdownMenu = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu), { ssr: false }
 );
 const DropdownItem = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem), { ssr: false }
 );
 
 const LinkStyled = (props) => {

@@ -59,57 +59,57 @@ const SuccessfulSignUpModal = dynamic(() =>
     import("components/SuccessfulSignUpModal")
 );
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
-    import("components/SuccessfullyCampaignRegistrationModal")
+    import("components/SuccessfullyCampaignRegistrationModal"), { ssr: false }
 );
 const SuccessfulInvestmentModal = dynamic(() =>
-    import("components/SuccessfulInvestmentModal")
+    import("components/SuccessfulInvestmentModal"), { ssr: false }
 );
 const SuccessfulResetPassword = dynamic(() =>
-    import("components/SuccessfulResetPassword")
+    import("components/SuccessfulResetPassword"), { ssr: false }
 );
 const SuccessfulDeletedAccountModal = dynamic(() =>
-    import("components/SuccessfulDeletedAccountModal")
+    import("components/SuccessfulDeletedAccountModal"), { ssr: false }
 );
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
-    import("components/ShowConfirmationOfAccountDeletion")
+    import("components/ShowConfirmationOfAccountDeletion"), { ssr: false }
 );
 const QuizWrongAnswersModal = dynamic(() =>
-    import("components/QuizWrongAnswersModal")
+    import("components/QuizWrongAnswersModal"), { ssr: false }
 );
 const SuccessfullySubscribedModal = dynamic(() =>
-    import("components/SuccessfullySubscribedModal")
+    import("components/SuccessfullySubscribedModal"), { ssr: false }
 );
 const RaiseWrongAnswerModal = dynamic(() =>
-    import("components/RaiseWrongAnswersModal")
+    import("components/RaiseWrongAnswersModal"), { ssr: false }
 );
 const SuccessfulRequestForChange = dynamic(() =>
-    import("components/SuccessfulRequestForChange")
+    import("components/SuccessfulRequestForChange"), { ssr: false }
 );
 
 const SuccessfulRequestForChangePassword = dynamic(() =>
-    import("components/SuccessfulRequestForChangePassword")
+    import("components/SuccessfulRequestForChangePassword"), { ssr: false }
 );
 
 const InvalidTokenModal = dynamic(() =>
-    import("components/InvalidTokenModal")
+    import("components/InvalidTokenModal"), { ssr: false }
 );
 const SuccessfulChangeEmailOrPassword = dynamic(() =>
-    import("components/SuccessfulChangeEmailOrPassword")
+    import("components/SuccessfulChangeEmailOrPassword"), { ssr: false }
 );
 const ShowDenyDeletingAccount = dynamic(() =>
-    import("components/ShowDenyDeletingAccount")
+    import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
 const ShowCookiePopup = dynamic(() =>
-    import("components/CookieModal")
+    import("components/CookieModal"), { ssr: false }
 );
 const SuccessfulFaqPopup = dynamic(() =>
-    import("components/SuccessfulFaqPost")
+    import("components/SuccessfulFaqPost"), { ssr: false }
 );
 const DataLossWarning = dynamic(() =>
-    import("components/DataLossWarning")
+    import("components/DataLossWarning"), { ssr: false }
 );
 const FirstLoginPopup = dynamic(() =>
-    import("components/SuccessfulFirstLogin")
+    import("components/SuccessfulFirstLogin"), { ssr: false }
 );
 
 

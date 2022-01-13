@@ -1,13 +1,28 @@
 import React, { useCallback, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import dynamic from "next/dynamic";
 
 import TabBar from "components/ui/TabBar";
 import Idea from "./Idea";
-import Team from "./Team";
-import FinancialInformation from "./FinancialInformation";
-import Faq from "./Faq";
-import CampaignTabSignUp from "./CampaignTabSignUp";
+// import Team from "./Team";
+// import FinancialInformation from "./FinancialInformation";
+// import Faq from "./Faq";
+// import CampaignTabSignUp from "./CampaignTabSignUp";
 import TabAccordion from "components/ui/TabAccordion";
+
+const Team = dynamic(() =>
+    import("./Team"), { ssr: false }
+);
+const FinancialInformation = dynamic(() =>
+    import("./FinancialInformation"), { ssr: false }
+);
+const Faq = dynamic(() =>
+    import("./Faq"), { ssr: false }
+);
+const CampaignTabSignUp = dynamic(() =>
+    import("./CampaignTabSignUp"), { ssr: false }
+);
+
 
 import { companyTabConstants } from "constants/companyTabConstant";
 import { setSelectedTab } from "redux/actions/companies";
