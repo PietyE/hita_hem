@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import dynamic from "next/dynamic";
+import Head from "next/head";
 import { END } from "redux-saga";
 import { wrapper } from "redux/store";
 
@@ -10,11 +12,18 @@ import { getHomePage } from "redux/actions/homePage";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
-import InstructionSection from "containers/HomePage/InstructionSection";
-import JoinSection from "containers/HomePage/JoinSection";
+// import InstructionSection from "containers/HomePage/InstructionSection";
+// import JoinSection from "containers/HomePage/JoinSection";
 import SpinnerStyled from "components/ui/Spinner";
-import Head from "next/head";
 import useDropInBlog from "../customHooks/useDropInBlog";
+
+const InstructionSection = dynamic(() => import("containers/HomePage/InstructionSection"), {
+    ssr: false,
+});
+const JoinSection = dynamic(() => import("containers/HomePage/JoinSection"), {
+    ssr: false,
+});
+
 
 const Index = () => {
   const dispatch = useDispatch();

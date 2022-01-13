@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import RaiseStepIcon from "components/ui/RaiseStepIcon/RaiseStepIcon";
 import FormPage1 from "./FormPage1";
-import FormPage2 from "./FormPage2";
-import FormPage3 from "./FormPage3";
-import FormPage4 from "./FormPage4";
+
+const FormPage2 = dynamic(() => import("./FormPage2"), {
+  ssr: false,
+});
+const FormPage3 = dynamic(() => import("./FormPage3"), {
+  ssr: false,
+});
+const FormPage4 = dynamic(() => import("./FormPage4"), {
+  ssr: false,
+});
 
 import { getShowSuccessfulCampaignRegistration } from "redux/reducers/authPopupWindows";
 

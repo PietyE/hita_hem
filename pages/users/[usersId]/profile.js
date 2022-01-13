@@ -14,12 +14,23 @@ import { setActiveTab } from "redux/actions/user";
 import { HOME_ROUTE } from "constants/routesConstant";
 
 import TabBar from "components/ui/TabBar";
-import Investment from "containers/ProfilePage/Investment";
+// import Investment from "containers/ProfilePage/Investment";
 import PersonalDetails from "containers/ProfilePage/PersonalDetails";
-import AccountSettings from "containers/ProfilePage/AccountSettings";
-import ProfilePageCampaigns from "containers/ProfilePage/ProfilePageCampaigns";
+// import AccountSettings from "containers/ProfilePage/AccountSettings";
+// import ProfilePageCampaigns from "containers/ProfilePage/ProfilePageCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
 import { usePrevious } from "customHooks/usePrevious";
+import dynamic from "next/dynamic";
+
+const Investment = dynamic(() => import("containers/ProfilePage/Investment"), {
+  ssr: false,
+});
+const AccountSettings = dynamic(() => import("containers/ProfilePage/AccountSettings"), {
+  ssr: false,
+});
+const ProfilePageCampaigns = dynamic(() => import("containers/ProfilePage/ProfilePageCampaigns"), {
+  ssr: false,
+});
 
 const ProfilePage = () => {
   const { t } = useTranslation();

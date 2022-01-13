@@ -25,25 +25,24 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.ico"
           />
-            {/* Global Site Tag (gtag.js) - Google Analytics */}
-            <script
-                async
-                src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-                strategy="afterInteractive"
-            />
-            <script
-                strategy="afterInteractive"
-                dangerouslySetInnerHTML={{
-                    __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-              page_path: window.location.pathname,
-            });
-          `,
-                }}
-            />
+
+
+          <link
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet"
+          />
+          <link
+              href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap"
+              rel="stylesheet"
+          />
+
+          {/*<link*/}
+          {/*    rel="stylesheet"*/}
+          {/*    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"*/}
+          {/*    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"*/}
+          {/*    crossorigin="anonymous"*/}
+          {/*/>*/}
+
         </Head>
         <body>
           <Main />
