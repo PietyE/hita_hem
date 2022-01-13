@@ -507,7 +507,11 @@
       left: 0;
       width: 98px;
       height: 98px;
-      background: #3c64b1;
+      background-color: rgba(0, 0, 0, 0.08);
+      background-image: url("../../public/images/userAvatar.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 57%;
       border-radius: 50px;
     }
 
@@ -746,6 +750,7 @@
       position: relative;
       margin-bottom: 35px;
 
+
       .comment_item_image {
         position: absolute;
         top: 0;
@@ -756,6 +761,7 @@
         background-image: url("../../public/images/userAvatar.svg");
         background-repeat: no-repeat;
         background-position: center;
+
         border-radius: 50px;
         overflow: hidden;
         img {
