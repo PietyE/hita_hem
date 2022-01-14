@@ -44,6 +44,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
+import {getIsShowQuizForBankId} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -112,6 +113,9 @@ const FirstLoginPopup = dynamic(() =>
     import("components/SuccessfulFirstLogin"), { ssr: false }
 );
 
+const Quiz = dynamic(() =>
+    import("components/Quiz"), { ssr: false }
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -151,8 +155,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
+    const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
-
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -327,7 +331,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
-        <ScrollToTopButton />
+          {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+
+          <ScrollToTopButton />
       </main>
       <Footer />
     </div>

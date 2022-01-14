@@ -36,6 +36,8 @@ import {
   CHECK_EMAIL_AND_PASSWORD,
   SIGN_IN_WITH_BANK_ID,
   REQUEST_SIGN_IN_WITH_BANK_ID,
+  SHOW_QIZ_FOR_BANK_ID,
+  SET_CURRENT_PATH,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -216,3 +218,15 @@ export const signInWithBankId = payload => ({
   type: SIGN_IN_WITH_BANK_ID,
   payload
 })
+
+
+export const setShowQuizForBankId = payload => ({
+  type: SHOW_QIZ_FOR_BANK_ID,
+  payload
+})
+export const setCurrentPath = payload => ({
+  type: SET_CURRENT_PATH,
+  payload
+})
+
+
