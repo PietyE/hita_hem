@@ -12,13 +12,13 @@ import {
   setShowSignUp,
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
-import { signIn } from "redux/actions/user";
+import { signIn, makeRequestForSignInWithBankId } from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp} from "../../../utils/vadidationSchemas";
-
+import SplitLine from "../../ui/SplitLine";
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
@@ -59,6 +59,18 @@ const SignIn = ({ show }) => {
     [dispatch]
   );
 
+  const _signInWithBankId = useCallback(
+      () => {
+        dispatch(makeRequestForSignInWithBankId());
+      },
+      [dispatch]
+  );
+
+  const handleSignInWithBankId = (e) => {
+    e.preventDefault()
+    _signInWithBankId()
+  }
+
   const onSubmit = (values) => {
     recaptcha('sign_in', _signIn, {email: `${values.email.toLowerCase()}`,password: `${values.password}`,})
     // _signIn({
@@ -78,7 +90,15 @@ const SignIn = ({ show }) => {
       centered={true}
       isFetchIndicator={isFetching}
     >
-      <h1 className="sign_up_title mb-4">{t("auth.sign_in.title")}</h1>
+      {/*<h1 className="sign_up_title mb-4">{t("auth.sign_in.title")}</h1>*/}
+      <h1 className="sign_up_title mb-4">Sign In with</h1>
+      <div className='sign_in_sign_in_variants'>
+<button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
+  BankID
+</button>
+      </div>
+      <SplitLine className='sign_in_split_line'/>
+        <span className='sign_in_alt_text'>or Sign In with email</span>
       <Formik
         initialValues={initialValues}
         validationSchema={signInSchema}

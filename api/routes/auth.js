@@ -208,13 +208,17 @@ class AuthCRUD extends CRUD {
   }
 
   checkQuizAnswers(payload) {
-    const {data, token} = payload
+    // const {data, token} = payload
+    // const data = payload?.data?.answers
+    const data = {answers:payload?.data?.answers,token:payload?.data?.bearer?.key,}
+    
     const url = `${this.url}/quiz/`;
     return this.request({
       url,
       method: "POST",
       headers: {
-        "x-recaptcha-token": token,
+        // "Authorization": `Bearer ${payload?.data?.bearer?.key}`,
+        "x-recaptcha-token": payload?.token,
       },
       data,
     });
@@ -254,6 +258,22 @@ class AuthCRUD extends CRUD {
   }
 
 
+  requestLoginWithBankId() {
+    const url = `${this.url}/get_redirect_url_bank_id/`;
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
+  loginWithBankId(data) {
+    const url = `${this.url}/sign_in_bank_id/`;
+    return this.request({
+      url,
+      data,
+      method: "POST",
+    });
+  }
 
 }
 

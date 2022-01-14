@@ -1,13 +1,17 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-// import { useRouter } from "next/router";
 import Modal from '../ui/Modal';
 import {setShowDataLossWarning, setShowQuiz} from 'redux/actions/authPopupWindows';
 import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {useTranslation} from "react-i18next";
-import {getQuiz, getQuizErrorsSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
-import {setQuizErrors, signUp} from "../../redux/actions/user";
+import {
+    getIsShowQuizForBankId,
+    getQuiz,
+    getQuizErrorsSelector,
+    getQuizIsPassedSelector
+} from "../../redux/reducers/user";
+import {checkQuizAnswers, setQuizErrors, signUp} from "../../redux/actions/user";
 import {getCompanyIdSelector} from "../../redux/reducers/companies";
 import {recaptcha} from "../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
@@ -21,6 +25,7 @@ const Quiz = ({show, data}) => {
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
     const companyId = useSelector(getCompanyIdSelector);
+    const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
 
     const [quizResults, setQuizResults] = useState({})
 
@@ -51,9 +56,9 @@ const Quiz = ({show, data}) => {
         dispatch(setShowDataLossWarning(true));
     }, [dispatch]);
 
-    // const _checkQuizAnswers = useCallback((data) => {
-    //     dispatch(checkQuizAnswers(data));
-    // }, [dispatch]);
+    const _checkQuizAnswers = useCallback((data) => {
+        dispatch(checkQuizAnswers(data));
+    }, [dispatch]);
 
     const _setQuizErrors = useCallback((data) => {
         dispatch(setQuizErrors(data));
@@ -76,16 +81,26 @@ const Quiz = ({show, data}) => {
         for (let answer in quizResults) {
             arrayOfAnswer.push(quizResults[answer])
         }
-        recaptcha('check_quiz_answers',
-            _signUp,
-            {
-                answers: arrayOfAnswer,
-                email: `${data.email.toLowerCase()}`,
-                is_agree: `${data.is_agree}`,
-                password: `${data.password}`,
-                confirm_password: `${data.confirm_password}`
-            })
-        // _checkQuizAnswers({answers: arrayOfAnswer})
+
+        if(isShowQuizForBankId){
+            recaptcha('check_quiz_answers_for_bank_id',
+                _checkQuizAnswers,
+                {
+                    bearer: isShowQuizForBankId,
+                    answers: arrayOfAnswer,
+                })
+
+        }else{
+            recaptcha('check_quiz_answers',
+                _signUp,
+                {
+                    answers: arrayOfAnswer,
+                    email: `${data.email.toLowerCase()}`,
+                    is_agree: `${data.is_agree}`,
+                    password: `${data.password}`,
+                    confirm_password: `${data.confirm_password}`
+                })
+        }
     }
     return (
         <Modal
