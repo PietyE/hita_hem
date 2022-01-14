@@ -153,7 +153,7 @@ function* signUp({ payload }) {
       if(error?.response?.data?.email || error?.response?.data?.password){
         yield put(setShowQuiz(false))
       }
-      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
+      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
       yield put(
           setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification })
       );
@@ -235,11 +235,27 @@ function* signInWithBankIdWorker({payload}) {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "loginWithBankId"], {grand_id_session:payload});
-    console.log('response', response)
-    // if(response?.data?.redirectUrl){
-    //   window.open(response?.data?.redirectUrl, '_self');
-    // }
     // yield call(requestForQuiz)
+    const { data } = response;
+    const { user, token } = data;
+    yield put(setAccount(user));
+    if (user?.profile?.date_of_birth) {
+      const profileCopy = prepareProfile(user.profile);
+      yield put(setProfile(profileCopy));
+    } else {
+      if (user?.profile) {
+        yield put(setProfile(user.profile));
+      }
+    }
+
+    yield put(setToken(token));
+    yield put(setAuth(true));
+    yield call([api, "setToken"], token.key);
+    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+    yield call([localStorage, "setItem"], "auth_data", authData);
+
+    yield put(setShowSignIn(false));
+    yield put(clearErrors())
   } catch (error) {
     yield put(
         setAuthError({ status: error?.response?.status, data: error?.response?.data })
