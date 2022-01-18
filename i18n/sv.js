@@ -337,6 +337,7 @@ profile_page: {
             upload_photo: "Ladda upp ett foto",
             remove_photo: "Ta bort foto",
             profile_title: "Kontaktuppgifter",
+        email: "E-postadress*",
             first_name_label: "Förnamn*",
             second_name_label: "Efternamn*",
             date_title: "Födelsedatum*",

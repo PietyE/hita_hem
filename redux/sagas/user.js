@@ -54,7 +54,7 @@ import {
 import {getCurrentPath, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
-  setCurrentPath,
+  setCurrentPath, setIsBankIdResident,
   setQuizErrors,
   setQuizIsPassed,
   setResponseFromApi,
@@ -63,6 +63,7 @@ import {
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
+import {getRedirectUrl} from "../../utils/utils";
 
 const { auth } = api;
 
@@ -90,8 +91,10 @@ export function* bootstarpWorker({ payload: initLang }) {
 
       if (token && expiration_timestamp && nowTime < expiration_timestamp) {
         yield call([api, "setToken"], token);
-
         const response = yield call([auth, "getSelf"]);
+        if(response?.data?.is_bank_id_resident){
+          yield put(setIsBankIdResident(true))
+        }
         if (response?.status !== 200) {
           yield put(setAuth(false));
           return;
@@ -223,9 +226,11 @@ function* signIn({ payload }) {
 
 function* makeRequestForSignInWithBankIdWorker() {
   try {
-    // yield put(setCurrentPath(window?.location?.pathname))
+    yield call([localStorage, "setItem"], "current_href", window?.location?.href);
     yield put(setFetchingUsers(true));
-    const response = yield call([auth, "requestLoginWithBankId"]);
+    const language = yield select(getSelectedLangSelector)
+    const link= getRedirectUrl(language)
+    const response = yield call([auth, "requestLoginWithBankId"], `?callbackUrl=${link}`);
     if(response?.data?.redirectUrl){
       window.open(response?.data?.redirectUrl, '_self');
     }
@@ -248,7 +253,6 @@ function* signInWithBankIdWorker({payload}) {
     if(user?.quiz){
       // const path = yield call(getCurrentPath)
       // console.log('path', path)
-      window.open('http://localhost:3000', '_self');
       yield put(setAccount(user));
       if (user?.profile?.date_of_birth) {
         const profileCopy = prepareProfile(user?.profile);
@@ -267,6 +271,11 @@ function* signInWithBankIdWorker({payload}) {
 
       yield put(setShowSignIn(false));
       yield put(clearErrors())
+      const current_href = yield call([localStorage, "getItem"], "current_href");
+      yield call([localStorage,'removeItem'], 'current_href')
+      window.open(current_href, '_self');
+
+
     }else{
       yield put(setShowQuizForBankId(token))
       yield call(requestForQuiz)
@@ -289,6 +298,8 @@ function* logout({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "logOut"], {token: payload.token});
+    yield put(setIsBankIdResident(false))
+
     yield call(clean);
   } catch (error) {
     yield put(
@@ -456,6 +467,9 @@ export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "getSelf"]);
+    if(response?.data?.is_bank_id_resident){
+      yield put(setIsBankIdResident(true))
+    }
     if (response.status !== 200) {
       yield put(setAuth(false));
       return;
@@ -574,12 +588,16 @@ function* requestForCheckingQuiz({payload}) {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
+
     yield call([api, "setToken"], response?.data?.token?.key);
     yield put(setShowQuizForBankId(false))
     // const path = yield call(getCurrentPath)
-    window.open('http://localhost:3000', '_self');
 
     yield call(getProfileFromApi)
+    const current_href = yield call([localStorage, "getItem"], "current_href");
+    yield call([localStorage,'removeItem'], 'current_href')
+    window.open(current_href, '_self');
+
   } catch (error) {
     if(error?.response?.data?.questions){
       yield put(setQuizErrors(error?.response?.data?.questions))
