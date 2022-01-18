@@ -341,6 +341,7 @@ export const en = {
                 upload_photo: "Upload an image",
                 remove_photo: "Remove photo",
                 profile_title: "Contact details",
+                email: "Email address*",
                 first_name_label: "First name*",
                 second_name_label: "Last name*",
                 date_title: "Date of birth*",
