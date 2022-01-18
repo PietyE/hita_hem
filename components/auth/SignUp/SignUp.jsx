@@ -12,10 +12,11 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
-import {checkEmailAndPassword} from "redux/actions/user";
+import {checkEmailAndPassword, makeRequestForSignInWithBankId} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
+import SplitLine from "../../ui/SplitLine";
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
@@ -69,6 +70,17 @@ const SignUp = ({ show }) => {
   })
       })
 
+  const _signInWithBankId = useCallback(
+      () => {
+        dispatch(makeRequestForSignInWithBankId());
+      },
+      [dispatch]
+  );
+
+  const handleSignInWithBankId = (e) => {
+    e.preventDefault()
+    _signInWithBankId()
+  }
   return (
         <Modal
       show={show}
@@ -87,6 +99,14 @@ const SignUp = ({ show }) => {
             <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span></p>
 
           </header>
+          <h1 className="sign_up_title mb-4">Sign Up with</h1>
+          <div className='sign_in_sign_in_variants'>
+            <button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
+              BankID
+            </button>
+          </div>
+          <SplitLine className='sign_in_split_line'/>
+          <span className='sign_in_alt_text'>or Sign Up with email</span>
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}
