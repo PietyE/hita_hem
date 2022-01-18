@@ -237,7 +237,7 @@ company_page: {
 home_page: {
     featured_button: "Se alla projekt",
         upcoming_button: "Se kommande projekt",
-        join_title: "Upptäck onoterat.",
+        join_title: "Vill du investera i onoterade bolag?",
     join_button: "Bli en medlem",
         featured_campaigns: "Populära projekt",
         upcoming_campaigns: "Kommande projekt",
