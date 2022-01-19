@@ -165,6 +165,9 @@ const PersonalDetails = ({
         if(!isBankIdResident){
             delete newProfile.email;
         }
+        if(isBankIdResident && valuesFromApi?.email === newProfile?.email){
+            delete newProfile.email;
+        }
         delete newProfile.day;
         delete newProfile.month;
         delete newProfile.year;
