@@ -16,6 +16,7 @@ const initialState = {
     subscribe_title: "",
     flat_blocks: [],
     team_members: [],
+    seo: {},
   },
   isFetching: false,
 };
@@ -36,6 +37,8 @@ export const getFlatBlocksSelector = (state) =>
   sortedByIndex(state.aboutUs.aboutUsContent.flat_blocks);
 export const getTeamMembersSelector = (state) =>
   sortedByIndex(state.aboutUs.aboutUsContent.team_members);
+export const getAboutUsSeoSelector = (state) =>
+    state.aboutUs.aboutUsContent.seo;
 
 export const getIsFetchingAboutUsSelector = (state) => state.aboutUs.isFetching;
 
