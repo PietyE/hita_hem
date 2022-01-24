@@ -43,8 +43,9 @@ const AboutUsPage = () => {
   const subscribe_title = useSelector(getSubscribeTitleSelector);
   const seo = useSelector(getAboutUsSeoSelector)
 
-  const {seo_description, seo_title} = seo
-
+  // const {seo_description, seo_title} = seo
+  const seo_description = seo?.seo_description
+  const seo_title = seo?.seo_title
 
   const topSectionContent = {
     title: header_title,
