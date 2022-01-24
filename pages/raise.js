@@ -38,7 +38,9 @@ const RaisePage = () => {
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
   const images = useSelector(getRaisePageImageSelector)
     const seo = useSelector(getRaisePageSeoSelector)
-    const {seo_description, seo_title} = seo
+    // const {seo_description, seo_title} = seo
+    const seo_description = seo?.seo_description
+    const seo_title = seo?.seo_title
 
     const img = getCorrectImage(images)
     const _getRaisePage = useCallback(() => {

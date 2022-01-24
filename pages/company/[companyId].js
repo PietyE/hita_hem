@@ -42,7 +42,10 @@ const CompanyPage = () => {
   // const id = useSelector(getCompanyIdSelector)
   // const images = useSelector(getHeaderImageSelector)
   const seo = useSelector(getCampaignSeoSelector)
-  const {seo_description, seo_title} = seo
+  // const {seo_description, seo_title} = seo
+  const seo_description = seo?.seo_description
+  const seo_title = seo?.seo_title
+
 
   const _getCompanyDetail = useCallback(
     (id) => {
