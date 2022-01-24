@@ -37,6 +37,7 @@ const initialState = {
   companiesList: [],
   companyDetail: {
     pk: "",
+    seo:{},
     logo: "",
     short_description: "",
     hidden_mode: false,
@@ -216,7 +217,8 @@ export const getIdeaSectionContentSelector = (state) =>
 
 export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
 
-
+export const getCampaignSeoSelector = (state) =>
+    state.companies.companyDetail.seo;
 
 // export const getHeaderImage1Selector = (state) =>
 //   state.companies.companyDetail.header_image;

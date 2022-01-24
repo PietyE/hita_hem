@@ -15,8 +15,13 @@ import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
 import SpinnerStyled from "components/ui/Spinner";
 
 import { getRaisePage } from "redux/actions/raisePage";
-import {getIsFetchingRaisePageSelector, getRaisePageImageSelector} from "redux/reducers/raisePage";
+import {
+    getIsFetchingRaisePageSelector,
+    getRaisePageImageSelector,
+    getRaisePageSeoSelector
+} from "redux/reducers/raisePage";
 import {getCorrectImage} from "../utils/utils";
+import Head from "next/head";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
@@ -32,8 +37,10 @@ const RaisePage = () => {
 
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
   const images = useSelector(getRaisePageImageSelector)
-    const img = getCorrectImage(images)
+    const seo = useSelector(getRaisePageSeoSelector)
+    const {seo_description, seo_title} = seo
 
+    const img = getCorrectImage(images)
     const _getRaisePage = useCallback(() => {
     dispatch(getRaisePage());
   }, [dispatch]);
@@ -49,6 +56,18 @@ const RaisePage = () => {
 
   return (
     <>
+        <Head>
+            {seo_title && <title>{seo_title}</title>}
+            {seo_description & <meta name = "description" content = {seo_description}/>}
+            {seo?.social?.title && <meta property = "og:title" content = {seo?.social?.title}/>}
+
+            {seo?.social?.description && <meta property = "og:description" content = {seo?.social?.description}/>}
+
+            {seo?.social?.image && (
+                <meta property="og:image" content= {seo?.social?.image} />
+
+            )}
+        </Head>
       {isFetching && <SpinnerStyled />}
       <section className="raise_page_container">
         <RaisePageTopSlider onScrollTo={scrollTo} />

@@ -14,6 +14,7 @@ import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
 // import InstructionSection from "containers/HomePage/InstructionSection";
 // import JoinSection from "containers/HomePage/JoinSection";
+import {getSeoSelector} from "redux/reducers/homePage";
 import SpinnerStyled from "components/ui/Spinner";
 import useDropInBlog from "../customHooks/useDropInBlog";
 
@@ -29,7 +30,10 @@ const Index = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingHomePageSelector);
-
+    const seo = useSelector(getSeoSelector);
+    const {seo_description, seo_title} = seo
+    // const title = seo_title || 'Accumeo - Investera i onoterade tillväxtbolag idag'
+    // const description = seo_description || "Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering"
     useDropInBlog()
 
     const _getHomePage = useCallback(
@@ -46,8 +50,16 @@ const Index = () => {
   return (
       <>
           <Head>
-              <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
-              <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
+              {seo_title && <title>{seo_title}</title>}
+              {seo_description & <meta name = "description" content = {seo_description}/>}
+              {seo?.social?.title && <meta property = "og:title" content = {seo?.social?.title}/>}
+
+              {seo?.social?.description && <meta property = "og:description" content = {seo?.social?.description}/>}
+
+              {seo?.social?.image && (
+                  <meta property="og:image" content= {seo?.social?.image} />
+
+              )}
           </Head>
     <div className="home_page_container">
       {isFetching && <SpinnerStyled />}

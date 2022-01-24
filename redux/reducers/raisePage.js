@@ -13,6 +13,7 @@ const initialState = {
     opportunities: [],
     platform: [],
     extra: [],
+    seo:{},
   },
   isFetching: false,
 };
@@ -49,3 +50,6 @@ export const getIsFetchingRaisePageSelector = (state) =>
   state.raisePage.isFetching;
 export const getRaisePageImageSelector = (state) =>
     state.raisePage.raisePageContent.images;
+
+export const getRaisePageSeoSelector = (state) =>
+    state.raisePage.raisePageContent.seo;

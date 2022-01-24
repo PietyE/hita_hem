@@ -27,6 +27,8 @@ import {
   getSubscribeTitleSelector,
   getTeamMembersSelector,
 } from "redux/reducers/aboutUs";
+import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
+import Head from "next/head";
 
 const AboutUsPage = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,10 @@ const AboutUsPage = () => {
   const flat_blocks = useSelector(getFlatBlocksSelector);
   const team_members = useSelector(getTeamMembersSelector);
   const subscribe_title = useSelector(getSubscribeTitleSelector);
+  const seo = useSelector(getAboutUsSeoSelector)
+
+  const {seo_description, seo_title} = seo
+
 
   const topSectionContent = {
     title: header_title,
@@ -52,6 +58,18 @@ const AboutUsPage = () => {
 
   return (
     <>
+      <Head>
+        {seo_title && <title>{seo_title}</title>}
+        {seo_description & <meta name = "description" content = {seo_description}/>}
+        {seo?.social?.title && <meta property = "og:title" content = {seo?.social?.title}/>}
+
+        {seo?.social?.description && <meta property = "og:description" content = {seo?.social?.description}/>}
+
+        {seo?.social?.image && (
+            <meta property="og:image" content= {seo?.social?.image} />
+
+        )}
+      </Head>
       {isFetching && <SpinnerStyled />}
       <div className="about_us_container">
         <TopSection content={topSectionContent} />
