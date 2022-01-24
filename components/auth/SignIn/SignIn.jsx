@@ -91,14 +91,14 @@ const SignIn = ({ show }) => {
       isFetchIndicator={isFetching}
     >
       {/*<h1 className="sign_up_title mb-4">{t("auth.sign_in.title")}</h1>*/}
-      <h1 className="sign_up_title mb-4">Sign In with</h1>
+      <h1 className="sign_up_title mb-4">{t("auth.sign_in.sign_in")}</h1>
       <div className='sign_in_sign_in_variants'>
 <button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
   BankID
 </button>
       </div>
       <SplitLine className='sign_in_split_line'/>
-        <span className='sign_in_alt_text'>or Sign In with email</span>
+        <span className='sign_in_alt_text'>{t("auth.sign_in.alt_sign_in")}</span>
       <Formik
         initialValues={initialValues}
         validationSchema={signInSchema}
