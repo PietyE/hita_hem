@@ -38,13 +38,13 @@ import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
-import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
+// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
-import {intercomStart} from "../../utils/intercom";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
+import {getIsShowQuizForBankId} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -60,63 +60,66 @@ const SuccessfulSignUpModal = dynamic(() =>
     import("components/SuccessfulSignUpModal")
 );
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
-    import("components/SuccessfullyCampaignRegistrationModal")
+    import("components/SuccessfullyCampaignRegistrationModal"), { ssr: false }
 );
 const SuccessfulInvestmentModal = dynamic(() =>
-    import("components/SuccessfulInvestmentModal")
+    import("components/SuccessfulInvestmentModal"), { ssr: false }
 );
 const SuccessfulResetPassword = dynamic(() =>
-    import("components/SuccessfulResetPassword")
+    import("components/SuccessfulResetPassword"), { ssr: false }
 );
 const SuccessfulDeletedAccountModal = dynamic(() =>
-    import("components/SuccessfulDeletedAccountModal")
+    import("components/SuccessfulDeletedAccountModal"), { ssr: false }
 );
 const ShowConfirmationOfAccountDeletion = dynamic(() =>
-    import("components/ShowConfirmationOfAccountDeletion")
+    import("components/ShowConfirmationOfAccountDeletion"), { ssr: false }
 );
 const QuizWrongAnswersModal = dynamic(() =>
-    import("components/QuizWrongAnswersModal")
+    import("components/QuizWrongAnswersModal"), { ssr: false }
 );
 const SuccessfullySubscribedModal = dynamic(() =>
-    import("components/SuccessfullySubscribedModal")
+    import("components/SuccessfullySubscribedModal"), { ssr: false }
 );
 const RaiseWrongAnswerModal = dynamic(() =>
-    import("components/RaiseWrongAnswersModal")
+    import("components/RaiseWrongAnswersModal"), { ssr: false }
 );
 const SuccessfulRequestForChange = dynamic(() =>
-    import("components/SuccessfulRequestForChange")
+    import("components/SuccessfulRequestForChange"), { ssr: false }
 );
 
 const SuccessfulRequestForChangePassword = dynamic(() =>
-    import("components/SuccessfulRequestForChangePassword")
+    import("components/SuccessfulRequestForChangePassword"), { ssr: false }
 );
 
 const InvalidTokenModal = dynamic(() =>
-    import("components/InvalidTokenModal")
+    import("components/InvalidTokenModal"), { ssr: false }
 );
 const SuccessfulChangeEmailOrPassword = dynamic(() =>
-    import("components/SuccessfulChangeEmailOrPassword")
+    import("components/SuccessfulChangeEmailOrPassword"), { ssr: false }
 );
 const ShowDenyDeletingAccount = dynamic(() =>
-    import("components/ShowDenyDeletingAccount")
+    import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
 const ShowCookiePopup = dynamic(() =>
-    import("components/CookieModal")
+    import("components/CookieModal"), { ssr: false }
 );
 const SuccessfulFaqPopup = dynamic(() =>
-    import("components/SuccessfulFaqPost")
+    import("components/SuccessfulFaqPost"), { ssr: false }
 );
 const DataLossWarning = dynamic(() =>
-    import("components/DataLossWarning")
+    import("components/DataLossWarning"), { ssr: false }
 );
 const FirstLoginPopup = dynamic(() =>
-    import("components/SuccessfulFirstLogin")
+    import("components/SuccessfulFirstLogin"), { ssr: false }
 );
 
+const Quiz = dynamic(() =>
+    import("components/Quiz"), { ssr: false }
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
-  useGoogleCaptcha()
+  // useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const fullName = useSelector(getFullNameSelector);
   const email = useSelector(getUserEmailSelector);
@@ -152,8 +155,8 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
+    const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
-
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -175,11 +178,14 @@ const RootPage = ({ children, initLang = "" }) => {
 
     useEffect(() => {
         dispatch(bootstap(initLang));
-        intercomStart(initLang)
     }, []);
 
-  useEffect(()=>{
-    Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+    const isIntercomLoaded = typeof Intercom === 'function'
+
+    useEffect(()=>{
+      if(isIntercomLoaded){
+          Intercom("update", {last_request_at: parseInt((new Date()).getTime()/1000)})
+      }
 
       const pie = document.getElementById('dib-pie');
 
@@ -191,7 +197,7 @@ const RootPage = ({ children, initLang = "" }) => {
   },[pathname])
 
   useEffect(() => {
-    if(email && fullName && initLang) {
+    if(email && fullName && initLang && isIntercomLoaded) {
       window.Intercom('boot', {
         app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
         name: fullName,
@@ -325,7 +331,9 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
-        <ScrollToTopButton />
+          {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+
+          <ScrollToTopButton />
       </main>
       <Footer />
     </div>

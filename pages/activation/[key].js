@@ -23,7 +23,6 @@ const firstLoginCheckKey = () => {
     }, [_checkActivationToken])
     return (
         <>
-
             <SpinnerStyled/>
         </>
     );

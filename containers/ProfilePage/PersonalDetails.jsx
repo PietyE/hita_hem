@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+    import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import {Formik, Form, Field} from "formik";
@@ -24,7 +24,7 @@ import isEmpty from "lodash/isEmpty";
 import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
-import {phoneRegExp, personalIdRegExp, zipCodeRegExp} from "../../utils/vadidationSchemas";
+import {phoneRegExp, personalIdRegExp, zipCodeRegExp, emailRegExp} from "../../utils/vadidationSchemas";
 import {validateCampaignNumber} from "utils/utils";
 import {restrictOnlyLetters, restrictCity, restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import {getPrivacyPolicyDocument} from "redux/reducers/documents";
@@ -32,6 +32,7 @@ import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
+    import {getIsBankIdResident} from "../../redux/reducers/user";
 
 const PersonalDetails = ({
                              type,
@@ -54,6 +55,7 @@ const PersonalDetails = ({
         },
         first_name: "",
         second_name: "",
+        email: '',
         is_agree: false,
         day: "",
         month: "",
@@ -72,6 +74,7 @@ const PersonalDetails = ({
         }),
         first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.first_name_required")),
         second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.second_name_required")),
+        email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
         is_agree: yup.bool().oneOf([true]),
         day: yup.number().required(t("errors.day_required")),
         month: yup.number().required(t("errors.month_required")),
@@ -88,6 +91,7 @@ const PersonalDetails = ({
         }),
         first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('first_name', t("errors.first_name_empty"), val => val?.length),
         second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('second_name', t("errors.second_name_empty"), val => val?.length),
+        email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
         day: yup.number(),
         month: yup.number(),
         year: yup.number(),
@@ -123,6 +127,8 @@ const PersonalDetails = ({
 
     const documentUrl = useSelector(getPrivacyPolicyDocument);
     const usersId = useSelector(getUserIdSelector)
+    const isBankIdResident = useSelector(getIsBankIdResident)
+
 
     const handleInput = (e) => {
         if(campaignNumberWarning){
@@ -156,6 +162,12 @@ const PersonalDetails = ({
         const newProfile = JSON.parse(JSON.stringify(values));
         newProfile.first_name = capitalize(newProfile.first_name.toLowerCase());
         newProfile.second_name = capitalize(newProfile.second_name.toLowerCase());
+        if(!isBankIdResident){
+            delete newProfile.email;
+        }
+        if(isBankIdResident && valuesFromApi?.email === newProfile?.email){
+            delete newProfile.email;
+        }
         delete newProfile.day;
         delete newProfile.month;
         delete newProfile.year;
@@ -304,6 +316,25 @@ const PersonalDetails = ({
                                             errorFromApi = {errorHandlerHook?.secondNameError}
                                             clearError = {errorHandlerHook?.clearProfileErrorFromApi}
                                         />
+
+                                        {isBankIdResident &&
+                                            <InputComponent
+                                                labelClassName = "profile_input_big profile_email"
+                                                label = {t("profile_page.personal.email")}
+                                                inputClassName = "profile_form_input"
+                                                errorClassName = "profile_form_warning_text"
+                                                inputName = "email"
+                                                values = {values}
+                                                // restrictInput = {restrictOnlyLetters}
+                                                setFieldValue = {setFieldValue}
+                                                setFieldError = {setFieldError}
+                                                touched = {touched}
+                                                errors = {errors}
+                                                disabled = {isInputsReadOnly}
+                                                errorFromApi = {errorHandlerHook?.emailError}
+                                                clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            />
+                                        }
                                         <p className = "profile_form_birth_text">
                                             {t("profile_page.personal.date_title")}
                                         </p>

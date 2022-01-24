@@ -19,7 +19,10 @@ import {
   GET_QUIZ, CHECK_QUIZ_ANSWERS,
   GET_PROFILE_FROM_API,
   CHECK_TOKEN_FOR_RESET_PASSWORD,
-  CHECK_ACTIVATION_TOKEN, CHECK_EMAIL_AND_PASSWORD,
+  CHECK_ACTIVATION_TOKEN, 
+  CHECK_EMAIL_AND_PASSWORD,
+  SIGN_IN_WITH_BANK_ID,
+  REQUEST_SIGN_IN_WITH_BANK_ID,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -48,13 +51,19 @@ import {
   setShowRequestForChangeEmail,
   setShowRequestForChangePassword, setShowFirstLoginPopup,
 } from "../actions/authPopupWindows";
-import {getUserIdSelector} from "../reducers/user";
+import {getCurrentPath, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
-import { setQuizErrors, setQuizIsPassed, setResponseFromApi} from "../actions/user";
+import {
+  setCurrentPath, setIsBankIdResident,
+  setQuizErrors,
+  setQuizIsPassed,
+  setResponseFromApi,
+  setShowQuizForBankId
+} from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
-import {intercomStart} from "../../utils/intercom";
+import {getRedirectUrl} from "../../utils/utils";
 
 const { auth } = api;
 
@@ -82,8 +91,10 @@ export function* bootstarpWorker({ payload: initLang }) {
 
       if (token && expiration_timestamp && nowTime < expiration_timestamp) {
         yield call([api, "setToken"], token);
-
         const response = yield call([auth, "getSelf"]);
+        if(response?.data?.is_bank_id_resident){
+          yield put(setIsBankIdResident(true))
+        }
         if (response?.status !== 200) {
           yield put(setAuth(false));
           return;
@@ -151,7 +162,7 @@ function* signUp({ payload }) {
       if(error?.response?.data?.email || error?.response?.data?.password){
         yield put(setShowQuiz(false))
       }
-      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
+      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
       yield put(
           setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification })
       );
@@ -213,10 +224,82 @@ function* signIn({ payload }) {
   }
 }
 
+function* makeRequestForSignInWithBankIdWorker() {
+  try {
+    yield call([localStorage, "setItem"], "current_href", window?.location?.href);
+    yield put(setFetchingUsers(true));
+    const language = yield select(getSelectedLangSelector)
+    const link= getRedirectUrl(language)
+    const response = yield call([auth, "requestLoginWithBankId"], `?callbackUrl=${link}`);
+    if(response?.data?.redirectUrl){
+      window.open(response?.data?.redirectUrl, '_self');
+    }
+    // yield call(requestForQuiz)
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+function* signInWithBankIdWorker({payload}) {
+  try {
+    yield put(setFetchingUsers(true));
+    const response = yield call([auth, "loginWithBankId"], {grand_id_session:payload});
+    const { data } = response;
+    const { user, token } = data;
+    if(user?.quiz){
+      // const path = yield call(getCurrentPath)
+      // console.log('path', path)
+      yield put(setAccount(user));
+      if (user?.profile?.date_of_birth) {
+        const profileCopy = prepareProfile(user?.profile);
+        yield put(setProfile(profileCopy));
+      } else {
+        if (user?.profile) {
+          yield put(setProfile(user.profile));
+        }
+      }
+
+      yield put(setToken(token));
+      yield put(setAuth(true));
+      yield call([api, "setToken"], token.key);
+      const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+      yield call([localStorage, "setItem"], "auth_data", authData);
+
+      yield put(setShowSignIn(false));
+      yield put(clearErrors())
+      const current_href = yield call([localStorage, "getItem"], "current_href");
+      yield call([localStorage,'removeItem'], 'current_href')
+      window.open(current_href, '_self');
+
+
+    }else{
+      yield put(setShowQuizForBankId(token))
+      yield call(requestForQuiz)
+    }
+
+
+
+  } catch (error) {
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
+
+
 function* logout({payload}) {
   try {
     yield put(setFetchingUsers(true));
     yield call([auth, "logOut"], {token: payload.token});
+    yield put(setIsBankIdResident(false))
+
     yield call(clean);
   } catch (error) {
     yield put(
@@ -384,6 +467,9 @@ export function* getProfileFromApi() {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "getSelf"]);
+    if(response?.data?.is_bank_id_resident){
+      yield put(setIsBankIdResident(true))
+    }
     if (response.status !== 200) {
       yield put(setAuth(false));
       return;
@@ -501,8 +587,17 @@ function* requestForQuiz() {
 function* requestForCheckingQuiz({payload}) {
   try {
     yield put(setFetchingUsers(true));
-    yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
+    const response = yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
+
+    yield call([api, "setToken"], response?.data?.token?.key);
+    yield put(setShowQuizForBankId(false))
+    // const path = yield call(getCurrentPath)
+
     yield call(getProfileFromApi)
+    const current_href = yield call([localStorage, "getItem"], "current_href");
+    yield call([localStorage,'removeItem'], 'current_href')
+    window.open(current_href, '_self');
+
   } catch (error) {
     if(error?.response?.data?.questions){
       yield put(setQuizErrors(error?.response?.data?.questions))
@@ -587,7 +682,10 @@ function* clean() {
   yield put(clearErrors())
   const initLang = yield select(getSelectedLangSelector)
   window.Intercom('shutdown')
-  intercomStart(initLang)
+  window.Intercom('boot', {
+    app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+    language_override: initLang,
+  })
 }
 
 const prepareProfile = (data) => {
@@ -622,6 +720,11 @@ export function* userWorker() {
   yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
   yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
   yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
+  yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
+  yield takeEvery(  REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
+
+
+
 
 
 }

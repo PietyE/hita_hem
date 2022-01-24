@@ -14,6 +14,9 @@ import {
   SET_QUIZ_IS_PASSED,
   SET_QUIZ_ERRORS,
     SET_CAN_RESET_PASSWORD,
+  SHOW_QIZ_FOR_BANK_ID,
+  SET_CURRENT_PATH,
+  SET_IS_BANK_ID_RESIDENT,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -24,7 +27,10 @@ const initialsState = {
   isAuth: false,
   isFetching: false,
   isQuizPassed: false,
+  isShowQuizForBankId: false,
   isSuccessfulResponseFromApi: false,
+  isBankIdResident: false,
+  currentPath: '',
   token: {},
   user: {},
   quizQuestions:[],
@@ -70,6 +76,12 @@ export const user = (state = initialsState, actions) => {
       return {...state, quizErrors: actions.payload}
     case SET_CAN_RESET_PASSWORD:
       return {...state, canResetPassword: actions.payload}
+    case SHOW_QIZ_FOR_BANK_ID:
+      return {...state, isShowQuizForBankId: actions.payload}
+    case SET_CURRENT_PATH:
+      return {...state, currentPath: actions.payload}
+    case SET_IS_BANK_ID_RESIDENT:
+      return {...state, isBankIdResident: actions.payload}
     default:
       return state;
   }
@@ -82,7 +94,10 @@ export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
 
+export const getIsShowQuizForBankId = (state) => state.user.isShowQuizForBankId;
+export const getCurrentPath = (state) => state?.user?.currentPath;
 
+export const getIsBankIdResident = (state) => state?.user?.isBankIdResident;
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;

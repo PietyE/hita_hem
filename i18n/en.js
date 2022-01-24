@@ -74,6 +74,8 @@ export const en = {
                 button: "Submit",
             },
             sign_in: {
+                sign_in: 'Sign in with',
+                alt_sign_in: 'Or sign in with email',
                 title: "Log in to your account",
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
@@ -86,6 +88,8 @@ export const en = {
             },
             sign_up: {
                 title: "Create account",
+                sign_in: 'Sign in with',
+                alt_sign_in: 'Or sign up with email',
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
                 password_label: "Password *",
@@ -341,6 +345,7 @@ export const en = {
                 upload_photo: "Upload an image",
                 remove_photo: "Remove photo",
                 profile_title: "Contact details",
+                email: "Email address*",
                 first_name_label: "First name*",
                 second_name_label: "Last name*",
                 date_title: "Date of birth*",

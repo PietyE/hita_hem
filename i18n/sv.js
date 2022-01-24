@@ -76,6 +76,8 @@ auth: {
     },
     sign_in: {
         title: "Logga in",
+        sign_in: 'Logga in med',
+        alt_sign_in: 'Eller logga in med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
             password_label: "Lösenord *",
@@ -87,6 +89,8 @@ auth: {
     },
     sign_up: {
         title: "Skapa ett konto",
+        sign_in: 'Logga in med',
+        alt_sign_in: 'Eller bli medlem med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
             password_label: "Lösenord *",
@@ -337,6 +341,7 @@ profile_page: {
             upload_photo: "Ladda upp ett foto",
             remove_photo: "Ta bort foto",
             profile_title: "Kontaktuppgifter",
+        email: "E-postadress*",
             first_name_label: "Förnamn*",
             second_name_label: "Efternamn*",
             date_title: "Födelsedatum*",

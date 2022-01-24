@@ -173,3 +173,19 @@ export const getYoutubeId = (link) => {
         ? match[2]
         : null;
 }
+
+
+export const getRedirectUrl = (currentLanguage) => {
+  let _link;
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/authBankId`:`https://dev.accumeo.com/authBankId`
+  }
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/authBankId`:`https://stage.accumeo.com/authBankId`
+  }
+  if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/authBankId`:`https://accumeo.com/authBankId`
+  }
+  return _link
+}

@@ -54,6 +54,78 @@
   color: rgba(0, 0, 0, 0.87);
   margin-bottom: 65px;
 }
+
+.sign_in_sign_in_variants{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+  .sign_in_bank_id{
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    width: 130px;
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: "Source Sans Pro",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    &:hover{
+      border-color: rgb(14, 83, 148);
+      color: rgb(14, 83, 148);
+    }
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/logo-bank-id.svg");
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+}
+//.sign_in_alt_text_wrapper{
+//  position: relative;
+//  width: 100%;
+//  text-align: center;
+  //&:before{
+  //  z-index: 2;
+  //  position: absolute;
+  //  left: 0;
+  //  top: 50%;
+  //  content: '';
+  //  display: block;
+  //  height: 0;
+  //  width: 100%;
+  //  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  //}
+  .sign_in_alt_text{
+    z-index: 1;
+    padding-right: 33px;
+    padding-left: 33px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    font-family: "Source Sans Pro",sans-serif;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .sign_in_split_line{
+    transform: translateY(12px);
+  }
+//}
+
+
 .auth_form{
   position: relative;
   width:100%;

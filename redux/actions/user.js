@@ -34,6 +34,11 @@ import {
   CHECK_TOKEN_FOR_RESET_PASSWORD,
   CHECK_ACTIVATION_TOKEN,
   CHECK_EMAIL_AND_PASSWORD,
+  SIGN_IN_WITH_BANK_ID,
+  REQUEST_SIGN_IN_WITH_BANK_ID,
+  SHOW_QIZ_FOR_BANK_ID,
+  SET_CURRENT_PATH,
+  SET_IS_BANK_ID_RESIDENT
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -202,5 +207,30 @@ export const checkActivationToken = payload => ({
 
 export const checkEmailAndPassword = payload => ({
   type: CHECK_EMAIL_AND_PASSWORD,
+  payload
+})
+
+export const makeRequestForSignInWithBankId = payload => ({
+  type: REQUEST_SIGN_IN_WITH_BANK_ID,
+  payload
+})
+
+export const signInWithBankId = payload => ({
+  type: SIGN_IN_WITH_BANK_ID,
+  payload
+})
+
+
+export const setShowQuizForBankId = payload => ({
+  type: SHOW_QIZ_FOR_BANK_ID,
+  payload
+})
+export const setCurrentPath = payload => ({
+  type: SET_CURRENT_PATH,
+  payload
+})
+
+export const setIsBankIdResident = payload => ({
+  type: SET_IS_BANK_ID_RESIDENT,
   payload
 })
