@@ -4,14 +4,9 @@ import { END } from "redux-saga";
 import { wrapper } from "redux/store";
 import Image from "next/image";
 import dynamic from "next/dynamic";
-// import ImageComponent from "components/ui/ImageComponent";
-
-
 import RaisePageTopSlider from "containers/RaisePage/RaisePageTopSlider";
 import RaiseOpportunities from "containers/RaisePage/RaiseOpportunities";
 import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
-// import RaiseFeatures from "containers/RaisePage/RaiseFeatures";
-// import RaiseForm from "containers/RaisePage/RaiseForm";
 import SpinnerStyled from "components/ui/Spinner";
 
 import { getRaisePage } from "redux/actions/raisePage";
@@ -21,7 +16,7 @@ import {
     getRaisePageSeoSelector
 } from "redux/reducers/raisePage";
 import {getCorrectImage} from "../utils/utils";
-import Head from "next/head";
+import MetaTags from "../components/MetaTags";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
@@ -38,9 +33,7 @@ const RaisePage = () => {
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
   const images = useSelector(getRaisePageImageSelector)
     const seo = useSelector(getRaisePageSeoSelector)
-    // const {seo_description, seo_title} = seo
-    const seo_description = seo?.seo_description
-    const seo_title = seo?.seo_title
+
 
     const img = getCorrectImage(images)
     const _getRaisePage = useCallback(() => {
@@ -58,23 +51,11 @@ const RaisePage = () => {
 
   return (
     <>
-        <Head>
-            {seo_title && <title>{seo_title}</title>}
-            {seo_description & <meta name = "description" content = {seo_description}/>}
-            {seo?.social?.title && <meta property = "og:title" content = {seo?.social?.title}/>}
-
-            {seo?.social?.description && <meta property = "og:description" content = {seo?.social?.description}/>}
-
-            {seo?.social?.image && (
-                <meta property="og:image" content= {seo?.social?.image} />
-
-            )}
-        </Head>
+            <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <section className="raise_page_container">
         <RaisePageTopSlider onScrollTo={scrollTo} />
         <RaiseOpportunities />
-        {/*{img && <ImageComponent src = {img} className = 'raise_page_image'/>}*/}
           {img && (
               <div className = "raise_page_image ">
               <Image

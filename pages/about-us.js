@@ -7,8 +7,6 @@ import { wrapper } from "/redux/store";
 
 import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
-// import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
-// import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingAboutUsSelector } from "redux/reducers/aboutUs";
 
@@ -28,7 +26,7 @@ import {
   getTeamMembersSelector,
 } from "redux/reducers/aboutUs";
 import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
-import Head from "next/head";
+import MetaTags from "../components/MetaTags";
 
 const AboutUsPage = () => {
   const dispatch = useDispatch();
@@ -43,10 +41,6 @@ const AboutUsPage = () => {
   const subscribe_title = useSelector(getSubscribeTitleSelector);
   const seo = useSelector(getAboutUsSeoSelector)
 
-  // const {seo_description, seo_title} = seo
-  const seo_description = seo?.seo_description
-  const seo_title = seo?.seo_title
-
   const topSectionContent = {
     title: header_title,
     description: header_description,
@@ -59,18 +53,7 @@ const AboutUsPage = () => {
 
   return (
     <>
-      <Head>
-        {seo_title && <title>{seo_title}</title>}
-        {seo_description & <meta name = "description" content = {seo_description}/>}
-        {seo?.social?.title && <meta property = "og:title" content = {seo?.social?.title}/>}
-
-        {seo?.social?.description && <meta property = "og:description" content = {seo?.social?.description}/>}
-
-        {seo?.social?.image && (
-            <meta property="og:image" content= {seo?.social?.image} />
-
-        )}
-      </Head>
+        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <div className="about_us_container">
         <TopSection content={topSectionContent} />
