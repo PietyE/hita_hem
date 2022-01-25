@@ -10,6 +10,7 @@ const initialState = {
     headers: [],
     raise_set: [],
     invest_set: [],
+    seo:{},
   },
   isFetching: false,
 };
@@ -28,6 +29,8 @@ export const getHomePageUpcomingSelector = (state) =>
   sortedByIndex(state.homePage.homePageContent.upcoming).filter(el=>el.status === 1);
 export const getIsFetchingHomePageSelector = (state) =>
   state.homePage.isFetching;
+export const getSeoSelector = (state) =>
+    state.homePage.homePageContent?.seo;
 
 export const homePage = (state = initialState, actions) => {
   switch (actions.type) {

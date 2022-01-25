@@ -99,14 +99,14 @@ const SignUp = ({ show }) => {
             <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span></p>
 
           </header>
-          <h1 className="sign_up_title mb-4">Sign Up with</h1>
+          <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
           <div className='sign_in_sign_in_variants'>
             <button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
               BankID
             </button>
           </div>
           <SplitLine className='sign_in_split_line'/>
-          <span className='sign_in_alt_text'>or Sign Up with email</span>
+          <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
       <Formik
         initialValues={initialValues}
         validationSchema={signUpSchema}

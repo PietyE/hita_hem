@@ -7,8 +7,6 @@ import { wrapper } from "/redux/store";
 
 import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
-// import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
-// import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingAboutUsSelector } from "redux/reducers/aboutUs";
 
@@ -27,6 +25,8 @@ import {
   getSubscribeTitleSelector,
   getTeamMembersSelector,
 } from "redux/reducers/aboutUs";
+import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
+import MetaTags from "../components/MetaTags";
 
 const AboutUsPage = () => {
   const dispatch = useDispatch();
@@ -39,6 +39,7 @@ const AboutUsPage = () => {
   const flat_blocks = useSelector(getFlatBlocksSelector);
   const team_members = useSelector(getTeamMembersSelector);
   const subscribe_title = useSelector(getSubscribeTitleSelector);
+  const seo = useSelector(getAboutUsSeoSelector)
 
   const topSectionContent = {
     title: header_title,
@@ -52,6 +53,7 @@ const AboutUsPage = () => {
 
   return (
     <>
+        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <div className="about_us_container">
         <TopSection content={topSectionContent} />
