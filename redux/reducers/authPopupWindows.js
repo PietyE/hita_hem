@@ -24,6 +24,7 @@ import {
   SET_SHOW_SUCCESSFUL_FAQ_POST,
   SET_SHOW_DATA_LOSS_WARNING,
   SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
+  SET_SHOW_POSTAL_CODE_NOTIFICATION
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -50,6 +51,7 @@ const initialValues = {
   showSuccessfulFaqPopup: false,
   showDataLossWarning: false,
   showFirstLoginPopup: false,
+  showPostalCodeNotification: false,
   text: '',
   showCookie: false,
 };
@@ -90,6 +92,7 @@ export const getShowSuccessfulFaqPopup = state =>  state.authPopupWindows.showSu
 export const getShowDataLossWarning = state =>  state.authPopupWindows.showDataLossWarning;
 export const getShowFirstLoginPopup = state => state.authPopupWindows.showFirstLoginPopup;
 
+export const getShowPostalCodeNotification = state => state.authPopupWindows.showPostalCodeNotification;
 
 
 
@@ -145,6 +148,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showFirstLoginPopup: actions.payload }
     case SET_SHOW_COOKIE:
       return { ...state, showCookie: actions.payload }
+    case SET_SHOW_POSTAL_CODE_NOTIFICATION:
+      return { ...state, showPostalCodeNotification: actions.payload }
     default:
       return state;
   }

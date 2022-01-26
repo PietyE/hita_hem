@@ -33,6 +33,7 @@ import {
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
+    getShowPostalCodeNotification
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -116,6 +117,9 @@ const FirstLoginPopup = dynamic(() =>
 const Quiz = dynamic(() =>
     import("components/Quiz"), { ssr: false }
 );
+const PostalCodeNotification = dynamic(() =>
+    import("components/ShowPostalCodeNotification"), { ssr: false }
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -157,6 +161,7 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowQuiz = useSelector(getShowQuiz)
     const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
+    const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -332,6 +337,8 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+          {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
+
 
           <ScrollToTopButton />
       </main>
