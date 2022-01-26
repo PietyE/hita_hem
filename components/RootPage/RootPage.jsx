@@ -1,4 +1,4 @@
-import {useEffect, useCallback} from "react";
+import {useEffect, useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
@@ -29,7 +29,7 @@ import {
   getShowRequestForChangePassword,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
-    getShowCookiePopup,
+    // getShowCookiePopup,
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
@@ -101,9 +101,9 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
-const ShowCookiePopup = dynamic(() =>
-    import("components/CookieModal"), { ssr: false }
-);
+// const ShowCookiePopup = dynamic(() =>
+//     import("components/CookieModal"), { ssr: false }
+// );
 const SuccessfulFaqPopup = dynamic(() =>
     import("components/SuccessfulFaqPost"), { ssr: false }
 );
@@ -121,8 +121,15 @@ const PostalCodeNotification = dynamic(() =>
     import("components/ShowPostalCodeNotification"), { ssr: false }
 );
 
+const CookieNotification = dynamic(() =>
+    import("components/CookieNotification"), { ssr: false }
+);
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
+
+  const [showCookieNotification, setShowCookieNotification] = useState(true)
+
   // useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const fullName = useSelector(getFullNameSelector);
@@ -155,7 +162,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
-  const isShowCookie = useSelector(getShowCookiePopup)
+  // const isShowCookie = useSelector(getShowCookiePopup)
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
@@ -332,12 +339,14 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
+        {/*{!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}*/}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
+
+          {showCookieNotification && <CookieNotification setShowCookie={setShowCookieNotification}/>}
 
 
           <ScrollToTopButton />
