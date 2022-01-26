@@ -1,4 +1,4 @@
-import {useEffect, useCallback, useState} from "react";
+import {useEffect, useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
@@ -29,7 +29,7 @@ import {
   getShowRequestForChangePassword,
     getShowInvalidTokenModal,
     getShowSuccessfulChangeEmailOrPassword,
-    // getShowCookiePopup,
+    getShowCookiePopup,
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
@@ -128,7 +128,6 @@ const CookieNotification = dynamic(() =>
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
 
-  const [showCookieNotification, setShowCookieNotification] = useState(true)
 
   // useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
@@ -162,7 +161,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowInvalidTokenModal = useSelector(getShowInvalidTokenModal)
   const isShowSuccessfulChangeEmailOrPassword = useSelector(getShowSuccessfulChangeEmailOrPassword)
   const isShowDenyDeletingAccount = useSelector(getShowDenyDeletingAccount)
-  // const isShowCookie = useSelector(getShowCookiePopup)
+  const isShowCookie = useSelector(getShowCookiePopup)
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
@@ -285,8 +284,7 @@ const RootPage = ({ children, initLang = "" }) => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuth]);
-
-  return (
+    return (
     <div className="container">
       <Header initLang={initLang} />
       <main>
@@ -346,7 +344,7 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
 
-          {showCookieNotification && <CookieNotification setShowCookie={setShowCookieNotification}/>}
+          {isShowCookie && <CookieNotification/>}
 
 
           <ScrollToTopButton />
