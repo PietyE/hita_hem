@@ -35,7 +35,7 @@ const SocialTab = ({ socials = [], classNameContainer = "" }) => {
           <a className="social_link" href={s.url} key={i}>
             {s.name !== "allabolag" ? (
               <IconComponent
-                icon={_data[s.name].iconName}
+                icon={_data[s.name]?.iconName}
                 className="social_icon"
               />
             ) : (

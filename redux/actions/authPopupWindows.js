@@ -24,6 +24,7 @@ import {
   SET_SHOW_SUCCESSFUL_FAQ_POST,
   SET_SHOW_DATA_LOSS_WARNING,
   SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
+  SET_SHOW_POSTAL_CODE_NOTIFICATION,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -147,5 +148,10 @@ export const setShowDataLossWarning = payload =>({
 
 export const setShowFirstLoginPopup = payload =>({
   type: SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
+  payload,
+})
+
+export const setShowPostalCodeNotification = payload =>({
+  type: SET_SHOW_POSTAL_CODE_NOTIFICATION,
   payload,
 })

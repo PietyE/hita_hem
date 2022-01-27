@@ -9,6 +9,7 @@ import CompanyInfo from "containers/CompanyPage/CompanyInfo";
 import ProjectInfo from "containers/CompanyPage/ProjectInfo";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
 import SpinnerStyled from "components/ui/Spinner";
+import MetaTags from "../../components/MetaTags";
 import {
   getCompanyById,
   clearCompany,
@@ -20,11 +21,8 @@ import {
   getIsError404Selector,
   getIsFetchingCampaignsSelector,
   getIsRedirectOnSelector,
-  getCompanyNameSelector,
-  getAboutProjectDescriptionSelector,
-  getCompanyIdSelector, getHeaderImageSelector,
 } from "redux/reducers/companies";
-import Head from "next/head";
+import {getCampaignSeoSelector} from "../../redux/reducers/companies";
 
 const CompanyPage = () => {
   const router = useRouter();
@@ -35,11 +33,9 @@ const CompanyPage = () => {
   const isAuth = useSelector(getIsSignInUserSelector);
   const isError404 = useSelector(getIsError404Selector);
   const isFetching = useSelector(getIsFetchingCampaignsSelector);
-  const companyName = useSelector(getCompanyNameSelector)
   const isRedirectOnSelector = useSelector(getIsRedirectOnSelector)
-  const shortDescription = useSelector(getAboutProjectDescriptionSelector)
-  const id = useSelector(getCompanyIdSelector)
-  const images = useSelector(getHeaderImageSelector)
+  const seo = useSelector(getCampaignSeoSelector)
+
 
   const _getCompanyDetail = useCallback(
     (id) => {
@@ -91,22 +87,7 @@ const CompanyPage = () => {
 
   return (
     <>
-      <Head>
-        <title>{`Accumeo - ${companyName}`}</title>
-        {/*<meta name="description" content= {`${shortDescription}`} />*/}
-        <meta name="description" content= {''} />
-
-        <meta property="og:title" content={`Accumeo - ${companyName}`} />
-        {/*<meta property="og:description" content={`${shortDescription}`} />*/}
-        <meta property="og:description" content={''} />
-
-        <meta property="og:url"  content={`https://accumeo.com/company/${id}`} />
-        {/*<meta property="og:type" content="company" />*/}
-        {images && (
-            <meta property="og:image" content= {`${images['desktop']}` || `${images['laptop']}` || `${images['mobile']}`} />
-
-        )}
-      </Head>
+       <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <div className="company-page-container">
         <TopSection />

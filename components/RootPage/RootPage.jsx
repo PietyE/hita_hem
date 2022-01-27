@@ -33,6 +33,7 @@ import {
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
+    getShowPostalCodeNotification
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -100,9 +101,9 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
-const ShowCookiePopup = dynamic(() =>
-    import("components/CookieModal"), { ssr: false }
-);
+// const ShowCookiePopup = dynamic(() =>
+//     import("components/CookieModal"), { ssr: false }
+// );
 const SuccessfulFaqPopup = dynamic(() =>
     import("components/SuccessfulFaqPost"), { ssr: false }
 );
@@ -116,9 +117,18 @@ const FirstLoginPopup = dynamic(() =>
 const Quiz = dynamic(() =>
     import("components/Quiz"), { ssr: false }
 );
+const PostalCodeNotification = dynamic(() =>
+    import("components/ShowPostalCodeNotification"), { ssr: false }
+);
+
+const CookieNotification = dynamic(() =>
+    import("components/CookieNotification"), { ssr: false }
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
+
+
   // useGoogleCaptcha()
   const isAuth = useSelector(getIsSignInUserSelector);
   const fullName = useSelector(getFullNameSelector);
@@ -157,6 +167,7 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowQuiz = useSelector(getShowQuiz)
     const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
+    const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -273,8 +284,7 @@ const RootPage = ({ children, initLang = "" }) => {
         };
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isAuth]);
-
-  return (
+    return (
     <div className="container">
       <Header initLang={initLang} />
       <main>
@@ -327,11 +337,15 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}
+        {/*{!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}*/}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+          {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
+
+          {isShowCookie && <CookieNotification/>}
+
 
           <ScrollToTopButton />
       </main>

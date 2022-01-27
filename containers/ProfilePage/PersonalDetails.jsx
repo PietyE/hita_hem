@@ -33,6 +33,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
     import {getIsBankIdResident} from "../../redux/reducers/user";
+    import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
                              type,
@@ -83,6 +84,8 @@ const PersonalDetails = ({
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
         zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).required(t("errors.zip_required"))
     })
+    const postalCodeCheck = type ? yup.string().matches(zipCodeRegExp, t("errors.zip_example")) : yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length)
+
     const personalDetailsUpdateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string(),
@@ -97,7 +100,8 @@ const PersonalDetails = ({
         year: yup.number(),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
-        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length),
+
+        zip_code: postalCodeCheck,
 
     })
 
@@ -202,6 +206,13 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
+
+        if(!profile?.zip_code){
+            dispatch(setShowPostalCodeNotification(true));
+            return
+                }
+
+        
         if(companyNumber){
             if(validateCampaignNumber(companyNumber.toUpperCase())){
                 const dataForApi = prepareDataForApi(values);
@@ -653,6 +664,7 @@ const PersonalDetails = ({
                                                 {isEmpty(profile) || type
                                                     ? t("profile_page.personal.submit_button")
                                                     : t("profile_page.personal.save_button")}
+                                                    {/*<p className='profile_form_agreement_button_notification'>zzzzzzz</p>*/}
                                             </Button>
 
                                         </div>

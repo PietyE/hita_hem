@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import Head from "next/head";
 import { END } from "redux-saga";
 import { wrapper } from "redux/store";
 
@@ -12,10 +11,10 @@ import { getHomePage } from "redux/actions/homePage";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
-// import InstructionSection from "containers/HomePage/InstructionSection";
-// import JoinSection from "containers/HomePage/JoinSection";
+import {getSeoSelector} from "redux/reducers/homePage";
 import SpinnerStyled from "components/ui/Spinner";
 import useDropInBlog from "../customHooks/useDropInBlog";
+import MetaTags from "../components/MetaTags";
 
 const InstructionSection = dynamic(() => import("containers/HomePage/InstructionSection"), {
     ssr: false,
@@ -29,7 +28,7 @@ const Index = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingHomePageSelector);
-
+    const seo = useSelector(getSeoSelector);
     useDropInBlog()
 
     const _getHomePage = useCallback(
@@ -45,10 +44,7 @@ const Index = () => {
 
   return (
       <>
-          <Head>
-              <title>Accumeo - Investera i onoterade tillväxtbolag idag</title>
-              <meta name="description" content="Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering" />
-          </Head>
+              <MetaTags seo={seo}/>
     <div className="home_page_container">
       {isFetching && <SpinnerStyled />}
       <div className="home_page_container">
