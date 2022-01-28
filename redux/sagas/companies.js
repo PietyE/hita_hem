@@ -8,7 +8,7 @@ import {
   ADD_POST,
   GET_POSTS,
   ADD_FAQ_ANSWER,
-  MAKE_PAYMENT,
+  MAKE_PAYMENT, GET_COMPANY_BY_NAME,
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,
@@ -28,6 +28,7 @@ import {setFaqPosts, setRedirect} from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
 import { setError } from "../actions/errors";
 import { getSelectedLangSelector } from "../reducers/language";
+import * as Router from "next";
 
 const { auth, companies } = api;
 
@@ -83,19 +84,48 @@ function* getCompaniesListWorker({ payload }) {
   }
 }
 
-function* getCompanyByIdWorker({ payload }) {
+// function* getCompanyByIdWorker({ payload }) {
+//   try {
+//     yield put(setIsFetchingCompany(true));
+//     const { data } = yield call([companies, "getCompanyById"], payload);
+//
+//     if(data?.hidden_mode && typeof window !== 'undefined'){
+//       yield put(setRedirect(true))
+//     }
+//
+//     yield put(setCompanyById(data));
+//   } catch (error) {
+//     yield put(
+//       setError({ status: error?.response?.status, data: error?.response?.data })
+//     );
+//     if (error?.response?.status === 404 || error?.response?.status === 500) {
+//       yield put(setError404(true));
+//     }
+//   } finally {
+//     yield put(setIsFetchingCompany(false));
+//   }
+// }
+
+function* getCompanyByNameWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
-    const { data } = yield call([companies, "getCompanyById"], payload);
 
-    if(data?.hidden_mode && typeof window !== 'undefined'){
-      yield put(setRedirect(true))
-    }
-    
-    yield put(setCompanyById(data));
+    const { data } = yield call([companies, "getCompanyByName"], payload);
+if(Array.isArray(data?.results) && !data?.results?.length){
+
+  yield put(setError404(true));
+
+}else{
+  if(data?.hidden_mode && typeof window !== 'undefined'){
+    yield put(setRedirect(true))
+  }
+  yield put(setCompanyById(data?.results[0]));
+}
+
   } catch (error) {
+    console.dir(error)
     yield put(
-      setError({ status: error?.response?.status, data: error?.response?.data })
+        setError({ status: error?.response?.status, data: error?.response?.data })
     );
     if (error?.response?.status === 404 || error?.response?.status === 500) {
       yield put(setError404(true));
@@ -216,7 +246,8 @@ function* makePayment({ payload }) {
 
 export function* companiesSagaWatcher() {
   yield takeEvery(GET_COMPANIES_LIST, getCompaniesListWorker);
-  yield takeEvery(GET_COMPANY_BY_ID, getCompanyByIdWorker);
+  // yield takeEvery(GET_COMPANY_BY_ID, getCompanyByIdWorker);
+  yield takeEvery(GET_COMPANY_BY_NAME, getCompanyByNameWorker);
   yield takeEvery(GET_COMPANIES_HEADER_LIST, getCompaniesHeaderListWorker);
   yield takeEvery(ADD_POST, addPost);
   yield takeEvery(ADD_FAQ_ANSWER, addAnswer);

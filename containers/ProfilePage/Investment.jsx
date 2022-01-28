@@ -13,7 +13,7 @@ const Investment = () => {
     const moneyFormat = useMoneyFormat()
 
   const paymentsList = useSelector(getUserPaymentsSelector);
-  return (
+    return (
     <section className="profile_campaigns_section">
       <h2 className="profile_campaigns_title">
         {t("profile_page.investments.title")}

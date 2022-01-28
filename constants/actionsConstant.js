@@ -89,6 +89,8 @@ export const RESET_COMPANY_TAB = "companies/RESET_COMPANY_TAB";
 export const RESET_COMPANY_LIST = "companies/RESET_COMPANY_LIST";
 export const IS_MORE_COMPANIES = "companies/IS_MORE_COMPANIES";
 export const MAKE_PAYMENT = "companies/MAKE_PAYMENT";
+export const GET_COMPANY_BY_NAME = "companies/GET_COMPANY_BY_NAME";
+
 
 export const SET_IS_REDIRECT = 'companies/SET_IS_REDIRECT'
 

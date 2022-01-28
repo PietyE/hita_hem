@@ -17,8 +17,9 @@ import {
   getBusinessCurrencySelector,
   getPercentageSelector,
   // getDaysLeftSelector,
-  getCompanyIdSelector,
+  // getCompanyIdSelector,
   // getCompanyStatusInNumbersSelector,
+  getCompanyNameSelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
   getValuationSelector,
@@ -38,7 +39,8 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const sectionRef = useRef();
 
   const moneyFormat = useMoneyFormat()
-  const companyId = useSelector(getCompanyIdSelector);
+  // const companyId = useSelector(getCompanyIdSelector);
+   const companyName = useSelector(getCompanyNameSelector);
   const currentLanguage = useSelector(getSelectedLangSelector);
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
@@ -122,7 +124,7 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const handleClickInvest = () => {
     if (isAuth) {
        // if(isQuizPassed){
-        history.push('/invest-form/[companyId]',`/invest-form/${companyId}`);
+        history.push('/invest-form/[companyId]',`/invest-form/${companyName}`);
        // }else{
        //   _setShowQuiz()
        // }

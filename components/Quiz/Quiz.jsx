@@ -12,7 +12,7 @@ import {
     getQuizIsPassedSelector
 } from "../../redux/reducers/user";
 import {checkQuizAnswers, setQuizErrors, signUp} from "../../redux/actions/user";
-import {getCompanyIdSelector} from "../../redux/reducers/companies";
+// import {getCompanyIdSelector} from "../../redux/reducers/companies";
 import {recaptcha} from "../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
 
@@ -24,7 +24,7 @@ const Quiz = ({show, data}) => {
     const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
-    const companyId = useSelector(getCompanyIdSelector);
+    // const companyId = useSelector(getCompanyIdSelector);
     const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
 
     const [quizResults, setQuizResults] = useState({})
@@ -41,7 +41,7 @@ const Quiz = ({show, data}) => {
         if (quizIsPassed) {
             _setShowQuiz(false)
         }
-    }, [quizIsPassed, companyId])
+    }, [quizIsPassed])
 
     useEffect(() => {
         return () => _setQuizErrors(null)

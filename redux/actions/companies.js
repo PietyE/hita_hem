@@ -19,6 +19,7 @@ import {
   IS_MORE_COMPANIES,
   MAKE_PAYMENT,
   SET_IS_REDIRECT,
+  GET_COMPANY_BY_NAME,
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -114,4 +115,8 @@ export const setRedirect = (payload) => ({
   payload,
 });
 
+export const getCompanyByName = (payload) => ({
+  type: GET_COMPANY_BY_NAME,
+  payload,
+});
 

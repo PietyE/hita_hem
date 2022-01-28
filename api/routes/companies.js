@@ -40,6 +40,15 @@ class CompaniesCRUD extends CRUD {
     });
   }
 
+  getCompanyByName(data) {
+    const name = data.toLowerCase()
+    const url = `${this.url}/?slug=${name}`;
+
+    return this.request({
+      url,
+    });
+  }
+
   makePayment(payload) {
     const url = "/payments/";
     const {data, token} = payload
