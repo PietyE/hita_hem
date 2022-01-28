@@ -16,6 +16,7 @@ const TopSliderComponent = ({
   buttonsContainerClass,
   firstButtonClass,
   secondButtonClass,
+    type
 }) => {
   const screenSize = checkCurrentResolution()
 
@@ -75,10 +76,15 @@ const TopSliderComponent = ({
                             classNameContainer={`item_component_status ${statusClass}`}
                         />
                     )}
-                    {title && (
-                        <h3 className={`item_component_title ${itemTitleClass}`}>
+                    {title && type === 'home_page' && (
+                        <h1 className={`item_component_title ${itemTitleClass}`}>
                           {title}
-                        </h3>
+                        </h1>
+                    )}
+                    {title && type !== 'home_page' && (
+                        <h2 className={`item_component_title ${itemTitleClass}`}>
+                          {title}
+                        </h2>
                     )}
                     {description && (
                         <div
