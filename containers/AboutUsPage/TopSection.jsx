@@ -8,7 +8,11 @@ const TopSection = ({ content = {} }) => {
   return (
     <>
         <div className="top_section" style={{position: 'relative'}}>
-
+          <div className='top_section_content_container'>
+            <h1 className="top_section_title">{content?.title}</h1>
+            <span className="top_section_description">{content?.description}</span>
+          </div>
+          <div className='backgroung_pic' style={{position: 'aboslut'}}>
             {screenSize === 'desktop' && img &&(<Image
                 src = {img}
                 layout = "fill"
@@ -17,28 +21,27 @@ const TopSection = ({ content = {} }) => {
                 alt = 'photo'
                 className = "backgroung_pic"
             />)}
-          {screenSize === 'laptop'&& img &&(
-              <Image
-              src = {img}
-              layout = "fill"
-              objectFit = "cover"
-              priority = {true}
-              alt = 'foto'
-              className = "backgroung_pic"
-          />)}
-          {screenSize === 'mobile' && img &&(
-              <Image
-              src = {img}
-              layout = "fill"
-              objectFit = "cover"
-              priority = {true}
-              alt = 'foto'
-              className = "backgroung_pic"
-          />)}
-          <div className='top_section_content_container'>
-            <h1 className="top_section_title">{content?.title}</h1>
-            <span className="top_section_description">{content?.description}</span>
+            {screenSize === 'laptop'&& img &&(
+                <Image
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "cover"
+                    priority = {true}
+                    alt = 'foto'
+                    className = "backgroung_pic"
+                />)}
+            {screenSize === 'mobile' && img &&(
+                <Image
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "cover"
+                    priority = {true}
+                    alt = 'foto'
+                    className = "backgroung_pic"
+                />)}
           </div>
+
+
         </div>
     </>
   );
