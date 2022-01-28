@@ -57,6 +57,17 @@ const Header = ({ initLang }) => {
 
   const selectedLanguage = initLang || _selectedLanguage;
 
+
+  // //navigation.  Link or <a>  dropInBlog button
+  // let showAsLink
+  // useEffect(()=>{
+  //   if(pathname === '/blog' && router?.query?.p ){
+  //     showAsLink = false
+  //   }else{
+  //     showAsLink = true
+  //   }
+  // },[pathname])
+  
   const handleSelectLang = (e) => {
     if (locale === lang[e.target.dataset.ln].code) return;
     dispatch(changeLanguage(lang[e.target.dataset.ln].code));
@@ -120,16 +131,32 @@ const Header = ({ initLang }) => {
               {/*  </Button>*/}
               {/*</span>*/}
               <span className="menu_item">
-                <Button
-                    className={`menu_item_link menu_item_link_blog ${
-                        pathname.includes(BLOG) ? "active" : ""
-                    }`}
-                    colorStyle="link"
-                    as={LinkStyled}
-                    to={BLOG}
-                >
-                  {t("header.blog").toLocaleUpperCase()}
-                </Button>
+
+                {pathname === '/blog' && router?.query?.p  ?
+                    (<a
+                        href="http://localhost:3000/blog"
+                        className={`menu_item_link menu_item_link_blog ${
+                            pathname.includes(BLOG) ? "active" : ""
+                        }`}
+                        // colorStyle="link"
+                        // as={LinkStyled}
+                        // to={BLOG}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </a>)
+                :
+                    (<Button
+                        className={`menu_item_link menu_item_link_blog ${
+                            pathname.includes(BLOG) ? "active" : ""
+                        }`}
+                        colorStyle="link"
+                        as={LinkStyled}
+                        to={BLOG}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </Button>)}
+
+
               </span>
               <a className="menu_item_link menu_item_link_faq"
                  target="_blank"
