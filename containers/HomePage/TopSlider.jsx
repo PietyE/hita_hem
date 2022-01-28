@@ -16,6 +16,7 @@ const TopSlider = () => {
           itemDescriptionClass = 'home_page_top_description'
           statusClass = 'home_page_top_status'
           buttonsContainerClass='home_page_top_buttons_container'
+          type='home_page'
       />
   )
 }
