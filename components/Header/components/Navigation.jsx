@@ -6,8 +6,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import {
   RAISE_ROUTE,
   INVEST_ROUTE,
-  ABOUT_US_ROUTE,
-  LAUNCHING_SOON, BLOG,
+  // ABOUT_US_ROUTE,
+  // LAUNCHING_SOON,
+  BLOG,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -145,15 +146,27 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={BLOG} prefetch={false}>
-                  <a
-                      className={`${
-                          pathname.includes(BLOG) ? "active" : ""
-                      }`}
-                  >
-                    {t("header.blog").toLocaleUpperCase()}
-                  </a>
-                </Link>
+                {pathname === '/blog' && router?.query?.p ?
+                    (<a
+                        href="http://localhost:3000/blog"
+                        className={`${
+                            pathname.includes(BLOG) ? "active" : ""
+                        }`}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </a>)
+                    :
+                    ( <Link href={BLOG} prefetch={false}>
+                      <a
+                          className={`${
+                              pathname.includes(BLOG) ? "active" : ""
+                          }`}
+                      >
+                        {t("header.blog").toLocaleUpperCase()}
+                      </a>
+                    </Link>)
+                }
+
               </NavDropdown.Item>
               {/*<NavDropdown.Item as="div" className="nav_item">*/}
               {/*  <Link href={ABOUT_US_ROUTE} prefetch={false}>*/}
