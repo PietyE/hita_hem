@@ -6,8 +6,9 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import {
   RAISE_ROUTE,
   INVEST_ROUTE,
-  ABOUT_US_ROUTE,
-  LAUNCHING_SOON, BLOG,
+  // ABOUT_US_ROUTE,
+  // LAUNCHING_SOON,
+  BLOG,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -23,6 +24,7 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
 import {recaptcha} from "../../../utils/recaptcha";
+import {getRedirectUrlForBlog} from "../../../utils/utils";
 
 const socials = [
   {
@@ -88,6 +90,7 @@ const Navigation = ({ className, initLang }) => {
     dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
   };
 
+  const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
   // const closeSubMen = () => {
   //   if (menuBtn.current?.children[0]?.ariaExpanded) {
   //     setShowSubMenu(false);
@@ -145,15 +148,27 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={BLOG} prefetch={false}>
-                  <a
-                      className={`${
-                          pathname.includes(BLOG) ? "active" : ""
-                      }`}
-                  >
-                    {t("header.blog").toLocaleUpperCase()}
-                  </a>
-                </Link>
+                {pathname === '/blog' && router?.query?.p ?
+                    (<a
+                        href={`${redirectUrlForBlog}`}
+                        className={`${
+                            pathname.includes(BLOG) ? "active" : ""
+                        }`}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </a>)
+                    :
+                    ( <Link href={BLOG} prefetch={false}>
+                      <a
+                          className={`${
+                              pathname.includes(BLOG) ? "active" : ""
+                          }`}
+                      >
+                        {t("header.blog").toLocaleUpperCase()}
+                      </a>
+                    </Link>)
+                }
+
               </NavDropdown.Item>
               {/*<NavDropdown.Item as="div" className="nav_item">*/}
               {/*  <Link href={ABOUT_US_ROUTE} prefetch={false}>*/}
