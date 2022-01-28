@@ -33,7 +33,7 @@ const RaiseInstructionsBlock = ({ type }) => {
     <>
       {!!content.length && (
         <div className="raise_instructions_container">
-          {!!title && <h2 className="raise_instructions_title">{title}</h2>}
+          {!!title && <h1 className="raise_instructions_title">{title}</h1>}
           {!!description && (
             <p className="raise_instructions_text">{description} </p>
           )}

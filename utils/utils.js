@@ -189,3 +189,18 @@ export const getRedirectUrl = (currentLanguage) => {
   }
   return _link
 }
+
+export const getRedirectUrlForBlog = (currentLanguage) => {
+  let _link;
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/blog`:`https://dev.accumeo.com/blog`
+  }
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/blog`:`https://stage.accumeo.com/blog`
+  }
+  if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/blog`:`https://accumeo.com/blog`
+  }
+  return _link
+}
