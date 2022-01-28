@@ -24,6 +24,7 @@ import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
 import {recaptcha} from "../../../utils/recaptcha";
+import {getRedirectUrlForBlog} from "../../../utils/utils";
 
 const socials = [
   {
@@ -89,6 +90,7 @@ const Navigation = ({ className, initLang }) => {
     dispatch(changeLanguage(lang[e.target.dataset.ln]?.code));
   };
 
+  const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
   // const closeSubMen = () => {
   //   if (menuBtn.current?.children[0]?.ariaExpanded) {
   //     setShowSubMenu(false);
@@ -148,7 +150,7 @@ const Navigation = ({ className, initLang }) => {
               <NavDropdown.Item as="div" className="nav_item">
                 {pathname === '/blog' && router?.query?.p ?
                     (<a
-                        href="http://localhost:3000/blog"
+                        href={`${redirectUrlForBlog}`}
                         className={`${
                             pathname.includes(BLOG) ? "active" : ""
                         }`}

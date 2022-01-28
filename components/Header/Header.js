@@ -22,6 +22,8 @@ import { changeLanguage } from "redux/actions/language";
 import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 
+import {getRedirectUrlForBlog} from "../../utils/utils";
+
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
 const DropDownComponent = dynamic(() =>
@@ -57,7 +59,7 @@ const Header = ({ initLang }) => {
 
   const selectedLanguage = initLang || _selectedLanguage;
 
-
+const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
   // //navigation.  Link or <a>  dropInBlog button
   // let showAsLink
   // useEffect(()=>{
@@ -134,7 +136,7 @@ const Header = ({ initLang }) => {
 
                 {pathname === '/blog' && router?.query?.p  ?
                     (<a
-                        href="http://localhost:3000/blog"
+                        href= {`${redirectUrlForBlog}`}
                         className={`menu_item_link menu_item_link_blog ${
                             pathname.includes(BLOG) ? "active" : ""
                         }`}
