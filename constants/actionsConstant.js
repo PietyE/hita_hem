@@ -72,7 +72,7 @@ export const SET_IS_FETCHING_RAISE_PAGE = "raise/SET_IS_FETCHING_RAISE_PAGE";
 
 export const GET_COMPANIES_LIST = "companies/GET_COMPANIES_LIST";
 export const GET_COMPANIES_HEADER_LIST = "companies/GET_COMPANIES_HEADER_LIST";
-export const GET_COMPANY_BY_ID = "companies/GET_COMPANY_BY_ID";
+export const GET_COMPANY_BY_SLAG = "companies/GET_COMPANY_BY_SLAG";
 export const SET_COMPANIES_LIST = "companies/SET_COMPANIES_LIST";
 export const SET_COMPANY_BY_ID = "companies/SET_COMPANY_BY_ID";
 export const CLEAR_COMPANY = "companies/CLEAR_COMPANY";

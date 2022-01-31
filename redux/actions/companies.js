@@ -1,6 +1,6 @@
 import {
   GET_COMPANIES_LIST,
-  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_SLAG,
   SET_COMPANIES_LIST,
   SET_COMPANY_BY_ID,
   CLEAR_COMPANY,
@@ -42,8 +42,8 @@ export const getCompaniesHeaderList = (payload) => ({
   payload,
 });
 
-export const getCompanyById = (payload) => ({
-  type: GET_COMPANY_BY_ID,
+export const getCompanyBySlag = (payload) => ({
+  type: GET_COMPANY_BY_SLAG,
   payload,
 });
 

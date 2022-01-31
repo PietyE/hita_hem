@@ -11,7 +11,7 @@ import MiddleSection from "containers/CompanyPage/MiddleSection";
 import SpinnerStyled from "components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import {
-  // getCompanyById,
+  getCompanyBySlag,
     getCompanyByName,
   clearCompany,
   setError404,
@@ -40,20 +40,20 @@ const CompanyPage = () => {
   const seo = useSelector(getCampaignSeoSelector)
 
 
-  // const _getCompanyDetail = useCallback(
-  //   (id) => {
-  //     dispatch(getCompanyById(id));
-  //   },
-  //   [dispatch]
-  // );
-
-
   const _getCompanyDetail = useCallback(
     (name) => {
-      dispatch(getCompanyByName(name));
+      dispatch(getCompanyBySlag(name));
     },
     [dispatch]
   );
+
+
+  // const _getCompanyDetail = useCallback(
+  //   (name) => {
+  //     dispatch(getCompanyByName(name));
+  //   },
+  //   [dispatch]
+  // );
 
   const _clearCompanyDetail = useCallback(() => {
     dispatch(clearCompany());
