@@ -19,6 +19,7 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp} from "../../../utils/vadidationSchemas";
 import SplitLine from "../../ui/SplitLine";
+
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
@@ -105,14 +106,23 @@ const SignIn = ({ show }) => {
     >
       {/*<h1 className="sign_up_title mb-4">{t("auth.sign_in.title")}</h1>*/}
       <h1 className="sign_up_title mb-4">{t("auth.sign_in.sign_in")}</h1>
-      <div className='sign_in_sign_in_variants'>
-<button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
+      <div className='sign_in_socials_buttons_wrapper'>
+<button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
   BankID
 </button>
 
         <GoogleLogin
             clientId= {process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-            buttonText="Login"
+            // buttonText="Google"
+            render={renderProps => (
+                <button
+                    className='sign_in_google sign_in_social_button'
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                >
+                    <span>Google</span>
+                </button>
+            )}
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
             cookiePolicy={'single_host_origin'}

@@ -89,6 +89,7 @@ const Quiz = ({show, data}) => {
                 {
                     bearer: tokenForQuizSocialsSignIn,
                     answers: arrayOfAnswer,
+                    is_agree: isAgreementChecked,
                 })
 
         }else{
@@ -142,7 +143,7 @@ const Quiz = ({show, data}) => {
                               name = "is_agree"
                               type = "checkbox"
                               className = "sign_up_agreement_checkbox"
-                              onClick={()=>setAgreement(!isAgreementChecked)}
+                              onChange={()=>setAgreement(!isAgreementChecked)}
                           />
                           <span className = "checkmark"/>
                           <span className = "sign_up_password_label">

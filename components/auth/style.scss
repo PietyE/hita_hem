@@ -55,14 +55,17 @@
   margin-bottom: 65px;
 }
 
-.sign_in_sign_in_variants{
+.sign_in_socials_buttons_wrapper{
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   padding-bottom: 40px;
-  .sign_in_bank_id{
+  .sign_in_social_button{
     display: flex;
     align-items: center;
     //justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 10px;
     width: 130px;
     height: 44px;
     border: 1px solid rgba(0, 0, 0, 0.18);
@@ -78,6 +81,10 @@
       border-color: rgb(14, 83, 148);
       color: rgb(14, 83, 148);
     }
+  }
+
+  .sign_in_bank_id{
+
     &:before{
       content: '';
       display: block;
@@ -85,6 +92,19 @@
       width: 44px;
       background-image: url("../../public/images/logo-bank-id.svg");
       background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+  .sign_in_google{
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/googleIcon.svg");
+      background-size: 70%;
       background-repeat: no-repeat;
       background-position: 0 6px;
       margin-right: 10px;

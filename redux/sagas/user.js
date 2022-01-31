@@ -230,7 +230,6 @@ function* signInWithGoogle({ payload }) {
 
     const response = yield call([auth, "signInWithGoogle"], {token: payload});
 
-
     yield call([localStorage,'removeItem'], '_expiredTime')
 
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
@@ -253,7 +252,6 @@ function* signInWithGoogle({ payload }) {
           yield put(setProfile(user.profile));
         }
       }
-
       yield put(setToken(token));
       yield put(setAuth(true));
       yield call([api, "setToken"], token.key);
@@ -263,7 +261,7 @@ function* signInWithGoogle({ payload }) {
       yield put(setShowSignIn(false));
       yield put(clearErrors())
     }else{
-      yield put(setShowQuizForBankId(token))
+      yield put(setTokenForQuizSocialsSignIn(token))
       yield call(requestForQuiz)
     }
   } catch (error) {
@@ -641,15 +639,15 @@ function* requestForCheckingQuiz({payload}) {
   try {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
-
     yield call([api, "setToken"], response?.data?.token?.key);
-    yield put(setShowQuizForBankId(false))
+    yield put(setTokenForQuizSocialsSignIn(false))
     // const path = yield call(getCurrentPath)
-
     yield call(getProfileFromApi)
-    const current_href = yield call([localStorage, "getItem"], "current_href");
-    yield call([localStorage,'removeItem'], 'current_href')
-    window.open(current_href, '_self');
+    if(response?.data?.user?.is_bank_id_resident){
+      const current_href = yield call([localStorage, "getItem"], "current_href");
+      window.open(current_href, '_self');
+      yield call([localStorage,'removeItem'], 'current_href')
+    }
 
   } catch (error) {
     if(error?.response?.data?.questions){
