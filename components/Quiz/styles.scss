@@ -297,3 +297,47 @@
 
   }
 }
+
+
+.quiz_checkbox{
+  margin-bottom: 15px;
+}
+
+.quiz_agreement_checkbox{
+  margin-right: 8px;
+  background: #0E5394;
+  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  font-size: 18px;
+  line-height: 21px;
+  color: #FFFFFF;
+  transform: translateY(2px);
+  cursor: pointer;
+}
+//.sign_up_agreement_checkbox_warning{
+//  @extend .sign_up_agreement_checkbox;
+//  background: rgba(246, 86, 71, 0.1);
+//  border: 1px solid #FF4D4F;
+//}
+
+.quiz_agreement_text{
+  font-family: "Source Sans Pro",sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #000;
+}
+
+.quiz_agreement_link{
+  font-family:"Source Sans Pro",sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  color: #3C64B1;
+  text-decoration: underline;
+  margin-left: 8px;
+  cursor: pointer;
+}

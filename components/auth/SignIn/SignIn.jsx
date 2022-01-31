@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Form, Formik } from "formik";
-
+import { GoogleLogin } from 'react-google-login';
 import InputComponent from "components/ui/InputComponent";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import Modal from "components/ui/Modal";
@@ -12,13 +12,14 @@ import {
   setShowSignUp,
   setShowResetPassword,
 } from "redux/actions/authPopupWindows";
-import { signIn, makeRequestForSignInWithBankId } from "redux/actions/user";
+import { signIn, makeRequestForSignInWithBankId, signInWithGoogle } from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp} from "../../../utils/vadidationSchemas";
 import SplitLine from "../../ui/SplitLine";
+
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
@@ -59,6 +60,15 @@ const SignIn = ({ show }) => {
     [dispatch]
   );
 
+  const _signInWithGoogle = useCallback(
+      (values) => {
+        dispatch(signInWithGoogle(values));
+      },
+      [dispatch]
+  );
+
+  
+
   const _signInWithBankId = useCallback(
       () => {
         dispatch(makeRequestForSignInWithBankId());
@@ -69,6 +79,10 @@ const SignIn = ({ show }) => {
   const handleSignInWithBankId = (e) => {
     e.preventDefault()
     _signInWithBankId()
+  }
+  
+  const responseGoogle = (response) => {
+    _signInWithGoogle(response.tokenId)
   }
 
   const onSubmit = (values) => {
@@ -92,10 +106,28 @@ const SignIn = ({ show }) => {
     >
       {/*<h1 className="sign_up_title mb-4">{t("auth.sign_in.title")}</h1>*/}
       <h1 className="sign_up_title mb-4">{t("auth.sign_in.sign_in")}</h1>
-      <div className='sign_in_sign_in_variants'>
-<button className='sign_in_bank_id' onClick={handleSignInWithBankId}>
+      <div className='sign_in_socials_buttons_wrapper'>
+<button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
   BankID
 </button>
+
+        <GoogleLogin
+            clientId= {process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
+            // buttonText="Google"
+            render={renderProps => (
+                <button
+                    className='sign_in_google sign_in_social_button'
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                >
+                    <span>Google</span>
+                </button>
+            )}
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+        />
+        
       </div>
       <SplitLine className='sign_in_split_line'/>
         <span className='sign_in_alt_text'>{t("auth.sign_in.alt_sign_in")}</span>
