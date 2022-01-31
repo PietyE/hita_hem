@@ -28,6 +28,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  signInWithGoogle(data) {
+    const url = `${this.url}/sign_in_google/`;
+    return this.request({
+      url,
+      method: "POST",
+      data,
+    });
+  }
+
   logOut(payload) {
     const {data, token} = payload
     const url = `${this.url}/auth/logout/`;
@@ -210,7 +219,7 @@ class AuthCRUD extends CRUD {
   checkQuizAnswers(payload) {
     // const {data, token} = payload
     // const data = payload?.data?.answers
-    const data = {answers:payload?.data?.answers,token:payload?.data?.bearer?.key,}
+    const data = {answers:payload?.data?.answers,token:payload?.data?.bearer?.key,is_agree: payload?.data?.is_agree }
     
     const url = `${this.url}/quiz/`;
     return this.request({

@@ -1,6 +1,7 @@
 export const BOOTSTAP_ACTION = "user/BOOTSTAP_ACTION";
 export const SIGN_UP = "user/SIGN_UP";
 export const SIGN_IN = "user/SIGN_IN";
+export const SIGN_IN_WITH_GOOGLE = "user/SIGN_IN_WITH_GOOGLE";
 export const SET_AUTH = "user/SET_AUTH";
 export const SET_ACCOUNT = "user/SET_ACCOUNT";
 export const SET_TOKEN = "user/SET_TOKEN";
