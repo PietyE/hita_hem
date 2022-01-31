@@ -107,23 +107,22 @@ function* getCompaniesListWorker({ payload }) {
 // }
 
 function* getCompanyByNameWorker({ payload }) {
+
   try {
     yield put(setIsFetchingCompany(true));
 
     const { data } = yield call([companies, "getCompanyByName"], payload);
 if(Array.isArray(data?.results) && !data?.results?.length){
-
   yield put(setError404(true));
 
 }else{
-  if(data?.hidden_mode && typeof window !== 'undefined'){
+  if(data?.results[0].hidden_mode && typeof window !== 'undefined'){
     yield put(setRedirect(true))
   }
   yield put(setCompanyById(data?.results[0]));
 }
 
   } catch (error) {
-    console.dir(error)
     yield put(
         setError({ status: error?.response?.status, data: error?.response?.data })
     );

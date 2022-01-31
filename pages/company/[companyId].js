@@ -115,15 +115,15 @@ const CompanyPage = () => {
 
 export const getServerSideProps = wrapper.getServerSideProps(
 
-  (store) =>
-    async ({ req, res, params, ...etc }) => {
-      // store.dispatch(getCompanyById(params.companyId));
-    store.dispatch( getCompanyByName(params.companyId));
+    (store) =>
+        async ({ req, res, params, ...etc }) => {
+          // store.dispatch(getCompanyById(params.companyId));
+          store.dispatch( getCompanyByName(params.companyId));
 
-     store.dispatch(END);
+          store.dispatch(END);
 
-      await store.sagaTask.toPromise();
-    }
+          await store.sagaTask.toPromise();
+        }
 
 );
 

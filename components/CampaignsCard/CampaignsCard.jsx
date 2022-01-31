@@ -35,7 +35,6 @@ const CampaignsCard = (props) => {
     percentage,
     left_date
   } = props?.content;
-  console.log('props?.content', props?.content)
   const moneyFormat = useMoneyFormat()
 const isAuth = useSelector(getIsSignInUserSelector)
   return (

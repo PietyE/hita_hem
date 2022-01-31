@@ -12,6 +12,7 @@ import {
 import startCase from "lodash/startCase";
 import {convertStatusToText} from "utils/utils";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getUrlForMyCampaigns} from "utils/utils";
 
 const MobileCampaigns = ({ data }) => {
   const { t } = useTranslation();
@@ -45,20 +46,9 @@ const MobileCampaigns = ({ data }) => {
               dataOptions
             );
 
-            let _link;
-            let textLink;
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${campaign.pk}`:`https://dev.accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.pk}`:`https://stage.accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = currentLanguage === 'en'?`https://accumeo.com/company/${campaign.pk}`:`https://accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
+            const {link, text_link} = getUrlForMyCampaigns(currentLanguage, campaign)
+
+
             let _status = startCase(
                 convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
             );
@@ -92,8 +82,8 @@ const MobileCampaigns = ({ data }) => {
                       <span className="mobile_investments_field_text">
                         {t("profile_page.campaigns.link")}
                       </span>
-                      <a href={_link} className="mobile_investments_field_link">
-                        {textLink}
+                      <a href={link} className="mobile_investments_field_link">
+                        {text_link}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">
