@@ -243,31 +243,29 @@ function* signInWithGoogle({ payload }) {
 
     const { data } = response;
     const { user, token } = data;
-    yield put(setAccount(user));
-
-    // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
-    // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
-    //
-    // if(!isCookieAccepted){
-    //   yield put(setShowCookiePopup(true))
-    // }
-    if (user?.profile?.date_of_birth) {
-      const profileCopy = prepareProfile(user.profile);
-      yield put(setProfile(profileCopy));
-    } else {
-      if (user?.profile) {
-        yield put(setProfile(user.profile));
+    if(user?.quiz){
+      yield put(setAccount(user));
+      if (user?.profile?.date_of_birth) {
+        const profileCopy = prepareProfile(user?.profile);
+        yield put(setProfile(profileCopy));
+      } else {
+        if (user?.profile) {
+          yield put(setProfile(user.profile));
+        }
       }
+
+      yield put(setToken(token));
+      yield put(setAuth(true));
+      yield call([api, "setToken"], token.key);
+      const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+      yield call([localStorage, "setItem"], "auth_data", authData);
+
+      yield put(setShowSignIn(false));
+      yield put(clearErrors())
+    }else{
+      yield put(setShowQuizForBankId(token))
+      yield call(requestForQuiz)
     }
-
-    yield put(setToken(token));
-    yield put(setAuth(true));
-    yield call([api, "setToken"], token.key);
-    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
-    yield call([localStorage, "setItem"], "auth_data", authData);
-
-    yield put(setShowSignIn(false));
-    yield put(clearErrors())
   } catch (error) {
     const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
     yield put(
