@@ -36,7 +36,7 @@ import {
   CHECK_EMAIL_AND_PASSWORD,
   SIGN_IN_WITH_BANK_ID,
   REQUEST_SIGN_IN_WITH_BANK_ID,
-  SHOW_QIZ_FOR_BANK_ID,
+  SET_TOKEN_FOR_QUIZ_SOCIALS_SIGN_IN,
   SET_CURRENT_PATH,
   SET_IS_BANK_ID_RESIDENT,
   SIGN_IN_WITH_GOOGLE,
@@ -222,8 +222,8 @@ export const signInWithBankId = payload => ({
 })
 
 
-export const setShowQuizForBankId = payload => ({
-  type: SHOW_QIZ_FOR_BANK_ID,
+export const setTokenForQuizSocialsSignIn = payload => ({
+  type: SET_TOKEN_FOR_QUIZ_SOCIALS_SIGN_IN,
   payload
 })
 export const setCurrentPath = payload => ({
