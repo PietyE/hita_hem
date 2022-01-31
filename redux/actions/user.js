@@ -38,7 +38,8 @@ import {
   REQUEST_SIGN_IN_WITH_BANK_ID,
   SHOW_QIZ_FOR_BANK_ID,
   SET_CURRENT_PATH,
-  SET_IS_BANK_ID_RESIDENT
+  SET_IS_BANK_ID_RESIDENT,
+  SIGN_IN_WITH_GOOGLE,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -232,5 +233,10 @@ export const setCurrentPath = payload => ({
 
 export const setIsBankIdResident = payload => ({
   type: SET_IS_BANK_ID_RESIDENT,
+  payload
+})
+
+export const signInWithGoogle = payload => ({
+  type: SIGN_IN_WITH_GOOGLE,
   payload
 })

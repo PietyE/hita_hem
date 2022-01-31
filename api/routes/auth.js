@@ -28,6 +28,15 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  signInWithGoogle(data) {
+    const url = `${this.url}/sign_in_google/`;
+    return this.request({
+      url,
+      method: "POST",
+      data,
+    });
+  }
+
   logOut(payload) {
     const {data, token} = payload
     const url = `${this.url}/auth/logout/`;

@@ -23,6 +23,7 @@ import {
   CHECK_EMAIL_AND_PASSWORD,
   SIGN_IN_WITH_BANK_ID,
   REQUEST_SIGN_IN_WITH_BANK_ID,
+  SIGN_IN_WITH_GOOGLE,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -223,6 +224,60 @@ function* signIn({ payload }) {
     yield put(setFetchingUsers(false));
   }
 }
+function* signInWithGoogle({ payload }) {
+  try {
+    yield put(setFetchingUsers(true));
+
+    const response = yield call([auth, "signInWithGoogle"], {token: payload});
+
+
+    yield call([localStorage,'removeItem'], '_expiredTime')
+
+    const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+    const session_key = session_key_from_LS || new Date().getTime();
+
+
+    if(!session_key_from_LS){
+      yield call([localStorage, "setItem"], "x_session_key", session_key);
+    }
+
+    const { data } = response;
+    const { user, token } = data;
+    yield put(setAccount(user));
+
+    // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
+    // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
+    //
+    // if(!isCookieAccepted){
+    //   yield put(setShowCookiePopup(true))
+    // }
+    if (user?.profile?.date_of_birth) {
+      const profileCopy = prepareProfile(user.profile);
+      yield put(setProfile(profileCopy));
+    } else {
+      if (user?.profile) {
+        yield put(setProfile(user.profile));
+      }
+    }
+
+    yield put(setToken(token));
+    yield put(setAuth(true));
+    yield call([api, "setToken"], token.key);
+    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+    yield call([localStorage, "setItem"], "auth_data", authData);
+
+    yield put(setShowSignIn(false));
+    yield put(clearErrors())
+  } catch (error) {
+    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
+    yield put(
+        setAuthError({ status: error?.response?.status, data: error?.response?.data,  hideNotification: hideNotification  })
+    );
+  } finally {
+    yield put(setFetchingUsers(false));
+  }
+}
+
 
 function* makeRequestForSignInWithBankIdWorker() {
   try {
@@ -722,6 +777,9 @@ export function* userWorker() {
   yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
   yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
   yield takeEvery(  REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
+  yield takeEvery(  SIGN_IN_WITH_GOOGLE, signInWithGoogle)
+
+
 
 
 
