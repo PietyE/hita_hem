@@ -1,14 +1,13 @@
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { useRouter } from "next/router";
 
 import {
   GET_COMPANIES_LIST,
-  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_SLAG,
   GET_COMPANIES_HEADER_LIST,
   ADD_POST,
   GET_POSTS,
   ADD_FAQ_ANSWER,
-  MAKE_PAYMENT,
+  MAKE_PAYMENT, GET_COMPANY_BY_NAME,
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,
@@ -83,19 +82,46 @@ function* getCompaniesListWorker({ payload }) {
   }
 }
 
-function* getCompanyByIdWorker({ payload }) {
+function* getCompanyBySlagWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
-    const { data } = yield call([companies, "getCompanyById"], payload);
-
+    const { data } = yield call([companies, "getCompanyBySlag"], payload);
     if(data?.hidden_mode && typeof window !== 'undefined'){
       yield put(setRedirect(true))
     }
-    
+
     yield put(setCompanyById(data));
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })
+    );
+    if (error?.response?.status === 404 || error?.response?.status === 500) {
+      yield put(setError404(true));
+    }
+  } finally {
+    yield put(setIsFetchingCompany(false));
+  }
+}
+
+function* getCompanyByNameWorker({ payload }) {
+
+  try {
+    yield put(setIsFetchingCompany(true));
+
+    const { data } = yield call([companies, "getCompanyByName"], payload);
+if(Array.isArray(data?.results) && !data?.results?.length){
+  yield put(setError404(true));
+
+}else{
+  if(data?.results[0].hidden_mode && typeof window !== 'undefined'){
+    yield put(setRedirect(true))
+  }
+  yield put(setCompanyById(data?.results[0]));
+}
+
+  } catch (error) {
+    yield put(
+        setError({ status: error?.response?.status, data: error?.response?.data })
     );
     if (error?.response?.status === 404 || error?.response?.status === 500) {
       yield put(setError404(true));
@@ -216,7 +242,8 @@ function* makePayment({ payload }) {
 
 export function* companiesSagaWatcher() {
   yield takeEvery(GET_COMPANIES_LIST, getCompaniesListWorker);
-  yield takeEvery(GET_COMPANY_BY_ID, getCompanyByIdWorker);
+  yield takeEvery(GET_COMPANY_BY_SLAG, getCompanyBySlagWorker);
+  yield takeEvery(GET_COMPANY_BY_NAME, getCompanyByNameWorker);
   yield takeEvery(GET_COMPANIES_HEADER_LIST, getCompaniesHeaderListWorker);
   yield takeEvery(ADD_POST, addPost);
   yield takeEvery(ADD_FAQ_ANSWER, addAnswer);

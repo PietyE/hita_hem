@@ -42,7 +42,7 @@ const Quiz = ({show, data}) => {
         if (quizIsPassed) {
             _setShowQuiz(false)
         }
-    }, [quizIsPassed, companyId])
+    }, [quizIsPassed])
 
     useEffect(() => {
         return () => _setQuizErrors(null)

@@ -4,7 +4,7 @@ import { getUserCampaignsSelector } from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import MobileCampaigns from "./MobileCampaigns";
 import { useTranslation } from "react-i18next";
-import { convertStatusToText } from "utils/utils";
+import {convertStatusToText, getUrlForMyCampaigns} from "utils/utils";
 import startCase from "lodash/startCase";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 
@@ -57,20 +57,8 @@ const ProfilePageCampaigns = () => {
                 dataOptions
               );
 
-              let _link;
-              let textLink;
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development'){
-                _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${campaign.pk}`:`https://dev.accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging'){
-                _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.pk}`:`https://stage.accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-                _link = currentLanguage === 'en'?`https://accumeo.com/company/${campaign.pk}`:`https://accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
+              const {link, text_link} = getUrlForMyCampaigns(currentLanguage, campaign)
+
               let _status = startCase(
                 convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
               );
@@ -83,10 +71,10 @@ const ProfilePageCampaigns = () => {
                     {campaign?.name}
                   </p>
                   <a
-                    href={_link}
+                    href={link}
                     className="profile_campaigns_table_item_text table_item_campaign_link"
                   >
-                    {textLink}
+                    {text_link}
                   </a>
                   <p className="profile_campaigns_table_item_text table_item_campaign_s_date">
                     {_startDayLocal}

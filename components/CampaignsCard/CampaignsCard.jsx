@@ -29,6 +29,7 @@ const CampaignsCard = (props) => {
     title,
     short_description,
       images=[],
+      slug,
     goal,
     currency,
     percentage,
@@ -40,23 +41,12 @@ const isAuth = useSelector(getIsSignInUserSelector)
     <>
       {!!props?.content && (
           <Link
-              as={`/company/${pk}`}
+              as={`/company/${slug}`}
               href={"/company/[companyId]"}
               prefetch={false}
           >
         <li className={`campaigns_card ${className}`}>
-          {/*<Link*/}
-          {/*  as={`/company/${pk}`}*/}
-          {/*  href={"/company/[companyId]"}*/}
-          {/*  prefetch={false}*/}
-          {/*>*/}
-            {/*<ImageComponent*/}
-            {/*  className="campaigns_card_image"*/}
-            {/*  // src={card_image || header_image}*/}
-            {/*  src={header_image || card_image}*/}
-            
-            {/*  alt="company_foto"*/}
-            {/*/>*/}
+
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
               {images && images['desktop'] && (
                   <Image
@@ -70,7 +60,7 @@ const isAuth = useSelector(getIsSignInUserSelector)
           
           {/*</Link>*/}
           <Link
-            as={`/company/${pk}`}
+            as={`/company/${slug}`}
             href={"/company/[companyId]"}
             prefetch={false}
           >
@@ -102,24 +92,10 @@ const isAuth = useSelector(getIsSignInUserSelector)
           />
 
           <div className="campaigns_card_content_wrapper">
-            {/*<div className="campaigns_card_links_wrapper">*/}
-            {/*  <Image*/}
-            {/*    src={IconBag}*/}
-            {/*    alt="icon_bag"*/}
-            {/*    className="campaigns_card_icon"*/}
-            {/*  />*/}
-            {/*  <span className="campaigns_card_industry">{industry?.title}</span>*/}
-            {/*  <Image*/}
-            {/*    src={IconLocation}*/}
-            {/*    alt="icon_location"*/}
-            {/*    className="campaigns_card_icon"*/}
-            {/*  />*/}
-            {/*  <span className="campaigns_card_location">{country}</span>*/}
-            {/*</div>*/}
 
             <div className="campaigns_card_text_wrapper">
               <Link
-                as={`/company/${pk}`}
+                as={`/company/${slug}`}
                 href={"/company/[companyId]"}
                 prefetch={false}
               >

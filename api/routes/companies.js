@@ -32,8 +32,17 @@ class CompaniesCRUD extends CRUD {
     });
   }
 
-  getCompanyById(id) {
-    const url = `${this.url}/${id}/`;
+  getCompanyBySlag(slag) {
+    const url = `${this.url}/${slag}/`;
+
+    return this.request({
+      url,
+    });
+  }
+
+  getCompanyByName(data) {
+    const name = data.toLowerCase()
+    const url = `${this.url}/?slug=${name}`;
 
     return this.request({
       url,
