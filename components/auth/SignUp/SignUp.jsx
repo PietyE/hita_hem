@@ -11,7 +11,7 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-import {getMembershipAgreementDocument} from "redux/reducers/documents";
+// import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {checkEmailAndPassword, makeRequestForSignInWithBankId} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
@@ -25,7 +25,7 @@ const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
-  const documentUrl = useSelector(getMembershipAgreementDocument);
+  // const documentUrl = useSelector(getMembershipAgreementDocument);
   const isFetching = useSelector(getIsFetchingAuthSelector);
   const isQuizShow = useSelector(getShowQuiz)
 
@@ -62,7 +62,7 @@ const SignUp = ({ show }) => {
         .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .matches(passwordRegExp, t("errors.password_example"))
         .required(t("errors.password_required")),
-    is_agree: yup.bool().oneOf([true]),
+    // is_agree: yup.bool().oneOf([true]),
     confirm_password: yup.string().required(t("errors.confirm_password_required")).max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .when('password', {
           is: password => (password && password.length > 0 ? true : false),
@@ -171,35 +171,35 @@ const SignUp = ({ show }) => {
                       placeholder = {t("auth.sign_up.confirm_password_placeholder")}
                       iconClassName = "auth_password_eye"
                   />
-                  <label className = "sign_up_checkbox">
-                    <Field
-                        name = "is_agree"
-                        type = "checkbox"
-                        className = {
-                          touched.is_agree && errors.is_agree
-                              ? "sign_up_agreement_checkbox_warning"
-                              : "sign_up_agreement_checkbox"
-                        }
-                    />
-                    <span className = "checkmark"/>
-                    <span className = "sign_up_password_label">
-                {t("auth.sign_up.agreement_text")}
-              </span>
-                  </label>
-                  <a
-                      target = "_blank"
-                      rel = "noopener noreferrer"
-                      href = {documentUrl?.file || documentUrl?.url}
-                      className = "sign_up_password_link"
-                  >
-                    {t("auth.sign_up.agreement_link")}
-                  </a>
+              {/*    <label className = "sign_up_checkbox">*/}
+              {/*      <Field*/}
+              {/*          name = "is_agree"*/}
+              {/*          type = "checkbox"*/}
+              {/*          className = {*/}
+              {/*            touched.is_agree && errors.is_agree*/}
+              {/*                ? "sign_up_agreement_checkbox_warning"*/}
+              {/*                : "sign_up_agreement_checkbox"*/}
+              {/*          }*/}
+              {/*      />*/}
+              {/*      <span className = "checkmark"/>*/}
+              {/*      <span className = "sign_up_password_label">*/}
+              {/*  {t("auth.sign_up.agreement_text")}*/}
+              {/*</span>*/}
+              {/*    </label>*/}
+              {/*    <a*/}
+              {/*        target = "_blank"*/}
+              {/*        rel = "noopener noreferrer"*/}
+              {/*        href = {documentUrl?.file || documentUrl?.url}*/}
+              {/*        className = "sign_up_password_link"*/}
+              {/*    >*/}
+              {/*      {t("auth.sign_up.agreement_link")}*/}
+              {/*    </a>*/}
                   <CaptchaPrivacyBlock/>
                   <Button
                       type = "submit"
                       colorStyle = {"dark-green"}
                       className = "auth_button"
-                      disabled = {!values.is_agree}
+                      // disabled = {!values.is_agree}
                   >
                     {t("auth.sign_up.button")}
                   </Button>

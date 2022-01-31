@@ -58,7 +58,7 @@ import {
   setQuizErrors,
   setQuizIsPassed,
   setResponseFromApi,
-  setShowQuizForBankId
+  setTokenForQuizSocialsSignIn
 } from "../actions/user";
 import api from "api";
 import { getDocumentsWorker } from "./documents";
@@ -277,7 +277,7 @@ function* signInWithBankIdWorker({payload}) {
 
 
     }else{
-      yield put(setShowQuizForBankId(token))
+      yield put(setTokenForQuizSocialsSignIn(token))
       yield call(requestForQuiz)
     }
 

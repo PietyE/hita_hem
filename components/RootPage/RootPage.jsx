@@ -45,7 +45,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
-import {getIsShowQuizForBankId} from "../../redux/reducers/user";
+import {getTokenForQuizSocialsSignIn} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -165,7 +165,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
-    const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
+    const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
 
