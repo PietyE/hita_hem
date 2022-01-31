@@ -137,16 +137,16 @@ const Quiz = ({show, data}) => {
                     }
                 </div>
                 <footer className = 'quiz_footer'>
-                        <label className = "sign_up_checkbox">
+                        <label className = "quiz_checkbox">
                           <input
                               checked={isAgreementChecked}
                               name = "is_agree"
                               type = "checkbox"
-                              className = "sign_up_agreement_checkbox"
+                              className = "quiz_agreement_checkbox"
                               onChange={()=>setAgreement(!isAgreementChecked)}
                           />
                           <span className = "checkmark"/>
-                          <span className = "sign_up_password_label">
+                          <span className = "quiz_agreement_text">
                       {t("auth.sign_up.agreement_text")}
                     </span>
                         </label>
@@ -154,7 +154,7 @@ const Quiz = ({show, data}) => {
                             target = "_blank"
                             rel = "noopener noreferrer"
                             href = {documentUrl?.file || documentUrl?.url}
-                            className = "sign_up_password_link"
+                            className = "quiz_agreement_link"
                         >
                           {t("auth.sign_up.agreement_link")}
                         </a>
