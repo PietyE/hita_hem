@@ -40,7 +40,7 @@ const CommentItem = ({ data, className, complete }) => {
                   layout = "fill"
                   objectFit = "cover"
                   // priority = {true}
-                  alt = "User avatar"
+                  alt = {data?.user?.image ? 'User avatar' : ' '}
               />
           )}
         </div>

@@ -61,7 +61,7 @@ const Idea = () => {
                 <>
                   {!!img1 && (
                     <ImageComponent
-                      alt="first photo"
+                      alt={img1 ? 'first image' : ' '}
                       src={img1}
                       className="mb-4"
                     />
@@ -77,7 +77,7 @@ const Idea = () => {
 
                   )}
                   {!!img2 && (
-                    <ImageComponent alt="second photo" src={img2} />
+                    <ImageComponent alt={img2 ? 'solution image' : ' '} src={img2} />
                     // <Image
                     // src = {img2}
                     // width='100vw'
@@ -95,7 +95,7 @@ const Idea = () => {
               <div className="idea_image_container">
                 {!!img1 && (
                    <ImageComponent
-                    alt="first photo"
+                    alt={img1 ? 'idea image' : ' '}
                     src={img1}
                     className="middle_foto"
                   />
@@ -113,7 +113,7 @@ const Idea = () => {
                 )}
                 {!!img2 && (
                   <ImageComponent
-                    alt="second photo"
+                    alt={img2 ? 'idea image 2' : ' '}
                     src={img2}
                     className="middle_foto"
                   />
@@ -131,7 +131,7 @@ const Idea = () => {
                 )}
                 {!!img3 && (
                   <ImageComponent
-                    alt="third photo"
+                    alt={img3 ? 'idea image 3' : ' '}
                     src={img3}
                     className="middle_foto"
                   />
@@ -149,7 +149,7 @@ const Idea = () => {
                 )}
                 {!!img4 && (
                   <ImageComponent
-                    alt="fourth photo"
+                    alt={img4 ? 'idea image 4' : ' '}
                     src={img4}
                     className="middle_foto"
                   />

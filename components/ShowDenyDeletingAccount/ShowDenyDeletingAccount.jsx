@@ -23,7 +23,7 @@ const ShowDenyDeletingAccount = ({show}) => {
             bodyClassName="successful_investment_modal_dialog_container"
         >
             <div className="successful_investment_icon_container">
-                <Image src={Icon} alt="warning" />
+                <Image src={Icon} alt={Icon ? 'warning icon' : ' '} />
             </div>
             <h2 className="successful_investment_title">
                 {t("denyDeletingAccount.title")}

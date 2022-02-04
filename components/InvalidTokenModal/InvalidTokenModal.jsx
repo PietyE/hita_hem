@@ -39,7 +39,7 @@ const InvalidTokenModal = ({show}) => {
             dialogClassName='quiz_error_dialog'
         >
             <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
-                <Image src={Icon} alt='icon'/>
+                <Image src={Icon} alt={Icon ? 'icon' : ' '}/>
             </div>
             <h2 className='successful_investment_title'>Ooops...</h2>
             <p className='successful_investment_text'>{t("invalid_token.text1")} <a onClick={handleClick} className='modal_link'>{t("invalid_token.link")}</a> {t("invalid_token.text2")}</p>

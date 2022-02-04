@@ -83,7 +83,7 @@ const FinArticle = ({ item }) => {
           <ImageComponent
             className="fin_article_image"
             src={img}
-            alt="article_img"
+            alt={img ? 'article image' : ' '}
           />
           //   <div className='fin_article_image' style={{  position: 'relative'}}>
           //

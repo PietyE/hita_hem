@@ -25,7 +25,7 @@ const SuccessfulRequestForChange = ({show}) => {
             dialogClassName='quiz_error_dialog'
         >
             <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
-                <Image src={Icon} alt='icon'/>
+                <Image src={Icon} alt= {Icon ? 'icon' : ' '} />
             </div>
             <h2 className='successful_investment_title'>{t("request_for_change.title")}</h2>
             <p className='successful_investment_text'>{t("request_for_change.text")}</p>

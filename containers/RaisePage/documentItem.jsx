@@ -15,7 +15,7 @@ const DocumentItem = ({ data, setFieldValue, values }) => {
     <li className="raise_form_file">
       <Image
         src={iconDocument}
-        alt="document_icon"
+        alt={iconDocument ? 'document icon' : ' '}
         className="raise_form_document_icon"
       />
       <span className="raise_form_file_text">{data}</span>

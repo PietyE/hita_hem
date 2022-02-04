@@ -23,7 +23,7 @@ const SuccessfulDeletedAccountModal = ({ show }) => {
       bodyClassName="successful_investment_modal_dialog_container"
     >
       <div className="successful_investment_icon_container">
-        <Image src={Icon} alt="icon" />
+        <Image src={Icon} alt={Icon ? 'icon' : ' '} />
       </div>
       <h2 className="successful_investment_title">
         {" "}

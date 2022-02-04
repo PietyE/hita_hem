@@ -88,7 +88,7 @@ const PersonalDetailsUpload = ({ setFieldValue, values }) => {
           <img
             ref={imageEl}
             className="profile_form_upload_avatar"
-            alt="user avatar"
+            alt={imageEl ? 'user avatar' : ' '}
             style={{
               display: hasAvatarUpload ? "flex" : "none",
             }}

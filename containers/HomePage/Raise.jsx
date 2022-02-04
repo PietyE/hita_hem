@@ -17,7 +17,7 @@ function Raise() {
               <div className="step_icon_wrapper">
                 <img
                   src={logo}
-                  alt="step_one_icon"
+                  alt={logo ? 'step icon' : ' '}
                   className="raise_step_icon"
                   loading="lazy"
                 />
