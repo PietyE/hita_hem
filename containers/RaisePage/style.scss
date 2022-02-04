@@ -293,6 +293,8 @@
   }
 
   .raise_form_container {
+    background-color: #f0f0ff;
+    padding-top: 30px;
     .raise_form_title {
       font-kerning: normal;
       font-family: 'Source sans Pro',Mulish, sans-serif;
@@ -303,6 +305,7 @@
       text-align: center;
       color: rgba(0, 0, 0, 0.87);
       padding: 0 10px;
+
     }
 
     .raise_form_description {
@@ -314,13 +317,13 @@
       text-align: center;
       color: #000;
 
-      margin-bottom: 40px;
+      margin-bottom: 10px;
       padding: 0 10px;
     }
 
     .raise_form_bottom_block {
       background-color: #f0f0ff;
-      padding-top: 35px;
+      padding-top: 20px;
       padding-bottom: 80px;
 
       .raise_bottom_block_icons_container {
