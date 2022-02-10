@@ -207,7 +207,7 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-        if(profile && !profile?.zip_code){
+        if(!isEmpty(profile) && !profile?.zip_code){
             dispatch(setShowPostalCodeNotification(true));
             return
                 }
