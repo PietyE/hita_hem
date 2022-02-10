@@ -230,6 +230,7 @@ function* signInWithGoogle({ payload }) {
 
     const response = yield call([auth, "signInWithGoogle"], {token: payload});
     yield put(setShowSessionSignUp(false));
+    yield put(setShowSignUp(false));
     yield call([localStorage,'removeItem'], '_expiredTime')
 
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
@@ -300,6 +301,7 @@ function* signInWithBankIdWorker({payload}) {
     yield put(setFetchingUsers(true));
     const response = yield call([auth, "loginWithBankId"], {grand_id_session:payload});
     yield put(setShowSessionSignUp(false));
+    yield put(setShowSignUp(false));
     const { data } = response;
     const { user, token } = data;
     if(user?.quiz){
