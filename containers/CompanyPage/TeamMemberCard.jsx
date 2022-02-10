@@ -26,7 +26,7 @@ const TeamMemberCard = ({ item }) => {
             {photo && <ImageComponent
                 className = "member_card_image"
                 src = {photo}
-                alt = "team mate photo"
+                alt = {photo ? "teammate photo" : ' '}
             />}
         </div>
 

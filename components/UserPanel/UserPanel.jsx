@@ -40,7 +40,7 @@ function UserPanel() {
                   layout = "fill"
                   objectFit = "cover"
                   priority = {true}
-                  alt = "avatar"
+                  alt = {user?.image ? 'avatar' : ' '}
               />
           )}
         </div>

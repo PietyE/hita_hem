@@ -30,7 +30,7 @@ const ShowConfirmationOfAccountDeletion = ({ show }) => {
       bodyClassName="deleting_account_modal_dialog_container"
     >
       <div className="deleting_account_icon_container">
-        <Image src={Icon} alt="icon" />
+        <Image src={Icon} alt={Icon ? 'icon' : ' '} />
       </div>
       <h2 className="deleting_account_title">
         {t("confirmationOfAccountDeletion.title")}

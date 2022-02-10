@@ -24,7 +24,7 @@ function CookieNotification() {
                             onClick={handleClick}
                     >&#215;</button>
                     <div className='cookie_icon_wrapper'>
-                        <Image  src={IconCookie} alt="cup" />
+                        <Image  src={IconCookie} alt={IconCookie ? 'cup icon' : ' '} />
                     </div>
                     <p className='cookie_text'>{t("cookie.text")} <a
                         className='cookie_link'

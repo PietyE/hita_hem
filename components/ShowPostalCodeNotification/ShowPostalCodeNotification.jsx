@@ -35,7 +35,7 @@ function ShowPostalCodeNotification({show}) {
             bodyClassName="successful_investment_modal_dialog_container"
         >
             <div className="successful_investment_icon_container">
-                <Image src={Icon} alt="warning" />
+                <Image src={Icon} alt={Icon ? 'warning icon' : ' '} />
             </div>
             <span className="successful_investment_text">
                 You need to add your Postal code, for it go to the <a className='successful_investment_link' onClick={handleClick}>Personal details</a>.

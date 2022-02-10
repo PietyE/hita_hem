@@ -27,7 +27,7 @@ function SuccessfulFaqPost({show}) {
             dialogClassName='faq_popup_dialog'
         >
             <div className="faq_popup_icon_container">
-                <Image src={Icon} alt='icon'/>
+                <Image src={Icon} alt={Icon ? 'icon' : ' '}/>
             </div>
             <h2 className='faq_popup_title'>{t("successfulFaqPopup.title")}</h2>
 

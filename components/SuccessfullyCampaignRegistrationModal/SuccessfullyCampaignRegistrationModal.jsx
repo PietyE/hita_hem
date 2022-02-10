@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import Modal from "components/ui/Modal";
 import { setShowSuccessfulCampaignRegistration } from "redux/actions/authPopupWindows";
 import IconCup from "./images/icon.svg";
+import Icon from "../ShowConfirmationOfAccountDeletion/images/icon.svg";
 
 const SuccessfullyCampaignRegistrationForm = ({ show }) => {
   const { t } = useTranslation();
@@ -22,7 +23,7 @@ const SuccessfullyCampaignRegistrationForm = ({ show }) => {
       bodyClassName="successful_sign_up_modal_dialog_container"
     >
       <div className="successful_sign_up_icon_container">
-        <Image src={IconCup} alt="cup" />
+        <Image src={IconCup} alt={Icon ? 'cup icon' : ' '}  />
       </div>
       <h2 className="successful_sign_up_title">
         {t("successful_campaign_registration.title")}

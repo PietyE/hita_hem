@@ -56,7 +56,7 @@ function TabAccordion({ isAuth }) {
             ref={ideaRef}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconLight} alt="idea_icon" />
+              <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
             </span>
             {t("tab_accordion.Idea")}
             <span className="tab_accordion_chevron">
@@ -80,7 +80,7 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconTeam} alt="team_icon" />
+              <Image src={iconTeam} alt={iconTeam ? 'team icon' : ' '} />
             </span>
             {t("tab_accordion.Team")}
             <span className="tab_accordion_chevron">
@@ -104,7 +104,7 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconChart} alt="chart_icon" />
+              <Image src={iconChart} alt={iconChart ? 'chart icon' : ' '} />
             </span>
             {t("tab_accordion.Financial_information")}
             <span className="tab_accordion_chevron">
@@ -128,7 +128,7 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconComments} alt="chart_icon" />
+              <Image src={iconComments} alt={iconComments ? 'comments icon' : ' '} />
             </span>
             {t("tab_accordion.FAQ")}
             <span className="tab_accordion_chevron">

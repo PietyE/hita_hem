@@ -18,7 +18,7 @@ const TopSection = ({ content = {} }) => {
                 layout = "fill"
                 objectFit = "cover"
                 priority = {true}
-                alt = 'photo'
+                alt = {img ? 'photo' : ' '}
                 className = "backgroung_pic"
             />)}
             {screenSize === 'laptop'&& img &&(
@@ -27,7 +27,7 @@ const TopSection = ({ content = {} }) => {
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
-                    alt = 'foto'
+                    alt = {img ? 'photo' : ' '}
                     className = "backgroung_pic"
                 />)}
             {screenSize === 'mobile' && img &&(
@@ -36,7 +36,7 @@ const TopSection = ({ content = {} }) => {
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
-                    alt = 'foto'
+                    alt = {img ? 'photo' : ' '}
                     className = "backgroung_pic"
                 />)}
           </div>

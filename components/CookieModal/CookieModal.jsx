@@ -9,6 +9,7 @@ import ButtonStyled from "../ui/Button";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import Cookies from "js-cookie";
 import {getUserIdSelector} from "../../redux/reducers/user";
+import Icon from "../../public/images/message.svg";
 
 
 function CookieModal({show}) {
@@ -41,7 +42,7 @@ function CookieModal({show}) {
         bodyClassName="cookie_modal_dialog_container"
     >
             <div className='cookie_icon_wrapper'>
-                <Image  src={IconCookie} alt="cup" />
+                <Image  src={IconCookie} alt={IconCookie ? 'cup icon' : ' '}  />
             </div>
             <p className='cookie_text'>{t("cookie.text")} <a
                     className='cookie_link'

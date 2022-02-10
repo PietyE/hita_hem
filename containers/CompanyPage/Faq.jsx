@@ -77,7 +77,7 @@ const Faq = () => {
             colorStyle="blue"
             className="faq_post_button_small g-recaptcha"
           >
-            <Image src={iconMessage} alt="message" />
+            <Image src={iconMessage} alt={iconMessage ? 'message icon' : ' '} />
           </Button>
         </form>
         <CaptchaPrivacyBlock className='faq_pos_captcha_text'/>
