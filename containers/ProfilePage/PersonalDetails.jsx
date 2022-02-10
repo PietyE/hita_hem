@@ -48,6 +48,10 @@ const PersonalDetails = ({
     const dispatch = useDispatch();
     const profile = useSelector(getProfile, isEqual);
     const language = useSelector(getSelectedLangSelector)
+    const documentUrl = useSelector(getPrivacyPolicyDocument);
+    const usersId = useSelector(getUserIdSelector)
+    const isBankIdResident = useSelector(getIsBankIdResident)
+
     let initialValues = {
         address: {
             country: "",
@@ -130,9 +134,7 @@ const PersonalDetails = ({
         [dispatch]
     );
 
-    const documentUrl = useSelector(getPrivacyPolicyDocument);
-    const usersId = useSelector(getUserIdSelector)
-    const isBankIdResident = useSelector(getIsBankIdResident)
+
 
 
     const handleInput = (e) => {
@@ -205,7 +207,7 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-        if(!profile?.zip_code){
+        if(profile && !profile?.zip_code){
             dispatch(setShowPostalCodeNotification(true));
             return
                 }

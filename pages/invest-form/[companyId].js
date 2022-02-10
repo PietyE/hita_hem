@@ -8,7 +8,7 @@ import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import SpinnerStyled from "components/ui/Spinner";
 import {
   clearCompany,
-  getCompanyById,
+  getCompanyByName,
   makePayment,
 } from "redux/actions/companies";
 import {
@@ -46,8 +46,11 @@ const InvestFormPage = () => {
   const userCanInvest = useSelector(canUserInvestSelector);
   const isAuth = useSelector(getIsSignInUserSelector);
   const isFetching = useSelector(getIsFetchingAuthSelector);
+
   useEffect(() => {
-    if (!isAuth || !userCanInvest  || isCompanyClosed) {
+
+    if (!isAuth || userCanInvest === 'false'  || isCompanyClosed) {
+
       history.push(HOME_ROUTE);
     }
   }, [isAuth, userCanInvest, isCompanyClosed,  history]);
@@ -62,7 +65,7 @@ const InvestFormPage = () => {
   );
   const _getCompanyDetail = useCallback(
     (id) => {
-      dispatch(getCompanyById(id));
+      dispatch(getCompanyByName(id));
     },
     [dispatch]
   );
