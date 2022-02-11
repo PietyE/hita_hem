@@ -24,6 +24,7 @@ import {
   SIGN_IN_WITH_BANK_ID,
   REQUEST_SIGN_IN_WITH_BANK_ID,
   SIGN_IN_WITH_GOOGLE,
+  SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
 } from "constants/actionsConstant";
 import { setSelectedLanguage } from "redux/actions/language";
 import {
@@ -31,7 +32,13 @@ import {
   setAuth,
   setToken,
   setProfile,
-  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanResetPassword, setCanChangePassword, setQuiz, getQuiz,
+  setFetchingUsers,
+  setCanChangeEmail,
+  cleanAuthData,
+  setCanResetPassword,
+  setCanChangePassword,
+  setQuiz,
+  setIsAthOnAndSaveUserProfile,
 } from "redux/actions/user";
 import {
   setShowSignIn,
@@ -52,10 +59,10 @@ import {
   setShowRequestForChangeEmail,
   setShowRequestForChangePassword, setShowFirstLoginPopup,
 } from "../actions/authPopupWindows";
-import {getCurrentPath, getUserIdSelector} from "../reducers/user";
+import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
-  setCurrentPath, setIsBankIdResident,
+  setIsBankIdResident,
   setQuizErrors,
   setQuizIsPassed,
   setResponseFromApi,
@@ -67,6 +74,10 @@ import {getSelectedLangSelector} from "../reducers/language";
 import {getRedirectUrl} from "../../utils/utils";
 
 const { auth } = api;
+
+
+
+
 
 export function* bootstarpWorker({ payload: initLang }) {
   try {
@@ -83,49 +94,42 @@ export function* bootstarpWorker({ payload: initLang }) {
     if (!initLang) {
       yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
     }
+      yield call(uploadUserData)
+    // const auth_data = yield call([localStorage, "getItem"], "auth_data");
+    // if (auth_data) {
+    //   const data = JSON.parse(auth_data);
+    //   const { expiration_timestamp, key: token } = data;
+    //   const nowTime = Math.floor(new Date().getTime() / 1000);
+    //
+    //   if (token && expiration_timestamp && nowTime < expiration_timestamp) {
+    //     yield call([api, "setToken"], token);
+    //     const response = yield call([auth, "getSelf"]);
+    //     if(response?.data?.is_bank_id_resident){
+    //       yield put(setIsBankIdResident(true))
+    //     }
+    //     if (response?.status !== 200) {
+    //       yield put(setAuth(false));
+    //       return;
+    //     }
+    //     if (response?.data?.profile?.date_of_birth) {
+    //       const profileCopy = prepareProfile(response.data.profile);
+    //       yield put(setProfile(profileCopy));
+    //     } else {
+    //       yield put(setProfile(response.data.profile));
+    //     }
+    //
+    //     yield put(setToken(token));
+    //     yield put(setAccount(response.data));
+    //     yield put(setAuth(true));
+    //
+    //   } else {
+    //     yield put(setAuth(false));
+    //   }
+    // } else {
+    //   yield put(setAuth(false));
+    // }
 
-    const auth_data = yield call([localStorage, "getItem"], "auth_data");
-    if (auth_data) {
-      const data = JSON.parse(auth_data);
-      const { expiration_timestamp, key: token } = data;
-      const nowTime = Math.floor(new Date().getTime() / 1000);
-
-      if (token && expiration_timestamp && nowTime < expiration_timestamp) {
-        yield call([api, "setToken"], token);
-        const response = yield call([auth, "getSelf"]);
-        if(response?.data?.is_bank_id_resident){
-          yield put(setIsBankIdResident(true))
-        }
-        if (response?.status !== 200) {
-          yield put(setAuth(false));
-          return;
-        }
-        if (response?.data?.profile?.date_of_birth) {
-          const profileCopy = prepareProfile(response.data.profile);
-          yield put(setProfile(profileCopy));
-        } else {
-          yield put(setProfile(response.data.profile));
-        }
-
-        yield put(setToken(token));
-        yield put(setAccount(response.data));
-        yield put(setAuth(true));
-
-      } else {
-        yield put(setAuth(false));
-      }
-    } else {
-      yield put(setAuth(false));
-    }
-
-    // const userId = yield select(getUserIdSelector)
-
- // if(userId) {
- //   const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
- //   isCookieAccepted = idToCheck? idToCheck?.includes(userId) : false
- // }else{
   const isCookieAccepted =  !!(yield call([Cookies, "get"], "cookie-agreed"))
- // }
 
     if(!isCookieAccepted){
       yield put(setShowCookiePopup(true))
@@ -189,32 +193,8 @@ function* signIn({ payload }) {
     }
 
     const { data } = response;
-    const { user, token } = data;
-    yield put(setAccount(user));
 
-      // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
-     // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
-    //
-    // if(!isCookieAccepted){
-    //   yield put(setShowCookiePopup(true))
-    // }
-    if (user?.profile?.date_of_birth) {
-      const profileCopy = prepareProfile(user.profile);
-      yield put(setProfile(profileCopy));
-    } else {
-      if (user?.profile) {
-        yield put(setProfile(user.profile));
-      }
-    }
-
-    yield put(setToken(token));
-    yield put(setAuth(true));
-    yield call([api, "setToken"], token.key);
-    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
-    yield call([localStorage, "setItem"], "auth_data", authData);
-
-    yield put(setShowSignIn(false));
-    yield put(clearErrors())
+    yield put(setIsAthOnAndSaveUserProfile(data) )
   } catch (error) {
     const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
     yield put(
@@ -224,6 +204,7 @@ function* signIn({ payload }) {
     yield put(setFetchingUsers(false));
   }
 }
+
 function* signInWithGoogle({ payload }) {
   try {
     yield put(setFetchingUsers(true));
@@ -232,6 +213,7 @@ function* signInWithGoogle({ payload }) {
     yield put(setShowSessionSignUp(false));
     yield put(setShowSignUp(false));
     yield put(setShowSignIn(false));
+
     yield call([localStorage,'removeItem'], '_expiredTime')
 
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
@@ -245,23 +227,7 @@ function* signInWithGoogle({ payload }) {
     const { data } = response;
     const { user, token } = data;
     if(user?.quiz){
-      yield put(setAccount(user));
-      if (user?.profile?.date_of_birth) {
-        const profileCopy = prepareProfile(user?.profile);
-        yield put(setProfile(profileCopy));
-      } else {
-        if (user?.profile) {
-          yield put(setProfile(user.profile));
-        }
-      }
-      yield put(setToken(token));
-      yield put(setAuth(true));
-      yield call([api, "setToken"], token.key);
-      const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
-      yield call([localStorage, "setItem"], "auth_data", authData);
-
-      yield put(setShowSignIn(false));
-      yield put(clearErrors())
+      yield put(setIsAthOnAndSaveUserProfile(data) )
     }else{
       yield put(setTokenForQuizSocialsSignIn(token))
       yield call(requestForQuiz)
@@ -306,26 +272,7 @@ function* signInWithBankIdWorker({payload}) {
     const { data } = response;
     const { user, token } = data;
     if(user?.quiz){
-      // const path = yield call(getCurrentPath)
-      // console.log('path', path)
-      yield put(setAccount(user));
-      if (user?.profile?.date_of_birth) {
-        const profileCopy = prepareProfile(user?.profile);
-        yield put(setProfile(profileCopy));
-      } else {
-        if (user?.profile) {
-          yield put(setProfile(user.profile));
-        }
-      }
-
-      yield put(setToken(token));
-      yield put(setAuth(true));
-      yield call([api, "setToken"], token.key);
-      const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
-      yield call([localStorage, "setItem"], "auth_data", authData);
-
-      yield put(setShowSignIn(false));
-      yield put(clearErrors())
+      yield put(setIsAthOnAndSaveUserProfile(data) )
       const current_href = yield call([localStorage, "getItem"], "current_href");
       yield call([localStorage,'removeItem'], 'current_href')
       window.open(current_href, '_self');
@@ -433,9 +380,6 @@ function* requestForResetUserPassword({ payload }) {
       setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification,
       })
     );
-    // if(error?.response?.status === 400){
-    //     yield put(setNotificationMessage(error.response.data.user[0]))
-    // }
   } finally {
     yield put(setFetchingUsers(false));
   }
@@ -735,6 +679,74 @@ function* checkEmailAndPassword({payload}) {
   }
 }
 
+
+
+function* uploadUserData() {
+  try{
+    const auth_data = yield call([localStorage, "getItem"], "auth_data");
+    if (auth_data) {
+      const data = JSON.parse(auth_data);
+      const { expiration_timestamp, key: token } = data;
+      const nowTime = Math.floor(new Date().getTime() / 1000);
+
+      if (token && expiration_timestamp && nowTime < expiration_timestamp) {
+        yield call([api, "setToken"], token);
+        const response = yield call([auth, "getSelf"]);
+        if(response?.data?.is_bank_id_resident){
+          yield put(setIsBankIdResident(true))
+        }
+        if (response?.status !== 200) {
+          yield put(setAuth(false));
+          return;
+        }
+        if (response?.data?.profile?.date_of_birth) {
+          const profileCopy = prepareProfile(response.data.profile);
+          yield put(setProfile(profileCopy));
+        } else {
+          yield put(setProfile(response.data.profile));
+        }
+
+        yield put(setToken(token));
+        yield put(setAccount(response.data));
+        yield put(setAuth(true));
+
+      } else {
+        yield put(setAuth(false));
+      }
+    } else {
+      yield put(setAuth(false));
+    }
+  }
+  catch{
+    yield put(
+        setAuthError({ status: error.response.status, data: error.response.data })
+    );
+  }
+}
+
+function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
+  const { user, token } = payload;
+  yield put(setAccount(user));
+
+  if (user?.profile?.date_of_birth) {
+    const profileCopy = prepareProfile(user.profile);
+    yield put(setProfile(profileCopy));
+  } else {
+    if (user?.profile) {
+      yield put(setProfile(user.profile));
+    }
+  }
+
+  yield put(setToken(token));
+  yield put(setAuth(true));
+  yield call([api, "setToken"], token.key);
+  const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+  yield call([localStorage, "setItem"], "auth_data", authData);
+
+  yield put(setShowSignIn(false));
+  yield put(clearErrors())
+}
+
 function* clean() {
   yield put(setAccount({}));
   yield put(setToken({}));
@@ -786,6 +798,7 @@ export function* userWorker() {
   yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
   yield takeEvery(  REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
   yield takeEvery(  SIGN_IN_WITH_GOOGLE, signInWithGoogle)
+  yield takeEvery(SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,setIsAuthOnAndSaveUserProfileWatcher)
 
 
 
