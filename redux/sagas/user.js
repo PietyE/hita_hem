@@ -231,6 +231,7 @@ function* signInWithGoogle({ payload }) {
     const response = yield call([auth, "signInWithGoogle"], {token: payload});
     yield put(setShowSessionSignUp(false));
     yield put(setShowSignUp(false));
+    yield put(setShowSignIn(false));
     yield call([localStorage,'removeItem'], '_expiredTime')
 
     const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
@@ -275,7 +276,6 @@ function* signInWithGoogle({ payload }) {
   }
 }
 
-
 function* makeRequestForSignInWithBankIdWorker() {
   try {
     yield call([localStorage, "setItem"], "current_href", window?.location?.href);
@@ -302,6 +302,7 @@ function* signInWithBankIdWorker({payload}) {
     const response = yield call([auth, "loginWithBankId"], {grand_id_session:payload});
     yield put(setShowSessionSignUp(false));
     yield put(setShowSignUp(false));
+    yield put(setShowSignIn(false));
     const { data } = response;
     const { user, token } = data;
     if(user?.quiz){
@@ -345,8 +346,6 @@ function* signInWithBankIdWorker({payload}) {
     yield put(setFetchingUsers(false));
   }
 }
-
-
 
 function* logout({payload}) {
   try {
@@ -644,13 +643,30 @@ function* requestForCheckingQuiz({payload}) {
     const response = yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
     yield call([api, "setToken"], response?.data?.token?.key);
     yield put(setTokenForQuizSocialsSignIn(false))
-    // const path = yield call(getCurrentPath)
-    yield call(getProfileFromApi)
-    if(response?.data?.user?.is_bank_id_resident){
-      const current_href = yield call([localStorage, "getItem"], "current_href");
-      window.open(current_href, '_self');
-      yield call([localStorage,'removeItem'], 'current_href')
-    }
+    // yield  call(getProfileFromApi)
+    const authData = JSON.stringify({key:response?.data?.token.key, expiration_timestamp:response?.data?.token.expiration_timestamp});
+    yield call([localStorage, "setItem"], "auth_data", authData);
+      const res = yield call([auth, "getSelf"]);
+      if(res?.data?.is_bank_id_resident){
+        yield put(setIsBankIdResident(true))
+      }
+      if (res?.status !== 200) {
+        yield put(setAuth(false));
+        return;
+      }
+      if (res?.data?.profile?.date_of_birth) {
+        const profileCopy = prepareProfile(res.data.profile);
+        yield put(setProfile(profileCopy));
+      } else {
+        yield put(setProfile(res.data.profile));
+      }
+
+      yield put(setToken(response?.data?.token));
+      yield put(setAccount(res.data));
+      yield put(setAuth(true));
+
+
+
 
   } catch (error) {
     if(error?.response?.data?.questions){
@@ -689,9 +705,6 @@ function* passwordResetTokenVerificationRequest({payload}) {
   }
 }
 
-
-
-
 function* activationTokenVerificationRequest({payload}) {
   try {
     yield put(setFetchingUsers(true));
@@ -721,10 +734,6 @@ function* checkEmailAndPassword({payload}) {
     yield put(setFetchingUsers(false));
   }
 }
-
-
-
-
 
 function* clean() {
   yield put(setAccount({}));
