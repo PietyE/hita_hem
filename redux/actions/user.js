@@ -40,6 +40,7 @@ import {
   SET_CURRENT_PATH,
   SET_IS_BANK_ID_RESIDENT,
   SIGN_IN_WITH_GOOGLE,
+  SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -238,5 +239,10 @@ export const setIsBankIdResident = payload => ({
 
 export const signInWithGoogle = payload => ({
   type: SIGN_IN_WITH_GOOGLE,
+  payload
+})
+
+export const setIsAthOnAndSaveUserProfile = payload => ({
+  type: SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
   payload
 })
