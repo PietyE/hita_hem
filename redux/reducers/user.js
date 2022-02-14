@@ -98,7 +98,7 @@ export const getTokenForQuizSocialsSignIn = (state) => state.user.tokenForQuizSo
 export const getCurrentPath = (state) => state?.user?.currentPath;
 
 export const getIsBankIdResident = (state) => state?.user?.isBankIdResident;
-export const getIsSocialAccount = (state) => state?.user?.social_accounts;
+export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
 
 
 

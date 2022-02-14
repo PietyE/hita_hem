@@ -23,16 +23,15 @@ const AccountSettings = () => {
         {t("profile_page.account.title")}
       </h2>
       <div className="account_settings_form">
-          {!isBankIdResident || isEmpty(isSocialAccount)&&
+          {!isBankIdResident && isEmpty(isSocialAccount) &&
               (
-                  <><ResetEmail />
+                  <>
+                      <ResetEmail />
               <SplitLine className='account_settings_split_line'/>
               <AccountSettingsResetPassword />
               <SplitLine className='account_settings_split_line'/>
                   </>)
-
           }
-
           <p className="account_settings_text_delete" onClick={handleClickDelete}>
           {t("profile_page.account.text_delete")}
         </p>

@@ -222,7 +222,7 @@ function* signInWithGoogle({payload}) {
 
 function* makeRequestForSignInWithBankIdWorker() {
     try {
-        yield call([localStorage, "setItem"], "current_href", window?.location?.href);
+        yield call([localStorage, "setItem"], "current_pathname", window?.location?.pathname);
         yield put(setFetchingUsers(true));
         const language = yield select(getSelectedLangSelector)
         const link = getRedirectUrl(language)
@@ -243,7 +243,7 @@ function* makeRequestForSignInWithBankIdWorker() {
 function* signInWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload});
+        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data});
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
@@ -251,9 +251,9 @@ function* signInWithBankIdWorker({payload}) {
         const {user, token} = data;
         if (user?.quiz) {
             yield put(setIsAthOnAndSaveUserProfile(data))
-            const current_href = yield call([localStorage, "getItem"], "current_href");
-            yield call([localStorage, 'removeItem'], 'current_href')
-            window.open(current_href, '_self');
+            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+            yield call([localStorage, 'removeItem'], 'current_pathname')
+            payload?.action?.push(current_pathname)
 
 
         } else {
@@ -560,9 +560,15 @@ function* requestForQuiz() {
 }
 
 function* requestForCheckingQuiz({payload}) {
+    console.log(payload)
     try {
+        const dataForApi = {
+            answers: payload?.data?.answers,
+            is_agree: payload?.data?.is_agree,
+            bearer: payload?.data?.bearer,
+        }
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "checkQuizAnswers"], {token: payload?.token, data: payload?.data});
+        const response = yield call([auth, "checkQuizAnswers"], {token: payload?.token, data: dataForApi});
         yield call([api, "setToken"], response?.data?.token?.key);
         yield put(setTokenForQuizSocialsSignIn(false))
         // yield  call(getProfileFromApi)
@@ -581,10 +587,9 @@ function* requestForCheckingQuiz({payload}) {
         }
 
         if (res?.data?.is_bank_id_resident ) {
-            const current_href = yield call([localStorage, "getItem"], "current_href");
-            yield call([localStorage, 'removeItem'], 'current_href')
-            window.open(current_href, '_self');
-            // action.history.push(current_href)
+            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+            yield call([localStorage, 'removeItem'], 'current_pathname')
+            payload?.data?.action?.push(current_pathname)
         }
         if (res?.data?.profile?.date_of_birth) {
             const profileCopy = prepareProfile(res.data.profile);
@@ -599,6 +604,7 @@ function* requestForCheckingQuiz({payload}) {
 
 
     } catch (error) {
+        console.dir(error)
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))
             yield put(setShowQuizError(true))

@@ -12,19 +12,18 @@ import {
     getQuizIsPassedSelector
 } from "../../redux/reducers/user";
 import {checkQuizAnswers, setQuizErrors, signUp} from "../../redux/actions/user";
-import {getCompanyIdSelector} from "../../redux/reducers/companies";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {recaptcha} from "../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
+import {useRouter} from "next/router";
 
 const Quiz = ({show, data}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
-
+    const history = useRouter();
     const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
-    const companyId = useSelector(getCompanyIdSelector);
     const tokenForQuizSocialsSignIn = useSelector(getTokenForQuizSocialsSignIn)
     const documentUrl = useSelector(getMembershipAgreementDocument);
 
@@ -90,6 +89,7 @@ const Quiz = ({show, data}) => {
                     bearer: tokenForQuizSocialsSignIn,
                     answers: arrayOfAnswer,
                     is_agree: isAgreementChecked,
+                    action: history,
                 })
 
         }else{
