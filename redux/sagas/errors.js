@@ -37,9 +37,9 @@ function* errorHandler() {
             }
 
             yield call([api, "deleteToken"]);
-            // if (typeof window !== "undefined") {
-            //     window.location.reload();
-            // }
+            if (typeof window !== "undefined") {
+                window.location.reload();
+            }
             // re-login - fix next
             // yield put(setNotificationMessage('The token has expired. re-login'))
             break;

@@ -5,12 +5,14 @@ import AccountSettingsResetPassword from "./AccountSettingsResetPassword";
 import { useTranslation } from "react-i18next";
 import { setShowConfirmationOfAccountDeleting } from "redux/actions/authPopupWindows";
 import SplitLine from "../../components/ui/SplitLine";
-import {getIsBankIdResident} from "../../redux/reducers/user";
+import {getIsBankIdResident, getIsSocialAccount} from "../../redux/reducers/user";
+import isEmpty from "lodash/isEmpty";
 
 const AccountSettings = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
     const isBankIdResident = useSelector(getIsBankIdResident)
+    const isSocialAccount = useSelector(getIsSocialAccount)
 
     const handleClickDelete = () => {
       dispatch(setShowConfirmationOfAccountDeleting(true));
@@ -21,7 +23,7 @@ const AccountSettings = () => {
         {t("profile_page.account.title")}
       </h2>
       <div className="account_settings_form">
-          {!isBankIdResident &&
+          {!isBankIdResident || isEmpty(isSocialAccount)&&
               (
                   <><ResetEmail />
               <SplitLine className='account_settings_split_line'/>

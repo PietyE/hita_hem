@@ -177,8 +177,12 @@ export const getYoutubeId = (link) => {
 
 export const getRedirectUrl = (currentLanguage) => {
   let _link;
+  // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+  //   _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/authBankId`:`https://dev.accumeo.com/authBankId`
+  // }
+
   if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
-    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/authBankId`:`https://dev.accumeo.com/authBankId`
+    _link = currentLanguage === 'en'?`http://localhost:3000/en/authBankId`:`http://localhost:3000/authBankId`
   }
 
   if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
