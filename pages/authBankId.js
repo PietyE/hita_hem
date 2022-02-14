@@ -7,7 +7,6 @@ import SpinnerStyled from "../components/ui/Spinner";
 
 function AuthBankId() {
     const dispatch = useDispatch();
-    // const history = useRouter();
     const router = useRouter();
     const _signInWithBankId = useCallback(
         (data) => {
@@ -19,7 +18,7 @@ function AuthBankId() {
     useEffect(()=>{
         const sessionId = router?.query?.grandidsession
         if(sessionId){
-            _signInWithBankId(sessionId)
+            _signInWithBankId({data:sessionId, action:router})
         }else{
             router.push(HOME_ROUTE)
         }
@@ -28,6 +27,7 @@ function AuthBankId() {
 
     return (
         <>
+            <SpinnerStyled/>
             </>
     );
 }
