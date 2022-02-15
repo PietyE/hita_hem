@@ -12,7 +12,6 @@ import SpinnerStyled from "components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import {
   getCompanyBySlag,
-    getCompanyByName,
   clearCompany,
   setError404,
   resetCompanyTab, setRedirect,

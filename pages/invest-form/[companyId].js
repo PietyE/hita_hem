@@ -8,7 +8,7 @@ import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import SpinnerStyled from "components/ui/Spinner";
 import {
   clearCompany,
-  getCompanyByName,
+  getCompanyBySlag,
   makePayment,
 } from "redux/actions/companies";
 import {
@@ -65,7 +65,7 @@ const InvestFormPage = () => {
   );
   const _getCompanyDetail = useCallback(
     (id) => {
-      dispatch(getCompanyByName(id));
+      dispatch(getCompanyBySlag(id));
     },
     [dispatch]
   );
@@ -90,6 +90,7 @@ const InvestFormPage = () => {
   const paymentByCompany = useSelector(getTotalPaymentsByCompanySelector);
   const currency = useSelector(getBusinessCurrencySelector);
   const minimumInvestAmount = useSelector(getMinimumInvestAmountSelector)
+
 
   const shares = Math.floor(amount / price);
 

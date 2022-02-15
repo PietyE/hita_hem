@@ -37,6 +37,23 @@ module.exports = withBundleAnalyzer({
       },
     ]
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/investeringsmojligheter',
+  //       has: [
+  //         {
+  //           type: 'cookie',
+  //           key: 'NEXT_LOCALE',
+  //           value: 'en',
+  //         },
+  //       ],
+  //       permanent: false,
+  //       destination: '/investment-opportunities',
+  //     },
+  //
+  //   ]
+  // },
   async headers() {
     return [
       {
