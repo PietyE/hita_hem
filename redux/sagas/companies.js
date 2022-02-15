@@ -49,7 +49,7 @@ function* getCompaniesHeaderListWorker() {
       header_image: el?.header_image,
       percentage: el?.percentage,
       first_button_title: _title,
-      first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,
+      first_button_url: language === "en"?`/en/foretag/${el?.slug}`:`/foretag/${el?.slug}`,
     }));
     yield put(setInvestCompaniesList(investCampaignList));
   } catch (error) {
@@ -102,34 +102,7 @@ function* getCompanyBySlagWorker({ payload }) {
     yield put(setIsFetchingCompany(false));
   }
 }
-//
-// function* getCompanyByNameWorker({ payload }) {
-//
-//   try {
-//     yield put(setIsFetchingCompany(true));
-//
-//     const { data } = yield call([companies, "getCompanyByName"], payload);
-// if(Array.isArray(data) && !data?.length){
-//   yield put(setError404(true));
-//
-// }else{
-//   if(data[0].hidden_mode && typeof window !== 'undefined'){
-//     yield put(setRedirect(true))
-//   }
-//   yield put(setCompanyById(data[0]));
-// }
-//
-//   } catch (error) {
-//     yield put(
-//         setError({ status: error?.response?.status, data: error?.response?.data })
-//     );
-//     if (error?.response?.status === 404 || error?.response?.status === 500) {
-//       yield put(setError404(true));
-//     }
-//   } finally {
-//     yield put(setIsFetchingCompany(false));
-//   }
-// }
+
 
 function* addPost({ payload }) {
   try {
@@ -243,7 +216,6 @@ function* makePayment({ payload }) {
 export function* companiesSagaWatcher() {
   yield takeEvery(GET_COMPANIES_LIST, getCompaniesListWorker);
   yield takeEvery(GET_COMPANY_BY_SLAG, getCompanyBySlagWorker);
-  // yield takeEvery(GET_COMPANY_BY_NAME, getCompanyByNameWorker);
   yield takeEvery(GET_COMPANIES_HEADER_LIST, getCompaniesHeaderListWorker);
   yield takeEvery(ADD_POST, addPost);
   yield takeEvery(ADD_FAQ_ANSWER, addAnswer);

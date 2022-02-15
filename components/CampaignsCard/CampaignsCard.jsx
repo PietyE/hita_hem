@@ -6,16 +6,7 @@ import Image from "next/image";
 import { useTranslation } from "react-i18next";
 
 import StatusCompanyBadge from "../StatusCompany";
-import IconBag from "public/images/icon_bag.svg";
-import IconLocation from "public/images/icon_location.svg";
 import Progress from "../Proggres";
-import SplitLine from "../ui/SplitLine";
-import Button from "../ui/Button";
-
-import useMoneyFormat from "customHooks/useMoneyFormat";
-import {useSelector} from "react-redux";
-import {getIsSignInUserSelector} from "../../redux/reducers/user";
-
 
 const CampaignsCard = (props) => {
   const { t } = useTranslation();
@@ -30,6 +21,8 @@ const CampaignsCard = (props) => {
     percentage,
     left_date
   } = props?.content;
+
+
   return (
     <>
       {!!props?.content && (

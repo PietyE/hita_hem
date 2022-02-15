@@ -29,31 +29,66 @@ module.exports = withBundleAnalyzer({
       },
       {
         source: '/raise',
-        destination: '/sök-kapital',
+        destination: '/sok-kapital',
       },
-      {
-        source: '/company',
-        destination: '/foretag',
-      },
+      // {
+      //   source: '/company/:slug',
+      //   destination: '/foretag/:slug',
+      // },
     ]
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/investeringsmojligheter',
-  //       has: [
-  //         {
-  //           type: 'cookie',
-  //           key: 'NEXT_LOCALE',
-  //           value: 'en',
-  //         },
-  //       ],
-  //       permanent: false,
-  //       destination: '/investment-opportunities',
-  //     },
-  //
-  //   ]
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/investeringsmojligheter',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/investment-opportunities',
+      },
+      {
+        source: '/om-oss',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/about-us',
+      },
+      {
+        source: '/sok-kapital',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/raise',
+      },
+      // {
+      //   source: '/foretag/:slug*',
+      //   has: [
+      //     {
+      //       type: 'cookie',
+      //       key: 'NEXT_LOCALE',
+      //       value: 'en',
+      //     },
+      //   ],
+      //   permanent: false,
+      //   destination: '/company/',
+      // },
+    ]
+  },
   async headers() {
     return [
       {
