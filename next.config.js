@@ -17,7 +17,26 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "sv",
     localeDetection: false,
   },
-
+  async rewrites() {
+    return [
+      {
+        source: '/about-us',
+        destination: '/om-oss',
+      },
+      {
+        source: '/investment-opportunities',
+        destination: '/investeringsmojligheter',
+      },
+      {
+        source: '/raise',
+        destination: '/sök-kapital',
+      },
+      {
+        source: '/company',
+        destination: '/foretag',
+      },
+    ]
+  },
   async headers() {
     return [
       {

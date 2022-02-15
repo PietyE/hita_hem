@@ -21,28 +21,21 @@ const CampaignsCard = (props) => {
   const { t } = useTranslation();
   const { className } = props;
   const {
-    pk,
     logo,
     status,
-    country,
-    industry,
     title,
     short_description,
       images=[],
       slug,
-    goal,
-    currency,
     percentage,
     left_date
   } = props?.content;
-  const moneyFormat = useMoneyFormat()
-const isAuth = useSelector(getIsSignInUserSelector)
   return (
     <>
       {!!props?.content && (
           <Link
-              as={`/company/${slug}`}
-              href={"/company/[companyId]"}
+              as={`/foretag/${slug}`}
+              href={"/foretag/[companyId]"}
               prefetch={false}
           >
         <li className={`campaigns_card ${className}`}>
@@ -60,8 +53,8 @@ const isAuth = useSelector(getIsSignInUserSelector)
           
           {/*</Link>*/}
           <Link
-            as={`/company/${slug}`}
-            href={"/company/[companyId]"}
+            as={`/foretag/${slug}`}
+            href={"/foretag/[companyId]"}
             prefetch={false}
           >
             <span className="campaigns_card_logo" >
@@ -95,8 +88,8 @@ const isAuth = useSelector(getIsSignInUserSelector)
 
             <div className="campaigns_card_text_wrapper">
               <Link
-                as={`/company/${slug}`}
-                href={"/company/[companyId]"}
+                as={`/foretag/${slug}`}
+                href={"/foretag/[companyId]"}
                 prefetch={false}
               >
                 <h3 className="campaigns_card_title">{title}</h3>
@@ -127,8 +120,8 @@ const isAuth = useSelector(getIsSignInUserSelector)
             {/*  colorStyle="outline-green"*/}
             {/*  className="campaigns_card_button"*/}
             {/*  as={LinkStyled}*/}
-            {/*  to={`/company/${pk}`}*/}
-            {/*  title="This link leads to the company detail page"*/}
+            {/*  to={`/foretag/${pk}`}*/}
+            {/*  title="This link leads to the foretag detail page"*/}
             {/*>*/}
             {/*  {t("campaigns_card.button")}*/}
             {/*</Button>*/}
