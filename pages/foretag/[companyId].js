@@ -11,7 +11,7 @@ import MiddleSection from "containers/CompanyPage/MiddleSection";
 import SpinnerStyled from "components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import {
-  getCompanyById,
+  getCompanyBySlag,
   clearCompany,
   setError404,
   resetCompanyTab, setRedirect,
@@ -25,9 +25,11 @@ import {
 import {getCampaignSeoSelector} from "../../redux/reducers/companies";
 
 const CompanyPage = () => {
+
   const router = useRouter();
 
-  const companyId = router?.query?.companyId;
+  // const companyId = router?.query?.companyId;
+  const companyName = router?.query?.companyId;
 
   const dispatch = useDispatch();
   const isAuth = useSelector(getIsSignInUserSelector);
@@ -38,11 +40,19 @@ const CompanyPage = () => {
 
 
   const _getCompanyDetail = useCallback(
-    (id) => {
-      dispatch(getCompanyById(id));
+    (name) => {
+      dispatch(getCompanyBySlag(name));
     },
     [dispatch]
   );
+
+
+  // const _getCompanyDetail = useCallback(
+  //   (name) => {
+  //     dispatch(getCompanyByName(name));
+  //   },
+  //   [dispatch]
+  // );
 
   const _clearCompanyDetail = useCallback(() => {
     dispatch(clearCompany());
@@ -78,34 +88,41 @@ const CompanyPage = () => {
   },[isRedirectOnSelector])
 
   useEffect(()=>{
-    _getCompanyDetail(companyId)
+    // _getCompanyDetail(companyId)
+    _getCompanyDetail(companyName)
+
     return () => {
       _clearCompanyDetail();
       _resetCompanyTab();
     };
-  },[isAuth,companyId])
+  // },[isAuth,companyId])
+  },[isAuth,companyName])
 
   return (
     <>
        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
-      <div className="company-page-container">
-        <TopSection />
-        <CompanyInfo />
-        <ProjectInfo isAuth={isAuth} />
-        <MiddleSection isAuth={isAuth} />
-      </div>
+      { !isError404 && <div className = "company-page-container">
+        <TopSection/>
+        <CompanyInfo/>
+        <ProjectInfo isAuth = {isAuth}/>
+        <MiddleSection isAuth = {isAuth}/>
+      </div>}
     </>
   );
 };
 
 export const getServerSideProps = wrapper.getServerSideProps(
-  (store) =>
-    async ({ req, res, params, ...etc }) => {
-      store.dispatch(getCompanyById(params.companyId));
-      store.dispatch(END);
-      await store.sagaTask.toPromise();
-    }
+
+    (store) =>
+        async ({ req, res, params, ...etc }) => {
+          store.dispatch( getCompanyBySlag(params.companyId));
+
+          store.dispatch(END);
+
+          await store.sagaTask.toPromise();
+        }
+
 );
 
 export default CompanyPage;

@@ -1,6 +1,6 @@
 import {
   GET_COMPANIES_LIST,
-  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_SLAG,
   SET_COMPANIES_LIST,
   SET_COMPANY_BY_ID,
   CLEAR_COMPANY,
@@ -19,6 +19,7 @@ import {
   IS_MORE_COMPANIES,
   MAKE_PAYMENT,
   SET_IS_REDIRECT,
+  GET_COMPANY_BY_NAME,
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -41,8 +42,8 @@ export const getCompaniesHeaderList = (payload) => ({
   payload,
 });
 
-export const getCompanyById = (payload) => ({
-  type: GET_COMPANY_BY_ID,
+export const getCompanyBySlag = (payload) => ({
+  type: GET_COMPANY_BY_SLAG,
   payload,
 });
 
@@ -114,4 +115,8 @@ export const setRedirect = (payload) => ({
   payload,
 });
 
+export const getCompanyByName = (payload) => ({
+  type: GET_COMPANY_BY_NAME,
+  payload,
+});
 

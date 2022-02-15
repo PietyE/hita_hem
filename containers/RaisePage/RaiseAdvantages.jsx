@@ -21,8 +21,9 @@ const RaiseAdvantages = () => {
                   return (
                       <div key = {i} className = "raise_advantages_item">
                           <ImageComponent
-                              src = {el.logo}
-                              alt = "advantage_icon"
+                              src = {el?.logo}
+                              alt = {el?.logo ? "advantage icon" : ' '}
+
                               className = "raise_advantages_img"
                           />
                           <div className = "raise_advantages_item_text_wrapper">

@@ -29,7 +29,7 @@ const TopSection = () => {
             objectFit = "cover"
             priority = {true}
             className="company_top_section_foto"
-            alt = "Company photo"
+            alt = {img ? 'company photo' : ' '}
         />)}
         {screenSize === 'laptop' && img &&
         (<Image
@@ -38,7 +38,7 @@ const TopSection = () => {
             objectFit = "cover"
             priority = {true}
             className="company_top_section_foto"
-            alt = "Company photo"
+            alt = {img ? 'company photo' : ' '}
         />)}
         {screenSize === 'mobile' && img &&
         (<Image
@@ -47,7 +47,7 @@ const TopSection = () => {
             objectFit = "cover"
             priority = {true}
             className="company_top_section_foto"
-            alt = "Company photo"
+            alt = {img ? 'company photo' : ' '}
         />)}
 
         <div className='company_top_content_container'>

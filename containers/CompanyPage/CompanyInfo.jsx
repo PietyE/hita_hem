@@ -42,7 +42,7 @@ const CompanyInfo = () => {
             objectFit = "cover"
             priority = {true}
 
-            alt = "Company logo"
+            alt = {logoUrl ? 'Company logo' : ' '}
         />)}
       </div>
       <div className="company_info_sig_container">

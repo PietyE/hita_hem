@@ -5,6 +5,7 @@ import IconCup from "./images/icon.svg";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { setShowSuccessfulResetPassword } from "../../redux/actions/authPopupWindows";
+import Icon from "../ShowConfirmationOfAccountDeletion/images/icon.svg";
 
 const SuccessfulResetPassword = ({ show }) => {
   const { t } = useTranslation();
@@ -23,7 +24,7 @@ const SuccessfulResetPassword = ({ show }) => {
       bodyClassName="successful_investment_modal_dialog_container"
     >
       <div className="successful_investment_icon_container">
-        <Image src={IconCup} alt="cup" />
+        <Image src={IconCup} alt={Icon ? 'cup icon' : ' '} />
       </div>
       <h2 className="successful_investment_title">
         {t("successful_reset_password.title")}

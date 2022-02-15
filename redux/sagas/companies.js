@@ -1,14 +1,13 @@
 import { call, put, select, takeEvery } from "redux-saga/effects";
-import { useRouter } from "next/router";
 
 import {
   GET_COMPANIES_LIST,
-  GET_COMPANY_BY_ID,
+  GET_COMPANY_BY_SLAG,
   GET_COMPANIES_HEADER_LIST,
   ADD_POST,
   GET_POSTS,
   ADD_FAQ_ANSWER,
-  MAKE_PAYMENT,
+  MAKE_PAYMENT, GET_COMPANY_BY_NAME,
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,
@@ -41,7 +40,7 @@ function* getCompaniesHeaderListWorker() {
     const language = yield select(getSelectedLangSelector);
     const _title =
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
-    const investCampaignList = data?.results?.map((el) => ({
+    const investCampaignList = data?.map((el) => ({
       pk: el?.pk,
       status: el?.status,
       title: el?.investment_page_title,
@@ -50,7 +49,7 @@ function* getCompaniesHeaderListWorker() {
       header_image: el?.header_image,
       percentage: el?.percentage,
       first_button_title: _title,
-      first_button_url: language === "en"?`/company/${el?.pk}`:`/sv/company/${el?.pk}`,
+      first_button_url: language === "en"?`/en/foretag/${el?.slug}`:`/foretag/${el?.slug}`,
     }));
     yield put(setInvestCompaniesList(investCampaignList));
   } catch (error) {
@@ -83,15 +82,14 @@ function* getCompaniesListWorker({ payload }) {
   }
 }
 
-function* getCompanyByIdWorker({ payload }) {
+function* getCompanyBySlagWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
-    const { data } = yield call([companies, "getCompanyById"], payload);
-
+    const { data } = yield call([companies, "getCompanyBySlag"], payload);
     if(data?.hidden_mode && typeof window !== 'undefined'){
       yield put(setRedirect(true))
     }
-    
+
     yield put(setCompanyById(data));
   } catch (error) {
     yield put(
@@ -104,6 +102,7 @@ function* getCompanyByIdWorker({ payload }) {
     yield put(setIsFetchingCompany(false));
   }
 }
+
 
 function* addPost({ payload }) {
   try {
@@ -216,7 +215,7 @@ function* makePayment({ payload }) {
 
 export function* companiesSagaWatcher() {
   yield takeEvery(GET_COMPANIES_LIST, getCompaniesListWorker);
-  yield takeEvery(GET_COMPANY_BY_ID, getCompanyByIdWorker);
+  yield takeEvery(GET_COMPANY_BY_SLAG, getCompanyBySlagWorker);
   yield takeEvery(GET_COMPANIES_HEADER_LIST, getCompaniesHeaderListWorker);
   yield takeEvery(ADD_POST, addPost);
   yield takeEvery(ADD_FAQ_ANSWER, addAnswer);

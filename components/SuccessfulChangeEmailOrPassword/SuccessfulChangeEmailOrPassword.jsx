@@ -39,7 +39,7 @@ const SuccessfulChangeEmailOrPassword = ({show}) => {
             dialogClassName='quiz_error_dialog'
         >
             <div className="successful_investment_icon_container">
-                <Image src={Icon} alt='icon'/>
+                <Image src={Icon} alt={Icon ? 'icon' : ' '}/>
             </div>
             <h2 className='successful_investment_title'>{title}</h2>
             <p className='successful_investment_text'>{t("successful_change_email_or_password.text1")} <a onClick={handleClick} className='modal_link'>{t("successful_change_email_or_password.link")}</a> {t("successful_change_email_or_password.text2")}</p>

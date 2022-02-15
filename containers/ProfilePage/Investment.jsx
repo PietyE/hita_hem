@@ -6,6 +6,7 @@ import Button from "components/ui/Button";
 import { useTranslation } from "react-i18next";
 import {getSelectedLangSelector} from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getUrlForMyInvestments} from 'utils/utils'
 
 const Investment = () => {
   const { t } = useTranslation();
@@ -36,20 +37,7 @@ const Investment = () => {
         <ul className="profile_campaigns_list">
           {paymentsList?.length > 0 &&
             paymentsList?.map((payment, index) => {
-                let _link;
-                let textLink;
-                if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
-                    _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
-                    textLink = `https://accumeo.com/company/${payment.company_id}`
-                }
-                if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
-                    _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
-                    textLink =   `https://accumeo.com/company/${payment.company_id}`
-                }
-                if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-                    _link = currentLanguage === 'en'?`https://accumeo.com/company/${payment.company_id}`:`https://accumeo.com/sv/company/${payment.company_id}`
-                    textLink =   `https://accumeo.com/company/${payment.company_id}`
-                }
+                const {link, text_link} = getUrlForMyInvestments(currentLanguage, payment)
 
               return (
                 <li key={index} className="profile_campaigns_item">
@@ -59,10 +47,10 @@ const Investment = () => {
                     {payment.company_name}
                   </p>
                   <a
-                    href={_link}
+                    href={link}
                     className="profile_campaigns_table_item_text table_item_invest_link"
                   >
-                    {textLink}
+                    {text_link}
                   </a>
                   <p className="profile_campaigns_table_item_text table_item_invest_amount">
                     {payment.amount_currency} {moneyFormat.format(payment.amount)}

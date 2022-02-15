@@ -11,11 +11,14 @@ import { useTranslation } from "react-i18next";
 import {useSelector} from "react-redux";
 import {getSelectedLangSelector} from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getUrlForMyInvestments} from 'utils/utils'
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
   const currentLanguage = useSelector(getSelectedLangSelector);
   const moneyFormat = useMoneyFormat()
+
+
 
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
@@ -30,21 +33,9 @@ const MobileInvestment = ({ data }) => {
       <Accordion className="mobile_investments_container">
         {data?.length > 0 &&
           data?.map((payment, index) => {
-            let _link;
-            let textLink;
 
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = currentLanguage === 'en'?`https://accumeo.com/company/${payment.company_id}`:`https://accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
+            const {link, text_link} = getUrlForMyInvestments(currentLanguage, payment)
+
             return (
               <Card key={index} className="mobile_investments_card">
                 <Accordion.Toggle
@@ -75,8 +66,8 @@ const MobileInvestment = ({ data }) => {
                       <span className="mobile_investments_field_text">
                         {t("profile_page.investments.link")}
                       </span>
-                      <a href={_link} className="mobile_investments_field_link">
-                        {textLink}
+                      <a href={link} className="mobile_investments_field_link">
+                        {text_link}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">

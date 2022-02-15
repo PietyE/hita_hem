@@ -130,7 +130,7 @@ const TopSliderComponent = ({
                               layout = "fill"
                               objectFit = "cover"
                               priority = {true}
-                              alt = 'header image'
+                              alt = {img ? 'header image' : ' '}
 
                           />)}
                   {( screenSize === 'laptop' && img &&
@@ -139,7 +139,7 @@ const TopSliderComponent = ({
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
-                    alt = 'header image'
+                    alt = {img ? 'header image' : ' '}
 
                     />)}
                   {( screenSize === 'mobile' && img &&
@@ -148,7 +148,7 @@ const TopSliderComponent = ({
                     layout = "fill"
                     objectFit = "cover"
                     priority = {true}
-                    alt = 'header image'
+                    alt = {img ? 'header image' : ' '}
 
                     />)}
                     </div>

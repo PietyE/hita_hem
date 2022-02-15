@@ -1,730 +1,796 @@
-import { takeEvery, call, put, select } from "redux-saga/effects";
+import {takeEvery, call, put, select} from "redux-saga/effects";
 import i18n from "i18next";
 import Cookies from "js-cookie";
 import {
-  BOOTSTAP_ACTION,
-  SIGN_IN,
-  SIGN_UP,
-  CREATE_PROFILE,
-  CHANGE_PROFILE,
-  LOG_OUT,
-  RESET_PASSWORD,
-  CHANGE_PASSWORD,
-  CHANGE_EMAIL,
-  DELETE_ACCOUNT,
-  REQUEST_FOR_CHANGING_EMAIL,
-  REQUEST_FOR_CHANGING_PASSWORD,
-  REQUEST_FOR_RESET_PASSWORD,
-  CHECK_TOKEN, CLEAN_AUTH_DATA,
-  GET_QUIZ, CHECK_QUIZ_ANSWERS,
-  GET_PROFILE_FROM_API,
-  CHECK_TOKEN_FOR_RESET_PASSWORD,
-  CHECK_ACTIVATION_TOKEN, 
-  CHECK_EMAIL_AND_PASSWORD,
-  SIGN_IN_WITH_BANK_ID,
-  REQUEST_SIGN_IN_WITH_BANK_ID,
+    BOOTSTAP_ACTION,
+    SIGN_IN,
+    SIGN_UP,
+    CREATE_PROFILE,
+    CHANGE_PROFILE,
+    LOG_OUT,
+    RESET_PASSWORD,
+    CHANGE_PASSWORD,
+    CHANGE_EMAIL,
+    DELETE_ACCOUNT,
+    REQUEST_FOR_CHANGING_EMAIL,
+    REQUEST_FOR_CHANGING_PASSWORD,
+    REQUEST_FOR_RESET_PASSWORD,
+    CHECK_TOKEN, CLEAN_AUTH_DATA,
+    GET_QUIZ, CHECK_QUIZ_ANSWERS,
+    GET_PROFILE_FROM_API,
+    CHECK_TOKEN_FOR_RESET_PASSWORD,
+    CHECK_ACTIVATION_TOKEN,
+    CHECK_EMAIL_AND_PASSWORD,
+    SIGN_IN_WITH_BANK_ID,
+    REQUEST_SIGN_IN_WITH_BANK_ID,
+    SIGN_IN_WITH_GOOGLE,
+    SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
 } from "constants/actionsConstant";
-import { setSelectedLanguage } from "redux/actions/language";
+import {setSelectedLanguage} from "redux/actions/language";
 import {
-  setAccount,
-  setAuth,
-  setToken,
-  setProfile,
-  setFetchingUsers, setCanChangeEmail, cleanAuthData, setCanResetPassword, setCanChangePassword, setQuiz, getQuiz,
+    setAccount,
+    setAuth,
+    setToken,
+    setProfile,
+    setFetchingUsers,
+    setCanChangeEmail,
+    cleanAuthData,
+    setCanResetPassword,
+    setCanChangePassword,
+    setQuiz,
+    setIsAthOnAndSaveUserProfile,
 } from "redux/actions/user";
 import {
-  setShowSignIn,
-  setShowSignUp,
+    setShowSignIn,
+    setShowSignUp,
     setShowSessionSignUp,
-  setShowSuccessfulSignUp,
-  setShowSuccessfulResetPassword,
-  setShowResetPassword,
-  setShowSuccessfulDeletedAccount,
-  setShowConfirmationOfAccountDeleting,
-  setShowInvalidTokenModal,
-  setShowChangeEmailOrPassword,
-  setChangeEmailOrPasswordText,
-  setShowQuiz,
-  setShowQuizError,
-  setShowCookiePopup,
-  setShowDenyDeletingAccount,
-  setShowRequestForChangeEmail,
-  setShowRequestForChangePassword, setShowFirstLoginPopup,
+    setShowSuccessfulSignUp,
+    setShowSuccessfulResetPassword,
+    setShowResetPassword,
+    setShowSuccessfulDeletedAccount,
+    setShowConfirmationOfAccountDeleting,
+    setShowInvalidTokenModal,
+    setShowChangeEmailOrPassword,
+    setChangeEmailOrPasswordText,
+    setShowQuiz,
+    setShowQuizError,
+    setShowCookiePopup,
+    setShowDenyDeletingAccount,
+    setShowRequestForChangeEmail,
+    setShowRequestForChangePassword, setShowFirstLoginPopup,
 } from "../actions/authPopupWindows";
-import {getCurrentPath, getUserIdSelector} from "../reducers/user";
+import {getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
-  setCurrentPath, setIsBankIdResident,
-  setQuizErrors,
-  setQuizIsPassed,
-  setResponseFromApi,
-  setShowQuizForBankId
+    setIsBankIdResident,
+    setQuizErrors,
+    setQuizIsPassed,
+    setResponseFromApi,
+    setTokenForQuizSocialsSignIn
 } from "../actions/user";
 import api from "api";
-import { getDocumentsWorker } from "./documents";
+import {getDocumentsWorker} from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
 import {getRedirectUrl} from "../../utils/utils";
 
-const { auth } = api;
-
-export function* bootstarpWorker({ payload: initLang }) {
-  try {
-    yield put(setFetchingUsers(true));
-
-    const systemLang = initLang || i18n.language;
-
-    yield call([api, "setLanguage"], systemLang);
-
-    yield put(setSelectedLanguage(systemLang));
+const {auth} = api;
 
 
+export function* bootstarpWorker({payload: initLang}) {
+    try {
+        yield put(setFetchingUsers(true));
 
-    if (!initLang) {
-      yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
-    }
+        const systemLang = initLang || i18n.language;
 
-    const auth_data = yield call([localStorage, "getItem"], "auth_data");
-    if (auth_data) {
-      const data = JSON.parse(auth_data);
-      const { expiration_timestamp, key: token } = data;
-      const nowTime = Math.floor(new Date().getTime() / 1000);
+        yield call([api, "setLanguage"], systemLang);
 
-      if (token && expiration_timestamp && nowTime < expiration_timestamp) {
-        yield call([api, "setToken"], token);
-        const response = yield call([auth, "getSelf"]);
-        if(response?.data?.is_bank_id_resident){
-          yield put(setIsBankIdResident(true))
+        yield put(setSelectedLanguage(systemLang));
+
+        if (!initLang) {
+            yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
         }
-        if (response?.status !== 200) {
-          yield put(setAuth(false));
-          return;
+        yield call(uploadUserData)
+
+        const isCookieAccepted = !!(yield call([Cookies, "get"], "cookie-agreed"))
+
+        if (!isCookieAccepted) {
+            yield put(setShowCookiePopup(true))
+        }
+
+        yield call(getDocumentsWorker);
+        yield put(clearErrors())
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error.response.status, data: error.response.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* signUp({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "signUp"], {token: payload.token, data: payload.data});
+        if (response.status === 201) {
+            yield put(setShowSignUp(false));
+            yield put(setShowSessionSignUp(false));
+            yield put(setShowQuiz(false));
+            yield put(setShowSuccessfulSignUp(true));
+        }
+        yield put(clearErrors())
+
+    } catch (error) {
+        if (error?.response?.data?.questions) {
+            yield put(setQuizErrors(error?.response?.data?.questions))
+            yield put(setShowQuizError(true))
+        } else {
+            if (error?.response?.data?.email || error?.response?.data?.password) {
+                yield put(setShowQuiz(false))
+            }
+            const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
+            yield put(
+                setAuthError({
+                    status: error.response.status,
+                    data: error.response.data,
+                    hideNotification: hideNotification
+                })
+            );
+        }
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* signIn({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+
+        const response = yield call([auth, "signIn"], {
+            token: payload.token,
+            data: payload.data,
+            session_key: session_key,
+        });
+
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
+
+        const {data} = response;
+
+        yield put(setIsAthOnAndSaveUserProfile(data))
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
+        yield put(
+            setAuthError({
+                status: error?.response?.status,
+                data: error?.response?.data,
+                hideNotification: hideNotification
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* signInWithGoogle({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+
+        const response = yield call([auth, "signInWithGoogle"], {token: payload});
+        yield put(setShowSessionSignUp(false));
+        yield put(setShowSignUp(false));
+        yield put(setShowSignIn(false));
+
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+
+
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
+
+        const {data} = response;
+        const {user, token} = data;
+        if (user?.quiz) {
+            yield put(setIsAthOnAndSaveUserProfile(data))
+        } else {
+            yield put(setTokenForQuizSocialsSignIn(token))
+            yield call(requestForQuiz)
+        }
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
+        yield put(
+            setAuthError({
+                status: error?.response?.status,
+                data: error?.response?.data,
+                hideNotification: hideNotification
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* makeRequestForSignInWithBankIdWorker() {
+    try {
+        yield call([localStorage, "setItem"], "current_pathname", window?.location?.pathname);
+        yield put(setFetchingUsers(true));
+        const language = yield select(getSelectedLangSelector)
+        const link = getRedirectUrl(language)
+        const response = yield call([auth, "requestLoginWithBankId"], `?callbackUrl=${link}`);
+        if (response?.data?.redirectUrl) {
+            window.open(response?.data?.redirectUrl, '_self');
+        }
+        // yield call(requestForQuiz)
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* signInWithBankIdWorker({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data});
+        yield put(setShowSessionSignUp(false));
+        yield put(setShowSignUp(false));
+        yield put(setShowSignIn(false));
+        const {data} = response;
+        const {user, token} = data;
+        if (user?.quiz) {
+            yield put(setIsAthOnAndSaveUserProfile(data))
+            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+            yield call([localStorage, 'removeItem'], 'current_pathname')
+            payload?.action?.push(current_pathname)
+
+
+        } else {
+            yield put(setTokenForQuizSocialsSignIn(token))
+            yield call(requestForQuiz)
+        }
+
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* logout({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "logOut"], {token: payload.token});
+        yield put(setIsBankIdResident(false))
+
+        yield call(clean);
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* createUserProfile({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "createProfile"], {token: payload.token, data: payload.data.profile});
+
+        if (payload.data.image) {
+            yield call([auth, "changeAvatar"], payload.data.image);
+        }
+
+        yield call(getProfileFromApi);
+        yield put(clearErrors())
+
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
+        yield put(
+            setProfileError({
+                status: error.response.status,
+                data: error.response.data,
+                hideNotification: hideNotification,
+
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* changeUserProfile({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "changeProfile"], {token: payload.token, data: payload.data.profile});
+        if (payload.data.image) {
+            yield call([auth, "changeAvatar"], payload.data.image);
+        } else if (payload.data.image === null) {
+            yield call([auth, "deleteAvatar"]);
+
+        }
+
+        yield call(getProfileFromApi);
+        yield put(clearErrors())
+
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
+        yield put(
+            setProfileError({
+                status: error.response.status,
+                data: error.response.data,
+                hideNotification: hideNotification,
+
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForResetUserPassword({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestForResetPassword"], {token: payload.token, data: {email: payload.data}});
+        yield put(setShowResetPassword(false));
+        yield put(setShowSuccessfulResetPassword(true));
+        yield put(clearErrors())
+
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user
+        yield put(
+            setAuthError({
+                status: error.response.status, data: error.response.data, hideNotification: hideNotification,
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* resetUserPassword({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "resetPassword"], {token: payload.token, data: payload.data});
+        const language = yield select(getSelectedLangSelector)
+        yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
+        yield put(setShowChangeEmailOrPassword(true))
+        yield put(setCanResetPassword(false))
+        yield put(clearErrors())
+        yield put(cleanAuthData())
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
+
+        yield put(
+            setAuthError({
+                status: error.response.status,
+                data: error.response.data,
+                hideNotification: hideNotification,
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* changeUserPassword({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "changePassword"], {token: payload.token, data: payload.data});
+        const language = yield select(getSelectedLangSelector)
+        yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
+        yield put(setShowChangeEmailOrPassword(true))
+        yield put(setCanChangePassword(false))
+        yield put(clearErrors())
+        yield put(cleanAuthData())
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.old_password || !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
+        yield put(
+            setAuthError({
+                status: error.response.status,
+                data: error.response.data,
+                hideNotification: hideNotification,
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* changeUserEmail({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "changeEmail"], {token: payload.token, data: payload.data});
+        yield put(setResponseFromApi(true));
+        const language = yield select(getSelectedLangSelector)
+        yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your mail has been successfully updated.' : 'Din mail har updateras.'))
+        yield put(setShowChangeEmailOrPassword(true))
+        yield put(setCanChangeEmail(false))
+        yield put(clearErrors())
+        yield put(cleanAuthData())
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user || !!error?.response?.data?.password
+
+        yield put(
+            setAuthError({
+                status: error?.response?.status,
+                data: error?.response?.data,
+                hideNotification: hideNotification,
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+export function* getProfileFromApi() {
+    try {
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "getSelf"]);
+        if (response?.data?.is_bank_id_resident) {
+            yield put(setIsBankIdResident(true))
+        }
+        if (response.status !== 200) {
+            yield put(setAuth(false));
+            return;
         }
         if (response?.data?.profile?.date_of_birth) {
-          const profileCopy = prepareProfile(response.data.profile);
-          yield put(setProfile(profileCopy));
+            const profileCopy = prepareProfile(response.data.profile);
+            yield put(setProfile(profileCopy));
         } else {
-          yield put(setProfile(response.data.profile));
+            yield put(setProfile(response.data.profile));
+        }
+        if (response?.data?.quiz) {
+            yield put(setQuizIsPassed(response.data.quiz));
+        }
+    } catch (error) {
+        yield put(
+            setAuthError({status: error.response.status, data: error.response.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+export function* deleteUserAccount() {
+    try {
+        yield put(setFetchingUsers(true));
+        let userId = yield select(getUserIdSelector);
+        yield call([auth, "deleteUser"], userId);
+        yield put(setShowConfirmationOfAccountDeleting(false));
+        yield put(setShowSuccessfulDeletedAccount(true));
+        yield call(clean);
+    } catch (error) {
+        if (error?.response?.status === 400 && error?.response?.data?.delete) {
+            yield put(setShowConfirmationOfAccountDeleting(false));
+            yield put(setShowDenyDeletingAccount(true))
+        } else {
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
         }
 
-        yield put(setToken(token));
-        yield put(setAccount(response.data));
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForChangingEmail({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestForChangingEmail"], {token: payload.token});
+        yield put(setShowRequestForChangeEmail(true));
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForChangingPassword({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestForChangingPassword"], {token: payload.token});
+        yield put(setShowRequestForChangePassword(true));
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForCheckingToken({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestForTokenVerification"], payload?.key);
+        if (payload?.type === 'email') {
+            yield put(setCanChangeEmail(true))
+        } else if (payload?.type === 'password') {
+            yield put(setCanChangePassword(true))
+        }
+        // else if(payload.type === 'reset-password'){
+        //   yield put(setCanResetPassword(true))
+        // }
+    } catch (error) {
+        if (error?.response?.status === 404) {
+            yield put(setShowInvalidTokenModal(true))
+        } else {
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
+        }
+
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForQuiz() {
+    try {
+        yield put(setFetchingUsers(true));
+        const res = yield call([auth, "requestForQuiz"]);
+        yield put(setQuiz(res?.data))
+        yield put(setShowQuiz(true))
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* requestForCheckingQuiz({payload}) {
+    try {
+        const dataForApi = {
+            answers: payload?.data?.answers,
+            is_agree: payload?.data?.is_agree,
+            bearer: payload?.data?.bearer,
+        }
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "checkQuizAnswers"], {token: payload?.token, data: dataForApi});
+        yield call([api, "setToken"], response?.data?.token?.key);
+        yield put(setTokenForQuizSocialsSignIn(false))
+        // yield  call(getProfileFromApi)
+        const authData = JSON.stringify({
+            key: response?.data?.token?.key,
+            expiration_timestamp: response?.data?.token?.expiration_timestamp
+        });
+        yield call([localStorage, "setItem"], "auth_data", authData);
+        const res = yield call([auth, "getSelf"]);
+        if (res?.data?.is_bank_id_resident) {
+            yield put(setIsBankIdResident(true))
+        }
+        if (res?.status !== 200) {
+            yield put(setAuth(false));
+            return;
+        }
+
+        if (res?.data?.is_bank_id_resident ) {
+            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+            yield call([localStorage, 'removeItem'], 'current_pathname')
+            payload?.data?.action?.push(current_pathname)
+        }
+        if (res?.data?.profile?.date_of_birth) {
+            const profileCopy = prepareProfile(res.data.profile);
+            yield put(setProfile(profileCopy));
+        } else {
+            yield put(setProfile(res.data.profile));
+        }
+
+        yield put(setToken(response?.data?.token));
+        yield put(setAccount(res.data));
         yield put(setAuth(true));
 
-      } else {
-        yield put(setAuth(false));
-      }
-    } else {
-      yield put(setAuth(false));
+
+    } catch (error) {
+        if (error?.response?.data?.questions) {
+            yield put(setQuizErrors(error?.response?.data?.questions))
+            yield put(setShowQuizError(true))
+        } else {
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
+        }
+
+
+    } finally {
+        yield put(setFetchingUsers(false));
     }
-
-    // const userId = yield select(getUserIdSelector)
-
- // if(userId) {
- //   const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
- //   isCookieAccepted = idToCheck? idToCheck?.includes(userId) : false
- // }else{
-  const isCookieAccepted =  !!(yield call([Cookies, "get"], "cookie-agreed"))
- // }
-
-    if(!isCookieAccepted){
-      yield put(setShowCookiePopup(true))
-    }
-
-    yield call(getDocumentsWorker);
-    yield put(clearErrors())
-
-  } catch (error) {
-    yield put(
-      setAuthError({ status: error.response.status, data: error.response.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
 }
 
-function* signUp({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    const response = yield call([auth, "signUp"], {token:payload.token, data: payload.data});
-    if (response.status === 201) {
-        yield put(setShowSignUp(false));
-        yield put(setShowSessionSignUp(false));
-      yield put (setShowQuiz(false));
-      yield put(setShowSuccessfulSignUp(true));
-    }
-    yield put(clearErrors())
+function* passwordResetTokenVerificationRequest({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestForPasswordResetTokenVerification"], payload);
+        yield put(setCanResetPassword(true))
+        yield call([api, "setToken"], payload?.key);
+    } catch (error) {
+        if (error?.response?.status === 401 || error?.response?.status === 404) {
+            yield put(setShowInvalidTokenModal(true))
+        } else {
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
+        }
 
-  } catch (error) {
-    if(error?.response?.data?.questions){
-      yield put(setQuizErrors(error?.response?.data?.questions))
-      yield put(setShowQuizError(true))
-    }else{
-      if(error?.response?.data?.email || error?.response?.data?.password){
-        yield put(setShowQuiz(false))
-      }
-      const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
-      yield put(
-          setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification })
-      );
+
+    } finally {
+        yield put(setFetchingUsers(false));
     }
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
 }
 
-function* signIn({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-
-    yield call([localStorage,'removeItem'], '_expiredTime')
-
-    const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
-    const session_key = session_key_from_LS || new Date().getTime();
-
-    const response = yield call([auth, "signIn"], {token:payload.token, data: payload.data, session_key: session_key,});
-
-    if(!session_key_from_LS){
-      yield call([localStorage, "setItem"], "x_session_key", session_key);
+function* activationTokenVerificationRequest({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "requestActivationTokenVerification"], payload);
+        yield put(setShowFirstLoginPopup(true))
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
     }
+}
 
-    const { data } = response;
-    const { user, token } = data;
+function* checkEmailAndPassword({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "checkEmailAndPassword"], payload);
+        yield call(requestForQuiz)
+    } catch (error) {
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
+
+        yield put(
+            setAuthError({
+                status: error?.response?.status,
+                data: error?.response?.data,
+                hideNotification: hideNotification
+            })
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+
+function* uploadUserData() {
+    try {
+        const auth_data = yield call([localStorage, "getItem"], "auth_data");
+        if (auth_data) {
+            const data = JSON.parse(auth_data);
+            const {expiration_timestamp, key: token} = data;
+            const nowTime = Math.floor(new Date().getTime() / 1000);
+
+            if (token && expiration_timestamp && nowTime < expiration_timestamp) {
+                yield call([api, "setToken"], token);
+                const response = yield call([auth, "getSelf"]);
+                if (response?.data?.is_bank_id_resident) {
+                    yield put(setIsBankIdResident(true))
+                }
+                if (response?.status !== 200) {
+                    yield put(setAuth(false));
+                    return;
+                }
+                if (response?.data?.profile?.date_of_birth) {
+                    const profileCopy = prepareProfile(response.data.profile);
+                    yield put(setProfile(profileCopy));
+                } else {
+                    yield put(setProfile(response.data.profile));
+                }
+
+                yield put(setToken(token));
+                yield put(setAccount(response.data));
+                yield put(setAuth(true));
+
+            } else {
+                yield put(setAuth(false));
+            }
+        } else {
+            yield put(setAuth(false));
+        }
+    } catch {
+        yield put(
+            setAuthError({status: error.response.status, data: error.response.data})
+        );
+    }
+}
+
+function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
+    const {user, token} = payload;
     yield put(setAccount(user));
 
-      // const idToCheck = yield call([Cookies, "get"], "cookie-agreed-user")
-     // const isCookieAccepted = idToCheck? idToCheck?.includes(user?.id) : false
-    //
-    // if(!isCookieAccepted){
-    //   yield put(setShowCookiePopup(true))
-    // }
     if (user?.profile?.date_of_birth) {
-      const profileCopy = prepareProfile(user.profile);
-      yield put(setProfile(profileCopy));
+        const profileCopy = prepareProfile(user.profile);
+        yield put(setProfile(profileCopy));
     } else {
-      if (user?.profile) {
-        yield put(setProfile(user.profile));
-      }
+        if (user?.profile) {
+            yield put(setProfile(user.profile));
+        }
     }
 
     yield put(setToken(token));
     yield put(setAuth(true));
     yield call([api, "setToken"], token.key);
-    const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
+    const authData = JSON.stringify({key: token.key, expiration_timestamp: token.expiration_timestamp});
     yield call([localStorage, "setItem"], "auth_data", authData);
 
     yield put(setShowSignIn(false));
     yield put(clearErrors())
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
-    yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data,  hideNotification: hideNotification  })
-      );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
 }
-
-function* makeRequestForSignInWithBankIdWorker() {
-  try {
-    yield call([localStorage, "setItem"], "current_href", window?.location?.href);
-    yield put(setFetchingUsers(true));
-    const language = yield select(getSelectedLangSelector)
-    const link= getRedirectUrl(language)
-    const response = yield call([auth, "requestLoginWithBankId"], `?callbackUrl=${link}`);
-    if(response?.data?.redirectUrl){
-      window.open(response?.data?.redirectUrl, '_self');
-    }
-    // yield call(requestForQuiz)
-  } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* signInWithBankIdWorker({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    const response = yield call([auth, "loginWithBankId"], {grand_id_session:payload});
-    const { data } = response;
-    const { user, token } = data;
-    if(user?.quiz){
-      // const path = yield call(getCurrentPath)
-      // console.log('path', path)
-      yield put(setAccount(user));
-      if (user?.profile?.date_of_birth) {
-        const profileCopy = prepareProfile(user?.profile);
-        yield put(setProfile(profileCopy));
-      } else {
-        if (user?.profile) {
-          yield put(setProfile(user.profile));
-        }
-      }
-
-      yield put(setToken(token));
-      yield put(setAuth(true));
-      yield call([api, "setToken"], token.key);
-      const authData = JSON.stringify({key:token.key, expiration_timestamp:token.expiration_timestamp});
-      yield call([localStorage, "setItem"], "auth_data", authData);
-
-      yield put(setShowSignIn(false));
-      yield put(clearErrors())
-      const current_href = yield call([localStorage, "getItem"], "current_href");
-      yield call([localStorage,'removeItem'], 'current_href')
-      window.open(current_href, '_self');
-
-
-    }else{
-      yield put(setShowQuizForBankId(token))
-      yield call(requestForQuiz)
-    }
-
-
-
-  } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-
-
-function* logout({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "logOut"], {token: payload.token});
-    yield put(setIsBankIdResident(false))
-
-    yield call(clean);
-  } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data})
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* createUserProfile({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "createProfile"], {token:payload.token, data: payload.data.profile});
-
-    if (payload.data.image) {
-      yield call([auth, "changeAvatar"], payload.data.image);
-    }
-
-    yield call(getProfileFromApi);
-    yield put(clearErrors())
-
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
-    yield put(
-        setProfileError({
-          status: error.response.status,
-          data: error.response.data,
-          hideNotification: hideNotification,
-
-        })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* changeUserProfile({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "changeProfile"], {token:payload.token, data: payload.data.profile});
-    if (payload.data.image) {
-      yield call([auth, "changeAvatar"], payload.data.image);
-    } else if(payload.data.image === null){
-      yield call([auth, "deleteAvatar"]);
-
-    }
-
-    yield call(getProfileFromApi);
-    yield put(clearErrors())
-
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
-    yield put(
-        setProfileError({
-          status: error.response.status,
-          data: error.response.data,
-          hideNotification: hideNotification,
-
-        })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForResetUserPassword({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestForResetPassword"], {token:payload.token, data: { email: payload.data }});
-    yield put(setShowResetPassword(false));
-    yield put(setShowSuccessfulResetPassword(true));
-    yield put(clearErrors())
-
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user
-    yield put(
-      setAuthError({ status: error.response.status, data: error.response.data, hideNotification: hideNotification,
-      })
-    );
-    // if(error?.response?.status === 400){
-    //     yield put(setNotificationMessage(error.response.data.user[0]))
-    // }
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* resetUserPassword({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "resetPassword"], {token:payload.token, data: payload.data});
-    const language = yield select(getSelectedLangSelector)
-    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
-    yield put(setShowChangeEmailOrPassword(true))
-    yield put(setCanResetPassword(false))
-    yield put(clearErrors())
-    yield put(cleanAuthData())
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
-
-    yield put(
-            setAuthError({
-              status: error.response.status,
-              data: error.response.data,
-              hideNotification: hideNotification,
-            })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* changeUserPassword({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "changePassword"], {token:payload.token, data: payload.data});
-    const language = yield select(getSelectedLangSelector)
-    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your password has been successfully updated.' : 'Ditt lösenord har uppdaterats.'))
-    yield put(setShowChangeEmailOrPassword(true))
-    yield put(setCanChangePassword(false))
-    yield put(clearErrors())
-    yield put(cleanAuthData())
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.old_password || !!error?.response?.data?.new_password1 || !!error?.response?.data?.new_password2
-      yield put(
-        setAuthError({
-          status: error.response.status,
-          data: error.response.data,
-          hideNotification: hideNotification,
-        })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* changeUserEmail({ payload }) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "changeEmail"], {token:payload.token, data: payload.data});
-    yield put(setResponseFromApi(true));
-    const language = yield select(getSelectedLangSelector)
-    yield put(setChangeEmailOrPasswordText(language === 'en' ? 'Your mail has been successfully updated.' : 'Din mail har updateras.'))
-    yield put(setShowChangeEmailOrPassword(true))
-    yield put(setCanChangeEmail(false))
-    yield put(clearErrors())
-    yield put(cleanAuthData())
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.user || !!error?.response?.data?.password
-
-    yield put(
-        setAuthError({
-          status: error?.response?.status,
-          data: error?.response?.data,
-          hideNotification: hideNotification,
-        })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-export function* getProfileFromApi() {
-  try {
-    yield put(setFetchingUsers(true));
-    const response = yield call([auth, "getSelf"]);
-    if(response?.data?.is_bank_id_resident){
-      yield put(setIsBankIdResident(true))
-    }
-    if (response.status !== 200) {
-      yield put(setAuth(false));
-      return;
-    }
-    if (response?.data?.profile?.date_of_birth) {
-      const profileCopy = prepareProfile(response.data.profile);
-      yield put(setProfile(profileCopy));
-    } else {
-      yield put(setProfile(response.data.profile));
-    }
-    if(response?.data?.quiz){
-      yield put(setQuizIsPassed(response.data.quiz));
-    }
-  } catch (error) {
-    yield put(
-      setAuthError({ status: error.response.status, data: error.response.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-export function* deleteUserAccount() {
-  try {
-    yield put(setFetchingUsers(true));
-    let userId = yield select(getUserIdSelector);
-    yield call([auth, "deleteUser"], userId);
-    yield put(setShowConfirmationOfAccountDeleting(false));
-    yield put(setShowSuccessfulDeletedAccount(true));
-    yield call(clean);
-  } catch (error) {
-    if(error?.response?.status === 400 && error?.response?.data?.delete){
-      yield put(setShowConfirmationOfAccountDeleting(false));
-      yield put(setShowDenyDeletingAccount(true))
-    }else{
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-    }
-
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForChangingEmail({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestForChangingEmail"], {token: payload.token});
-    yield put(setShowRequestForChangeEmail(true));
-  } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForChangingPassword({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestForChangingPassword"],{token: payload.token});
-    yield put(setShowRequestForChangePassword(true));
-  } catch (error) {
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForCheckingToken({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestForTokenVerification"], payload?.key);
-    if(payload?.type === 'email'){
-      yield put(setCanChangeEmail(true))
-    }else if(payload?.type === 'password'){
-      yield put(setCanChangePassword(true))
-    }
-    // else if(payload.type === 'reset-password'){
-    //   yield put(setCanResetPassword(true))
-    // }
-  } catch (error) {
-    if(error?.response?.status === 404){
-      yield put(setShowInvalidTokenModal(true))
-    }else{
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-    }
-
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForQuiz() {
-  try {
-    yield put(setFetchingUsers(true));
-    const res = yield call([auth, "requestForQuiz"]);
-    yield put(setQuiz(res?.data))
-    yield put(setShowQuiz(true))
-  } catch (error) {
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* requestForCheckingQuiz({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    const response = yield call([auth, "checkQuizAnswers"], {token:payload.token, data: payload.data});
-
-    yield call([api, "setToken"], response?.data?.token?.key);
-    yield put(setShowQuizForBankId(false))
-    // const path = yield call(getCurrentPath)
-
-    yield call(getProfileFromApi)
-    const current_href = yield call([localStorage, "getItem"], "current_href");
-    yield call([localStorage,'removeItem'], 'current_href')
-    window.open(current_href, '_self');
-
-  } catch (error) {
-    if(error?.response?.data?.questions){
-      yield put(setQuizErrors(error?.response?.data?.questions))
-      yield put(setShowQuizError(true))
-    }else{
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-    }
-
-
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* passwordResetTokenVerificationRequest({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestForPasswordResetTokenVerification"], payload);
-    yield put(setCanResetPassword(true))
-    yield call([api, "setToken"], payload?.key);
-  } catch (error) {
-    if(error?.response?.status === 401 || error?.response?.status === 404){
-      yield put(setShowInvalidTokenModal(true))
-    }else{
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-    }
-
-
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-
-
-
-function* activationTokenVerificationRequest({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "requestActivationTokenVerification"], payload);
-    yield put(setShowFirstLoginPopup(true))
-  } catch (error) {
-      yield put(
-          setAuthError({ status: error?.response?.status, data: error?.response?.data })
-      );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-function* checkEmailAndPassword({payload}) {
-  try {
-    yield put(setFetchingUsers(true));
-    yield call([auth, "checkEmailAndPassword"], payload);
-    yield call(requestForQuiz)
-  } catch (error) {
-    const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
-
-    yield put(
-        setAuthError({ status: error?.response?.status, data: error?.response?.data, hideNotification: hideNotification })
-    );
-  } finally {
-    yield put(setFetchingUsers(false));
-  }
-}
-
-
-
-
 
 function* clean() {
-  yield put(setAccount({}));
-  yield put(setToken({}));
-  yield put(setProfile({}));
-  yield put(setAuth(false));
-  yield call([api, "deleteToken"]);
-  yield call([localStorage, "removeItem"], "auth_data");
-  yield put(clearErrors())
-  const initLang = yield select(getSelectedLangSelector)
-  window.Intercom('shutdown')
-  window.Intercom('boot', {
-    app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
-    language_override: initLang,
-  })
+    yield put(setAccount({}));
+    yield put(setToken({}));
+    yield put(setProfile({}));
+    yield put(setAuth(false));
+    yield call([api, "deleteToken"]);
+    yield call([localStorage, "removeItem"], "auth_data");
+    yield put(clearErrors())
+    const initLang = yield select(getSelectedLangSelector)
+    window.Intercom('shutdown')
+    window.Intercom('boot', {
+        app_id: process.env.NEXT_PUBLIC_INTERCOM_APP_ID,
+        language_override: initLang,
+    })
 }
 
 const prepareProfile = (data) => {
-  const profileCopy = JSON.parse(JSON.stringify(data));
-  const dateArr = profileCopy.date_of_birth.split("-");
-  delete profileCopy.date_of_birth;
-  profileCopy.day = Number(dateArr[2]);
-  profileCopy.month = Number(dateArr[1]);
-  profileCopy.year = Number(dateArr[0]);
-  return profileCopy;
+    const profileCopy = JSON.parse(JSON.stringify(data));
+    const dateArr = profileCopy.date_of_birth.split("-");
+    delete profileCopy.date_of_birth;
+    profileCopy.day = Number(dateArr[2]);
+    profileCopy.month = Number(dateArr[1]);
+    profileCopy.year = Number(dateArr[0]);
+    return profileCopy;
 };
 
 export function* userWorker() {
-  yield takeEvery(BOOTSTAP_ACTION, bootstarpWorker);
-  yield takeEvery(SIGN_UP, signUp);
-  yield takeEvery(SIGN_IN, signIn);
-  yield takeEvery(LOG_OUT, logout);
-  yield takeEvery(CREATE_PROFILE, createUserProfile);
-  yield takeEvery(CHANGE_PROFILE, changeUserProfile);
-  yield takeEvery(RESET_PASSWORD, resetUserPassword);
-  yield takeEvery(REQUEST_FOR_RESET_PASSWORD, requestForResetUserPassword);
-  yield takeEvery(CHANGE_PASSWORD, changeUserPassword);
-  yield takeEvery(CHANGE_EMAIL, changeUserEmail);
-  yield takeEvery(DELETE_ACCOUNT, deleteUserAccount);
-  yield takeEvery(REQUEST_FOR_CHANGING_EMAIL, requestForChangingEmail);
-  yield takeEvery(REQUEST_FOR_CHANGING_PASSWORD, requestForChangingPassword);
-  yield takeEvery(CHECK_TOKEN, requestForCheckingToken)
-  yield takeEvery( CHECK_TOKEN_FOR_RESET_PASSWORD, passwordResetTokenVerificationRequest)
-  yield takeEvery(CLEAN_AUTH_DATA, clean)
-  yield takeEvery(GET_QUIZ, requestForQuiz)
-  yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
-  yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
-  yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
-  yield takeEvery(  CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
-  yield takeEvery(  SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
-  yield takeEvery(  REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
-
-
-
+    yield takeEvery(BOOTSTAP_ACTION, bootstarpWorker);
+    yield takeEvery(SIGN_UP, signUp);
+    yield takeEvery(SIGN_IN, signIn);
+    yield takeEvery(LOG_OUT, logout);
+    yield takeEvery(CREATE_PROFILE, createUserProfile);
+    yield takeEvery(CHANGE_PROFILE, changeUserProfile);
+    yield takeEvery(RESET_PASSWORD, resetUserPassword);
+    yield takeEvery(REQUEST_FOR_RESET_PASSWORD, requestForResetUserPassword);
+    yield takeEvery(CHANGE_PASSWORD, changeUserPassword);
+    yield takeEvery(CHANGE_EMAIL, changeUserEmail);
+    yield takeEvery(DELETE_ACCOUNT, deleteUserAccount);
+    yield takeEvery(REQUEST_FOR_CHANGING_EMAIL, requestForChangingEmail);
+    yield takeEvery(REQUEST_FOR_CHANGING_PASSWORD, requestForChangingPassword);
+    yield takeEvery(CHECK_TOKEN, requestForCheckingToken)
+    yield takeEvery(CHECK_TOKEN_FOR_RESET_PASSWORD, passwordResetTokenVerificationRequest)
+    yield takeEvery(CLEAN_AUTH_DATA, clean)
+    yield takeEvery(GET_QUIZ, requestForQuiz)
+    yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
+    yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
+    yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
+    yield takeEvery(CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
+    yield takeEvery(SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
+    yield takeEvery(REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
+    yield takeEvery(SIGN_IN_WITH_GOOGLE, signInWithGoogle)
+    yield takeEvery(SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE, setIsAuthOnAndSaveUserProfileWatcher)
 
 
 }

@@ -22,7 +22,7 @@ const AboutTeamSection = ({ content = [] }) => {
                             layout = "fill"
                             objectFit = "cover"
                             priority = {true}
-                            alt = "Photo"
+                            alt = {photo ? 'photo' : ' '}
                         />
                       </div>
 

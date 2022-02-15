@@ -48,6 +48,10 @@ const PersonalDetails = ({
     const dispatch = useDispatch();
     const profile = useSelector(getProfile, isEqual);
     const language = useSelector(getSelectedLangSelector)
+    const documentUrl = useSelector(getPrivacyPolicyDocument);
+    const usersId = useSelector(getUserIdSelector)
+    const isBankIdResident = useSelector(getIsBankIdResident)
+
     let initialValues = {
         address: {
             country: "",
@@ -67,6 +71,8 @@ const PersonalDetails = ({
         zip_code: '',
     };
 
+    const emailCheckForCreateProfile = isBankIdResident ? yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")) : yup.string()
+
     const personalDetailsCreateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string().required(t("errors.country_required")),
@@ -75,7 +81,7 @@ const PersonalDetails = ({
         }),
         first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.first_name_required")),
         second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.second_name_required")),
-        email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
+        email: emailCheckForCreateProfile,
         is_agree: yup.bool().oneOf([true]),
         day: yup.number().required(t("errors.day_required")),
         month: yup.number().required(t("errors.month_required")),
@@ -84,8 +90,7 @@ const PersonalDetails = ({
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
         zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).required(t("errors.zip_required"))
     })
-    const postalCodeCheck = type ? yup.string().matches(zipCodeRegExp, t("errors.zip_example")) : yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length)
-
+    const postalCodeCheckForUpdateProfile = type ? yup.string().matches(zipCodeRegExp, t("errors.zip_example")) : yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length)
     const personalDetailsUpdateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string(),
@@ -101,7 +106,7 @@ const PersonalDetails = ({
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
 
-        zip_code: postalCodeCheck,
+        zip_code: postalCodeCheckForUpdateProfile,
 
     })
 
@@ -129,9 +134,7 @@ const PersonalDetails = ({
         [dispatch]
     );
 
-    const documentUrl = useSelector(getPrivacyPolicyDocument);
-    const usersId = useSelector(getUserIdSelector)
-    const isBankIdResident = useSelector(getIsBankIdResident)
+
 
 
     const handleInput = (e) => {
@@ -192,10 +195,8 @@ const PersonalDetails = ({
         }
         return dataForApi;
     };
-
     const onSubmitProfile = (values) => {
         const dataForApi = prepareDataForApi(values);
-
         if (isEmpty(profile)) {
             recaptcha('create_profile', _createProfile, dataForApi)
             // _createProfile(dataForApi);
@@ -206,8 +207,7 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-
-        if(!profile?.zip_code){
+        if(!isEmpty(profile) && !profile?.zip_code){
             dispatch(setShowPostalCodeNotification(true));
             return
                 }
@@ -236,7 +236,6 @@ const PersonalDetails = ({
     }else{
         _footerStyles = isEmpty(profile) || type ? "profile_form_footer": 'profile_form_footer profile_form_footer_column'
     }
-
     const years = createYearList();
     return (
         <section className = {`profile_personal_details ${sectionClassName}`}>

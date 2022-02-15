@@ -44,8 +44,8 @@ const RaiseInstructionsBlock = ({ type }) => {
                   <div className="raise_item_icon_wrapper">
                     <img
                       className="raise_item_img"
-                      src={el.logo}
-                      alt="raise_item_img"
+                      src={el?.logo}
+                      alt={el?.logo ? 'raise instructions image' : ' '}
                       loading="lazy"
                     />
                   </div>

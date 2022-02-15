@@ -1,6 +1,7 @@
 export const BOOTSTAP_ACTION = "user/BOOTSTAP_ACTION";
 export const SIGN_UP = "user/SIGN_UP";
 export const SIGN_IN = "user/SIGN_IN";
+export const SIGN_IN_WITH_GOOGLE = "user/SIGN_IN_WITH_GOOGLE";
 export const SET_AUTH = "user/SET_AUTH";
 export const SET_ACCOUNT = "user/SET_ACCOUNT";
 export const SET_TOKEN = "user/SET_TOKEN";
@@ -33,9 +34,10 @@ export const CHECK_ACTIVATION_TOKEN = 'user/CHECK_ACTIVATION_TOKEN'
 export const CHECK_EMAIL_AND_PASSWORD = 'user/CHECK_EMAIL_AND_PASSWORD'
 export const REQUEST_SIGN_IN_WITH_BANK_ID = 'user/REQUEST_SIGN_IN_WITH_BANK_ID'
 export const SIGN_IN_WITH_BANK_ID = 'user/SIGN_IN_WITH_BANK_ID'
-export const SHOW_QIZ_FOR_BANK_ID = 'user/SHOW_QIZ_FOR_BANK_ID'
+export const SET_TOKEN_FOR_QUIZ_SOCIALS_SIGN_IN = 'user/SET_TOKEN_FOR_QUIZ_SOCIALS_SIGN_IN'
 export const SET_CURRENT_PATH = 'SET_CURRENT_PATH'
 export const SET_IS_BANK_ID_RESIDENT = 'SET_IS_BANK_ID_RESIDENT'
+export const SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE = 'SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE'
 
 
 
@@ -72,7 +74,7 @@ export const SET_IS_FETCHING_RAISE_PAGE = "raise/SET_IS_FETCHING_RAISE_PAGE";
 
 export const GET_COMPANIES_LIST = "companies/GET_COMPANIES_LIST";
 export const GET_COMPANIES_HEADER_LIST = "companies/GET_COMPANIES_HEADER_LIST";
-export const GET_COMPANY_BY_ID = "companies/GET_COMPANY_BY_ID";
+export const GET_COMPANY_BY_SLAG = "companies/GET_COMPANY_BY_SLAG";
 export const SET_COMPANIES_LIST = "companies/SET_COMPANIES_LIST";
 export const SET_COMPANY_BY_ID = "companies/SET_COMPANY_BY_ID";
 export const CLEAR_COMPANY = "companies/CLEAR_COMPANY";
@@ -89,6 +91,8 @@ export const RESET_COMPANY_TAB = "companies/RESET_COMPANY_TAB";
 export const RESET_COMPANY_LIST = "companies/RESET_COMPANY_LIST";
 export const IS_MORE_COMPANIES = "companies/IS_MORE_COMPANIES";
 export const MAKE_PAYMENT = "companies/MAKE_PAYMENT";
+export const GET_COMPANY_BY_NAME = "companies/GET_COMPANY_BY_NAME";
+
 
 export const SET_IS_REDIRECT = 'companies/SET_IS_REDIRECT'
 

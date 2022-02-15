@@ -6,29 +6,29 @@ import ButtonStyled from '../ui/Button';
 import QuizItem from './components/QuizItem';
 import {useTranslation} from "react-i18next";
 import {
-    getIsShowQuizForBankId,
+    getTokenForQuizSocialsSignIn,
     getQuiz,
     getQuizErrorsSelector,
     getQuizIsPassedSelector
 } from "../../redux/reducers/user";
 import {checkQuizAnswers, setQuizErrors, signUp} from "../../redux/actions/user";
-import {getCompanyIdSelector} from "../../redux/reducers/companies";
+import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {recaptcha} from "../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
+import {useRouter} from "next/router";
 
 const Quiz = ({show, data}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
-    // let history = useRouter();
-
+    const history = useRouter();
     const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
     const quizIsPassed = useSelector(getQuizIsPassedSelector)
-    const companyId = useSelector(getCompanyIdSelector);
-    const isShowQuizForBankId = useSelector(getIsShowQuizForBankId)
+    const tokenForQuizSocialsSignIn = useSelector(getTokenForQuizSocialsSignIn)
+    const documentUrl = useSelector(getMembershipAgreementDocument);
 
     const [quizResults, setQuizResults] = useState({})
-
+    const [isAgreementChecked, setAgreement] = useState(false)
     const [warnings, setWarnings] = useState([])
 
     useEffect(() => {
@@ -41,7 +41,7 @@ const Quiz = ({show, data}) => {
         if (quizIsPassed) {
             _setShowQuiz(false)
         }
-    }, [quizIsPassed, companyId])
+    }, [quizIsPassed])
 
     useEffect(() => {
         return () => _setQuizErrors(null)
@@ -73,7 +73,7 @@ const Quiz = ({show, data}) => {
     }
 
     const receiveAnswer = (data, answerNumber) => {
-        setQuizResults({...quizResults, [answerNumber]: data})
+        setQuizResults({...quizResults, [answerNumber]: Number(data)})
     }
     const handleSubmit = () => {
         const arrayOfAnswer = []
@@ -82,12 +82,14 @@ const Quiz = ({show, data}) => {
             arrayOfAnswer.push(quizResults[answer])
         }
 
-        if(isShowQuizForBankId){
-            recaptcha('check_quiz_answers_for_bank_id',
+        if(tokenForQuizSocialsSignIn){
+            recaptcha('check_quiz_answers_for_socials',
                 _checkQuizAnswers,
                 {
-                    bearer: isShowQuizForBankId,
+                    bearer: tokenForQuizSocialsSignIn,
                     answers: arrayOfAnswer,
+                    is_agree: isAgreementChecked,
+                    action: history,
                 })
 
         }else{
@@ -96,7 +98,7 @@ const Quiz = ({show, data}) => {
                 {
                     answers: arrayOfAnswer,
                     email: `${data.email.toLowerCase()}`,
-                    is_agree: `${data.is_agree}`,
+                    is_agree: isAgreementChecked,
                     password: `${data.password}`,
                     confirm_password: `${data.confirm_password}`
                 })
@@ -135,6 +137,27 @@ const Quiz = ({show, data}) => {
                     }
                 </div>
                 <footer className = 'quiz_footer'>
+                        <label className = "quiz_checkbox">
+                          <input
+                              checked={isAgreementChecked}
+                              name = "is_agree"
+                              type = "checkbox"
+                              className = "quiz_agreement_checkbox"
+                              onChange={()=>setAgreement(!isAgreementChecked)}
+                          />
+                          <span className = "checkmark"/>
+                          <span className = "quiz_agreement_text">
+                      {t("auth.sign_up.agreement_text")}
+                    </span>
+                        </label>
+                        <a
+                            target = "_blank"
+                            rel = "noopener noreferrer"
+                            href = {documentUrl?.file || documentUrl?.url}
+                            className = "quiz_agreement_link"
+                        >
+                          {t("auth.sign_up.agreement_link")}
+                        </a>
                     <CaptchaPrivacyBlock/>
                     <div className='quiz_footer_buttons_wrapper'>
                         <ButtonStyled colorStyle = 'outline-green'
@@ -142,7 +165,7 @@ const Quiz = ({show, data}) => {
                                       onClick = {handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
                         <ButtonStyled colorStyle = 'dark-green'
                                       className = 'quiz_footer_button_confirm quiz_footer_button'
-                                      disabled = {Object.keys(quizResults).length !== quizData.length}
+                                      disabled = {Object.keys(quizResults).length !== quizData.length || !isAgreementChecked}
                                       onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
 
                     </div>
