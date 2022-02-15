@@ -10,10 +10,10 @@ import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 
 import {
-  // ABOUT_US_ROUTE,
+  RAISE_ROUTE_EN,
   RAISE_ROUTE,
   INVEST_ROUTE,
-  // LAUNCHING_SOON,
+  INVEST_ROUTE_EN,
   BLOG,
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
@@ -100,9 +100,9 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
                 <Button
                   colorStyle="link"
                   as={LinkStyled}
-                  to={INVEST_ROUTE}
+                  to={_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN}
                   className={`menu_item_link ${
-                    pathname.includes(INVEST_ROUTE) ? "active" : ""
+                    pathname.includes(_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN) ? "active" : ""
                   }`}
                 >
                   {t("header.invest").toLocaleUpperCase()}
@@ -111,11 +111,11 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
               <span className="menu_item">
                 <Button
                   className={`menu_item_link menu_item_link_raise ${
-                    pathname.includes(RAISE_ROUTE) ? "active" : ""
+                    pathname.includes(_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN) ? "active" : ""
                   }`}
                   colorStyle="link"
                   as={LinkStyled}
-                  to={RAISE_ROUTE}
+                  to={_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN}
                 >
                   {t("header.raise").toLocaleUpperCase()}
                 </Button>
