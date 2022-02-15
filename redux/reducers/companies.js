@@ -264,6 +264,9 @@ export const getBusinessCurrencySelector = (state) =>
 export const getPercentageSelector = (state) =>
   state.companies.companyDetail.percentage;
 
+export const getCompanySlugSelector = (state) =>
+    state.companies.companyDetail.slug;
+
 // export const getLeftDaysToStartSelector = (state) =>
 //     state.companies.companyDetail?.left_date_start;
 //

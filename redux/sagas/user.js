@@ -560,7 +560,6 @@ function* requestForQuiz() {
 }
 
 function* requestForCheckingQuiz({payload}) {
-    console.log(payload)
     try {
         const dataForApi = {
             answers: payload?.data?.answers,
@@ -604,7 +603,6 @@ function* requestForCheckingQuiz({payload}) {
 
 
     } catch (error) {
-        console.dir(error)
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))
             yield put(setShowQuizError(true))

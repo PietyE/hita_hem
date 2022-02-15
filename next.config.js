@@ -17,7 +17,43 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "sv",
     localeDetection: false,
   },
-
+  async rewrites() {
+    return [
+      {
+        source: '/about-us',
+        destination: '/om-oss',
+      },
+      {
+        source: '/investment-opportunities',
+        destination: '/investeringsmojligheter',
+      },
+      {
+        source: '/raise',
+        destination: '/sök-kapital',
+      },
+      {
+        source: '/company',
+        destination: '/foretag',
+      },
+    ]
+  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/investeringsmojligheter',
+  //       has: [
+  //         {
+  //           type: 'cookie',
+  //           key: 'NEXT_LOCALE',
+  //           value: 'en',
+  //         },
+  //       ],
+  //       permanent: false,
+  //       destination: '/investment-opportunities',
+  //     },
+  //
+  //   ]
+  // },
   async headers() {
     return [
       {
