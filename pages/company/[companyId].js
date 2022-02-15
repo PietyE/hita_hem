@@ -117,8 +117,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     (store) =>
         async ({ req, res, params, ...etc }) => {
-          // store.dispatch(getCompanyById(params.companyId));
-          store.dispatch( getCompanyByName(params.companyId));
+          store.dispatch( getCompanyBySlag(params.companyId));
 
           store.dispatch(END);
 

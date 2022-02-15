@@ -40,7 +40,7 @@ function* getCompaniesHeaderListWorker() {
     const language = yield select(getSelectedLangSelector);
     const _title =
       language === "en" ? "View this Campaign" : "Se mer om kampanjen";
-    const investCampaignList = data?.results?.map((el) => ({
+    const investCampaignList = data?.map((el) => ({
       pk: el?.pk,
       status: el?.status,
       title: el?.investment_page_title,
@@ -109,14 +109,14 @@ function* getCompanyByNameWorker({ payload }) {
     yield put(setIsFetchingCompany(true));
 
     const { data } = yield call([companies, "getCompanyByName"], payload);
-if(Array.isArray(data?.results) && !data?.results?.length){
+if(Array.isArray(data) && !data?.length){
   yield put(setError404(true));
 
 }else{
-  if(data?.results[0].hidden_mode && typeof window !== 'undefined'){
+  if(data[0].hidden_mode && typeof window !== 'undefined'){
     yield put(setRedirect(true))
   }
-  yield put(setCompanyById(data?.results[0]));
+  yield put(setCompanyById(data[0]));
 }
 
   } catch (error) {
