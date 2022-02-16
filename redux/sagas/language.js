@@ -1,4 +1,4 @@
-import { takeEvery, call } from "redux-saga/effects";
+import { takeEvery } from "redux-saga/effects";
 import Cookies from "js-cookie";
 
 import { CHANGE_LANGUAGE } from "constants/actionsConstant";
@@ -14,12 +14,52 @@ function* setLangWorker({ payload }) {
     // if (payload === "sv") {
     //   newPathName = pathname.replace("/", "/sv/");
     // }
+    let fullPathName= '';
+
     if (payload === "sv") {
-      newPathName = pathname.replace(pathname.length === 3 ? "en" : "/en", "");
+      switch(pathname){
+        case '/en/about-us':
+          fullPathName = '/en/om-oss'
+          break
+        case '/en/investment-opportunities':
+          fullPathName = '/en/investeringsmojligheter'
+          break
+        case '/en/raise':
+          fullPathName = '/en/sok-kapital'
+          break
+
+        default:
+          fullPathName = pathname
+      }
+
+      if(pathname.includes('/company')){
+        fullPathName = pathname.replace('/company','/foretag')
+
+      }
+
+      newPathName = fullPathName.replace(fullPathName.length === 3 ? "en" : "/en", "");
     }
     if (payload === "en") {
-      newPathName = pathname.replace("/", "/en/");
+      switch(pathname){
+        case '/om-oss':
+          fullPathName = '/about-us'
+          break
+        case '/investeringsmojligheter':
+          fullPathName = '/investment-opportunities'
+          break
+        case '/sok-kapital':
+          fullPathName = '/raise'
+          break
+        default:
+          fullPathName = pathname
+      }
+      if(pathname.includes('/foretag')){
+        fullPathName = pathname.replace('/foretag','/company')
+      }
+
+      newPathName = fullPathName.replace("/", "/en/");
     }
+
     window.location.replace(newPathName);
   } catch (error) {
     //to do

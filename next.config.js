@@ -31,10 +31,14 @@ module.exports = withBundleAnalyzer({
         source: '/raise',
         destination: '/sok-kapital',
       },
-      // {
-      //   source: '/company/:slug',
-      //   destination: '/foretag/:slug',
-      // },
+      {
+        source: '/company/:path',
+        destination: '/foretag/:path',
+      },
+      {
+        source: '/company',
+        destination: '/foretag',
+      },
     ]
   },
   async redirects() {
@@ -75,18 +79,30 @@ module.exports = withBundleAnalyzer({
         permanent: false,
         destination: '/raise',
       },
-      // {
-      //   source: '/foretag/:slug*',
-      //   has: [
-      //     {
-      //       type: 'cookie',
-      //       key: 'NEXT_LOCALE',
-      //       value: 'en',
-      //     },
-      //   ],
-      //   permanent: false,
-      //   destination: '/company/',
-      // },
+      {
+        source: '/foretag/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/company/:slug*',
+      },
+      {
+        source: '/foretag',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/company',
+      },
     ]
   },
   async headers() {
