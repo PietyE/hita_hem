@@ -141,6 +141,8 @@ export const getZipErrorSelector = (state) =>
     state.errors?.profile?.zip_code;
 export const getImageErrorSelector = (state) =>
     state.errors?.profile?.image;
+export const getEmailErrorSelector = (state) =>
+    state.errors?.profile?.email;
 
 export const getAuthEmailErrorSelector = (state) => state.errors?.auth?.email;
 export const getAuthPasswordErrorSelector = (state) =>
