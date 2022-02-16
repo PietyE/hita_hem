@@ -337,8 +337,8 @@ profile_page: {
             end_date: "Slutdatum",
             status: "Status",
             raised: "Reserverat belopp",
-        empty_investments_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
-        empty_investments_list_link: "klicka här.",
+        empty_campaigns_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
+        empty_campaigns_list_link: "klicka här.",
     },
     personal: {
         main_title: "Personuppgifter ",
