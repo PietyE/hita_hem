@@ -120,6 +120,13 @@ const PersonalDetails = ({
         }
     }, [profile]);
 
+    useEffect(()=>{
+        return(
+            errorHandlerHook.clearAllProfileErrors()
+        )
+    },[])
+
+
     const _createProfile = useCallback(
         (data) => {
             dispatch(createProfile(data));
