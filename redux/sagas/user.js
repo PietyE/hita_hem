@@ -180,9 +180,8 @@ function* signIn({payload}) {
 }
 
 function* signInWithGoogle({payload}) {
-    console.log(payload)
     try {
-            if(payload === 'undefined'){
+            if(!payload){
                 return
             }
         yield put(setFetchingUsers(true));
