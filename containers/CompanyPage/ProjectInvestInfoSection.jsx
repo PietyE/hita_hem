@@ -61,7 +61,9 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
 
   const handleClickInvest = () => {
     if (isAuth) {
-        history.push('/invest-form/[companyId]',`/invest-form/${companySlug}`);
+      const url = currentLanguage === 'sv'?'/investerings-formular/[companyId]':'/invest-form/[companyId]'
+      const href = currentLanguage === 'sv'?`/investerings-formular/${companySlug}`:`/invest-form/${companySlug}`
+        history.push(`${url}`,`${href}`);
     } else {
       dispatch(setShowSignIn(true));
     }

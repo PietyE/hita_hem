@@ -39,6 +39,13 @@ module.exports = withBundleAnalyzer({
         source: '/company',
         destination: '/foretag',
       },
+      {
+        source: '/invest-form/:path',
+        destination: '/investerings-formular/:path',
+      },
+
+
+
     ]
   },
   async redirects() {
@@ -102,6 +109,19 @@ module.exports = withBundleAnalyzer({
         ],
         permanent: false,
         destination: '/company',
+      },
+
+      {
+        source: '/investerings-formular/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/invest-form/:slug*',
       },
     ]
   },

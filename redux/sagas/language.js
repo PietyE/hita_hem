@@ -37,6 +37,11 @@ function* setLangWorker({ payload }) {
 
       }
 
+      if(pathname.includes('/invest-form')){
+        fullPathName = pathname.replace('/invest-form','/investerings-formular')
+      }
+
+
       newPathName = fullPathName.replace(fullPathName.length === 3 ? "en" : "/en", "");
     }
     if (payload === "en") {
@@ -56,6 +61,11 @@ function* setLangWorker({ payload }) {
       if(pathname.includes('/foretag')){
         fullPathName = pathname.replace('/foretag','/company')
       }
+
+      if(pathname.includes('/investerings-formular')){
+        fullPathName = pathname.replace('/investerings-formular','/invest-form')
+      }
+
 
       newPathName = fullPathName.replace("/", "/en/");
     }
