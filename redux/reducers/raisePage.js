@@ -1,6 +1,7 @@
 import {
   SET_IS_FETCHING_RAISE_PAGE,
   SET_RAISE_PAGE,
+    SET_SCROLL_TO_FORM,
 } from "constants/actionsConstant";
 const initialState = {
   raisePageContent: {
@@ -15,6 +16,7 @@ const initialState = {
     extra: [],
     seo:{},
   },
+  scrollToForm: false,
   isFetching: false,
 };
 
@@ -24,6 +26,8 @@ export const raisePage = (state = initialState, actions) => {
       return { ...state, raisePageContent: actions.payload };
     case SET_IS_FETCHING_RAISE_PAGE:
       return { ...state, isFetching: actions.payload };
+    case SET_SCROLL_TO_FORM:
+      return { ...state, scrollToForm: actions.payload };
     default:
       return state;
   }
@@ -53,3 +57,6 @@ export const getRaisePageImageSelector = (state) =>
 
 export const getRaisePageSeoSelector = (state) =>
     state.raisePage.raisePageContent.seo;
+
+export const getScrollToFormSelector = (state) =>
+    state.raisePage.scrollToForm;

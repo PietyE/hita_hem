@@ -9,11 +9,11 @@ import RaiseOpportunities from "containers/RaisePage/RaiseOpportunities";
 import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
 import SpinnerStyled from "components/ui/Spinner";
 
-import { getRaisePage } from "redux/actions/raisePage";
+import {getRaisePage, setScrollToForm} from "redux/actions/raisePage";
 import {
     getIsFetchingRaisePageSelector,
     getRaisePageImageSelector,
-    getRaisePageSeoSelector
+    getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
 import {getCorrectImage} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
@@ -33,6 +33,7 @@ const RaisePage = () => {
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
   const images = useSelector(getRaisePageImageSelector)
     const seo = useSelector(getRaisePageSeoSelector)
+    const isScrollToForm = useSelector(getScrollToFormSelector)
 
 
     const img = getCorrectImage(images)
@@ -40,10 +41,25 @@ const RaisePage = () => {
     dispatch(getRaisePage());
   }, [dispatch]);
 
+    const _setScrollToForm = useCallback(
+        (data) => {
+            dispatch(setScrollToForm(data));
+        },
+        [dispatch]
+    );
+
   const scrollTo = (e) => {
     e.preventDefault();
     myRef.current.scrollIntoView();
+
   };
+
+  useEffect(()=>{
+      if(myRef.current){
+          myRef.current.scrollIntoView({behavior: "smooth"});
+          _setScrollToForm(false)
+      }
+  },[isScrollToForm])
 
   useEffect(() => {
     _getRaisePage();

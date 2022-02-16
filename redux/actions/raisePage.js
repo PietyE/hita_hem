@@ -3,6 +3,7 @@ import {
   SET_RAISE_PAGE,
   SEND_FORM,
   SET_IS_FETCHING_RAISE_PAGE,
+  SET_SCROLL_TO_FORM,
 } from "constants/actionsConstant";
 
 export const getRaisePage = (payload) => ({
@@ -20,5 +21,9 @@ export const sendForm = (payload) => ({
 
 export const setIsFetchingRaisePage = (payload) => ({
   type: SET_IS_FETCHING_RAISE_PAGE,
+  payload,
+});
+export const setScrollToForm = (payload) => ({
+  type: SET_SCROLL_TO_FORM,
   payload,
 });

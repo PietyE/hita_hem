@@ -71,6 +71,7 @@ export const GET_RAISE_PAGE = "raise/GET_RAISE_PAGE";
 export const SET_RAISE_PAGE = "raise/SET_RAISE_PAGE";
 export const SEND_FORM = "raise/SEND_FORM";
 export const SET_IS_FETCHING_RAISE_PAGE = "raise/SET_IS_FETCHING_RAISE_PAGE";
+export const SET_SCROLL_TO_FORM = "raise/SET_SCROLL_TO_FORM"
 
 export const GET_COMPANIES_LIST = "companies/GET_COMPANIES_LIST";
 export const GET_COMPANIES_HEADER_LIST = "companies/GET_COMPANIES_HEADER_LIST";
