@@ -1,4 +1,5 @@
-import {ERROR,
+import {
+  ERROR,
   SET_AUTH_ERROR,
   SET_PROFILE_ERROR,
   SET_RAISE_ERROR,
@@ -20,6 +21,7 @@ import {ERROR,
   SET_PROFILE_ZIP_ERROR,
   SET_PROFILE_EMAIL_ERROR,
   SET_PROFILE_AVATAR_ERROR,
+  CLEAR_PROFILE_ERRORS,
   SET_FORM1_FIRST_NAME_ERROR,
   SET_FORM1_SECOND_NAME_ERROR,
   SET_FORM1_EMAIL_ERROR,
@@ -111,6 +113,11 @@ export const setAvatarError = () => ({
 
 export const setProfileEmailError = () => ({
   type: SET_PROFILE_EMAIL_ERROR,
+})
+
+export const clearProfileErrors = () => ({
+  type: CLEAR_PROFILE_ERRORS,
+
 })
 
 

@@ -39,6 +39,8 @@ import {
   SET_FORM3_FOLLOWERS_THREE_ERROR,
   SET_PROFILE_ZIP_ERROR,
   SET_PROFILE_AVATAR_ERROR,
+  SET_PROFILE_EMAIL_ERROR,
+  CLEAR_PROFILE_ERRORS,
 } from "constants/actionsConstant";
 import isEmpty from "lodash/isEmpty";
 
@@ -239,6 +241,12 @@ export const errors = (state = initialState, actions) => {
       return { ...state, profile: { ...state.profile, zip_code: "" } };
     case SET_PROFILE_AVATAR_ERROR:
       return { ...state, profile: { ...state.profile, image: "" } };
+    case SET_PROFILE_EMAIL_ERROR:
+      return { ...state, profile: { ...state.profile, email: "" } };
+    case CLEAR_PROFILE_ERRORS:
+      return { ...state, profile: {} };
+
+
 
     case SET_FORM1_FIRST_NAME_ERROR:
       return { ...state, raise: { ...state.raise, first_name: "" } };

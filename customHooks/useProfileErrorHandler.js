@@ -16,7 +16,7 @@ import {
 import {
     setFirstNameError, setSecondNameError, setDateOfBirthError, setCountryError,
     setCityError, setAddressError, setPersonalIdError, setPhoneError, clearErrors,
-    setZipError, setAvatarError, setProfileEmailError
+    setZipError, setAvatarError, setProfileEmailError, clearProfileErrors,
 } from '../redux/actions/errors';
 
 const useProfileErrorHandler = () => {
@@ -107,6 +107,19 @@ const useProfileErrorHandler = () => {
         },
         [dispatch]
     )
+    const _clearAllProfileErrors = useCallback(
+        () => {
+            dispatch(clearProfileErrors())
+        },
+        [dispatch]
+    )
+
+
+
+    const clearAllProfileErrors = () => {
+        _clearAllProfileErrors()
+    }
+
     const clearProfileErrorFromApi = (error) => {
         switch (error) {
             case 'first_name':
@@ -146,7 +159,7 @@ const useProfileErrorHandler = () => {
                 return null
         }
     }
-    return {clearProfileErrorFromApi, _clearErrors, firstNameError, secondNameError,
+    return {clearProfileErrorFromApi, clearAllProfileErrors, _clearErrors, firstNameError, secondNameError,
         dateOfBirthError, countryError, cityError, addressError, personalIdError,
         phoneError, zipError, avatarError, emailError}
 }
