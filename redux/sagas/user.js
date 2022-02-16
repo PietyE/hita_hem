@@ -181,6 +181,9 @@ function* signIn({payload}) {
 
 function* signInWithGoogle({payload}) {
     try {
+            if(payload === 'undefined'){
+                return
+            }
         yield put(setFetchingUsers(true));
 
         const response = yield call([auth, "signInWithGoogle"], {token: payload});
