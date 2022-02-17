@@ -326,7 +326,7 @@ profile_page: {
             amount: "Investerat belopp",
             shares: "Antal aktier",
         button: "Kontakta oss",
-        empty_investments_list_text: "Du har inga kampanjer ännu, om du är intresserad av att resa pengar ",
+        empty_investments_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
         empty_investments_list_link: "klicka här.",
     },
     campaigns: {
@@ -337,7 +337,7 @@ profile_page: {
             end_date: "Slutdatum",
             status: "Status",
             raised: "Reserverat belopp",
-        empty_campaigns_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
+        empty_campaigns_list_text: "Du har inga kampanjer ännu, om du är intresserad av att resa pengar ",
         empty_campaigns_list_link: "klicka här.",
     },
     personal: {
