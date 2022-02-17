@@ -215,7 +215,7 @@ function* signInWithGoogle({payload}) {
             yield call(requestForQuiz)
         }
     } catch (error) {
-        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.social_account
         yield put(
             setAuthError({
                 status: error?.response?.status,
