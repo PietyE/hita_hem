@@ -12,11 +12,14 @@ import {useSelector} from "react-redux";
 import {getSelectedLangSelector} from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 import {getUrlForMyInvestments} from 'utils/utils'
+import {INVEST_ROUTE, INVEST_ROUTE_EN} from "../../constants/routesConstant";
+import {useRouter} from "next/router";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
   const currentLanguage = useSelector(getSelectedLangSelector);
   const moneyFormat = useMoneyFormat()
+  const router = useRouter();
 
 
 
@@ -28,16 +31,34 @@ const MobileInvestment = ({ data }) => {
     }
     setActiveTab(e.target.dataset.value);
   };
+
+  const handleRedirectToRisePage = (e) => {
+    e.preventDefault()
+    router.push(currentLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN)
+  }
   return (
     <>
+      {(!data || data?.length === 0 )&& (
+          <p className='mobile_empty_list_text'>{t("profile_page.investments.empty_investments_list_text")}
+            <a className='mobile_empty_list_link'
+               href='/'
+               onClick={handleRedirectToRisePage}
+            >
+              {t("profile_page.investments.empty_investments_list_link")}
+            </a>
+          </p>
+      )
+      }
       <Accordion className="mobile_investments_container">
         {data?.length > 0 &&
           data?.map((payment, index) => {
 
             const {link, text_link} = getUrlForMyInvestments(currentLanguage, payment)
-
             return (
               <Card key={index} className="mobile_investments_card">
+
+
+
                 <Accordion.Toggle
                   as={Card.Header}
                   eventKey={index + 1}

@@ -82,11 +82,16 @@ export function* bootstarpWorker({payload: initLang}) {
 
         const systemLang = initLang || i18n.language;
 
+        /////////////////////////////
+        const pathname = window.location.pathname;
+        const currentSiteLanguage = pathname.includes('/en') ? 'en' : 'sv'
+        const cookieSelectedLanguage = yield call([Cookies, "get"], "NEXT_LOCALE");
+        //////////////////////////////////////
         yield call([api, "setLanguage"], systemLang);
 
         yield put(setSelectedLanguage(systemLang));
 
-        if (!initLang) {
+        if (!initLang || cookieSelectedLanguage !== currentSiteLanguage) {
             yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
         }
         yield call(uploadUserData)
@@ -181,6 +186,9 @@ function* signIn({payload}) {
 
 function* signInWithGoogle({payload}) {
     try {
+            if(!payload){
+                return
+            }
         yield put(setFetchingUsers(true));
 
         const response = yield call([auth, "signInWithGoogle"], {token: payload});
@@ -300,7 +308,7 @@ function* createUserProfile({payload}) {
         yield put(clearErrors())
 
     } catch (error) {
-        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
+        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image || !!error?.response?.data?.email
         yield put(
             setProfileError({
                 status: error.response.status,

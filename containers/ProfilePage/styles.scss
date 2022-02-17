@@ -614,6 +614,14 @@
     border-bottom-left-radius: 8px;
     padding-left: 0;
     width: 100%;
+    .profile_campaigns_empty_list_text{
+      padding: 20px;
+      margin-bottom: 0;
+    }
+    .profile_campaigns_empty_list_link{
+      cursor: pointer;
+      color: #0b5394;
+    }
     .profile_campaigns_item {
       display: flex;
       align-items: center;
@@ -695,6 +703,9 @@
 }
 
 .mobile_investments_container {
+  display: none;
+}
+.mobile_empty_list_text{
   display: none;
 }
 
@@ -795,6 +806,14 @@
     }
     .profile_campaigns_table_container {
       display: none;
+    }
+  }
+  .mobile_empty_list_text{
+    display: block;
+    text-align: center;
+    .mobile_empty_list_link{
+      cursor: pointer;
+      color: #0b5394;
     }
   }
   .mobile_investments_container {

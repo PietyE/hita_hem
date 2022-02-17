@@ -6,9 +6,10 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import {
   RAISE_ROUTE,
   INVEST_ROUTE,
-  // ABOUT_US_ROUTE,
-  // LAUNCHING_SOON,
+  INVEST_ROUTE_EN,
+  RAISE_ROUTE_EN,
   BLOG,
+  BLOG_EN,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -115,10 +116,10 @@ const Navigation = ({ className, initLang }) => {
               ref={menuBtn}
             >
               <NavDropdown.Item as="div" className="nav_item nav_item_invest">
-                <Link href={INVEST_ROUTE} prefetch={false}>
+                <Link href={selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN} prefetch={false}>
                   <a
                     className={`${
-                      pathname.includes(INVEST_ROUTE) ? "active" : ""
+                      pathname.includes(selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN) ? "active" : ""
                     }`}
                   >
                     {t("header.invest").toLocaleUpperCase()}
@@ -137,10 +138,10 @@ const Navigation = ({ className, initLang }) => {
                 </Link>
               </NavDropdown.Item> */}
               <NavDropdown.Item as="div" className="nav_item">
-                <Link href={RAISE_ROUTE} prefetch={false}>
+                <Link href={selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN} prefetch={false}>
                   <a
                     className={`${
-                      pathname.includes(RAISE_ROUTE) ? "active" : ""
+                      pathname.includes(selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN) ? "active" : ""
                     }`}
                   >
                     {t("header.raise").toLocaleUpperCase()}
@@ -152,16 +153,16 @@ const Navigation = ({ className, initLang }) => {
                     (<a
                         href={`${redirectUrlForBlog}`}
                         className={`${
-                            pathname.includes(BLOG) ? "active" : ""
+                            pathname.includes(selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                         }`}
                     >
                       {t("header.blog").toLocaleUpperCase()}
                     </a>)
                     :
-                    ( <Link href={BLOG} prefetch={false}>
+                    ( <Link href={selectedLanguage === 'sv'?BLOG:BLOG_EN} prefetch={false}>
                       <a
                           className={`${
-                              pathname.includes(BLOG) ? "active" : ""
+                              pathname.includes(selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                           }`}
                       >
                         {t("header.blog").toLocaleUpperCase()}
@@ -186,7 +187,7 @@ const Navigation = ({ className, initLang }) => {
                    target="_blank"
                    rel="noopener noreferrer"
                    href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-                >{t("faq")}</a>
+                >{t("faq").toLocaleUpperCase()}</a>
               </NavDropdown.Item>
 
               {/*<NavDropdown.Item as="div" className="nav_item">*/}

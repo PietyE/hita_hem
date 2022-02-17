@@ -15,6 +15,7 @@ import {
   INVEST_ROUTE,
   INVEST_ROUTE_EN,
   BLOG,
+  BLOG_EN,
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
@@ -134,11 +135,11 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
               {/*</span>*/}
               <span className="menu_item">
 
-                {pathname === '/blog' && router?.query?.p  ?
+                {(pathname === ('/news' && router?.query?.p ) || ('/nether' && router?.query?.p)) ?
                     (<a
                         href= {`${redirectUrlForBlog}`}
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(BLOG) ? "active" : ""
+                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                         }`}
                         // colorStyle="link"
                         // as={LinkStyled}
@@ -149,11 +150,11 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
                 :
                     (<Button
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(BLOG) ? "active" : ""
+                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                         }`}
                         colorStyle="link"
                         as={LinkStyled}
-                        to={BLOG}
+                        to={_selectedLanguage === 'sv'?BLOG:BLOG_EN}
                     >
                       {t("header.blog").toLocaleUpperCase()}
                     </Button>)}

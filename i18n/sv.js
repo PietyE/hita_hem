@@ -5,7 +5,7 @@ export const sv = {
             invest: "Investera",
             raise: "Sök kapital",
             launching_soon: "Kommer Snart",
-            blog: 'Blogg',
+            blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
             user_panel: {
@@ -326,6 +326,8 @@ profile_page: {
             amount: "Investerat belopp",
             shares: "Antal aktier",
         button: "Kontakta oss",
+        empty_investments_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
+        empty_investments_list_link: "klicka här.",
     },
     campaigns: {
         title: "Mina kampanjer",
@@ -335,6 +337,8 @@ profile_page: {
             end_date: "Slutdatum",
             status: "Status",
             raised: "Reserverat belopp",
+        empty_campaigns_list_text: "Du har inga kampanjer ännu, om du är intresserad av att resa pengar ",
+        empty_campaigns_list_link: "klicka här.",
     },
     personal: {
         main_title: "Personuppgifter ",

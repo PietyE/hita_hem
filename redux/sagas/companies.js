@@ -25,7 +25,7 @@ import { getCompanyIdSelector } from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import {setFaqPosts, setRedirect} from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
-import { setError } from "../actions/errors";
+import {setError, setProfileError} from "../actions/errors";
 import { getSelectedLangSelector } from "../reducers/language";
 
 const { auth, companies } = api;
@@ -205,9 +205,21 @@ function* makePayment({ payload }) {
       }
     }
   } catch (error) {
-    yield put(
-      setError({ status: error?.response?.status, data: error?.response?.data })
-    );
+    if(error?.config?.url === '/profile/'){
+      const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image || !!error?.response?.data?.email
+      yield put(
+          setProfileError({
+            status: error.response.status,
+            data: error.response.data,
+            hideNotification: hideNotification,
+          })
+      );
+    }else{
+      yield put(
+          setError({ status: error?.response?.status, data: error?.response?.data })
+      );
+    }
+
   } finally {
     yield put(setIsFetchingCompany(false));
   }

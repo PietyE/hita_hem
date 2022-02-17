@@ -1,4 +1,5 @@
-import {ERROR,
+import {
+  ERROR,
   SET_AUTH_ERROR,
   SET_PROFILE_ERROR,
   SET_RAISE_ERROR,
@@ -17,8 +18,10 @@ import {ERROR,
   SET_PROFILE_ADDRESS_ERROR,
   SET_PROFILE_PERSONAL_ID_ERROR,
   SET_PROFILE_PHONE_ERROR,
-    SET_PROFILE_ZIP_ERROR,
+  SET_PROFILE_ZIP_ERROR,
+  SET_PROFILE_EMAIL_ERROR,
   SET_PROFILE_AVATAR_ERROR,
+  CLEAR_PROFILE_ERRORS,
   SET_FORM1_FIRST_NAME_ERROR,
   SET_FORM1_SECOND_NAME_ERROR,
   SET_FORM1_EMAIL_ERROR,
@@ -38,7 +41,6 @@ import {ERROR,
   SET_FORM3_FOLLOWERS_ONE_ERROR,
   SET_FORM3_FOLLOWERS_TWO_ERROR,
   SET_FORM3_FOLLOWERS_THREE_ERROR,
-
 } from 'constants/actionsConstant';
 export const setError = (payload) => ({
   type: ERROR,
@@ -108,6 +110,17 @@ export const setZipError = () => ({
 export const setAvatarError = () => ({
   type: SET_PROFILE_AVATAR_ERROR,
 })
+
+export const setProfileEmailError = () => ({
+  type: SET_PROFILE_EMAIL_ERROR,
+})
+
+export const clearProfileErrors = () => ({
+  type: CLEAR_PROFILE_ERRORS,
+
+})
+
+
 
 //////////////RAISE FORM////////////////////////////
 export const setRaiseFirstNameError = () => ({

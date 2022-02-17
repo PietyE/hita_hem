@@ -11,7 +11,6 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-// import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {checkEmailAndPassword, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
@@ -26,7 +25,6 @@ const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
-  // const documentUrl = useSelector(getMembershipAgreementDocument);
   const isFetching = useSelector(getIsFetchingAuthSelector);
   const isQuizShow = useSelector(getShowQuiz)
 
