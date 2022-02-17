@@ -43,6 +43,10 @@ module.exports = withBundleAnalyzer({
         source: '/invest-form/:path',
         destination: '/investerings-formular/:path',
       },
+      {
+        source: '/news',
+        destination: '/nyheter',
+      },
 
 
 
@@ -123,6 +127,41 @@ module.exports = withBundleAnalyzer({
         permanent: false,
         destination: '/invest-form/:slug*',
       },
+      {
+        source: '/nyheter',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+          {
+            type: 'query',
+            key: 'p',
+            value: '.*',
+          },
+        ],
+        permanent: false,
+        destination: '/en/news',
+      },
+      // {
+      //   source: '/nyheter',
+      //   has: [
+      //     {
+      //       type: 'cookie',
+      //       key: 'NEXT_LOCALE',
+      //       value: 'en',
+      //     },
+      //     // {
+      //     //   type: 'query',
+      //     //   key: 'p',
+      //     //   value: '.*',
+      //     // },
+      //   ],
+      //   permanent: false,
+      //   destination: '/news',
+      // },
+
     ]
   },
   async headers() {

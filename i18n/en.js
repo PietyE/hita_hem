@@ -5,7 +5,7 @@ export const en = {
             invest: "Invest",
             raise: "Raise",
             launching_soon: "Launching Soon",
-            blog: 'Blog',
+            blog: 'News',
             log_in: "Log In",
             sign_up: "Sign Up",
             user_panel: {
