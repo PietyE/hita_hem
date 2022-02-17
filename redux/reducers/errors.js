@@ -10,6 +10,7 @@ import {
   SET_AUTH_OLD_PASSWORD_ERROR,
   SET_AUTH_NEW_PASSWORD1_ERROR,
   SET_AUTH_NEW_PASSWORD2_ERROR,
+  SET_AUTH_SOCIAL_ACCOUNT_ERROR,
   SET_PROFILE_FIRST_NAME_ERROR,
   SET_PROFILE_SECOND_NAME_ERROR,
   SET_PROFILE_DATE_OF_BIRTH_ERROR,
@@ -157,6 +158,12 @@ export const getAuthNewPassword2ErrorSelector = (state) =>
   state.errors?.auth?.new_password2;
 export const getAuthUserErrorSelector = (state) => state.errors?.auth?.user;
 export const getAuthConfirmPasswordErrorSelector = state => state.errors?.auth?.confirm_password
+export const getAuthSocialAccountErrorSelector = state => {
+  if(state.errors?.auth?.social_account && Array.isArray(state.errors?.auth?.social_account) && state.errors?.auth?.social_account.length > 0){
+   return state.errors?.auth?.social_account[0]
+  }
+    return null
+}
 
 export const getErrorSelector = (state) => state.errors;
 
@@ -203,6 +210,9 @@ export const errors = (state = initialState, actions) => {
       return { ...state, auth: { ...state.auth, new_password2: "" } };
     case SET_AUTH_USER_ERROR:
       return { ...state, auth: { ...state.auth, user: "" } };
+    case SET_AUTH_SOCIAL_ACCOUNT_ERROR:
+      return { ...state, auth: { ...state.auth, social_account: "" } };
+
     case SET_PROFILE_FIRST_NAME_ERROR:
       return { ...state, profile: { ...state.profile, first_name: "" } };
     case SET_PROFILE_SECOND_NAME_ERROR:
