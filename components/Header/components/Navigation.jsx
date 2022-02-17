@@ -187,7 +187,7 @@ const Navigation = ({ className, initLang }) => {
                    target="_blank"
                    rel="noopener noreferrer"
                    href= {selectedLanguage === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-                >{t("faq")}</a>
+                >{t("faq").toLocaleUpperCase()}</a>
               </NavDropdown.Item>
 
               {/*<NavDropdown.Item as="div" className="nav_item">*/}
