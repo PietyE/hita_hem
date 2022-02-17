@@ -44,7 +44,10 @@ const Quiz = ({show, data}) => {
     }, [quizIsPassed])
 
     useEffect(() => {
-        return () => _setQuizErrors(null)
+        return () => {
+            _setQuizErrors(null)
+            _setShowQuiz(false)
+        }
 
     }, [])
 

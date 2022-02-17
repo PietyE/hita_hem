@@ -10,6 +10,7 @@ import {
   SET_AUTH_OLD_PASSWORD_ERROR,
   SET_AUTH_NEW_PASSWORD1_ERROR,
   SET_AUTH_NEW_PASSWORD2_ERROR,
+  SET_AUTH_SOCIAL_ACCOUNT_ERROR,
   SET_PROFILE_FIRST_NAME_ERROR,
   SET_PROFILE_SECOND_NAME_ERROR,
   SET_PROFILE_DATE_OF_BIRTH_ERROR,
@@ -79,6 +80,11 @@ export const clearAuthNewPassword1Error = () => ({
 export const clearAuthNewPassword2Error = () => ({
   type: SET_AUTH_NEW_PASSWORD2_ERROR,
 })
+export const clearAuthSocialAccountError = () => ({
+  type: SET_AUTH_SOCIAL_ACCOUNT_ERROR,
+})
+
+
 /////////////////PROFILE////////////////////////////
 export const setFirstNameError = () => ({
   type: SET_PROFILE_FIRST_NAME_ERROR,

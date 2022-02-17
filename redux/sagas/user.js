@@ -215,7 +215,7 @@ function* signInWithGoogle({payload}) {
             yield call(requestForQuiz)
         }
     } catch (error) {
-        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.social_account
         yield put(
             setAuthError({
                 status: error?.response?.status,
@@ -284,6 +284,7 @@ function* logout({payload}) {
         yield put(setFetchingUsers(true));
         yield call([auth, "logOut"], {token: payload.token});
         yield put(setIsBankIdResident(false))
+        yield put(setTokenForQuizSocialsSignIn(false))
 
         yield call(clean);
     } catch (error) {
@@ -664,6 +665,8 @@ function* activationTokenVerificationRequest({payload}) {
 function* checkEmailAndPassword({payload}) {
     try {
         yield put(setFetchingUsers(true));
+        yield put(setTokenForQuizSocialsSignIn(false))
+
         yield call([auth, "checkEmailAndPassword"], payload);
         yield call(requestForQuiz)
     } catch (error) {
@@ -755,6 +758,8 @@ function* clean() {
     yield call([api, "deleteToken"]);
     yield call([localStorage, "removeItem"], "auth_data");
     yield put(clearErrors())
+    yield put(setIsBankIdResident(false))
+    yield put(setTokenForQuizSocialsSignIn(false))
     const initLang = yield select(getSelectedLangSelector)
     window.Intercom('shutdown')
     window.Intercom('boot', {
