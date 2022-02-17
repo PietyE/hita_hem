@@ -82,11 +82,16 @@ export function* bootstarpWorker({payload: initLang}) {
 
         const systemLang = initLang || i18n.language;
 
+        /////////////////////////////
+        const pathname = window.location.pathname;
+        const currentSiteLanguage = pathname.includes('/en') ? 'en' : 'sv'
+        const cookieSelectedLanguage = yield call([Cookies, "get"], "NEXT_LOCALE");
+        //////////////////////////////////////
         yield call([api, "setLanguage"], systemLang);
 
         yield put(setSelectedLanguage(systemLang));
 
-        if (!initLang) {
+        if (!initLang || cookieSelectedLanguage !== currentSiteLanguage) {
             yield call([Cookies, "set"], "NEXT_LOCALE", systemLang);
         }
         yield call(uploadUserData)

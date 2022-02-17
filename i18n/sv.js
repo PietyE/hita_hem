@@ -5,7 +5,7 @@ export const sv = {
             invest: "Investera",
             raise: "Sök kapital",
             launching_soon: "Kommer Snart",
-            blog: 'Blogg',
+            blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
             user_panel: {

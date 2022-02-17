@@ -9,6 +9,7 @@ import {
   INVEST_ROUTE_EN,
   RAISE_ROUTE_EN,
   BLOG,
+  BLOG_EN,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -152,16 +153,16 @@ const Navigation = ({ className, initLang }) => {
                     (<a
                         href={`${redirectUrlForBlog}`}
                         className={`${
-                            pathname.includes(BLOG) ? "active" : ""
+                            pathname.includes(selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                         }`}
                     >
                       {t("header.blog").toLocaleUpperCase()}
                     </a>)
                     :
-                    ( <Link href={BLOG} prefetch={false}>
+                    ( <Link href={selectedLanguage === 'sv'?BLOG:BLOG_EN} prefetch={false}>
                       <a
                           className={`${
-                              pathname.includes(BLOG) ? "active" : ""
+                              pathname.includes(selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
                           }`}
                       >
                         {t("header.blog").toLocaleUpperCase()}

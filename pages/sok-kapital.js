@@ -55,7 +55,7 @@ const RaisePage = () => {
   };
 
   useEffect(()=>{
-      if(myRef.current){
+      if(myRef.current && isScrollToForm){
           myRef.current.scrollIntoView({behavior: "smooth"});
           _setScrollToForm(false)
       }
