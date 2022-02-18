@@ -15,10 +15,7 @@ export const getServerSideProps = async({res}) => {
             return `
             <url>
               <loc>${baseUrlSv}${slug}</loc>
-              <xhtml:link
-               rel="alternate"
-               hreflang="en"
-               href="${baseUrlEn}${slug}"/>
+          
               <lastmod>${new Date().toISOString()}</lastmod>
               <priority>0.80</priority>
             </url>
@@ -38,46 +35,26 @@ export const getServerSideProps = async({res}) => {
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
    <url>
     <loc>https://accumeo.com/</loc>
-    <xhtml:link
-            rel="alternate"
-            hreflang="en"
-            href="https://accumeo.com/en"/>
     <lastmod>2022-01-20T10:44:23+00:00</lastmod>
     <priority>1.00</priority>
 </url>
 <url>
 <loc>https://accumeo.com/investeringsmojligheter</loc>
-<xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="https://accumeo.com/en/investment-opportunities"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
 <loc>https://accumeo.com/sok-kapital</loc>
-<xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="https://accumeo.com/en/raise"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
 <loc>https://accumeo.com/nyheter</loc>
-<xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="https://accumeo.com/en/news"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
 <loc>https://accumeo.com/om-oss</loc>
-<xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="https://accumeo.com/en/about-us"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
