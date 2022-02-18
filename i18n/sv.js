@@ -5,7 +5,7 @@ export const sv = {
             invest: "Investera",
             raise: "Sök kapital",
             launching_soon: "Kommer Snart",
-            blog: 'Blogg',
+            blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
             user_panel: {
@@ -89,7 +89,7 @@ auth: {
     },
     sign_up: {
         title: "Skapa ett konto",
-        sign_in: 'Logga in med',
+        sign_in: 'Skapa konto med',
         alt_sign_in: 'Eller bli medlem med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
@@ -241,7 +241,7 @@ company_page: {
 home_page: {
     featured_button: "Se alla projekt",
         upcoming_button: "Se kommande projekt",
-        join_title: "Upptäck onoterat.",
+        join_title: "Vill du investera i onoterade bolag?",
     join_button: "Bli en medlem",
         featured_campaigns: "Populära projekt",
         upcoming_campaigns: "Kommande projekt",
@@ -326,6 +326,8 @@ profile_page: {
             amount: "Investerat belopp",
             shares: "Antal aktier",
         button: "Kontakta oss",
+        empty_investments_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
+        empty_investments_list_link: "klicka här.",
     },
     campaigns: {
         title: "Mina kampanjer",
@@ -335,6 +337,8 @@ profile_page: {
             end_date: "Slutdatum",
             status: "Status",
             raised: "Reserverat belopp",
+        empty_campaigns_list_text: "Du har inga kampanjer ännu, om du är intresserad av att resa pengar ",
+        empty_campaigns_list_link: "klicka här.",
     },
     personal: {
         main_title: "Personuppgifter ",
@@ -415,6 +419,7 @@ errors: {
         personal_id_empty: '"Personnummer" kan inte vara tomt',
         phone_empty:'"Telefonnummer" kan inte vara tomt',
         zip_empty:'"Postnummer" kan inte vara tomt',
+    zip_invest_empty: '"Postnummer" kan inte vara ett tomt fält. Vänligen lägg till detta i din profil',
 
         company_name_required: 'Företagsnamn är obligatoriskt',
         company_form_required: 'Företagsform är obligatoriskt',

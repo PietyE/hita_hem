@@ -5,7 +5,7 @@ export const en = {
             invest: "Invest",
             raise: "Raise",
             launching_soon: "Launching Soon",
-            blog: 'Blog',
+            blog: 'News',
             log_in: "Log In",
             sign_up: "Sign Up",
             user_panel: {
@@ -88,7 +88,7 @@ export const en = {
             },
             sign_up: {
                 title: "Create account",
-                sign_in: 'Sign in with',
+                sign_in: 'Sign up with',
                 alt_sign_in: 'Or sign up with email',
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
@@ -330,6 +330,8 @@ export const en = {
                 amount: "Investment amount",
                 shares: "Shares",
                 button: "Contact us",
+                empty_investments_list_text: "You have not yet invested in any campaigns yet, if you are interested in investing ",
+                empty_investments_list_link: "click here.",
             },
             campaigns: {
                 title: "My campaigns",
@@ -339,6 +341,8 @@ export const en = {
                 end_date: "End date",
                 status: "Status",
                 raised: "Money raised",
+                empty_campaigns_list_text: "You do not have any campaigns yet, if you are interested in raising capital ",
+                empty_campaigns_list_link: "click here.",
             },
             personal: {
                 main_title: "My personal details",
@@ -405,6 +409,7 @@ export const en = {
             personal_id_empty: '"Personal ID" cannot be empty',
             phone_empty: '"Phone number" cannot be empty',
             zip_empty: '"Postal code" cannot be empty',
+            zip_invest_empty: '"Postal code" cannot be empty please change this in your profile',
 
             company_name_required: 'Company name is a required field',
             company_form_required: 'Form of the company is a required field',

@@ -8,10 +8,12 @@ import {
     getAuthNewPassword1ErrorSelector,
     getAuthNewPassword2ErrorSelector,
     getAuthConfirmPasswordErrorSelector,
+    getAuthSocialAccountErrorSelector,
 } from '../redux/reducers/errors';
 import {
     clearAuthEmailError, clearAuthPasswordError, clearAuthUserError, clearErrors,
     clearAuthOldPasswordError, clearAuthNewPassword1Error, clearAuthNewPassword2Error,
+    clearAuthSocialAccountError,
 } from '../redux/actions/errors';
 
 const useAuthErrorHandler = () => {
@@ -24,6 +26,7 @@ const useAuthErrorHandler = () => {
     const newPassword1Error = useSelector(getAuthNewPassword1ErrorSelector)
     const newPassword2Error = useSelector(getAuthNewPassword2ErrorSelector)
     const confirmPasswordError = useSelector(getAuthConfirmPasswordErrorSelector)
+    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
     const _clearErrors = useCallback(
         () => {
@@ -70,6 +73,12 @@ const useAuthErrorHandler = () => {
         },
         [dispatch]
     )
+    const _clearAuthSocialAccountError = useCallback(
+        () => {
+            dispatch(clearAuthSocialAccountError())
+        },
+        [dispatch]
+    )
 
 
     const clearAuthErrorFromApi = (error) => {
@@ -77,10 +86,12 @@ const useAuthErrorHandler = () => {
             case 'email':
                 _clearAuthEmailError()
                 _clearAuthUSerError()
+                _clearAuthSocialAccountError()
                 break
             case 'password':
                 _clearAuthPasswordError()
                 _clearAuthUSerError()
+                _clearAuthSocialAccountError()
                 break
             case 'old_password':
                 _clearAuthPasswordError()
@@ -97,6 +108,14 @@ const useAuthErrorHandler = () => {
                 _clearAuthUSerError()
                 _clearAuthNewPassword2Error()
                 break
+            case 'confirm_password':
+                _clearAuthPasswordError()
+                _clearAuthUSerError()
+                _clearAuthSocialAccountError()
+
+                break
+            case  'socail_account':
+                _clearAuthSocialAccountError()
             default:
                 return null
         }
@@ -104,7 +123,8 @@ const useAuthErrorHandler = () => {
 
     return {
         clearAuthErrorFromApi, _clearErrors, passwordError, emailError, userError,
-        oldPasswordError, newPassword1Error, newPassword2Error, confirmPasswordError
+        oldPasswordError, newPassword1Error, newPassword2Error, confirmPasswordError,
+        socialAccountError
     }
 }
 export default useAuthErrorHandler;

@@ -10,12 +10,13 @@ import {
     getPersonalIdErrorSelector,
     getPhoneErrorSelector,
     getZipErrorSelector,
-    getImageErrorSelector
+    getImageErrorSelector,
+    getEmailErrorSelector
 } from '../redux/reducers/errors';
 import {
     setFirstNameError, setSecondNameError, setDateOfBirthError, setCountryError,
     setCityError, setAddressError, setPersonalIdError, setPhoneError, clearErrors,
-    setZipError, setAvatarError
+    setZipError, setAvatarError, setProfileEmailError, clearProfileErrors,
 } from '../redux/actions/errors';
 
 const useProfileErrorHandler = () => {
@@ -31,6 +32,7 @@ const useProfileErrorHandler = () => {
     const phoneError = useSelector(getPhoneErrorSelector)
     const zipError = useSelector(getZipErrorSelector)
     const avatarError = useSelector(getImageErrorSelector)
+    const emailError = useSelector(getEmailErrorSelector)
 
     const _clearErrors = useCallback(
         () => {
@@ -99,6 +101,25 @@ const useProfileErrorHandler = () => {
         },
         [dispatch]
     )
+    const _setEmailError = useCallback(
+        () => {
+            dispatch(setProfileEmailError())
+        },
+        [dispatch]
+    )
+    const _clearAllProfileErrors = useCallback(
+        () => {
+            dispatch(clearProfileErrors())
+        },
+        [dispatch]
+    )
+
+
+
+    const clearAllProfileErrors = () => {
+        _clearAllProfileErrors()
+    }
+
     const clearProfileErrorFromApi = (error) => {
         switch (error) {
             case 'first_name':
@@ -131,13 +152,16 @@ const useProfileErrorHandler = () => {
             case 'image':
                 _setAvatarError()
                 break
+            case 'email':
+                _setEmailError()
+                break
             default:
                 return null
         }
     }
-    return {clearProfileErrorFromApi, _clearErrors, firstNameError, secondNameError,
+    return {clearProfileErrorFromApi, clearAllProfileErrors, _clearErrors, firstNameError, secondNameError,
         dateOfBirthError, countryError, cityError, addressError, personalIdError,
-        phoneError, zipError, avatarError}
+        phoneError, zipError, avatarError, emailError}
 }
 
 

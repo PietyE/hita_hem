@@ -18,6 +18,7 @@ import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
+import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
@@ -28,6 +29,7 @@ const SessionSignUp = ({show}) => {
     const documentUrl = useSelector(getMembershipAgreementDocument);
     const isFetching = useSelector(getIsFetchingAuthSelector);
     const isQuizShow = useSelector(getShowQuiz)
+    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
     const initialValues = {
         email: "",
@@ -85,11 +87,17 @@ const SessionSignUp = ({show}) => {
     );
 
     const responseGoogle = (response) => {
+        if(socialAccountError){
+            errorHandlerHook._clearErrors()
+        }
         _signInWithGoogle(response.tokenId)
     }
 
     const handleSignInWithBankId = (e) => {
         e.preventDefault()
+        if(socialAccountError){
+            errorHandlerHook._clearErrors()
+        }
         _signInWithBankId()
     }
 
@@ -133,6 +141,9 @@ const SessionSignUp = ({show}) => {
                     cookiePolicy={'single_host_origin'}
                 />
             </div>
+            {socialAccountError && (
+                <p className='sign_in_socials_account_error'>{socialAccountError}</p>
+            )}
             <SplitLine className='sign_in_split_line'/>
             <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
             <Formik

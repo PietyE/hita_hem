@@ -39,7 +39,7 @@ const initialsState = {
     pk: "",
     email: "",
     quiz: false,
-
+    social_accounts: [],
   },
   isFirstHydrate: false,
 };
@@ -97,7 +97,10 @@ export const getCanResetPasswordSelector = (state) => state.user.canResetPasswor
 export const getTokenForQuizSocialsSignIn = (state) => state.user.tokenForQuizSocialsSignIn;
 export const getCurrentPath = (state) => state?.user?.currentPath;
 
-export const getIsBankIdResident = (state) => state?.user?.isBankIdResident;
+export const getIsBankIdResident = (state) => state?.user?.isBankIdResident || state?.user?.account?.is_bank_id_resident;
+export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
+
+
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;

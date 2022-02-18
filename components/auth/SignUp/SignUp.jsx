@@ -11,13 +11,13 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-// import {getMembershipAgreementDocument} from "redux/reducers/documents";
 import {checkEmailAndPassword, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
+import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
@@ -26,9 +26,9 @@ const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
-  // const documentUrl = useSelector(getMembershipAgreementDocument);
   const isFetching = useSelector(getIsFetchingAuthSelector);
   const isQuizShow = useSelector(getShowQuiz)
+    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
   const initialValues = {
     email: "",
@@ -86,11 +86,17 @@ const SignUp = ({ show }) => {
     );
 
     const responseGoogle = (response) => {
+        if(socialAccountError){
+            errorHandlerHook._clearErrors()
+        }
         _signInWithGoogle(response.tokenId)
     }
 
   const handleSignInWithBankId = (e) => {
     e.preventDefault()
+      if(socialAccountError){
+          errorHandlerHook._clearErrors()
+      }
     _signInWithBankId()
   }
   return (
@@ -133,6 +139,9 @@ const SignUp = ({ show }) => {
                   cookiePolicy={'single_host_origin'}
               />
           </div>
+            {socialAccountError && (
+                <p className='sign_in_socials_account_error'>{socialAccountError}</p>
+            )}
           <SplitLine className='sign_in_split_line'/>
           <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
       <Formik

@@ -12,7 +12,6 @@ import SpinnerStyled from "components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import {
   getCompanyBySlag,
-    getCompanyByName,
   clearCompany,
   setError404,
   resetCompanyTab, setRedirect,
@@ -117,8 +116,7 @@ export const getServerSideProps = wrapper.getServerSideProps(
 
     (store) =>
         async ({ req, res, params, ...etc }) => {
-          // store.dispatch(getCompanyById(params.companyId));
-          store.dispatch( getCompanyByName(params.companyId));
+          store.dispatch( getCompanyBySlag(params.companyId));
 
           store.dispatch(END);
 

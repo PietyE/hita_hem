@@ -19,11 +19,13 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp} from "../../../utils/vadidationSchemas";
 import SplitLine from "../../ui/SplitLine";
+import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
 
 const SignIn = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const isFetching = useSelector(getIsFetchingAuthSelector);
+    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
   const { t } = useTranslation();
 
@@ -78,10 +80,16 @@ const SignIn = ({ show }) => {
 
   const handleSignInWithBankId = (e) => {
     e.preventDefault()
+      if(socialAccountError){
+          errorHandlerHook._clearErrors()
+      }
     _signInWithBankId()
   }
   
   const responseGoogle = (response) => {
+      if(socialAccountError){
+          errorHandlerHook._clearErrors()
+      }
     _signInWithGoogle(response.tokenId)
   }
 
@@ -129,6 +137,9 @@ const SignIn = ({ show }) => {
         />
         
       </div>
+        {socialAccountError && (
+            <p className='sign_in_socials_account_error'>{socialAccountError}</p>
+        )}
       <SplitLine className='sign_in_split_line'/>
         <span className='sign_in_alt_text'>{t("auth.sign_in.alt_sign_in")}</span>
       <Formik
@@ -157,26 +168,30 @@ const SignIn = ({ show }) => {
               clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.email_placeholder")}
             />
+
+            <div className='auth_login_password_wrapper'>
             <span onClick={handleShowResetPass} className="auth_forgot_link">
               {t("auth.sign_in.forgot_password_link")}
             </span>
-            <InputComponent
-              type="password"
-              labelClassName="auth_password_container auth_container"
-              label={t("auth.sign_in.password_label")}
-              inputClassName="auth_input"
-              inputName="password"
-              autoComplete = "current-password"
-              values={values}
-              setFieldValue={setFieldValue}
-              setFieldError={setFieldError}
-              touched={touched}
-              errors={errors}
-              errorFromApi={errorHandlerHook?.passwordError}
-              clearError={errorHandlerHook?.clearAuthErrorFromApi}
-              placeholder={t("auth.sign_in.password_placeholder")}
-              iconClassName="auth_password_eye"
-            />
+              <InputComponent
+                  type="password"
+                  labelClassName="auth_password_container auth_container"
+                  label={t("auth.sign_in.password_label")}
+                  inputClassName="auth_input"
+                  inputName="password"
+                  autoComplete = "current-password"
+                  values={values}
+                  setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
+                  touched={touched}
+                  errors={errors}
+                  errorFromApi={errorHandlerHook?.passwordError}
+                  clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                  placeholder={t("auth.sign_in.password_placeholder")}
+                  iconClassName="auth_password_eye"
+              />
+            </div>
+
             <CaptchaPrivacyBlock/>
             <Button
               type="submit"

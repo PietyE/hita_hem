@@ -181,6 +181,10 @@ export const getRedirectUrl = (currentLanguage) => {
     _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/authBankId`:`https://dev.accumeo.com/authBankId`
   }
 
+  // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+  //   _link = currentLanguage === 'en'?`http://localhost:3000/en/authBankId`:`http://localhost:3000/authBankId`
+  // }
+
   if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
     _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/authBankId`:`https://stage.accumeo.com/authBankId`
   }
@@ -193,14 +197,14 @@ export const getRedirectUrl = (currentLanguage) => {
 export const getRedirectUrlForBlog = (currentLanguage) => {
   let _link;
   if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
-    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/blog`:`https://dev.accumeo.com/blog`
+    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/news`:`https://dev.accumeo.com/nyheter`
   }
 
   if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
-    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/blog`:`https://stage.accumeo.com/blog`
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/news`:`https://stage.accumeo.com/nyheter`
   }
   if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-    _link = currentLanguage === 'en'?`https://accumeo.com/en/blog`:`https://accumeo.com/blog`
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/news`:`https://accumeo.com/nyheter`
   }
   return _link
 }

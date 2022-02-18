@@ -1,51 +1,40 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { useTranslation } from "react-i18next";
 
 import StatusCompanyBadge from "../StatusCompany";
-import IconBag from "public/images/icon_bag.svg";
-import IconLocation from "public/images/icon_location.svg";
 import Progress from "../Proggres";
-import SplitLine from "../ui/SplitLine";
-import Button from "../ui/Button";
-
-import useMoneyFormat from "customHooks/useMoneyFormat";
 import {useSelector} from "react-redux";
-import {getIsSignInUserSelector} from "../../redux/reducers/user";
-
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const CampaignsCard = (props) => {
   const { t } = useTranslation();
   const { className } = props;
   const {
-    pk,
     logo,
     status,
-    country,
-    industry,
     title,
     short_description,
       images=[],
       slug,
-    goal,
-    currency,
     percentage,
     left_date
   } = props?.content;
-  const moneyFormat = useMoneyFormat()
-const isAuth = useSelector(getIsSignInUserSelector)
+  const lang = useSelector(getSelectedLangSelector)
+
   return (
     <>
       {!!props?.content && (
           <Link
-              as={`/company/${slug}`}
-              href={"/company/[companyId]"}
+              as={lang === 'sv'?`/foretag/${slug}`:`/company/${slug}`}
+              href={lang === 'sv'?"/foretag/[companyId]":"/company/[companyId]"}
+              // as={`/foretag/${slug}`}
+              // href={"/foretag/[companyId]"}
               prefetch={false}
           >
-        <li className={`campaigns_card ${className}`}>
+        <li className={`campaigns_card ${className}`} >
 
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
               {images && images['desktop'] && (
@@ -57,13 +46,6 @@ const isAuth = useSelector(getIsSignInUserSelector)
 
               />)}
             </div>
-          
-          {/*</Link>*/}
-          <Link
-            as={`/company/${slug}`}
-            href={"/company/[companyId]"}
-            prefetch={false}
-          >
             <span className="campaigns_card_logo" >
               {/*<img*/}
               {/*  className="featured_campaigns_logo_img"*/}
@@ -83,7 +65,6 @@ const isAuth = useSelector(getIsSignInUserSelector)
               </div>
 
             </span>
-          </Link>
 
           <StatusCompanyBadge
             status={status}
@@ -94,17 +75,10 @@ const isAuth = useSelector(getIsSignInUserSelector)
           <div className="campaigns_card_content_wrapper">
 
             <div className="campaigns_card_text_wrapper">
-              <Link
-                as={`/company/${slug}`}
-                href={"/company/[companyId]"}
-                prefetch={false}
-              >
+
                 <h3 className="campaigns_card_title">{title}</h3>
-              </Link>
               <p className="campaigns_card_description">{short_description}</p>
             </div>
-
-            {/*<SplitLine className="campaigns_card_split_line" />*/}
 
             <Progress
               title={t("campaigns_card.progress_title")}
@@ -127,32 +101,32 @@ const isAuth = useSelector(getIsSignInUserSelector)
             {/*  colorStyle="outline-green"*/}
             {/*  className="campaigns_card_button"*/}
             {/*  as={LinkStyled}*/}
-            {/*  to={`/company/${pk}`}*/}
-            {/*  title="This link leads to the company detail page"*/}
+            {/*  to={`/foretag/${pk}`}*/}
+            {/*  title="This link leads to the foretag detail page"*/}
             {/*>*/}
             {/*  {t("campaigns_card.button")}*/}
             {/*</Button>*/}
           </div>
         </li>
-          </Link>
+           </Link>
       )}
     </>
   );
 };
 
-const LinkStyled = (props) => {
-  const router = useRouter();
-  const { children, to = "", ...extra } = props;
-
-  const handleClickLinkButton = () => {
-    router.push(to);
-  };
-
-  return (
-    <button onClick={handleClickLinkButton} type="button">
-      <span {...extra}>{children}</span>
-    </button>
-  );
-};
+// const LinkStyled = (props) => {
+//   const router = useRouter();
+//   const { children, to = "", ...extra } = props;
+//
+//   const handleClickLinkButton = () => {
+//     router.push(to);
+//   };
+//
+//   return (
+//     <button onClick={handleClickLinkButton} type="button">
+//       <span {...extra}>{children}</span>
+//     </button>
+//   );
+// };
 
 export default CampaignsCard;

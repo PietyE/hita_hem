@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -13,24 +13,15 @@ import {
   getBusinessEndDaySelector,
   getBusinessGoalSelector,
   getBusinessInvestedSelector,
-  // getBusinessShapePriceSelector,
   getBusinessCurrencySelector,
   getPercentageSelector,
-  // getDaysLeftSelector,
-  // getCompanyIdSelector,
-  // getCompanyStatusInNumbersSelector,
-  getCompanyNameSelector,
   canUserInvestSelector,
   getIsCompanyClosedSelector,
   getValuationSelector,
-  // getLeftDaysToEndSelector,
-  // getLeftDaysToStartSelector,
 } from "redux/reducers/companies";
-// import {  getQuizIsPassedSelector} from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
-import {getLeftDate} from "../../redux/reducers/companies";
-// import {setShowQuiz} from "../../redux/actions/authPopupWindows";
+import {getCompanySlugSelector, getLeftDate} from "../../redux/reducers/companies";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -39,30 +30,24 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
   const sectionRef = useRef();
 
   const moneyFormat = useMoneyFormat()
-  // const companyId = useSelector(getCompanyIdSelector);
-   const companyName = useSelector(getCompanyNameSelector);
+   const companySlug = useSelector(getCompanySlugSelector);
   const currentLanguage = useSelector(getSelectedLangSelector);
   const startDay = useSelector(getBusinessStartDaySelector);
   const endDay = useSelector(getBusinessEndDaySelector);
   const goal = useSelector(getBusinessGoalSelector);
   const invested = useSelector(getBusinessInvestedSelector);
   const valuation = useSelector(getValuationSelector)
-  // const price = useSelector(getBusinessShapePriceSelector);
   const currency = useSelector(getBusinessCurrencySelector);
   const percentage = useSelector(getPercentageSelector);
-  // const daysLeft = useSelector(getDaysLeftSelector);
-  // const daysLeftToStart = useSelector(getLeftDaysToStartSelector)
-  // const daysLeftToEnd = useSelector(getLeftDaysToEndSelector)
   const leftDate = useSelector(getLeftDate)
-  // const status = useSelector(getCompanyStatusInNumbersSelector);
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
-  // const isQuizPassed = useSelector(getQuizIsPassedSelector)
   const dataOptions = {
     day: "numeric",
     month: "long",
     year: "numeric",
   };
+
 
   const _startDayLocal = new Date(startDay).toLocaleString(
     currentLanguage,
@@ -74,60 +59,11 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     dataOptions
   );
 
-  // const setInitPositionSection = () => {
-  //   const element = sectionRef.current;
-  //   element.style.position = "static";
-  //   element.style.left = "unset";
-  //   element.style.top = "unset";
-  //   element.style.zIndex = "unset";
-  // };
-
-  // const setNewPositionSection = () => {
-  //   const element = sectionRef.current;
-  //   const { x } = element.getBoundingClientRect();
-  //   element.style.position = "fixed";
-  //   element.style.left = `${x}px`;
-  //   element.style.top = `${HEADER_HEIGHT - 1}px`;
-  //   element.style.zIndex = 4;
-  // };
-
-  // const changePositionSection = useCallback(() => {
-  //   const element = sectionRef.current;
-  //   const { y } = element.getBoundingClientRect();
-
-  //   if (y <= HEADER_HEIGHT) {
-  //     scrollScreenValue.current = scrollScreenValue.current
-  //       ? scrollScreenValue.current
-  //       : document.documentElement.scrollTop;
-  //     if (selectedTab === companyTabConstants.IDEA) {
-  //       setNewPositionSection();
-  //     }
-  //     if (
-  //       prevSelectedTab?.current !== selectedTab &&
-  //       selectedTab === companyTabConstants.IDEA
-  //     ) {
-  //       setNewPositionSection();
-  //     }
-  //   }
-
-  //   if (scrollScreenValue.current > document.documentElement.scrollTop) {
-  //     setInitPositionSection();
-  //   }
-  // }, [selectedTab]);
-
-  //
-  // const _setShowQuiz = useCallback(() => {
-  //   dispatch(setShowQuiz(true));
-  // }, [dispatch]);
-
-
   const handleClickInvest = () => {
     if (isAuth) {
-       // if(isQuizPassed){
-        history.push('/invest-form/[companyId]',`/invest-form/${companyName}`);
-       // }else{
-       //   _setShowQuiz()
-       // }
+      const url = currentLanguage === 'sv'?'/investerings-formular/[companyId]':'/invest-form/[companyId]'
+      const href = currentLanguage === 'sv'?`/investerings-formular/${companySlug}`:`/invest-form/${companySlug}`
+        history.push(`${url}`,`${href}`);
     } else {
       dispatch(setShowSignIn(true));
     }
@@ -154,11 +90,6 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
       window.removeEventListener("scroll", toggleVisible);
     };
   }, []);
-
-
-  // const moneyFormat = new Intl.NumberFormat([currentLanguage, "en"], {
-  //   style: "decimal",
-  // });
 
 
   return (
@@ -209,20 +140,11 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
         </div>
         }
 
-        {/*<div className="invest_info_item">*/}
-        {/*  <CurrensyText value={moneyFormat.format(price)} currency={currency} />*/}
-        {/*  <span className="invest_info_param">*/}
-        {/*    {t("company_page.company_share_price")}*/}
-        {/*  </span>*/}
-        {/*</div>*/}
         <div className="invest_info_item">
           <Progress
             title={t("company_page.company_raised")}
             percent={percentage}
-            // daysLeftToStart={daysLeftToStart}
-            // daysLeftToEnd={daysLeftToEnd}
             left_date={leftDate}
-            // status={status}
           />
         </div>
       </div>
