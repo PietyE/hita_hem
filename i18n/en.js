@@ -88,7 +88,7 @@ export const en = {
             },
             sign_up: {
                 title: "Create account",
-                sign_in: 'Sign in with',
+                sign_in: 'Sign up with',
                 alt_sign_in: 'Or sign up with email',
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",

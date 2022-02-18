@@ -89,7 +89,7 @@ auth: {
     },
     sign_up: {
         title: "Skapa ett konto",
-        sign_in: 'Logga in med',
+        sign_in: 'Skapa konto med',
         alt_sign_in: 'Eller bli medlem med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
