@@ -419,6 +419,7 @@ errors: {
         personal_id_empty: '"Personnummer" kan inte vara tomt',
         phone_empty:'"Telefonnummer" kan inte vara tomt',
         zip_empty:'"Postnummer" kan inte vara tomt',
+    zip_invest_empty: '"Postnummer" kan inte vara ett tomt fält. Vänligen lägg till detta i din profil',
 
         company_name_required: 'Företagsnamn är obligatoriskt',
         company_form_required: 'Företagsform är obligatoriskt',

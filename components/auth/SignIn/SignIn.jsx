@@ -168,26 +168,30 @@ const SignIn = ({ show }) => {
               clearError={errorHandlerHook?.clearAuthErrorFromApi}
               placeholder={t("auth.sign_in.email_placeholder")}
             />
+
+            <div className='auth_login_password_wrapper'>
             <span onClick={handleShowResetPass} className="auth_forgot_link">
               {t("auth.sign_in.forgot_password_link")}
             </span>
-            <InputComponent
-              type="password"
-              labelClassName="auth_password_container auth_container"
-              label={t("auth.sign_in.password_label")}
-              inputClassName="auth_input"
-              inputName="password"
-              autoComplete = "current-password"
-              values={values}
-              setFieldValue={setFieldValue}
-              setFieldError={setFieldError}
-              touched={touched}
-              errors={errors}
-              errorFromApi={errorHandlerHook?.passwordError}
-              clearError={errorHandlerHook?.clearAuthErrorFromApi}
-              placeholder={t("auth.sign_in.password_placeholder")}
-              iconClassName="auth_password_eye"
-            />
+              <InputComponent
+                  type="password"
+                  labelClassName="auth_password_container auth_container"
+                  label={t("auth.sign_in.password_label")}
+                  inputClassName="auth_input"
+                  inputName="password"
+                  autoComplete = "current-password"
+                  values={values}
+                  setFieldValue={setFieldValue}
+                  setFieldError={setFieldError}
+                  touched={touched}
+                  errors={errors}
+                  errorFromApi={errorHandlerHook?.passwordError}
+                  clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                  placeholder={t("auth.sign_in.password_placeholder")}
+                  iconClassName="auth_password_eye"
+              />
+            </div>
+
             <CaptchaPrivacyBlock/>
             <Button
               type="submit"
