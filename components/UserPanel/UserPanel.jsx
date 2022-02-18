@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 
 import UserPanelMenu from "components/ui/UserPanelMenu";
 import Image from "next/image";
+import {useTranslation} from "react-i18next";
 
 const DropDownComponent = dynamic(() =>
   import("components/ui/DropDownComponent")
@@ -15,7 +16,9 @@ const DropdownToggle = dynamic(() =>
 );
 
 function UserPanel() {
-  const userInfo = useSelector(getUserSelector, isEqual);
+    const { t } = useTranslation();
+
+    const userInfo = useSelector(getUserSelector, isEqual);
   const isBankIdResident = useSelector(getIsBankIdResident)
   const { account, user } = userInfo;
 
@@ -29,7 +32,7 @@ function UserPanel() {
           <span className="user_panel_text"> {account.email}</span>
         )}
           {(!user?.first_name && isBankIdResident) && (
-              <span className="user_panel_text"> BankID User</span>
+              <span className="user_panel_text">{t("header.bank_id_user_text")}</span>
           )}
         <div className="user_panel_avatar_wrapper" style={{  position: 'relative'}}>
           {user?.image && (
