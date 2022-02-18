@@ -2,19 +2,29 @@ import React, { useCallback, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { wrapper } from "redux/store";
-import ImageComponent from "components/ui/ImageComponent";
-
-
+import Image from "next/image";
+import dynamic from "next/dynamic";
 import RaisePageTopSlider from "containers/RaisePage/RaisePageTopSlider";
 import RaiseOpportunities from "containers/RaisePage/RaiseOpportunities";
 import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
-import RaiseFeatures from "containers/RaisePage/RaiseFeatures";
-import RaiseForm from "containers/RaisePage/RaiseForm";
 import SpinnerStyled from "components/ui/Spinner";
-import { getRaisePage } from "redux/actions/raisePage";
-import {getIsFetchingRaisePageSelector, getRaisePageImageSelector} from "redux/reducers/raisePage";
+
+import {getRaisePage, setScrollToForm} from "redux/actions/raisePage";
+import {
+    getIsFetchingRaisePageSelector,
+    getRaisePageImageSelector,
+    getRaisePageSeoSelector, getScrollToFormSelector
+} from "redux/reducers/raisePage";
 import {getCorrectImage} from "../utils/utils";
-import Image from "next/image";
+import MetaTags from "../components/MetaTags";
+
+
+const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
+    ssr: false,
+});
+const RaiseFeatures = dynamic(() => import("containers/RaisePage/RaiseFeatures"), {
+    ssr: false,
+});
 
 const RaisePage = () => {
   const myRef = useRef(null);
@@ -22,16 +32,34 @@ const RaisePage = () => {
 
   const isFetching = useSelector(getIsFetchingRaisePageSelector);
   const images = useSelector(getRaisePageImageSelector)
-    const img = getCorrectImage(images)
+    const seo = useSelector(getRaisePageSeoSelector)
+    const isScrollToForm = useSelector(getScrollToFormSelector)
 
+
+    const img = getCorrectImage(images)
     const _getRaisePage = useCallback(() => {
     dispatch(getRaisePage());
   }, [dispatch]);
 
+    const _setScrollToForm = useCallback(
+        (data) => {
+            dispatch(setScrollToForm(data));
+        },
+        [dispatch]
+    );
+
   const scrollTo = (e) => {
     e.preventDefault();
     myRef.current.scrollIntoView();
+
   };
+
+  useEffect(()=>{
+      if(myRef.current && isScrollToForm){
+          myRef.current.scrollIntoView({behavior: "smooth"});
+          _setScrollToForm(false)
+      }
+  },[isScrollToForm])
 
   useEffect(() => {
     _getRaisePage();
@@ -39,11 +67,11 @@ const RaisePage = () => {
 
   return (
     <>
+            <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <section className="raise_page_container">
         <RaisePageTopSlider onScrollTo={scrollTo} />
         <RaiseOpportunities />
-        {/*{img && <ImageComponent src = {img} className = 'raise_page_image'/>}*/}
           {img && (
               <div className = "raise_page_image ">
               <Image

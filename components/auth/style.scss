@@ -54,6 +54,108 @@
   color: rgba(0, 0, 0, 0.87);
   margin-bottom: 65px;
 }
+
+.sign_in_socials_buttons_wrapper{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-bottom: 40px;
+  .sign_in_social_button{
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 130px;
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: "Source Sans Pro",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    &:hover{
+      border-color: rgb(14, 83, 148);
+      color: rgb(14, 83, 148);
+    }
+  }
+
+  .sign_in_bank_id{
+
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/logo-bank-id.svg");
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+  .sign_in_google{
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/googleIcon.svg");
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+}
+.sign_in_socials_account_error{
+  margin-bottom: 40px;
+  color: red;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  font-family: "Source sans Pro", Mulish, sans-serif;
+}
+//.sign_in_alt_text_wrapper{
+//  position: relative;
+//  width: 100%;
+//  text-align: center;
+  //&:before{
+  //  z-index: 2;
+  //  position: absolute;
+  //  left: 0;
+  //  top: 50%;
+  //  content: '';
+  //  display: block;
+  //  height: 0;
+  //  width: 100%;
+  //  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  //}
+  .sign_in_alt_text{
+    z-index: 1;
+    padding-right: 33px;
+    padding-left: 33px;
+    background-color: #fff;
+    margin-bottom: 20px;
+    font-family: "Source Sans Pro",sans-serif;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+  }
+  .sign_in_split_line{
+    transform: translateY(12px);
+  }
+//}
+
+
 .auth_form{
   position: relative;
   width:100%;
@@ -130,23 +232,7 @@
   cursor: pointer;
 z-index: 2;
 }
-.sign_up_agreement_checkbox{
-  margin-right: 8px;
-  background: #0E5394;
-  border-radius: 4px;
-  width: 16px;
-  height: 16px;
-  font-size: 18px;
-  line-height: 21px;
-  color: #FFFFFF;
-  transform: translateY(2px);
-  cursor: pointer;
-}
-.sign_up_agreement_checkbox_warning{
-  @extend .sign_up_agreement_checkbox;
-  background: rgba(246, 86, 71, 0.1);
-  border: 1px solid #FF4D4F;
-}
+
 
 .sign_up_password_label{
   font-family: "Source Sans Pro",sans-serif;
@@ -213,9 +299,7 @@ z-index: 2;
   color: #000;
 }
 
-.sign_up_checkbox{
-  margin-bottom: 15px;
-}
+
 
 @media screen and (max-width: 510px){
   .auth_session_header{

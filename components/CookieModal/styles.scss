@@ -35,3 +35,44 @@
 
 }
 
+
+.cookie_notification_container{
+    position: fixed;
+    max-width: 550px;
+    bottom: 10px;
+    left: 10px;
+    margin-right: 10px;
+    z-index: 100;
+    padding: 15px 25px 30px 25px;
+    background: #F3F6E6;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.06), 0px 3px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    .cookie_icon_wrapper{
+        display: flex;
+        justify-content: center;
+    }
+    .cookie_text{
+        font-family: "Source Sans Pro",sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 25px;
+        text-align: center;
+        color: rgba(0, 0, 0, 0.87);
+        margin-bottom: 20px;
+    }
+    .cookie_icon_wrapper{
+        margin-bottom: 10px;
+    }
+    .cookie_link{
+        color: #1551a3;
+        cursor: pointer;
+    }
+    .cookie_notification_close_button{
+        position: absolute;
+        right: 10px;
+        top: 0;
+        font-size: 30px;
+    }
+}
+

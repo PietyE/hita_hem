@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { faCaretDown, faTimes } from "@fortawesome/free-solid-svg-icons";
 import dynamic from "next/dynamic";
-
- // import FilterMobileMenu from "./FilterMobileMenu";
 import CampaignsList from "components/CampaignsList";
 import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
@@ -127,9 +125,9 @@ const CampaignsListSection = () => {
   return (
     <section className="invest_opp_middle_container">
       <div className="invest_opp_nav">
-        <h2 className="invest_opp_middle_title">
+        <h1 className="invest_opp_middle_title">
           {t("investment_opportunities_page.title")}
-        </h2>
+        </h1>
 
         <DropDownComponent className="invest_opp_dropdown">
           <DropdownToggle className="invest_opp_select">

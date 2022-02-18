@@ -11,11 +11,17 @@ import { useTranslation } from "react-i18next";
 import {useSelector} from "react-redux";
 import {getSelectedLangSelector} from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getUrlForMyInvestments} from 'utils/utils'
+import {INVEST_ROUTE, INVEST_ROUTE_EN} from "../../constants/routesConstant";
+import {useRouter} from "next/router";
 
 const MobileInvestment = ({ data }) => {
   const { t } = useTranslation();
   const currentLanguage = useSelector(getSelectedLangSelector);
   const moneyFormat = useMoneyFormat()
+  const router = useRouter();
+
+
 
   const [activeTab, setActiveTab] = useState(null);
   const handleTabClick = (e) => {
@@ -25,28 +31,34 @@ const MobileInvestment = ({ data }) => {
     }
     setActiveTab(e.target.dataset.value);
   };
+
+  const handleRedirectToRisePage = (e) => {
+    e.preventDefault()
+    router.push(currentLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN)
+  }
   return (
     <>
+      {(!data || data?.length === 0 )&& (
+          <p className='mobile_empty_list_text'>{t("profile_page.investments.empty_investments_list_text")}
+            <a className='mobile_empty_list_link'
+               href='/'
+               onClick={handleRedirectToRisePage}
+            >
+              {t("profile_page.investments.empty_investments_list_link")}
+            </a>
+          </p>
+      )
+      }
       <Accordion className="mobile_investments_container">
         {data?.length > 0 &&
           data?.map((payment, index) => {
-            let _link;
-            let textLink;
 
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${payment.company_id}`:`https://dev.accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${payment.company_id}`:`https://stage.accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = currentLanguage === 'en'?`https://accumeo.com/company/${payment.company_id}`:`https://accumeo.com/sv/company/${payment.company_id}`
-              textLink = `https://accumeo.com/company/${payment.company_id}`;
-            }
+            const {link, text_link} = getUrlForMyInvestments(currentLanguage, payment)
             return (
               <Card key={index} className="mobile_investments_card">
+
+
+
                 <Accordion.Toggle
                   as={Card.Header}
                   eventKey={index + 1}
@@ -75,8 +87,8 @@ const MobileInvestment = ({ data }) => {
                       <span className="mobile_investments_field_text">
                         {t("profile_page.investments.link")}
                       </span>
-                      <a href={_link} className="mobile_investments_field_link">
-                        {textLink}
+                      <a href={link} className="mobile_investments_field_link">
+                        {text_link}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">

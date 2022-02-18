@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import React from "react";
+import Script from "next/script";
 class MyDocument extends Document {
   render() {
     return (
@@ -25,6 +26,15 @@ class MyDocument extends Document {
             sizes="16x16"
             href="/favicon-16x16.ico"
           />
+
+            <link
+                href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;500;600;700;800;900&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap"
+                rel="stylesheet"
+            />
             {/* Global Site Tag (gtag.js) - Google Analytics */}
             <script
                 async

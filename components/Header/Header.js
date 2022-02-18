@@ -10,11 +10,12 @@ import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
 
 import {
-  // ABOUT_US_ROUTE,
+  RAISE_ROUTE_EN,
   RAISE_ROUTE,
   INVEST_ROUTE,
-  // LAUNCHING_SOON,
+  INVEST_ROUTE_EN,
   BLOG,
+  BLOG_EN,
 } from "constants/routesConstant";
 import { lang } from "constants/languageConstant";
 import { getSelectedLangSelector } from "redux/reducers/language";
@@ -22,19 +23,21 @@ import { changeLanguage } from "redux/actions/language";
 import { setShowSignUp, setShowSignIn } from "redux/actions/authPopupWindows";
 import { getIsSignInUserSelector } from "redux/reducers/user";
 
+import {getRedirectUrlForBlog} from "../../utils/utils";
+
 const UserPanel = dynamic(() => import("components/UserPanel"));
 const Navigation = dynamic(() => import("./components/Navigation"));
 const DropDownComponent = dynamic(() =>
-  import("components/ui/DropDownComponent")
+  import("components/ui/DropDownComponent"), { ssr: false }
 );
 const DropdownToggle = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownToggle), { ssr: false }
 );
 const DropdownMenu = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownMenu), { ssr: false }
 );
 const DropdownItem = dynamic(() =>
-  import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
+  import("components/ui/DropDownComponent").then((c) => c.DropdownItem), { ssr: false }
 );
 
 const LinkStyled = (props) => {
@@ -57,6 +60,17 @@ const Header = ({ initLang }) => {
 
   const selectedLanguage = initLang || _selectedLanguage;
 
+const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
+  // //navigation.  Link or <a>  dropInBlog button
+  // let showAsLink
+  // useEffect(()=>{
+  //   if(pathname === '/blog' && router?.query?.p ){
+  //     showAsLink = false
+  //   }else{
+  //     showAsLink = true
+  //   }
+  // },[pathname])
+  
   const handleSelectLang = (e) => {
     if (locale === lang[e.target.dataset.ln].code) return;
     dispatch(changeLanguage(lang[e.target.dataset.ln].code));
@@ -87,9 +101,9 @@ const Header = ({ initLang }) => {
                 <Button
                   colorStyle="link"
                   as={LinkStyled}
-                  to={INVEST_ROUTE}
+                  to={_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN}
                   className={`menu_item_link ${
-                    pathname.includes(INVEST_ROUTE) ? "active" : ""
+                    pathname.includes(_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN) ? "active" : ""
                   }`}
                 >
                   {t("header.invest").toLocaleUpperCase()}
@@ -98,11 +112,11 @@ const Header = ({ initLang }) => {
               <span className="menu_item">
                 <Button
                   className={`menu_item_link menu_item_link_raise ${
-                    pathname.includes(RAISE_ROUTE) ? "active" : ""
+                    pathname.includes(_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN) ? "active" : ""
                   }`}
                   colorStyle="link"
                   as={LinkStyled}
-                  to={RAISE_ROUTE}
+                  to={_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN}
                 >
                   {t("header.raise").toLocaleUpperCase()}
                 </Button>
@@ -120,16 +134,32 @@ const Header = ({ initLang }) => {
               {/*  </Button>*/}
               {/*</span>*/}
               <span className="menu_item">
-                <Button
-                    className={`menu_item_link menu_item_link_blog ${
-                        pathname.includes(BLOG) ? "active" : ""
-                    }`}
-                    colorStyle="link"
-                    as={LinkStyled}
-                    to={BLOG}
-                >
-                  {t("header.blog").toLocaleUpperCase()}
-                </Button>
+
+                {(pathname === ('/news' && router?.query?.p ) || ('/nether' && router?.query?.p)) ?
+                    (<a
+                        href= {`${redirectUrlForBlog}`}
+                        className={`menu_item_link menu_item_link_blog ${
+                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
+                        }`}
+                        // colorStyle="link"
+                        // as={LinkStyled}
+                        // to={BLOG}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </a>)
+                :
+                    (<Button
+                        className={`menu_item_link menu_item_link_blog ${
+                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
+                        }`}
+                        colorStyle="link"
+                        as={LinkStyled}
+                        to={_selectedLanguage === 'sv'?BLOG:BLOG_EN}
+                    >
+                      {t("header.blog").toLocaleUpperCase()}
+                    </Button>)}
+
+
               </span>
               <a className="menu_item_link menu_item_link_faq"
                  target="_blank"

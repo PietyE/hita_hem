@@ -1,16 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { END } from "redux-saga";
+import dynamic from "next/dynamic";
 
 import { wrapper } from "/redux/store";
 
 import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
-import AboutTeamSection from "containers/AboutUsPage/AboutTeamSection";
-import SubscrebeFormSection from "containers/AboutUsPage/SubscrebeFormSection";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingAboutUsSelector } from "redux/reducers/aboutUs";
 
+const SubscrebeFormSection = dynamic(() => import("containers/AboutUsPage/SubscrebeFormSection"), {
+  ssr: false,
+});
+const AboutTeamSection = dynamic(() => import("containers/AboutUsPage/AboutTeamSection"), {
+  ssr: false,
+});
 import { getAboutUs } from "redux/actions/aboutUs";
 import {
   getFlatBlocksSelector,
@@ -20,6 +25,8 @@ import {
   getSubscribeTitleSelector,
   getTeamMembersSelector,
 } from "redux/reducers/aboutUs";
+import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
+import MetaTags from "../components/MetaTags";
 
 const AboutUsPage = () => {
   const dispatch = useDispatch();
@@ -32,6 +39,7 @@ const AboutUsPage = () => {
   const flat_blocks = useSelector(getFlatBlocksSelector);
   const team_members = useSelector(getTeamMembersSelector);
   const subscribe_title = useSelector(getSubscribeTitleSelector);
+  const seo = useSelector(getAboutUsSeoSelector)
 
   const topSectionContent = {
     title: header_title,
@@ -45,6 +53,7 @@ const AboutUsPage = () => {
 
   return (
     <>
+        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       <div className="about_us_container">
         <TopSection content={topSectionContent} />

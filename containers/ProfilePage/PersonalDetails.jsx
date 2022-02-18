@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+    import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import {Formik, Form, Field} from "formik";
@@ -24,7 +24,7 @@ import isEmpty from "lodash/isEmpty";
 import capitalize from "lodash/capitalize";
 import InputComponent from "components/ui/InputComponent";
 
-import {phoneRegExp, personalIdRegExp, zipCodeRegExp} from "../../utils/vadidationSchemas";
+import {phoneRegExp, personalIdRegExp, zipCodeRegExp, emailRegExp} from "../../utils/vadidationSchemas";
 import {validateCampaignNumber} from "utils/utils";
 import {restrictOnlyLetters, restrictCity, restrictLettersNumbersAndSpecialCharacters} from "../../utils/restrictInput";
 import {getPrivacyPolicyDocument} from "redux/reducers/documents";
@@ -32,6 +32,8 @@ import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
+    import {getIsBankIdResident} from "../../redux/reducers/user";
+    import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
                              type,
@@ -46,6 +48,10 @@ const PersonalDetails = ({
     const dispatch = useDispatch();
     const profile = useSelector(getProfile, isEqual);
     const language = useSelector(getSelectedLangSelector)
+    const documentUrl = useSelector(getPrivacyPolicyDocument);
+    const usersId = useSelector(getUserIdSelector)
+    const isBankIdResident = useSelector(getIsBankIdResident)
+
     let initialValues = {
         address: {
             country: "",
@@ -54,6 +60,7 @@ const PersonalDetails = ({
         },
         first_name: "",
         second_name: "",
+        email: '',
         is_agree: false,
         day: "",
         month: "",
@@ -63,6 +70,9 @@ const PersonalDetails = ({
         image: "",
         zip_code: '',
     };
+
+    const emailCheckForCreateProfile = isBankIdResident ? yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")) : yup.string()
+
     const personalDetailsCreateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string().required(t("errors.country_required")),
@@ -71,6 +81,7 @@ const PersonalDetails = ({
         }),
         first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.first_name_required")),
         second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).required(t("errors.second_name_required")),
+        email: emailCheckForCreateProfile,
         is_agree: yup.bool().oneOf([true]),
         day: yup.number().required(t("errors.day_required")),
         month: yup.number().required(t("errors.month_required")),
@@ -79,6 +90,7 @@ const PersonalDetails = ({
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).required(t("errors.phone_required")),
         zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).required(t("errors.zip_required"))
     })
+    const postalCodeCheckForUpdateProfile = type ? yup.string().matches(zipCodeRegExp, t("errors.zip_example")) : yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', t("errors.zip_empty"), val => val?.length)
     const personalDetailsUpdateSchema = yup.object({
         address: yup.object().shape({
             country: yup.string(),
@@ -87,12 +99,15 @@ const PersonalDetails = ({
         }),
         first_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('first_name', t("errors.first_name_empty"), val => val?.length),
         second_name: yup.string().max(100, `${t("errors.long_error_part1")} 100 ${t("errors.long_error_part2")}`).test('second_name', t("errors.second_name_empty"), val => val?.length),
+        email: yup.string().email(t("errors.email_example")).matches(emailRegExp, t("errors.email_example")).max(80).required(t("errors.email_required")),
         day: yup.number(),
         month: yup.number(),
         year: yup.number(),
         personal_id: yup.string().matches(personalIdRegExp, t("errors.personal_id_example")).test('personal_id', t("errors.personal_id_empty"), val => val),
         phone_number: yup.string().matches(phoneRegExp, t("errors.phone_example")).test('phone_number', t("errors.phone_empty"), val => val?.length),
-        zip_code: yup.string().matches(zipCodeRegExp, t("errors.zip_example")).test('zip_code', type !== 'invest-form' ? t("errors.zip_empty") : t("errors.zip_invest_empty") , val => val?.length),
+
+        zip_code: postalCodeCheckForUpdateProfile,
+
     })
 
     const [valuesFromApi, setValuesFromApi] = useState(null);
@@ -104,6 +119,13 @@ const PersonalDetails = ({
             setValuesFromApi(profile);
         }
     }, [profile]);
+
+    useEffect(()=>{
+        return(
+            errorHandlerHook.clearAllProfileErrors()
+        )
+    },[])
+
 
     const _createProfile = useCallback(
         (data) => {
@@ -119,8 +141,8 @@ const PersonalDetails = ({
         [dispatch]
     );
 
-    const documentUrl = useSelector(getPrivacyPolicyDocument);
-    const usersId = useSelector(getUserIdSelector)
+
+
 
     const handleInput = (e) => {
         if(campaignNumberWarning){
@@ -154,6 +176,12 @@ const PersonalDetails = ({
         const newProfile = JSON.parse(JSON.stringify(values));
         newProfile.first_name = capitalize(newProfile.first_name.toLowerCase());
         newProfile.second_name = capitalize(newProfile.second_name.toLowerCase());
+        if(!isBankIdResident){
+            delete newProfile.email;
+        }
+        if(isBankIdResident && valuesFromApi?.email === newProfile?.email){
+            delete newProfile.email;
+        }
         delete newProfile.day;
         delete newProfile.month;
         delete newProfile.year;
@@ -174,10 +202,8 @@ const PersonalDetails = ({
         }
         return dataForApi;
     };
-
     const onSubmitProfile = (values) => {
         const dataForApi = prepareDataForApi(values);
-
         if (isEmpty(profile)) {
             recaptcha('create_profile', _createProfile, dataForApi)
             // _createProfile(dataForApi);
@@ -188,6 +214,12 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
+        if(!isEmpty(profile) && !profile?.zip_code){
+            dispatch(setShowPostalCodeNotification(true));
+            return
+                }
+
+        
         if(companyNumber){
             if(validateCampaignNumber(companyNumber.toUpperCase())){
                 const dataForApi = prepareDataForApi(values);
@@ -211,7 +243,6 @@ const PersonalDetails = ({
     }else{
         _footerStyles = isEmpty(profile) || type ? "profile_form_footer": 'profile_form_footer profile_form_footer_column'
     }
-
     const years = createYearList();
     return (
         <section className = {`profile_personal_details ${sectionClassName}`}>
@@ -302,6 +333,25 @@ const PersonalDetails = ({
                                             errorFromApi = {errorHandlerHook?.secondNameError}
                                             clearError = {errorHandlerHook?.clearProfileErrorFromApi}
                                         />
+
+                                        {isBankIdResident &&
+                                            <InputComponent
+                                                labelClassName = "profile_input_big profile_email"
+                                                label = {t("profile_page.personal.email")}
+                                                inputClassName = "profile_form_input"
+                                                errorClassName = "profile_form_warning_text"
+                                                inputName = "email"
+                                                values = {values}
+                                                // restrictInput = {restrictOnlyLetters}
+                                                setFieldValue = {setFieldValue}
+                                                setFieldError = {setFieldError}
+                                                touched = {touched}
+                                                errors = {errors}
+                                                disabled = {isInputsReadOnly}
+                                                errorFromApi = {errorHandlerHook?.emailError}
+                                                clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            />
+                                        }
                                         <p className = "profile_form_birth_text">
                                             {t("profile_page.personal.date_title")}
                                         </p>
@@ -620,6 +670,7 @@ const PersonalDetails = ({
                                                 {isEmpty(profile) || type
                                                     ? t("profile_page.personal.submit_button")
                                                     : t("profile_page.personal.save_button")}
+                                                    {/*<p className='profile_form_agreement_button_notification'>zzzzzzz</p>*/}
                                             </Button>
 
                                         </div>

@@ -17,7 +17,153 @@ module.exports = withBundleAnalyzer({
     defaultLocale: "sv",
     localeDetection: false,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/about-us',
+        destination: '/om-oss',
+      },
+      {
+        source: '/investment-opportunities',
+        destination: '/investeringsmojligheter',
+      },
+      {
+        source: '/raise',
+        destination: '/sok-kapital',
+      },
+      {
+        source: '/company/:path',
+        destination: '/foretag/:path',
+      },
+      {
+        source: '/company',
+        destination: '/foretag',
+      },
+      {
+        source: '/invest-form/:path',
+        destination: '/investerings-formular/:path',
+      },
+      {
+        source: '/news',
+        destination: '/nyheter',
+      },
 
+
+
+    ]
+  },
+  async redirects() {
+    return [
+      {
+        source: '/investeringsmojligheter',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/investment-opportunities',
+      },
+      {
+        source: '/om-oss',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/about-us',
+      },
+      {
+        source: '/sok-kapital',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/raise',
+      },
+      {
+        source: '/foretag/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/company/:slug*',
+      },
+      {
+        source: '/foretag',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/company',
+      },
+
+      {
+        source: '/investerings-formular/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/invest-form/:slug*',
+      },
+      {
+        source: '/nyheter',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+          {
+            type: 'query',
+            key: 'p',
+            value: '.*',
+          },
+        ],
+        permanent: false,
+        destination: '/en/news',
+      },
+      // {
+      //   source: '/nyheter',
+      //   has: [
+      //     {
+      //       type: 'cookie',
+      //       key: 'NEXT_LOCALE',
+      //       value: 'en',
+      //     },
+      //     // {
+      //     //   type: 'query',
+      //     //   key: 'p',
+      //     //   value: '.*',
+      //     // },
+      //   ],
+      //   permanent: false,
+      //   destination: '/news',
+      // },
+
+    ]
+  },
   async headers() {
     return [
       {

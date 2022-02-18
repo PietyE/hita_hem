@@ -173,3 +173,78 @@ export const getYoutubeId = (link) => {
         ? match[2]
         : null;
 }
+
+
+export const getRedirectUrl = (currentLanguage) => {
+  let _link;
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/authBankId`:`https://dev.accumeo.com/authBankId`
+  }
+
+  // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+  //   _link = currentLanguage === 'en'?`http://localhost:3000/en/authBankId`:`http://localhost:3000/authBankId`
+  // }
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/authBankId`:`https://stage.accumeo.com/authBankId`
+  }
+  if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/authBankId`:`https://accumeo.com/authBankId`
+  }
+  return _link
+}
+
+export const getRedirectUrlForBlog = (currentLanguage) => {
+  let _link;
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    _link = currentLanguage === 'en'?`https://dev.accumeo.com/en/news`:`https://dev.accumeo.com/nyheter`
+  }
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/news`:`https://stage.accumeo.com/nyheter`
+  }
+  if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/news`:`https://accumeo.com/nyheter`
+  }
+  return _link
+}
+
+export const getUrlForMyInvestments = (currentLanguage, data) => {
+  let _link;
+  let _textLink;
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+    _link = currentLanguage === 'en'?`http://localhost:3000/en/company/${data?.company_slug}`:`http://localhost:3000/company/${data?.company_slug}`
+    _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+  }
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/company/${data?.company_slug}`:`https://stage.accumeo.com/company/${data?.company_slug}`
+    _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+  }
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+    _link = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.company_slug}` : `https://accumeo.com/company/${data?.company_slug}`
+    _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+  }
+  return {link: _link, text_link: _textLink}
+}
+
+
+export const getUrlForMyCampaigns = (currentLanguage, data) => {
+  let _link;
+  let _textLink;
+
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+    _link = currentLanguage === 'en'?`http://localhost:3000/en/company/${data?.slug}`:`http://localhost:3000/company/${data?.slug}`
+    _textLink = `https://accumeo.com/company/${data?.slug}`;
+  }
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
+    _link = currentLanguage === 'en'?`https://stage.accumeo.com/en/company/${data?.slug}`:`https://stage.accumeo.com/company/${data?.slug}`
+    _textLink = `https://accumeo.com/company/${data?.slug}`;
+  }
+  if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+    _link = currentLanguage === 'en'?`https://accumeo.com/en/company/${data?.slug}`:`https://accumeo.com/company/${data?.slug}`
+    _textLink = `https://accumeo.com/company/${data?.slug}`;
+  }
+  return {link: _link, text_link: _textLink}
+}
+

@@ -72,13 +72,19 @@ const ChangePassword = () => {
     const onSubmitPassword = (values) => {
         recaptcha('change_password', _changePassword, values)
         // _changePassword(values);
+
+
     };
+
+    const handleClose =() => {
+        history.push(HOME_ROUTE);
+    }
     return (
         <>
             { canChangePassword && isAuth &&(
         <Modal
             show={true}
-            isCloseButton={false}
+            onHide={handleClose}
             backdrop={true}
             keyboard={false}
             className="auth_modal"

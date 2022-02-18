@@ -5,7 +5,7 @@ export const sv = {
             invest: "Investera",
             raise: "Sök kapital",
             launching_soon: "Kommer Snart",
-            blog: 'Blogg',
+            blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
             user_panel: {
@@ -76,6 +76,8 @@ auth: {
     },
     sign_in: {
         title: "Logga in",
+        sign_in: 'Logga in med',
+        alt_sign_in: 'Eller logga in med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
             password_label: "Lösenord *",
@@ -87,6 +89,8 @@ auth: {
     },
     sign_up: {
         title: "Skapa ett konto",
+        sign_in: 'Logga in med',
+        alt_sign_in: 'Eller bli medlem med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
             password_label: "Lösenord *",
@@ -237,7 +241,7 @@ company_page: {
 home_page: {
     featured_button: "Se alla projekt",
         upcoming_button: "Se kommande projekt",
-        join_title: "Upptäck onoterat.",
+        join_title: "Vill du investera i onoterade bolag?",
     join_button: "Bli en medlem",
         featured_campaigns: "Populära projekt",
         upcoming_campaigns: "Kommande projekt",
@@ -322,6 +326,8 @@ profile_page: {
             amount: "Investerat belopp",
             shares: "Antal aktier",
         button: "Kontakta oss",
+        empty_investments_list_text: "Du har inte investerat i några kampanjer ännu, om du är intresserad av att se vilka kampanjer som finns på Accumeo ",
+        empty_investments_list_link: "klicka här.",
     },
     campaigns: {
         title: "Mina kampanjer",
@@ -331,12 +337,15 @@ profile_page: {
             end_date: "Slutdatum",
             status: "Status",
             raised: "Reserverat belopp",
+        empty_campaigns_list_text: "Du har inga kampanjer ännu, om du är intresserad av att resa pengar ",
+        empty_campaigns_list_link: "klicka här.",
     },
     personal: {
         main_title: "Personuppgifter ",
             upload_photo: "Ladda upp ett foto",
             remove_photo: "Ta bort foto",
             profile_title: "Kontaktuppgifter",
+        email: "E-postadress*",
             first_name_label: "Förnamn*",
             second_name_label: "Efternamn*",
             date_title: "Födelsedatum*",

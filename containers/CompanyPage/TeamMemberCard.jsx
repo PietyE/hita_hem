@@ -22,11 +22,14 @@ const TeamMemberCard = ({ item }) => {
 
   return (
     <div className="member_card_item">
-      <ImageComponent
-        className="member_card_image"
-        src={photo}
-        alt="team mate foto"
-      />
+        <div className = "member_card_image">
+            {photo && <ImageComponent
+                className = "member_card_image"
+                src = {photo}
+                alt = {photo ? "teammate photo" : ' '}
+            />}
+        </div>
+
       <h3 className="member_card_item_name">{name}</h3>
       <span className="member_card_item_position">{position}</span>
       <a className="member_card_item_email" href={`mailto:${email}`}>

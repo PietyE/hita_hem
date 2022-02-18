@@ -5,7 +5,7 @@ export const en = {
             invest: "Invest",
             raise: "Raise",
             launching_soon: "Launching Soon",
-            blog: 'Blog',
+            blog: 'News',
             log_in: "Log In",
             sign_up: "Sign Up",
             user_panel: {
@@ -74,6 +74,8 @@ export const en = {
                 button: "Submit",
             },
             sign_in: {
+                sign_in: 'Sign in with',
+                alt_sign_in: 'Or sign in with email',
                 title: "Log in to your account",
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
@@ -86,6 +88,8 @@ export const en = {
             },
             sign_up: {
                 title: "Create account",
+                sign_in: 'Sign in with',
+                alt_sign_in: 'Or sign up with email',
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
                 password_label: "Password *",
@@ -326,6 +330,8 @@ export const en = {
                 amount: "Investment amount",
                 shares: "Shares",
                 button: "Contact us",
+                empty_investments_list_text: "You have not yet invested in any campaigns yet, if you are interested in investing ",
+                empty_investments_list_link: "click here.",
             },
             campaigns: {
                 title: "My campaigns",
@@ -335,12 +341,15 @@ export const en = {
                 end_date: "End date",
                 status: "Status",
                 raised: "Money raised",
+                empty_campaigns_list_text: "You do not have any campaigns yet, if you are interested in raising capital ",
+                empty_campaigns_list_link: "click here.",
             },
             personal: {
                 main_title: "My personal details",
                 upload_photo: "Upload an image",
                 remove_photo: "Remove photo",
                 profile_title: "Contact details",
+                email: "Email address*",
                 first_name_label: "First name*",
                 second_name_label: "Last name*",
                 date_title: "Date of birth*",

@@ -33,7 +33,7 @@ const FinancialInformation = () => {
                     <li key = {document?.document} className = "fin_document">
                         <Image
                             src = {IconDocument}
-                            alt = "icon_document"
+                            alt = ""alt = {IconDocument ? 'document icon' : ' '}
                             className = "fin_document_icon"
                         />
                         <a

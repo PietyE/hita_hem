@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, {useCallback, useState} from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import IconComponent from "components/ui/IconComponent";
 import {
@@ -12,13 +12,26 @@ import {
 import startCase from "lodash/startCase";
 import {convertStatusToText} from "utils/utils";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {getUrlForMyCampaigns} from "utils/utils";
+import {RAISE_ROUTE, RAISE_ROUTE_EN} from "../../constants/routesConstant";
+import {useRouter} from "next/router";
+import {setScrollToForm} from "../../redux/actions/raisePage";
 
 const MobileCampaigns = ({ data }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const router = useRouter();
   const moneyFormat = useMoneyFormat()
-
   const currentLanguage = useSelector(getSelectedLangSelector);
   const [activeTab, setActiveTab] = useState(null);
+
+  const _setScrollToForm = useCallback(
+      (data) => {
+        dispatch(setScrollToForm(data));
+      },
+      [dispatch]
+  );
+
   const handleTabClick = (e) => {
     if (activeTab === e.target.dataset.value) {
       setActiveTab(null);
@@ -26,8 +39,24 @@ const MobileCampaigns = ({ data }) => {
     }
     setActiveTab(e.target.dataset.value);
   };
+  const handleRedirectToRisePage = (e) => {
+    e.preventDefault()
+    router.push(currentLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN)
+    _setScrollToForm(true)
+  }
   return (
     <>
+      {(!data || data?.length === 0 )&& (
+          <p className='mobile_empty_list_text'>{t("profile_page.campaigns.empty_campaigns_list_text")}
+            <a className='mobile_empty_list_link'
+               href='/'
+               onClick={handleRedirectToRisePage}
+            >
+              {t("profile_page.campaigns.empty_campaigns_list_link")}
+            </a>
+          </p>
+      )
+      }
       <Accordion className="mobile_investments_container">
         {data?.length > 0 &&
           data?.map((campaign, index) => {
@@ -45,20 +74,9 @@ const MobileCampaigns = ({ data }) => {
               dataOptions
             );
 
-            let _link;
-            let textLink;
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-              _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${campaign.pk}`:`https://dev.accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-              _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.pk}`:`https://stage.accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
-            if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-              _link = currentLanguage === 'en'?`https://accumeo.com/company/${campaign.pk}`:`https://accumeo.com/sv/company/${campaign.pk}`
-              textLink = `https://accumeo.com/company/${campaign.pk}`;
-            }
+            const {link, text_link} = getUrlForMyCampaigns(currentLanguage, campaign)
+
+
             let _status = startCase(
                 convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
             );
@@ -92,8 +110,8 @@ const MobileCampaigns = ({ data }) => {
                       <span className="mobile_investments_field_text">
                         {t("profile_page.campaigns.link")}
                       </span>
-                      <a href={_link} className="mobile_investments_field_link">
-                        {textLink}
+                      <a href={link} className="mobile_investments_field_link">
+                        {text_link}
                       </a>
                     </p>
                     <p className="mobile_investments_field mobile_investments_amount">

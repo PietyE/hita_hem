@@ -46,7 +46,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                           objectFit = "cover"
                           priority = {true}
                           className = "raise_page_slider_image "
-                          alt = "raise_page_slider_image"
+                          alt = {img ? 'raise page slider image' : ' '}
                       />)}
                       {screenSize === 'laptop' && img &&(<Image
                           src = {img}
@@ -54,7 +54,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                           objectFit = "cover"
                           priority = {true}
                           className = "raise_page_slider_image "
-                          alt = "raise_page_slider_image"
+                          alt = {img ? 'raise page slider image' : ' '}
                       />)}
                       {screenSize === 'mobile' && img &&(<Image
                           src = {img}
@@ -62,7 +62,7 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
                           objectFit = "cover"
                           priority = {true}
                           className = "raise_page_slider_image "
-                          alt = "raise_page_slider_image"
+                          alt = {img ? 'raise page slider image' : ' '}
                       />)}
                     </div>
                     </div>

@@ -6,6 +6,7 @@ import Button from "../ui/Button";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {setShowDataLossWarning, setShowQuiz} from "../../redux/actions/authPopupWindows";
+import IconCookie from "../CookieModal/cookie.svg";
 
 function DataLossWarning({show}) {
     const { t } = useTranslation();
@@ -32,7 +33,7 @@ function DataLossWarning({show}) {
             bodyClassName="deleting_account_modal_dialog_container"
         >
             <div className="deleting_account_icon_container">
-                <Image src={Icon} alt="icon" />
+                <Image src={Icon} alt={Icon ? 'icon' : ' '} />
             </div>
             <h2 className="deleting_account_title">
                 {t("dataLossWarning.title")}

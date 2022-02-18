@@ -1,20 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import { getUserCampaignsSelector } from "redux/reducers/user";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import MobileCampaigns from "./MobileCampaigns";
 import { useTranslation } from "react-i18next";
-import { convertStatusToText } from "utils/utils";
+import {convertStatusToText, getUrlForMyCampaigns} from "utils/utils";
 import startCase from "lodash/startCase";
 import useMoneyFormat from "customHooks/useMoneyFormat";
+import {RAISE_ROUTE, RAISE_ROUTE_EN} from "../../constants/routesConstant";
+import {useRouter} from "next/router";
+import {setScrollToForm} from "../../redux/actions/raisePage";
 
 const ProfilePageCampaigns = () => {
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const router = useRouter();
   const moneyFormat = useMoneyFormat()
-
   const currentLanguage = useSelector(getSelectedLangSelector);
-
   const campaignsList = useSelector(getUserCampaignsSelector);
+
+  const _setScrollToForm = useCallback(
+      (data) => {
+        dispatch(setScrollToForm(data));
+      },
+      [dispatch]
+  );
+
+  const handleRedirectToRisePage = (e) => {
+    e.preventDefault()
+    router.push(currentLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN)
+    _setScrollToForm(true)
+  }
   return (
     <section className="profile_campaigns_section">
       <h2 className="profile_campaigns_title">
@@ -42,6 +59,17 @@ const ProfilePageCampaigns = () => {
           </p>
         </div>
         <ul className="profile_campaigns_list">
+          {(!campaignsList || campaignsList?.length === 0 )&& (
+              <p className='profile_campaigns_empty_list_text'>{t("profile_page.campaigns.empty_campaigns_list_text")}
+                <a className='profile_campaigns_empty_list_link'
+                   href='/'
+                   onClick={handleRedirectToRisePage}
+                >
+                  {t("profile_page.campaigns.empty_campaigns_list_link")}
+                </a>
+              </p>
+          )
+          }
           {campaignsList?.length > 0 &&
             campaignsList?.map((campaign, index) => {
               const dataOptions = {
@@ -57,20 +85,8 @@ const ProfilePageCampaigns = () => {
                 dataOptions
               );
 
-              let _link;
-              let textLink;
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development'){
-                _link = currentLanguage === 'en'?`https://dev.accumeo.com/company/${campaign.pk}`:`https://dev.accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging'){
-                _link = currentLanguage === 'en'?`https://stage.accumeo.com/company/${campaign.pk}`:`https://stage.accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
-              if(process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production'){
-                _link = currentLanguage === 'en'?`https://accumeo.com/company/${campaign.pk}`:`https://accumeo.com/sv/company/${campaign.pk}`
-                textLink = `https://accumeo.com/company/${campaign.pk}`
-              }
+              const {link, text_link} = getUrlForMyCampaigns(currentLanguage, campaign)
+
               let _status = startCase(
                 convertStatusToText(campaign.status, currentLanguage).toLocaleLowerCase()
               );
@@ -83,10 +99,10 @@ const ProfilePageCampaigns = () => {
                     {campaign?.name}
                   </p>
                   <a
-                    href={_link}
+                    href={link}
                     className="profile_campaigns_table_item_text table_item_campaign_link"
                   >
-                    {textLink}
+                    {text_link}
                   </a>
                   <p className="profile_campaigns_table_item_text table_item_campaign_s_date">
                     {_startDayLocal}

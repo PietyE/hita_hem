@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { getUserSelector } from "redux/reducers/user";
+import {getIsBankIdResident, getUserSelector} from "redux/reducers/user";
 import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 
@@ -16,6 +16,7 @@ const DropdownToggle = dynamic(() =>
 
 function UserPanel() {
   const userInfo = useSelector(getUserSelector, isEqual);
+  const isBankIdResident = useSelector(getIsBankIdResident)
   const { account, user } = userInfo;
 
   return (
@@ -24,9 +25,12 @@ function UserPanel() {
         {!!user?.first_name && !!user?.second_name && (
           <span className="user_panel_text">{`${user?.first_name} ${user?.second_name}`}</span>
         )}
-        {(!user?.first_name || !user?.second_name) && (
+        {(!user?.first_name && !isBankIdResident) && (
           <span className="user_panel_text"> {account.email}</span>
         )}
+          {(!user?.first_name && isBankIdResident) && (
+              <span className="user_panel_text"> BankID User</span>
+          )}
         <div className="user_panel_avatar_wrapper" style={{  position: 'relative'}}>
           {user?.image && (
             // <img
@@ -40,7 +44,7 @@ function UserPanel() {
                   layout = "fill"
                   objectFit = "cover"
                   priority = {true}
-                  alt = "avatar"
+                  alt = {user?.image ? 'avatar' : ' '}
               />
           )}
         </div>

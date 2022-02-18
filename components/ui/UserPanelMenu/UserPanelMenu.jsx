@@ -80,7 +80,7 @@ const UserPanelMenu = ({ show }) => {
         onSelect={handleSelect}
       >
         <span>
-          <Image src={iconLogOut} alt="logout icon" />
+          <Image src={iconLogOut} alt={iconLogOut ? 'log out icon' : ' '} />
             <span className='user_menu_item_text'>{t("header.user_panel.Log_Out")}</span>
         </span>
       </DropdownItem>
