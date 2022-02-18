@@ -38,7 +38,7 @@ function ShowPostalCodeNotification({show}) {
                 <Image src={Icon} alt={Icon ? 'warning icon' : ' '} />
             </div>
             <span className="successful_investment_text">
-                You need to add your Postal code, for it go to the <a className='successful_investment_link' onClick={handleClick}>Personal details</a>.
+               {t("showPostalCodeNotification.text")}<a className='successful_investment_link' onClick={handleClick}>{t("showPostalCodeNotification.link")}</a>.
 
       </span>
         </Modal>
