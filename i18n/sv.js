@@ -8,6 +8,7 @@ export const sv = {
             blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
+            bank_id_user_text: 'Inställningar',
             user_panel: {
                 Investments: "Investeringar",
                 Campaigns: "Kampanjer",
@@ -492,6 +493,10 @@ cookie: {
             link2:"användarvillkor ",
             text3: 'gäller.',
 
+        },
+        showPostalCodeNotification: {
+            text:'Vänligen lägg till ditt postnummer under ',
+            link:'personuppgifter',
         },
         faq:'Frågor & svar',
 

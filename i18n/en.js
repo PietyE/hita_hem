@@ -8,6 +8,7 @@ export const en = {
             blog: 'News',
             log_in: "Log In",
             sign_up: "Sign Up",
+            bank_id_user_text: 'Settings',
             user_panel: {
                 Investments: "Investments",
                 Campaigns: "Campaigns",
@@ -495,10 +496,15 @@ export const en = {
             text3: 'apply.',
 
         },
-faq:'FAQ',
+        showPostalCodeNotification: {
+            text:'Please add you postal code in the ',
+            link:'Personal Details',
+        },
+        faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
     },
+
 
 
 };
