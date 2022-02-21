@@ -9,6 +9,8 @@ Disallow: /500
 Noindex: /500
 Disallow: /invest-form/*
 Noindex: /invest-form/*
+Disallow: /investerings-formular/*
+Noindex: /investerings-formular/*
 Disallow: /users/*
 Noindex: /users/*
 Disallow: /activation
