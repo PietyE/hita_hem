@@ -1,10 +1,10 @@
 import React from "react";
-const baseUrlSv = 'https//accumeo.com/foretag/'
-const baseUrlEn = 'https//accumeo.com/en/company/'
+const baseUrlSv = 'https//dev.accumeo.com/foretag/'
+const baseUrlEn = 'https//dev.accumeo.com/en/company/'
 
 const createDynamicMarkupForCampaigns = async () => {
 
-    const response = await fetch(`https://api.accumeo.com/api/companies/`)
+    const response = await fetch(`https://dev-api.accumeo.com/api/companies/`)
     const data = await response.json()
     const listOfSlugs =   data.map((campaign=>campaign?.slug))
     const markup = listOfSlugs.map((slug) => {
