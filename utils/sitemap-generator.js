@@ -1,14 +1,15 @@
-import React from "react";
-const baseUrlSv = 'https//accumeo.com/foretag/'
-const baseUrlEn = 'https//accumeo.com/en/company/'
+const fs = require('fs')
 
-const createDynamicMarkupForCampaigns = async () => {
+async function generateSitemap() {
+    const baseUrlSv = 'https//accumeo.com/foretag/'
+    const baseUrlEn = 'https//accumeo.com/en/company/'
+    const createDynamicMarkupForCampaigns = async () => {
 
-    const response = await fetch(`https://api.accumeo.com/api/companies/`)
-    const data = await response.json()
-    const listOfSlugs =   data.map((campaign=>campaign?.slug))
-    const markup = listOfSlugs.map((slug) => {
-        return `
+        const response = await fetch(`https://api.accumeo.com/api/companies/`)
+        const data = await response.json()
+        const listOfSlugs =   data.map((campaign=>campaign?.slug))
+        const markup = listOfSlugs.map((slug) => {
+            return `
             <url>
               <loc>${baseUrlSv}${slug}</loc>
               <xhtml:link
@@ -19,16 +20,10 @@ const createDynamicMarkupForCampaigns = async () => {
               <priority>0.80</priority>
             </url>
 `
-    })
-    return markup.join('')
-}
-
-const Sitemap = () => {
-};
-
-export const getServerSideProps = async({res}) => {
+        })
+        return markup.join('')
+    }
     const markup = await createDynamicMarkupForCampaigns()
-
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
          <urlset
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -86,13 +81,8 @@ ${markup}
     </urlset>
   `;
 
-    res.setHeader("Content-Type", "application/xml");
-    res.write(sitemap);
-    res.end();
 
-    return {
-        props: {},
-    };
-};
 
-export default Sitemap;
+    fs.writeFileSync('public/sitemap.xml', sitemap)
+}
+generateSitemap()

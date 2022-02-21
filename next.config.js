@@ -178,4 +178,10 @@ module.exports = withBundleAnalyzer({
       },
     ];
   },
+  // webpack: (config, { isServer }) => {
+  //   if (isServer) {
+  //     require("./utils/sitemap-generator.js");
+  //   }
+  //   return config;
+  // },
 });
