@@ -8,6 +8,7 @@ export const en = {
             blog: 'News',
             log_in: "Log In",
             sign_up: "Sign Up",
+            bank_id_user_text: 'Settings',
             user_panel: {
                 Investments: "Investments",
                 Campaigns: "Campaigns",
@@ -88,7 +89,7 @@ export const en = {
             },
             sign_up: {
                 title: "Create account",
-                sign_in: 'Sign in with',
+                sign_in: 'Sign up with',
                 alt_sign_in: 'Or sign up with email',
                 email_label: "Email Address *",
                 email_placeholder: "Enter your email address",
@@ -409,6 +410,7 @@ export const en = {
             personal_id_empty: '"Personal ID" cannot be empty',
             phone_empty: '"Phone number" cannot be empty',
             zip_empty: '"Postal code" cannot be empty',
+            zip_invest_empty: '"Postal code" cannot be empty please change this in your profile',
 
             company_name_required: 'Company name is a required field',
             company_form_required: 'Form of the company is a required field',
@@ -494,10 +496,15 @@ export const en = {
             text3: 'apply.',
 
         },
-faq:'FAQ',
+        showPostalCodeNotification: {
+            text:'Please add you postal code in the ',
+            link:'Personal Details',
+        },
+        faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
     },
+
 
 
 };

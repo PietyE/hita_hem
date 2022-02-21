@@ -8,6 +8,7 @@ export const sv = {
             blog: 'Nyheter',
             log_in: "Logga in",
             sign_up: "Bli medlem",
+            bank_id_user_text: 'Inställningar',
             user_panel: {
                 Investments: "Investeringar",
                 Campaigns: "Kampanjer",
@@ -89,7 +90,7 @@ auth: {
     },
     sign_up: {
         title: "Skapa ett konto",
-        sign_in: 'Logga in med',
+        sign_in: 'Skapa konto med',
         alt_sign_in: 'Eller bli medlem med din mail',
             email_label: "E-postadress *",
             email_placeholder: "Ange din e-postadress",
@@ -419,6 +420,7 @@ errors: {
         personal_id_empty: '"Personnummer" kan inte vara tomt',
         phone_empty:'"Telefonnummer" kan inte vara tomt',
         zip_empty:'"Postnummer" kan inte vara tomt',
+    zip_invest_empty: '"Postnummer" kan inte vara ett tomt fält. Vänligen lägg till detta i din profil',
 
         company_name_required: 'Företagsnamn är obligatoriskt',
         company_form_required: 'Företagsform är obligatoriskt',
@@ -491,6 +493,10 @@ cookie: {
             link2:"användarvillkor ",
             text3: 'gäller.',
 
+        },
+        showPostalCodeNotification: {
+            text:'Vänligen lägg till ditt postnummer under ',
+            link:'personuppgifter',
         },
         faq:'Frågor & svar',
 

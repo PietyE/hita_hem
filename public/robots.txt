@@ -1,0 +1,25 @@
+Sitemap: https://accumeo.com/sitemap.xml
+
+User-Agent: *
+Disallow: /launching-soon
+Noindex: /launching-soon
+Disallow: /404
+Noindex: /404
+Disallow: /500
+Noindex: /500
+Disallow: /invest-form/*
+Noindex: /invest-form/*
+Disallow: /investerings-formular/*
+Noindex: /investerings-formular/*
+Disallow: /users/*
+Noindex: /users/*
+Disallow: /activation
+Noindex: /activation
+Disallow: /authBankId
+Noindex: /authBankId
+Disallow: /change-email
+Noindex: /change-email
+Disallow: /change-password
+Noindex: /change-password
+Disallow: /reset-password
+Noindex: /reset-password
