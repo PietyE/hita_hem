@@ -1,12 +1,9 @@
-const recaptchaToken = '6LdhbeQcAAAAANViCW7EUOdc7mGAIUWkDISUt-gP'
-
-
 
 export const recaptcha = async (action, functionToExecute, data) => {
 
     const generateToken = () => {
         grecaptcha.ready(function() {
-            grecaptcha.execute(recaptchaToken, {action: action}).then(function(token) {
+            grecaptcha.execute(process.env.NEXT_PUBLIC_GOOGLE_RECAPTCHA, {action: action}).then(function(token) {
                 functionToExecute({token, data})
             });
         });
