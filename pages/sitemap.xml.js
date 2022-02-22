@@ -1,10 +1,15 @@
 import React from "react";
-const baseUrlSv = `https//${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
-const baseUrlEn = `https//${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
+const baseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
+const baseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
 
 const createDynamicMarkupForCampaigns = async () => {
 
-    const response = await fetch(`https://${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`,{
+        headers:{
+            'content-type': 'application/json',
+            'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
+        },
+    })
     const data = await response.json()
     const listOfSlugs =   data.map((campaign=>campaign?.slug))
     const markup = listOfSlugs.map((slug) => {
@@ -39,47 +44,47 @@ export const getServerSideProps = async({res}) => {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         >
    <url>
-    <loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/</loc>
+    <loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/</loc>
     <xhtml:link
             rel="alternate"
             hreflang="en"
-            href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en"/>
+            href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en"/>
     <lastmod>2022-01-20T10:44:23+00:00</lastmod>
     <priority>1.00</priority>
 </url>
 <url>
-<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/investeringsmojligheter</loc>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/investeringsmojligheter</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/investment-opportunities"/>
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/investment-opportunities"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/sok-kapital</loc>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/sok-kapital</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/raise"/>
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/raise"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/nyheter</loc>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/nyheter</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/news"/>
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/news"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/om-oss</loc>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/om-oss</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/about-us"/>
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/about-us"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
