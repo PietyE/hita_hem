@@ -1,11 +1,11 @@
 const fs = require('fs')
 
 async function generateSitemap() {
-    const baseUrlSv = 'https//accumeo.com/foretag/'
-    const baseUrlEn = 'https//accumeo.com/en/company/'
+    const baseUrlSv = `https//${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
+    const baseUrlEn = `https//${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
     const createDynamicMarkupForCampaigns = async () => {
 
-        const response = await fetch(`https://api.accumeo.com/api/companies/`)
+        const response = await fetch(`https://${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`)
         const data = await response.json()
         const listOfSlugs =   data.map((campaign=>campaign?.slug))
         const markup = listOfSlugs.map((slug) => {
@@ -33,47 +33,47 @@ async function generateSitemap() {
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         >
    <url>
-    <loc>https://accumeo.com/</loc>
+    <loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/</loc>
     <xhtml:link
             rel="alternate"
             hreflang="en"
-            href="https://accumeo.com/en"/>
+            href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en"/>
     <lastmod>2022-01-20T10:44:23+00:00</lastmod>
     <priority>1.00</priority>
 </url>
 <url>
-<loc>https://accumeo.com/investeringsmojligheter</loc>
+<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/investeringsmojligheter</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://accumeo.com/en/investment-opportunities"/>
+        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/investment-opportunities"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://accumeo.com/sok-kapital</loc>
+<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/sok-kapital</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://accumeo.com/en/raise"/>
+        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/raise"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://accumeo.com/nyheter</loc>
+<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/nyheter</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://accumeo.com/en/news"/>
+        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/news"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
 <url>
-<loc>https://accumeo.com/om-oss</loc>
+<loc>https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/om-oss</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
-        href="https://accumeo.com/en/about-us"/>
+        href="https://${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/about-us"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>
