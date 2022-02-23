@@ -50,7 +50,7 @@ const initialValues = {
   showDenyDeletingAccount:false,
   showSuccessfulFaqPopup: false,
   showDataLossWarning: false,
-  showFirstLoginPopup: false,
+  showFirstLoginPopup: true,
   showPostalCodeNotification: false,
   text: '',
   showCookie: false,

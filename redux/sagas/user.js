@@ -72,6 +72,8 @@ import api from "api";
 import {getDocumentsWorker} from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
 import {getRedirectUrl} from "../../utils/utils";
+import {sendSignUpToGTM} from "../../utils/tagManagerScripts";
+// import {sendMetrics} from "../../utils/sendGA";
 
 const {auth} = api;
 
@@ -214,6 +216,9 @@ function* signInWithGoogle({payload}) {
             yield put(setTokenForQuizSocialsSignIn(token))
             yield call(requestForQuiz)
         }
+        //check send to GA
+        sendSignUpToGTM()
+        // sendMetrics('user-signup-submit','google_login',  'google')
     } catch (error) {
         const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.social_account
         yield put(
