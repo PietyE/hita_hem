@@ -33,7 +33,8 @@ import {
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
-    getShowPostalCodeNotification
+    getShowPostalCodeNotification,
+    getShowCompleteBankIdRegistration,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -125,6 +126,10 @@ const CookieNotification = dynamic(() =>
     import("components/CookieNotification"), { ssr: false }
 );
 
+const CompleteBankIdRegistrationPopup = dynamic(() =>
+    import("components/CompleteBankIdRegistrationPopup"), { ssr: false }
+);
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
 
@@ -168,6 +173,7 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
+    const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -343,7 +349,7 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
-
+          {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
           {isShowCookie && <CookieNotification/>}
 
 

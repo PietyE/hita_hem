@@ -500,6 +500,12 @@ export const en = {
             text:'Please add you postal code in the ',
             link:'Personal Details',
         },
+        complete_bank_id_registration: {
+            title: 'Please enter your email to complete registration.',
+            button: 'Submit',
+            email_placeholder: "Enter your email address",
+            error: 'Example: test@test.com',
+        },
         faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
