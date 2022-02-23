@@ -28,12 +28,16 @@ function UserPanel() {
         {!!user?.first_name && !!user?.second_name && (
           <span className="user_panel_text">{`${user?.first_name} ${user?.second_name}`}</span>
         )}
-        {(!user?.first_name && !isBankIdResident) && (
-          <span className="user_panel_text"> {account.email}</span>
-        )}
-          {(!user?.first_name && isBankIdResident) && (
-              <span className="user_panel_text">{t("header.bank_id_user_text")}</span>
+          {(!user?.first_name ) && (
+            <span className="user_panel_text"> {account.email}</span>
           )}
+
+        {/*{(!user?.first_name && !isBankIdResident) && (*/}
+        {/*  <span className="user_panel_text"> {account.email}</span>*/}
+        {/*)}*/}
+        {/*  {(!user?.first_name && isBankIdResident) && (*/}
+        {/*      <span className="user_panel_text">{t("header.bank_id_user_text")}</span>*/}
+        {/*  )}*/}
         <div className="user_panel_avatar_wrapper" style={{  position: 'relative'}}>
           {user?.image && (
             // <img

@@ -25,6 +25,7 @@ import {
     REQUEST_SIGN_IN_WITH_BANK_ID,
     SIGN_IN_WITH_GOOGLE,
     SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
+    SIGN_UP_WITH_BANK_ID,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -38,7 +39,7 @@ import {
     setCanResetPassword,
     setCanChangePassword,
     setQuiz,
-    setIsAthOnAndSaveUserProfile,
+    setIsAthOnAndSaveUserProfile, setBIdKey,
 } from "redux/actions/user";
 import {
     setShowSignIn,
@@ -57,9 +58,9 @@ import {
     setShowCookiePopup,
     setShowDenyDeletingAccount,
     setShowRequestForChangeEmail,
-    setShowRequestForChangePassword, setShowFirstLoginPopup,
+    setShowRequestForChangePassword, setShowFirstLoginPopup, setShowCompleteBankIdRegistration,
 } from "../actions/authPopupWindows";
-import {getUserIdSelector} from "../reducers/user";
+import {getBIdKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
     setIsBankIdResident,
@@ -251,7 +252,7 @@ function* makeRequestForSignInWithBankIdWorker() {
 function* signInWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data});
+        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data,});
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
@@ -271,13 +272,57 @@ function* signInWithBankIdWorker({payload}) {
 
 
     } catch (error) {
-        yield put(
-            setAuthError({status: error?.response?.status, data: error?.response?.data})
-        );
+        if(error?.response?.data?.user){
+            yield put(setShowCompleteBankIdRegistration(true))
+            yield put(setBIdKey(payload?.data))
+        }else{
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
+        }
+
     } finally {
         yield put(setFetchingUsers(false));
     }
 }
+
+
+function* signUpWithBankIdWorker({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        const sessionId = yield select(getBIdKeySelector)
+        const response = yield call([auth, "loginWithBankId"], {grand_id_session: sessionId, email: payload?.email});
+        const {data} = response;
+        const {user, token} = data;
+        if (user?.quiz) {
+            yield put(setIsAthOnAndSaveUserProfile(data))
+            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+            yield call([localStorage, 'removeItem'], 'current_pathname')
+            payload?.action?.push(current_pathname)
+
+
+        } else {
+            yield put(setTokenForQuizSocialsSignIn(token))
+            yield call(requestForQuiz)
+        }
+        yield put(setShowCompleteBankIdRegistration(false))
+        yield put(setBIdKey(''))
+    } catch (error) {
+        const hideNotification =  !!error?.response?.data?.email
+
+        yield put(
+                setAuthError({
+                    status: error?.response?.status,
+                    data: error?.response?.data,
+                    hideNotification:hideNotification,
+                })
+            );
+
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
 
 function* logout({payload}) {
     try {
@@ -804,6 +849,8 @@ export function* userWorker() {
     yield takeEvery(REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
     yield takeEvery(SIGN_IN_WITH_GOOGLE, signInWithGoogle)
     yield takeEvery(SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE, setIsAuthOnAndSaveUserProfileWatcher)
+    yield takeEvery(SIGN_UP_WITH_BANK_ID, signUpWithBankIdWorker)
+
 
 
 }

@@ -32,7 +32,7 @@ import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
-    import {getIsBankIdResident} from "../../redux/reducers/user";
+    import {getIsBankIdResident, getUserEmailSelector} from "../../redux/reducers/user";
     import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
@@ -51,7 +51,7 @@ const PersonalDetails = ({
     const documentUrl = useSelector(getPrivacyPolicyDocument);
     const usersId = useSelector(getUserIdSelector)
     const isBankIdResident = useSelector(getIsBankIdResident)
-
+    const emailFromAccount = useSelector(getUserEmailSelector)
     let initialValues = {
         address: {
             country: "",
@@ -126,6 +126,11 @@ const PersonalDetails = ({
         )
     },[])
 
+    useEffect(()=>{
+        if(isBankIdResident && emailFromAccount && isEmpty(profile)){
+            setValuesFromApi({email: emailFromAccount})
+        }
+    },[profile,isBankIdResident,emailFromAccount])
 
     const _createProfile = useCallback(
         (data) => {
