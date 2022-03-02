@@ -73,6 +73,7 @@ import api from "api";
 import {getDocumentsWorker} from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
 import {getRedirectUrl} from "../../utils/utils";
+import {HOME_ROUTE} from "../../constants/routesConstant";
 
 const {auth} = api;
 
@@ -262,7 +263,7 @@ function* signInWithBankIdWorker({payload}) {
             yield put(setIsAthOnAndSaveUserProfile(data))
             const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
             yield call([localStorage, 'removeItem'], 'current_pathname')
-            payload?.action?.push(current_pathname)
+            payload?.action?.push(current_pathname || HOME_ROUTE)
 
 
         } else {
@@ -298,7 +299,7 @@ function* signUpWithBankIdWorker({payload}) {
             yield put(setIsAthOnAndSaveUserProfile(data))
             const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
             yield call([localStorage, 'removeItem'], 'current_pathname')
-            payload?.action?.push(current_pathname)
+            payload?.action?.push(current_pathname || HOME_ROUTE)
 
 
         } else {
