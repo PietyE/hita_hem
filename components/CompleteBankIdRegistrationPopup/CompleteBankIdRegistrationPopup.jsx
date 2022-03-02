@@ -8,6 +8,7 @@ import {emailRegExp} from "../../utils/vadidationSchemas";
 import {useRouter} from "next/router";
 import {signUpWithBankId} from "../../redux/actions/user";
 import useAuthErrorHandler from "../../customHooks/useAuthErrorHandler";
+import {HOME_ROUTE} from "../../constants/routesConstant";
 
 const CompleteBankIdRegistrationPopup = ({show}) => {
     const { t } = useTranslation();
@@ -47,6 +48,7 @@ const CompleteBankIdRegistrationPopup = ({show}) => {
 
     const handleClose = () => {
         _setShowCompleteBankIdRegistration(false)
+        router.push(HOME_ROUTE)
     }
     const handleChange = (e) => {
         setEmail(e?.target?.value)
