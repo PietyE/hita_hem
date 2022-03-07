@@ -655,6 +655,7 @@ function* requestForCheckingQuiz({payload}) {
         yield put(setToken(response?.data?.token));
         yield put(setAccount(res.data));
         yield put(setAuth(true));
+        yield put(setShowFirstLoginPopup(true))
 
 
     } catch (error) {
