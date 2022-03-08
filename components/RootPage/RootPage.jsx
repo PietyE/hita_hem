@@ -270,7 +270,7 @@ const RootPage = ({ children, initLang = "" }) => {
             clearTimeout(timerId)
         }
         
-    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, showSuccessfulSignUpWindow,isShowCompleteBankIdRegistration])
+    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, isShowCompleteBankIdRegistration])
     
 
     useEffect(() => {
