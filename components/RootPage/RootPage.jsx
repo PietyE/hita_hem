@@ -225,7 +225,7 @@ const RootPage = ({ children, initLang = "" }) => {
   }, [email, fullName]);
 
   useEffect(() => {
-    if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+    // if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
       const handleRouteChange = (url) => {
         ga.pageview(url)
       }
@@ -238,7 +238,7 @@ const RootPage = ({ children, initLang = "" }) => {
       return () => {
         router.events.off('routeChangeComplete', handleRouteChange)
       }
-    }
+    // }
   }, [router.events])
 
 
