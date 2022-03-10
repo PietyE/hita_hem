@@ -498,6 +498,12 @@ cookie: {
             text:'Vänligen lägg till ditt postnummer under ',
             link:'personuppgifter',
         },
+        complete_bank_id_registration: {
+            title: 'Vänligen ange din mail för att slutföra registreringen via BankID.',
+            button: 'Bli medlem',
+            email_placeholder: "Ange din e-postadress",
+            error: 'Exempel: test@test.com',
+        },
         faq:'Frågor & svar',
 
 

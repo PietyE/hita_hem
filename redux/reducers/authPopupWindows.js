@@ -24,7 +24,8 @@ import {
   SET_SHOW_SUCCESSFUL_FAQ_POST,
   SET_SHOW_DATA_LOSS_WARNING,
   SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
-  SET_SHOW_POSTAL_CODE_NOTIFICATION
+  SET_SHOW_POSTAL_CODE_NOTIFICATION,
+  SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -52,6 +53,7 @@ const initialValues = {
   showDataLossWarning: false,
   showFirstLoginPopup: true,
   showPostalCodeNotification: false,
+  showCompleteBankIdRegistration: false,
   text: '',
   showCookie: false,
 };
@@ -93,7 +95,7 @@ export const getShowDataLossWarning = state =>  state.authPopupWindows.showDataL
 export const getShowFirstLoginPopup = state => state.authPopupWindows.showFirstLoginPopup;
 
 export const getShowPostalCodeNotification = state => state.authPopupWindows.showPostalCodeNotification;
-
+export const getShowCompleteBankIdRegistration = state => state.authPopupWindows.showCompleteBankIdRegistration;
 
 
 export const authPopupWindows = (state = initialValues, actions) => {
@@ -150,6 +152,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showCookie: actions.payload }
     case SET_SHOW_POSTAL_CODE_NOTIFICATION:
       return { ...state, showPostalCodeNotification: actions.payload }
+    case SET_SHOW_COMPLETE_BANK_ID_REGISTRATION:
+      return { ...state, showCompleteBankIdRegistration: actions.payload }
     default:
       return state;
   }

@@ -6,11 +6,15 @@ import Button from "../ui/Button";
 import {useTranslation} from "react-i18next";
 import {useDispatch} from "react-redux";
 import {setShowDataLossWarning, setShowQuiz} from "../../redux/actions/authPopupWindows";
-import IconCookie from "../CookieModal/cookie.svg";
+import {useRouter} from "next/router";
+import {HOME_ROUTE} from "../../constants/routesConstant";
 
 function DataLossWarning({show}) {
     const { t } = useTranslation();
     const dispatch = useDispatch();
+    const router = useRouter()
+
+
     const _setShowConfirmationOfAccountDeleting = useCallback(() => {
         dispatch(setShowDataLossWarning(false));
     }, [dispatch]);
@@ -21,6 +25,9 @@ function DataLossWarning({show}) {
     const handleClose = () => {
         _setShowQuiz()
         _setShowConfirmationOfAccountDeleting()
+        if(router.pathname === '/authBankId'){
+            router.push(HOME_ROUTE)
+        }
     }
     return (
         <Modal

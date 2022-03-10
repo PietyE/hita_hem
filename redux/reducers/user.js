@@ -17,6 +17,7 @@ import {
   SET_TOKEN_FOR_QUIZ_SOCIALS_SIGN_IN,
   SET_CURRENT_PATH,
   SET_IS_BANK_ID_RESIDENT,
+  SET_BANK_ID_KEY,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -30,6 +31,7 @@ const initialsState = {
   isShowQuizForBankId: false,
   isSuccessfulResponseFromApi: false,
   isBankIdResident: false,
+  bidSessionKey: '',
   currentPath: '',
   token: {},
   user: {},
@@ -82,6 +84,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, currentPath: actions.payload}
     case SET_IS_BANK_ID_RESIDENT:
       return {...state, isBankIdResident: actions.payload}
+    case SET_BANK_ID_KEY:
+      return {...state, bidSessionKey: actions.payload}
     default:
       return state;
   }
@@ -137,3 +141,4 @@ export const getUserEmailSelector = (state) => state.user?.account?.email;
 export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
+export const getBIdKeySelector = (state) => state.user.bidSessionKey;
