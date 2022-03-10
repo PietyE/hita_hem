@@ -51,7 +51,7 @@ const initialValues = {
   showDenyDeletingAccount:false,
   showSuccessfulFaqPopup: false,
   showDataLossWarning: false,
-  showFirstLoginPopup: true,
+  showFirstLoginPopup: false,
   showPostalCodeNotification: false,
   showCompleteBankIdRegistration: false,
   text: '',
