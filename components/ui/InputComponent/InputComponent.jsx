@@ -96,7 +96,7 @@ const InputComponent = ({
             onClick={setShowPassword}
           />
         ) : null}
-        {errorValue && touchedValue ? (
+        {errorValue  ? (
           <p className={`input_warning_text ${errorClassName}`}>{errorValue}</p>
         ) : null}
         {errorFromApi ? (
