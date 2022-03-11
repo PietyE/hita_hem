@@ -11,6 +11,19 @@ export const sendSignInToGTM = () => {
             }
          });
     }
+}
 
-
+export const sendSignUpToGTM = (method) => {
+    if(typeof window !== 'undefined') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: 'user-signup',
+            eventProps: {
+                category: 'new-account',
+                action: 'user-signup',
+                label: method,
+                value: 1
+            }
+        });
+    }
 }
