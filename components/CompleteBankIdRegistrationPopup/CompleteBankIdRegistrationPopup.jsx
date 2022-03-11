@@ -49,6 +49,7 @@ const CompleteBankIdRegistrationPopup = ({show}) => {
     const handleClose = () => {
         _setShowCompleteBankIdRegistration(false)
         router.push(HOME_ROUTE)
+        errorHandlerHook?._clearErrors()
     }
     const handleChange = (e) => {
         setEmail(e?.target?.value)
