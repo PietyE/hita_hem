@@ -33,7 +33,8 @@ import {
     getShowSuccessfulFaqPopup,
     getShowDataLossWarning,
     getShowFirstLoginPopup,
-    getShowPostalCodeNotification
+    getShowPostalCodeNotification,
+    getShowCompleteBankIdRegistration,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -125,6 +126,10 @@ const CookieNotification = dynamic(() =>
     import("components/CookieNotification"), { ssr: false }
 );
 
+const CompleteBankIdRegistrationPopup = dynamic(() =>
+    import("components/CompleteBankIdRegistrationPopup"), { ssr: false }
+);
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
 
@@ -168,6 +173,7 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
+    const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -219,7 +225,7 @@ const RootPage = ({ children, initLang = "" }) => {
   }, [email, fullName]);
 
   useEffect(() => {
-    if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
+    // if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
       const handleRouteChange = (url) => {
         ga.pageview(url)
       }
@@ -232,7 +238,7 @@ const RootPage = ({ children, initLang = "" }) => {
       return () => {
         router.events.off('routeChangeComplete', handleRouteChange)
       }
-    }
+    // }
   }, [router.events])
 
 
@@ -252,7 +258,7 @@ const RootPage = ({ children, initLang = "" }) => {
             sessionStorage.setItem('isServiceWork', "false")
             clearTimeout(timerId)
         }
-        if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword){
+        if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword || isShowCompleteBankIdRegistration){
             clearTimeout(timerId)
         }
         if(showSuccessfulSignUpWindow && isServiceStart === 'true'){
@@ -264,7 +270,7 @@ const RootPage = ({ children, initLang = "" }) => {
             clearTimeout(timerId)
         }
         
-    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, showSuccessfulSignUpWindow])
+    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, isShowCompleteBankIdRegistration])
     
 
     useEffect(() => {
@@ -343,7 +349,7 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
           {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
-
+          {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
           {isShowCookie && <CookieNotification/>}
 
 

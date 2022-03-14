@@ -1,19 +1,38 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Modal from "../ui/Modal";
 import Image from "next/image";
 import Icon from "../../public/images/message.svg";
 import {useTranslation} from "react-i18next";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {setShowFirstLoginPopup} from "../../redux/actions/authPopupWindows";
+import {getIsBankIdResident, getIsSocialAccount} from "../../redux/reducers/user";
+import {sendSignUpToGTM} from "../../utils/tagManagerScripts";
 
 function SuccessfulFirstLogin({show}) {
     const { t } = useTranslation();
     const dispatch = useDispatch()
+    const isSocialAccount = useSelector(getIsSocialAccount)
+    const isBankIdResident = useSelector(getIsBankIdResident)
+    let signUpMethod;
+    if(isSocialAccount.length > 0){
+        signUpMethod = 'google'
+    }else if(isBankIdResident){
+        signUpMethod = 'bankId'
+    }else{
+        signUpMethod = 'standard'
+    }
+
+    useEffect(()=>{
+        if(signUpMethod){
+            sendSignUpToGTM(signUpMethod)
+        }
+    },[signUpMethod])
 
     const handleClose = () => {
         dispatch(setShowFirstLoginPopup(false))
     }
     return (
+
         <Modal
             show={show}
             onHide={handleClose}

@@ -41,6 +41,8 @@ import {
   SET_IS_BANK_ID_RESIDENT,
   SIGN_IN_WITH_GOOGLE,
   SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
+  SET_BANK_ID_KEY,
+  SIGN_UP_WITH_BANK_ID,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -244,5 +246,15 @@ export const signInWithGoogle = payload => ({
 
 export const setIsAthOnAndSaveUserProfile = payload => ({
   type: SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
+  payload
+})
+
+export const setBIdKey = payload => ({
+  type: SET_BANK_ID_KEY,
+  payload
+})
+
+export const signUpWithBankId = payload => ({
+  type: SIGN_UP_WITH_BANK_ID,
   payload
 })
