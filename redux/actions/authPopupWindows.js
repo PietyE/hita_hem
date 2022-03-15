@@ -25,6 +25,7 @@ import {
   SET_SHOW_DATA_LOSS_WARNING,
   SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
   SET_SHOW_POSTAL_CODE_NOTIFICATION,
+  SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -155,3 +156,9 @@ export const setShowPostalCodeNotification = payload =>({
   type: SET_SHOW_POSTAL_CODE_NOTIFICATION,
   payload,
 })
+
+export const setShowCompleteBankIdRegistration = payload =>({
+  type: SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
+  payload,
+})
+

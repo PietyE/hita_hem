@@ -32,7 +32,7 @@ import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
-    import {getIsBankIdResident} from "../../redux/reducers/user";
+    import {getIsBankIdResident, getUserEmailSelector} from "../../redux/reducers/user";
     import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
@@ -51,7 +51,7 @@ const PersonalDetails = ({
     const documentUrl = useSelector(getPrivacyPolicyDocument);
     const usersId = useSelector(getUserIdSelector)
     const isBankIdResident = useSelector(getIsBankIdResident)
-
+    const emailFromAccount = useSelector(getUserEmailSelector)
     let initialValues = {
         address: {
             country: "",
@@ -126,6 +126,11 @@ const PersonalDetails = ({
         )
     },[])
 
+    useEffect(()=>{
+        if(isBankIdResident && emailFromAccount && isEmpty(profile)){
+            setValuesFromApi({email: emailFromAccount})
+        }
+    },[profile,isBankIdResident,emailFromAccount])
 
     const _createProfile = useCallback(
         (data) => {
@@ -367,7 +372,7 @@ const PersonalDetails = ({
                                                         setFieldError("month", undefined);
                                                     }}
                                                     className = {
-                                                        touched.month && errors.month
+                                                        errors.month
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
@@ -387,7 +392,7 @@ const PersonalDetails = ({
                                                 <div className = "profile_input_arrow">
                                                     <IconComponent icon = {faCaretDown}/>
                                                 </div>
-                                                {errors.month && touched.month ? (
+                                                {errors.month ? (
                                                     <p className = {"input_warning_text warning_date_text"}>
                                                         {errors.month}
                                                     </p>
@@ -404,7 +409,7 @@ const PersonalDetails = ({
                                                     }}
                                                     disabled = {!values?.month || isInputsReadOnly}
                                                     className = {
-                                                        touched.day && errors.day
+                                                        errors.day
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
@@ -424,7 +429,7 @@ const PersonalDetails = ({
                                                 <div className = "profile_input_arrow">
                                                     <IconComponent icon = {faCaretDown}/>
                                                 </div>
-                                                {errors.day && touched.day ? (
+                                                {errors.day ? (
                                                     <p className = {"input_warning_text warning_date_text"}>
                                                         {errors.day}
                                                     </p>
@@ -441,7 +446,7 @@ const PersonalDetails = ({
                                                         setFieldError("year", undefined);
                                                     }}
                                                     className = {
-                                                        touched.year && errors.year
+                                                        errors.year
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
@@ -461,7 +466,7 @@ const PersonalDetails = ({
                                                 <div className = "profile_input_arrow">
                                                     <IconComponent icon = {faCaretDown}/>
                                                 </div>
-                                                {errors.year && touched.year ? (
+                                                {errors.year ? (
                                                     <p className = {"input_warning_text warning_date_text"}>
                                                         {errors.year}
                                                     </p>
@@ -473,7 +478,7 @@ const PersonalDetails = ({
                                             <br/>
                                             <CountryDropdown
                                                 className = {
-                                                    ((errors.address?.country && touched.address?.country) || errorHandlerHook?.countryError)
+                                                    ((errors.address?.country ) || errorHandlerHook?.countryError)
                                                         ? "profile_form_input_warning profile_form_input_with_arrow"
                                                         : "profile_form_input profile_form_input_with_arrow"
                                                 }
@@ -499,7 +504,7 @@ const PersonalDetails = ({
                                             <div className = "profile_input_arrow">
                                                 <IconComponent icon = {faCaretDown}/>
                                             </div>
-                                            {errors.address?.country && touched.address?.country ? (
+                                            {errors.address?.country ? (
                                                 <p className = {"input_warning_text warning_date_text"}>
                                                     {errors.address?.country}
                                                 </p>
