@@ -385,7 +385,7 @@ function* changeUserProfile({payload}) {
         yield put(clearErrors())
 
     } catch (error) {
-        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image
+        const hideNotification = !!error?.response?.data?.first_name || !!error?.response?.data?.second_name || !!error?.response?.data?.date_of_birth || !!error?.response?.data?.address?.country || !!error?.response?.data?.address?.city || !!error?.response?.data?.address?.address || !!error?.response?.data?.personal_id || !!error?.response?.data?.companies || !!error?.response?.data?.zip_code || !!error?.response?.data?.image || !!error?.response?.data?.email
         yield put(
             setProfileError({
                 status: error.response.status,
