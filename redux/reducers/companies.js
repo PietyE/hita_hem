@@ -166,7 +166,7 @@ const initialState = {
   filter: [],
   isFetching: false,
   isError404: false,
-  companyTabSelected: companyTabConstants.IDEA,
+  companyTabSelected: companyTabConstants.OVERVIEW,
   private_mod_viewers: [],
   private_mode: false,
 };

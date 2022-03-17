@@ -259,6 +259,17 @@
       }
     }
 
+
+  }
+
+  .middle_section_container {
+    display: flex;
+    padding: 0 230px;
+    width: 100%;
+    max-width: 1920px;
+    margin-right: auto;
+    margin-left: auto;
+
     .project_info_right_section {
       .invest_info {
         margin-bottom: 27px;
@@ -322,16 +333,9 @@
         margin-bottom: 23px;
       }
     }
-  }
-
-  .middle_section_container {
-    padding: 0 230px;
-    width: 100%;
-    max-width: 1920px;
-    margin-right: auto;
-    margin-left: auto;
 
     .middle_tabbr_container {
+      margin-right: 40px;
       .middle_tabbr_wrapp {
         background-color: #ffffff;
         position: sticky;
@@ -1120,13 +1124,14 @@
       .project_info_left_section {
         margin-right: 85px;
       }
+    }
+    .middle_section_container {
       .project_info_right_section {
         .invest_info {
           width: 300px;
         }
       }
-    }
-    .middle_section_container {
+
       .middle_tabbr_container {
         //width: 88%;
 
@@ -1382,27 +1387,31 @@
 
           }
         }
-        .project_info_right_section {
-          width: calc(100% + 160px);
-          transform: translateX(-80px);
-          padding-bottom: 30px;
-          background-color: rgba(220, 232, 248, 0.5);
-          .invest_info {
-            margin: 35px auto 15px auto;
-            width: 420px;
+      }
 
-            .invest_info_item {
-              &:last-child {
-                height: 120px;
-              }
+    }
+    .middle_section_container{
+      .project_info_right_section {
+        width: calc(100% + 160px);
+        transform: translateX(-80px);
+        padding-bottom: 30px;
+        background-color: rgba(220, 232, 248, 0.5);
+        .invest_info {
+          margin: 35px auto 15px auto;
+          width: 420px;
+
+          .invest_info_item {
+            &:last-child {
+              height: 120px;
             }
           }
-          .invest_button {
-            width: 300px;
-            margin: 0 auto 30px auto;
-          }
+        }
+        .invest_button {
+          width: 300px;
+          margin: 0 auto 30px auto;
         }
       }
+
     }
     .company_info_container {
       width: calc(100% - 50px);
@@ -1665,21 +1674,22 @@
 
       }
       .project_info_section_container {
-        .project_info_right_section {
-          .invest_info {
-            .invest_info_item {
-              &:last-child {
-                height: 100px;
-              }
-            }
-          }
-        }
       }
     }
 
     .middle_section_container {
       padding-right: 25px;
       padding-left: 25px;
+      .project_info_right_section {
+        .invest_info {
+          .invest_info_item {
+            &:last-child {
+              height: 100px;
+            }
+          }
+        }
+      }
+
       .middle_mobile_tabbr_container {
         .idea_section_container {
           .idea_list_container {
@@ -1746,11 +1756,6 @@
   .company-page-container {
     .project_info_container {
       .project_info_section_container {
-        .project_info_right_section {
-          .invest_info {
-            width: 300px;
-          }
-        }
       }
 
       .project_info_left_section {
@@ -1760,6 +1765,14 @@
           }
         }
       }
+    }
+    .middle_section_container{
+      .project_info_right_section {
+        .invest_info {
+          width: 300px;
+        }
+      }
+
     }
     .financial_info_articles_list {
       .fin_article_wrapper {
@@ -1804,22 +1817,20 @@
 }
 @media screen and (max-width: 330px) {
   .company-page-container {
-    .project_info_container {
-      .project_info_section_container {
-        .project_info_right_section {
-          .invest_info {
-            width: 270px;
-            .invest_info_item {
-              padding: 0 13px;
-            }
-          }
-          .invest_button {
-            width: 270px;
+
+    .middle_section_container {
+      .project_info_right_section {
+        .invest_info {
+          width: 270px;
+          .invest_info_item {
+            padding: 0 13px;
           }
         }
+        .invest_button {
+          width: 270px;
+        }
       }
-    }
-    .middle_section_container {
+
       padding-right: 10px;
       padding-left: 10px;
 

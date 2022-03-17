@@ -103,9 +103,9 @@ const CompanyPage = () => {
        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       { !isError404 && <div className = "company-page-container">
-        <TopSection/>
-        <CompanyInfo/>
-        <ProjectInfo isAuth = {isAuth}/>
+        {/*<TopSection/>*/}
+        {/*<CompanyInfo/>*/}
+        {/*<ProjectInfo isAuth = {isAuth}/>*/}
         <MiddleSection isAuth = {isAuth}/>
       </div>}
     </>

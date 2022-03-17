@@ -18,10 +18,17 @@ import {
   canUserInvestSelector,
   getIsCompanyClosedSelector,
   getValuationSelector,
+  getCompanyIndustryTitleSelector,
+  getCountryTitleSelector,
+  getWebSiteCompanySelector,
+  getSocialsCompanySelector,
 } from "redux/reducers/companies";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 import {getCompanySlugSelector, getLeftDate} from "../../redux/reducers/companies";
+import InfoWithTitle from "../../components/ui/InfoWithTitle";
+import SocialTab from "../../components/ui/SocialTab";
+import isEqual from "lodash/isEqual";
 
 const ProjectInvestInfoSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -47,6 +54,11 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
     month: "long",
     year: "numeric",
   };
+
+  const industryTitle = useSelector(getCompanyIndustryTitleSelector);
+  const countryTitle = useSelector(getCountryTitleSelector);
+  const webSite = useSelector(getWebSiteCompanySelector);
+  const socials = useSelector(getSocialsCompanySelector, isEqual);
 
 
   const _startDayLocal = new Date(startDay).toLocaleString(
@@ -171,6 +183,30 @@ const ProjectInvestInfoSection = ({ isAuth }) => {
                   </Button>
               )
       )}
+
+          <div className="company_info_sig">
+            <InfoWithTitle
+                title={t("company_page.company_info.Industry")}
+                info={industryTitle}
+                classNameContainer="company_info_sig_item"
+            />
+            <InfoWithTitle
+                title={t("company_page.company_info.Location")}
+                info={countryTitle}
+                classNameContainer="company_info_sig_item"
+            />
+            <InfoWithTitle
+                title={t("company_page.company_info.Website")}
+                info={webSite}
+                href={webSite}
+                isLink
+                classNameContainer="company_info_sig_item company_info_sig_item_last "
+            />
+            <SocialTab
+                socials={socials}
+                classNameContainer="company_info_social"
+            />
+          </div>
 
       {!isAuth && <SignUpMessage />}
     </div>
