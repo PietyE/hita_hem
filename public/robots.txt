@@ -23,3 +23,5 @@ Disallow: /change-password
 Noindex: /change-password
 Disallow: /reset-password
 Noindex: /reset-password
+Disallow: /unsubscribe
+Noindex: /unsubscribe

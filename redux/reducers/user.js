@@ -18,6 +18,7 @@ import {
   SET_CURRENT_PATH,
   SET_IS_BANK_ID_RESIDENT,
   SET_BANK_ID_KEY,
+  SET_SUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -36,12 +37,14 @@ const initialsState = {
   token: {},
   user: {},
   quizQuestions:[],
+  subscribeList:[],
   quizErrors: null,
   account: {
     pk: "",
     email: "",
     quiz: false,
     social_accounts: [],
+    unsubscribes: [],
   },
   isFirstHydrate: false,
 };
@@ -86,6 +89,9 @@ export const user = (state = initialsState, actions) => {
       return {...state, isBankIdResident: actions.payload}
     case SET_BANK_ID_KEY:
       return {...state, bidSessionKey: actions.payload}
+    case SET_SUBSCRIBE_LIST:
+      return {...state, subscribeList: actions.payload}
+
     default:
       return state;
   }
@@ -97,6 +103,8 @@ export const getQuiz = (state) => state.user.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
+export const getSubscribeListSelector = (state) => state.user.subscribeList;
+
 
 export const getTokenForQuizSocialsSignIn = (state) => state.user.tokenForQuizSocialsSignIn;
 export const getCurrentPath = (state) => state?.user?.currentPath;
@@ -104,6 +112,7 @@ export const getCurrentPath = (state) => state?.user?.currentPath;
 export const getIsBankIdResident = (state) => state?.user?.isBankIdResident || state?.user?.account?.is_bank_id_resident;
 export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
 
+export const getUnsubscribesSelector = (state) => state?.user?.account?.unsubscribes;
 
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;

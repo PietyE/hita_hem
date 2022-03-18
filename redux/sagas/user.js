@@ -25,7 +25,8 @@ import {
     REQUEST_SIGN_IN_WITH_BANK_ID,
     SIGN_IN_WITH_GOOGLE,
     SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
-    SIGN_UP_WITH_BANK_ID,
+    SIGN_UP_WITH_BANK_ID, REQUEST_SUBSCRIBE_LIST,
+    CHANGE_UNSUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -39,7 +40,7 @@ import {
     setCanResetPassword,
     setCanChangePassword,
     setQuiz,
-    setIsAthOnAndSaveUserProfile, setBIdKey,
+    setIsAthOnAndSaveUserProfile, setBIdKey, setSubscribeList,
 } from "redux/actions/user";
 import {
     setShowSignIn,
@@ -775,6 +776,41 @@ function* uploadUserData() {
     }
 }
 
+
+
+function* requestSubscribeListWorker() {
+    try{
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "requestSubscribeList"]);
+        yield put (setSubscribeList(response?.data))
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* changeUnsubscribeListWorker({payload}) {
+    try{
+        yield put(setFetchingUsers(true));
+        yield call([auth, "unsubscribe"], {token: payload?.token, data:{unsubscribes:payload?.data}});
+        yield call(getProfileFromApi);
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+
+
+
 function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
     const {user, token} = payload;
     yield put(setAccount(user));
@@ -797,6 +833,10 @@ function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
     yield put(setShowSignIn(false));
     yield put(clearErrors())
 }
+
+
+
+
 
 function* clean() {
     yield put(setAccount({}));
@@ -853,6 +893,12 @@ export function* userWorker() {
     yield takeEvery(SIGN_IN_WITH_GOOGLE, signInWithGoogle)
     yield takeEvery(SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE, setIsAuthOnAndSaveUserProfileWatcher)
     yield takeEvery(SIGN_UP_WITH_BANK_ID, signUpWithBankIdWorker)
+    yield takeEvery(REQUEST_SUBSCRIBE_LIST, requestSubscribeListWorker)
+    yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
+
+
+
+
 
 
 
