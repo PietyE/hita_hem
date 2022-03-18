@@ -286,6 +286,28 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  requestSubscribeList() {
+    const url = '/subscribe/groups/';
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
+  unsubscribe(payload) {
+    const {data, token} = payload
+
+    const url = `${this.url}/update_user_unsubscribes/`;
+    return this.request({
+      url,
+      data,
+      method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
+    });
+  }
+
 }
 
 export default function authCRUD(request) {
