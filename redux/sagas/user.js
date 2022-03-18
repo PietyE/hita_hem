@@ -68,7 +68,7 @@ import {
     setQuizErrors,
     setQuizIsPassed,
     setResponseFromApi,
-    setTokenForQuizSocialsSignIn
+    setTokenForQuizSocialsSignIn, setUnSubscribeList
 } from "../actions/user";
 import api from "api";
 import {getDocumentsWorker} from "./documents";
@@ -797,7 +797,8 @@ function* changeUnsubscribeListWorker({payload}) {
     try{
         yield put(setFetchingUsers(true));
         yield call([auth, "unsubscribe"], {token: payload?.token, data:{unsubscribes:payload?.data}});
-        yield call(getProfileFromApi);
+        const response = yield call([auth, "getSelf"]);
+        yield put(setUnSubscribeList(response?.data?.unsubscribes))
 
     } catch (error) {
         yield put(

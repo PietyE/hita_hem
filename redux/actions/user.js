@@ -46,6 +46,7 @@ import {
   REQUEST_SUBSCRIBE_LIST,
   SET_SUBSCRIBE_LIST,
   CHANGE_UNSUBSCRIBE_LIST,
+  SET_UNSUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -269,6 +270,11 @@ export const requestSubscribeList = payload => ({
 
 export const setSubscribeList = payload => ({
   type: SET_SUBSCRIBE_LIST,
+  payload
+})
+
+export const setUnSubscribeList = payload => ({
+  type: SET_UNSUBSCRIBE_LIST,
   payload
 })
 

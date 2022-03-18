@@ -19,6 +19,7 @@ import {
   SET_IS_BANK_ID_RESIDENT,
   SET_BANK_ID_KEY,
   SET_SUBSCRIBE_LIST,
+  SET_UNSUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -91,6 +92,10 @@ export const user = (state = initialsState, actions) => {
       return {...state, bidSessionKey: actions.payload}
     case SET_SUBSCRIBE_LIST:
       return {...state, subscribeList: actions.payload}
+    case SET_UNSUBSCRIBE_LIST:
+      return {...state, account:{...state.account, unsubscribes: actions.payload}}
+
+
 
     default:
       return state;
