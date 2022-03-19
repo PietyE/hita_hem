@@ -43,6 +43,10 @@ import {
   SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
   SET_BANK_ID_KEY,
   SIGN_UP_WITH_BANK_ID,
+  REQUEST_SUBSCRIBE_LIST,
+  SET_SUBSCRIBE_LIST,
+  CHANGE_UNSUBSCRIBE_LIST,
+  SET_UNSUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -258,3 +262,25 @@ export const signUpWithBankId = payload => ({
   type: SIGN_UP_WITH_BANK_ID,
   payload
 })
+
+export const requestSubscribeList = payload => ({
+  type: REQUEST_SUBSCRIBE_LIST,
+  payload
+})
+
+export const setSubscribeList = payload => ({
+  type: SET_SUBSCRIBE_LIST,
+  payload
+})
+
+export const setUnSubscribeList = payload => ({
+  type: SET_UNSUBSCRIBE_LIST,
+  payload
+})
+
+export const changeUnsubscribeList = payload => ({
+  type: CHANGE_UNSUBSCRIBE_LIST,
+  payload
+})
+
+

@@ -405,6 +405,9 @@
   .account_settings_split_line{
     margin-bottom: 15px;
   }
+  .account_settings_forms_container{
+    display: flex;
+  }
   .account_settings_title {
     font-family: "Source Sans Pro",sans-serif;
     font-style: normal;
@@ -420,6 +423,7 @@
     display: flex;
     flex-direction: column;
     width: 596px;
+    margin-right: 20px  ;
     background-color: #fff;
     border: 1px solid #dce8f8;
     box-sizing: border-box;
@@ -525,6 +529,67 @@
         color: #1f607c;
       }
 
+    }
+  }
+  .account_settings_subscribes{
+    width: 596px;
+    min-height: 100%;
+    background-color: #fff;
+    border: 1px solid #dce8f8;
+    box-sizing: border-box;
+    border-radius: 8px;
+    padding: 17px 25px 20px 25px;
+    .account_settings_subscribes_title{
+      font-family: "Source Sans Pro",sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 32px;
+      font-feature-settings: "pnum" on, "lnum" on;
+      color: #0b5394;
+      margin-bottom: 10px;
+    }
+    .account_settings_subscribe_list{
+      padding-bottom: 20px;
+      padding: 0;
+      .subscribe_item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        .subscribe_inputs_container{
+          display: flex;
+        }
+        .subscribe_label{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 0;
+          width: 50px;
+          height: 30px;
+          cursor: pointer;
+          border-bottom-left-radius: 5px;
+          border-top-left-radius: 5px;
+          border: 1px solid black;
+
+
+          &:last-child{
+            border-left: none;
+            border-radius: 0 5px 5px 0;
+          }
+
+          input[type="radio"] {
+            display: none;
+          }
+        }
+        .active_radio {
+          background-color: #0e5394;
+          color: #fff;
+        }
+      }
+    }
+    .account_settings_subscribe_button{
+      margin-left: auto;
     }
   }
 }
@@ -743,6 +808,9 @@
     .account_settings_form {
       width: 540px;
     }
+    .account_settings_subscribes {
+      width: 540px;
+    }
   }
 }
 
@@ -771,6 +839,18 @@
   .profile_campaigns_section {
     padding-right: 50px;
   }
+}
+
+@media screen and (max-width: 1200px) {
+.account_settings_container{
+  .account_settings_forms_container{
+    flex-direction: column;
+    .account_settings_form{
+      margin-bottom: 40px;
+      margin-right: 0;
+    }
+  }
+}
 }
 
 @media screen and (max-width: 1160px) {
@@ -1209,6 +1289,8 @@
       line-height: 32px;
       margin-bottom: 26px;
     }
+
+
     .account_settings_split_line{
       display: none;
     }
@@ -1231,76 +1313,92 @@
         }
       }
     }
-    .account_settings_form {
+    .account_settings_subscribes{
       all: unset;
       height: auto;
       width: 100%;
-      padding: 23px 15px 30px 15px;
-
-      .account_settings_form_email,
-      .account_settings_form_password {
-        position: relative;
+      padding-bottom: 30px;
+      .account_settings_subscribes_title{
+        text-align: center;
+      }
+      .account_settings_subscribe_button{
         width: 100%;
-        background-color: #fff;
-        border: 1px solid #dce8f8;
-        box-sizing: border-box;
-        border-radius: 8px;
-        padding: 17px 25px 20px 25px;
-        margin-bottom: 125px;
       }
+    }
+    .account_settings_forms_container{
+      .account_settings_form {
+        all: unset;
+        height: auto;
+        width: 100%;
+        padding: 23px 0 30px 0;
+        margin-bottom: 0;
 
-      .account_settings_form_title {
-        font-size: 20px;
-        line-height: 32px;
-        margin-bottom: 10px;
-      }
-      .account_settings_form_label {
-        font-size: 14px;
-        line-height: 22px;
-        margin-bottom: 25px;
-        .account_settings_form_input {
+        .account_settings_form_email,
+        .account_settings_form_password {
+          position: relative;
+          width: 100%;
+          background-color: #fff;
+          border: 1px solid #dce8f8;
+          box-sizing: border-box;
+          border-radius: 8px;
+          padding: 17px 25px 20px 25px;
+          margin-bottom: 125px;
+        }
+
+        .account_settings_form_title {
+          font-size: 20px;
+          line-height: 32px;
+          margin-bottom: 10px;
+        }
+        .account_settings_form_label {
           font-size: 14px;
           line-height: 22px;
+          margin-bottom: 25px;
+          .account_settings_form_input {
+            font-size: 14px;
+            line-height: 22px;
+          }
         }
-      }
-      .label_confirm_password {
-        margin-bottom: 25px;
-      }
-      .account_settings_forgot_link {
-        top: 147px;
-        right: 18px;
-      }
-      .account_settings_text_delete {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-      }
-      .account_settings_text {
-        font-size: 13px;
-        line-height: 150%;
-        margin-bottom: 0;
-        display: block;
-        text-align: center;
-        padding-right: 20px;
-        padding-left: 20px;
-      }
-      .account_settings_buttons_container {
-        position: absolute;
-        bottom: -115px;
-        right: -50px;
-        border-top: none;
+        .label_confirm_password {
+          margin-bottom: 25px;
+        }
+        .account_settings_forgot_link {
+          top: 147px;
+          right: 18px;
+        }
+        .account_settings_text_delete {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 20px;
+        }
+        .account_settings_text {
+          font-size: 13px;
+          line-height: 150%;
+          margin-bottom: 0;
+          display: block;
+          text-align: center;
+          padding-right: 20px;
+          padding-left: 20px;
+        }
+        .account_settings_buttons_container {
+          position: absolute;
+          bottom: -115px;
+          right: -50px;
+          border-top: none;
 
-        .account_settings_button_cancel {
-          margin-left: 25px;
-          margin-right: auto;
-          font-size: 16px;
-          line-height: 32px;
-        }
-        .account_settings_button_save {
-          font-size: 16px;
-          line-height: 32px;
+          .account_settings_button_cancel {
+            margin-left: 25px;
+            margin-right: auto;
+            font-size: 16px;
+            line-height: 32px;
+          }
+          .account_settings_button_save {
+            font-size: 16px;
+            line-height: 32px;
+          }
         }
       }
+
     }
   }
   .profile_campaigns_section {
