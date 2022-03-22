@@ -37,11 +37,7 @@ function TabAccordion({ isAuth }) {
     }
     setActiveTab(e.target.dataset.value);
     if (Number(e.target.dataset.value) !== 0) {
-      ideaRef.current.scrollIntoView({
-        block: "start",
-        inline: "nearest",
-        // behavior: 'smooth',
-      });
+      ideaRef.current.scrollIntoView();
     }
   };
   return (

@@ -148,6 +148,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
             title={t("company_page.company_raised")}
             percent={percentage}
             left_date={leftDate}
+            className='invest_info_progress'
           />
         </div>
       </div>

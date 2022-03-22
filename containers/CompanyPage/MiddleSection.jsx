@@ -35,6 +35,10 @@ const MiddleSection = ({isAuth}) => {
     const dispatch = useDispatch();
     const selectedTab = useSelector(getCompanyTabSelected);
 
+
+    const sectionRef = useRef();
+    const middleSectionRef = useRef();
+
     const _changeCompanuTab = useCallback(
         (key) => {
             dispatch(setSelectedTab(key));
@@ -48,12 +52,15 @@ const MiddleSection = ({isAuth}) => {
         width: "(max-width: 900px)",
     });
 
-    const [visible, setVisible] = useState(true);
-    const toggleVisible = () => {
 
+
+    const [visible, setVisible] = useState(true);
+
+    const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         const middleSectionHeight = middleSectionRef?.current?.offsetHeight
         const projectInfoHeight = sectionRef?.current?.offsetHeight
+
         if (matchesAll) {
             if (scrolled > projectInfoHeight) {
                 setVisible(false)
@@ -67,27 +74,21 @@ const MiddleSection = ({isAuth}) => {
                 setVisible(true)
             }
         }
-
     };
 
-// const [sectionHeightStyle, setSectionHeightStyle] = useState({})
-//
-//     useEffect(()=>{
-//         const middleSectionHeight = middleSectionRef?.current?.offsetHeight
-//         const projectInfoHeight = sectionRef?.current?.offsetHeight
-// console.log('middleSectionHeight',middleSectionHeight)
-//         console.log('projectInfoHeight',projectInfoHeight)
-//         if(middleSectionHeight < projectInfoHeight ){
-//             setSectionHeightStyle({minHeight: projectInfoHeight+75 + 'px'})
-//         }
-//         return ()=>{
-//             setSectionHeightStyle({})
-//         }
-//
-//     },[selectedTab])
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            window.scrollTo({
+                top: 0,
+                behavior: "auto",
+            });
+        }
 
-    const sectionRef = useRef();
-    const middleSectionRef = useRef();
+        setVisible(true)
+    },[selectedTab])
+
+
+
 
     useEffect(() => {
         window.addEventListener("scroll", toggleVisible);
