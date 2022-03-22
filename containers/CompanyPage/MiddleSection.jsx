@@ -29,11 +29,14 @@ import {getCompanyTabSelected} from "redux/reducers/companies";
 import {useTranslation} from "react-i18next";
 import ProjectInvestInfoSection from "./ProjectInvestInfoSection";
 import {useMediaQueries} from "@react-hook/media-query";
+import {getQuizIsPassedSelector} from "redux/reducers/user";
+import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 
 const MiddleSection = ({isAuth}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const selectedTab = useSelector(getCompanyTabSelected);
+    const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
 
     const sectionRef = useRef();
@@ -120,7 +123,7 @@ const MiddleSection = ({isAuth}) => {
                         className="middle_tabbr"
                     />
                 </div>
-                <TabContent selectedTab={selectedTab} isAuth={isAuth}/>
+                <TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>
             </div>
             <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible}/>
 
@@ -132,9 +135,17 @@ const MiddleSection = ({isAuth}) => {
     );
 };
 
-const TabContent = memo(({selectedTab, isAuth}) => {
+const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
     const renderTabIFauts = (Сomponent) => {
-        return isAuth ? <Сomponent/> : <CampaignTabSignUp/>;
+        if(!isAuth){
+            return <CampaignTabSignUp/>
+        }else{
+            if(!isQuizPassed){
+                return <CampaignTabQuizRequest/>
+            }else{
+                return <Сomponent/>
+            }
+        }
     };
 
     switch (selectedTab) {
