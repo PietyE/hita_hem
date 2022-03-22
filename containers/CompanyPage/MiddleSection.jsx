@@ -1,4 +1,4 @@
-import React, { useCallback, memo } from "react";
+import React, {useCallback, memo, useEffect, useRef, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 
@@ -28,6 +28,7 @@ import { setSelectedTab } from "redux/actions/companies";
 import { getCompanyTabSelected } from "redux/reducers/companies";
 import { useTranslation } from "react-i18next";
 import ProjectInvestInfoSection from "./ProjectInvestInfoSection";
+import {useMediaQueries} from "@react-hook/media-query";
 
 const MiddleSection = ({ isAuth }) => {
   const { t } = useTranslation();
@@ -41,9 +42,64 @@ const MiddleSection = ({ isAuth }) => {
     [dispatch]
   );
 
+
+    const { matchesAll } = useMediaQueries({
+        screen: "screen",
+        width: "(max-width: 900px)",
+    });
+
+    const [visible, setVisible] = useState(true);
+    const toggleVisible = () => {
+
+        const scrolled = document.documentElement.scrollTop;
+        const middleSectionHeight = middleSectionRef?.current?.offsetHeight
+        const projectInfoHeight = sectionRef?.current?.offsetHeight
+        if(matchesAll){
+            if(scrolled > projectInfoHeight){
+                setVisible(false)
+            } else if(scrolled < projectInfoHeight){
+                setVisible(true)
+            }
+        }else{
+            if(middleSectionHeight - scrolled < projectInfoHeight){
+                setVisible(false)
+            }else if(middleSectionHeight - scrolled > projectInfoHeight ){
+                setVisible(true)
+            }
+        }
+
+    };
+
+const [sectionHeightStyle, setSectionHeightStyle] = useState({})
+
+    useEffect(()=>{
+        const middleSectionHeight = middleSectionRef?.current?.offsetHeight
+        const projectInfoHeight = sectionRef?.current?.offsetHeight
+
+        if(middleSectionHeight < projectInfoHeight ){
+            setSectionHeightStyle({height: projectInfoHeight+75 + 'px'})
+        }
+        return ()=>{
+            setSectionHeightStyle({})
+        }
+
+    },[selectedTab])
+
+    const sectionRef = useRef();
+    const middleSectionRef = useRef();
+
+    useEffect(() => {
+        window.addEventListener("scroll", toggleVisible);
+        return () => {
+            window.removeEventListener("scroll", toggleVisible);
+        };
+    }, []);
+
   return (
-    <div className="middle_section_container">
-      <div className="middle_tabbr_container">
+    <div className="middle_section_container" ref={middleSectionRef}>
+      <div className="middle_tabbr_container" style={sectionHeightStyle}>
+          <h1 className='middle_section_title'>Be like Bob</h1>
+          <p className='middle_section_subtitle'>Vi brinner for battre betting!</p>
         <div className="middle_tabbr_wrapp">
           <TabBar
             data={[
@@ -64,9 +120,9 @@ const MiddleSection = ({ isAuth }) => {
         </div>
         <TabContent selectedTab={selectedTab} isAuth={isAuth} />
       </div>
-        <ProjectInvestInfoSection isAuth={isAuth} />
+        <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} />
 
-        <div className="middle_mobile_tabbr_container">
+        <div className={visible?" middle_mobile_tabbr_container":"middle_mobile_tabbr_container middle_mobile_tabbr_container_shifted"}>
         <TabAccordion isAuth={isAuth} />
       </div>
     </div>

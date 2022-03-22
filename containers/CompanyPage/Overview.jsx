@@ -11,7 +11,7 @@ import {useTranslation} from "react-i18next";
 import {useMediaQueries} from "@react-hook/media-query";
 import {getYoutubeId} from "../../utils/utils";
 
-const Overview = (props) => {
+const Overview = () => {
     const { t } = useTranslation();
 
     const projectInfotRef = useRef();
