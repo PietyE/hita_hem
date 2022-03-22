@@ -133,6 +133,11 @@ sign_up_message: {
         sign_in_text: "Har du inget konto än?",
     sign_in_link: "Skapa ett här!",
 },
+        request_quiz_message: {
+            sign_up_text_one: "Du måste ",
+            sign_up_link: "slutföra quizet ",
+            sign_up_text_two: " för att ta del av erbjudandet.",
+        },
 successful_campaign_registration: {
     title: "Du har nu slutfört första steget mot att lansera din kampanj!",
         text: "Vi kommer snart att kontakta dig.",
@@ -238,6 +243,11 @@ company_page: {
             sign_up: "Bli medlem",
             log_in: "Logga in",
             footer_text: "Har du redan ett konto?",
+    },
+    tab_quiz_request: {
+        title: "Vill du se mer?",
+        text: "På grund av finansiella bestämmelser måste du slutföra quizet för att se hela investeringsmöjligheten.",
+        pass_quiz: "Slutför quizet",
     },
 },
 home_page: {

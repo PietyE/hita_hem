@@ -833,7 +833,15 @@
     }
   }
 }
-
+.company_info_quiz_message{
+  max-width: 300px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  p{
+margin: 0;
+  }
+}
 .campaigns_tab_sign-up_container {
   display: flex;
   flex-direction: column;
@@ -885,7 +893,9 @@
     cursor: pointer;
   }
 }
-
+.campaigns_tab_request_quiz_container{
+  padding-bottom: 375px;
+}
 .faq {
   padding: 40px 0;
 
@@ -1441,6 +1451,10 @@
       padding: 20px 60px;
     }
 
+  }
+
+  .company_info_quiz_message{
+    max-width: 250px;
   }
 
 }

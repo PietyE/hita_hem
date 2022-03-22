@@ -7,6 +7,7 @@ import Button from "components/ui/Button";
 import CurrensyText from "components/CurrensyText";
 import Progress from "components/Proggres";
 import SignUpMessage from "components/SignUpMessage";
+import PassQuizMessage from "../../components/PassQuizMessage";
 import StatusCompanyBadge from "components/StatusCompany";
 
 import {setShowSignIn} from "redux/actions/authPopupWindows";
@@ -31,6 +32,7 @@ import {getCompanySlugSelector, getLeftDate} from "../../redux/reducers/companie
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
+import {getQuizIsPassedSelector} from "../../redux/reducers/user";
 
 const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
   const { t } = useTranslation();
@@ -62,6 +64,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
   const countryTitle = useSelector(getCountryTitleSelector);
   const webSite = useSelector(getWebSiteCompanySelector);
   const socials = useSelector(getSocialsCompanySelector, isEqual);
+  const isPassedQuiz = useSelector(getQuizIsPassedSelector)
 
 
   const _startDayLocal = new Date(startDay).toLocaleString(
@@ -202,6 +205,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
           </div>
 
       {!isAuth && <SignUpMessage />}
+          {isAuth && !isPassedQuiz && <PassQuizMessage className='company_info_quiz_message'/>}
     </div>
         {!isCompanyClosed &&   (
             <div className={userCanInvest ? `sticky_invest_button_container ${classNameVisible}` : `sticky_invest_button_container sticky_invest_button_container_closed ${classNameVisible}`}>

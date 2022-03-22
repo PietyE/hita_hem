@@ -132,6 +132,11 @@ export const en = {
             sign_in_text: "Don’t have an account?",
             sign_in_link: "Register here!",
         },
+        request_quiz_message: {
+            sign_up_text_one: "You have to ",
+            sign_up_link: "pass the Quiz ",
+            sign_up_text_two: " to participate.",
+        },
         successful_campaign_registration: {
             title:
                 "Congratulations on completing your first step towards launching your campaign!",
@@ -241,6 +246,11 @@ export const en = {
                 sign_up: "Sign Up",
                 log_in: "Log In",
                 footer_text: "Already have an account?",
+            },
+            tab_quiz_request: {
+                title: "Want to see more?",
+                text: "Due to financial regulations, please complete the quiz to see the full investment opportunity.",
+                pass_quiz: "Pass the Quiz",
             },
         },
         home_page: {
