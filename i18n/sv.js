@@ -185,6 +185,7 @@ tab_accordion: {
         Team: "Team",
         Financial_information: "Finansiell information",
         FAQ: "Q&A",
+    OVERVIEW: "Överblick",
 },
 about_us_page: {
     subscribe_title:

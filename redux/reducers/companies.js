@@ -50,6 +50,7 @@ const initialState = {
     industry: {
       title: "",
     },
+    recommended_campaign: [],
     status: "",
     country: "",
     valuation: null,
@@ -166,7 +167,7 @@ const initialState = {
   filter: [],
   isFetching: false,
   isError404: false,
-  companyTabSelected: companyTabConstants.IDEA,
+  companyTabSelected: companyTabConstants.OVERVIEW,
   private_mod_viewers: [],
   private_mode: false,
 };
@@ -201,6 +202,10 @@ export const getTeatMateSetSelector = (state) =>
 
 export const getFaqSetSelector = (state) =>
   state.companies.companyDetail.faq_set;
+
+export const getRecommendedCampaignsSelector = (state) =>
+    state.companies.companyDetail.recommended_campaign;
+
 
 export const getIsError404Selector = (state) => state.companies.isError404;
 
@@ -341,7 +346,7 @@ export const companies = (state = initialState, actions) => {
     case CLEAR_COMPANY:
       return { ...state, companyDetail: initialState.companyDetail };
     case RESET_COMPANY_TAB:
-      return { ...state, companyTabSelected: companyTabConstants.IDEA };
+      return { ...state, companyTabSelected: companyTabConstants.OVERVIEW };
     case RESET_COMPANY_LIST:
       return { ...state, companiesList: [] };
     case SET_ERROR_404_COMPANIES:

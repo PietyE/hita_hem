@@ -189,6 +189,7 @@ export const en = {
             Team: "Team",
             Financial_information: "Financial information",
             FAQ: "Q&A",
+            OVERVIEW: "Overview",
         },
         about_us_page: {
             subscribe_title: "Stay ahead by subscribing to our newsletter",
