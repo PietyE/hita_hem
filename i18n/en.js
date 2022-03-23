@@ -223,8 +223,13 @@ export const en = {
             button_read_more: "Read more",
             button_show_more: "Show more",
             button_show_less: "Show less",
-
+            recommended:{
+                title:'More investment opportunities',
+                text:'You might also be interested in...',
+                button:'More investment opportunities.',
+            },
             company_info: {
+                title:'Summary',
                 Industry: "Industry:",
                 Location: "Location:",
                 Website: "Website:",
