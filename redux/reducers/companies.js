@@ -66,6 +66,7 @@ const initialState = {
     header_image: "",
     header_image_list: [],
     images: [],
+    image: '',
     header_title: "",
     start_date: "",
     end_date: "",
@@ -221,6 +222,7 @@ export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
 
 export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
+export const getOverviewImageSelector = (state) => state.companies.companyDetail.image;
 
 export const getCampaignSeoSelector = (state) =>
     state.companies.companyDetail.seo;
