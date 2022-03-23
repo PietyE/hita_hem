@@ -63,6 +63,7 @@ const initialState = {
     youtube_link: "",
     business_highlights: "",
     name: "",
+    sub_title:'',
     header_image: "",
     header_image_list: [],
     images: [],
@@ -243,8 +244,8 @@ export const getCompanyLogoUrlSelector = (state) =>
   state.companies.companyDetail.logo;
 export const getCompanyNameSelector = (state) =>
   state.companies.companyDetail.name;
-// export const getCompanyShortDescriptionSelector = state =>
-//     state.companies.companyDetail?.description
+export const getCompanySubTitleSelector = state =>
+    state.companies.companyDetail?.sub_title
 export const getCompanyIndustryTitleSelector = (state) =>
   state.companies.companyDetail?.industry?.title || "";
 export const getCountryTitleSelector = (state) =>
