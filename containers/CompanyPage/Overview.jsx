@@ -1,19 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
-import Title from "../../components/ui/Title";
+import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
+import {getYoutubeId} from "utils/utils";
+
+import Title from "components/ui/Title";
 import {useDispatch, useSelector} from "react-redux";
 import {
     getAboutProjectDescriptionSelector,
     getAboutProjectTitleSelector,
-    getBusinessHighlightSelector, getVideoLinkSelector
-} from "../../redux/reducers/companies";
+    getBusinessHighlightSelector, getOverviewImageSelector, getVideoLinkSelector
+} from "redux/reducers/companies";
 import {useTranslation} from "react-i18next";
 import {useMediaQueries} from "@react-hook/media-query";
-import {getYoutubeId} from "../../utils/utils";
-import ButtonStyled from "../../components/ui/Button";
-import {getIsSignInUserSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
-import {setShowSignIn} from "../../redux/actions/authPopupWindows";
-import {getQuiz} from "../../redux/actions/user";
+import ButtonStyled from "components/ui/Button";
+import {getIsSignInUserSelector, getQuizIsPassedSelector} from "redux/reducers/user";
+import {setShowSignIn} from "redux/actions/authPopupWindows";
+import {getQuiz} from "redux/actions/user";
+import Image from "next/image";
 
 const Overview = () => {
     const { t } = useTranslation();
@@ -25,6 +27,7 @@ const Overview = () => {
     const title = useSelector(getAboutProjectTitleSelector);
     const description = useSelector(getAboutProjectDescriptionSelector);
     const videoLink = useSelector(getVideoLinkSelector)
+    const image = useSelector(getOverviewImageSelector)
     const isAuth = useSelector(getIsSignInUserSelector)
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
@@ -68,6 +71,19 @@ const Overview = () => {
     return (
         <div>
             <div className="project_info_left_section">
+                {image && (
+                    <div className='project_info_overview_image_wrapper'>
+                        <Image
+                            src={image}
+                            className = 'project_info_overview_image'
+
+                            layout = "fill"
+                            objectFit = "cover"
+                            priority = {true}
+                            alt = {image ? 'image' : ' '}
+                        />
+                    </div>
+                )}
                 {youtubeId &&
                 (<div
                     className = "project_info_player_wrapper"
@@ -80,6 +96,7 @@ const Overview = () => {
                     />
                 </div>)
                 }
+
                 {!!businessHighlights && (
                     <div style={videoLink ? {marginTop: '30px'} : {} } className="project_info_bussines_highlights">
                         <h4 className="project_info_bussines_highlights_title">

@@ -71,11 +71,15 @@ const MiddleSection = ({isAuth}) => {
                 setVisible(true)
             }
         } else {
-            if (middleSectionHeight - scrolled < projectInfoHeight) {
-                setVisible(false)
-            } else if (middleSectionHeight - scrolled > projectInfoHeight) {
-                setVisible(true)
+            // костыль исключающий стартовый размер блока, надо поправить
+            if(middleSectionHeight !== 229){
+                if (middleSectionHeight - scrolled < projectInfoHeight) {
+                    setVisible(false)
+                } else if (middleSectionHeight - scrolled > projectInfoHeight) {
+                    setVisible(true)
+                }
             }
+
         }
     };
 
