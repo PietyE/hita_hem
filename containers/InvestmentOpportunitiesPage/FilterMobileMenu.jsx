@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -52,6 +52,23 @@ const FilterMobileMenu = ({
     e.preventDefault();
     onClose(false);
   };
+
+
+  useEffect(()=>{
+    document.addEventListener('wheel', preventScroll, {passive: false});
+
+    function preventScroll(e){
+      e.preventDefault();
+      e.stopPropagation();
+
+      return false;
+    }
+
+    return () => {
+      document.removeEventListener('wheel', preventScroll);
+
+    }
+  },[])
 
   return (
     <div className="filter_mobile_menu">
