@@ -93,7 +93,7 @@ const AccountSettings = () => {
             </div>
             <div className='account_settings_subscribes'>
                 <h2 className='account_settings_subscribes_title'>
-                    Subscribes
+                    {t("profile_page.account.subscribe_title")}
                 </h2>
                 <ul className='account_settings_subscribe_list'>
                     {subscribeList.length > 0 && (
@@ -111,7 +111,8 @@ const AccountSettings = () => {
                     className="account_settings_subscribe_button"
                     onClick={handleChangeUnsubscribe}
                 >
-                    Submit subscribes
+                    {t("profile_page.account.subscribe_button")}
+
                 </Button>
             </div>
         </div>
