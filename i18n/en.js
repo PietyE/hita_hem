@@ -317,6 +317,8 @@ export const en = {
                 title: "My account settings",
                 text_delete: "Delete account",
                 text: "By deleting your account you will lose all your data.",
+                subscribe_title:'Subscriptions',
+                subscribe_button:'Submit Subscriptions',
             },
             reset_email: {
                 title: "Change email",
