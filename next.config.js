@@ -144,23 +144,31 @@ module.exports = withBundleAnalyzer({
         permanent: false,
         destination: '/en/news',
       },
-      // {
-      //   source: '/nyheter',
-      //   has: [
-      //     {
-      //       type: 'cookie',
-      //       key: 'NEXT_LOCALE',
-      //       value: 'en',
-      //     },
-      //     // {
-      //     //   type: 'query',
-      //     //   key: 'p',
-      //     //   value: '.*',
-      //     // },
-      //   ],
-      //   permanent: false,
-      //   destination: '/news',
-      // },
+      {
+        source: '/nyheter',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/news',
+      },
+      {
+        source: '/news',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'sv',
+          },
+        ],
+        permanent: false,
+        destination: '/nyheter',
+      },
+
 
     ]
   },
