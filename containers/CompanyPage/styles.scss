@@ -192,29 +192,16 @@
       color: #424242;
     }
 
-    .project_info_bussines_highlights {
 
-      margin-bottom: 40px;
-
-      .project_info_title {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 32px;
-        line-height: 44px;
-        letter-spacing: 0.2px;
-        color: rgba(0, 0, 0, 0.87);
-        margin-bottom: 15px;
-      }
-
-
-    }
 
     .project_info_bussines_highlights {
       padding: 20px 25px;
       background-color: #f0f0ff;
       border-radius: 8px;
       width: 100%;
+
+      margin-bottom: 40px;
+
 
       .project_info_bussines_highlights_title {
         font-weight: 700;
@@ -224,6 +211,10 @@
         line-height: 32px;
         font-feature-settings: "pnum" on, "lnum" on;
         color: rgba(0, 0, 0, 0.87);
+        letter-spacing: 0.2px;
+        margin-bottom: 15px;
+
+
       }
 
       .list_container {
@@ -265,6 +256,32 @@
         }
       }
     }
+  }
+
+
+  .project_info_description_section_fade{
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content:'';
+      width:100%;
+      height:100%;
+      position:absolute;
+      left:0;
+      top:0;
+      background:linear-gradient(transparent 70px, white);
+    }
+  }
+
+  .project_info_show_more_button{
+    margin: 0 auto 50px auto;
+    width: 260px;
+    height: 56px;
+    font-family: Source sans Pro,sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    line-height: 18px;
   }
 
   .middle_section_container {
@@ -1507,23 +1524,6 @@ margin: 0;
 
 }
 
-//@media screen and (max-width: 1180px) {
-//  .middle_section_container{
-//    .middle_tabbr_container{
-//      .middle_tabbr_wrapp{
-//        width: 85%;
-//      }
-//    }
-//  }
-//  .campaigns_tab_sign-up_container {
-//    width: 88%;
-//  }
-//  .sticky_invest_button{
-//    width: 140px;
-//    margin-right: 5px;
-//  }
-//}
-
 @media screen and (max-width: 1110px) {
   .middle_section_container {
     .tab_bar_container {
@@ -1684,7 +1684,11 @@ margin: 0;
     }
 
     .recommended_campaigns_section {
-      padding: 20px 30px;
+      .recommended_campaigns_content_wrapper{
+        .recommended_campaigns_title, .recommended_campaigns_text{
+          padding: 0 30px;
+        }
+      }
     }
 
     .project_info_right_section {
@@ -1736,6 +1740,7 @@ margin: 0;
             }
           }
         }
+
       }
     }
 
@@ -1772,7 +1777,20 @@ margin: 0;
 
     .recommended_campaigns_section {
       z-index: 0;
-      padding: 30px 60px;
+      .recommended_campaigns_content_wrapper{
+        .recommended_campaigns_title, .recommended_campaigns_text{
+          padding: 0 60px;
+        }
+      }
+
+      .recommended_campaigns_title{
+        font-size: 24px;
+        line-height: 120%;
+      }
+
+      .recommended_campaigns_text{
+        font-size: 19px;
+      }
 
       .recommended_campaigns_list {
         flex-direction: column;
@@ -2269,7 +2287,11 @@ margin: 0;
     }
 
     .recommended_campaigns_section {
-      padding: 30px 30px;
+      .recommended_campaigns_content_wrapper{
+        .recommended_campaigns_title, .recommended_campaigns_text{
+          padding: 0 30px;
+        }
+      }
     }
   }
   .faq {
@@ -2283,8 +2305,25 @@ margin: 0;
 
 @media screen and (max-width: 430px) {
   .company-page-container {
+
+
     .recommended_campaigns_section {
-      padding: 30px 20px;
+      .recommended_campaigns_content_wrapper{
+        .recommended_campaigns_title, .recommended_campaigns_text{
+          padding: 0 20px;
+        }
+      }
+      .campaigns_card {
+        width: 280px;
+      }
+      .campaigns_card_status {
+        font-size: 12px;
+        right: 13px;
+      }
+      .campaigns_card_content_wrapper {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
 
       .recommended_campaigns_content_wrapper {
         .recommended_campaigns_list {
@@ -2468,3 +2507,4 @@ margin: 0;
   font-size: 24px;
   margin-bottom: 30px;
 }
+

@@ -236,6 +236,9 @@ export const en = {
             },
             project_info: {
                 text: "Business Highlights",
+                auth_button: 'Become a member to see more.',
+                quiz_button: 'Become a member to see more.',
+
             },
             faq: {
                 faq_text: "Do you have any questions about the campaign? Feel free to ask!",
