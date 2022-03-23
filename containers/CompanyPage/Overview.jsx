@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import Title from "../../components/ui/Title";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {
     getAboutProjectDescriptionSelector,
     getAboutProjectTitleSelector,
@@ -10,18 +10,24 @@ import {
 import {useTranslation} from "react-i18next";
 import {useMediaQueries} from "@react-hook/media-query";
 import {getYoutubeId} from "../../utils/utils";
+import ButtonStyled from "../../components/ui/Button";
+import {getIsSignInUserSelector, getQuizIsPassedSelector} from "../../redux/reducers/user";
+import {setShowSignIn} from "../../redux/actions/authPopupWindows";
+import {getQuiz} from "../../redux/actions/user";
 
 const Overview = () => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
 
     const projectInfotRef = useRef();
 
     const businessHighlights = useSelector(getBusinessHighlightSelector);
-
     const title = useSelector(getAboutProjectTitleSelector);
     const description = useSelector(getAboutProjectDescriptionSelector);
-
     const videoLink = useSelector(getVideoLinkSelector)
+    const isAuth = useSelector(getIsSignInUserSelector)
+    const isQuizPassed = useSelector(getQuizIsPassedSelector)
+
 
 
     const { matchesAll } = useMediaQueries({
@@ -47,6 +53,16 @@ const Overview = () => {
             height: isShowMore ? "auto" : "400px",
         }
         : {};
+
+    const _descriptionSectionStyle = !isAuth || !isQuizPassed? 'project_info_description_section_fade' : 'project_info_description_section'
+
+    const handleSignIn = () => {
+        dispatch(setShowSignIn(true));
+    }
+
+    const handleOpenQuiz = () => {
+        dispatch(getQuiz());
+    }
 
     const youtubeId = getYoutubeId(videoLink)
     return (
@@ -77,7 +93,7 @@ const Overview = () => {
                         />
                     </div>
                 )}
-                <div className="project_info_description_section">
+                <div className={_descriptionSectionStyle}>
                     <Title title={title} className="project_info_title" />
                     <span
                         className="project_info_description"
@@ -99,6 +115,24 @@ const Overview = () => {
                         </div>
                     )}
                 </div>
+                { !isAuth &&
+                    <ButtonStyled
+                        colorStyle='dark-green'
+                        className = 'project_info_show_more_button'
+                        onClick={handleSignIn}
+                    >
+                        {t("company_page.project_info.auth_button")}
+                    </ButtonStyled>
+                }
+                { isAuth && !isQuizPassed &&
+                <ButtonStyled
+                    colorStyle='dark-green'
+                    className='project_info_show_more_button'
+                    onClick={handleOpenQuiz}
+                >
+                    {t("company_page.project_info.quiz_button")}
+                </ButtonStyled>
+                }
 
             </div>
 

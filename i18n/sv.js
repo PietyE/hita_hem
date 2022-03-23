@@ -234,6 +234,10 @@ company_page: {
     },
     project_info: {
         text: "Verksamheten i fokus",
+        auth_button: 'Bli medlem för mer information.',
+        quiz_button: 'Bli medlem för mer information.',
+
+
     },
     faq: {
         faq_text: "Om du har vidare frågor tar vi gärna emot dem.",
