@@ -220,7 +220,14 @@ company_page: {
     button_read_more: "Läs mer",
         button_show_more: "Visa mer",
         button_show_less: "Visa mindre",
-        company_info: {
+    recommended:{
+        title:'Fler investeringsmöjligheter',
+        text:'Du kanske också är intresserad av...',
+        button:'Fler investeringsmöjligheter.',
+    },
+    company_info: {
+        title:'Snabb info',
+
         Industry: "Industri:",
             Location: "Område:",
             Website: "Hemsida:",

@@ -180,7 +180,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
       )}
 
           <div className="company_info_sig">
-            <h2 className='company_info_sig_title'>Snabb info</h2>
+            <h2 className='company_info_sig_title'>{t("company_page.company_info.title")}</h2>
             <InfoWithTitle
                 title={t("company_page.company_info.Industry")}
                 info={industryTitle}
