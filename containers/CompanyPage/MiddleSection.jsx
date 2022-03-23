@@ -40,7 +40,6 @@ const MiddleSection = ({isAuth}) => {
 
 
     const sectionRef = useRef();
-    const middleSectionRef = useRef();
 
     const _changeCompanuTab = useCallback(
         (key) => {
@@ -61,26 +60,15 @@ const MiddleSection = ({isAuth}) => {
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        const middleSectionHeight = middleSectionRef?.current?.offsetHeight
         const projectInfoHeight = sectionRef?.current?.offsetHeight
-
         if (matchesAll) {
             if (scrolled > projectInfoHeight) {
                 setVisible(false)
             } else if (scrolled < projectInfoHeight) {
                 setVisible(true)
             }
-        } else {
-            // костыль исключающий стартовый размер блока, надо поправить
-            if(middleSectionHeight !== 229){
-                if (middleSectionHeight - scrolled < projectInfoHeight) {
-                    setVisible(false)
-                } else if (middleSectionHeight - scrolled > projectInfoHeight) {
-                    setVisible(true)
-                }
-            }
-
         }
+
     };
 
     useEffect(()=>{
@@ -90,9 +78,10 @@ const MiddleSection = ({isAuth}) => {
                 behavior: "auto",
             });
         }
-
         setVisible(true)
     },[selectedTab])
+
+
 
 
 
@@ -105,7 +94,7 @@ const MiddleSection = ({isAuth}) => {
     }, []);
 
     return (
-        <div className="middle_section_container" ref={middleSectionRef}>
+        <div className="middle_section_container">
             <div className="middle_tabbr_container">
                 <h1 className='middle_section_title'>Be like Bob</h1>
                 <p className='middle_section_subtitle'>Vi brinner for battre betting!</p>
