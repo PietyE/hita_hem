@@ -153,8 +153,8 @@
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    max-width: 840px;
-    margin-right: 150px;
+    //max-width: 840px;
+    //margin-right: 150px;
     overflow: hidden;
 
     .project_info_player_wrapper {
@@ -304,12 +304,15 @@
     max-width: 1920px;
     margin-right: auto;
     margin-left: auto;
+    position: relative;
 
     .project_info_right_section {
       padding-top: 40px;
-      position: fixed;
+      position: sticky;
       top: 80px;
-      right: 230px;
+      height: 800px;
+      margin-left: auto;
+      //right: 230px;
 
       .project_info_right_status_container {
         display: flex;
@@ -400,7 +403,7 @@
     }
 
     .middle_tabbr_container {
-      //margin-right: 40px;
+      margin-right: 40px;
       //padding-top: 20px;
       max-width: calc(100% - 390px);
 
@@ -426,6 +429,7 @@
         padding-top: 19px;
         z-index: 2;
         max-width: 840px;
+        margin-bottom: 20px;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         .middle_tabbr {
           background-color: transparent;
@@ -1876,6 +1880,7 @@ margin: 0;
       .project_info_right_section {
         //width: calc(100% + 160px);
         //transform: translateX(-80px);
+        height: auto;
         position: relative;
         right: 0;
         top: 0;
