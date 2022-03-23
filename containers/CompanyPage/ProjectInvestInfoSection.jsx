@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -33,8 +33,9 @@ import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
 import {getQuizIsPassedSelector} from "../../redux/reducers/user";
+import {getQuiz} from "../../redux/actions/user";
 
-const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
+const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   let history = useRouter();
@@ -77,14 +78,34 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
     dataOptions
   );
 
+  const _getQuiz = useCallback(
+      (data) => {
+        dispatch(getQuiz(data));
+      },
+      [dispatch]
+  );
+  const _setShowSignIn = useCallback(
+      (data) => {
+        dispatch(setShowSignIn(data));
+      },
+      [dispatch]
+  );
+
+  const handleOpenQuiz = () => {
+    _getQuiz()
+  }
 
   const handleClickInvest = () => {
     if (isAuth) {
-      const url = currentLanguage === 'sv'?'/investerings-formular/[companyId]':'/invest-form/[companyId]'
-      const href = currentLanguage === 'sv'?`/investerings-formular/${companySlug}`:`/invest-form/${companySlug}`
+      if(isPassedQuiz){
+        const url = currentLanguage === 'sv'?'/investerings-formular/[companyId]':'/invest-form/[companyId]'
+        const href = currentLanguage === 'sv'?`/investerings-formular/${companySlug}`:`/invest-form/${companySlug}`
         history.push(`${url}`,`${href}`);
+      }else{
+        _getQuiz();
+      }
     } else {
-      dispatch(setShowSignIn(true));
+      _setShowSignIn(true);
     }
   };
 
@@ -167,18 +188,29 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
       )}
 
       {isCompanyClosed && (
-          isAuth ?
-      (  <a href={"mailto:" + "info@accumeo.com"}>
-          <Button colorStyle="dark-green" className="invest_button">
+          isAuth
+              ?
+      (  isPassedQuiz ? (
+              <a href={"mailto:" + "info@accumeo.com"}>
+                <Button colorStyle="dark-green" className="invest_button">
+                  {t("company_page.button_contact")}
+                </Button>
+              </a>
+      ):(
+          <Button colorStyle="dark-green" className="invest_button" onClick={handleOpenQuiz}>
             {t("company_page.button_contact")}
           </Button>
-        </a>) : (
+
+          )
+      )
+              :
+              (
                   <Button colorStyle="dark-green" className="invest_button" disabled={!isAuth}>
                     {t("company_page.button_contact")}
                   </Button>
               )
       )}
-
+          {matchesAll &&
           <div className="company_info_sig">
             <h2 className='company_info_sig_title'>{t("company_page.company_info.title")}</h2>
             <InfoWithTitle
@@ -203,6 +235,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible }) => {
                 classNameContainer="company_info_social"
             />
           </div>
+          }
 
       {!isAuth && <SignUpMessage />}
           {isAuth && !isPassedQuiz && <PassQuizMessage className='company_info_quiz_message'/>}
