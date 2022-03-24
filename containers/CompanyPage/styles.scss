@@ -2187,6 +2187,20 @@ margin: 0;
   }
 }
 
+@media screen and (max-width: 767px) {
+  .company-page-container{
+    .middle_section_container{
+      .day_left{
+        font-size: 18px;
+      }
+      .percent{
+        font-size: 24px;
+      }
+
+    }
+  }
+}
+
 @media screen and (max-width: 580px) {
   .company-page-container{
     .middle_section_container{
