@@ -213,27 +213,35 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
           {matchesAll &&
           <div className="company_info_sig">
             <h2 className='company_info_sig_title'>{t("company_page.company_info.title")}</h2>
-            <InfoWithTitle
-                title={t("company_page.company_info.Industry")}
-                info={industryTitle}
-                classNameContainer="company_info_sig_item"
-            />
-            <InfoWithTitle
-                title={t("company_page.company_info.Location")}
-                info={countryTitle}
-                classNameContainer="company_info_sig_item"
-            />
-            <InfoWithTitle
-                title={t("company_page.company_info.Website")}
-                info={webSite}
-                href={webSite}
-                isLink
-                classNameContainer="company_info_sig_item company_info_sig_item_last "
-            />
-            <SocialTab
-                socials={socials}
-                classNameContainer="company_info_social"
-            />
+            {industryTitle && (
+                <InfoWithTitle
+                    title={t("company_page.company_info.Industry")}
+                    info={industryTitle}
+                    classNameContainer="company_info_sig_item"
+                />
+            )}
+            {countryTitle && (
+                <InfoWithTitle
+                    title={t("company_page.company_info.Location")}
+                    info={countryTitle}
+                    classNameContainer="company_info_sig_item"
+                />
+            )}
+            {webSite && (
+                <InfoWithTitle
+                    title={t("company_page.company_info.Website")}
+                    info={webSite}
+                    href={webSite}
+                    isLink
+                    classNameContainer="company_info_sig_item company_info_sig_item_last "
+                />
+            )}
+            {socials && (
+                <SocialTab
+                    socials={socials}
+                    classNameContainer="company_info_social"
+                />
+            )}
           </div>
           }
 

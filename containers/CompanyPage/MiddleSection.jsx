@@ -119,27 +119,36 @@ const MiddleSection = ({isAuth}) => {
                 <div className="company_info_sig">
                     {/*<h2 className='company_info_sig_title'>{t("company_page.company_info.title")}</h2>*/}
                     <div className='company_info_sig_wrapper'>
-                        <InfoWithTitle
-                            title={t("company_page.company_info.Industry")}
-                            info={industryTitle}
-                            classNameContainer="company_info_sig_item"
-                        />
-                        <InfoWithTitle
-                            title={t("company_page.company_info.Location")}
-                            info={countryTitle}
-                            classNameContainer="company_info_sig_item"
-                        />
-                        <InfoWithTitle
-                            title={t("company_page.company_info.Website")}
-                            info={webSite}
-                            href={webSite}
-                            isLink
-                            classNameContainer="company_info_sig_item company_info_sig_item_last "
-                        />
-                        <SocialTab
-                            socials={socials}
-                            classNameContainer="company_info_social"
-                        />
+                        {industryTitle && (
+                            <InfoWithTitle
+                                title={t("company_page.company_info.Industry")}
+                                info={industryTitle}
+                                classNameContainer="company_info_sig_item"
+                            />
+                        )}
+                        {countryTitle && (
+                            <InfoWithTitle
+                                title={t("company_page.company_info.Location")}
+                                info={countryTitle}
+                                classNameContainer="company_info_sig_item"
+                            />
+                        )}
+                        {webSite && (
+                            <InfoWithTitle
+                                title={t("company_page.company_info.Website")}
+                                info={webSite}
+                                href={webSite}
+                                isLink
+                                classNameContainer="company_info_sig_item company_info_sig_item_last "
+                            />
+                        )}
+                        {socials && (
+                            <SocialTab
+                                socials={socials}
+                                classNameContainer="company_info_social"
+                            />
+                        )}
+
                     </div>
 
                 </div>
@@ -166,10 +175,22 @@ const MiddleSection = ({isAuth}) => {
                 </div>
                 <TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>
             </div>
+
+                <div className='middle_mobile_header_container'>
+                    {campaignName &&(
+                        <h1 className='middle_section_title'>{campaignName}</h1>
+                    )}
+                    {subTitle && (
+                        <p className='middle_section_subtitle'>{subTitle}</p>
+                    )}
+                </div>
+
+
             <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll}/>
 
             <div
                 className={visible ? " middle_mobile_tabbr_container" : "middle_mobile_tabbr_container middle_mobile_tabbr_container_shifted"}>
+
                 <TabAccordion isAuth={isAuth}/>
             </div>
         </div>
