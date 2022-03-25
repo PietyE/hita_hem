@@ -413,7 +413,7 @@
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         font-weight: bold;
-        font-size: 45px;
+        font-size: 55px;
         padding-top: 20px;
       }
 
@@ -432,6 +432,7 @@
         z-index: 2;
         max-width: 840px;
         margin-bottom: 20px;
+        width: 100%;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         .middle_tabbr {
           background-color: transparent;
@@ -1914,6 +1915,8 @@ margin: 0;
 
       .sign_up_message_container{
         align-items: flex-start;
+        margin-bottom: 20px;
+
       }
     }
 
@@ -1983,7 +1986,7 @@ margin: 0;
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
         .middle_section_title{
-          font-size: 33px;
+          font-size: 40px;
           font-weight: bold;
           padding-bottom: 20px;
 
@@ -2578,10 +2581,11 @@ margin: 0;
 .company_info_sig_wrapper{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  //justify-content: space-between;
+  //margin-bottom: 20px;
   .company_info_sig_item{
     margin-right: 20px;
+    margin-bottom: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
