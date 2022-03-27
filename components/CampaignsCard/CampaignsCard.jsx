@@ -17,7 +17,7 @@ const CampaignsCard = (props) => {
     status,
     title,
     short_description,
-      images=[],
+      image,
       slug,
     percentage,
     left_date
@@ -37,9 +37,9 @@ const CampaignsCard = (props) => {
         <li className={`campaigns_card ${className}`} >
 
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
-              {images && images['desktop'] && (
+              {image && (
                   <Image
-                  src = {images['desktop']}
+                  src = {image}
                   layout = "fill"
                   objectFit = "cover"
                   priority = {true}

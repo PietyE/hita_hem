@@ -3,4 +3,5 @@ export const companyTabConstants = {
   TEAM: "team",
   FIN_INFO: "finInfo",
   FAQ: "faq",
+  OVERVIEW: "overview",
 };

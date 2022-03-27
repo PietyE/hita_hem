@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 
+import Overview from "containers/CompanyPage/Overview";
 import Idea from "containers/CompanyPage/Idea";
 import Team from "containers/CompanyPage/Team";
 import FinancialInformation from "containers/CompanyPage/FinancialInformation";
@@ -36,16 +37,37 @@ function TabAccordion({ isAuth }) {
     }
     setActiveTab(e.target.dataset.value);
     if (Number(e.target.dataset.value) !== 0) {
-      ideaRef.current.scrollIntoView({
-        block: "start",
-        inline: "nearest",
-        // behavior: 'smooth',
-      });
+      ideaRef.current.scrollIntoView();
     }
   };
   return (
     <>
       <Accordion>
+        <Card className="tab_accordion_item">
+          <Accordion.Toggle
+              as={Card.Header}
+              eventKey="4"
+              data-value="4"
+              className="tab_accordion_item_header"
+              onClick={handleTabClick}
+              ref={ideaRef}
+          >
+            <span className="tab_accordion_icon">
+              <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
+            </span>
+            {t("tab_accordion.OVERVIEW")}
+            <span className="tab_accordion_chevron">
+              <IconComponent
+                  icon={activeTab === "0" ? faChevronDown : faChevronRight}
+              />
+            </span>
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="4" className="accordion_content">
+            <Card.Body>
+              <Overview />
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
         <Card className="tab_accordion_item">
           <Accordion.Toggle
             as={Card.Header}

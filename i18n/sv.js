@@ -133,6 +133,11 @@ sign_up_message: {
         sign_in_text: "Har du inget konto än?",
     sign_in_link: "Skapa ett här!",
 },
+        request_quiz_message: {
+            sign_up_text_one: "Du måste ",
+            sign_up_link: "slutföra quizet ",
+            sign_up_text_two: " för att ta del av erbjudandet.",
+        },
 successful_campaign_registration: {
     title: "Du har nu slutfört första steget mot att lansera din kampanj!",
         text: "Vi kommer snart att kontakta dig.",
@@ -185,6 +190,7 @@ tab_accordion: {
         Team: "Team",
         Financial_information: "Finansiell information",
         FAQ: "Q&A",
+    OVERVIEW: "Överblick",
 },
 about_us_page: {
     subscribe_title:
@@ -214,13 +220,24 @@ company_page: {
     button_read_more: "Läs mer",
         button_show_more: "Visa mer",
         button_show_less: "Visa mindre",
-        company_info: {
+    recommended:{
+        title:'Fler investeringsmöjligheter',
+        text:'Du kanske också är intresserad av...',
+        button:'Fler investeringsmöjligheter.',
+    },
+    company_info: {
+        title:'Snabb info',
+
         Industry: "Industri:",
             Location: "Område:",
             Website: "Hemsida:",
     },
     project_info: {
         text: "Verksamheten i fokus",
+        auth_button: 'Bli medlem för mer information.',
+        quiz_button: 'Bli medlem för mer information.',
+
+
     },
     faq: {
         faq_text: "Om du har vidare frågor tar vi gärna emot dem.",
@@ -237,6 +254,11 @@ company_page: {
             sign_up: "Bli medlem",
             log_in: "Logga in",
             footer_text: "Har du redan ett konto?",
+    },
+    tab_quiz_request: {
+        title: "Vill du se mer?",
+        text: "På grund av finansiella bestämmelser måste du slutföra quizet för att se hela investeringsmöjligheten.",
+        pass_quiz: "Slutför quizet",
     },
 },
 home_page: {
@@ -302,6 +324,8 @@ profile_page: {
         title: "Kontoinställningar",
             text_delete: "Ta bort kontot",
             text: "Genom att ta bort kontot kommer all din data försvinna.",
+        subscribe_title:'Prenumerationer',
+        subscribe_button:'Bekräfta Prenumerationer',
     },
     reset_email: {
         title: "Byt e-post",

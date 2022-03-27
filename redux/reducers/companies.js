@@ -50,6 +50,7 @@ const initialState = {
     industry: {
       title: "",
     },
+    recommended_campaign: [],
     status: "",
     country: "",
     valuation: null,
@@ -62,9 +63,11 @@ const initialState = {
     youtube_link: "",
     business_highlights: "",
     name: "",
+    sub_title:'',
     header_image: "",
     header_image_list: [],
     images: [],
+    image: '',
     header_title: "",
     start_date: "",
     end_date: "",
@@ -166,7 +169,7 @@ const initialState = {
   filter: [],
   isFetching: false,
   isError404: false,
-  companyTabSelected: companyTabConstants.IDEA,
+  companyTabSelected: companyTabConstants.OVERVIEW,
   private_mod_viewers: [],
   private_mode: false,
 };
@@ -202,6 +205,10 @@ export const getTeatMateSetSelector = (state) =>
 export const getFaqSetSelector = (state) =>
   state.companies.companyDetail.faq_set;
 
+export const getRecommendedCampaignsSelector = (state) =>
+    state.companies.companyDetail.recommended_campaign;
+
+
 export const getIsError404Selector = (state) => state.companies.isError404;
 
 export const getIsFetchingCampaignsSelector = (state) =>
@@ -216,6 +223,7 @@ export const getIdeaSectionContentSelector = (state) =>
   state.companies.companyDetail.ideas;
 
 export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
+export const getOverviewImageSelector = (state) => state.companies.companyDetail.image;
 
 export const getCampaignSeoSelector = (state) =>
     state.companies.companyDetail.seo;
@@ -236,8 +244,8 @@ export const getCompanyLogoUrlSelector = (state) =>
   state.companies.companyDetail.logo;
 export const getCompanyNameSelector = (state) =>
   state.companies.companyDetail.name;
-// export const getCompanyShortDescriptionSelector = state =>
-//     state.companies.companyDetail?.description
+export const getCompanySubTitleSelector = state =>
+    state.companies.companyDetail?.sub_title
 export const getCompanyIndustryTitleSelector = (state) =>
   state.companies.companyDetail?.industry?.title || "";
 export const getCountryTitleSelector = (state) =>
@@ -341,7 +349,7 @@ export const companies = (state = initialState, actions) => {
     case CLEAR_COMPANY:
       return { ...state, companyDetail: initialState.companyDetail };
     case RESET_COMPANY_TAB:
-      return { ...state, companyTabSelected: companyTabConstants.IDEA };
+      return { ...state, companyTabSelected: companyTabConstants.OVERVIEW };
     case RESET_COMPANY_LIST:
       return { ...state, companiesList: [] };
     case SET_ERROR_404_COMPANIES:
