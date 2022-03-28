@@ -219,7 +219,7 @@ class AuthCRUD extends CRUD {
   checkQuizAnswers(payload) {
     // const {data, token} = payload
     // const data = payload?.data?.answers
-    const data = {answers:payload?.data?.answers,token:payload?.data?.bearer?.key,is_agree: payload?.data?.is_agree }
+    // const data = {answers:payload?.data?.answers}
     
     const url = `${this.url}/quiz/`;
     return this.request({

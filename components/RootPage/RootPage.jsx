@@ -46,7 +46,7 @@ import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
-import {getTokenForQuizSocialsSignIn} from "../../redux/reducers/user";
+// import {getTokenForQuizSocialsSignIn} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -170,7 +170,7 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
-    const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
+    // const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
     const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
@@ -347,7 +347,7 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
-          {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+          {!!isShowQuiz && <Quiz show={!!isShowQuiz}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
           {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
           {isShowCookie && <CookieNotification/>}
