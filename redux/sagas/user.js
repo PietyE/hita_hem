@@ -26,6 +26,7 @@ import {
     SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
     SIGN_UP_WITH_BANK_ID, REQUEST_SUBSCRIBE_LIST,
     CHANGE_UNSUBSCRIBE_LIST,
+    SIGN_UP_WITH_SOCIALS,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -39,7 +40,10 @@ import {
     setCanResetPassword,
     setCanChangePassword,
     setQuiz,
-    setIsAthOnAndSaveUserProfile, setBIdKey, setSubscribeList,
+    setIsAthOnAndSaveUserProfile,
+    setBIdKey,
+    setSubscribeList,
+    setSocialsKey,
 } from "redux/actions/user";
 import {
     setShowSignIn,
@@ -58,9 +62,12 @@ import {
     setShowCookiePopup,
     setShowDenyDeletingAccount,
     setShowRequestForChangeEmail,
-    setShowRequestForChangePassword, setShowFirstLoginPopup, setShowCompleteBankIdRegistration,
+    setShowRequestForChangePassword,
+    setShowFirstLoginPopup,
+    setShowCompleteBankIdRegistration,
+    setShowCompleteSocialsRegistration,
 } from "../actions/authPopupWindows";
-import {getBIdKeySelector, getUserIdSelector} from "../reducers/user";
+import {getBIdKeySelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
     setIsBankIdResident,
@@ -213,18 +220,58 @@ function* signInWithGoogle({payload}) {
         const {data} = response;
             yield put(setIsAthOnAndSaveUserProfile(data))
     } catch (error) {
-        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.social_account
+        if(error?.response?.data?.user){
+            yield put(setShowCompleteSocialsRegistration(true))
+            yield put(setSocialsKey(payload?.data))
+        }else{
+            const hideNotification = !!error?.response?.data?.social_account
+            yield put(
+                setAuthError({
+                    status: error?.response?.status,
+                    data: error?.response?.data,
+                    hideNotification: hideNotification
+                })
+            );
+        }
+
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* signUpWithSocialsWorker({payload}) {
+    try {
+        yield put(setFetchingUsers(true));
+        const sessionId = yield select(getSocialsKeySelector)
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+        const response = yield call([auth, "signInWithGoogle"], {
+            token: sessionId,
+            is_agree: payload,
+            session_key: session_key,
+
+        });
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
+        const {data} = response;
+        yield put(setIsAthOnAndSaveUserProfile(data))
+
+        if(response?.data?.first_time_device && !response?.data?.user?.quiz){
+            yield call(requestForQuiz)
+        }
+        yield put(setShowCompleteSocialsRegistration(false))
+        yield put(setSocialsKey(''))
+    } catch (error) {
         yield put(
-            setAuthError({
-                status: error?.response?.status,
-                data: error?.response?.data,
-                hideNotification: hideNotification
-            })
+            setAuthError({status: error?.response?.status,data: error?.response?.data,})
         );
     } finally {
         yield put(setFetchingUsers(false));
     }
 }
+
 
 function* makeRequestForSignInWithBankIdWorker() {
     try {
@@ -838,6 +885,8 @@ export function* userWorker() {
     yield takeEvery(SIGN_UP_WITH_BANK_ID, signUpWithBankIdWorker)
     yield takeEvery(REQUEST_SUBSCRIBE_LIST, requestSubscribeListWorker)
     yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
+    yield takeEvery(SIGN_UP_WITH_SOCIALS, signUpWithSocialsWorker)
+
 
 
 

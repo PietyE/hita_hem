@@ -30,7 +30,7 @@ class AuthCRUD extends CRUD {
 
   signInWithGoogle(payload) {
     const {token, session_key} = payload
-    const data = {token: token}
+    const data = payload?.is_agree ? {token: token, is_agree: payload?.is_agree} : {token: token}
     const url = `${this.url}/sign_in_google/`;
     return this.request({
       url,
