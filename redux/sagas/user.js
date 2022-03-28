@@ -192,22 +192,25 @@ function* signInWithGoogle({payload}) {
             if(!payload){
                 return
             }
-        yield put(setFetchingUsers(true));
-
-        const response = yield call([auth, "signInWithGoogle"], {token: payload});
-        yield put(setShowSessionSignUp(false));
-        yield put(setShowSignUp(false));
-        yield put(setShowSignIn(false));
 
         yield call([localStorage, 'removeItem'], '_expiredTime')
+        yield put(setFetchingUsers(true));
 
         const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
         const session_key = session_key_from_LS || new Date().getTime();
 
+        const response = yield call([auth, "signInWithGoogle"], {
+            token: payload,
+            session_key: session_key,
+        });
 
         if (!session_key_from_LS) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
+
+        yield put(setShowSessionSignUp(false));
+        yield put(setShowSignUp(false));
+        yield put(setShowSignIn(false));
 
         const {data} = response;
         const {user, token} = data;
@@ -255,7 +258,17 @@ function* makeRequestForSignInWithBankIdWorker() {
 function* signInWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data,});
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+        const response = yield call([auth, "loginWithBankId"], {
+            grand_id_session: payload?.data,
+            session_key: session_key,
+        });
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
@@ -294,7 +307,19 @@ function* signUpWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
         const sessionId = yield select(getBIdKeySelector)
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: sessionId, email: payload?.email});
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+        const response = yield call([auth, "loginWithBankId"], {
+            grand_id_session: sessionId,
+            email: payload?.email,
+            session_key: session_key,
+
+        });
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
         const {data} = response;
         const {user, token} = data;
         if (user?.quiz) {
