@@ -20,6 +20,7 @@ import {
   SET_BANK_ID_KEY,
   SET_SUBSCRIBE_LIST,
   SET_UNSUBSCRIBE_LIST,
+  SET_SOCIALS_KEY,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -34,6 +35,7 @@ const initialsState = {
   isSuccessfulResponseFromApi: false,
   isBankIdResident: false,
   bidSessionKey: '',
+  socialsSessionKey:'',
   currentPath: '',
   token: {},
   user: {},
@@ -94,7 +96,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, subscribeList: actions.payload}
     case SET_UNSUBSCRIBE_LIST:
       return {...state, account:{...state.account, unsubscribes: actions.payload}}
-
+    case SET_SOCIALS_KEY:
+      return {...state, socialsSessionKey: actions.payload}
 
 
     default:
@@ -156,3 +159,6 @@ export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
 export const getBIdKeySelector = (state) => state.user.bidSessionKey;
+export const getSocialsKeySelector = (state) => state.user.socialsSessionKey;
+
+
