@@ -221,19 +221,11 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  checkQuizAnswers(payload) {
-    // const {data, token} = payload
-    // const data = payload?.data?.answers
-    // const data = {answers:payload?.data?.answers}
-    
+  checkQuizAnswers(data) {
     const url = `${this.url}/quiz/`;
     return this.request({
       url,
       method: "POST",
-      headers: {
-        // "Authorization": `Bearer ${payload?.data?.bearer?.key}`,
-        "x-recaptcha-token": payload?.token,
-      },
       data,
     });
   }

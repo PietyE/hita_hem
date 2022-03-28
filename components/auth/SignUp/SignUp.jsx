@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
-// import dynamic from "next/dynamic";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
@@ -12,23 +11,18 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
 import {signUp, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
-// import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
 import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
 import {getDocumentsSelector} from "../../../redux/reducers/documents";
-// const Quiz = dynamic(() =>
-//     import("components/Quiz")
-// );
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
   const isFetching = useSelector(getIsFetchingAuthSelector);
-  // const isQuizShow = useSelector(getShowQuiz)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
     const documentUrl = useSelector(getDocumentsSelector)
 
@@ -56,7 +50,7 @@ const SignUp = ({ show }) => {
       [dispatch]
   );
   const onSubmit = (values) => {
-    recaptcha('sign_up', _signUp,values)
+recaptcha('sign_up', _signUp,values)
 
   };
   const signUpSchema = yup.object({
@@ -113,7 +107,6 @@ const SignUp = ({ show }) => {
       centered={true}
       isFetchIndicator={isFetching}
     >
-      {/*<h1 className="sign_up_title mb-4">{t("auth.sign_up.title")}</h1>*/}
           <header className='auth_session_header'>
             <h1 className='auth_session_header_title'>{t("auth.session_sign_up.header_title")}</h1>
             <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span></p>
@@ -126,7 +119,6 @@ const SignUp = ({ show }) => {
             </button>
               <GoogleLogin
                   clientId= {process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                  // buttonText="Google"
                   render={renderProps => (
                       <button
                           className='sign_in_google sign_in_social_button'
@@ -150,7 +142,6 @@ const SignUp = ({ show }) => {
         initialValues={initialValues}
         validationSchema={signUpSchema}
         onSubmit={onSubmit}
-        // validateOnMount
         validateOnChange={false}
         validateOnBlur={false}
       >
@@ -158,7 +149,6 @@ const SignUp = ({ show }) => {
 
           return (
               <>
-                {/*{!!isQuizShow && <Quiz show = {isQuizShow} data = {values}/>}*/}
                 <Form className = "auth_form">
                   <InputComponent
                       type = "email"
