@@ -20,7 +20,6 @@ import {
     GET_PROFILE_FROM_API,
     CHECK_TOKEN_FOR_RESET_PASSWORD,
     CHECK_ACTIVATION_TOKEN,
-    CHECK_EMAIL_AND_PASSWORD,
     SIGN_IN_WITH_BANK_ID,
     REQUEST_SIGN_IN_WITH_BANK_ID,
     SIGN_IN_WITH_GOOGLE,
@@ -124,28 +123,19 @@ function* signUp({payload}) {
         if (response.status === 201) {
             yield put(setShowSignUp(false));
             yield put(setShowSessionSignUp(false));
-            yield put(setShowQuiz(false));
             yield put(setShowSuccessfulSignUp(true));
         }
         yield put(clearErrors())
 
     } catch (error) {
-        if (error?.response?.data?.questions) {
-            yield put(setQuizErrors(error?.response?.data?.questions))
-            yield put(setShowQuizError(true))
-        } else {
-            if (error?.response?.data?.email || error?.response?.data?.password) {
-                yield put(setShowQuiz(false))
-            }
-            const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
-            yield put(
-                setAuthError({
-                    status: error.response.status,
-                    data: error.response.data,
-                    hideNotification: hideNotification
-                })
-            );
-        }
+        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.confirm_password
+        yield put(
+            setAuthError({
+                status: error.response.status,
+                data: error.response.data,
+                hideNotification: hideNotification
+            })
+        );
     } finally {
         yield put(setFetchingUsers(false));
     }
@@ -168,6 +158,10 @@ function* signIn({payload}) {
 
         if (!session_key_from_LS) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
+
+        if(response?.data?.first_time_device && !response?.data?.user?.quiz){
+                yield call(requestForQuiz)
         }
 
         const {data} = response;
@@ -208,19 +202,16 @@ function* signInWithGoogle({payload}) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
 
+        if(response?.data?.first_time_device && !response?.data?.user?.quiz){
+            yield call(requestForQuiz)
+        }
+
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
 
         const {data} = response;
-        const {user, token} = data;
-        if (user?.quiz) {
             yield put(setIsAthOnAndSaveUserProfile(data))
-        } else {
-            yield put(setTokenForQuizSocialsSignIn(token))
-            yield call(requestForQuiz)
-        }
-
     } catch (error) {
         const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!error?.response?.data?.social_account
         yield put(
@@ -245,7 +236,6 @@ function* makeRequestForSignInWithBankIdWorker() {
         if (response?.data?.redirectUrl) {
             window.open(response?.data?.redirectUrl, '_self');
         }
-        // yield call(requestForQuiz)
     } catch (error) {
         yield put(
             setAuthError({status: error?.response?.status, data: error?.response?.data})
@@ -269,24 +259,19 @@ function* signInWithBankIdWorker({payload}) {
         if (!session_key_from_LS) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
+
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
-        const {data} = response;
-        const {user, token} = data;
-        if (user?.quiz) {
-            yield put(setIsAthOnAndSaveUserProfile(data))
+
+            yield put(setIsAthOnAndSaveUserProfile(response?.data))
             const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
             yield call([localStorage, 'removeItem'], 'current_pathname')
             payload?.action?.push(current_pathname || HOME_ROUTE)
 
-
-        } else {
-            yield put(setTokenForQuizSocialsSignIn(token))
+        if(response?.data?.first_time_device && !response?.data?.user?.quiz){
             yield call(requestForQuiz)
         }
-
-
     } catch (error) {
         if(error?.response?.data?.user){
             yield put(setShowCompleteBankIdRegistration(true))
@@ -307,7 +292,6 @@ function* signUpWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
         const sessionId = yield select(getBIdKeySelector)
-        yield call([localStorage, 'removeItem'], '_expiredTime')
 
         const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
         const session_key = session_key_from_LS || new Date().getTime();
@@ -321,16 +305,12 @@ function* signUpWithBankIdWorker({payload}) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
         const {data} = response;
-        const {user, token} = data;
-        if (user?.quiz) {
-            yield put(setIsAthOnAndSaveUserProfile(data))
-            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
-            yield call([localStorage, 'removeItem'], 'current_pathname')
-            payload?.action?.push(current_pathname || HOME_ROUTE)
+        yield put(setIsAthOnAndSaveUserProfile(data))
+        const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
+        yield call([localStorage, 'removeItem'], 'current_pathname')
+        payload?.action?.push(current_pathname || HOME_ROUTE)
 
-
-        } else {
-            yield put(setTokenForQuizSocialsSignIn(token))
+        if(response?.data?.first_time_device && !response?.data?.user?.quiz){
             yield call(requestForQuiz)
         }
         yield put(setShowCompleteBankIdRegistration(false))
@@ -609,9 +589,6 @@ function* requestForCheckingToken({payload}) {
         } else if (payload?.type === 'password') {
             yield put(setCanChangePassword(true))
         }
-        // else if(payload.type === 'reset-password'){
-        //   yield put(setCanResetPassword(true))
-        // }
     } catch (error) {
         if (error?.response?.status === 404) {
             yield put(setShowInvalidTokenModal(true))
@@ -643,48 +620,11 @@ function* requestForQuiz() {
 
 function* requestForCheckingQuiz({payload}) {
     try {
-        const dataForApi = {
-            answers: payload?.data?.answers,
-            is_agree: payload?.data?.is_agree,
-            bearer: payload?.data?.bearer,
-        }
+
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "checkQuizAnswers"], {token: payload?.token, data: dataForApi});
-        yield call([api, "setToken"], response?.data?.token?.key);
-        yield put(setTokenForQuizSocialsSignIn(false))
-        // yield  call(getProfileFromApi)
-        const authData = JSON.stringify({
-            key: response?.data?.token?.key,
-            expiration_timestamp: response?.data?.token?.expiration_timestamp
-        });
-        yield call([localStorage, "setItem"], "auth_data", authData);
-        const res = yield call([auth, "getSelf"]);
-        if (res?.data?.is_bank_id_resident) {
-            yield put(setIsBankIdResident(true))
-        }
-        if (res?.status !== 200) {
-            yield put(setAuth(false));
-            return;
-        }
-
-        if (res?.data?.is_bank_id_resident ) {
-            const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
-            yield call([localStorage, 'removeItem'], 'current_pathname')
-            payload?.data?.action?.push(current_pathname)
-        }
-        if (res?.data?.profile?.date_of_birth) {
-            const profileCopy = prepareProfile(res.data.profile);
-            yield put(setProfile(profileCopy));
-        } else {
-            yield put(setProfile(res.data.profile));
-        }
-
-        yield put(setToken(response?.data?.token));
-        yield put(setAccount(res.data));
-        yield put(setAuth(true));
-        yield put(setShowFirstLoginPopup(true))
-
-
+        yield call([auth, "checkQuizAnswers"], {answers:payload});
+        yield put(setShowQuiz(false))
+        yield put(setQuizIsPassed(true))
     } catch (error) {
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))
@@ -735,29 +675,6 @@ function* activationTokenVerificationRequest({payload}) {
         yield put(setFetchingUsers(false));
     }
 }
-
-function* checkEmailAndPassword({payload}) {
-    try {
-        yield put(setFetchingUsers(true));
-        yield put(setTokenForQuizSocialsSignIn(false))
-
-        yield call([auth, "checkEmailAndPassword"], payload);
-        yield call(requestForQuiz)
-    } catch (error) {
-        const hideNotification = !!error?.response?.data?.email || !!error?.response?.data?.password || !!!!error?.response?.data?.confirm_password
-
-        yield put(
-            setAuthError({
-                status: error?.response?.status,
-                data: error?.response?.data,
-                hideNotification: hideNotification
-            })
-        );
-    } finally {
-        yield put(setFetchingUsers(false));
-    }
-}
-
 
 function* uploadUserData() {
     try {
@@ -913,7 +830,6 @@ export function* userWorker() {
     yield takeEvery(CHECK_QUIZ_ANSWERS, requestForCheckingQuiz)
     yield takeEvery(GET_PROFILE_FROM_API, getProfileFromApi)
     yield takeEvery(CHECK_ACTIVATION_TOKEN, activationTokenVerificationRequest)
-    yield takeEvery(CHECK_EMAIL_AND_PASSWORD, checkEmailAndPassword)
     yield takeEvery(SIGN_IN_WITH_BANK_ID, signInWithBankIdWorker)
     yield takeEvery(REQUEST_SIGN_IN_WITH_BANK_ID, makeRequestForSignInWithBankIdWorker)
     yield takeEvery(SIGN_IN_WITH_GOOGLE, signInWithGoogle)
