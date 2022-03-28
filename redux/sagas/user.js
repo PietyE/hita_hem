@@ -298,6 +298,7 @@ function* signUpWithBankIdWorker({payload}) {
         const response = yield call([auth, "loginWithBankId"], {
             grand_id_session: sessionId,
             email: payload?.email,
+            is_agree: payload?.is_agree,
             session_key: session_key,
 
         });

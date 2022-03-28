@@ -522,7 +522,7 @@ export const en = {
             link:'Personal Details',
         },
         complete_bank_id_registration: {
-            title: 'Please enter your email to complete registration.',
+            title: 'Please enter your email and agree with the terms of the Membership Agreement to complete registration.',
             button: 'Submit',
             email_placeholder: "Enter your email address",
             error: 'Example: test@test.com',

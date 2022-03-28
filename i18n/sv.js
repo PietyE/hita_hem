@@ -523,7 +523,7 @@ cookie: {
             link:'personuppgifter',
         },
         complete_bank_id_registration: {
-            title: 'Vänligen ange din mail för att slutföra registreringen via BankID.',
+            title: 'Vänligen ange din mail och godkänn medlemsskapsavtalet för att slutför registreringen.',
             button: 'Bli medlem',
             email_placeholder: "Ange din e-postadress",
             error: 'Exempel: test@test.com',

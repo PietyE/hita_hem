@@ -278,6 +278,7 @@ class AuthCRUD extends CRUD {
     const {grand_id_session, session_key} = payload
     const data = payload?.email?{
       email: payload?.email,
+      is_agree: payload?.is_agree,
       grand_id_session: grand_id_session,
     }:{grand_id_session: grand_id_session}
     const url = `${this.url}/sign_in_bank_id/`;
