@@ -637,7 +637,7 @@
       font-style: normal;
       line-height: 70px;
       font-size: 40px;
-  }
+    }
     .recommended_campaigns_text{
       font-family: "Source sans Pro", sans-serif;
       font-style: normal;
@@ -894,7 +894,7 @@
   margin: 0 auto;
   justify-content: center;
   p{
-margin: 0;
+    margin: 0;
   }
 }
 .campaigns_tab_sign-up_container {
@@ -1515,9 +1515,9 @@ margin: 0;
 
           .invest_info_item {
             padding: 0 15px;
-              .currensy_text{
-                font-size: 22px;
-              }
+            .currensy_text{
+              font-size: 22px;
+            }
 
             .invest_info_item_date {
               &:first-child {
@@ -1823,6 +1823,19 @@ margin: 0;
         }
       }
     }
+    .project_info_right_section{
+      .company_info_sig{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        .company_info_sig_item{
+          align-items: center;
+        }
+      }
+
+    }
+
   }
 
 
@@ -1914,9 +1927,11 @@ margin: 0;
       }
 
       .sign_up_message_container{
-        align-items: flex-start;
+        align-items: center;
         margin-bottom: 20px;
-
+        .company_info_sig_item{
+          align-items: center;
+        }
       }
     }
 
@@ -2004,7 +2019,7 @@ margin: 0;
       }
 
       .middle_mobile_tabbr_container_shifted {
-        padding-top: 100px;
+        //padding-top: 100px;
 
       }
 
