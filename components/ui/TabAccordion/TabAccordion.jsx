@@ -22,7 +22,7 @@ import iconComments from "public/images/comments.svg";
 
 function TabAccordion({ isAuth }) {
   const { t } = useTranslation();
-  const ideaRef = useRef();
+  const overviewRef = useRef();
 
   const [activeTab, setActiveTab] = useState(null);
 
@@ -37,7 +37,7 @@ function TabAccordion({ isAuth }) {
     }
     setActiveTab(e.target.dataset.value);
     if (Number(e.target.dataset.value) !== 0) {
-      ideaRef.current.scrollIntoView();
+      overviewRef.current.scrollIntoView();
     }
   };
   return (
@@ -46,11 +46,11 @@ function TabAccordion({ isAuth }) {
         <Card className="tab_accordion_item">
           <Accordion.Toggle
               as={Card.Header}
-              eventKey="4"
-              data-value="4"
+              eventKey="0"
+              data-value="0"
               className="tab_accordion_item_header"
               onClick={handleTabClick}
-              ref={ideaRef}
+              ref={overviewRef}
           >
             <span className="tab_accordion_icon">
               <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
@@ -62,34 +62,9 @@ function TabAccordion({ isAuth }) {
               />
             </span>
           </Accordion.Toggle>
-          <Accordion.Collapse eventKey="4" className="accordion_content">
-            <Card.Body>
-              <Overview />
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="0"
-            data-value="0"
-            className="tab_accordion_item_header"
-            onClick={handleTabClick}
-            ref={ideaRef}
-          >
-            <span className="tab_accordion_icon">
-              <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
-            </span>
-            {t("tab_accordion.Idea")}
-            <span className="tab_accordion_chevron">
-              <IconComponent
-                icon={activeTab === "0" ? faChevronDown : faChevronRight}
-              />
-            </span>
-          </Accordion.Toggle>
           <Accordion.Collapse eventKey="0" className="accordion_content">
             <Card.Body>
-              <Idea />
+              <Overview />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -102,9 +77,9 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconTeam} alt={iconTeam ? 'team icon' : ' '} />
+              <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
             </span>
-            {t("tab_accordion.Team")}
+            {t("tab_accordion.Idea")}
             <span className="tab_accordion_chevron">
               <IconComponent
                 icon={activeTab === "1" ? faChevronDown : faChevronRight}
@@ -112,8 +87,8 @@ function TabAccordion({ isAuth }) {
             </span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="1" className="accordion_content">
-            <Card.Body className="accordion_content">
-              {renderTabIFauts(Team)}
+            <Card.Body>
+              <Idea />
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -126,9 +101,9 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconChart} alt={iconChart ? 'chart icon' : ' '} />
+              <Image src={iconTeam} alt={iconTeam ? 'team icon' : ' '} />
             </span>
-            {t("tab_accordion.Financial_information")}
+            {t("tab_accordion.Team")}
             <span className="tab_accordion_chevron">
               <IconComponent
                 icon={activeTab === "2" ? faChevronDown : faChevronRight}
@@ -137,7 +112,7 @@ function TabAccordion({ isAuth }) {
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="2" className="accordion_content">
             <Card.Body className="accordion_content">
-              {renderTabIFauts(FinancialInformation)}
+              {renderTabIFauts(Team)}
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -150,9 +125,9 @@ function TabAccordion({ isAuth }) {
             onClick={handleTabClick}
           >
             <span className="tab_accordion_icon">
-              <Image src={iconComments} alt={iconComments ? 'comments icon' : ' '} />
+              <Image src={iconChart} alt={iconChart ? 'chart icon' : ' '} />
             </span>
-            {t("tab_accordion.FAQ")}
+            {t("tab_accordion.Financial_information")}
             <span className="tab_accordion_chevron">
               <IconComponent
                 icon={activeTab === "3" ? faChevronDown : faChevronRight}
@@ -160,6 +135,30 @@ function TabAccordion({ isAuth }) {
             </span>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="3" className="accordion_content">
+            <Card.Body className="accordion_content">
+              {renderTabIFauts(FinancialInformation)}
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+        <Card className="tab_accordion_item">
+          <Accordion.Toggle
+            as={Card.Header}
+            eventKey="4"
+            data-value="4"
+            className="tab_accordion_item_header"
+            onClick={handleTabClick}
+          >
+            <span className="tab_accordion_icon">
+              <Image src={iconComments} alt={iconComments ? 'comments icon' : ' '} />
+            </span>
+            {t("tab_accordion.FAQ")}
+            <span className="tab_accordion_chevron">
+              <IconComponent
+                icon={activeTab === "4" ? faChevronDown : faChevronRight}
+              />
+            </span>
+          </Accordion.Toggle>
+          <Accordion.Collapse eventKey="4" className="accordion_content">
             <Card.Body className="accordion_content">
               {renderTabIFauts(Faq)}
             </Card.Body>
