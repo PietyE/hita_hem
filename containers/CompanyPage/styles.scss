@@ -2214,6 +2214,17 @@ margin: 0;
 
         }
       }
+      .project_info_right_section{
+        .company_info_sig{
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          .company_info_sig_item{
+            align-items: center;
+          }
+        }
+      }
     }
   }
   .faq_answer_modal {
