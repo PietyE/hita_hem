@@ -22,7 +22,7 @@ import iconComments from "public/images/comments.svg";
 
 function TabAccordion({ isAuth }) {
   const { t } = useTranslation();
-  const ideaRef = useRef();
+  const overviewRef = useRef();
 
   const [activeTab, setActiveTab] = useState(null);
 
@@ -37,136 +37,135 @@ function TabAccordion({ isAuth }) {
     }
     setActiveTab(e.target.dataset.value);
     if (Number(e.target.dataset.value) !== 0) {
-      ideaRef.current.scrollIntoView();
+      overviewRef.current.scrollIntoView();
     }
   };
   return (
-    <>
-      <Accordion>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-              as={Card.Header}
-              eventKey="4"
-              data-value="4"
-              className="tab_accordion_item_header"
-              onClick={handleTabClick}
-              ref={ideaRef}
-          >
+      <>
+        <Accordion>
+          <Card className="tab_accordion_item">
+            <Accordion.Toggle
+                as={Card.Header}
+                eventKey="0"
+                data-value="0"
+                className="tab_accordion_item_header"
+                onClick={handleTabClick}
+                ref={overviewRef}
+            >
             <span className="tab_accordion_icon">
               <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
             </span>
-            {t("tab_accordion.OVERVIEW")}
-            <span className="tab_accordion_chevron">
+              {t("tab_accordion.OVERVIEW")}
+              <span className="tab_accordion_chevron">
               <IconComponent
                   icon={activeTab === "0" ? faChevronDown : faChevronRight}
               />
             </span>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="4" className="accordion_content">
-            <Card.Body>
-              <Overview />
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="0"
-            data-value="0"
-            className="tab_accordion_item_header"
-            onClick={handleTabClick}
-            ref={ideaRef}
-          >
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="0" className="accordion_content">
+              <Card.Body>
+                <Overview />
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className="tab_accordion_item">
+            <Accordion.Toggle
+                as={Card.Header}
+                eventKey="1"
+                data-value="1"
+                className="tab_accordion_item_header"
+                onClick={handleTabClick}
+            >
             <span className="tab_accordion_icon">
               <Image src={iconLight} alt={iconLight ? 'idea icon' : ' '} />
             </span>
-            {t("tab_accordion.Idea")}
-            <span className="tab_accordion_chevron">
+              {t("tab_accordion.Idea")}
+              <span className="tab_accordion_chevron">
               <IconComponent
-                icon={activeTab === "0" ? faChevronDown : faChevronRight}
+                  icon={activeTab === "1" ? faChevronDown : faChevronRight}
               />
             </span>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="0" className="accordion_content">
-            <Card.Body>
-              <Idea />
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="1"
-            data-value="1"
-            className="tab_accordion_item_header"
-            onClick={handleTabClick}
-          >
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="1" className="accordion_content">
+              <Card.Body>
+                <Idea />
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className="tab_accordion_item">
+            <Accordion.Toggle
+                as={Card.Header}
+                eventKey="2"
+                data-value="2"
+                className="tab_accordion_item_header"
+                onClick={handleTabClick}
+            >
             <span className="tab_accordion_icon">
               <Image src={iconTeam} alt={iconTeam ? 'team icon' : ' '} />
             </span>
-            {t("tab_accordion.Team")}
-            <span className="tab_accordion_chevron">
+              {t("tab_accordion.Team")}
+              <span className="tab_accordion_chevron">
               <IconComponent
-                icon={activeTab === "1" ? faChevronDown : faChevronRight}
+                  icon={activeTab === "2" ? faChevronDown : faChevronRight}
               />
             </span>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="1" className="accordion_content">
-            <Card.Body className="accordion_content">
-              {renderTabIFauts(Team)}
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="2"
-            data-value="2"
-            className="tab_accordion_item_header"
-            onClick={handleTabClick}
-          >
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="2" className="accordion_content">
+              <Card.Body className="accordion_content">
+                {renderTabIFauts(Team)}
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className="tab_accordion_item">
+            <Accordion.Toggle
+                as={Card.Header}
+                eventKey="3"
+                data-value="3"
+                className="tab_accordion_item_header"
+                onClick={handleTabClick}
+            >
             <span className="tab_accordion_icon">
               <Image src={iconChart} alt={iconChart ? 'chart icon' : ' '} />
             </span>
-            {t("tab_accordion.Financial_information")}
-            <span className="tab_accordion_chevron">
+              {t("tab_accordion.Financial_information")}
+              <span className="tab_accordion_chevron">
               <IconComponent
-                icon={activeTab === "2" ? faChevronDown : faChevronRight}
+                  icon={activeTab === "3" ? faChevronDown : faChevronRight}
               />
             </span>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="2" className="accordion_content">
-            <Card.Body className="accordion_content">
-              {renderTabIFauts(FinancialInformation)}
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        <Card className="tab_accordion_item">
-          <Accordion.Toggle
-            as={Card.Header}
-            eventKey="3"
-            data-value="3"
-            className="tab_accordion_item_header"
-            onClick={handleTabClick}
-          >
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="3" className="accordion_content">
+              <Card.Body className="accordion_content">
+                {renderTabIFauts(FinancialInformation)}
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+          <Card className="tab_accordion_item">
+            <Accordion.Toggle
+                as={Card.Header}
+                eventKey="4"
+                data-value="4"
+                className="tab_accordion_item_header"
+                onClick={handleTabClick}
+            >
             <span className="tab_accordion_icon">
               <Image src={iconComments} alt={iconComments ? 'comments icon' : ' '} />
             </span>
-            {t("tab_accordion.FAQ")}
-            <span className="tab_accordion_chevron">
+              {t("tab_accordion.FAQ")}
+              <span className="tab_accordion_chevron">
               <IconComponent
-                icon={activeTab === "3" ? faChevronDown : faChevronRight}
+                  icon={activeTab === "4" ? faChevronDown : faChevronRight}
               />
             </span>
-          </Accordion.Toggle>
-          <Accordion.Collapse eventKey="3" className="accordion_content">
-            <Card.Body className="accordion_content">
-              {renderTabIFauts(Faq)}
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    </>
+            </Accordion.Toggle>
+            <Accordion.Collapse eventKey="4" className="accordion_content">
+              <Card.Body className="accordion_content">
+                {renderTabIFauts(Faq)}
+              </Card.Body>
+            </Accordion.Collapse>
+          </Card>
+        </Accordion>
+      </>
   );
 }
 
