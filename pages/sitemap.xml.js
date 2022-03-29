@@ -12,7 +12,7 @@ const createDynamicMarkupForCampaigns = async () => {
     })
     const data = await response.json()
     const listOfSlugs =   data.map((campaign=>campaign?.slug))
-    const markup = listOfSlugs.map((slug) => {
+    const campaignsMarkup = listOfSlugs.map((slug) => {
         return `
             <url>
               <loc>${baseUrlSv}${slug}</loc>
@@ -25,6 +25,26 @@ const createDynamicMarkupForCampaigns = async () => {
             </url>
 `
     })
+
+    const dibPosts = await fetch(`https://api.dropinblog.com/v1/json/?b=${process.env.NEXT_PUBLIC_DIP_ID}`)
+    const dibData = await dibPosts.json()
+    const listOfDibSlugs = dibData?.data?.posts.map(post=>post?.slug)
+    const dibMarkup = listOfDibSlugs.map((slug) => {
+        return `
+            <url>
+              <loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/nyheter?p=${slug}</loc>
+              <xhtml:link
+               rel="alternate"
+               hreflang="en"
+               href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/nyheter?p=${slug}"/>
+              <lastmod>${new Date().toISOString()}</lastmod>
+              <priority>0.80</priority>
+            </url>
+`
+    })
+
+    const markup = dibMarkup.concat(campaignsMarkup)
+
     return markup.join('')
 }
 
