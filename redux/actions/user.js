@@ -47,6 +47,8 @@ import {
   SET_SUBSCRIBE_LIST,
   CHANGE_UNSUBSCRIBE_LIST,
   SET_UNSUBSCRIBE_LIST,
+  SET_SOCIALS_KEY,
+  SIGN_UP_WITH_SOCIALS,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -263,6 +265,11 @@ export const signUpWithBankId = payload => ({
   payload
 })
 
+export const signUpWithSocials = payload => ({
+  type: SIGN_UP_WITH_SOCIALS,
+  payload
+})
+
 export const requestSubscribeList = payload => ({
   type: REQUEST_SUBSCRIBE_LIST,
   payload
@@ -283,4 +290,8 @@ export const changeUnsubscribeList = payload => ({
   payload
 })
 
+export const setSocialsKey = payload => ({
+  type: SET_SOCIALS_KEY,
+  payload
+})
 

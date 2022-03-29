@@ -35,18 +35,17 @@ import {
     getShowFirstLoginPopup,
     getShowPostalCodeNotification,
     getShowCompleteBankIdRegistration,
+    getShowCompleteSocialsRegistration,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
-// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
-import {getTokenForQuizSocialsSignIn} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -130,6 +129,10 @@ const CompleteBankIdRegistrationPopup = dynamic(() =>
     import("components/CompleteBankIdRegistrationPopup"), { ssr: false }
 );
 
+const CompleteSocialsRegistrationPopup = dynamic(() =>
+    import("components/CompleteSocialsRegistrationPopup"), { ssr: false }
+);
+
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
 
@@ -170,10 +173,10 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
-    const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
     const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
+    const isShowCompleteSocialsRegistration = useSelector(getShowCompleteSocialsRegistration)
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -343,13 +346,15 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {/*{!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}*/}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
-          {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+          {!!isShowQuiz && <Quiz show={!!isShowQuiz}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
           {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
+          {!!isShowCompleteSocialsRegistration && <CompleteSocialsRegistrationPopup show={!!isShowCompleteSocialsRegistration}/>}
+
+
           {isShowCookie && <CookieNotification/>}
 
 

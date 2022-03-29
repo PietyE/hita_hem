@@ -30,7 +30,7 @@ class AuthCRUD extends CRUD {
 
   signInWithGoogle(payload) {
     const {token, session_key} = payload
-    const data = {token: token}
+    const data = payload?.is_agree ? {token: token, is_agree: payload?.is_agree} : {token: token}
     const url = `${this.url}/sign_in_google/`;
     return this.request({
       url,
@@ -221,19 +221,11 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  checkQuizAnswers(payload) {
-    // const {data, token} = payload
-    // const data = payload?.data?.answers
-    const data = {answers:payload?.data?.answers,token:payload?.data?.bearer?.key,is_agree: payload?.data?.is_agree }
-    
+  checkQuizAnswers(data) {
     const url = `${this.url}/quiz/`;
     return this.request({
       url,
       method: "POST",
-      headers: {
-        // "Authorization": `Bearer ${payload?.data?.bearer?.key}`,
-        "x-recaptcha-token": payload?.token,
-      },
       data,
     });
   }
@@ -286,6 +278,7 @@ class AuthCRUD extends CRUD {
     const {grand_id_session, session_key} = payload
     const data = payload?.email?{
       email: payload?.email,
+      is_agree: payload?.is_agree,
       grand_id_session: grand_id_session,
     }:{grand_id_session: grand_id_session}
     const url = `${this.url}/sign_in_bank_id/`;

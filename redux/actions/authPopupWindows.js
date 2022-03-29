@@ -26,6 +26,7 @@ import {
   SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
   SET_SHOW_POSTAL_CODE_NOTIFICATION,
   SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
+  SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -159,6 +160,11 @@ export const setShowPostalCodeNotification = payload =>({
 
 export const setShowCompleteBankIdRegistration = payload =>({
   type: SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
+  payload,
+})
+
+export const setShowCompleteSocialsRegistration = payload =>({
+  type: SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
   payload,
 })
 

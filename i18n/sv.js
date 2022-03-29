@@ -235,7 +235,7 @@ company_page: {
     project_info: {
         text: "Verksamheten i fokus",
         auth_button: 'Bli medlem för mer information.',
-        quiz_button: 'Bli medlem för mer information.',
+        quiz_button: 'Gör färdigt quizet för att se mer.',
 
 
     },
@@ -523,10 +523,14 @@ cookie: {
             link:'personuppgifter',
         },
         complete_bank_id_registration: {
-            title: 'Vänligen ange din mail för att slutföra registreringen via BankID.',
+            title: 'Vänligen ange din mail och godkänn medlemsskapsavtalet för att slutför registreringen.',
             button: 'Bli medlem',
             email_placeholder: "Ange din e-postadress",
             error: 'Exempel: test@test.com',
+        },
+        complete_socials_registration: {
+            title: 'Vänligen godkänn medlemsskapsavtalet för att slutför registreringen.',
+            button: 'Bli medlem',
         },
         faq:'Frågor & svar',
 

@@ -1,7 +1,6 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import dynamic from "next/dynamic";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
@@ -11,24 +10,21 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-import {checkEmailAndPassword, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
-import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import {signUp, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
 import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
-const Quiz = dynamic(() =>
-    import("components/Quiz")
-);
+import {getDocumentsSelector} from "../../../redux/reducers/documents";
 
 const SignUp = ({ show }) => {
   const dispatch = useDispatch();
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
   const isFetching = useSelector(getIsFetchingAuthSelector);
-  const isQuizShow = useSelector(getShowQuiz)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
+    const documentUrl = useSelector(getDocumentsSelector)
 
   const initialValues = {
     email: "",
@@ -47,14 +43,14 @@ const SignUp = ({ show }) => {
     errorHandlerHook?._clearErrors()
   };
 
-  const _checkEmailAndPassword = useCallback(
+  const _signUp = useCallback(
       (data) => {
-        dispatch(checkEmailAndPassword(data));
+        dispatch(signUp(data));
       },
       [dispatch]
   );
   const onSubmit = (values) => {
-    recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password, confirm_password:values?.confirm_password})
+recaptcha('sign_up', _signUp,values)
 
   };
   const signUpSchema = yup.object({
@@ -63,7 +59,7 @@ const SignUp = ({ show }) => {
         .string().max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .matches(passwordRegExp, t("errors.password_example"))
         .required(t("errors.password_required")),
-    // is_agree: yup.bool().oneOf([true]),
+    is_agree: yup.bool().oneOf([true]),
     confirm_password: yup.string().required(t("errors.confirm_password_required")).max(128, `${t("errors.long_error_part1")} 128 ${t("errors.long_error_part2")}`)
         .when('password', {
           is: password => (password && password.length > 0 ? true : false),
@@ -111,7 +107,6 @@ const SignUp = ({ show }) => {
       centered={true}
       isFetchIndicator={isFetching}
     >
-      {/*<h1 className="sign_up_title mb-4">{t("auth.sign_up.title")}</h1>*/}
           <header className='auth_session_header'>
             <h1 className='auth_session_header_title'>{t("auth.session_sign_up.header_title")}</h1>
             <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span></p>
@@ -124,7 +119,6 @@ const SignUp = ({ show }) => {
             </button>
               <GoogleLogin
                   clientId= {process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                  // buttonText="Google"
                   render={renderProps => (
                       <button
                           className='sign_in_google sign_in_social_button'
@@ -148,7 +142,6 @@ const SignUp = ({ show }) => {
         initialValues={initialValues}
         validationSchema={signUpSchema}
         onSubmit={onSubmit}
-        // validateOnMount
         validateOnChange={false}
         validateOnBlur={false}
       >
@@ -156,7 +149,6 @@ const SignUp = ({ show }) => {
 
           return (
               <>
-                {!!isQuizShow && <Quiz show = {isQuizShow} data = {values}/>}
                 <Form className = "auth_form">
                   <InputComponent
                       type = "email"
@@ -208,35 +200,35 @@ const SignUp = ({ show }) => {
                       placeholder = {t("auth.sign_up.confirm_password_placeholder")}
                       iconClassName = "auth_password_eye"
                   />
-              {/*    <label className = "sign_up_checkbox">*/}
-              {/*      <Field*/}
-              {/*          name = "is_agree"*/}
-              {/*          type = "checkbox"*/}
-              {/*          className = {*/}
-              {/*            touched.is_agree && errors.is_agree*/}
-              {/*                ? "sign_up_agreement_checkbox_warning"*/}
-              {/*                : "sign_up_agreement_checkbox"*/}
-              {/*          }*/}
-              {/*      />*/}
-              {/*      <span className = "checkmark"/>*/}
-              {/*      <span className = "sign_up_password_label">*/}
-              {/*  {t("auth.sign_up.agreement_text")}*/}
-              {/*</span>*/}
-              {/*    </label>*/}
-              {/*    <a*/}
-              {/*        target = "_blank"*/}
-              {/*        rel = "noopener noreferrer"*/}
-              {/*        href = {documentUrl?.file || documentUrl?.url}*/}
-              {/*        className = "sign_up_password_link"*/}
-              {/*    >*/}
-              {/*      {t("auth.sign_up.agreement_link")}*/}
-              {/*    </a>*/}
+                  <label className = "sign_up_checkbox">
+                    <Field
+                        name = "is_agree"
+                        type = "checkbox"
+                        className = {
+                          touched.is_agree && errors.is_agree
+                              ? "sign_up_agreement_checkbox_warning"
+                              : "sign_up_agreement_checkbox"
+                        }
+                    />
+                    <span className = "checkmark"/>
+                    <span className = "sign_up_password_label">
+                {t("auth.sign_up.agreement_text")}
+              </span>
+                  </label>
+                  <a
+                      target = "_blank"
+                      rel = "noopener noreferrer"
+                      href = {documentUrl?.file || documentUrl?.url}
+                      className = "sign_up_password_link"
+                  >
+                    {t("auth.sign_up.agreement_link")}
+                  </a>
                   <CaptchaPrivacyBlock/>
                   <Button
                       type = "submit"
                       colorStyle = {"dark-green"}
                       className = "auth_button"
-                      // disabled = {!values.is_agree}
+                      disabled = {!values.is_agree}
                   >
                     {t("auth.sign_up.button")}
                   </Button>

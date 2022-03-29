@@ -237,7 +237,7 @@ export const en = {
             project_info: {
                 text: "Business Highlights",
                 auth_button: 'Become a member to see more.',
-                quiz_button: 'Become a member to see more.',
+                quiz_button: 'Complete quiz to see more.',
 
             },
             faq: {
@@ -522,10 +522,14 @@ export const en = {
             link:'Personal Details',
         },
         complete_bank_id_registration: {
-            title: 'Please enter your email to complete registration.',
+            title: 'Please enter your email and agree with the terms of the Membership Agreement to complete registration.',
             button: 'Submit',
             email_placeholder: "Enter your email address",
             error: 'Example: test@test.com',
+        },
+        complete_socials_registration: {
+            title: 'Please agree with the terms of the Membership Agreement to complete registration.',
+            button: 'Submit',
         },
         faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',

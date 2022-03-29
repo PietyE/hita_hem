@@ -2004,7 +2004,7 @@ margin: 0;
       }
 
       .middle_mobile_tabbr_container_shifted {
-        padding-top: 100px;
+        //padding-top: 100px;
 
       }
 
@@ -2212,6 +2212,17 @@ margin: 0;
         .company_info_sig_item{
           align-items: center;
 
+        }
+      }
+      .project_info_right_section{
+        .company_info_sig{
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+          .company_info_sig_item{
+            align-items: center;
+          }
         }
       }
     }
