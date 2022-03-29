@@ -12,7 +12,7 @@ import {
 } from "redux/reducers/user";
 import {checkQuizAnswers, setQuizErrors} from "redux/actions/user";
 
-const Quiz = ({show}) => {
+const QuizPopup = ({show}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
     const quizData = useSelector(getQuiz)
@@ -124,4 +124,4 @@ const Quiz = ({show}) => {
     );
 }
 
-export default Quiz;
+export default QuizPopup;

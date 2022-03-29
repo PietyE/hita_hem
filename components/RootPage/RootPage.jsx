@@ -115,7 +115,7 @@ const FirstLoginPopup = dynamic(() =>
 );
 
 const Quiz = dynamic(() =>
-    import("components/Quiz"), { ssr: false }
+    import("components/QuizPopup"), { ssr: false }
 );
 const PostalCodeNotification = dynamic(() =>
     import("components/ShowPostalCodeNotification"), { ssr: false }
