@@ -1823,6 +1823,19 @@ margin: 0;
         }
       }
     }
+    .project_info_right_section{
+      .company_info_sig{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        .company_info_sig_item{
+          align-items: center;
+        }
+      }
+
+    }
+
   }
 
 
@@ -1914,9 +1927,11 @@ margin: 0;
       }
 
       .sign_up_message_container{
-        align-items: flex-start;
+        align-items: center;
         margin-bottom: 20px;
-
+.company_info_sig_item{
+  align-items: center;
+}
       }
     }
 
@@ -2212,17 +2227,6 @@ margin: 0;
         .company_info_sig_item{
           align-items: center;
 
-        }
-      }
-      .project_info_right_section{
-        .company_info_sig{
-          align-items: center;
-          display: flex;
-          flex-direction: column;
-          margin-bottom: 20px;
-          .company_info_sig_item{
-            align-items: center;
-          }
         }
       }
     }
