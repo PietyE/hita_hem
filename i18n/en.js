@@ -14,6 +14,7 @@ export const en = {
                 Campaigns: "Campaigns",
                 Personal_details: "Personal details",
                 Account_settings: "Account settings",
+                Quiz_tab: 'Quiz',
                 Log_Out: "Log Out",
             },
         },
@@ -320,6 +321,8 @@ export const en = {
             personal_details: "Personal details",
             account_settings: "Account settings",
             profile_campaigns: "Campaigns",
+            quiz_tab: "Quiz",
+
 
             account: {
                 title: "My account settings",

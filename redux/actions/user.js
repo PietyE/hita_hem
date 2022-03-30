@@ -182,8 +182,10 @@ export const cleanAuthData = () => ({
   type: CLEAN_AUTH_DATA,
 })
 
-export const getQuiz = () => ({
+export const getQuiz = (payload) => ({
   type: GET_QUIZ,
+  payload,
+
 })
 
 export const setQuiz = payload => ({

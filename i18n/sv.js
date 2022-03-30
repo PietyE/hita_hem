@@ -14,6 +14,7 @@ export const sv = {
                 Campaigns: "Kampanjer",
                 Personal_details: "Personuppgifter",
                 Account_settings: "Kontoinställningar",
+                Quiz_tab: 'Quizet',
                 Log_Out: "Logga ut",
             },
         },
@@ -319,6 +320,7 @@ profile_page: {
         personal_details: "Personuppgifter",
         account_settings: "Kontoinställningar",
         profile_campaigns: "Mina kampanjer",
+        quiz_tab: "Quizet",
 
     account: {
         title: "Kontoinställningar",

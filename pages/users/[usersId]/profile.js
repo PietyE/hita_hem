@@ -14,10 +14,7 @@ import { setActiveTab } from "redux/actions/user";
 import { HOME_ROUTE } from "constants/routesConstant";
 
 import TabBar from "components/ui/TabBar";
-// import Investment from "containers/ProfilePage/Investment";
 import PersonalDetails from "containers/ProfilePage/PersonalDetails";
-// import AccountSettings from "containers/ProfilePage/AccountSettings";
-// import ProfilePageCampaigns from "containers/ProfilePage/ProfilePageCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
 import { usePrevious } from "customHooks/usePrevious";
 import dynamic from "next/dynamic";
@@ -29,6 +26,9 @@ const AccountSettings = dynamic(() => import("containers/ProfilePage/AccountSett
   ssr: false,
 });
 const ProfilePageCampaigns = dynamic(() => import("containers/ProfilePage/ProfilePageCampaigns"), {
+  ssr: false,
+});
+const QuizTab = dynamic(() => import("containers/ProfilePage/QuizTab"), {
   ssr: false,
 });
 
@@ -73,6 +73,8 @@ const ProfilePage = () => {
               key: "account_settings",
             },
             { name: t("profile_page.profile_campaigns"), key: "campaigns" },
+            { name: t("profile_page.quiz_tab"), key: "quiz" },
+
           ]}
           onClick={handleClick}
           selectedKey={activeTab}
@@ -104,6 +106,11 @@ const ProfilePage = () => {
             <ProfilePageCampaigns />
           </div>
         </Collapse>
+        <Collapse in={activeTab === "quiz"}>
+          <div id="quiz">
+            <QuizTab />
+          </div>
+        </Collapse>
       </section>
     </>
   );
@@ -119,6 +126,8 @@ const TabContent = ({ activeTab }) => {
       return <AccountSettings />;
     case "campaigns":
       return <ProfilePageCampaigns />;
+    case "quiz":
+      return <QuizTab />;
     default:
       return null;
   }

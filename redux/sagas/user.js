@@ -651,12 +651,14 @@ function* requestForCheckingToken({payload}) {
     }
 }
 
-function* requestForQuiz() {
+function* requestForQuiz(props) {
     try {
         yield put(setFetchingUsers(true));
         const res = yield call([auth, "requestForQuiz"]);
         yield put(setQuiz(res?.data))
-        yield put(setShowQuiz(true))
+        if(props?.payload !== 'from_profile'){
+            yield put(setShowQuiz(true))
+        }
     } catch (error) {
         yield put(
             setAuthError({status: error?.response?.status, data: error?.response?.data})
