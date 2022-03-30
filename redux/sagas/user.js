@@ -25,7 +25,8 @@ import {
     REQUEST_SIGN_IN_WITH_BANK_ID,
     SIGN_IN_WITH_GOOGLE,
     SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE,
-    SIGN_UP_WITH_BANK_ID,
+    SIGN_UP_WITH_BANK_ID, REQUEST_SUBSCRIBE_LIST,
+    CHANGE_UNSUBSCRIBE_LIST,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -39,7 +40,7 @@ import {
     setCanResetPassword,
     setCanChangePassword,
     setQuiz,
-    setIsAthOnAndSaveUserProfile, setBIdKey,
+    setIsAthOnAndSaveUserProfile, setBIdKey, setSubscribeList,
 } from "redux/actions/user";
 import {
     setShowSignIn,
@@ -67,7 +68,7 @@ import {
     setQuizErrors,
     setQuizIsPassed,
     setResponseFromApi,
-    setTokenForQuizSocialsSignIn
+    setTokenForQuizSocialsSignIn, setUnSubscribeList
 } from "../actions/user";
 import api from "api";
 import {getDocumentsWorker} from "./documents";
@@ -191,22 +192,25 @@ function* signInWithGoogle({payload}) {
             if(!payload){
                 return
             }
-        yield put(setFetchingUsers(true));
-
-        const response = yield call([auth, "signInWithGoogle"], {token: payload});
-        yield put(setShowSessionSignUp(false));
-        yield put(setShowSignUp(false));
-        yield put(setShowSignIn(false));
 
         yield call([localStorage, 'removeItem'], '_expiredTime')
+        yield put(setFetchingUsers(true));
 
         const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
         const session_key = session_key_from_LS || new Date().getTime();
 
+        const response = yield call([auth, "signInWithGoogle"], {
+            token: payload,
+            session_key: session_key,
+        });
 
         if (!session_key_from_LS) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
+
+        yield put(setShowSessionSignUp(false));
+        yield put(setShowSignUp(false));
+        yield put(setShowSignIn(false));
 
         const {data} = response;
         const {user, token} = data;
@@ -254,7 +258,17 @@ function* makeRequestForSignInWithBankIdWorker() {
 function* signInWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: payload?.data,});
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+        const response = yield call([auth, "loginWithBankId"], {
+            grand_id_session: payload?.data,
+            session_key: session_key,
+        });
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
         yield put(setShowSessionSignUp(false));
         yield put(setShowSignUp(false));
         yield put(setShowSignIn(false));
@@ -293,7 +307,19 @@ function* signUpWithBankIdWorker({payload}) {
     try {
         yield put(setFetchingUsers(true));
         const sessionId = yield select(getBIdKeySelector)
-        const response = yield call([auth, "loginWithBankId"], {grand_id_session: sessionId, email: payload?.email});
+        yield call([localStorage, 'removeItem'], '_expiredTime')
+
+        const session_key_from_LS = yield call([localStorage, "getItem"], "x_session_key");
+        const session_key = session_key_from_LS || new Date().getTime();
+        const response = yield call([auth, "loginWithBankId"], {
+            grand_id_session: sessionId,
+            email: payload?.email,
+            session_key: session_key,
+
+        });
+        if (!session_key_from_LS) {
+            yield call([localStorage, "setItem"], "x_session_key", session_key);
+        }
         const {data} = response;
         const {user, token} = data;
         if (user?.quiz) {
@@ -775,6 +801,42 @@ function* uploadUserData() {
     }
 }
 
+
+
+function* requestSubscribeListWorker() {
+    try{
+        yield put(setFetchingUsers(true));
+        const response = yield call([auth, "requestSubscribeList"]);
+        yield put (setSubscribeList(response?.data))
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+function* changeUnsubscribeListWorker({payload}) {
+    try{
+        yield put(setFetchingUsers(true));
+        yield call([auth, "unsubscribe"], {token: payload?.token, data:{unsubscribes:payload?.data}});
+        const response = yield call([auth, "getSelf"]);
+        yield put(setUnSubscribeList(response?.data?.unsubscribes))
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
+
+
+
 function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
     const {user, token} = payload;
     yield put(setAccount(user));
@@ -797,6 +859,10 @@ function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
     yield put(setShowSignIn(false));
     yield put(clearErrors())
 }
+
+
+
+
 
 function* clean() {
     yield put(setAccount({}));
@@ -853,6 +919,12 @@ export function* userWorker() {
     yield takeEvery(SIGN_IN_WITH_GOOGLE, signInWithGoogle)
     yield takeEvery(SET_IS_AUTH_ON_AND_SAVE_USER_PROFILE, setIsAuthOnAndSaveUserProfileWatcher)
     yield takeEvery(SIGN_UP_WITH_BANK_ID, signUpWithBankIdWorker)
+    yield takeEvery(REQUEST_SUBSCRIBE_LIST, requestSubscribeListWorker)
+    yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
+
+
+
+
 
 
 

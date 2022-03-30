@@ -32,7 +32,7 @@ const CommentItem = ({ data, className, complete }) => {
   return (
     <>
       <div className={`comment_item ${className}`}>
-        <div className="comment_item_image" style={{  position: 'relative'}}>
+        <div className="comment_item_image" >
           {data?.user?.image && (
             // <img src={data?.user?.image} alt="user_avatar" loading="lazy" />
               <Image

@@ -1,13 +1,11 @@
-import React, { useCallback, useEffect } from "react";
+import React, {useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { END } from "redux-saga";
 import { wrapper } from "/redux/store";
 import { useRouter } from "next/router";
 
-import TopSection from "containers/CompanyPage/TopSection";
-import CompanyInfo from "containers/CompanyPage/CompanyInfo";
-import ProjectInfo from "containers/CompanyPage/ProjectInfo";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
+import RecommendedCampaigns from "containers/CompanyPage/RecommendedCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import {
@@ -28,7 +26,6 @@ const CompanyPage = () => {
 
   const router = useRouter();
 
-  // const companyId = router?.query?.companyId;
   const companyName = router?.query?.companyId;
 
   const dispatch = useDispatch();
@@ -45,14 +42,6 @@ const CompanyPage = () => {
     },
     [dispatch]
   );
-
-
-  // const _getCompanyDetail = useCallback(
-  //   (name) => {
-  //     dispatch(getCompanyByName(name));
-  //   },
-  //   [dispatch]
-  // );
 
   const _clearCompanyDetail = useCallback(() => {
     dispatch(clearCompany());
@@ -88,14 +77,12 @@ const CompanyPage = () => {
   },[isRedirectOnSelector])
 
   useEffect(()=>{
-    // _getCompanyDetail(companyId)
     _getCompanyDetail(companyName)
 
     return () => {
       _clearCompanyDetail();
       _resetCompanyTab();
     };
-  // },[isAuth,companyId])
   },[isAuth,companyName])
 
   return (
@@ -103,10 +90,8 @@ const CompanyPage = () => {
        <MetaTags seo={seo}/>
       {isFetching && <SpinnerStyled />}
       { !isError404 && <div className = "company-page-container">
-        <TopSection/>
-        <CompanyInfo/>
-        <ProjectInfo isAuth = {isAuth}/>
         <MiddleSection isAuth = {isAuth}/>
+        <RecommendedCampaigns/>
       </div>}
     </>
   );

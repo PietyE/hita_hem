@@ -132,6 +132,11 @@ export const en = {
             sign_in_text: "Don’t have an account?",
             sign_in_link: "Register here!",
         },
+        request_quiz_message: {
+            sign_up_text_one: "You have to ",
+            sign_up_link: "pass the Quiz ",
+            sign_up_text_two: " to participate.",
+        },
         successful_campaign_registration: {
             title:
                 "Congratulations on completing your first step towards launching your campaign!",
@@ -189,6 +194,7 @@ export const en = {
             Team: "Team",
             Financial_information: "Financial information",
             FAQ: "Q&A",
+            OVERVIEW: "Overview",
         },
         about_us_page: {
             subscribe_title: "Stay ahead by subscribing to our newsletter",
@@ -217,14 +223,22 @@ export const en = {
             button_read_more: "Read more",
             button_show_more: "Show more",
             button_show_less: "Show less",
-
+            recommended:{
+                title:'More investment opportunities',
+                text:'You might also be interested in...',
+                button:'More investment opportunities.',
+            },
             company_info: {
+                title:'Summary',
                 Industry: "Industry:",
                 Location: "Location:",
                 Website: "Website:",
             },
             project_info: {
                 text: "Business Highlights",
+                auth_button: 'Become a member to see more.',
+                quiz_button: 'Become a member to see more.',
+
             },
             faq: {
                 faq_text: "Do you have any questions about the campaign? Feel free to ask!",
@@ -240,6 +254,11 @@ export const en = {
                 sign_up: "Sign Up",
                 log_in: "Log In",
                 footer_text: "Already have an account?",
+            },
+            tab_quiz_request: {
+                title: "Want to see more?",
+                text: "Due to financial regulations, please complete the quiz to see the full investment opportunity.",
+                pass_quiz: "Pass the Quiz",
             },
         },
         home_page: {
@@ -306,6 +325,8 @@ export const en = {
                 title: "My account settings",
                 text_delete: "Delete account",
                 text: "By deleting your account you will lose all your data.",
+                subscribe_title:'Subscriptions',
+                subscribe_button:'Submit Subscriptions',
             },
             reset_email: {
                 title: "Change email",

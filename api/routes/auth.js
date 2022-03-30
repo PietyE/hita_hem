@@ -28,11 +28,16 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  signInWithGoogle(data) {
+  signInWithGoogle(payload) {
+    const {token, session_key} = payload
+    const data = {token: token}
     const url = `${this.url}/sign_in_google/`;
     return this.request({
       url,
       method: "POST",
+      headers: {
+        "x-session-key": session_key,
+      },
       data,
     });
   }
@@ -277,12 +282,42 @@ class AuthCRUD extends CRUD {
     });
   }
 
-  loginWithBankId(data) {
+  loginWithBankId(payload) {
+    const {grand_id_session, session_key} = payload
+    const data = payload?.email?{
+      email: payload?.email,
+      grand_id_session: grand_id_session,
+    }:{grand_id_session: grand_id_session}
     const url = `${this.url}/sign_in_bank_id/`;
     return this.request({
       url,
       data,
       method: "POST",
+      headers: {
+        "x-session-key": session_key,
+      },
+    });
+  }
+
+  requestSubscribeList() {
+    const url = '/subscribe/groups/';
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
+  unsubscribe(payload) {
+    const {data, token} = payload
+
+    const url = `${this.url}/update_user_unsubscribes/`;
+    return this.request({
+      url,
+      data,
+      method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
     });
   }
 

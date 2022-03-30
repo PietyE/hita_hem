@@ -8,6 +8,7 @@ import StatusCompanyBadge from "../StatusCompany";
 import Progress from "../Proggres";
 import {useSelector} from "react-redux";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
+import isEmpty from "lodash/isEmpty";
 
 const CampaignsCard = (props) => {
   const { t } = useTranslation();
@@ -17,34 +18,44 @@ const CampaignsCard = (props) => {
     status,
     title,
     short_description,
-      images=[],
+      image,
+      images,
       slug,
     percentage,
     left_date
   } = props?.content;
+
   const lang = useSelector(getSelectedLangSelector)
 
+  let cardImage = null
+
+  if(images && !isEmpty(images)) {
+    cardImage = images['desktop'] || images['laptop'] || images['mobile']
+  }else if(images && isEmpty(images) && image){
+    cardImage = image
+  }else if(!images && image){
+    cardImage = image
+
+  }
   return (
     <>
       {!!props?.content && (
           <Link
               as={lang === 'sv'?`/foretag/${slug}`:`/company/${slug}`}
               href={lang === 'sv'?"/foretag/[companyId]":"/company/[companyId]"}
-              // as={`/foretag/${slug}`}
-              // href={"/foretag/[companyId]"}
               prefetch={false}
           >
         <li className={`campaigns_card ${className}`} >
 
             <div className='campaigns_card_image' style={{  position: 'relative'}}>
-              {images && images['desktop'] && (
+              {cardImage && (
                   <Image
-                  src = {images['desktop']}
-                  layout = "fill"
-                  objectFit = "cover"
-                  priority = {true}
+                      src = {cardImage}
+                      layout = "fill"
+                      objectFit = "cover"
+                      priority = {true}
 
-              />)}
+                  />)}
             </div>
             <span className="campaigns_card_logo" >
               {/*<img*/}
