@@ -105,7 +105,9 @@ const FinArticle = ({ item }) => {
           <div className="fin_article_image image_container">
             <img loading="lazy"
                  src={img}
-                 alt={img ? 'article image' : ' '}
+                 // alt={img ? 'article image' : ' '}
+                 alt='article image'
+
             />
           </div>
 
