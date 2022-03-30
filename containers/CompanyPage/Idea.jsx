@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import isEqual from "lodash/isEqual";
+import dynamic from "next/dynamic";
 
 import Title from "components/ui/Title";
 import InfoBlockColor from "components/ui/InfoBlockColor";
@@ -8,8 +9,15 @@ import ImageComponent from "components/ui/ImageComponent";
 import { getIdeaSectionContentSelector } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 // import Image from "next/image";
-import SimpleReactLightbox from 'simple-react-lightbox'
-import { SRLWrapper } from "simple-react-lightbox";
+// import SimpleReactLightbox from 'simple-react-lightbox'
+// import { SRLWrapper } from "simple-react-lightbox";
+const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
+  ssr: false,
+});
+
+const SRLWrapper = dynamic(() =>
+    import('simple-react-lightbox').then((mod) => mod.SRLWrapper),{ssr: false}
+)
 
 import {getCorrectImage} from "../../utils/utils";
 
@@ -76,9 +84,7 @@ const Idea = () => {
 
                   {!!img1 && (
                     <ImageComponent
-                      // alt={img1 ? 'first image' : ' '}
-                        alt='first image'
-
+                      alt={img1 ? 'first image' : ' '}
                         src={img1}
                       className="mb-4"
                     />
@@ -95,9 +101,7 @@ const Idea = () => {
                   )}
                   {!!img2 && (
                     <ImageComponent
-                        // alt={img2 ? 'solution image' : ' '}
-                        alt='solution image'
-
+                        alt={img2 ? 'solution image' : ' '}
                         src={img2} />
                     // <Image
                     // src = {img2}
@@ -121,9 +125,7 @@ const Idea = () => {
 
             {!!img1 && (
                    <ImageComponent
-                    // alt={img1 ? 'idea image' : ' '}
-                    alt='idea image'
-
+                    alt={img1 ? 'idea image' : ' '}
                     src={img1}
                     className="middle_foto"
                   />
@@ -141,9 +143,7 @@ const Idea = () => {
                 )}
                 {!!img2 && (
                   <ImageComponent
-                    // alt={img2 ? 'idea image 2' : ' '}
-                      alt='idea image 2'
-
+                    alt={img2 ? 'idea image 2' : ' '}
                       src={img2}
                     className="middle_foto"
                   />
@@ -161,9 +161,7 @@ const Idea = () => {
                 )}
                 {!!img3 && (
                   <ImageComponent
-                    // alt={img3 ? 'idea image 3' : ' '}
-                      alt='idea image 3'
-
+                    alt={img3 ? 'idea image 3' : ' '}
                       src={img3}
                     className="middle_foto"
                   />
@@ -181,9 +179,7 @@ const Idea = () => {
                 )}
                 {!!img4 && (
                   <ImageComponent
-                    // alt={img4 ? 'idea image 4' : ' '}
-                      alt='idea image 4'
-
+                    alt={img4 ? 'idea image 4' : ' '}
                       src={img4}
                     className="middle_foto"
                   />

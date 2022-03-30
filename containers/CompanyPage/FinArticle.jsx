@@ -5,9 +5,15 @@ import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
 // import Image from "next/image";
-import SimpleReactLightbox from 'simple-react-lightbox'
+import dynamic from "next/dynamic";
 
-import { SRLWrapper } from "simple-react-lightbox";
+const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
+    ssr: false,
+});
+
+const SRLWrapper = dynamic(() =>
+    import('simple-react-lightbox').then((mod) => mod.SRLWrapper),{ssr: false}
+)
 
 
 const FinArticle = ({ item }) => {
@@ -105,9 +111,7 @@ const FinArticle = ({ item }) => {
           <div className="fin_article_image image_container">
             <img loading="lazy"
                  src={img}
-                 // alt={img ? 'article image' : ' '}
-                 alt='article image'
-
+                 alt={img ? 'article image' : ' '}
             />
           </div>
 
