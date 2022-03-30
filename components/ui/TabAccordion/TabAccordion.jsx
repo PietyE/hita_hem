@@ -88,7 +88,7 @@ function TabAccordion({ isAuth }) {
             </Accordion.Toggle>
             <Accordion.Collapse eventKey="1" className="accordion_content">
               <Card.Body>
-                <Idea />
+                {renderTabIFauts(Idea)}
               </Card.Body>
             </Accordion.Collapse>
           </Card>
