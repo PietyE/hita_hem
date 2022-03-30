@@ -7,7 +7,6 @@ import "../styles/index.scss";
 import {wrapper} from "redux/store";
 import RootPage from "components/RootPage";
 import React from "react";
-import SimpleReactLightbox from 'simple-react-lightbox'
 
 function App({Component, pageProps}) {
     const initLang = pageProps?.initialLang;
@@ -84,9 +83,7 @@ function App({Component, pageProps}) {
             />
 
             <RootPage initLang = {initLang}>
-                <SimpleReactLightbox>
                 <Component {...pageProps} />
-                    </SimpleReactLightbox>
             </RootPage>
         </>
     );
