@@ -214,7 +214,7 @@ const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
         case companyTabConstants.OVERVIEW:
             return <Overview/>;
         case companyTabConstants.IDEA:
-            return <Idea/>;
+            return  renderTabIFauts(Idea);
         case companyTabConstants.TEAM:
             return renderTabIFauts(Team);
         case companyTabConstants.FIN_INFO:
