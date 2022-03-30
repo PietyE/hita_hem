@@ -4,7 +4,7 @@ import { useMediaQueries } from "@react-hook/media-query";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
-// import Image from "next/image";
+import Image from "next/image";
 import dynamic from "next/dynamic";
 
 const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
@@ -106,27 +106,22 @@ const FinArticle = ({ item }) => {
         <SRLWrapper options={options}>
       <li className="fin_article">
         {!!img && (
+          // <div className="fin_article_image image_container">
+          //   <img loading="lazy"
+          //        src={img}
+          //        alt={img ? 'article image' : ' '}
+          //   />
+          // </div>
 
-
-          <div className="fin_article_image image_container">
-            <img loading="lazy"
-                 src={img}
-                 alt={img ? 'article image' : ' '}
-            />
-          </div>
-
-
-
-              //   <div className='fin_article_image' style={{  position: 'relative'}}>
-          //
-          //   <Image
-          //           src = {img}
-          //           layout = "fill"
-          //           objectFit = "contain"
-          //           // priority = {true}
-          //
-          //       />
-          //   </div>
+                <div className='fin_article_image' style={{  position: 'relative'}}>
+            <Image
+                    src = {img}
+                    layout = "fill"
+                    objectFit = "contain"
+                    // priority = {true}
+                    alt={img ? 'article image' : ' '}
+                />
+            </div>
         )}
         <div
           className={

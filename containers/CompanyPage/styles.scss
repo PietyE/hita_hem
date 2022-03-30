@@ -2136,6 +2136,12 @@ margin: 0;
 
     .financial_info_articles_list {
       .fin_article_wrapper {
+        .fin_article_image{
+          //width: 100%;
+          padding-top: 1080px / 1920px * 100%;
+          width: calc(100% + 2.5rem);
+          transform: translateX(-1.25rem);
+        }
         &:nth-child(odd) {
           .fin_article {
             .fin_article_image {
@@ -2159,7 +2165,7 @@ margin: 0;
           flex-direction: column;
 
           .fin_article_image {
-            width: 100%;
+            //width: 100%;
             margin-bottom: 15px;
           }
 
