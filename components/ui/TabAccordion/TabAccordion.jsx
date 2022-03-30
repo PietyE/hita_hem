@@ -36,8 +36,13 @@ function TabAccordion({ isAuth }) {
       return;
     }
     setActiveTab(e.target.dataset.value);
-    if (Number(e.target.dataset.value) !== 0) {
+    if (Number(e.target.dataset.value) !== 0 ) {
+
       overviewRef.current.scrollIntoView();
+
+      const scrolled = window.scrollY
+      window.scrollTo({top: scrolled - 160})
+
     }
   };
   return (
