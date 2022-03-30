@@ -76,8 +76,10 @@ const Idea = () => {
 
                   {!!img1 && (
                     <ImageComponent
-                      alt={img1 ? 'first image' : ' '}
-                      src={img1}
+                      // alt={img1 ? 'first image' : ' '}
+                        alt='first image'
+
+                        src={img1}
                       className="mb-4"
                     />
                     //     <Image
@@ -92,7 +94,11 @@ const Idea = () => {
 
                   )}
                   {!!img2 && (
-                    <ImageComponent alt={img2 ? 'solution image' : ' '} src={img2} />
+                    <ImageComponent
+                        // alt={img2 ? 'solution image' : ' '}
+                        alt='solution image'
+
+                        src={img2} />
                     // <Image
                     // src = {img2}
                     // width='100vw'
@@ -115,7 +121,9 @@ const Idea = () => {
 
             {!!img1 && (
                    <ImageComponent
-                    alt={img1 ? 'idea image' : ' '}
+                    // alt={img1 ? 'idea image' : ' '}
+                    alt='idea image'
+
                     src={img1}
                     className="middle_foto"
                   />
@@ -133,8 +141,10 @@ const Idea = () => {
                 )}
                 {!!img2 && (
                   <ImageComponent
-                    alt={img2 ? 'idea image 2' : ' '}
-                    src={img2}
+                    // alt={img2 ? 'idea image 2' : ' '}
+                      alt='idea image 2'
+
+                      src={img2}
                     className="middle_foto"
                   />
                   //   <div className="middle_foto"  style={{  position: 'relative',}}>
@@ -151,8 +161,10 @@ const Idea = () => {
                 )}
                 {!!img3 && (
                   <ImageComponent
-                    alt={img3 ? 'idea image 3' : ' '}
-                    src={img3}
+                    // alt={img3 ? 'idea image 3' : ' '}
+                      alt='idea image 3'
+
+                      src={img3}
                     className="middle_foto"
                   />
                   //   <div className="middle_foto"  style={{  position: 'relative',}}>
@@ -169,8 +181,10 @@ const Idea = () => {
                 )}
                 {!!img4 && (
                   <ImageComponent
-                    alt={img4 ? 'idea image 4' : ' '}
-                    src={img4}
+                    // alt={img4 ? 'idea image 4' : ' '}
+                      alt='idea image 4'
+
+                      src={img4}
                     className="middle_foto"
                   />
 
