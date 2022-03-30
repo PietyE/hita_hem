@@ -5,7 +5,10 @@ import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
 // import Image from "next/image";
-import ImageComponent from "../../components/ui/ImageComponent";
+import SimpleReactLightbox from 'simple-react-lightbox'
+
+import { SRLWrapper } from "simple-react-lightbox";
+
 
 const FinArticle = ({ item }) => {
   const { t } = useTranslation();
@@ -76,16 +79,39 @@ const FinArticle = ({ item }) => {
 
   const buttonStyle = { bottom: isShowMore ? "-35px" : "" };
 
+  const options = {
+      buttons: {
+          showDownloadButton:false,
+          showAutoplayButton:false,
+          showNextButton:false,
+          showPrevButton:false,
+          showThumbnailsButton:false,
+          showFullscreenButton:false,
+
+      },
+      thumbnails: {
+          showThumbnails: false,
+      }
+  }
+
   return (
     <section className="fin_article_wrapper">
+      <SimpleReactLightbox>
+        <SRLWrapper options={options}>
       <li className="fin_article">
         {!!img && (
-          <ImageComponent
-            className="fin_article_image"
-            src={img}
-            alt={img ? 'article image' : ' '}
-          />
-          //   <div className='fin_article_image' style={{  position: 'relative'}}>
+
+
+          <div className="fin_article_image image_container">
+            <img loading="lazy"
+                 src={img}
+                 alt={img ? 'article image' : ' '}
+            />
+          </div>
+
+
+
+              //   <div className='fin_article_image' style={{  position: 'relative'}}>
           //
           //   <Image
           //           src = {img}
@@ -136,6 +162,8 @@ const FinArticle = ({ item }) => {
           </Button>
         )}
       </li>
+        </SRLWrapper>
+      </SimpleReactLightbox>
     </section>
   );
 };

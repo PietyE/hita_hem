@@ -496,6 +496,12 @@
     .idea_section_container {
       width: 100%;
 
+      .image_container{
+        img{
+          cursor: pointer;
+        }
+      }
+
       .idea_section {
         width: 100%;
         max-width: 840px;
@@ -513,6 +519,7 @@
 
 
       .idea_section_description_container {
+
         p {
           font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
@@ -563,6 +570,7 @@
               border-radius: 50%;
             }
           }
+
         }
       }
 
@@ -801,6 +809,9 @@
         width: calc(100vw - 460px / 2);
         border-radius: 6px;
         overflow: hidden;
+        img{
+          cursor: pointer;
+        }
       }
 
       .fin_article_image img {
