@@ -279,14 +279,24 @@
     position: relative;
     overflow: hidden;
     &:before {
-      content:'';
-      width:100%;
-      height:100%;
-      position:absolute;
-      left:0;
-      top:0;
-      background:linear-gradient(transparent 70px, white);
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      box-shadow: inset 0 150px 150px #fff;
+      transform: rotate(180deg);
     }
+    //&:before {
+    //  content:'';
+    //  width:100%;
+    //  height:100%;
+    //  position:absolute;
+    //  left:0;
+    //  top:0;
+    //  background:linear-gradient(transparent 70px, white);
+    //}
   }
 
   .project_info_show_more_button{
