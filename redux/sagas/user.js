@@ -222,7 +222,7 @@ function* signInWithGoogle({payload}) {
     } catch (error) {
         if(error?.response?.data?.user){
             yield put(setShowCompleteSocialsRegistration(true))
-            yield put(setSocialsKey(payload?.data))
+            yield put(setSocialsKey(payload))
         }else{
             const hideNotification = !!error?.response?.data?.social_account
             yield put(
