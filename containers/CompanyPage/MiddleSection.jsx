@@ -71,16 +71,17 @@ const MiddleSection = ({isAuth}) => {
 
 
 
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         const projectInfoHeight = sectionRef?.current?.offsetHeight
+        const previousSibling = sectionRef?.current.previousSibling.offsetHeight
         if (matchesAll) {
-            if (scrolled > projectInfoHeight) {
-                setVisible(false)
-            } else if (scrolled < projectInfoHeight) {
-                setVisible(true)
+            if (scrolled > projectInfoHeight + previousSibling) {
+                    setVisible(false)
+            } else if (scrolled < projectInfoHeight + previousSibling - 160) {
+                    setVisible(true)
             }
         }
 
@@ -207,12 +208,12 @@ const MiddleSection = ({isAuth}) => {
                 </div>
 
 
-            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll}/>
+            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll} type='mobile'/>
 
             <div
-                className={visible ? " middle_mobile_tabbr_container" : "middle_mobile_tabbr_container middle_mobile_tabbr_container_shifted"}>
+                className=" middle_mobile_tabbr_container">
 
-                <TabAccordion isAuth={isAuth}/>
+                <TabAccordion isAuth={isAuth} isQuizPassed={isQuizPassed}/>
             </div>
         </div>
     );
