@@ -423,7 +423,7 @@
       .middle_section_logo{
         width: 160px;
         height: 160px;
-        filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+        //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
         border-radius: 50%;
         background: #ffffff;
         overflow: hidden;
@@ -432,6 +432,11 @@
         justify-content: center;
         position: relative;
         margin-right: 25px;
+
+        img{
+          object-fit: cover;
+          height: 100%;
+        }
       }
 
       .middle_section_title {
@@ -2051,7 +2056,7 @@
         .middle_section_logo{
           width: 130px;
           height: 130px;
-          filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+          //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
           border-radius: 50%;
           background: #ffffff;
           overflow: hidden;
@@ -2060,6 +2065,10 @@
           justify-content: center;
           position: relative;
           margin-bottom: 20px;
+          img{
+            object-fit: cover;
+            height: 100%;
+          }
         }
 
         .middle_section_title{
