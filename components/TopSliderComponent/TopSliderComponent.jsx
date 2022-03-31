@@ -21,7 +21,7 @@ const TopSliderComponent = ({
   const screenSize = checkCurrentResolution()
 
   //////////////////////
-  const img = 'https://d190e604gdbcnz.cloudfront.net/Header_29.07_u3ObFQc.png'
+  const img = 'https://d190e604gdbcnz.cloudfront.net/banner.jpeg'
   //////////////////////
 
   return (
