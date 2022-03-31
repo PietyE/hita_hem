@@ -3,9 +3,9 @@ import Carousel from "react-bootstrap/Carousel";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
-import Image from 'next/image'
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 import BannerSignUpBlock from "../BannerSignUpBlock";
+import SliderImage from "../../containers/HomePage/SliderImage";
 const TopSliderComponent = ({
   data,
   sectionClass,
@@ -26,7 +26,7 @@ const TopSliderComponent = ({
 
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={data?.length} slide={true} interval={8888000} touch={true} indicators={data?.length}>
+      <Carousel controls={data?.length} slide={true} interval={8000} touch={true} indicators={data?.length}>
         {type === 'home_page' && (
             <Carousel.Item key = 'banner'>
               <section className='item_component_container' style={{  position: 'relative'}}>
@@ -46,37 +46,7 @@ const TopSliderComponent = ({
 
                 </div>
 
-                {img && (
-                    <div className='item_component_image' style={{  position: 'absolute'}}>
-                      {( screenSize === 'desktop' && img &&
-                          <Image
-                              src = {img || null}
-                              layout = "fill"
-                              objectFit = "cover"
-                              priority = {true}
-                              alt = {img ? 'header image' : ' '}
-
-                          />)}
-                      {( screenSize === 'laptop' && img &&
-                          <Image
-                              src = {img || null}
-                              layout = "fill"
-                              objectFit = "cover"
-                              priority = {true}
-                              alt = {img ? 'header image' : ' '}
-
-                          />)}
-                      {( screenSize === 'mobile' && img &&
-                          <Image
-                              src = {img || null}
-                              layout = "fill"
-                              objectFit = "cover"
-                              priority = {true}
-                              alt = {img ? 'header image' : ' '}
-
-                          />)}
-                    </div>
-                )}
+               <SliderImage img={img} screenSize={screenSize}/>
               </section>
 
 
@@ -155,37 +125,8 @@ const TopSliderComponent = ({
                     )}
                   </div>
 
-                  {img && (
-                      <div className='item_component_image' style={{  position: 'absolute'}}>
-                      {( screenSize === 'desktop' && img &&
-                          <Image
-                              src = {img || null}
-                              layout = "fill"
-                              objectFit = "cover"
-                              priority = {true}
-                              alt = {img ? 'header image' : ' '}
+                  <SliderImage img={img} screenSize={screenSize}/>
 
-                          />)}
-                  {( screenSize === 'laptop' && img &&
-                    <Image
-                    src = {img || null}
-                    layout = "fill"
-                    objectFit = "cover"
-                    priority = {true}
-                    alt = {img ? 'header image' : ' '}
-
-                    />)}
-                  {( screenSize === 'mobile' && img &&
-                    <Image
-                    src = {img || null}
-                    layout = "fill"
-                    objectFit = "cover"
-                    priority = {true}
-                    alt = {img ? 'header image' : ' '}
-
-                    />)}
-                    </div>
-                  )}
 
                 </div>
               </Carousel.Item>
