@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import dynamic from "next/dynamic";
@@ -11,13 +11,14 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-import {checkEmailAndPassword, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
+import {checkEmailAndPassword, makeRequestForSignInWithBankId, saveEmail, signInWithGoogle} from "redux/actions/user";
 import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
 import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
+import {getSavedEmail} from "../../../redux/reducers/user";
 const Quiz = dynamic(() =>
     import("components/Quiz")
 );
@@ -29,9 +30,9 @@ const SignUp = ({ show }) => {
   const isFetching = useSelector(getIsFetchingAuthSelector);
   const isQuizShow = useSelector(getShowQuiz)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
-
+    const savedEmail = useSelector(getSavedEmail)
   const initialValues = {
-    email: "",
+    email: savedEmail || "",
     password: "",
     confirm_password: '',
     is_agree: false,
@@ -85,6 +86,13 @@ const SignUp = ({ show }) => {
         [dispatch]
     );
 
+    const _saveEmail = useCallback(
+        (data) => {
+            dispatch(saveEmail(data));
+        },
+        [dispatch]
+    );
+
     const responseGoogle = (response) => {
         if(socialAccountError){
             errorHandlerHook._clearErrors()
@@ -99,6 +107,15 @@ const SignUp = ({ show }) => {
       }
     _signInWithBankId()
   }
+
+  useEffect(()=>{
+      return ()=> {
+          if(savedEmail){
+              _saveEmail('')
+          }
+      }
+  },[])
+
   return (
         <Modal
       show={show}
