@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
 import Image from 'next/image'
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
-
+import BannerSignUpBlock from "../BannerSignUpBlock";
 const TopSliderComponent = ({
   data,
   sectionClass,
@@ -20,9 +20,69 @@ const TopSliderComponent = ({
 }) => {
   const screenSize = checkCurrentResolution()
 
+  //////////////////////
+  const img = 'https://d190e604gdbcnz.cloudfront.net/Header_29.07_u3ObFQc.png'
+  //////////////////////
+
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={data?.length>1} slide={true} interval={8000} touch={true} indicators={data?.length>1}>
+      <Carousel controls={data?.length} slide={true} interval={8888000} touch={true} indicators={data?.length}>
+        {type === 'home_page' && (
+            <Carousel.Item key = 'banner'>
+              <section className='item_component_container' style={{  position: 'relative'}}>
+                <div className= {`item_component_content_container ${containerClass}`}>
+
+                  <h1 className={`item_component_title ${itemTitleClass}`}>
+                    We democratise unlisted stocks!
+                  </h1>
+
+                      <div className={`item_component_description ${itemDescriptionClass}`}>
+                        <p>
+                          Accumeo allows access to unlisted companies through equity crowdfunding
+                        </p>
+                      </div>
+
+<BannerSignUpBlock/>
+
+                </div>
+
+                {img && (
+                    <div className='item_component_image' style={{  position: 'absolute'}}>
+                      {( screenSize === 'desktop' && img &&
+                          <Image
+                              src = {img || null}
+                              layout = "fill"
+                              objectFit = "cover"
+                              priority = {true}
+                              alt = {img ? 'header image' : ' '}
+
+                          />)}
+                      {( screenSize === 'laptop' && img &&
+                          <Image
+                              src = {img || null}
+                              layout = "fill"
+                              objectFit = "cover"
+                              priority = {true}
+                              alt = {img ? 'header image' : ' '}
+
+                          />)}
+                      {( screenSize === 'mobile' && img &&
+                          <Image
+                              src = {img || null}
+                              layout = "fill"
+                              objectFit = "cover"
+                              priority = {true}
+                              alt = {img ? 'header image' : ' '}
+
+                          />)}
+                    </div>
+                )}
+              </section>
+
+
+
+            </Carousel.Item>
+        )}
         {!!data?.length &&
           data?.map((headerItem) => {
             const {
@@ -41,33 +101,6 @@ const TopSliderComponent = ({
             return (
               <Carousel.Item key={pk+title}>
                 <div className='item_component_container' style={{  position: 'relative'}}>
-                  {/*{( screenSize === 'desktop' && img &&*/}
-                  {/*    <Image*/}
-                  {/*    src = {img}*/}
-                  {/*    layout = "fill"*/}
-                  {/*    objectFit = "cover"*/}
-                  {/*    priority = {true}*/}
-                  {/*    alt = 'header image'*/}
-
-                  {/*/>)}*/}
-                  {/*{( screenSize === 'laptop' && img &&*/}
-                  {/*    <Image*/}
-                  {/*        src = {img}*/}
-                  {/*        layout = "fill"*/}
-                  {/*        objectFit = "cover"*/}
-                  {/*        priority = {true}*/}
-                  {/*        alt = 'header image'*/}
-
-                  {/*    />)}*/}
-                  {/*{( screenSize === 'mobile' && img &&*/}
-                  {/*    <Image*/}
-                  {/*        src = {img}*/}
-                  {/*        layout = "fill"*/}
-                  {/*        objectFit = "cover"*/}
-                  {/*        priority = {true}*/}
-                  {/*        alt = 'header image'*/}
-
-                  {/*    />)}*/}
                   <div className= {`item_component_content_container ${containerClass}`}>
                     {status && (
                         <StatusCompanyBadge
