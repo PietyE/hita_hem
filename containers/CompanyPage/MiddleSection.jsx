@@ -26,7 +26,7 @@ const CampaignTabSignUp = dynamic(() =>
 import {companyTabConstants} from "constants/companyTabConstant";
 import {setSelectedTab} from "redux/actions/companies";
 import {
-    getCompanyIndustryTitleSelector, getCompanyNameSelector,
+    getCompanyIndustryTitleSelector, getCompanyLogoUrlSelector, getCompanyNameSelector,
     getCompanyTabSelected,
     getCountryTitleSelector, getSocialsCompanySelector, getWebSiteCompanySelector
 } from "redux/reducers/companies";
@@ -39,6 +39,7 @@ import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
 import {getCompanySubTitleSelector} from "../../redux/reducers/companies";
+import ImageComponent from "../../components/ui/ImageComponent";
 
 const MiddleSection = ({isAuth}) => {
     const {t} = useTranslation();
@@ -51,6 +52,7 @@ const MiddleSection = ({isAuth}) => {
     const socials = useSelector(getSocialsCompanySelector, isEqual);
     const subTitle = useSelector(getCompanySubTitleSelector)
     const campaignName = useSelector(getCompanyNameSelector)
+    const logo = useSelector(getCompanyLogoUrlSelector)
 
     const sectionRef = useRef();
 
@@ -69,16 +71,17 @@ const MiddleSection = ({isAuth}) => {
 
 
 
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         const projectInfoHeight = sectionRef?.current?.offsetHeight
+        const previousSibling = sectionRef?.current.previousSibling.offsetHeight
         if (matchesAll) {
-            if (scrolled > projectInfoHeight) {
-                setVisible(false)
-            } else if (scrolled < projectInfoHeight) {
-                setVisible(true)
+            if (scrolled > projectInfoHeight + previousSibling) {
+                    setVisible(false)
+            } else if (scrolled < projectInfoHeight + previousSibling - 160) {
+                    setVisible(true)
             }
         }
 
@@ -109,15 +112,25 @@ const MiddleSection = ({isAuth}) => {
     return (
         <div className="middle_section_container">
             <div className="middle_tabbr_container">
-                {campaignName &&(
-                    <h1 className='middle_section_title'>{campaignName}</h1>
-                )}
+                <div className='middle_tabbr_title_wrapper'>
+                    {logo && (
+                        <ImageComponent
+                            src={logo}
+                            alt={logo ? 'campaign logo' : ' '}
+                            className='middle_section_logo'
+                        />
+                    )}
+
+                    {campaignName &&(
+                        <h1 className='middle_section_title'>{campaignName}</h1>
+                    )}
+                </div>
+
                 {subTitle && (
                     <p className='middle_section_subtitle'>{subTitle}</p>
                 )}
                 { !matchesAll &&
                 <div className="company_info_sig">
-                    {/*<h2 className='company_info_sig_title'>{t("company_page.company_info.title")}</h2>*/}
                     <div className='company_info_sig_wrapper'>
                         {industryTitle && (
                             <InfoWithTitle
@@ -177,21 +190,30 @@ const MiddleSection = ({isAuth}) => {
             </div>
 
                 <div className='middle_mobile_header_container'>
+                    <div className='middle_tabbr_title_wrapper'>
+                        {logo && (
+                            <ImageComponent
+                                src={logo}
+                                alt={logo ? 'campaign logo' : ' '}
+                                className='middle_section_logo'
+                            />
+                        )}
                     {campaignName &&(
                         <h1 className='middle_section_title'>{campaignName}</h1>
                     )}
+                    </div>
                     {subTitle && (
                         <p className='middle_section_subtitle'>{subTitle}</p>
                     )}
                 </div>
 
 
-            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll}/>
+            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll} type='mobile'/>
 
             <div
-                className={visible ? " middle_mobile_tabbr_container" : "middle_mobile_tabbr_container middle_mobile_tabbr_container_shifted"}>
+                className=" middle_mobile_tabbr_container">
 
-                <TabAccordion isAuth={isAuth}/>
+                <TabAccordion isAuth={isAuth} isQuizPassed={isQuizPassed}/>
             </div>
         </div>
     );

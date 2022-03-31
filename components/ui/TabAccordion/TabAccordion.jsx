@@ -15,19 +15,29 @@ import Team from "containers/CompanyPage/Team";
 import FinancialInformation from "containers/CompanyPage/FinancialInformation";
 import Faq from "containers/CompanyPage/Faq";
 import CampaignTabSignUp from "containers/CompanyPage/CampaignTabSignUp";
+import CampaignTabQuizRequest from "../../../containers/CompanyPage/CampaignTabQuizRequest";
 import iconLight from "public/images/light_bulb.svg";
 import iconTeam from "public/images/users.svg";
 import iconChart from "public/images/chart.svg";
 import iconComments from "public/images/comments.svg";
 
-function TabAccordion({ isAuth }) {
+function TabAccordion({ isAuth, isQuizPassed }) {
   const { t } = useTranslation();
   const overviewRef = useRef();
+
 
   const [activeTab, setActiveTab] = useState(null);
 
   const renderTabIFauts = (Сomponent) => {
-    return isAuth ? <Сomponent /> : <CampaignTabSignUp />;
+    if(!isAuth){
+      return <CampaignTabSignUp/>
+    }else{
+      if(!isQuizPassed){
+        return <CampaignTabQuizRequest/>
+      }else{
+        return <Сomponent/>
+      }
+    }
   };
 
   const handleTabClick = (e) => {
@@ -47,7 +57,7 @@ function TabAccordion({ isAuth }) {
   };
   return (
       <>
-        <Accordion>
+        <Accordion defaultActiveKey="0">
           <Card className="tab_accordion_item">
             <Accordion.Toggle
                 as={Card.Header}

@@ -354,6 +354,8 @@
 
         .invest_info_progress{
           .progress_title{
+            font-size: 18px;
+          color: rgba(0,0,0,.5);
             margin-right: auto;
             margin-left: 0;
             transform: translateY(25px);
@@ -416,8 +418,36 @@
 
     .middle_tabbr_container {
       margin-right: 40px;
+
       //padding-top: 20px;
       max-width: calc(100% - 390px);
+
+      .middle_tabbr_title_wrapper{
+        padding-top: 20px;
+        display: flex;
+        //flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .middle_section_logo{
+        width: 160px;
+        height: 160px;
+        //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+        border-radius: 50%;
+        background: #ffffff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-right: 25px;
+
+        img{
+          object-fit: cover;
+          height: 100%;
+        }
+      }
 
       .middle_section_title {
         font-family: 'Source sans Pro', sans-serif;
@@ -444,6 +474,12 @@
         margin-bottom: 20px;
         width: 100%;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        .tab_bar_item_button{
+          color: #626262;
+          font-weight: 600;
+        }
+
         .middle_tabbr {
           background-color: transparent;
           margin-bottom: 0;
@@ -1508,7 +1544,12 @@
 
       .middle_tabbr_container {
         max-width: calc(100% - 290px);
-      }
+
+        .middle_section_logo {
+          width: 120px;
+          height: 120px;
+        }
+        }
 
       .project_info_right_section {
         right: 60px;
@@ -1836,7 +1877,7 @@
     .project_info_right_section{
       .company_info_sig{
         align-items: center;
-        display: flex;
+        display: none;
         flex-direction: column;
         margin-bottom: 20px;
         .company_info_sig_item{
@@ -1913,12 +1954,11 @@
         right: 0;
         top: 0;
         width: 100%;
-        padding: 30px 60px;
+        padding: 0 60px 30px 60px;
         background-color: rgba(220, 232, 248, 0.5);
-        //.project_info_right_status_container{
-        //  max-width: 420px;
-        //margin: 0 auto;
-        //}
+        .project_info_right_status_container{
+         display: none;
+        }
         .invest_info {
           margin: 35px auto 15px auto;
           width: 420px;
@@ -1937,11 +1977,15 @@
       }
 
       .sign_up_message_container{
+        display: none;
         align-items: center;
         margin-bottom: 20px;
         .company_info_sig_item{
           align-items: center;
         }
+      }
+      .company_info_quiz_message{
+        display: flex;
       }
     }
 
@@ -2010,6 +2054,33 @@
         text-align: center;
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
+
+        .middle_tabbr_title_wrapper{
+          padding-top: 20px;
+          display: flex;
+          flex-direction: column;
+          //flex-wrap: wrap;
+          align-items: center;
+        }
+
+        .middle_section_logo{
+          width: 130px;
+          height: 130px;
+          //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+          border-radius: 50%;
+          background: #ffffff;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          margin-bottom: 20px;
+          img{
+            object-fit: cover;
+            height: 100%;
+          }
+        }
+
         .middle_section_title{
           font-size: 40px;
           font-weight: bold;
@@ -2018,6 +2089,7 @@
         }
         .middle_section_subtitle{
           font-size: 22px;
+          margin-bottom: 0;
         }
       }
       .middle_mobile_tabbr_container {
@@ -2305,9 +2377,16 @@
     .middle_section_container {
       //padding-right: 25px;
       //padding-left: 25px;
+      .middle_mobile_header_container{
+        .middle_section_logo{
+          //width: 110px;
+          //height: 110px;
+        }
+      }
+
       .project_info_right_section {
         //right: 25px;
-        padding: 30px 30px;
+        padding: 0 30px 30px 30px;
 
         .invest_info {
           .invest_info_item {
