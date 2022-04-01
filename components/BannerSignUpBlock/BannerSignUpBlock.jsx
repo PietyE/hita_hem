@@ -1,7 +1,7 @@
 import React, {useCallback, useRef} from 'react';
 import {GoogleLogin} from "react-google-login";
 import {useDispatch, useSelector} from "react-redux";
-import {useTranslation} from "react-i18next";
+// import {useTranslation} from "react-i18next";
 import {makeRequestForSignInWithBankId, saveEmail, signInWithGoogle} from "../../redux/actions/user";
 import ButtonStyled from "../ui/Button";
 import {setShowSignUp} from "../../redux/actions/authPopupWindows";
@@ -9,7 +9,7 @@ import {getAuthSocialAccountErrorSelector} from "../../redux/reducers/errors";
 import useAuthErrorHandler from "../../customHooks/useAuthErrorHandler";
 
 const BannerSignUpBlock = () => {
-    const { t } = useTranslation();
+    // const { t } = useTranslation();
     const dispatch = useDispatch();
     const inputRef = useRef(null)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
