@@ -4,7 +4,7 @@ import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
-// import BannerSignUpBlock from "../BannerSignUpBlock";
+import BannerSignUpBlock from "../BannerSignUpBlock";
 import SliderImage from "../../containers/HomePage/SliderImage";
 const TopSliderComponent = ({
   data,
@@ -21,37 +21,38 @@ const TopSliderComponent = ({
   const screenSize = checkCurrentResolution()
 
   //////////////////////
-  // const img = 'https://d190e604gdbcnz.cloudfront.net/banner.jpeg'
+  const image = 'https://d190e604gdbcnz.cloudfront.net/banner.jpeg'
   //////////////////////
   return (
     <div className={`slider_component_container ${sectionClass}`}>
       <Carousel controls={!!data?.length} slide={true} interval={8000} touch={true} indicators={!!data?.length}>
-{/*        {type === 'home_page' && (*/}
-{/*            <Carousel.Item key = 'banner'>*/}
-{/*              <section className='item_component_container' style={{  position: 'relative'}}>*/}
-{/*                <div className= {`item_component_content_container ${containerClass}`}>*/}
+        {type === 'home_page' && (
+            <Carousel.Item key = 'banner'>
+              <section className='item_component_container' style={{  position: 'relative'}}>
+                <div className= {`item_component_content_container ${containerClass}`}>
 
-{/*                  <h1 className={`item_component_title ${itemTitleClass}`}>*/}
-{/*                    We democratise unlisted stocks!*/}
-{/*                  </h1>*/}
+                  <h1 className={`item_component_title ${itemTitleClass}`}>
+                    We democratise unlisted stocks!
+                  </h1>
 
-{/*                      <div className={`item_component_description ${itemDescriptionClass}`}>*/}
-{/*                        <p>*/}
-{/*                          Accumeo allows access to unlisted companies through equity crowdfunding*/}
-{/*                        </p>*/}
-{/*                      </div>*/}
+                      <div className={`item_component_description ${itemDescriptionClass}`}>
+                        <p>
+                          Accumeo allows access to unlisted companies through equity crowdfunding
+                        </p>
+                      </div>
+<BannerSignUpBlock/>
 
-{/*<BannerSignUpBlock/>*/}
+                </div>
+                {image && screenSize && (
+                    <SliderImage img={image} screenSize={screenSize}/>
+                )}
 
-{/*                </div>*/}
-
-{/*               <SliderImage img={img} screenSize={screenSize}/>*/}
-{/*              </section>*/}
+              </section>
 
 
 
-{/*            </Carousel.Item>*/}
-{/*        )}*/}
+            </Carousel.Item>
+        )}
         {!!data?.length &&
           data?.map((headerItem) => {
             const {
@@ -124,8 +125,9 @@ const TopSliderComponent = ({
                     )}
                   </div>
 
-                  <SliderImage img={img} screenSize={screenSize}/>
-
+                  {img && screenSize && (
+                      <SliderImage img={img} screenSize={screenSize}/>
+                  )}
 
                 </div>
               </Carousel.Item>
