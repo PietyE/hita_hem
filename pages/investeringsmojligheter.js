@@ -4,7 +4,7 @@ import { END } from "redux-saga";
 
 import { wrapper } from "/redux/store";
 
-import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
+// import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
 import { getIsFetchingCampaignsSelector } from "redux/reducers/companies";
@@ -29,7 +29,7 @@ const InvestmentOpportunitiesPage = () => {
   return (
     <>
       {isFetching && <SpinnerStyled />}
-      <InvestTopSlider />
+      {/*<InvestTopSlider />*/}
       <CampaignsListSection />
     </>
   );
