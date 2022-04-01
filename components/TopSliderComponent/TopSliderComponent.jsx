@@ -23,10 +23,9 @@ const TopSliderComponent = ({
   //////////////////////
   const img = 'https://d190e604gdbcnz.cloudfront.net/banner.jpeg'
   //////////////////////
-
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={data?.length} slide={true} interval={8000} touch={true} indicators={data?.length}>
+      <Carousel controls={!!data?.length} slide={true} interval={8000} touch={true} indicators={!!data?.length}>
         {type === 'home_page' && (
             <Carousel.Item key = 'banner'>
               <section className='item_component_container' style={{  position: 'relative'}}>
