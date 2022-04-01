@@ -8,7 +8,7 @@ const SliderImage = ({img, screenSize}) => {
                 <div className='item_component_image' style={{  position: 'absolute'}}>
                     {( screenSize === 'desktop' && img &&
                         <Image
-                            src = {img || null}
+                            src = {img}
                             layout = "fill"
                             objectFit = "cover"
                             priority = {true}
@@ -17,7 +17,7 @@ const SliderImage = ({img, screenSize}) => {
                         />)}
                     {( screenSize === 'laptop' && img &&
                         <Image
-                            src = {img || null}
+                            src = {img}
                             layout = "fill"
                             objectFit = "cover"
                             priority = {true}
@@ -26,7 +26,7 @@ const SliderImage = ({img, screenSize}) => {
                         />)}
                     {( screenSize === 'mobile' && img &&
                         <Image
-                            src = {img || null}
+                            src = {img}
                             layout = "fill"
                             objectFit = "cover"
                             priority = {true}
