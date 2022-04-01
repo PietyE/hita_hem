@@ -6,6 +6,8 @@ import StatusCompanyBadge from "../StatusCompany";
 import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
 import BannerSignUpBlock from "../BannerSignUpBlock";
 import SliderImage from "../../containers/HomePage/SliderImage";
+import {useSelector} from "react-redux";
+import {getBannerSelector} from "../../redux/reducers/homePage";
 const TopSliderComponent = ({
   data,
   sectionClass,
@@ -20,31 +22,36 @@ const TopSliderComponent = ({
 }) => {
   const screenSize = checkCurrentResolution()
 
-  //////////////////////
-  const image = 'https://d190e604gdbcnz.cloudfront.net/banner.jpeg'
-  //////////////////////
+  const bannerData = useSelector(getBannerSelector)
+
   return (
     <div className={`slider_component_container ${sectionClass}`}>
-      <Carousel controls={!!data?.length} slide={true} interval={8000} touch={true} indicators={!!data?.length}>
-        {type === 'home_page' && (
+      <Carousel controls={bannerData ? !!data?.length : data?.length > 1} slide={true} interval={8000} touch={true} indicators={bannerData ? !!data?.length : data?.length > 1}>
+        {bannerData && (
             <Carousel.Item key = 'banner'>
               <section className='item_component_container' style={{  position: 'relative'}}>
                 <div className= {`item_component_content_container ${containerClass}`}>
+                  {bannerData?.title && (
+                        <h1 className={`item_component_title ${itemTitleClass}`}>
+                      {bannerData.title}
+                    </h1>)
+                  }
 
-                  <h1 className={`item_component_title ${itemTitleClass}`}>
-                    We democratise unlisted stocks!
-                  </h1>
 
+                  {bannerData?.sub_title && (
                       <div className={`item_component_description ${itemDescriptionClass}`}>
                         <p>
-                          Accumeo allows access to unlisted companies through equity crowdfunding
+                          {bannerData.sub_title}
                         </p>
                       </div>
+                  )
+                  }
+
 <BannerSignUpBlock/>
 
                 </div>
-                {image && screenSize && (
-                    <SliderImage img={image} screenSize={screenSize}/>
+                {bannerData?.images && screenSize && (
+                    <SliderImage img={getCorrectImage(bannerData.images)} screenSize={screenSize}/>
                 )}
 
               </section>
