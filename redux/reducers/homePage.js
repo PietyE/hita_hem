@@ -11,6 +11,7 @@ const initialState = {
     raise_set: [],
     invest_set: [],
     seo:{},
+    banner_images:[],
   },
   isFetching: false,
 };
@@ -31,6 +32,15 @@ export const getIsFetchingHomePageSelector = (state) =>
   state.homePage.isFetching;
 export const getSeoSelector = (state) =>
     state.homePage.homePageContent?.seo;
+export const getBannerSelector = (state) => {
+  const data = state.homePage.homePageContent?.banner_images;
+  if(Array.isArray(data) && data.length > 0){
+    return data[0]
+  }else {
+    return null
+  }
+}
+
 
 export const homePage = (state = initialState, actions) => {
   switch (actions.type) {

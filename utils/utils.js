@@ -45,7 +45,7 @@ export const checkCurrentResolution = () => {
 export const getCorrectImage = (images) => {
   const imageSize = checkCurrentResolution();
   let img;
-  if (typeof window !== "undefined" && images){
+  if (typeof window !== "undefined" && images ){
     img = images[imageSize] || images['desktop'] || images['laptop'] || images['mobile']
   }else{
     img=null
