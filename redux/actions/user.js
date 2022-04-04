@@ -49,6 +49,7 @@ import {
   SET_UNSUBSCRIBE_LIST,
   SET_SOCIALS_KEY,
   SIGN_UP_WITH_SOCIALS,
+  SAVE_EMAIL,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -295,3 +296,8 @@ export const setSocialsKey = payload => ({
   payload
 })
 
+
+export const saveEmail = payload => ({
+  type: SAVE_EMAIL,
+  payload
+})

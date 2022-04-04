@@ -4,7 +4,6 @@ import Carousel from "react-bootstrap/Carousel";
 import isEqual from "lodash/isEqual";
 
 import Button from "components/ui/Button";
-import TopSliderComponent from "components/TopSliderComponent";
 import { getRaisePageHeadersSelector } from "redux/reducers/raisePage";
 import { checkCurrentResolution, getCorrectImage } from "utils/utils";
 import Image from "next/image";
@@ -72,7 +71,6 @@ const RaisePageTopSlider = ({ onScrollTo }) => {
             })}
         </Carousel>
       </div>
-      <TopSliderComponent />
     </>
   );
 };
