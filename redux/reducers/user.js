@@ -20,6 +20,7 @@ import {
   SET_BANK_ID_KEY,
   SET_SUBSCRIBE_LIST,
   SET_UNSUBSCRIBE_LIST,
+  SAVE_EMAIL,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -40,6 +41,7 @@ const initialsState = {
   quizQuestions:[],
   subscribeList:[],
   quizErrors: null,
+  savedEmail: '',
   account: {
     pk: "",
     email: "",
@@ -94,7 +96,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, subscribeList: actions.payload}
     case SET_UNSUBSCRIBE_LIST:
       return {...state, account:{...state.account, unsubscribes: actions.payload}}
-
+    case SAVE_EMAIL:
+      return {...state, savedEmail: actions.payload}
 
 
     default:
@@ -118,7 +121,7 @@ export const getIsBankIdResident = (state) => state?.user?.isBankIdResident || s
 export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
 
 export const getUnsubscribesSelector = (state) => state?.user?.account?.unsubscribes;
-
+export const getSavedEmail = state => state?.user?.savedEmail
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;

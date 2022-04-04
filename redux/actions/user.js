@@ -47,6 +47,7 @@ import {
   SET_SUBSCRIBE_LIST,
   CHANGE_UNSUBSCRIBE_LIST,
   SET_UNSUBSCRIBE_LIST,
+  SAVE_EMAIL,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -280,6 +281,11 @@ export const setUnSubscribeList = payload => ({
 
 export const changeUnsubscribeList = payload => ({
   type: CHANGE_UNSUBSCRIBE_LIST,
+  payload
+})
+
+export const saveEmail = payload => ({
+  type: SAVE_EMAIL,
   payload
 })
 
