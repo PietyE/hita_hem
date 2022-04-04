@@ -1,6 +1,7 @@
-import React, { useCallback } from "react";
+import React, {useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
+import dynamic from "next/dynamic";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
@@ -10,12 +11,17 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-import {signUp, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
+import {signUp, checkEmailAndPassword, makeRequestForSignInWithBankId, saveEmail, signInWithGoogle} from "redux/actions/user";
+import {getShowQuiz} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
 import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
+import {getSavedEmail} from "../../../redux/reducers/user";
+const Quiz = dynamic(() =>
+    import("components/Quiz")
+);
 import {getDocumentsSelector} from "../../../redux/reducers/documents";
 
 const SignUp = ({ show }) => {
@@ -23,11 +29,13 @@ const SignUp = ({ show }) => {
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
   const isFetching = useSelector(getIsFetchingAuthSelector);
+  const isQuizShow = useSelector(getShowQuiz)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
+    const savedEmail = useSelector(getSavedEmail)
     const documentUrl = useSelector(getDocumentsSelector)
 
-  const initialValues = {
-    email: "",
+    const initialValues = {
+    email: savedEmail || "",
     password: "",
     confirm_password: '',
     is_agree: false,
@@ -81,6 +89,13 @@ recaptcha('sign_up', _signUp,values)
         [dispatch]
     );
 
+    const _saveEmail = useCallback(
+        (data) => {
+            dispatch(saveEmail(data));
+        },
+        [dispatch]
+    );
+
     const responseGoogle = (response) => {
         if(socialAccountError){
             errorHandlerHook._clearErrors()
@@ -95,6 +110,15 @@ recaptcha('sign_up', _signUp,values)
       }
     _signInWithBankId()
   }
+
+  useEffect(()=>{
+      return ()=> {
+          if(savedEmail){
+              _saveEmail('')
+          }
+      }
+  },[])
+
   return (
         <Modal
       show={show}
