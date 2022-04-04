@@ -213,16 +213,12 @@ function* signInWithGoogle({payload}) {
             yield call(requestForQuiz)
         }
 
-        yield put(setShowSessionSignUp(false));
-        yield put(setShowSignUp(false));
-        yield put(setShowSignIn(false));
-
         const {data} = response;
             yield put(setIsAthOnAndSaveUserProfile(data))
     } catch (error) {
         if(error?.response?.data?.user){
             yield put(setShowCompleteSocialsRegistration(true))
-            yield put(setSocialsKey(payload?.data))
+            yield put(setSocialsKey(payload))
         }else{
             const hideNotification = !!error?.response?.data?.social_account
             yield put(
@@ -307,9 +303,6 @@ function* signInWithBankIdWorker({payload}) {
             yield call([localStorage, "setItem"], "x_session_key", session_key);
         }
 
-        yield put(setShowSessionSignUp(false));
-        yield put(setShowSignUp(false));
-        yield put(setShowSignIn(false));
 
             yield put(setIsAthOnAndSaveUserProfile(response?.data))
             const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
@@ -824,6 +817,8 @@ function* setIsAuthOnAndSaveUserProfileWatcher({payload}) {
     yield call([localStorage, "setItem"], "auth_data", authData);
 
     yield put(setShowSignIn(false));
+    yield put(setShowSessionSignUp(false));
+    yield put(setShowSignUp(false));
     yield put(clearErrors())
 }
 

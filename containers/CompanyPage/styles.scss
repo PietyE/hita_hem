@@ -279,14 +279,24 @@
     position: relative;
     overflow: hidden;
     &:before {
-      content:'';
-      width:100%;
-      height:100%;
-      position:absolute;
-      left:0;
-      top:0;
-      background:linear-gradient(transparent 70px, white);
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      box-shadow: inset 0 150px 150px #fff;
+      transform: rotate(180deg);
     }
+    //&:before {
+    //  content:'';
+    //  width:100%;
+    //  height:100%;
+    //  position:absolute;
+    //  left:0;
+    //  top:0;
+    //  background:linear-gradient(transparent 70px, white);
+    //}
   }
 
   .project_info_show_more_button{
@@ -344,6 +354,8 @@
 
         .invest_info_progress{
           .progress_title{
+            font-size: 18px;
+          color: rgba(0,0,0,.5);
             margin-right: auto;
             margin-left: 0;
             transform: translateY(25px);
@@ -406,8 +418,36 @@
 
     .middle_tabbr_container {
       margin-right: 40px;
+
       //padding-top: 20px;
       max-width: calc(100% - 390px);
+
+      .middle_tabbr_title_wrapper{
+        padding-top: 20px;
+        display: flex;
+        //flex-wrap: wrap;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .middle_section_logo{
+        width: 160px;
+        height: 160px;
+        //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+        border-radius: 50%;
+        background: #ffffff;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        margin-right: 25px;
+
+        img{
+          object-fit: cover;
+          height: 100%;
+        }
+      }
 
       .middle_section_title {
         font-family: 'Source sans Pro', sans-serif;
@@ -434,6 +474,12 @@
         margin-bottom: 20px;
         width: 100%;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        .tab_bar_item_button{
+          color: #626262;
+          font-weight: 600;
+        }
+
         .middle_tabbr {
           background-color: transparent;
           margin-bottom: 0;
@@ -486,6 +532,12 @@
     .idea_section_container {
       width: 100%;
 
+      .image_container{
+        img{
+          cursor: pointer;
+        }
+      }
+
       .idea_section {
         width: 100%;
         max-width: 840px;
@@ -503,6 +555,7 @@
 
 
       .idea_section_description_container {
+
         p {
           font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
@@ -553,6 +606,7 @@
               border-radius: 50%;
             }
           }
+
         }
       }
 
@@ -637,7 +691,7 @@
       font-style: normal;
       line-height: 70px;
       font-size: 40px;
-  }
+    }
     .recommended_campaigns_text{
       font-family: "Source sans Pro", sans-serif;
       font-style: normal;
@@ -791,6 +845,9 @@
         width: calc(100vw - 460px / 2);
         border-radius: 6px;
         overflow: hidden;
+        img{
+          cursor: pointer;
+        }
       }
 
       .fin_article_image img {
@@ -894,7 +951,7 @@
   margin: 0 auto;
   justify-content: center;
   p{
-margin: 0;
+    margin: 0;
   }
 }
 .campaigns_tab_sign-up_container {
@@ -1498,7 +1555,12 @@ margin: 0;
 
       .middle_tabbr_container {
         max-width: calc(100% - 290px);
-      }
+
+        .middle_section_logo {
+          width: 120px;
+          height: 120px;
+        }
+        }
 
       .project_info_right_section {
         right: 60px;
@@ -1515,9 +1577,9 @@ margin: 0;
 
           .invest_info_item {
             padding: 0 15px;
-              .currensy_text{
-                font-size: 22px;
-              }
+            .currensy_text{
+              font-size: 22px;
+            }
 
             .invest_info_item_date {
               &:first-child {
@@ -1826,7 +1888,7 @@ margin: 0;
     .project_info_right_section{
       .company_info_sig{
         align-items: center;
-        display: flex;
+        display: none;
         flex-direction: column;
         margin-bottom: 20px;
         .company_info_sig_item{
@@ -1903,12 +1965,11 @@ margin: 0;
         right: 0;
         top: 0;
         width: 100%;
-        padding: 30px 60px;
+        padding: 0 60px 30px 60px;
         background-color: rgba(220, 232, 248, 0.5);
-        //.project_info_right_status_container{
-        //  max-width: 420px;
-        //margin: 0 auto;
-        //}
+        .project_info_right_status_container{
+         display: none;
+        }
         .invest_info {
           margin: 35px auto 15px auto;
           width: 420px;
@@ -1927,11 +1988,15 @@ margin: 0;
       }
 
       .sign_up_message_container{
+        display: none;
         align-items: center;
         margin-bottom: 20px;
-.company_info_sig_item{
-  align-items: center;
-}
+        .company_info_sig_item{
+          align-items: center;
+        }
+      }
+      .company_info_quiz_message{
+        display: flex;
       }
     }
 
@@ -2000,6 +2065,33 @@ margin: 0;
         text-align: center;
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
+
+        .middle_tabbr_title_wrapper{
+          padding-top: 20px;
+          display: flex;
+          flex-direction: column;
+          //flex-wrap: wrap;
+          align-items: center;
+        }
+
+        .middle_section_logo{
+          width: 130px;
+          height: 130px;
+          //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
+          border-radius: 50%;
+          background: #ffffff;
+          overflow: hidden;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          margin-bottom: 20px;
+          img{
+            object-fit: cover;
+            height: 100%;
+          }
+        }
+
         .middle_section_title{
           font-size: 40px;
           font-weight: bold;
@@ -2008,6 +2100,7 @@ margin: 0;
         }
         .middle_section_subtitle{
           font-size: 22px;
+          margin-bottom: 0;
         }
       }
       .middle_mobile_tabbr_container {
@@ -2115,6 +2208,12 @@ margin: 0;
 
     .financial_info_articles_list {
       .fin_article_wrapper {
+        .fin_article_image{
+          //width: 100%;
+          padding-top: 1080px / 1920px * 100%;
+          width: calc(100% + 2.5rem);
+          transform: translateX(-1.25rem);
+        }
         &:nth-child(odd) {
           .fin_article {
             .fin_article_image {
@@ -2138,7 +2237,7 @@ margin: 0;
           flex-direction: column;
 
           .fin_article_image {
-            width: 100%;
+            //width: 100%;
             margin-bottom: 15px;
           }
 
@@ -2295,9 +2394,16 @@ margin: 0;
     .middle_section_container {
       //padding-right: 25px;
       //padding-left: 25px;
+      .middle_mobile_header_container{
+        .middle_section_logo{
+          //width: 110px;
+          //height: 110px;
+        }
+      }
+
       .project_info_right_section {
         //right: 25px;
-        padding: 30px 30px;
+        padding: 0 30px 30px 30px;
 
         .invest_info {
           .invest_info_item {

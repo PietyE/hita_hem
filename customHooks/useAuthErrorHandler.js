@@ -1,4 +1,4 @@
-import {useCallback} from 'react'
+import {useCallback, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {
     getAuthEmailErrorSelector,
@@ -27,6 +27,11 @@ const useAuthErrorHandler = () => {
     const newPassword2Error = useSelector(getAuthNewPassword2ErrorSelector)
     const confirmPasswordError = useSelector(getAuthConfirmPasswordErrorSelector)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
+
+    useEffect(()=>{
+        _clearErrors()
+
+    },[])
 
     const _clearErrors = useCallback(
         () => {

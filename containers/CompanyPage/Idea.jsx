@@ -1,18 +1,39 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import isEqual from "lodash/isEqual";
+import dynamic from "next/dynamic";
 
 import Title from "components/ui/Title";
 import InfoBlockColor from "components/ui/InfoBlockColor";
 import ImageComponent from "components/ui/ImageComponent";
 import { getIdeaSectionContentSelector } from "redux/reducers/companies";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
-import Image from "next/image";
+// import Image from "next/image";
+// import SimpleReactLightbox from 'simple-react-lightbox'
+// import { SRLWrapper } from "simple-react-lightbox";
+const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
+  ssr: false,
+});
+
+const SRLWrapper = dynamic(() =>
+    import('simple-react-lightbox').then((mod) => mod.SRLWrapper),{ssr: false}
+)
+
 import {getCorrectImage} from "../../utils/utils";
 
 const Idea = () => {
   const ideaContents =
     useSelector(getIdeaSectionContentSelector, isEqual) || [];
+
+  const options = {
+    buttons: {
+      showDownloadButton:false,
+      showAutoplayButton:false,
+    },
+    thumbnails: {
+      thumbnailsContainerPadding: "20px 0",
+    }
+  }
   return (
     <div className="idea_section_container">
       {ideaContents.map((section, i) => {
@@ -58,11 +79,13 @@ const Idea = () => {
                 }}
               />
               {type === "Solution" && (
-                <>
+                  <SimpleReactLightbox>
+                  <SRLWrapper options={options}>
+
                   {!!img1 && (
                     <ImageComponent
                       alt={img1 ? 'first image' : ' '}
-                      src={img1}
+                        src={img1}
                       className="mb-4"
                     />
                     //     <Image
@@ -77,7 +100,9 @@ const Idea = () => {
 
                   )}
                   {!!img2 && (
-                    <ImageComponent alt={img2 ? 'solution image' : ' '} src={img2} />
+                    <ImageComponent
+                        alt={img2 ? 'solution image' : ' '}
+                        src={img2} />
                     // <Image
                     // src = {img2}
                     // width='100vw'
@@ -88,12 +113,17 @@ const Idea = () => {
                     // className='idea_next_image'
                     // />
                   )}
-                </>
+                  </SRLWrapper>
+                    </SimpleReactLightbox>
               )}
             </section>
             {type === "Result" && (
-              <div className="idea_image_container">
-                {!!img1 && (
+                <SimpleReactLightbox>
+                <SRLWrapper options={options}>
+
+                <div className="idea_image_container">
+
+            {!!img1 && (
                    <ImageComponent
                     alt={img1 ? 'idea image' : ' '}
                     src={img1}
@@ -114,7 +144,7 @@ const Idea = () => {
                 {!!img2 && (
                   <ImageComponent
                     alt={img2 ? 'idea image 2' : ' '}
-                    src={img2}
+                      src={img2}
                     className="middle_foto"
                   />
                   //   <div className="middle_foto"  style={{  position: 'relative',}}>
@@ -132,7 +162,7 @@ const Idea = () => {
                 {!!img3 && (
                   <ImageComponent
                     alt={img3 ? 'idea image 3' : ' '}
-                    src={img3}
+                      src={img3}
                     className="middle_foto"
                   />
                   //   <div className="middle_foto"  style={{  position: 'relative',}}>
@@ -150,7 +180,7 @@ const Idea = () => {
                 {!!img4 && (
                   <ImageComponent
                     alt={img4 ? 'idea image 4' : ' '}
-                    src={img4}
+                      src={img4}
                     className="middle_foto"
                   />
 
@@ -165,8 +195,12 @@ const Idea = () => {
                       //   />
                       // </div>
                 )}
+
               </div>
-            )}
+              </SRLWrapper>
+                  </SimpleReactLightbox>
+
+              )}
           </React.Fragment>
         );
       })}
