@@ -50,6 +50,7 @@ const initialsState = {
     quiz: false,
     social_accounts: [],
     unsubscribes: [],
+    answers: [],
   },
   isFirstHydrate: false,
 };
@@ -111,7 +112,7 @@ export const user = (state = initialsState, actions) => {
 
 export const getQuizErrorsSelector = (state) => state.user.quizErrors;
 export const getQuizIsPassedSelector = (state) => state.user.account.quiz;
-export const getQuiz = (state) => state.user.quizQuestions;
+export const getQuizSelector = (state) => state?.user?.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
@@ -125,6 +126,8 @@ export const getIsBankIdResident = (state) => state?.user?.isBankIdResident || s
 export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
 
 export const getUnsubscribesSelector = (state) => state?.user?.account?.unsubscribes;
+export const getAnswersSelector = (state) => state?.user?.account?.answers;
+
 export const getSavedEmail = state => state?.user?.savedEmail
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;

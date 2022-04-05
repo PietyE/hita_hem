@@ -150,6 +150,10 @@ successful_reset_password: {
     title: "Förfrågan lyckades!",
     text: "Vänligen följ instruktionerna skickade via e-post.",
 },
+        successful_quiz_message: {
+            title: "Grattis!",
+            text: "Du har nu slutfört testet och är redo att investera.",
+        },
 successfulInvestment: {
     title: "Vi har nu tagit emot dina uppgifter.",
     text: "Vi kommer kontakta dig med vidare instruktioner.",
@@ -185,6 +189,8 @@ quiz:{
 
     back_button: "Tillbaka",
         button_confirm: 'Godkänn',
+    optional_title: 'Vänligen svara på följande frågor för bästa möjliga upplevelse på Accumeo.',
+    full_title: 'Du har svarat på alla frågor.',
 },
 tab_accordion: {
     Idea: "Idé",

@@ -13,7 +13,7 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
-  // SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE,
   SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
   SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
   SET_SHOW_INVALID_TOKEN_MODAL,
@@ -167,4 +167,11 @@ export const setShowCompleteSocialsRegistration = payload =>({
   type: SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
   payload,
 })
+
+export const setShowSuccessfulQuizMessage = payload =>({
+  type: SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE,
+  payload,
+})
+
+
 

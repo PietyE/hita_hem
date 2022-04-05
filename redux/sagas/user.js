@@ -65,9 +65,9 @@ import {
     setShowRequestForChangePassword,
     setShowFirstLoginPopup,
     setShowCompleteBankIdRegistration,
-    setShowCompleteSocialsRegistration,
+    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage,
 } from "../actions/authPopupWindows";
-import {getBIdKeySelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
+import {getBIdKeySelector, getQuizIsPassedSelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
     setIsBankIdResident,
@@ -667,7 +667,14 @@ function* requestForCheckingQuiz({payload}) {
         yield put(setFetchingUsers(true));
         yield call([auth, "checkQuizAnswers"], {answers:payload});
         yield put(setShowQuiz(false))
-        yield put(setQuizIsPassed(true))
+        const isQuizPassed = yield select(getQuizIsPassedSelector)
+        if(!isQuizPassed){
+            yield put(setShowSuccessfulQuizMessage(true))
+        }
+        yield call(uploadUserData)
+
+        // yield put(setQuizIsPassed(true))
+
     } catch (error) {
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))

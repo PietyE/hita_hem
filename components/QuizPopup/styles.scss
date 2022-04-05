@@ -143,6 +143,13 @@
           border-radius: 50px;
         }
       }
+      .quiz_item_option_radio_check_active{
+        @extend .quiz_item_option_radio_check;
+
+        :before{
+          display: block;
+        }
+      }
       .quiz_item_option_radio_check_warning{
         @extend .quiz_item_option_radio_check;
         border-color: #FF4D4F;
@@ -151,9 +158,9 @@
         }
 
       }
-      .quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
-        display: block;
-      }
+      //.quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
+      //  display: block;
+      //}
 
       .quiz_item_option_radio {
         display: none;

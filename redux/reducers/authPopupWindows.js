@@ -13,7 +13,7 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
-  // SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE,
   SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
   SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
   SET_SHOW_INVALID_TOKEN_MODAL,
@@ -56,6 +56,7 @@ const initialValues = {
   showPostalCodeNotification: false,
   showCompleteBankIdRegistration: false,
   showCompleteSocialsRegistration: false,
+  showSuccessfulQuizMessage:false,
   text: '',
   showCookie: false,
 };
@@ -99,6 +100,7 @@ export const getShowFirstLoginPopup = state => state.authPopupWindows.showFirstL
 export const getShowPostalCodeNotification = state => state.authPopupWindows.showPostalCodeNotification;
 export const getShowCompleteBankIdRegistration = state => state.authPopupWindows.showCompleteBankIdRegistration;
 export const getShowCompleteSocialsRegistration = state => state.authPopupWindows.showCompleteSocialsRegistration;
+export const getShowSuccessfulQuizMessage = state => state.authPopupWindows.showSuccessfulQuizMessage;
 
 
 
@@ -161,6 +163,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showCompleteBankIdRegistration: actions.payload }
     case SET_SHOW_COMPLETE_SOCIALS_REGISTRATION:
       return { ...state, showCompleteSocialsRegistration: actions.payload }
+    case SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE:
+      return { ...state, showSuccessfulQuizMessage: actions.payload }
 
     default:
       return state;

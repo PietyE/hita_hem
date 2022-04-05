@@ -6,10 +6,13 @@ import icon1 from "public/images/navtab1.svg";
 import icon2 from "public/images/navTab2.svg";
 import icon3 from "public/images/navTab3.svg";
 import icon4 from "public/images/navTab4.svg";
+import icon5 from "public/images/navTab5.svg";
+
 import icon1w from "public/images/navtab1w.svg";
 import icon2w from "public/images/navTab2w.svg";
 import icon3w from "public/images/navTab3w.svg";
 import icon4w from "public/images/navTab4w.svg";
+import icon5w from "public/images/navTab5w.svg"
 import { useTranslation } from "react-i18next";
 
 function NavTab({ tab, change }) {
@@ -87,6 +90,24 @@ function NavTab({ tab, change }) {
         </Button>
         <p className="nav_tabs_text">{t("profile_page.profile_campaigns")}</p>
       </div>
+        <div className="nav_tabs_button_container">
+            <Button
+                className={
+                    tab === "quiz" ? "nav_tabs_button_active" : "nav_tabs_button"
+                }
+                onClick={() => change("quiz")}
+                aria-controls="quiz"
+                aria-expanded={"open"}
+            >
+                <Image
+                    src={tab === "quiz" ? icon5w : icon5}
+                    alt="personal detail icon"
+                />
+
+            </Button>
+            <p className="nav_tabs_text">{t("profile_page.quiz_tab")}</p>
+        </div>
+
     </section>
   );
 }

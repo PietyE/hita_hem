@@ -1,20 +1,14 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import QuizItem from "../QuizPopup/components/QuizItem";
-import ButtonStyled from "../ui/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {getQuiz, getQuizErrorsSelector} from "../../redux/reducers/user";
-import {checkQuizAnswers, setQuizErrors} from "../../redux/actions/user";
-import {setShowDataLossWarning} from "../../redux/actions/authPopupWindows";
-import {useTranslation} from "react-i18next";
+import {getQuizErrorsSelector} from "../../redux/reducers/user";
+import { setQuizErrors} from "../../redux/actions/user";
 
-const Quiz = () => {
-    const {t} = useTranslation();
+const Quiz = ({quizData,receiveAnswer, quizAnswers}) => {
     const dispatch = useDispatch()
 
-    const quizData = useSelector(getQuiz)
     const quizErrors = useSelector(getQuizErrorsSelector)
 
-    const [quizResults, setQuizResults] = useState({})
     const [warnings, setWarnings] = useState([])
 
     useEffect(() => {
@@ -33,33 +27,7 @@ const Quiz = () => {
         dispatch(setQuizErrors(data));
     }, [dispatch]);
 
-    const _checkQuizAnswers = useCallback((data) => {
-        dispatch(checkQuizAnswers(data));
-    }, [dispatch]);
-
-    const _setShowDataLossWarning = useCallback(() => {
-        dispatch(setShowDataLossWarning(true));
-    }, [dispatch]);
-
-    const handleCloseQuiz = () => {
-        _setShowDataLossWarning()
-    }
-
-    const receiveAnswer = (data, answerNumber) => {
-        setQuizResults({...quizResults, [answerNumber]: Number(data)})
-    }
-    const handleSubmit = () => {
-        const arrayOfAnswer = []
-
-        for (let answer in quizResults) {
-            arrayOfAnswer.push(quizResults[answer])
-        }
-
-        _checkQuizAnswers(arrayOfAnswer)
-
-    }
     return (
-        <>
         <div className = 'quiz_body'>
             {!!quizData?.length &&
             quizData.map((question, i) =>
@@ -69,25 +37,11 @@ const Quiz = () => {
                           data = {question}
                           onSelect = {receiveAnswer}
                           warningList = {warnings}
+                          userQuizAnswers={quizAnswers}
                 />
             )
             }
         </div>
-    <footer className = 'quiz_footer'>
-        <div className='quiz_footer_buttons_wrapper'>
-            <ButtonStyled colorStyle = 'outline-green'
-                          className = 'quiz_footer_button_back quiz_footer_button'
-                          onClick = {handleCloseQuiz}>{t("quiz.back_button")}</ButtonStyled>
-            <ButtonStyled colorStyle = 'dark-green'
-                          className = 'quiz_footer_button_confirm quiz_footer_button'
-                          disabled = {Object.keys(quizResults).length !== quizData.length}
-                          onClick = {handleSubmit}>{t("quiz.button_confirm")}</ButtonStyled>
-
-        </div>
-
-    </footer>
-            </>
-
     );
 }
 

@@ -154,6 +154,10 @@ export const en = {
             title: "Request accepted!",
             text: "Please follow the instructions sent by email to reset your password.",
         },
+        successful_quiz_message: {
+            title: "Congratulations!",
+            text: "You have now completed the quiz and are ready to invest.",
+        },
         successfulInvestment: {
             title: "You have successfully completed the form!",
             text: "We will get back to you with further instructions.",
@@ -189,6 +193,8 @@ export const en = {
             error_text: 'You have to select the right answer.',
             back_button: 'Back',
             button_confirm: 'Confirm',
+            optional_title: 'To improve your experience on Accumeo, please answer all of the following questions.',
+            full_title: 'You have successfully completed the quiz.',
         },
         tab_accordion: {
             Idea: "Idea",
