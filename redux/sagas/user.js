@@ -665,31 +665,22 @@ function* requestForCheckingQuiz({payload}) {
     try {
 
         yield put(setFetchingUsers(true));
+        if (typeof window !== "undefined") {
+            window.scrollTo({
+                top: 0,
+                behavior: "auto",
+            });
+        }
         yield call([auth, "checkQuizAnswers"], {answers:payload});
         yield put(setShowQuiz(false))
         const isQuizPassed = yield select(getQuizIsPassedSelector)
         if(!isQuizPassed){
-            if (typeof window !== "undefined") {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "auto",
-                });
-            }
             yield put(setShowSuccessfulQuizMessage(true))
+            yield put(setQuizErrors(null))
         }else{
-            if (typeof window !== "undefined") {
-                window.scrollTo({
-                    top: 0,
-                    behavior: "auto",
-                });
-            }
             yield put(setShowOptionalQuizMessage(true))
-
         }
         yield call(uploadUserData)
-
-        // yield put(setQuizIsPassed(true))
-
     } catch (error) {
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))
