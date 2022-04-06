@@ -14,6 +14,7 @@ export const sv = {
                 Campaigns: "Kampanjer",
                 Personal_details: "Personuppgifter",
                 Account_settings: "Kontoinställningar",
+                Quiz_tab: 'Quizet',
                 Log_Out: "Logga ut",
             },
         },
@@ -149,6 +150,10 @@ successful_reset_password: {
     title: "Förfrågan lyckades!",
     text: "Vänligen följ instruktionerna skickade via e-post.",
 },
+        successful_quiz_message: {
+            title: "Grattis!",
+            text: "Du har nu slutfört testet och är redo att investera.",
+        },
 successfulInvestment: {
     title: "Vi har nu tagit emot dina uppgifter.",
     text: "Vi kommer kontakta dig med vidare instruktioner.",
@@ -159,6 +164,9 @@ successfulDeletedAccount: {
 successfulFaqPopup: {
     title: 'Ditt meddelande har skickats.',
 },
+        successfulOptionalQuiz: {
+            title: 'Dina svar är nu registrerade!',
+        },
 successful_sign_up: {
     title: "Välkommen till Accumeo!",
         text: "Vänligen följ de instruktioner vi skickat via e-post för att bekräfta din registrering.",
@@ -183,7 +191,10 @@ quiz:{
     error_text: 'Ditt valda svar är ej korrekt.',
 
     back_button: "Tillbaka",
+    tab_back_button: 'Annullera',
         button_confirm: 'Godkänn',
+    optional_title: 'Vänligen svara på följande frågor för bästa möjliga upplevelse på Accumeo.',
+    full_title: 'Du har svarat på alla frågor.',
 },
 tab_accordion: {
     Idea: "Idé",
@@ -319,6 +330,7 @@ profile_page: {
         personal_details: "Personuppgifter",
         account_settings: "Kontoinställningar",
         profile_campaigns: "Mina kampanjer",
+        quiz_tab: "Quizet",
 
     account: {
         title: "Kontoinställningar",

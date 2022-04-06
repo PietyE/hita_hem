@@ -14,6 +14,7 @@ export const en = {
                 Campaigns: "Campaigns",
                 Personal_details: "Personal details",
                 Account_settings: "Account settings",
+                Quiz_tab: 'Quiz',
                 Log_Out: "Log Out",
             },
         },
@@ -153,6 +154,10 @@ export const en = {
             title: "Request accepted!",
             text: "Please follow the instructions sent by email to reset your password.",
         },
+        successful_quiz_message: {
+            title: "Congratulations!",
+            text: "You have now completed the quiz and are ready to invest.",
+        },
         successfulInvestment: {
             title: "You have successfully completed the form!",
             text: "We will get back to you with further instructions.",
@@ -182,12 +187,18 @@ export const en = {
         successfulFaqPopup: {
             title: 'Your message has been successfully sent.',
         },
+        successfulOptionalQuiz: {
+            title: 'Thanks for your reply!',
+        },
         quiz: {
             title: 'To start the investment process, please answer the following questions.',
             text: 'These questions are to assess your financial literacy.',
             error_text: 'You have to select the right answer.',
             back_button: 'Back',
+            tab_back_button: 'Cancel',
             button_confirm: 'Confirm',
+            optional_title: 'To improve your experience on Accumeo, please answer all of the following questions.',
+            full_title: 'You have successfully completed the quiz.',
         },
         tab_accordion: {
             Idea: "Idea",
@@ -320,6 +331,8 @@ export const en = {
             personal_details: "Personal details",
             account_settings: "Account settings",
             profile_campaigns: "Campaigns",
+            quiz_tab: "Quiz",
+
 
             account: {
                 title: "My account settings",

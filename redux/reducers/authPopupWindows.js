@@ -13,7 +13,7 @@ import {
   SET_SHOW_QUIZ_ERROR,
   SET_SHOW_SUCCESSFUL_SUBSCRIBE,
   SET_SHOW_RAISE_ERROR,
-  // SET_SHOW_REQUEST_FOR_CHANGE,
+  SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE,
   SET_SHOW_REQUEST_FOR_CHANGE_PASSWORD,
   SET_SHOW_REQUEST_FOR_CHANGE_EMAIL,
   SET_SHOW_INVALID_TOKEN_MODAL,
@@ -27,6 +27,8 @@ import {
   SET_SHOW_POSTAL_CODE_NOTIFICATION,
   SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
   SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
+  SET_SHOW_OPTIONAL_QUIZ_MESSAGE,
+  SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -56,8 +58,12 @@ const initialValues = {
   showPostalCodeNotification: false,
   showCompleteBankIdRegistration: false,
   showCompleteSocialsRegistration: false,
+  showSuccessfulQuizMessage:false,
+  showOptionalQuizMessage: false,
   text: '',
   showCookie: false,
+  dataLossWarningFromProfile: false,
+
 };
 
 export const getShowCookiePopup = state => state.authPopupWindows.showCookie;
@@ -94,11 +100,15 @@ export const getChangeEmailOrPasswordText = state =>  state.authPopupWindows.tex
 export const getShowDenyDeletingAccount = state =>  state.authPopupWindows.showDenyDeletingAccount;
 export const getShowSuccessfulFaqPopup = state =>  state.authPopupWindows.showSuccessfulFaqPopup;
 export const getShowDataLossWarning = state =>  state.authPopupWindows.showDataLossWarning;
+export const getShowDataLossWarningFromProfile = state =>  state.authPopupWindows.dataLossWarningFromProfile;
+
 export const getShowFirstLoginPopup = state => state.authPopupWindows.showFirstLoginPopup;
 
 export const getShowPostalCodeNotification = state => state.authPopupWindows.showPostalCodeNotification;
 export const getShowCompleteBankIdRegistration = state => state.authPopupWindows.showCompleteBankIdRegistration;
 export const getShowCompleteSocialsRegistration = state => state.authPopupWindows.showCompleteSocialsRegistration;
+export const getShowSuccessfulQuizMessage = state => state.authPopupWindows.showSuccessfulQuizMessage;
+export const getShowOptionalQuizMessage = state => state.authPopupWindows.showOptionalQuizMessage;
 
 
 
@@ -161,6 +171,12 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, showCompleteBankIdRegistration: actions.payload }
     case SET_SHOW_COMPLETE_SOCIALS_REGISTRATION:
       return { ...state, showCompleteSocialsRegistration: actions.payload }
+    case SET_SHOW_SUCCESSFUL_QUIZ_MESSAGE:
+      return { ...state, showSuccessfulQuizMessage: actions.payload }
+    case SET_SHOW_OPTIONAL_QUIZ_MESSAGE:
+      return { ...state, showOptionalQuizMessage: actions.payload }
+    case SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE:
+      return { ...state, dataLossWarningFromProfile: actions.payload }
 
     default:
       return state;

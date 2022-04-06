@@ -771,6 +771,207 @@
   }
 }
 
+.quiz_tab{
+  .quiz_tab_title{
+    font-family: "Source sans Pro", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: rgba(0, 0, 0, 0.87);
+    margin-bottom: 27px;
+  }
+  .quiz_container{
+    display: flex;
+    padding-right: 120px;
+    .mandatory_questions{
+      display: flex;
+      flex-direction: column;
+      width: 596px;
+      height: fit-content;
+      margin-right: 20px;
+      background-color: #fff;
+      border: 1px solid #dce8f8;
+      box-sizing: border-box;
+      border-radius: 8px;
+      padding: 17px 25px 20px 25px;
+
+    }
+    .optional_questions{
+      display: flex;
+      flex-direction: column;
+      width: 596px;
+      height: fit-content;
+
+      background-color: #fff;
+      border: 1px solid #dce8f8;
+      box-sizing: border-box;
+      border-radius: 8px;
+      padding: 17px 25px 20px 25px;
+    }
+  }
+  .quiz_item {
+    display: flex;
+    flex-direction: column;
+    background: #FFFFFF;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 20px;
+    border: 1px solid black;
+
+    &:last-child {
+      margin-bottom: 0;
+
+
+    }
+
+    .quiz_item_title {
+      font-family: "Source Sans Pro",sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+      margin-bottom: 16px;
+
+      color: rgba(0, 0, 0, 0.87);
+    }
+
+    .quiz_item_option_label {
+      display: flex;
+      //align-items: center;
+      font-family: "Source Sans Pro",sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 160%;
+      color: rgba(0, 0, 0, 0.87);
+      cursor: pointer;
+
+    }
+    .quiz_item_option_label_text{
+      flex-basis: calc(100% - 49px);
+    }
+    .quiz_item_option_radio_check{
+      position: relative;
+      flex-basis: 24px;
+      height: 24px;
+      transform: translateY(2px);
+      margin-right: 25px;
+      border: 1px solid rgba(0, 0, 0, 0.38);
+      border-radius: 50px;
+      :before{
+        content: '';
+        display: none;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: #1F607C;
+        left: 3px;
+        top: 3px;
+        border-radius: 50px;
+      }
+    }
+    .quiz_item_option_radio_check_disabled{
+      @extend .quiz_item_option_radio_check;
+background-color: darkgrey;
+    }
+    .quiz_item_option_radio_check_active{
+      @extend .quiz_item_option_radio_check;
+
+      :before{
+        display: block;
+      }
+    }
+    .quiz_item_option_radio_check_warning{
+      @extend .quiz_item_option_radio_check;
+      border-color: #FF4D4F;
+      :before {
+        background: #FF4D4F;
+      }
+
+    }
+    //.quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
+    //  display: block;
+    //}
+
+    .quiz_item_option_radio {
+      display: none;
+    }
+    .quiz_text_warning{
+      color: red;
+    }
+  }
+  .quiz_item_warning {
+    border: 1px solid #FF4D4F;
+    position: relative;
+  }
+  .quiz_footer {
+    padding: 40px;
+
+    //height: 150px;
+    //background-color: rgba(220, 232, 248, 0.5);
+
+    .quiz_footer_buttons_wrapper{
+      //padding-top: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quiz_footer_button_back {
+      margin-right: 20px;
+      background-color: rgba(220, 232, 248, 0.5);
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+
+      width: 166px;
+      height: 56px;
+
+      &:focus{
+        color: #0E5394 !important;
+      }
+    }
+
+    .quiz_footer_button_confirm {
+      width: 166px;
+      height: 56px;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 150%;
+    }
+  }
+  .quiz_item_warning_notification {
+    height: 40px;
+    width: 225px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -16px;
+    right: -11px;
+    font-family: "Source Sans Pro",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 22px;
+    color: #FF4D4F;
+    background-color: #FFEAEB;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    span{
+      margin-left: 11px;
+    }
+    div {
+      height: 16px;
+      width: 16px;
+      margin-right: 11px;
+    }
+  }
+
+
+}
+
 .mobile_investments_container {
   display: none;
 }
@@ -785,7 +986,7 @@
       padding-left: 168px;
     }
     .profile_tab_bar {
-      width: 911px;
+      width: 966px;
       margin-bottom: 32px;
     }
   }
@@ -832,6 +1033,11 @@
       padding-left: 80px;
     }
   }
+  .quiz_tab{
+    .quiz_container{
+      padding-right: 80px;
+    }
+  }
 }
 
 @media screen and (max-width: 1240px) {
@@ -842,6 +1048,11 @@
   }
   .profile_campaigns_section {
     padding-right: 50px;
+  }
+  .quiz_tab{
+    .quiz_container{
+      padding-right: 50px;
+    }
   }
 }
 
@@ -984,9 +1195,19 @@
       }
     }
   }
+  .quiz_tab{
+    .quiz_tab_title{
+      text-align: center;
+      padding: 0 15px;
+    }
+    .quiz_container{
+      padding: 0 20px;
+
+    }
+  }
 }
 
-@media screen and (max-width: 925px) {
+@media screen and (max-width: 1000px) {
   .profile_section {
     .profile_tab_bar {
       width: 835px;
@@ -1093,6 +1314,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .quiz_tab{
+    .quiz_item{
+      border: none;
+      .quiz_item_option_label{
+        margin-bottom: 20px;
+      }
+    }
+    .quiz_container{
+      align-items: center;
+      .mandatory_questions{
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 100%;
+      }
+      .optional_questions{
+        margin-bottom: 15px;
+        width: 100%;
+      }
+    }
+  }
+  .quiz_column{
+    flex-direction: column;
+  }
+  .quiz_column_reverse{
+    flex-direction: column-reverse;
   }
 }
 
@@ -1284,6 +1531,15 @@
     }
     .profile_form_agreement_button_big{
       min-width: 135px;
+    }
+    .nav_tabs{
+      flex-wrap: wrap;
+      max-width: 370px;
+      .nav_tabs_button_container{
+        &:nth-child(3){
+          margin-right: 0;
+        }
+      }
     }
   }
   .account_settings_container {

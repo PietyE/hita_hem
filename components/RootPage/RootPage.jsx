@@ -36,6 +36,9 @@ import {
     getShowPostalCodeNotification,
     getShowCompleteBankIdRegistration,
     getShowCompleteSocialsRegistration,
+    getShowSuccessfulQuizMessage,
+    getShowOptionalQuizMessage,
+    getShowDataLossWarningFromProfile,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -101,9 +104,9 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
-// const ShowCookiePopup = dynamic(() =>
-//     import("components/CookieModal"), { ssr: false }
-// );
+const SuccessfulQuizMessage = dynamic(() =>
+    import("components/SuccessfulQuizMessage"), { ssr: false }
+);
 const SuccessfulFaqPopup = dynamic(() =>
     import("components/SuccessfulFaqPost"), { ssr: false }
 );
@@ -115,7 +118,7 @@ const FirstLoginPopup = dynamic(() =>
 );
 
 const Quiz = dynamic(() =>
-    import("components/Quiz"), { ssr: false }
+    import("components/QuizPopup"), { ssr: false }
 );
 const PostalCodeNotification = dynamic(() =>
     import("components/ShowPostalCodeNotification"), { ssr: false }
@@ -131,6 +134,12 @@ const CompleteBankIdRegistrationPopup = dynamic(() =>
 
 const CompleteSocialsRegistrationPopup = dynamic(() =>
     import("components/CompleteSocialsRegistrationPopup"), { ssr: false }
+);
+const SuccessfulOptionalQuiz = dynamic(() =>
+    import("components/SuccessfulOptionalQuiz"), { ssr: false }
+);
+const DataLossWarningFromProfile = dynamic(() =>
+    import("components/DataLossWarningFromProfile"), { ssr: false }
 );
 
 const RootPage = ({ children, initLang = "" }) => {
@@ -177,6 +186,12 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
     const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
     const isShowCompleteSocialsRegistration = useSelector(getShowCompleteSocialsRegistration)
+    const isShowSuccessfulQuizMessage = useSelector(getShowSuccessfulQuizMessage)
+    const isShowOptionalQuizMessage = useSelector(getShowOptionalQuizMessage)
+    const showDataLossWarningFromProfile = useSelector(getShowDataLossWarningFromProfile)
+
+
+
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -353,6 +368,10 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
           {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
           {!!isShowCompleteSocialsRegistration && <CompleteSocialsRegistrationPopup show={!!isShowCompleteSocialsRegistration}/>}
+          {!!isShowSuccessfulQuizMessage && <SuccessfulQuizMessage show={!!isShowSuccessfulQuizMessage}/>}
+          {!!isShowOptionalQuizMessage && <SuccessfulOptionalQuiz show={!!isShowOptionalQuizMessage}/>}
+          {!!showDataLossWarningFromProfile && <DataLossWarningFromProfile data={showDataLossWarningFromProfile}/>}
+
 
 
           {isShowCookie && <CookieNotification/>}

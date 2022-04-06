@@ -65,9 +65,9 @@ import {
     setShowRequestForChangePassword,
     setShowFirstLoginPopup,
     setShowCompleteBankIdRegistration,
-    setShowCompleteSocialsRegistration,
+    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage,
 } from "../actions/authPopupWindows";
-import {getBIdKeySelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
+import {getBIdKeySelector, getQuizIsPassedSelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
 import {
     setIsBankIdResident,
@@ -644,12 +644,14 @@ function* requestForCheckingToken({payload}) {
     }
 }
 
-function* requestForQuiz() {
+function* requestForQuiz(props) {
     try {
         yield put(setFetchingUsers(true));
         const res = yield call([auth, "requestForQuiz"]);
         yield put(setQuiz(res?.data))
-        yield put(setShowQuiz(true))
+        if(props?.payload !== 'from_profile'){
+            yield put(setShowQuiz(true))
+        }
     } catch (error) {
         yield put(
             setAuthError({status: error?.response?.status, data: error?.response?.data})
@@ -665,7 +667,29 @@ function* requestForCheckingQuiz({payload}) {
         yield put(setFetchingUsers(true));
         yield call([auth, "checkQuizAnswers"], {answers:payload});
         yield put(setShowQuiz(false))
-        yield put(setQuizIsPassed(true))
+        const isQuizPassed = yield select(getQuizIsPassedSelector)
+        if(!isQuizPassed){
+            if (typeof window !== "undefined") {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto",
+                });
+            }
+            yield put(setShowSuccessfulQuizMessage(true))
+        }else{
+            if (typeof window !== "undefined") {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto",
+                });
+            }
+            yield put(setShowOptionalQuizMessage(true))
+
+        }
+        yield call(uploadUserData)
+
+        // yield put(setQuizIsPassed(true))
+
     } catch (error) {
         if (error?.response?.data?.questions) {
             yield put(setQuizErrors(error?.response?.data?.questions))
