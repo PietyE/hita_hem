@@ -5,8 +5,22 @@ import {getAnswersSelector, getQuizIsPassedSelector, getQuizSelector} from "../.
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import ButtonStyled from "../../components/ui/Button";
+import isEqual from "lodash/isEqual";
 
-const QuizTab = () => {
+export  const convertAnswers = (data, isQuizPassed) => {
+    let arrayOfAnswer = []
+    if (isQuizPassed && Array.isArray(data)) {
+        arrayOfAnswer = data?.map((el) => el.pk)
+    } else {
+        for (let answer in data) {
+            arrayOfAnswer.push(data[answer])
+        }
+    }
+    return arrayOfAnswer
+}
+
+
+const QuizTab = ({wasChanges,setWasChanges}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch()
     const quizData = useSelector(getQuizSelector)
@@ -15,28 +29,35 @@ const QuizTab = () => {
 
     const [mandatoryQuestions, setMandatoryQuestions] = useState([])
     const [optionalQuestions, setOptionalQuestions] = useState([])
-    const [quizResults, setQuizResults] = useState({})
+    const [quizResults, setQuizResults] = useState(null)
+    // const [wasChanges, setWasChanges] = useState(false)
 
-    useEffect(()=>{
+    useEffect(() => {
         _getQuiz('from_profile')
         return () => {
             _setQuizErrors(null)
         }
-    },[])
+    }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         const optional = []
         const mandatory = []
-        quizData?.forEach((el)=>el.optional ? optional.push(el) : mandatory.push(el))
+        quizData?.forEach((el) => el.optional ? optional.push(el) : mandatory.push(el))
 
         setOptionalQuestions(optional)
         setMandatoryQuestions(mandatory)
-    },[quizData])
+    }, [quizData])
 
+
+    useEffect(() => {
+        setQuizResults(quizAnswers)
+    }, [])
 
     useEffect(()=>{
-        setQuizResults(quizAnswers)
-    },[])
+        const answersNew = convertAnswers(quizResults, isQuizPassed)
+        const answersFromApi = quizAnswers?.map((el) => el.pk)
+        setWasChanges(!isEqual(answersFromApi, answersNew))
+    },[isQuizPassed,quizResults,quizAnswers])
 
     const _getQuiz = useCallback((data) => {
         dispatch(getQuiz(data));
@@ -59,91 +80,85 @@ const QuizTab = () => {
         // setMandatoryQuestions(mandatory)
     }
     const receiveAnswer = (data, answerNumber) => {
-        if(isQuizPassed){
-            if(!Array.isArray(quizResults)){
+        if (isQuizPassed) {
+            if (!Array.isArray(quizResults)) {
                 const answer = {question_id: Number(answerNumber), pk: Number(data)}
-                const questionIndex = quizAnswers.findIndex((el)=>el.question_id === Number(answerNumber))
+                const questionIndex = quizAnswers.findIndex((el) => el.question_id === Number(answerNumber))
                 const newArray = [...quizAnswers]
-                if(questionIndex === -1){
+                if (questionIndex === -1) {
                     newArray.push(answer)
-                }else{
+                } else {
                     newArray[questionIndex] = answer
                 }
                 setQuizResults(newArray)
-            }else{
+            } else {
                 const answer = {question_id: Number(answerNumber), pk: Number(data)}
-                const questionIndex = quizResults.findIndex((el)=>el.question_id === Number(answerNumber))
+                const questionIndex = quizResults.findIndex((el) => el.question_id === Number(answerNumber))
                 const newArray = [...quizResults]
-                if(questionIndex === -1){
+                if (questionIndex === -1) {
                     newArray.push(answer)
-                }else{
+                } else {
                     newArray[questionIndex] = answer
                 }
                 setQuizResults(newArray)
             }
 
 
-        }else{
+        } else {
             setQuizResults({...quizResults, [answerNumber]: Number(data)})
         }
     }
 
-    const submitQuiz = () => {
-        let arrayOfAnswer = []
 
-        if(isQuizPassed){
-            arrayOfAnswer = quizResults.map((el)=>el.pk)
-        }else{
-            for (let answer in quizResults) {
-                arrayOfAnswer.push(quizResults[answer])
-            }
-        }
-        _checkQuizAnswers(arrayOfAnswer)
+    const submitQuiz = () => {
+       const convertedAnswers = convertAnswers(quizResults, isQuizPassed)
+            _checkQuizAnswers(convertedAnswers)
     }
 
-let _title = ''
+    let _title = ''
 
-    if(quizAnswers?.length === 0){
+    if (quizAnswers?.length === 0) {
         _title = t("quiz.title")
-    }else if(quizData?.length > quizAnswers?.length){
+    } else if (quizData?.length > quizAnswers?.length) {
         _title = t("quiz.optional_title")
-    }else if(quizData?.length === quizAnswers?.length){
+    } else if (quizData?.length === quizAnswers?.length) {
         _title = t("quiz.full_title")
     }
-    const _containerStyle = isQuizPassed? "quiz_column_reverse" : "quiz_column"
+    const _containerStyle = isQuizPassed ? "quiz_column_reverse" : "quiz_column"
 
     return (
-<section className='quiz_tab'>
-    <h2 className='quiz_tab_title'>
-        {_title}
-    </h2>
-    <div className={`quiz_container ${_containerStyle}`}>
-        {mandatoryQuestions?.length > 0 && (
-            <div className='mandatory_questions'>
-                <Quiz quizData={mandatoryQuestions} receiveAnswer={receiveAnswer} quizAnswers={quizAnswers}/>
-            </div>
-        )}
-        {/*{optionalQuestions?.length > 0 && (*/}
-            <div className='optional_questions'>
-                <Quiz quizData={optionalQuestions} receiveAnswer={receiveAnswer} quizAnswers={quizAnswers}/>
+        <section className='quiz_tab'>
+            <h2 className='quiz_tab_title'>
+                {_title}
+            </h2>
+            <div className={`quiz_container ${_containerStyle}`}>
+                {mandatoryQuestions?.length > 0 && (
+                    <div className='mandatory_questions'>
+                        <Quiz quizData={mandatoryQuestions} receiveAnswer={receiveAnswer} quizAnswers={quizAnswers}/>
+                    </div>
+                )}
+                {/*{optionalQuestions?.length > 0 && (*/}
+                <div className='optional_questions'>
+                    <Quiz quizData={optionalQuestions} receiveAnswer={receiveAnswer} quizAnswers={quizAnswers}/>
+
+                </div>
+                {/*)}*/}
 
             </div>
-        {/*)}*/}
+            <footer className='quiz_footer'>
+                <div className='quiz_footer_buttons_wrapper'>
+                    <ButtonStyled colorStyle='outline-green'
+                                  className='quiz_footer_button_back quiz_footer_button'
+                                  disabled = {!wasChanges}
+                                  onClick={handleBackButton}>{t("quiz.back_button")}</ButtonStyled>
+                    <ButtonStyled colorStyle='dark-green'
+                                  className='quiz_footer_button_confirm quiz_footer_button'
+                        disabled = {!wasChanges}
+                                  onClick={submitQuiz}>{t("quiz.button_confirm")}</ButtonStyled>
 
-    </div>
-    <footer className = 'quiz_footer'>
-        <div className='quiz_footer_buttons_wrapper'>
-            <ButtonStyled colorStyle = 'outline-green'
-                          className = 'quiz_footer_button_back quiz_footer_button'
-                          onClick = {handleBackButton}>{t("quiz.back_button")}</ButtonStyled>
-            <ButtonStyled colorStyle = 'dark-green'
-                          className = 'quiz_footer_button_confirm quiz_footer_button'
-                          // disabled = {Object.keys(quizResults).length !== quizDataFromApi?.length}
-                          onClick = {submitQuiz}>{t("quiz.button_confirm")}</ButtonStyled>
+                </div>
 
-        </div>
-
-    </footer>
+            </footer>
         </section>
     );
 }

@@ -187,11 +187,15 @@ export const en = {
         successfulFaqPopup: {
             title: 'Your message has been successfully sent.',
         },
+        successfulOptionalQuiz: {
+            title: 'Thanks for your reply!',
+        },
         quiz: {
             title: 'To start the investment process, please answer the following questions.',
             text: 'These questions are to assess your financial literacy.',
             error_text: 'You have to select the right answer.',
             back_button: 'Back',
+            tab_back_button: 'Cancel',
             button_confirm: 'Confirm',
             optional_title: 'To improve your experience on Accumeo, please answer all of the following questions.',
             full_title: 'You have successfully completed the quiz.',

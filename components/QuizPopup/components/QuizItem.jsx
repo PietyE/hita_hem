@@ -15,7 +15,7 @@ const QuizItem = ({data, index, onSelect, warningList, userQuizAnswers}) => {
             setSelectedAnswer(questionInfo?.pk)
         }
 
-    }, [])
+    }, [userQuizAnswers])
 
     useEffect(() => {
         if (warningList.includes(pk.toString())) {
@@ -24,6 +24,7 @@ const QuizItem = ({data, index, onSelect, warningList, userQuizAnswers}) => {
     }, [warningList])
 
     let _warningStyle = showWarning ? 'quiz_item_warning' : null
+
     const saveAnswer = (e) => {
         if(optional){
             onSelect(e.target.value, e.target.dataset.id)
@@ -53,14 +54,14 @@ const QuizItem = ({data, index, onSelect, warningList, userQuizAnswers}) => {
                 let _radioStyle = 'quiz_item_option_radio_check'
                 if(Number(selectedAnswer) === option.pk){
 
-                    _radioStyle = 'quiz_item_option_radio_check_active zzz'
+                    _radioStyle = 'quiz_item_option_radio_check_active'
                 }
                 if(showWarning && option.pk === Number(selectedAnswer)){
                     _radioStyle = 'quiz_item_option_radio_check_warning quiz_item_option_radio_check_active'
                 }
 
                 const _style = {
-                    backgroundColor: userQuizAnswers?.length >0 && !optional ? '#d0d0d0' : ''
+                    backgroundColor: userQuizAnswers?.length >0 && !optional ? 'rgb(230 237 250)' : ''
                 }
 
                 return (

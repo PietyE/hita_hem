@@ -193,6 +193,10 @@
 
       width: 166px;
       height: 56px;
+
+      &:focus{
+        color: #0E5394 !important;
+      }
     }
 
     .quiz_footer_button_confirm {

@@ -65,7 +65,7 @@ import {
     setShowRequestForChangePassword,
     setShowFirstLoginPopup,
     setShowCompleteBankIdRegistration,
-    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage,
+    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage,
 } from "../actions/authPopupWindows";
 import {getBIdKeySelector, getQuizIsPassedSelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -669,7 +669,22 @@ function* requestForCheckingQuiz({payload}) {
         yield put(setShowQuiz(false))
         const isQuizPassed = yield select(getQuizIsPassedSelector)
         if(!isQuizPassed){
+            if (typeof window !== "undefined") {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto",
+                });
+            }
             yield put(setShowSuccessfulQuizMessage(true))
+        }else{
+            if (typeof window !== "undefined") {
+                window.scrollTo({
+                    top: 0,
+                    behavior: "auto",
+                });
+            }
+            yield put(setShowOptionalQuizMessage(true))
+
         }
         yield call(uploadUserData)
 

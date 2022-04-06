@@ -788,6 +788,7 @@
       display: flex;
       flex-direction: column;
       width: 596px;
+      height: fit-content;
       margin-right: 20px;
       background-color: #fff;
       border: 1px solid #dce8f8;
@@ -800,6 +801,8 @@
       display: flex;
       flex-direction: column;
       width: 596px;
+      height: fit-content;
+
       background-color: #fff;
       border: 1px solid #dce8f8;
       box-sizing: border-box;
@@ -924,6 +927,10 @@ background-color: darkgrey;
 
       width: 166px;
       height: 56px;
+
+      &:focus{
+        color: #0E5394 !important;
+      }
     }
 
     .quiz_footer_button_confirm {

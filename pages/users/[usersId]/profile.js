@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useTranslation } from "react-i18next";
@@ -18,6 +18,7 @@ import PersonalDetails from "containers/ProfilePage/PersonalDetails";
 import SpinnerStyled from "components/ui/Spinner";
 import { usePrevious } from "customHooks/usePrevious";
 import dynamic from "next/dynamic";
+import {setShowDataLossWarningFromProfile} from "../../../redux/actions/authPopupWindows";
 
 const Investment = dynamic(() => import("containers/ProfilePage/Investment"), {
   ssr: false,
@@ -42,14 +43,23 @@ const ProfilePage = () => {
   const isFetching = useSelector(getIsFetchingAuthSelector);
   const prevIsFetch = usePrevious(isFetching);
 
+
+
   useEffect(() => {
     if (!isAuth && !isFetching && prevIsFetch) {
       history.push(HOME_ROUTE);
     }
   }, [isAuth, history, isFetching]);
 
+  const [showQuizPopup, setShowQuizPopup] = useState(false)
+
   const handleClick = (key) => {
-    dispatch(setActiveTab(key));
+    if(activeTab === 'quiz' && showQuizPopup){
+      dispatch(setShowDataLossWarningFromProfile(key))
+    }else{
+      dispatch(setActiveTab(key));
+
+    }
   };
 
   if (!isAuth) {
@@ -81,7 +91,7 @@ const ProfilePage = () => {
           className="profile_tab_bar"
         />
 
-        <TabContent activeTab={activeTab}/>
+        <TabContent activeTab={activeTab} setShowQuizPopup={setShowQuizPopup} showQuizPopup={showQuizPopup}/>
         </div>
       </section>
       <section className="profile_section_mobile">
@@ -108,7 +118,7 @@ const ProfilePage = () => {
         </Collapse>
         <Collapse in={activeTab === "quiz"}>
           <div id="quiz">
-            <QuizTab />
+            <QuizTab setWasChanges={setShowQuizPopup} wasChanges={showQuizPopup}/>
           </div>
         </Collapse>
       </section>
@@ -116,7 +126,7 @@ const ProfilePage = () => {
   );
 };
 
-const TabContent = ({ activeTab }) => {
+const TabContent = ({ activeTab,setShowQuizPopup,showQuizPopup }) => {
   switch (activeTab) {
     case "investment":
       return <Investment />;
@@ -127,7 +137,7 @@ const TabContent = ({ activeTab }) => {
     case "campaigns":
       return <ProfilePageCampaigns />;
     case "quiz":
-      return <QuizTab />;
+      return <QuizTab setWasChanges={setShowQuizPopup} wasChanges={showQuizPopup}/>;
     default:
       return null;
   }

@@ -164,6 +164,9 @@ successfulDeletedAccount: {
 successfulFaqPopup: {
     title: 'Ditt meddelande har skickats.',
 },
+        successfulOptionalQuiz: {
+            title: 'Dina svar är nu registrerade!',
+        },
 successful_sign_up: {
     title: "Välkommen till Accumeo!",
         text: "Vänligen följ de instruktioner vi skickat via e-post för att bekräfta din registrering.",
@@ -188,6 +191,7 @@ quiz:{
     error_text: 'Ditt valda svar är ej korrekt.',
 
     back_button: "Tillbaka",
+    tab_back_button: 'Annullera',
         button_confirm: 'Godkänn',
     optional_title: 'Vänligen svara på följande frågor för bästa möjliga upplevelse på Accumeo.',
     full_title: 'Du har svarat på alla frågor.',

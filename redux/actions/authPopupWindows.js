@@ -27,6 +27,8 @@ import {
   SET_SHOW_POSTAL_CODE_NOTIFICATION,
   SET_SHOW_COMPLETE_BANK_ID_REGISTRATION,
   SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
+  SET_SHOW_OPTIONAL_QUIZ_MESSAGE,
+  SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -147,6 +149,10 @@ export const setShowDataLossWarning = payload =>({
   type: SET_SHOW_DATA_LOSS_WARNING,
   payload,
 })
+export const setShowDataLossWarningFromProfile = payload =>({
+  type: SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE,
+  payload,
+})
 
 export const setShowFirstLoginPopup = payload =>({
   type: SET_SHOW_SUCCESSFUL_FIRST_LOGIN,
@@ -173,5 +179,9 @@ export const setShowSuccessfulQuizMessage = payload =>({
   payload,
 })
 
+export const setShowOptionalQuizMessage = payload =>({
+  type: SET_SHOW_OPTIONAL_QUIZ_MESSAGE,
+  payload,
+})
 
 
