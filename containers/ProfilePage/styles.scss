@@ -10,7 +10,7 @@
     margin-left: auto;
   }
   .profile_tab_bar {
-    width: 911px;
+    width: 966px;
     margin-bottom: 32px;
     font-family: "Source Sans Pro",sans-serif;
     font-style: normal;
@@ -890,9 +890,9 @@ background-color: darkgrey;
       }
 
     }
-    //.quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
-    //  display: block;
-    //}
+    .quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
+      display: block;
+    }
 
     .quiz_item_option_radio {
       display: none;
@@ -1212,7 +1212,7 @@ background-color: darkgrey;
     .profile_tab_bar {
       width: 835px;
       .tab_bar_item_button{
-        font-size: 14px;
+        font-size: 16px;
         padding: 0 22px;
       }
     }
