@@ -1,6 +1,7 @@
 .profile_section {
   background: rgba(220, 232, 248, 0.5);
   min-height: calc(100vh - 180px);
+
   .profile_section_content_container {
     padding-top: 35px;
     padding-left: 230px;
@@ -9,10 +10,11 @@
     margin-right: auto;
     margin-left: auto;
   }
+
   .profile_tab_bar {
     width: 966px;
     margin-bottom: 32px;
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -77,7 +79,7 @@
     color: #1c4587;
 
     button {
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 16px;
@@ -86,10 +88,11 @@
       color: #ffffff;
     }
   }
-  .profile_form_upload_avatar_warning{
+
+  .profile_form_upload_avatar_warning {
     max-width: 255px;
     text-align: center;
-    color:red;
+    color: red;
   }
 
   .profile_form_upload_avatar_button {
@@ -99,7 +102,7 @@
   }
 
   .profile_form_upload_avatar_button_remove {
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
@@ -111,7 +114,7 @@
 
 .profile_personal_details {
   .profile_personal_details_title {
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -133,7 +136,7 @@
 
 
       .profile_form_input_container {
-        font-family: "Source Sans Pro",sans-serif;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -141,14 +144,15 @@
         color: #000;
         margin-bottom: 19px;
       }
-      .profile_form_inputs_container{
+
+      .profile_form_inputs_container {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
         //justify-content: space-between;
       }
 
-      .profile_form_date_block{
+      .profile_form_date_block {
         display: flex;
         flex-wrap: wrap;
         align-items: flex-start;
@@ -156,7 +160,7 @@
       }
 
       .profile_form_birth_text {
-        font-family: "Source Sans Pro",sans-serif;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
@@ -182,7 +186,7 @@
       .profile_first_name,
       .profile_country,
       .profile_id_number,
-      .profile_address{
+      .profile_address {
         margin-right: 20px;
       }
 
@@ -220,6 +224,7 @@
         cursor: pointer;
         pointer-events: none;
       }
+
       .warning_date_text {
         transform: translateY(0);
         bottom: -34px;
@@ -243,24 +248,28 @@
           resize: none;
         }
       }
-      .profile_form_input_with_arrow{
+
+      .profile_form_input_with_arrow {
         padding-right: 43px;
       }
+
       .profile_form_warning_text {
         //bottom: -38px;
         transform: translateY(0);
       }
+
       .profile_form_input_warning {
         @extend .profile_form_input;
         background: rgba(246, 86, 71, 0.1);
         border: 1px solid #ff4d4f;
       }
+
       .profile_form_agreement {
         display: flex;
         align-items: center;
         color: #000;
         margin-bottom: 10px;
-        font-family: "Source Sans Pro",sans-serif;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -284,15 +293,16 @@
       }
     }
 
-    .profile_form_footer_text{
-      font-family: "Source Sans Pro",sans-serif;
+    .profile_form_footer_text {
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
       line-height: 130%;
       color: #000;
     }
-    .profile_form_footer_link{
+
+    .profile_form_footer_link {
       color: #000;
       text-decoration: underline;
       cursor: pointer;
@@ -302,18 +312,20 @@
       margin-bottom: 19px;
       margin-top: 19px;
     }
-    .company_number_block{
+
+    .company_number_block {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-bottom: 18px;
-      .company_number_label{
+
+      .company_number_label {
         display: flex;
         align-items: center;
         width: 55%;
 
-        font-family:"Source Sans Pro",sans-serif;
+        font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: normal;
         font-size: 14px;
@@ -321,43 +333,49 @@
         cursor: pointer;
 
         color: rgba(0, 0, 0, 0.87);
-        .company_number_block_checkbox{
+
+        .company_number_block_checkbox {
           height: 20px;
           width: 20px;
           margin-right: 10px;
           cursor: pointer;
 
-          &:focus-visible{
+          &:focus-visible {
             outline: none;
             outline-offset: 0;
           }
         }
       }
-      .company_number_block_input{
+
+      .company_number_block_input {
         width: 40%;
       }
     }
-    .profile_form_campaign_number_warning{
+
+    .profile_form_campaign_number_warning {
       margin-left: 60%;
     }
+
     .profile_form_footer {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      .profile_form_captcha_text{
+      .profile_form_captcha_text {
         max-width: 80%;
         padding-right: 5px;
         text-align: left;
         font-size: 12px;
       }
-      .profile_form_footer_button_wrapper{
+
+      .profile_form_footer_button_wrapper {
         display: flex;
       }
     }
   }
+
   .profile_form_button_cancel {
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 16px;
@@ -366,11 +384,13 @@
     margin-left: 25px;
     margin-right: 25px;
   }
+
   .profile_form_agreement_button {
     height: 48px;
     min-width: 86px;
   }
-  .profile_form_agreement_button_big{
+
+  .profile_form_agreement_button_big {
     min-width: 135px;
   }
 }
@@ -380,21 +400,24 @@
 }
 
 .account_settings_container {
-  .account_settings_change_block{
+  .account_settings_change_block {
     display: flex;
   }
-  .account_settings_form_text_wrapper{
-    width: 60%  ;
+
+  .account_settings_form_text_wrapper {
+    width: 60%;
   }
-  .account_settings_form_button_wrapper{
+
+  .account_settings_form_button_wrapper {
     width: 40%;
     display: flex;
     justify-content: center;
     //align-items: center;
     padding-left: 45px;
+
     .account_settings_button_save {
       background-color: #0b5394;
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       margin-top: auto;
       margin-bottom: 25px;
       font-size: 14px;
@@ -402,14 +425,17 @@
       width: 100%;
     }
   }
-  .account_settings_split_line{
+
+  .account_settings_split_line {
     margin-bottom: 15px;
   }
-  .account_settings_forms_container{
+
+  .account_settings_forms_container {
     display: flex;
   }
+
   .account_settings_title {
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -418,19 +444,21 @@
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 25px;
   }
+
   .account_settings_form {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 596px;
-    margin-right: 20px  ;
+    margin-right: 20px;
     background-color: #fff;
     border: 1px solid #dce8f8;
     box-sizing: border-box;
     border-radius: 8px;
     padding: 17px 25px 20px 25px;
+
     .account_settings_form_title {
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
@@ -439,9 +467,10 @@
       color: #0b5394;
       margin-bottom: 10px;
     }
+
     .account_settings_form_label {
       position: relative;
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -449,6 +478,7 @@
       color: #000;
       width: 100%;
       margin-bottom: 20px;
+
       .account_settings_form_input {
         height: 40px;
         background: #ffffff;
@@ -457,28 +487,33 @@
         width: 100%;
         margin-top: 7px;
         padding-left: 15px;
+
         &:focus {
           outline: none;
           background: rgba(137, 207, 240, 0.2);
           border: 1px solid #0E5394;
         }
       }
+
       .input_warning_text {
         bottom: -40px;
         transform: translateY(0);
       }
     }
+
     .profile_account_icon_eye {
       top: 43px;
     }
+
     .label_confirm_password {
       margin-bottom: 30px;
     }
+
     .account_settings_forgot_link {
       position: absolute;
       right: 27px;
       top: 160px;
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 12px;
@@ -487,8 +522,9 @@
       cursor: pointer;
       z-index: 2;
     }
+
     .account_settings_text_delete {
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 14px;
@@ -497,8 +533,9 @@
       margin-bottom: 2px;
       cursor: pointer;
     }
+
     .account_settings_text {
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 12px;
@@ -507,6 +544,7 @@
       color: #000;
       margin-bottom: 20px;
     }
+
     .account_settings_buttons_container {
       display: flex;
       width: calc(100% + 50px);
@@ -531,7 +569,8 @@
 
     }
   }
-  .account_settings_subscribes{
+
+  .account_settings_subscribes {
     width: 596px;
     min-height: 100%;
     background-color: #fff;
@@ -539,8 +578,9 @@
     box-sizing: border-box;
     border-radius: 8px;
     padding: 17px 25px 20px 25px;
-    .account_settings_subscribes_title{
-      font-family: "Source Sans Pro",sans-serif;
+
+    .account_settings_subscribes_title {
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;
@@ -549,18 +589,22 @@
       color: #0b5394;
       margin-bottom: 10px;
     }
-    .account_settings_subscribe_list{
+
+    .account_settings_subscribe_list {
       padding-bottom: 20px;
       padding: 0;
-      .subscribe_item{
+
+      .subscribe_item {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 20px;
-        .subscribe_inputs_container{
+
+        .subscribe_inputs_container {
           display: flex;
         }
-        .subscribe_label{
+
+        .subscribe_label {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -573,7 +617,7 @@
           border: 1px solid black;
 
 
-          &:last-child{
+          &:last-child {
             border-left: none;
             border-radius: 0 5px 5px 0;
           }
@@ -582,15 +626,17 @@
             display: none;
           }
         }
+
         .active_radio {
           background-color: #0e5394;
           color: #fff;
         }
       }
     }
-    .account_settings_subscribe_button{
+
+    .account_settings_subscribe_button {
       margin-left: auto;
-      font-family: Source Sans Pro,sans-serif;
+      font-family: Source Sans Pro, sans-serif;
       margin-top: auto;
       margin-bottom: 25px;
       font-size: 14px;
@@ -601,6 +647,7 @@
 .profile_campaigns_section {
   padding: 32px 80px 32px 0;
   max-width: 1338px;
+
   .profile_campaigns_title {
     font-family: 'Source sans Pro', sans-serif;
     font-style: normal;
@@ -610,6 +657,7 @@
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 27px;
   }
+
   .profile_campaigns_table_header {
     display: flex;
     align-items: center;
@@ -620,6 +668,7 @@
     border-radius: 8px 8px 0 0;
     padding-left: 25px;
     padding-right: 25px;
+
     .profile_campaigns_table_header_text {
       font-family: 'Source sans Pro', sans-serif;
       font-style: normal;
@@ -629,25 +678,31 @@
       color: #ffffff;
       margin-bottom: 0;
     }
+
     .table_header_campaign_name {
       width: 23%;
       margin-right: 3%;
     }
+
     .table_header_campaign_link {
       width: 29%;
     }
+
     .table_header_campaign_s_date {
       text-align: center;
       width: 18%;
     }
+
     .table_header_campaign_e_date {
       text-align: center;
       width: 10%;
     }
+
     .table_header_campaign_status {
       text-align: center;
       width: 10%;
     }
+
     .table_header_campaign_raised {
       text-align: center;
       width: 10%;
@@ -657,19 +712,23 @@
     .table_invest_header_name {
       width: 30%;
     }
+
     .table_invest_header_link {
       width: 32%;
     }
+
     .table_invest_header_amount {
       text-align: center;
       width: 13%;
     }
+
     .table_invest_header_shares {
       text-align: center;
       width: 13%;
       margin-right: 12%;
     }
   }
+
   .profile_campaigns_list {
     display: flex;
     flex-direction: column;
@@ -683,23 +742,28 @@
     border-bottom-left-radius: 8px;
     padding-left: 0;
     width: 100%;
-    .profile_campaigns_empty_list_text{
+
+    .profile_campaigns_empty_list_text {
       padding: 20px;
       margin-bottom: 0;
     }
-    .profile_campaigns_empty_list_link{
+
+    .profile_campaigns_empty_list_link {
       cursor: pointer;
       color: #0b5394;
     }
+
     .profile_campaigns_item {
       display: flex;
       align-items: center;
       width: 100%;
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding: 10px 25px;
+
       &:last-child {
         border-bottom: 1px solid rgba(0, 0, 0, 0);
       }
+
       .profile_campaigns_table_item_text {
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
@@ -709,24 +773,29 @@
         color: rgba(0, 0, 0, 0.87);
         margin-bottom: 0;
       }
+
       .table_item_campaign_name {
         width: 23%;
         margin-right: 3%;
       }
+
       .table_item_campaign_link {
         width: 29%;
         font-style: normal;
         font-weight: normal;
         color: #3c64b1;
       }
+
       .table_item_campaign_s_date {
         text-align: center;
         width: 18%;
       }
+
       .table_item_campaign_e_date {
         text-align: center;
         width: 10%;
       }
+
       .table_item_campaign_status {
         text-align: center;
         width: 10%;
@@ -735,6 +804,7 @@
         line-height: 150%;
         color: #1f607c;
       }
+
       .table_item_campaign_raised {
         text-align: center;
         width: 10%;
@@ -744,6 +814,7 @@
         width: 27%;
         margin-right: 2%;
       }
+
       .table_item_invest_link {
         width: 32%;
         font-style: normal;
@@ -751,17 +822,21 @@
         color: #3c64b1;
         margin-right: 1%;
       }
+
       .table_item_invest_amount {
         width: 13%;
         text-align: center;
       }
+
       .table_item_invest_shares {
         width: 13%;
         text-align: center;
       }
+
       .table_item_contact {
         width: 12%;
       }
+
       .profile_investment_item_invest_button {
         min-width: 110px;
         height: 42px;
@@ -771,8 +846,8 @@
   }
 }
 
-.quiz_tab{
-  .quiz_tab_title{
+.quiz_tab {
+  .quiz_tab_title {
     font-family: "Source sans Pro", sans-serif;
     font-style: normal;
     font-weight: bold;
@@ -781,10 +856,12 @@
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 27px;
   }
-  .quiz_container{
+
+  .quiz_container {
     display: flex;
     padding-right: 120px;
-    .mandatory_questions{
+
+    .mandatory_questions {
       display: flex;
       flex-direction: column;
       width: 596px;
@@ -797,7 +874,13 @@
       padding: 17px 25px 20px 25px;
 
     }
-    .optional_questions{
+
+    .mandatory_questions_alone {
+      width: 966px;
+      margin-right: 0;
+    }
+
+    .optional_questions {
       display: flex;
       flex-direction: column;
       width: 596px;
@@ -810,6 +893,7 @@
       padding: 17px 25px 20px 25px;
     }
   }
+
   .quiz_item {
     display: flex;
     flex-direction: column;
@@ -826,7 +910,7 @@
     }
 
     .quiz_item_title {
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: bold;
       font-size: 18px;
@@ -839,7 +923,7 @@
     .quiz_item_option_label {
       display: flex;
       //align-items: center;
-      font-family: "Source Sans Pro",sans-serif;
+      font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
@@ -848,10 +932,12 @@
       cursor: pointer;
 
     }
-    .quiz_item_option_label_text{
+
+    .quiz_item_option_label_text {
       flex-basis: calc(100% - 49px);
     }
-    .quiz_item_option_radio_check{
+
+    .quiz_item_option_radio_check {
       position: relative;
       flex-basis: 24px;
       height: 24px;
@@ -859,7 +945,8 @@
       margin-right: 25px;
       border: 1px solid rgba(0, 0, 0, 0.38);
       border-radius: 50px;
-      :before{
+
+      :before {
         content: '';
         display: none;
         position: absolute;
@@ -871,47 +958,55 @@
         border-radius: 50px;
       }
     }
-    .quiz_item_option_radio_check_disabled{
+
+    .quiz_item_option_radio_check_disabled {
       @extend .quiz_item_option_radio_check;
-background-color: darkgrey;
+      background-color: darkgrey;
     }
-    .quiz_item_option_radio_check_active{
+
+    .quiz_item_option_radio_check_active {
       @extend .quiz_item_option_radio_check;
 
-      :before{
+      :before {
         display: block;
       }
     }
-    .quiz_item_option_radio_check_warning{
+
+    .quiz_item_option_radio_check_warning {
       @extend .quiz_item_option_radio_check;
       border-color: #FF4D4F;
+
       :before {
         background: #FF4D4F;
       }
 
     }
-    .quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before{
+
+    .quiz_item_option_label .quiz_item_option_radio:checked + .quiz_item_option_radio_check :before {
       display: block;
     }
 
     .quiz_item_option_radio {
       display: none;
     }
-    .quiz_text_warning{
+
+    .quiz_text_warning {
       color: red;
     }
   }
+
   .quiz_item_warning {
     border: 1px solid #FF4D4F;
     position: relative;
   }
+
   .quiz_footer {
     padding: 40px;
 
     //height: 150px;
     //background-color: rgba(220, 232, 248, 0.5);
 
-    .quiz_footer_buttons_wrapper{
+    .quiz_footer_buttons_wrapper {
       //padding-top: 20px;
       display: flex;
       align-items: center;
@@ -928,7 +1023,7 @@ background-color: darkgrey;
       width: 166px;
       height: 56px;
 
-      &:focus{
+      &:focus {
         color: #0E5394 !important;
       }
     }
@@ -941,6 +1036,7 @@ background-color: darkgrey;
       line-height: 150%;
     }
   }
+
   .quiz_item_warning_notification {
     height: 40px;
     width: 225px;
@@ -950,7 +1046,7 @@ background-color: darkgrey;
     position: absolute;
     top: -16px;
     right: -11px;
-    font-family: "Source Sans Pro",sans-serif;
+    font-family: "Source Sans Pro", sans-serif;
     font-style: normal;
     font-weight: 600;
     font-size: 12px;
@@ -959,9 +1055,11 @@ background-color: darkgrey;
     background-color: #FFEAEB;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     border-radius: 4px;
-    span{
+
+    span {
       margin-left: 11px;
     }
+
     div {
       height: 16px;
       width: 16px;
@@ -975,7 +1073,8 @@ background-color: darkgrey;
 .mobile_investments_container {
   display: none;
 }
-.mobile_empty_list_text{
+
+.mobile_empty_list_text {
   display: none;
 }
 
@@ -985,6 +1084,7 @@ background-color: darkgrey;
       padding-top: 40px;
       padding-left: 168px;
     }
+
     .profile_tab_bar {
       width: 966px;
       margin-bottom: 32px;
@@ -1013,8 +1113,16 @@ background-color: darkgrey;
     .account_settings_form {
       width: 540px;
     }
+
     .account_settings_subscribes {
       width: 540px;
+    }
+  }
+  .quiz_tab {
+    .quiz_container {
+      .mandatory_questions_alone {
+        width: 966px;
+      }
     }
   }
 }
@@ -1033,8 +1141,8 @@ background-color: darkgrey;
       padding-left: 80px;
     }
   }
-  .quiz_tab{
-    .quiz_container{
+  .quiz_tab {
+    .quiz_container {
       padding-right: 80px;
     }
   }
@@ -1049,23 +1157,24 @@ background-color: darkgrey;
   .profile_campaigns_section {
     padding-right: 50px;
   }
-  .quiz_tab{
-    .quiz_container{
+  .quiz_tab {
+    .quiz_container {
       padding-right: 50px;
     }
   }
 }
 
 @media screen and (max-width: 1200px) {
-.account_settings_container{
-  .account_settings_forms_container{
-    flex-direction: column;
-    .account_settings_form{
-      margin-bottom: 40px;
-      margin-right: 0;
+  .account_settings_container {
+    .account_settings_forms_container {
+      flex-direction: column;
+
+      .account_settings_form {
+        margin-bottom: 40px;
+        margin-right: 0;
+      }
     }
   }
-}
 }
 
 @media screen and (max-width: 1160px) {
@@ -1079,6 +1188,14 @@ background-color: darkgrey;
       margin-left: auto;
     }
   }
+  .quiz_tab {
+    .quiz_container {
+      .mandatory_questions_alone {
+        margin: 0 auto;
+      }
+    }
+  }
+
   .profile_campaigns_section {
     padding-left: 32px;
   }
@@ -1095,28 +1212,33 @@ background-color: darkgrey;
 
   .profile_campaigns_section {
     padding: 26px;
+
     .profile_campaigns_title {
       text-align: center;
       margin-bottom: 25px;
     }
+
     .profile_campaigns_table_container {
       display: none;
     }
   }
-  .mobile_empty_list_text{
+  .mobile_empty_list_text {
     display: block;
     text-align: center;
-    .mobile_empty_list_link{
+
+    .mobile_empty_list_link {
       cursor: pointer;
       color: #0b5394;
     }
   }
   .mobile_investments_container {
     display: block;
+
     .mobile_investments_card {
       background: #ffffff;
       box-shadow: 0 2px 15px rgba(142, 146, 184, 0.25);
       border-radius: 6px;
+
       .mobile_investments_toggle {
         display: flex;
         justify-content: space-between;
@@ -1128,15 +1250,19 @@ background-color: darkgrey;
         line-height: 32px;
         color: #ffffff;
         cursor: pointer;
+
         .mobile_investments_toggle_name {
           margin-right: 8px;
         }
+
         span {
           pointer-events: none;
         }
       }
+
       .mobile_investments_item {
         padding: 0;
+
         .mobile_investments_field {
           display: flex;
           justify-content: space-between;
@@ -1146,9 +1272,11 @@ background-color: darkgrey;
           padding: 13px 20px;
           margin-bottom: 0;
           border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
           &:last-child {
             border-bottom: none;
           }
+
           .mobile_investments_field_text {
             font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
@@ -1158,6 +1286,7 @@ background-color: darkgrey;
             color: #000;
             margin-right: 20px;
           }
+
           .mobile_investments_field_link {
             font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
@@ -1166,6 +1295,7 @@ background-color: darkgrey;
             line-height: 150%;
             color: #3c64b1;
           }
+
           .mobile_investments_field_values {
             font-family: 'Source sans Pro', sans-serif;
             font-style: normal;
@@ -1175,9 +1305,11 @@ background-color: darkgrey;
             color: rgba(0, 0, 0, 0.87);
           }
         }
+
         .mobile_investments_contact {
           display: flex;
           justify-content: flex-end;
+
           .mobile_investments_item_button {
             padding: 12px 18px;
             background: #89cff0;
@@ -1195,12 +1327,13 @@ background-color: darkgrey;
       }
     }
   }
-  .quiz_tab{
-    .quiz_tab_title{
+  .quiz_tab {
+    .quiz_tab_title {
       text-align: center;
       padding: 0 15px;
     }
-    .quiz_container{
+
+    .quiz_container {
       padding: 0 20px;
 
     }
@@ -1211,7 +1344,8 @@ background-color: darkgrey;
   .profile_section {
     .profile_tab_bar {
       width: 835px;
-      .tab_bar_item_button{
+
+      .tab_bar_item_button {
         font-size: 16px;
         padding: 0 22px;
       }
@@ -1249,11 +1383,13 @@ background-color: darkgrey;
           margin-right: auto;
           margin-left: auto;
           padding-top: 87px;
-          .profile_form_upload_avatar_warning{
+
+          .profile_form_upload_avatar_warning {
             max-width: 540px;
             padding-right: 10px;
             padding-left: 10px;
           }
+
           .profile_form_upload_avatar_container {
             flex-direction: column;
             position: relative;
@@ -1300,6 +1436,7 @@ background-color: darkgrey;
           .profile_form_upload_avatar_button_label {
             display: none;
           }
+
           .profile_form_upload_avatar_button_remove {
             display: none;
           }
@@ -1315,41 +1452,46 @@ background-color: darkgrey;
     flex-direction: column;
     align-items: center;
   }
-  .quiz_tab{
-    .quiz_item{
+  .quiz_tab {
+    .quiz_item {
       border: none;
-      .quiz_item_option_label{
+
+      .quiz_item_option_label {
         margin-bottom: 20px;
       }
     }
-    .quiz_container{
+
+    .quiz_container {
       align-items: center;
-      .mandatory_questions{
+
+      .mandatory_questions {
         margin-right: 0;
         margin-bottom: 15px;
         width: 100%;
       }
-      .optional_questions{
+
+      .optional_questions {
         margin-bottom: 15px;
         width: 100%;
       }
     }
   }
-  .quiz_column{
+  .quiz_column {
     flex-direction: column;
   }
-  .quiz_column_reverse{
+  .quiz_column_reverse {
     flex-direction: column-reverse;
   }
 }
 
 @media screen and (max-width: 580px) {
-  .profile_section_mobile, .invest_form_section  {
+  .profile_section_mobile, .invest_form_section {
     .profile_personal_details {
       .profile_form {
-        .profile_form_campaign_number_warning{
+        .profile_form_campaign_number_warning {
           margin-left: 0;
         }
+
         .profile_form_upload_avatar_settings {
           .profile_form_upload_avatar_container {
             margin-right: 0;
@@ -1357,11 +1499,13 @@ background-color: darkgrey;
             width: 100%;
           }
         }
+
         .profile_form_data_container {
           position: relative;
           width: 100%;
           height: auto;
           margin-bottom: 90px;
+
           .profile_form_data_container_title {
             font-size: 20px;
             line-height: 150%;
@@ -1374,30 +1518,37 @@ background-color: darkgrey;
             margin-bottom: 3px;
             text-align: left;
           }
+
           .profile_form_input_container {
             font-size: 14px;
             line-height: 22px;
             margin-bottom: 7px;
             text-align: left;
           }
+
           .profile_form_input {
             margin-top: 3px;
             //padding-right: 33px;
             font-size: 11px;
           }
-          .profile_form_input_with_arrow{
+
+          .profile_form_input_with_arrow {
             padding-right: 33px;
           }
+
           .profile_input_middle {
             margin-bottom: 20px;
           }
+
           .profile_form_warning_text {
             font-size: 10px;
           }
+
           .profile_input_arrow {
             width: 33px;
             top: 25px;
           }
+
           .profile_first_name {
             width: 100%;
             margin-right: 0;
@@ -1406,6 +1557,7 @@ background-color: darkgrey;
           .profile_second_name {
             width: 100%;
           }
+
           .profile_month {
             width: 100%;
             margin-right: 0;
@@ -1435,6 +1587,7 @@ background-color: darkgrey;
             margin-right: 0;
 
           }
+
           .profile_zip {
             width: 100%;
             margin-bottom: 20px;
@@ -1449,9 +1602,11 @@ background-color: darkgrey;
           .profile_phone {
             width: calc(50% - 8px);
           }
+
           .profile_form_split_line {
             display: none;
           }
+
           .profile_form_footer {
             position: absolute;
             bottom: -65px;
@@ -1460,48 +1615,58 @@ background-color: darkgrey;
             padding-left: 8px;
             padding-right: 8px;
 
-            .profile_form_captcha_text{
+            .profile_form_captcha_text {
               padding-left: 23px;
               font-size: 10px;
             }
 
           }
-          .company_number_block{
+
+          .company_number_block {
             flex-direction: column;
-            .company_number_label{
+
+            .company_number_label {
               width: 100%;
               font-size: 12px;
-              .company_number_block_checkbox{
+
+              .company_number_block_checkbox {
                 height: 14px;
                 width: 14px;
                 margin-right: 3px;
               }
             }
-            .company_number_block_input{
+
+            .company_number_block_input {
               width: 100%;
               margin-bottom: 7px;
             }
           }
-          .profile_form_footer_column{
+
+          .profile_form_footer_column {
             flex-direction: column-reverse;
             bottom: -113px;
-            .profile_form_footer_button_wrapper{
+
+            .profile_form_footer_button_wrapper {
               margin-bottom: 15px;
               width: 100%;
-              .profile_form_button_cancel{
+
+              .profile_form_button_cancel {
                 margin-right: auto;
               }
-              .profile_form_agreement_button{
+
+              .profile_form_agreement_button {
                 margin-right: 25px;
               }
             }
-            .profile_form_captcha_text{
+
+            .profile_form_captcha_text {
               text-align: center;
               padding-right: 0;
               padding-left: 0;
               width: 100%;
             }
           }
+
           .profile_form_agreement {
             //padding-left: 15px;
             //font-size: 12px;
@@ -1512,7 +1677,8 @@ background-color: darkgrey;
             }
           }
         }
-        .data_container_for_edit{
+
+        .data_container_for_edit {
           margin-bottom: 130px;
         }
 
@@ -1520,23 +1686,28 @@ background-color: darkgrey;
           width: 100%;
         }
       }
+
       .profile_form_button_cancel {
         margin-left: 25px;
         margin-right: 25px;
       }
     }
+
     .profile_form_agreement_button {
       height: 42px;
       min-width: 86px;
     }
-    .profile_form_agreement_button_big{
+
+    .profile_form_agreement_button_big {
       min-width: 135px;
     }
-    .nav_tabs{
+
+    .nav_tabs {
       flex-wrap: wrap;
       max-width: 370px;
-      .nav_tabs_button_container{
-        &:nth-child(3){
+
+      .nav_tabs_button_container {
+        &:nth-child(3) {
           margin-right: 0;
         }
       }
@@ -1544,6 +1715,7 @@ background-color: darkgrey;
   }
   .account_settings_container {
     padding-bottom: 40px;
+
     .account_settings_title {
       font-size: 24px;
       line-height: 32px;
@@ -1551,41 +1723,49 @@ background-color: darkgrey;
     }
 
 
-    .account_settings_split_line{
+    .account_settings_split_line {
       display: none;
     }
-    .account_settings_change_block{
+
+    .account_settings_change_block {
       flex-direction: column;
-      .account_settings_form_text_wrapper{
+
+      .account_settings_form_text_wrapper {
         text-align: center;
         width: 85%;
         margin-right: auto;
         margin-left: auto;
       }
-      .account_settings_form_button_wrapper{
+
+      .account_settings_form_button_wrapper {
         width: 100%;
         padding-left: 0;
         margin-bottom: 25px;
-        .account_settings_button_save{
+
+        .account_settings_button_save {
           margin-bottom: 0;
           font-size: 16px;
           height: 46px;
         }
       }
     }
-    .account_settings_subscribes{
+
+    .account_settings_subscribes {
       all: unset;
       height: auto;
       width: 100%;
       padding-bottom: 30px;
-      .account_settings_subscribes_title{
+
+      .account_settings_subscribes_title {
         text-align: center;
       }
-      .account_settings_subscribe_button{
+
+      .account_settings_subscribe_button {
         width: 100%;
       }
     }
-    .account_settings_forms_container{
+
+    .account_settings_forms_container {
       .account_settings_form {
         all: unset;
         height: auto;
@@ -1610,27 +1790,33 @@ background-color: darkgrey;
           line-height: 32px;
           margin-bottom: 10px;
         }
+
         .account_settings_form_label {
           font-size: 14px;
           line-height: 22px;
           margin-bottom: 25px;
+
           .account_settings_form_input {
             font-size: 14px;
             line-height: 22px;
           }
         }
+
         .label_confirm_password {
           margin-bottom: 25px;
         }
+
         .account_settings_forgot_link {
           top: 147px;
           right: 18px;
         }
+
         .account_settings_text_delete {
           display: flex;
           justify-content: center;
           margin-bottom: 20px;
         }
+
         .account_settings_text {
           font-size: 13px;
           line-height: 150%;
@@ -1640,6 +1826,7 @@ background-color: darkgrey;
           padding-right: 20px;
           padding-left: 20px;
         }
+
         .account_settings_buttons_container {
           position: absolute;
           bottom: -115px;
@@ -1652,6 +1839,7 @@ background-color: darkgrey;
             font-size: 16px;
             line-height: 32px;
           }
+
           .account_settings_button_save {
             font-size: 16px;
             line-height: 32px;
@@ -1672,13 +1860,16 @@ background-color: darkgrey;
         padding-right: 10px;
         padding-left: 10px;
       }
+
       .mobile_investments_item {
         .mobile_investments_field {
           .mobile_investments_field_text {
             font-size: 14px;
           }
+
           .mobile_investments_field_link {
           }
+
           .mobile_investments_field_values {
             font-size: 16px;
           }
@@ -1689,7 +1880,6 @@ background-color: darkgrey;
 }
 
 
-
 @media screen and (max-width: 375px) {
   .profile_section_mobile {
     .profile_personal_details {
@@ -1698,18 +1888,21 @@ background-color: darkgrey;
           .warning_date_text {
             font-size: 8px;
           }
+
           .profile_form_warning_text {
             font-size: 7px;
           }
+
           .profile_form_footer {
             padding-left: 0;
 
-            .profile_form_captcha_text{
+            .profile_form_captcha_text {
               font-size: 8px;
             }
 
 
           }
+
           .profile_form_agreement {
             //padding-left: 5px;
             font-size: 11px;
@@ -1721,13 +1914,16 @@ background-color: darkgrey;
   .account_settings_container {
     padding-right: 15px;
     padding-left: 15px;
+
     .account_settings_form {
       .account_settings_form_title {
         font-size: 17px;
       }
+
       .account_settings_buttons_container {
         right: -40px;
       }
+
       .profile_form_warning_text {
         font-size: 12px;
       }
@@ -1746,13 +1942,13 @@ background-color: darkgrey;
   }
 }
 
-@media screen and (max-width: 354px){
+@media screen and (max-width: 354px) {
   .profile_section_mobile, .invest_form_section {
     .profile_personal_details {
       .profile_form {
         .profile_form_data_container {
           .company_number_block {
-            .company_number_label{
+            .company_number_label {
               font-size: 9px;
             }
           }
@@ -1768,7 +1964,7 @@ background-color: darkgrey;
     .profile_personal_details {
       .profile_form {
         .profile_form_input_container {
-            font-size: 12px;
+          font-size: 12px;
         }
       }
     }
