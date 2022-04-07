@@ -31,20 +31,23 @@ const TopSliderComponent = ({
     const [showSlider, setShowSlider] = useState(false)
 
     useEffect(() => {
-        if(type !== 'home_page' ){
+        if (type !== 'home_page') {
             setShowSlider(false)
-        }else if (type === 'home_page' && isAuth ) {
+        } else if (type === 'home_page' && isAuth) {
             setShowSlider(false)
-        } else if (type === 'home_page' && !isAuth ) {
-            setShowSlider(true)
+        } else if (type === 'home_page' && !isAuth) {
+            const authLocalData = localStorage.getItem("auth_data")
+            if (!authLocalData) {
+                setShowSlider(true)
+            }
         }
     }, [type, isAuth])
 
     let isShowControls = false
 
-    if(showSlider){
+    if (showSlider) {
         isShowControls = false
-    }else if(!showSlider && data?.length > 1 ){
+    } else if (!showSlider && data?.length > 1) {
         isShowControls = true
 
     }
