@@ -1240,6 +1240,60 @@
     }
   }
 }
+@media screen and (max-width: 1860px) {
+.company-page-container{
+  .team_section_container{
+    .member_card_item{
+      padding-left: 100px;
+      width: 400px;
+      &:nth-child(2n-1){
+        margin-right: 25px;
+      }
+    }
+    .member_card_image{
+      width: 75px;
+      height: 75px;
+    }
+  }
+}
+}
+
+@media screen and (max-width: 1680px) {
+.company-page-container{
+  .team_section_container{
+    .member_card_item{
+      padding-left: 70px;
+      width: 375px;
+      &:nth-child(2n-1){
+        margin-right: 20px;
+      }
+    }
+    .member_card_image{
+      width: 60px;
+      height: 60px;
+    }
+  }
+
+}
+}
+@media screen and (max-width: 1620px) {
+  .company-page-container{
+    .team_section_container{
+      .member_card_item{
+        padding-left: 70px;
+        width: 350px;
+        &:nth-child(2n-1){
+          margin-right: 20px;
+        }
+      }
+      .member_card_image{
+        width: 60px;
+        height: 60px;
+      }
+    }
+
+  }
+}
 
 @media screen and (max-width: 1570px) {
   .company-page-container {
@@ -1249,6 +1303,19 @@
 
     }
 
+    .team_section_container{
+      .member_card_item{
+        padding-left: 70px;
+        width: 375px;
+        &:nth-child(2n-1){
+          margin-right: 20px;
+        }
+      }
+      .member_card_image{
+        width: 60px;
+        height: 60px;
+      }
+    }
 
     .project_info_container {
       padding-left: 160px;
@@ -1327,13 +1394,31 @@
   }
 }
 
-@media screen and (min-width: 1441px) {
+@media screen and (max-width: 1480px){
+  .company-page-container{
+    .team_section_container{
+      .member_card_item{
+        width: 355px;
+        &:nth-child(2n-1){
+        }
+      }
+      .member_card_image{
+      }
+    }
+
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .company-page-container{
+
+  }
   .company_top_section_container {
     height: 690px;
   }
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1439px) {
   .company-page-container {
     .company_top_section_container {
       padding-top: 65px;
@@ -1424,10 +1509,10 @@
       padding-top: 15px;
 
       .member_card_item {
-        padding-left: 94px;
+        //padding-left: 94px;
 
         &:nth-child(2n-1) {
-          margin-right: 90px;
+          //margin-right: 90px;
         }
 
         &:last-child {
@@ -1460,7 +1545,7 @@
   }
 }
 
-@media screen and (min-width: 1370px) and (max-width: 1440px) {
+@media screen and (min-width: 1370px) and (max-width: 1439px) {
   .company-page-container {
     .middle_section_container {
       .idea_section_container {
@@ -1524,6 +1609,27 @@
   .sticky_invest_button {
     width: 150px;
     margin-right: 50px;
+  }
+}
+
+
+@media screen and (max-width: 1340px) {
+  .company-page-container{
+    .team_section_container{
+      flex-direction: column;
+      .member_card_item{
+        padding-left: 120px;
+        width: 500px;
+        &:nth-child(2n-1){
+          margin-right: 0;
+        }
+      }
+      .member_card_image{
+        width: 98px;
+        height: 98px;
+      }
+    }
+
   }
 }
 
