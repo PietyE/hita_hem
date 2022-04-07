@@ -9,11 +9,11 @@ import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import ButtonStyled from "../../components/ui/Button";
 import isEqual from "lodash/isEqual";
-import QuizQuestion from "./quizQuestion";
 import UseQuizTabHook from "../../customHooks/useQuizTabHook";
+import QuizItem from "../../components/QuizPopup/components/QuizItem";
 
 
-const QuizTab = ({wasChanges,setWasChanges}) => {
+const QuizTab = ({wasChanges, setWasChanges}) => {
     const {t} = useTranslation();
     const quizData = useSelector(getQuizSelector)
     const quizAnswers = useSelector(getAnswersSelector)
@@ -26,7 +26,7 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
     const [warnings, setWarnings] = useState([])
 
 
-    const {_getQuiz,_setQuizErrors,_checkQuizAnswers} = UseQuizTabHook()
+    const {_getQuiz, _setQuizErrors, _checkQuizAnswers} = UseQuizTabHook()
 
     useEffect(() => {
         _getQuiz('from_profile')
@@ -55,9 +55,9 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
         setMandatoryQuestions(mandatory)
     }, [quizData])
 
-    useEffect(()=>{
+    useEffect(() => {
         setWasChanges(!isEqual(quizResults, quizAnswers))
-    },[quizResults,quizAnswers])
+    }, [quizResults, quizAnswers])
 
     const handleBackButton = () => {
         setQuizResults(quizAnswers)
@@ -65,17 +65,17 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
     const receiveAnswer = (questionId, answerId) => {
         const newAnswersArray = [...quizResults]
         const questionIndex = quizResults.findIndex(el => el.question_id === Number(questionId))
-        if(questionIndex === -1){
-            newAnswersArray.push({question_id: Number(questionId),pk:Number(answerId)})
-        }else{
-            newAnswersArray[questionIndex] = {question_id: Number(questionId),pk:Number(answerId)}
+        if (questionIndex === -1) {
+            newAnswersArray.push({question_id: Number(questionId), pk: Number(answerId)})
+        } else {
+            newAnswersArray[questionIndex] = {question_id: Number(questionId), pk: Number(answerId)}
         }
         setQuizResults(newAnswersArray)
     }
 
     const submitQuiz = () => {
-       const answersForApi = quizResults?.map((el) => el.pk)
-            _checkQuizAnswers(answersForApi)
+        const answersForApi = quizResults?.map((el) => el.pk)
+        _checkQuizAnswers(answersForApi)
     }
 
     let _title = ''
@@ -98,14 +98,14 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
                 {mandatoryQuestions?.length > 0 && (
                     <div className='mandatory_questions'>
 
-                        <div className = 'quiz_body'>
+                        <div className='quiz_body'>
                             {!!mandatoryQuestions?.length &&
                             mandatoryQuestions.map((question) =>
 
-                                <QuizQuestion key = {question.pk}
-                                          data = {question}
-                                          onSelect = {receiveAnswer}
-                                          warningList = {warnings}
+                                <QuizItem key={question.pk}
+                                          data={question}
+                                          onSelect={receiveAnswer}
+                                          warningList={warnings}
                                           userQuizAnswers={quizResults}
                                 />
                             )
@@ -115,15 +115,15 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
                 )}
                 {/*{optionalQuestions?.length > 0 && (*/}
                 <div className='optional_questions'>
-                    <div className = 'quiz_body'>
+                    <div className='quiz_body'>
                         {!!optionalQuestions?.length &&
-                        optionalQuestions.map((question, i) =>
+                        optionalQuestions.map((question) =>
 
-                            <QuizQuestion key = {question.pk}
-                                          data = {question}
-                                          onSelect = {receiveAnswer}
-                                          warningList = {warnings}
-                                          userQuizAnswers={quizResults}
+                            <QuizItem key={question.pk}
+                                      data={question}
+                                      onSelect={receiveAnswer}
+                                      warningList={warnings}
+                                      userQuizAnswers={quizResults}
                             />
                         )
                         }
@@ -137,11 +137,11 @@ const QuizTab = ({wasChanges,setWasChanges}) => {
                 <div className='quiz_footer_buttons_wrapper'>
                     <ButtonStyled colorStyle='outline-green'
                                   className='quiz_footer_button_back quiz_footer_button'
-                                  disabled = {!wasChanges}
+                                  disabled={!wasChanges}
                                   onClick={handleBackButton}>{t("quiz.tab_back_button")}</ButtonStyled>
                     <ButtonStyled colorStyle='dark-green'
                                   className='quiz_footer_button_confirm quiz_footer_button'
-                        disabled = {!wasChanges}
+                                  disabled={!wasChanges}
                                   onClick={submitQuiz}>{t("quiz.button_confirm")}</ButtonStyled>
 
                 </div>

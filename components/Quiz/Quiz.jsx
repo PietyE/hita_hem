@@ -30,10 +30,9 @@ const Quiz = ({quizData,receiveAnswer, quizAnswers}) => {
     return (
         <div className = 'quiz_body'>
             {!!quizData?.length &&
-            quizData.map((question, i) =>
+            quizData.map((question) =>
 
                 <QuizItem key = {question.pk}
-                          index = {i}
                           data = {question}
                           onSelect = {receiveAnswer}
                           warningList = {warnings}
