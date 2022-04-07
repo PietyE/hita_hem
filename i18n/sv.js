@@ -271,6 +271,9 @@ home_page: {
         instructions_title: "Påbörja din resa",
         invest: "Investera",
         raise: "Sök kapital",
+    register_button: 'Registrera',
+    placeholder: 'Din e-postadress',
+    split_line_text: 'alternativt',
 },
 invest_form_page: {
     main_text:
