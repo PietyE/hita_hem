@@ -271,6 +271,9 @@ export const en = {
             upcoming_campaigns: "Upcoming campaigns",
             invest: "Invest",
             raise: "Raise",
+            register_button: 'Register',
+            placeholder: 'Your email address',
+            split_line_text: 'or',
         },
         invest_form_page: {
             main_text:
