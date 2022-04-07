@@ -33,7 +33,7 @@
   .sign_in_alt_text {
     position: relative;
     background-color: transparent;
-    color: #FFFFFF;
+    color: #000;
     margin: 0 auto 20px auto;
     text-align: center;
     padding: 0;
@@ -45,7 +45,7 @@
       content: '';
       height: 0;
       width: 180px;
-      border-top: 1px solid #fff;
+      border-top: 1px solid #000;
     }
 
     &:after {
@@ -55,7 +55,7 @@
       content: '';
       height: 0;
       width: 180px;
-      border-top: 1px solid #fff;
+      border-top: 1px solid #000;
     }
   }
 
