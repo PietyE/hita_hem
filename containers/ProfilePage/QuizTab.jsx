@@ -88,6 +88,7 @@ const QuizTab = ({wasChanges, setWasChanges}) => {
         _title = t("quiz.full_title")
     }
     const _containerStyle = isQuizPassed ? "quiz_column_reverse" : "quiz_column"
+    const _mandatoryBlockStyle = optionalQuestions?.length ? 'mandatory_questions' : 'mandatory_questions mandatory_questions_alone'
 
     return (
         <section className='quiz_tab'>
@@ -96,7 +97,7 @@ const QuizTab = ({wasChanges, setWasChanges}) => {
             </h2>
             <div className={`quiz_container ${_containerStyle}`}>
                 {mandatoryQuestions?.length > 0 && (
-                    <div className='mandatory_questions'>
+                    <div className={_mandatoryBlockStyle}>
 
                         <div className='quiz_body'>
                             {!!mandatoryQuestions?.length &&
@@ -113,24 +114,24 @@ const QuizTab = ({wasChanges, setWasChanges}) => {
                         </div>
                     </div>
                 )}
-                {/*{optionalQuestions?.length > 0 && (*/}
-                <div className='optional_questions'>
-                    <div className='quiz_body'>
-                        {!!optionalQuestions?.length &&
-                        optionalQuestions.map((question) =>
+                {optionalQuestions?.length > 0 && (
+                    <div className='optional_questions'>
+                        <div className='quiz_body'>
+                            {!!optionalQuestions?.length &&
+                            optionalQuestions.map((question) =>
 
-                            <QuizItem key={question.pk}
-                                      data={question}
-                                      onSelect={receiveAnswer}
-                                      warningList={warnings}
-                                      userQuizAnswers={quizResults}
-                            />
-                        )
-                        }
+                                <QuizItem key={question.pk}
+                                          data={question}
+                                          onSelect={receiveAnswer}
+                                          warningList={warnings}
+                                          userQuizAnswers={quizResults}
+                                />
+                            )
+                            }
+                        </div>
+
                     </div>
-
-                </div>
-                {/*)}*/}
+                )}
 
             </div>
             <footer className='quiz_footer'>
