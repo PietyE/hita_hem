@@ -5,8 +5,9 @@ import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
 import Image from "next/image";
+import {getImgMeta} from "../../utils/utils";
 import dynamic from "next/dynamic";
-import ImageComponent from "../../components/ui/ImageComponent";
+// import ImageComponent from "../../components/ui/ImageComponent";
 
 const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
     ssr: false,
@@ -28,12 +29,16 @@ const FinArticle = ({ item }) => {
     const [isShowButton, setIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
     const [itemClass, setItemClass] = useState('fin_article')
+    const [imageMeta, setImageMeta] = useState({})
 
   const { matchesAll } = useMediaQueries({
     screen: "screen",
     width: "(max-device-width: 900px)",
   });
 
+    useEffect(()=>{
+        getImgMeta(img, setImageMeta)
+    },[])
 
     useEffect(() => {
         if (!isShowButton) {
@@ -121,20 +126,22 @@ const FinArticle = ({ item }) => {
                     />
                 </div>
                 {!!img && (
-                    <ImageComponent
-                        className="fin_article_image"
-                        src={img}
-                        alt={img ? 'article image' : ' '}
-                    />
+                    // <ImageComponent
+                    //     className="fin_article_image"
+                    //     src={img}
+                    //     alt={img ? 'article image' : ' '}
+                    // />
                     //   <div className='fin_article_image' style={{  position: 'relative'}}>
                     //
-                    //   <Image
-                    //           src = {img}
-                    //           layout = "fill"
-                    //           objectFit = "contain"
-                    //           // priority = {true}
-                    //
-                    //       />
+                      <Image
+                              src = {img}
+                              layout = "responsive"
+                              width={imageMeta?.width ||192}
+                              height={imageMeta?.height || 108}
+                              className='fin_article_image'
+                              // priority = {true}
+
+                          />
                     //   </div>
                 )}
                 {matchesAll && isShowButton && (

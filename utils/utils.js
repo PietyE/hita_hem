@@ -248,3 +248,10 @@ export const getUrlForMyCampaigns = (currentLanguage, data) => {
     return {link: _link, text_link: _textLink}
 }
 
+export const getImgMeta = (url, callback) =>{
+    const img = new Image();
+    img.addEventListener("load", function() {
+        callback({width: this.naturalWidth,height: this.naturalHeight})
+    });
+    img.src = url;
+}

@@ -855,13 +855,14 @@
       }
 
       .fin_article_image {
-        display: flex;
-        align-items: flex-start;
+        //display: flex;
+        //align-items: flex-start;
         //width: calc(100vw - 460px / 2);
         border-radius: 6px;
         overflow: hidden;
+        cursor: pointer;
+
         img{
-          cursor: pointer;
         }
       }
 
