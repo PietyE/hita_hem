@@ -6,6 +6,7 @@ import {useTranslation} from "react-i18next";
 import {getCorrectImage} from "../../utils/utils";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import ImageComponent from "../../components/ui/ImageComponent";
 
 const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
     ssr: false,
@@ -22,20 +23,17 @@ const FinArticle = ({ item }) => {
   const { title, description, images } = item;
   const img = getCorrectImage(images)
 
-  const contentRef = useRef();
-  const [isShowButton, setIsShowButton] = useState(false);
-  const [isShowMore, setIsShowMore] = useState(false);
+    const contentRef = useRef();
+
+    const [isShowButton, setIsShowButton] = useState(false);
+    const [isShowMore, setIsShowMore] = useState(false);
+    const [itemClass, setItemClass] = useState('fin_article')
 
   const { matchesAll } = useMediaQueries({
     screen: "screen",
     width: "(max-device-width: 900px)",
   });
 
-    const contentRef = useRef();
-
-    const [isShowButton, setIsShowButton] = useState(false);
-    const [isShowMore, setIsShowMore] = useState(false);
-    const [itemClass, setItemClass] = useState('fin_article')
 
     useEffect(() => {
         if (!isShowButton) {
