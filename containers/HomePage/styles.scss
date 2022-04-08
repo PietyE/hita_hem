@@ -1,7 +1,7 @@
 .home_page_container {
   overflow: hidden;
 
-  .home_page_top_container{
+  .home_page_top_container {
     align-items: center;
   }
 
@@ -11,6 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .campaigns_title {
       font-kerning: normal;
       font-family: 'Source sans Pro', sans-serif;
@@ -58,14 +59,17 @@
       overflow: hidden;
       margin-right: 100px;
       margin-bottom: 30px;
-      &:nth-child(3n){
+
+      &:nth-child(3n) {
         margin-right: 0;
       }
-      &:last-child{
+
+      &:last-child {
         margin-right: 0;
       }
     }
-    .raise_step_text_wrapper{
+
+    .raise_step_text_wrapper {
       padding-left: 95px;
 
     }
@@ -83,7 +87,8 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      img{
+
+      img {
         width: auto;
         height: 100%;
       }
@@ -119,11 +124,11 @@
   }
 
 
-
   .featured_split_line {
     //margin-bottom: 55px;
     width: 100%;
   }
+
   .instructions_container {
     background-color: #f0f0ff;
     padding-bottom: 40px;
@@ -159,8 +164,8 @@
     padding: 90px 15px;
     background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
     background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: 253px auto, 500px auto , 500px auto;
-    background-position: center 82%,-10% 45% , 110% 45%;
+    background-size: 253px auto, 500px auto, 500px auto;
+    background-position: center 82%, -10% 45%, 110% 45%;
 
     .join-us_title {
 
@@ -180,14 +185,15 @@
       height: 50px;
       margin-right: auto;
       margin-left: auto;
-      .join-us_button_plus{
+
+      .join-us_button_plus {
         display: none;
       }
     }
   }
 }
 
-.home_page_top_title{
+.home_page_top_title {
   font-kerning: normal;
   font-family: 'Source sans Pro';
   font-weight: 900;
@@ -197,22 +203,34 @@
 
 }
 
-.home_page_top_description{
+.banner_title {
+  color: black;
+}
+
+.home_page_top_description {
   line-height: 130%;
 }
+
+.banner_description {
+  color: black;
+}
+
 @media screen and (max-width: 1440px) {
-  .home_page_container{
-    .home_page_top_title{
+  .home_page_container {
+    .home_page_top_title {
       font-size: 370%;
     }
+
     .raise_instruction_container {
       width: 1165px;
+
       .raise_step {
-        margin-right: 55px;}
+        margin-right: 55px;
+      }
     }
   }
-  .campaigns_container{
-    .campaigns_title{
+  .campaigns_container {
+    .campaigns_title {
       margin-bottom: 61px;
     }
   }
@@ -222,52 +240,65 @@
     padding-bottom: 78px;
   }
 }
+
 @media screen and (max-width: 1165px) {
   .home_page_container {
-    .home_page_top_title{
+    .home_page_top_title {
       font-size: 300%;
       line-height: 50px;
     }
-    .home_page_top_container{
+
+    .home_page_top_container {
       padding-top: 100px;
     }
+
     .raise_instruction_container {
       width: 775px;
-      .raise_step{
-        &:nth-child(3n){
+
+      .raise_step {
+        &:nth-child(3n) {
           margin-right: 55px;
         }
-        &:nth-child(2n){
+
+        &:nth-child(2n) {
           margin-right: 0;
         }
       }
     }
   }
 }
+
 @media screen and (max-width: 775px) {
   .home_page_container {
-    .home_page_top_title{
+    .home_page_top_title {
       font-size: 260%;
       line-height: 40px;
     }
+
     .campaigns_container {
-      .campaigns_title{
+      .campaigns_title {
         font-size: 34px;
       }
     }
-    .home_page_top_container{
+
+    .home_page_top_container {
       padding-top: 80px;
     }
+
     .join-us_container {
       background-position: center 82%, -80% 45%, 160% 45%;
     }
+
     .raise_instruction_container {
       width: 385px;
-      .raise_step{
+
+      .raise_step {
         margin-right: 0;
-        &:nth-child(3n){
+
+        &:nth-child(3n) {
           margin-right: 0;
-        }}
+        }
+      }
     }
   }
 
@@ -275,23 +306,26 @@
 
 
 @media screen and (max-width: 550px) {
-  .home_page_container{
-    .home_page_top_title{
+  .home_page_container {
+    .home_page_top_title {
       font-size: 200%;
       line-height: 35px;
     }
-    .instructions_container{
+
+    .instructions_container {
       .instructions_title {
         font-size: 30px;
       }
+
       .instructions_tab-bar {
 
         width: 90%;
       }
     }
-    .join-us_container{
+
+    .join-us_container {
       .join-us_button {
-        .join-us_button_plus{
+        .join-us_button_plus {
           display: block;
           font-size: 25px;
           margin-right: 8px;
@@ -318,16 +352,19 @@
     }
   }
 }
+
 @media screen and (max-width: 400px) {
   .home_page_container {
     .raise_instruction_container {
       width: 280px;
       padding-right: 10px;
       padding-left: 10px;
-      .raise_step_text_wrapper{
+
+      .raise_step_text_wrapper {
         padding-left: 85px;
       }
-      .raise_step{
+
+      .raise_step {
         width: 260px;
       }
     }
@@ -339,19 +376,22 @@
       .item_container {
         padding: 50px 15px 0;
         padding-top: 30px;
+
         .item_titel {
           margin-bottom: 25px;
         }
+
         .item_description {
           margin-bottom: 30px;
-          font-size:13px;
+          font-size: 13px;
         }
       }
     }
 
   }
 }
-@media screen and (max-width: 360px){
+
+@media screen and (max-width: 360px) {
   .home_page_container {
     .home_page_top_container {
       padding: 30px 15px 0;
