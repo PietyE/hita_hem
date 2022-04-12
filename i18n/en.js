@@ -172,8 +172,8 @@ export const en = {
             button_discard: "Cancel",
         },
         quizWrongAnswersModal: {
-            title: 'Some of the selected answers are not correct.',
-            text: 'Please read up on the risks associated with investing in unlisted companies and review your answers.',
+            title: 'Some of the mandatory questions are not answered in a correct way.',
+            text: 'Please answer all the questions and read up on the risks associated with investing in unlisted companies.',
         },
         raiseWrongAnswersModal: {
             title: 'Some of the selected answers are not correct.',

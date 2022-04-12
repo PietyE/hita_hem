@@ -178,8 +178,8 @@ confirmationOfAccountDeletion: {
         button_discard: "Avbryt",
 },
 quizWrongAnswersModal: {
-    title:'Vissa av de valda alternativen är fel.',
-    text: 'Vänligen besvara frågorna igen.',
+    title:'Vissa av de obligatoriska frågorna är inte besvarade korrekt.',
+    text: 'Vänligen läs på om riskerna associerade med att investera i onoterade bolag.',
 },
 raiseWrongAnswersModal: {
     title:'Vissa av dina svar är ej korrekta.',
