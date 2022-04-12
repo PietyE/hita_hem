@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
-import {getYoutubeId} from "utils/utils";
+import {getYoutubeId, getImgMeta} from "utils/utils";
 
 import Title from "components/ui/Title";
 import {useDispatch, useSelector} from "react-redux";
@@ -18,7 +18,7 @@ import {getQuiz} from "redux/actions/user";
 import Image from "next/image";
 
 const Overview = () => {
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const dispatch = useDispatch();
 
     const projectInfotRef = useRef();
@@ -31,19 +31,22 @@ const Overview = () => {
     const isAuth = useSelector(getIsSignInUserSelector)
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
-
-
-    const { matchesAll } = useMediaQueries({
+    const {matchesAll} = useMediaQueries({
         screen: "screen",
         width: "(max-device-width: 500px)",
     });
 
     const [isShowButton, setiIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
+    const [imageSize, setImageSize] = useState({})
 
     const _handleClickShowMore = () => {
         setIsShowMore((prev) => !prev);
     };
+
+    useEffect(() => {
+        getImgMeta(image, setImageSize)
+    }, [])
 
     useEffect(() => {
         if (projectInfotRef.current) {
@@ -57,7 +60,7 @@ const Overview = () => {
         }
         : {};
 
-    const _descriptionSectionStyle = !isAuth || !isQuizPassed? 'project_info_description_section_fade' : 'project_info_description_section'
+    const _descriptionSectionStyle = !isAuth || !isQuizPassed ? 'project_info_description_section_fade' : 'project_info_description_section'
 
     const handleSignIn = () => {
         dispatch(setShowSignIn(true));
@@ -66,7 +69,6 @@ const Overview = () => {
     const handleOpenQuiz = () => {
         dispatch(getQuiz());
     }
-
     const youtubeId = getYoutubeId(videoLink)
     return (
         <div>
@@ -75,30 +77,29 @@ const Overview = () => {
                     <div className='project_info_overview_image_wrapper'>
                         <Image
                             src={image}
-                            className = 'project_info_overview_image'
-
-                            layout = "fill"
-                            objectFit = "cover"
-                            priority = {true}
-                            alt = {image ? 'image' : ' '}
+                            className='project_info_overview_image'
+                            width={imageSize?.width || 192}
+                            height={imageSize?.height || 108}
+                            layout="responsive"
+                            alt={image ? 'image' : ' '}
                         />
                     </div>
                 )}
                 {youtubeId &&
                 (<div
-                    className = "project_info_player_wrapper"
+                    className="project_info_player_wrapper"
                 >
                     <iframe
-                        className = 'project_info_player'
-                        src = {`https://www.youtube.com/embed/${youtubeId}`}
-                        frameBorder = "0"
+                        className='project_info_player'
+                        src={`https://www.youtube.com/embed/${youtubeId}`}
+                        frameBorder="0"
                         allowFullScreen
                     />
                 </div>)
                 }
 
                 {!!businessHighlights && (
-                    <div style={videoLink ? {marginTop: '30px'} : {} } className="project_info_bussines_highlights">
+                    <div style={videoLink ? {marginTop: '30px'} : {}} className="project_info_bussines_highlights">
                         <h4 className="project_info_bussines_highlights_title">
                             {t("company_page.project_info.text")}
                         </h4>
@@ -111,7 +112,7 @@ const Overview = () => {
                     </div>
                 )}
                 <div className={_descriptionSectionStyle}>
-                    <Title title={title} className="project_info_title" />
+                    <Title title={title} className="project_info_title"/>
                     <span
                         className="project_info_description"
                         ref={projectInfotRef}
@@ -132,16 +133,16 @@ const Overview = () => {
                         </div>
                     )}
                 </div>
-                { !isAuth &&
-                    <ButtonStyled
-                        colorStyle='dark-green'
-                        className = 'project_info_show_more_button'
-                        onClick={handleSignIn}
-                    >
-                        {t("company_page.project_info.auth_button")}
-                    </ButtonStyled>
+                {!isAuth &&
+                <ButtonStyled
+                    colorStyle='dark-green'
+                    className='project_info_show_more_button'
+                    onClick={handleSignIn}
+                >
+                    {t("company_page.project_info.auth_button")}
+                </ButtonStyled>
                 }
-                { isAuth && !isQuizPassed &&
+                {isAuth && !isQuizPassed &&
                 <ButtonStyled
                     colorStyle='dark-green'
                     className='project_info_show_more_button'

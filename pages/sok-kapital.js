@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {END} from "redux-saga";
 import {wrapper} from "redux/store";
@@ -15,7 +15,7 @@ import {
     getRaisePageImageSelector,
     getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
-import {getCorrectImage} from "../utils/utils";
+import {getCorrectImage, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
 
 
@@ -35,8 +35,15 @@ const RaisePage = () => {
     const seo = useSelector(getRaisePageSeoSelector)
     const isScrollToForm = useSelector(getScrollToFormSelector)
 
-
     const img = getCorrectImage(images)
+
+    const [imageSize, setImageSize] = useState({})
+
+    useEffect(() => {
+        getImgMeta(img, setImageSize)
+    }, [])
+
+
     const _getRaisePage = useCallback(() => {
         dispatch(getRaisePage());
     }, [dispatch]);
@@ -76,7 +83,7 @@ const RaisePage = () => {
                     <div className="raise_page_image ">
                         <Image
                             src={img}
-                            width="100vw" height="40" layout="responsive" objectFit="contain"
+                            width={imageSize?.width || 192} height={imageSize?.height || 108} layout="responsive"
                         />
                     </div>
                 )}

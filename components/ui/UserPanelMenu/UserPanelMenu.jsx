@@ -74,6 +74,13 @@ const UserPanelMenu = ({ show }) => {
       >
         <span>{t("header.user_panel.Campaigns")}</span>
       </DropdownItem>
+        <DropdownItem
+            eventKey="quiz"
+            className="user_menu_item"
+            onSelect={handleSelect}
+        >
+            <span>{t("header.user_panel.Quiz_tab")}</span>
+        </DropdownItem>
       <DropdownItem
         eventKey="log_out"
         className="user_menu_item user_menu_item_logout"

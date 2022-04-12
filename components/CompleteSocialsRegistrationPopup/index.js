@@ -1,0 +1,3 @@
+import CompleteSocialsRegistrationPopup from './CompleteSocialsRegistrationPopup'
+
+export default CompleteSocialsRegistrationPopup

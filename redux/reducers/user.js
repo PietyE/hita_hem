@@ -20,6 +20,7 @@ import {
   SET_BANK_ID_KEY,
   SET_SUBSCRIBE_LIST,
   SET_UNSUBSCRIBE_LIST,
+  SET_SOCIALS_KEY,
   SAVE_EMAIL,
 } from "constants/actionsConstant";
 
@@ -35,6 +36,7 @@ const initialsState = {
   isSuccessfulResponseFromApi: false,
   isBankIdResident: false,
   bidSessionKey: '',
+  socialsSessionKey:'',
   currentPath: '',
   token: {},
   user: {},
@@ -48,6 +50,7 @@ const initialsState = {
     quiz: false,
     social_accounts: [],
     unsubscribes: [],
+    answers: [],
   },
   isFirstHydrate: false,
 };
@@ -98,6 +101,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, account:{...state.account, unsubscribes: actions.payload}}
     case SAVE_EMAIL:
       return {...state, savedEmail: actions.payload}
+    case SET_SOCIALS_KEY:
+      return {...state, socialsSessionKey: actions.payload}
 
 
     default:
@@ -107,7 +112,7 @@ export const user = (state = initialsState, actions) => {
 
 export const getQuizErrorsSelector = (state) => state.user.quizErrors;
 export const getQuizIsPassedSelector = (state) => state.user.account.quiz;
-export const getQuiz = (state) => state.user.quizQuestions;
+export const getQuizSelector = (state) => state?.user?.quizQuestions;
 export const getCanChangeEmailSelector = (state) => state.user.canChangeEmail;
 export const getCanChangePasswordSelector = (state) => state.user.canChangePassword;
 export const getCanResetPasswordSelector = (state) => state.user.canResetPassword;
@@ -121,6 +126,8 @@ export const getIsBankIdResident = (state) => state?.user?.isBankIdResident || s
 export const getIsSocialAccount = (state) => state?.user?.account?.social_accounts;
 
 export const getUnsubscribesSelector = (state) => state?.user?.account?.unsubscribes;
+export const getAnswersSelector = (state) => state?.user?.account?.answers;
+
 export const getSavedEmail = state => state?.user?.savedEmail
 
 export const getIsSignInUserSelector = (state) => state.user.isAuth;
@@ -159,3 +166,6 @@ export const getProfile = (state) => state.user.user;
 export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
 export const getBIdKeySelector = (state) => state.user.bidSessionKey;
+export const getSocialsKeySelector = (state) => state.user.socialsSessionKey;
+
+
