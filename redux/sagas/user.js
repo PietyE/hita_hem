@@ -868,9 +868,9 @@ function* clean() {
     yield put(setAccount({}));
     yield put(setToken({}));
     yield put(setProfile({}));
+    yield call([localStorage, "removeItem"], "auth_data");
     yield put(setAuth(false));
     yield call([api, "deleteToken"]);
-    yield call([localStorage, "removeItem"], "auth_data");
     yield put(clearErrors())
     yield put(setIsBankIdResident(false))
     yield put(setTokenForQuizSocialsSignIn(false))
