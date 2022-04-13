@@ -465,7 +465,7 @@ export const en = {
             followers_number: 'Number of followers must be a number.',
             follower_positive: 'Number of followers must be >= 0.',
 
-            website_example: 'Example: https://accumeo.com.',
+            website_example: 'Example: https://accumeo.com',
             youtube_example: 'Example: https://youtube.com/...',
             facebook_example: 'Example: https://facebook.com/...',
             twitter_example: 'Example: https://twitter.com/...',
