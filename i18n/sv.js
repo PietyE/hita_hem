@@ -477,7 +477,7 @@ errors: {
     followers_number: 'Antal följare måste vara ett nummer.',
         follower_positive: 'Antalet följare måste >= 0.',
 
-        website_example: 'Exempel: https://accumeo.com.',
+        website_example: 'Exempel: https://accumeo.com',
         youtube_example: 'Exempel: https://youtube.com/...',
         facebook_example: 'Exempel: https://facebook.com/...',
         twitter_example: 'Exempel: https://twitter.com/...',
