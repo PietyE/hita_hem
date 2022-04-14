@@ -70,24 +70,61 @@ const MiddleSection = ({isAuth}) => {
     });
 
 
-
     const [visible, setVisible] = useState(false);
+    const [canChangeTab, setCanChangeTab] = useState(false)
+
+    useEffect(() => {
+        if (canChangeTab && !matchesAll) {
+            switch (selectedTab) {
+                case companyTabConstants.OVERVIEW:
+                    _changeCompanuTab(companyTabConstants.IDEA)
+                    break;
+                case companyTabConstants.IDEA:
+                    _changeCompanuTab(companyTabConstants.TEAM)
+
+                    break;
+                case companyTabConstants.TEAM:
+                    _changeCompanuTab(companyTabConstants.FIN_INFO)
+
+                    break;
+                case companyTabConstants.FIN_INFO:
+                    _changeCompanuTab(companyTabConstants.FAQ)
+
+                    break;
+                case companyTabConstants.FAQ:
+
+                    break;
+                default:
+                    // return
+            }
+        }
+        setCanChangeTab(false)
+
+    }, [canChangeTab,matchesAll])
+
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
+        const documentHeight = document.documentElement.offsetHeight;
+        const clientHeight = document.documentElement.clientHeight;
+        //change tab when scrolling to the bottom of page
+        if (clientHeight + scrolled + 1 > documentHeight) {
+            setCanChangeTab(true)
+        }
+        //mobile - scroll to top when changing tab
         const projectInfoHeight = sectionRef?.current?.offsetHeight
         const previousSibling = sectionRef?.current?.previousSibling?.offsetHeight
         if (matchesAll) {
             if (scrolled > projectInfoHeight + previousSibling) {
-                    setVisible(false)
+                setVisible(false)
             } else if (scrolled < projectInfoHeight + previousSibling - 160) {
-                    setVisible(true)
+                setVisible(true)
             }
         }
 
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         if (typeof window !== "undefined") {
             window.scrollTo({
                 top: 0,
@@ -95,11 +132,7 @@ const MiddleSection = ({isAuth}) => {
             });
         }
         setVisible(true)
-    },[selectedTab])
-
-
-
-
+    }, [selectedTab])
 
 
     useEffect(() => {
@@ -121,7 +154,7 @@ const MiddleSection = ({isAuth}) => {
                         />
                     )}
 
-                    {campaignName &&(
+                    {campaignName && (
                         <h1 className='middle_section_title'>{campaignName}</h1>
                     )}
                 </div>
@@ -129,7 +162,7 @@ const MiddleSection = ({isAuth}) => {
                 {subTitle && (
                     <p className='middle_section_subtitle'>{subTitle}</p>
                 )}
-                { !matchesAll &&
+                {!matchesAll &&
                 <div className="company_info_sig">
                     <div className='company_info_sig_wrapper'>
                         {industryTitle && (
@@ -189,26 +222,27 @@ const MiddleSection = ({isAuth}) => {
                 <TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>
             </div>
 
-                <div className='middle_mobile_header_container'>
-                    <div className='middle_tabbr_title_wrapper'>
-                        {logo && (
-                            <ImageComponent
-                                src={logo}
-                                alt={logo ? 'campaign logo' : ' '}
-                                className='middle_section_logo'
-                            />
-                        )}
-                    {campaignName &&(
+            <div className='middle_mobile_header_container'>
+                <div className='middle_tabbr_title_wrapper'>
+                    {logo && (
+                        <ImageComponent
+                            src={logo}
+                            alt={logo ? 'campaign logo' : ' '}
+                            className='middle_section_logo'
+                        />
+                    )}
+                    {campaignName && (
                         <h1 className='middle_section_title'>{campaignName}</h1>
                     )}
-                    </div>
-                    {subTitle && (
-                        <p className='middle_section_subtitle'>{subTitle}</p>
-                    )}
                 </div>
+                {subTitle && (
+                    <p className='middle_section_subtitle'>{subTitle}</p>
+                )}
+            </div>
 
 
-            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible} matchesAll={matchesAll} type='mobile'/>
+            <ProjectInvestInfoSection isAuth={isAuth} sectionRef={sectionRef} isVisible={visible}
+                                      matchesAll={matchesAll} type='mobile'/>
 
             <div
                 className=" middle_mobile_tabbr_container">
@@ -221,12 +255,12 @@ const MiddleSection = ({isAuth}) => {
 
 const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
     const renderTabIFauts = (Сomponent) => {
-        if(!isAuth){
+        if (!isAuth) {
             return <CampaignTabSignUp/>
-        }else{
-            if(!isQuizPassed){
+        } else {
+            if (!isQuizPassed) {
                 return <CampaignTabQuizRequest/>
-            }else{
+            } else {
                 return <Сomponent/>
             }
         }
@@ -236,7 +270,7 @@ const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
         case companyTabConstants.OVERVIEW:
             return <Overview/>;
         case companyTabConstants.IDEA:
-            return  renderTabIFauts(Idea);
+            return renderTabIFauts(Idea);
         case companyTabConstants.TEAM:
             return renderTabIFauts(Team);
         case companyTabConstants.FIN_INFO:
