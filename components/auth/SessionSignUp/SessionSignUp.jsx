@@ -1,34 +1,29 @@
-import React, { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form, Field } from "formik";
-import dynamic from "next/dynamic";
+import React, {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Formik, Form, Field} from "formik";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
 import {setShowSessionSignUp, setShowSignIn} from "redux/actions/authPopupWindows";
 import InputComponent from "../../ui/InputComponent";
-import { useTranslation } from "react-i18next";
-import { getIsFetchingAuthSelector } from "redux/reducers/user";
+import {useTranslation} from "react-i18next";
+import {getIsFetchingAuthSelector} from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
-import {checkEmailAndPassword, makeRequestForSignInWithBankId, signInWithGoogle} from "redux/actions/user";
-import {getShowQuiz} from "redux/reducers/authPopupWindows";
+import {makeRequestForSignInWithBankId, signInWithGoogle, signUp} from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
 import {GoogleLogin} from "react-google-login";
 import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
-const Quiz = dynamic(() =>
-    import("components/Quiz")
-);
+
 const SessionSignUp = ({show}) => {
     const dispatch = useDispatch();
     const errorHandlerHook = useAuthErrorHandler()
-    const { t } = useTranslation();
+    const {t} = useTranslation();
     const documentUrl = useSelector(getMembershipAgreementDocument);
     const isFetching = useSelector(getIsFetchingAuthSelector);
-    const isQuizShow = useSelector(getShowQuiz)
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
     const initialValues = {
@@ -48,14 +43,14 @@ const SessionSignUp = ({show}) => {
         errorHandlerHook?._clearErrors()
     };
 
-    const _checkEmailAndPassword = useCallback(
+    const _signUp = useCallback(
         (data) => {
-            dispatch(checkEmailAndPassword(data));
+            dispatch(signUp(data));
         },
         [dispatch]
     );
     const onSubmit = (values) => {
-        recaptcha('check_email', _checkEmailAndPassword,{email: values?.email, password: values?.password, confirm_password:values?.confirm_password})
+        recaptcha('sign_up', _signUp, values)
 
     };
     const signUpSchema = yup.object({
@@ -87,7 +82,7 @@ const SessionSignUp = ({show}) => {
     );
 
     const responseGoogle = (response) => {
-        if(socialAccountError){
+        if (socialAccountError) {
             errorHandlerHook._clearErrors()
         }
         _signInWithGoogle(response.tokenId)
@@ -95,7 +90,7 @@ const SessionSignUp = ({show}) => {
 
     const handleSignInWithBankId = (e) => {
         e.preventDefault()
-        if(socialAccountError){
+        if (socialAccountError) {
             errorHandlerHook._clearErrors()
         }
         _signInWithBankId()
@@ -115,18 +110,18 @@ const SessionSignUp = ({show}) => {
         >
             <header className='auth_session_header'>
                 <h1 className='auth_session_header_title'>{t("auth.session_sign_up.header_title")}</h1>
-                <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span></p>
+                <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span
+                    className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span>
+                </p>
 
             </header>
-            {/*<h1 className="sign_up_title mb-4">{t("auth.sign_up.title")}</h1>*/}
             <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
             <div className='sign_in_socials_buttons_wrapper'>
                 <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
                     BankID
                 </button>
                 <GoogleLogin
-                    clientId= {process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                    // buttonText="Google"
+                    clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
                     render={renderProps => (
                         <button
                             className='sign_in_google sign_in_social_button'
@@ -150,101 +145,99 @@ const SessionSignUp = ({show}) => {
                 initialValues={initialValues}
                 validationSchema={signUpSchema}
                 onSubmit={onSubmit}
-                // validateOnMount
                 validateOnChange={false}
                 validateOnBlur={false}
             >
-                {({ values, touched, errors, setFieldValue, setFieldError }) => {
+                {({values, touched, errors, setFieldValue, setFieldError}) => {
 
                     return (
                         <>
-                            {!!isQuizShow && <Quiz show = {isQuizShow} data = {values}/>}
-                            <Form className = "auth_form">
+                            <Form className="auth_form">
                                 <InputComponent
-                                    type = "email"
-                                    labelClassName = "auth_login_container auth_container"
-                                    label = {t("auth.sign_up.email_label")}
-                                    inputClassName = "auth_input"
-                                    inputName = "email"
-                                    autoComplete = "username"
-                                    values = {values}
-                                    setFieldValue = {setFieldValue}
-                                    setFieldError = {setFieldError}
-                                    touched = {touched}
-                                    errors = {errors}
-                                    errorFromApi = {errorHandlerHook?.emailError}
-                                    clearError = {errorHandlerHook?.clearAuthErrorFromApi}
-                                    placeholder = {t("auth.sign_up.email_placeholder")}
+                                    type="email"
+                                    labelClassName="auth_login_container auth_container"
+                                    label={t("auth.sign_up.email_label")}
+                                    inputClassName="auth_input"
+                                    inputName="email"
+                                    autoComplete="username"
+                                    values={values}
+                                    setFieldValue={setFieldValue}
+                                    setFieldError={setFieldError}
+                                    touched={touched}
+                                    errors={errors}
+                                    errorFromApi={errorHandlerHook?.emailError}
+                                    clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                                    placeholder={t("auth.sign_up.email_placeholder")}
                                 />
                                 <InputComponent
-                                    type = "password"
-                                    labelClassName = "auth_password_container auth_container"
-                                    label = {t("auth.sign_up.password_label")}
-                                    inputClassName = "auth_input"
-                                    inputName = "password"
-                                    autoComplete = "new-password"
-                                    values = {values}
-                                    setFieldValue = {setFieldValue}
-                                    setFieldError = {setFieldError}
-                                    touched = {touched}
-                                    errors = {errors}
-                                    errorFromApi = {errorHandlerHook?.passwordError}
-                                    clearError = {errorHandlerHook?.clearAuthErrorFromApi}
-                                    placeholder = {t("auth.sign_up.password_placeholder")}
-                                    iconClassName = "auth_password_eye"
+                                    type="password"
+                                    labelClassName="auth_password_container auth_container"
+                                    label={t("auth.sign_up.password_label")}
+                                    inputClassName="auth_input"
+                                    inputName="password"
+                                    autoComplete="new-password"
+                                    values={values}
+                                    setFieldValue={setFieldValue}
+                                    setFieldError={setFieldError}
+                                    touched={touched}
+                                    errors={errors}
+                                    errorFromApi={errorHandlerHook?.passwordError}
+                                    clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                                    placeholder={t("auth.sign_up.password_placeholder")}
+                                    iconClassName="auth_password_eye"
                                 />
                                 <InputComponent
-                                    type = "password"
-                                    labelClassName = "auth_password_container auth_container"
-                                    label = {t("auth.sign_up.confirm_password_label")}
-                                    inputClassName = "auth_input"
-                                    inputName = "confirm_password"
-                                    autoComplete = "new-password"
-                                    values = {values}
-                                    setFieldValue = {setFieldValue}
-                                    setFieldError = {setFieldError}
-                                    touched = {touched}
-                                    errors = {errors}
-                                    errorFromApi = {errorHandlerHook?.confirm_password}
-                                    clearError = {errorHandlerHook?.clearAuthErrorFromApi}
-                                    placeholder = {t("auth.sign_up.confirm_password_placeholder")}
-                                    iconClassName = "auth_password_eye"
+                                    type="password"
+                                    labelClassName="auth_password_container auth_container"
+                                    label={t("auth.sign_up.confirm_password_label")}
+                                    inputClassName="auth_input"
+                                    inputName="confirm_password"
+                                    autoComplete="new-password"
+                                    values={values}
+                                    setFieldValue={setFieldValue}
+                                    setFieldError={setFieldError}
+                                    touched={touched}
+                                    errors={errors}
+                                    errorFromApi={errorHandlerHook?.confirm_password}
+                                    clearError={errorHandlerHook?.clearAuthErrorFromApi}
+                                    placeholder={t("auth.sign_up.confirm_password_placeholder")}
+                                    iconClassName="auth_password_eye"
                                 />
-                                <label className = "sign_up_checkbox">
+                                <label className="sign_up_checkbox">
                                     <Field
-                                        name = "is_agree"
-                                        type = "checkbox"
-                                        className = {
+                                        name="is_agree"
+                                        type="checkbox"
+                                        className={
                                             touched.is_agree && errors.is_agree
                                                 ? "sign_up_agreement_checkbox_warning"
                                                 : "sign_up_agreement_checkbox"
                                         }
                                     />
-                                    <span className = "checkmark"/>
-                                    <span className = "sign_up_password_label">
+                                    <span className="checkmark"/>
+                                    <span className="sign_up_password_label">
                 {t("auth.sign_up.agreement_text")}
               </span>
                                 </label>
                                 <a
-                                    target = "_blank"
-                                    rel = "noopener noreferrer"
-                                    href = {documentUrl?.file || documentUrl?.url}
-                                    className = "sign_up_password_link"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    href={documentUrl?.file || documentUrl?.url}
+                                    className="sign_up_password_link"
                                 >
                                     {t("auth.sign_up.agreement_link")}
                                 </a>
                                 <CaptchaPrivacyBlock/>
                                 <Button
-                                    type = "submit"
-                                    colorStyle = {"dark-green"}
-                                    className = "auth_button"
-                                    disabled = {!values.is_agree}
+                                    type="submit"
+                                    colorStyle={"dark-green"}
+                                    className="auth_button"
+                                    disabled={!values.is_agree}
                                 >
                                     {t("auth.sign_up.button")}
                                 </Button>
-                                <p className = "auth_footer_text">
+                                <p className="auth_footer_text">
                                     {t("auth.sign_up.footer_text")}
-                                    <span onClick = {handleShowSignIn} className = "auth_footer_link">
+                                    <span onClick={handleShowSignIn} className="auth_footer_link">
                 {t("auth.sign_up.sign_up_link")}
               </span>
                                 </p>

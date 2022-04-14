@@ -76,7 +76,7 @@ const MiddleSection = ({isAuth}) => {
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
         const projectInfoHeight = sectionRef?.current?.offsetHeight
-        const previousSibling = sectionRef?.current.previousSibling.offsetHeight
+        const previousSibling = sectionRef?.current?.previousSibling?.offsetHeight
         if (matchesAll) {
             if (scrolled > projectInfoHeight + previousSibling) {
                     setVisible(false)

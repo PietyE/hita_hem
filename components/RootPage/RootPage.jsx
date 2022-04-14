@@ -35,18 +35,20 @@ import {
     getShowFirstLoginPopup,
     getShowPostalCodeNotification,
     getShowCompleteBankIdRegistration,
+    getShowCompleteSocialsRegistration,
+    getShowSuccessfulQuizMessage,
+    getShowOptionalQuizMessage,
+    getShowDataLossWarningFromProfile,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
 import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
-// import useGoogleCaptcha from "../../customHooks/useGoogleCaptcha";
 
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
 import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
-import {getTokenForQuizSocialsSignIn} from "../../redux/reducers/user";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -102,9 +104,9 @@ const SuccessfulChangeEmailOrPassword = dynamic(() =>
 const ShowDenyDeletingAccount = dynamic(() =>
     import("components/ShowDenyDeletingAccount"), { ssr: false }
 );
-// const ShowCookiePopup = dynamic(() =>
-//     import("components/CookieModal"), { ssr: false }
-// );
+const SuccessfulQuizMessage = dynamic(() =>
+    import("components/SuccessfulQuizMessage"), { ssr: false }
+);
 const SuccessfulFaqPopup = dynamic(() =>
     import("components/SuccessfulFaqPost"), { ssr: false }
 );
@@ -116,7 +118,7 @@ const FirstLoginPopup = dynamic(() =>
 );
 
 const Quiz = dynamic(() =>
-    import("components/Quiz"), { ssr: false }
+    import("components/QuizPopup"), { ssr: false }
 );
 const PostalCodeNotification = dynamic(() =>
     import("components/ShowPostalCodeNotification"), { ssr: false }
@@ -128,6 +130,16 @@ const CookieNotification = dynamic(() =>
 
 const CompleteBankIdRegistrationPopup = dynamic(() =>
     import("components/CompleteBankIdRegistrationPopup"), { ssr: false }
+);
+
+const CompleteSocialsRegistrationPopup = dynamic(() =>
+    import("components/CompleteSocialsRegistrationPopup"), { ssr: false }
+);
+const SuccessfulOptionalQuiz = dynamic(() =>
+    import("components/SuccessfulOptionalQuiz"), { ssr: false }
+);
+const DataLossWarningFromProfile = dynamic(() =>
+    import("components/DataLossWarningFromProfile"), { ssr: false }
 );
 
 const RootPage = ({ children, initLang = "" }) => {
@@ -170,10 +182,16 @@ const RootPage = ({ children, initLang = "" }) => {
   const isShowFaqPopup = useSelector(getShowSuccessfulFaqPopup)
   const isShowDataLossWarning = useSelector(getShowDataLossWarning)
     const isShowQuiz = useSelector(getShowQuiz)
-    const isShowQuizForBankId = useSelector(getTokenForQuizSocialsSignIn)
     const isShowFirstLoginPopup = useSelector(getShowFirstLoginPopup)
     const isShowPostalCodeNotification = useSelector(getShowPostalCodeNotification)
     const isShowCompleteBankIdRegistration = useSelector(getShowCompleteBankIdRegistration)
+    const isShowCompleteSocialsRegistration = useSelector(getShowCompleteSocialsRegistration)
+    const isShowSuccessfulQuizMessage = useSelector(getShowSuccessfulQuizMessage)
+    const isShowOptionalQuizMessage = useSelector(getShowOptionalQuizMessage)
+    const showDataLossWarningFromProfile = useSelector(getShowDataLossWarningFromProfile)
+
+
+
 
     const canResetPassword = useSelector(getCanResetPasswordSelector)
 
@@ -343,13 +361,19 @@ const RootPage = ({ children, initLang = "" }) => {
         {!!isShowInvalidTokenModal && <InvalidTokenModal show={isShowInvalidTokenModal}/>}
         {!!isShowSuccessfulChangeEmailOrPassword && <SuccessfulChangeEmailOrPassword show={isShowSuccessfulChangeEmailOrPassword}/>}
         {!!isShowDenyDeletingAccount && <ShowDenyDeletingAccount show={isShowDenyDeletingAccount}/>}
-        {/*{!!isShowCookie && <ShowCookiePopup show={isShowCookie}/>}*/}
         {!!isShowFaqPopup && <SuccessfulFaqPopup show={isShowFaqPopup}/>}
         {!!isShowDataLossWarning && <DataLossWarning show={isShowDataLossWarning}/>}
           {!!isShowFirstLoginPopup && <FirstLoginPopup show={isShowFirstLoginPopup}/>}
-          {!!isShowQuizForBankId && !!isShowQuiz && <Quiz show={!!isShowQuizForBankId}/>}
+          {!!isShowQuiz && <Quiz show={!!isShowQuiz}/>}
           {!!isShowPostalCodeNotification && <PostalCodeNotification show={!!isShowPostalCodeNotification}/>}
           {!!isShowCompleteBankIdRegistration && <CompleteBankIdRegistrationPopup show={!!isShowCompleteBankIdRegistration}/>}
+          {!!isShowCompleteSocialsRegistration && <CompleteSocialsRegistrationPopup show={!!isShowCompleteSocialsRegistration}/>}
+          {!!isShowSuccessfulQuizMessage && <SuccessfulQuizMessage show={!!isShowSuccessfulQuizMessage}/>}
+          {!!isShowOptionalQuizMessage && <SuccessfulOptionalQuiz show={!!isShowOptionalQuizMessage}/>}
+          {!!showDataLossWarningFromProfile && <DataLossWarningFromProfile data={showDataLossWarningFromProfile}/>}
+
+
+
           {isShowCookie && <CookieNotification/>}
 
 
