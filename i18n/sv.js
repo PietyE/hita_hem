@@ -431,7 +431,7 @@ change_password_page: {
         button_change: 'Ändra lösenord',
 },
 errors: {
-    email_example: 'Exempel: test@test.com.',
+    email_example: 'Exempel: test@test.com',
         email_required: 'E-postadress ej ifyllt.',
         password_required: 'Lösenord är nödvändigt.',
         password_example: 'Lösenordet måste innehålla minst åtta tecken, minst en stor bokstav och minst en siffra.',
