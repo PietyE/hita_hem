@@ -26,9 +26,6 @@ const InstructionSection = () => {
 
   return (
     <section className="instructions_container">
-      {/*<h2 className="instructions_title">*/}
-      {/*  {t("home_page.instructions_title")}*/}
-      {/*</h2>*/}
       <div className="instructions_tab-bar_wrapper">
         <TabBar
           data={[

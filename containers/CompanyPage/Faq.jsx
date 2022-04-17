@@ -11,7 +11,6 @@ import {
 import isEqual from "lodash/isEqual";
 import { addFaqPost, getFaqPosts } from "redux/actions/companies";
 import { useTranslation } from "react-i18next";
-// import {filterComments} from "../../utils/restrictInput";
 import {recaptcha} from "../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
 

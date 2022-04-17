@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
-import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
+import {checkCurrentResolution, getCorrectImage, getImageAltText} from "../../utils/utils";
 import SliderImage from "../../containers/HomePage/SliderImage";
 import dynamic from "next/dynamic";
 
@@ -27,7 +27,6 @@ const TopSliderComponent = ({
                                 isAuth,
                             }) => {
     const screenSize = checkCurrentResolution()
-
     const [showSlider, setShowSlider] = useState(false)
 
     useEffect(() => {
@@ -83,7 +82,12 @@ const TopSliderComponent = ({
 
                             </div>
                             {bannerData?.images && screenSize && (
-                                <SliderImage img={getCorrectImage(bannerData.images)} screenSize={screenSize}/>
+                                <SliderImage
+                                    img={getCorrectImage(bannerData.images)}
+                                    screenSize={screenSize}
+                                    alter_text={getImageAltText(bannerData?.images?.alter_text)}
+
+                                />
                             )}
 
                         </section>
