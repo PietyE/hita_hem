@@ -89,6 +89,11 @@
   margin-bottom: 52px;
 }
 
+.item_component_home_title{
+  @extend .item_component_title;
+  color: #000;
+}
+
 .item_component_description {
   font-family: 'Source sans Pro', sans-serif;
   font-style: normal;
@@ -101,6 +106,10 @@
   width: 100%;
   max-width: 475px;
   letter-spacing: 0.5px;
+}
+.item_component_home_description{
+  @extend .item_component_description;
+  color: #000;
 }
 
 .slider_component_buttons_container {

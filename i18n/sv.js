@@ -431,7 +431,7 @@ change_password_page: {
         button_change: 'Ändra lösenord',
 },
 errors: {
-    email_example: 'Exempel: test@test.com.',
+    email_example: 'Exempel: test@test.com',
         email_required: 'E-postadress ej ifyllt.',
         password_required: 'Lösenord är nödvändigt.',
         password_example: 'Lösenordet måste innehålla minst åtta tecken, minst en stor bokstav och minst en siffra.',
@@ -477,7 +477,7 @@ errors: {
     followers_number: 'Antal följare måste vara ett nummer.',
         follower_positive: 'Antalet följare måste >= 0.',
 
-        website_example: 'Exempel: https://accumeo.com.',
+        website_example: 'Exempel: https://accumeo.com',
         youtube_example: 'Exempel: https://youtube.com/...',
         facebook_example: 'Exempel: https://facebook.com/...',
         twitter_example: 'Exempel: https://twitter.com/...',

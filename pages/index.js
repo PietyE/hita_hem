@@ -60,7 +60,6 @@ const Index = () => {
                     <UpcomingCampaigns/>
                     <InstructionSection/>
                     {!isAuth && <JoinSection/>}
-                    {/*<div id="dib-specific-posts"></div>*/}
                     <div id="dib-recent-posts"></div>
                 </div>
             </div>

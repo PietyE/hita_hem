@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import Button from "../ui/Button";
 import StatusCompanyBadge from "../StatusCompany";
-import {checkCurrentResolution, getCorrectImage} from "../../utils/utils";
+import {checkCurrentResolution, getCorrectImage, getImageAltText} from "../../utils/utils";
 import SliderImage from "../../containers/HomePage/SliderImage";
 import dynamic from "next/dynamic";
 
@@ -27,7 +27,6 @@ const TopSliderComponent = ({
                                 isAuth,
                             }) => {
     const screenSize = checkCurrentResolution()
-
     const [showSlider, setShowSlider] = useState(false)
 
     useEffect(() => {
@@ -83,7 +82,12 @@ const TopSliderComponent = ({
 
                             </div>
                             {bannerData?.images && screenSize && (
-                                <SliderImage img={getCorrectImage(bannerData.images)} screenSize={screenSize}/>
+                                <SliderImage
+                                    img={getCorrectImage(bannerData.images)}
+                                    screenSize={screenSize}
+                                    alter_text={getImageAltText(bannerData?.images?.alter_text)}
+
+                                />
                             )}
 
                         </section>
@@ -112,22 +116,22 @@ const TopSliderComponent = ({
                                         <StatusCompanyBadge
                                             status={status}
                                             percentage={percentage}
-                                            classNameContainer={`item_component_status ${statusClass}`}
+                                            classNameContainer={` item_component_status ${statusClass}`}
                                         />
                                     )}
                                     {title && type === 'home_page' && (
-                                        <h1 className={`item_component_title ${itemTitleClass}`}>
+                                        <h1 className={`${type === 'home_page' ? 'item_component_home_title' : 'item_component_title'} ${itemTitleClass}`}>
                                             {title}
                                         </h1>
                                     )}
                                     {title && type !== 'home_page' && (
-                                        <h2 className={`item_component_title ${itemTitleClass}`}>
+                                        <h2 className={`${type === 'home_page' ? 'item_component_home_title' : 'item_component_title'} ${itemTitleClass}`}>
                                             {title}
                                         </h2>
                                     )}
                                     {description && (
                                         <div
-                                            className={`item_component_description ${itemDescriptionClass}`}
+                                            className={`${type === 'home_page' ? 'item_component_home_description' : 'item_component_description'} ${itemDescriptionClass}`}
                                             dangerouslySetInnerHTML={{
                                                 __html: sanitizeHtmlFromBack(description),
                                             }}
@@ -141,7 +145,7 @@ const TopSliderComponent = ({
                                                 <a href={first_button_url}>
                                                     <Button
                                                         className={`slider_component_first_btn ${firstButtonClass}`}
-                                                        colorStyle="white"
+                                                        colorStyle={type === 'home_page' ? "black" : "white"}
                                                     >
                                                         {first_button_title.toUpperCase()}
                                                     </Button>
@@ -151,7 +155,7 @@ const TopSliderComponent = ({
                                                 <a href={second_button_url}>
                                                     <Button
                                                         className={`slider_component_second_btn ${secondButtonClass}`}
-                                                        colorStyle="outline-white"
+                                                        colorStyle={type === 'home_page' ? "outline-black" : "outline-white"}
                                                     >
                                                         {second_button_title.toUpperCase()}
                                                     </Button>
