@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {getCorrectImage, getImgMeta} from "../../utils/utils";
+import {getCorrectImage, getImageAltText, getImgMeta} from "../../utils/utils";
 import InfoBlockColor from "../../components/ui/InfoBlockColor";
 import Title from "../../components/ui/Title";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
@@ -34,11 +34,15 @@ const IdeaItem = ({section}) => {
         title,
         description,
     } = section;
-
     const img1 = getCorrectImage(first_images)
     const img2 = getCorrectImage(second_images)
     const img3 = getCorrectImage(third_images)
     const img4 = getCorrectImage(fourth_images)
+    const altText1 = getImageAltText(first_images)
+    const altText2 = getImageAltText(second_images)
+    const altText3 = getImageAltText(third_images)
+    const altText4 = getImageAltText(fourth_images)
+
 
     const [firstImageSize, setFirstImageSize] = useState({})
     const [secondImageSize, setSecondImageSize] = useState({})
@@ -89,7 +93,7 @@ const IdeaItem = ({section}) => {
                                         width={firstImageSize?.width || 192}
                                         height={firstImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img1 ? 'first image' : ' '}
+                                        alt={altText1}
                                         className='idea_next_image'
                                     />
                                 </div>
@@ -101,7 +105,7 @@ const IdeaItem = ({section}) => {
                                         width={secondImageSize?.width || 192}
                                         height={secondImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img2 ? 'solution image' : ' '}
+                                        alt={altText2}
                                         className='idea_next_image'
                                     />
                                 </div>
@@ -124,7 +128,7 @@ const IdeaItem = ({section}) => {
                                         width={firstImageSize?.width || 192}
                                         height={firstImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img1 ? 'solution image' : ' '}
+                                        alt={altText1}
                                     />
                                 </div>
                             )}
@@ -136,7 +140,7 @@ const IdeaItem = ({section}) => {
                                         width={secondImageSize?.width || 192}
                                         height={secondImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img2 ? 'solution image' : ' '}
+                                        alt={altText2}
                                     />
                                 </div>
                             )}
@@ -148,7 +152,7 @@ const IdeaItem = ({section}) => {
                                         width={thirdImageSize?.width || 192}
                                         height={thirdImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img3 ? 'solution image' : ' '}
+                                        alt={altText3}
                                     />
                                 </div>
                             )}
@@ -160,7 +164,7 @@ const IdeaItem = ({section}) => {
                                         width={fourthImageSize?.width || 192}
                                         height={fourthImageSize?.height || 108}
                                         layout="responsive"
-                                        alt={img4 ? 'solution image' : ' '}
+                                        alt={altText4}
                                     />
                                 </div>
 

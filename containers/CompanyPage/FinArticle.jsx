@@ -3,7 +3,7 @@ import Button from "components/ui/Button";
 import {useMediaQueries} from "@react-hook/media-query";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
-import {getCorrectImage, getImgMeta} from "../../utils/utils";
+import {getCorrectImage, getImgMeta, getImageAltText} from "../../utils/utils";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -32,9 +32,9 @@ const options = {
 
 const FinArticle = ({item}) => {
     const {t} = useTranslation();
-
     const {title, description, images} = item;
     const img = getCorrectImage(images)
+    const altText = getImageAltText(images)
 
     const contentRef = useRef();
 
@@ -109,11 +109,7 @@ const FinArticle = ({item}) => {
                         ref={contentRef}
                     >
                         <div
-                            className={
-                                img
-                                    ? "fin_article_text_wrapper"
-                                    : "fin_article_text_wrapper_alone"
-                            }
+                            className="fin_article_text_wrapper"
                         >
                             <h3 className="fin_article_title">{title}</h3>
                             <span
@@ -130,6 +126,7 @@ const FinArticle = ({item}) => {
                                 width={imageMeta?.width || 192}
                                 height={imageMeta?.height || 108}
                                 className='fin_article_image'
+                                alt={altText}
                             />
                         )}
                         {matchesAll && isShowButton && (

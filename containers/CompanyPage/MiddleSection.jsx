@@ -38,7 +38,7 @@ import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
-import {getCompanySubTitleSelector} from "../../redux/reducers/companies";
+import {getCompanyLogoAltTextSelector, getCompanySubTitleSelector} from "../../redux/reducers/companies";
 import ImageComponent from "../../components/ui/ImageComponent";
 
 const MiddleSection = ({isAuth}) => {
@@ -53,6 +53,7 @@ const MiddleSection = ({isAuth}) => {
     const subTitle = useSelector(getCompanySubTitleSelector)
     const campaignName = useSelector(getCompanyNameSelector)
     const logo = useSelector(getCompanyLogoUrlSelector)
+    const alter_text = useSelector(getCompanyLogoAltTextSelector)
 
     const sectionRef = useRef();
 
@@ -149,7 +150,7 @@ const MiddleSection = ({isAuth}) => {
                     {logo && (
                         <ImageComponent
                             src={logo}
-                            alt={logo ? 'campaign logo' : ' '}
+                            alt={alter_text || ' '}
                             className='middle_section_logo'
                         />
                     )}
@@ -227,7 +228,7 @@ const MiddleSection = ({isAuth}) => {
                     {logo && (
                         <ImageComponent
                             src={logo}
-                            alt={logo ? 'campaign logo' : ' '}
+                            alt={alter_text || ' '}
                             className='middle_section_logo'
                         />
                     )}

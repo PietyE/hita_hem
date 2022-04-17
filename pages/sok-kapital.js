@@ -15,7 +15,7 @@ import {
     getRaisePageImageSelector,
     getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
-import {getCorrectImage, getImgMeta} from "../utils/utils";
+import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
 
 
@@ -36,6 +36,7 @@ const RaisePage = () => {
     const isScrollToForm = useSelector(getScrollToFormSelector)
 
     const img = getCorrectImage(images)
+    const altText = getImageAltText(images)
 
     const [imageSize, setImageSize] = useState({})
 
@@ -84,6 +85,7 @@ const RaisePage = () => {
                         <Image
                             src={img}
                             width={imageSize?.width || 192} height={imageSize?.height || 108} layout="responsive"
+                            alt={altText}
                         />
                     </div>
                 )}

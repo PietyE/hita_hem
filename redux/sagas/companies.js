@@ -7,7 +7,7 @@ import {
   ADD_POST,
   GET_POSTS,
   ADD_FAQ_ANSWER,
-  MAKE_PAYMENT, GET_COMPANY_BY_NAME,
+  MAKE_PAYMENT,
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,

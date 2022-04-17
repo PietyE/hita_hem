@@ -53,6 +53,16 @@ export const getCorrectImage = (images) => {
     return img
 }
 
+export const getImageAltText = (images) => {
+    let alt;
+    if (typeof window !== "undefined" && images) {
+        alt = images['alter_text'] || ' '
+    } else {
+        alt = ' '
+    }
+    return alt
+}
+
 export const chooseCorrectResolution = (imageList) => {
     const imageSize = checkCurrentResolution();
     /////////remove after fix on beck-end

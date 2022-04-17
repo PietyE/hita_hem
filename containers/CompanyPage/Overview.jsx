@@ -7,7 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     getAboutProjectDescriptionSelector,
     getAboutProjectTitleSelector,
-    getBusinessHighlightSelector, getOverviewImageSelector, getVideoLinkSelector
+    getBusinessHighlightSelector,
+    getOverviewImageSelector,
+    getVideoLinkSelector,
+    getOverviewImageAltTextSelector,
 } from "redux/reducers/companies";
 import {useTranslation} from "react-i18next";
 import {useMediaQueries} from "@react-hook/media-query";
@@ -28,6 +31,7 @@ const Overview = () => {
     const description = useSelector(getAboutProjectDescriptionSelector);
     const videoLink = useSelector(getVideoLinkSelector)
     const image = useSelector(getOverviewImageSelector)
+    const imageAltText = useSelector(getOverviewImageAltTextSelector)
     const isAuth = useSelector(getIsSignInUserSelector)
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
@@ -81,7 +85,7 @@ const Overview = () => {
                             width={imageSize?.width || 192}
                             height={imageSize?.height || 108}
                             layout="responsive"
-                            alt={image ? 'image' : ' '}
+                            alt={imageAltText || ' '}
                         />
                     </div>
                 )}
