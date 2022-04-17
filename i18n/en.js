@@ -419,7 +419,7 @@ export const en = {
             },
         },
         errors: {
-            email_example: 'Example: test@test.com.',
+            email_example: 'Example: test@test.com',
             email_required: 'Email is a required field.',
             password_required: 'Password is a required field.',
             password_example: 'The password must contain at least eight characters, at least one capital letter and at least one number.',
@@ -465,7 +465,7 @@ export const en = {
             followers_number: 'Number of followers must be a number.',
             follower_positive: 'Number of followers must be >= 0.',
 
-            website_example: 'Example: https://accumeo.com.',
+            website_example: 'Example: https://accumeo.com',
             youtube_example: 'Example: https://youtube.com/...',
             facebook_example: 'Example: https://facebook.com/...',
             twitter_example: 'Example: https://twitter.com/...',

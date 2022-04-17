@@ -109,11 +109,7 @@ const FinArticle = ({item}) => {
                         ref={contentRef}
                     >
                         <div
-                            className={
-                                img
-                                    ? "fin_article_text_wrapper"
-                                    : "fin_article_text_wrapper_alone"
-                            }
+                            className="fin_article_text_wrapper"
                         >
                             <h3 className="fin_article_title">{title}</h3>
                             <span

@@ -63,11 +63,14 @@ const QuizItem = ({data, onSelect, warningList, userQuizAnswers}) => {
                     }
 
                     const _disabledStyle = {
-                        backgroundColor: isQuizPassed && !optional ? 'rgb(230 237 250)' : ''
+                        border: isQuizPassed && !optional && selectedAnswer !== option.pk ? 'none' : ''
+                    }
+                    const _disabledCursor = {
+                        cursor: isQuizPassed && !optional ? 'default' : ''
                     }
 
                     return (
-                        <label key={option?.pk} className={`quiz_item_option_label ${_textWarning}`}>
+                        <label key={option?.pk} className={`quiz_item_option_label ${_textWarning}` } style={_disabledCursor}>
                             <input type='radio'
                                    checked={selectedAnswer === option.pk}
                                    data-answer={option.pk}
