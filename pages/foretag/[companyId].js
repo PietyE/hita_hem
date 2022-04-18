@@ -4,6 +4,7 @@ import {END} from "redux-saga";
 import {wrapper} from "/redux/store";
 import {useRouter} from "next/router";
 
+import Schema from "../../components/Schema";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
 import RecommendedCampaigns from "containers/CompanyPage/RecommendedCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
@@ -15,13 +16,15 @@ import {
     resetCompanyTab, setRedirect,
 } from "redux/actions/companies";
 import {getIsSignInUserSelector} from "redux/reducers/user";
+import {getCampaignDataForSchemaSelector, getCampaignSeoSelector} from "redux/reducers/companies";
 import {
     getIsError404Selector,
     getIsFetchingCampaignsSelector,
     getIsRedirectOnSelector,
 } from "redux/reducers/companies";
-import {getCampaignSeoSelector} from "../../redux/reducers/companies";
 
+
+import makeCampaignSchema from "../../Schemas/campaignSchema";
 const CompanyPage = () => {
 
     const router = useRouter();
@@ -34,6 +37,7 @@ const CompanyPage = () => {
     const isFetching = useSelector(getIsFetchingCampaignsSelector);
     const isRedirectOnSelector = useSelector(getIsRedirectOnSelector)
     const seo = useSelector(getCampaignSeoSelector)
+  const dataForSchema = useSelector(getCampaignDataForSchemaSelector)
 
 
     const _getCompanyDetail = useCallback(
@@ -105,7 +109,9 @@ const CompanyPage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
-            {isFetching && <SpinnerStyled/>}
+          <Schema makeSchema={makeCampaignSchema} data={dataForSchema}/>
+
+          {isFetching && <SpinnerStyled/>}
             {!isError404 && <div className="company-page-container">
                 <MiddleSection isAuth={isAuth}/>
                 <RecommendedCampaigns/>

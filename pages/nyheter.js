@@ -1,10 +1,15 @@
 import React from 'react';
 import useDropInBlog from "../customHooks/useDropInBlog";
+import Schema from "../components/Schema";
+import makeBlogSchema from "../Schemas/blogSchema";
 
 const Nyheter = () => {
     useDropInBlog()
     return (
-        <div id="dib-posts"></div>
+        <>
+            <Schema makeSchema={makeBlogSchema} data={{}}/>
+            <div id="dib-posts"></div>
+            </>
     );
 }
 
