@@ -193,6 +193,7 @@ const MiddleSection = ({isAuth}) => {
                             <SocialTab
                                 socials={socials}
                                 classNameContainer="company_info_social"
+                                type="campaign_socials"
                             />
                         )}
 

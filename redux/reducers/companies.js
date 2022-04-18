@@ -79,7 +79,7 @@ const initialState = {
         currency: "",
         price: null,
         percentage: null,
-        socialurl_set: [
+        social_url: [
             {
                 url: "",
                 social: {
@@ -256,7 +256,7 @@ export const getWebSiteCompanySelector = (state) =>
     state.companies.companyDetail.website;
 
 export const getSocialsCompanySelector = (state) => {
-    return state.companies.companyDetail?.socialurl_set?.map((s) => {
+    return state.companies.companyDetail?.social_url?.map((s) => {
         return {name: s.social.name.toLowerCase(), url: s.url};
     });
 };
@@ -276,6 +276,23 @@ export const getPercentageSelector = (state) =>
 
 export const getCompanySlugSelector = (state) =>
     state.companies.companyDetail.slug;
+
+export const getCampaignDataForSchemaSelector = state => {
+    return {
+        hidden_mode: state.companies?.companyDetail?.hidden_mode,
+        logo: state.companies?.companyDetail?.logo,
+        name: state.companies?.companyDetail?.name,
+        country: state.companies?.companyDetail?.country,
+        slug: state.companies?.companyDetail?.slug,
+        social_url: state.companies?.companyDetail?.social_url,
+        short_description: state.companies?.companyDetail?.short_description,
+        images: state.companies?.companyDetail?.images,
+        status: state.companies.companyDetail.status,
+        end_date: state.companies.companyDetail.end_date,
+        start_date: state.companies.companyDetail.start_date,
+        currency: state.companies.companyDetail.currency,
+    }
+};
 
 // export const getLeftDaysToStartSelector = (state) =>
 //     state.companies.companyDetail?.left_date_start;

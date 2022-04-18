@@ -17,6 +17,8 @@ import {
 } from "redux/reducers/raisePage";
 import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
+import Schema from "../components/Schema";
+import makeRaiseSchema from "../Schemas/blogSchema";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
@@ -76,6 +78,8 @@ const RaisePage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
+            <Schema makeSchema={makeRaiseSchema} data={{}}/>
+
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">
                 <RaisePageTopSlider onScrollTo={scrollTo}/>

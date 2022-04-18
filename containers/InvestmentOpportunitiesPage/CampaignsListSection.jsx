@@ -36,12 +36,11 @@ const DropdownItem = dynamic(() =>
   import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
 );
 
-const CampaignsListSection = () => {
+const CampaignsListSection = ({companiesList}) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentFilter = useSelector(getFilterSelector);
   const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
-  const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
 
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [filterValuesArray, setFilterValuesArray] = useState([]);
