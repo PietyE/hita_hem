@@ -114,6 +114,7 @@
 
         .company_info_social {
           padding-bottom: 8px;
+
         }
       }
     }
@@ -2850,6 +2851,12 @@
   flex-wrap: wrap;
   //justify-content: space-between;
   //margin-bottom: 20px;
+  .company_info_social{
+    width: 100%;
+    .social_link{
+      margin-right: 35px;
+    }
+  }
   .company_info_sig_item{
     margin-right: 20px;
     margin-bottom: 20px;

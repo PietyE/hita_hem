@@ -27,18 +27,24 @@ const _data = {
   },
 };
 
-const SocialTab = ({ socials = [], classNameContainer = "" }) => {
+const SocialTab = ({ socials = [], classNameContainer = "", type = "" }) => {
   return (
     <div className={`social_tab_container ${classNameContainer}`}>
       {socials.map((s, i) => {
         return (
           <a className="social_link" href={s.url} key={i}>
             {s.name !== "allabolag" ? (
+                <>
               <IconComponent
                 icon={_data[s.name]?.iconName}
                 className="social_icon"
               />
+              {type === "campaign_socials" && (
+              <span className="social_text">{s.name}</span>
+              )}
+              </>
             ) : (
+                <>
                 <svg
                     className="social_icon"
                     width="20"
@@ -56,6 +62,10 @@ const SocialTab = ({ socials = [], classNameContainer = "" }) => {
                       fill="white"
                   />
                 </svg>
+                  {type === "campaign_socials" && (
+                      <span className="social_text">AllaBolag</span>
+                  )}
+                </>
             )}
           </a>
         );
