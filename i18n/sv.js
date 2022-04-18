@@ -18,6 +18,10 @@ export const sv = {
                 Log_Out: "Logga ut",
             },
         },
+        search: {
+            hint: 'Tryck på enter för att söka',
+            placeholder: 'Sök efter kampanjnamn eller nyckelord',
+        },
         raisePage: {
             top_slider: {
                 button: "Starta ett projekt",

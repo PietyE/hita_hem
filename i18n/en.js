@@ -18,6 +18,10 @@ export const en = {
                 Log_Out: "Log Out",
             },
         },
+        search: {
+            hint: 'Press enter to search',
+            placeholder: 'Search for campaign name or keyword...',
+        },
         raisePage: {
             top_slider: {
                 button: "Start a project",
