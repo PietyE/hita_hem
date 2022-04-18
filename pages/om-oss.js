@@ -20,6 +20,8 @@ import {
 } from "redux/reducers/aboutUs";
 import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
 import MetaTags from "../components/MetaTags";
+import Schema from "../components/Schema";
+import makeAboutUsSchema from "../Schemas/aboutUsSchema";
 
 const SubscrebeFormSection = dynamic(() => import("containers/AboutUsPage/SubscrebeFormSection"), {
     ssr: false,
@@ -40,7 +42,6 @@ const AboutUsPage = () => {
     const team_members = useSelector(getTeamMembersSelector);
     const subscribe_title = useSelector(getSubscribeTitleSelector);
     const seo = useSelector(getAboutUsSeoSelector)
-
     const topSectionContent = {
         title: header_title,
         description: header_description,
@@ -54,6 +55,7 @@ const AboutUsPage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
+            <Schema makeSchema={makeAboutUsSchema} data={team_members}/>
             {isFetching && <SpinnerStyled/>}
             <div className="about_us_container">
                 <TopSection content={topSectionContent}/>

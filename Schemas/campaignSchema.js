@@ -1,3 +1,5 @@
+import {convertStatusToText} from "../utils/utils";
+
 const makeCampaignSchema = (campaign) => {
     let socials = []
     if(campaign?.social_url && campaign?.social_url.length > 0){
@@ -8,21 +10,38 @@ const makeCampaignSchema = (campaign) => {
         :
         {
             "@context": "https://schema.org/",
-            "@type": "Organization",
-            "name": `${campaign?.name}`,
-            "description": `${campaign?.short_description}`,
-            "logo": {
-                "url": `${campaign?.logo}`,
-                "@context": "http://schema.org",
-                "@type": "ImageObject"
-            },
-            "image": `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
-            "url": `https://accumeo.com/foretag/${campaign?.slug}`,
-            "address": {
-                "@type": "PostalAddress",
-                "addressLocality": `${campaign?.country}`,
-            },
-            "sameAs": socials,
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "name": `${campaign?.name}`,
+                    "description": `${campaign?.short_description}`,
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": `${campaign?.logo}`,
+                        "caption": `${campaign?.name}`
+                    },
+                    "image": {
+                        "@type": "ImageObject",
+                        "url":  `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
+                        "caption": `${campaign?.name}`
+                    },
+                    "url": `https://accumeo.com/foretag/${campaign?.slug}`,
+                    "sameAs": socials,
+                },
+                {
+                    "@type": "Offer",
+                    "name": `${campaign?.name}`,
+                    "areaServed": `${campaign?.country}`,
+                    "description": `${campaign?.short_description}`,
+
+                    "availability": `${convertStatusToText(campaign?.status)}`,
+                    "availabilityEnds": `${campaign?.end_date}`,
+                    "availabilityStarts": `${campaign?.start_date}`,
+                    "priceCurrency": `${campaign?.currency}`,
+
+                }
+                ]
+
         })
 
 }

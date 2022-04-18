@@ -5,6 +5,7 @@ const makeInvestPageSchema = (campaigns) => {
     if(campaigns && campaigns.length > 0){
         listForSchema = campaigns.map((el, i) => ({
             "@type":"ListItem",
+            "isPartOf": {"@id": "https://accumeo.com/investeringsmojligheter/#webpage"},
             "position":`${i}`,
             "url":`https://accumeo.com/foretag/${el.slug}`
             })
@@ -14,8 +15,19 @@ const makeInvestPageSchema = (campaigns) => {
 
     return({
         "@context":"https://schema.org",
-        "@type":"ItemList",
-        "itemListElement":listForSchema,
+        "@graph": [
+            {
+                "@type": "WebPage",
+                "@id": "https://accumeo.com/investeringsmojligheter/#webpage",
+                "url": "https://accumeo.com/investeringsmojligheter",
+                "name": "Investeringsmöjligheter",
+            },
+            {
+                "@type":"ItemList",
+                "itemListElement":listForSchema,
+            }
+        ]
+
     })
 }
 
