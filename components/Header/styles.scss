@@ -150,7 +150,13 @@
     }
   }
 }
-
+@media screen and (max-width: 1350px) {
+  .header_container {
+  .header_content_container{
+    padding: 0 70px;
+  }
+  }
+}
 @media screen and (max-width: 1200px) {
   .header_container {
     .header_desktop_search{

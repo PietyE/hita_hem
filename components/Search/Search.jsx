@@ -28,6 +28,24 @@ const Search = ({
         setSearch('')
     }, [asPath])
 
+    useEffect(() => {
+        if(visible){
+            window.addEventListener('keydown', handlePressEsc)
+        }else{
+            window.removeEventListener('keydown', handlePressEsc);
+        }
+        return () => {
+            window.removeEventListener('keydown', handlePressEsc);
+        }
+    }, [visible])
+
+
+    const handlePressEsc = (e) => {
+        if (e.key === 'Escape') {
+            setVisible(false)
+        }
+    }
+
     const _search = useCallback(
         (data) => {
             dispatch(searchCampaigns(data));
