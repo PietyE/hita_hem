@@ -5,8 +5,15 @@ import {cleanSearchedCampaigns, searchCampaigns} from "../../redux/actions/compa
 import {useDispatch} from "react-redux";
 import {useRouter} from "next/router";
 
-const SearchForm = ({searchContainerClassName, searchTitleClassName,searchFormClassName,searchInputClassName, searchButtonClassName, offset}) => {
-    const { t } = useTranslation();
+const SearchForm = ({
+                        searchContainerClassName,
+                        searchTitleClassName,
+                        searchFormClassName,
+                        searchInputClassName,
+                        searchButtonClassName,
+                        offset
+                    }) => {
+    const {t} = useTranslation();
     const dispatch = useDispatch();
     const router = useRouter();
 
@@ -14,11 +21,11 @@ const SearchForm = ({searchContainerClassName, searchTitleClassName,searchFormCl
 
     const querySearch = router?.query?.search
 
-    useEffect(()=>{
-        if(querySearch){
+    useEffect(() => {
+        if (querySearch) {
             setSearch(querySearch.toString())
         }
-    },[])
+    }, [querySearch])
 
     const _search = useCallback(
         (data) => {
@@ -26,7 +33,7 @@ const SearchForm = ({searchContainerClassName, searchTitleClassName,searchFormCl
         },
         [dispatch]
     );
-const _cleanSearchedCampaigns = useCallback(
+    const _cleanSearchedCampaigns = useCallback(
         (data) => {
             dispatch(cleanSearchedCampaigns(data));
         },
@@ -39,7 +46,7 @@ const _cleanSearchedCampaigns = useCallback(
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(search){
+        if (search) {
             _cleanSearchedCampaigns([])
             _search({data: search, action: router, offset: offset})
         }
