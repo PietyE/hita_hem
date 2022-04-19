@@ -8,7 +8,6 @@ import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
 
 import {
-  getCompanyListSelector,
   getFilterSelector,
   getIsMoreCampaignsSelector,
 } from "redux/reducers/companies";
@@ -17,7 +16,8 @@ import {
   setFilter,
   resetCompanyList,
 } from "redux/actions/companies";
-import isEqual from "lodash/isEqual";
+import {useRouter} from "next/router";
+import SearchForm from "./SearchForm";
 
 const FilterMobileMenu = dynamic(() =>
     import("containers/InvestmentOpportunitiesPage/FilterMobileMenu")
@@ -36,11 +36,13 @@ const DropdownItem = dynamic(() =>
   import("components/ui/DropDownComponent").then((c) => c.DropdownItem)
 );
 
-const CampaignsListSection = ({companiesList}) => {
+const CampaignsListSection = ({companiesList = [], isFetching}) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const currentFilter = useSelector(getFilterSelector);
   const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
+  const router = useRouter()
+  const querySearch = router?.query?.search
 
   const [showFilterMenu, setShowFilterMenu] = useState(false);
   const [filterValuesArray, setFilterValuesArray] = useState([]);
@@ -120,10 +122,11 @@ const CampaignsListSection = ({companiesList}) => {
   const handleSubmitFilters = () => {
     _setFilter(filterValuesArray);
   };
-
   return (
     <section className="invest_opp_middle_container">
-      <div className="invest_opp_nav">
+      {!querySearch && (
+          <>
+          <div className="invest_opp_nav">
         <h1 className="invest_opp_middle_title">
           {t("investment_opportunities_page.title")}
         </h1>
@@ -132,41 +135,41 @@ const CampaignsListSection = ({companiesList}) => {
           <DropdownToggle className="invest_opp_select">
             {t("investment_opportunities_page.status")}
             <div className="invest_opp_arrow">
-              <IconComponent icon={faCaretDown} />
+              <IconComponent icon={faCaretDown}/>
             </div>
           </DropdownToggle>
           <DropdownMenu className="invest_opp_dropdown_menu">
             <div className="invest_opp_checkbox_wrapper">
               <label className="invest_opp_label">
                 <input
-                  className="invest_opp_checkbox"
-                  type="checkbox"
-                  name="live"
-                  value="live"
-                  checked={filterValuesArray.includes(3)}
-                  onChange={handleChangeCheckbox}
+                    className="invest_opp_checkbox"
+                    type="checkbox"
+                    name="live"
+                    value="live"
+                    checked={filterValuesArray.includes(3)}
+                    onChange={handleChangeCheckbox}
                 />
                 {t("investment_opportunities_page.live")}
               </label>
               <label className="invest_opp_label">
                 <input
-                  className="invest_opp_checkbox"
-                  type="checkbox"
-                  name="upcoming"
-                  value="upcoming"
-                  checked={filterValuesArray.includes(1)}
-                  onChange={handleChangeCheckbox}
+                    className="invest_opp_checkbox"
+                    type="checkbox"
+                    name="upcoming"
+                    value="upcoming"
+                    checked={filterValuesArray.includes(1)}
+                    onChange={handleChangeCheckbox}
                 />
                 {t("investment_opportunities_page.upcoming")}
               </label>
               <label className="invest_opp_label">
                 <input
-                  className="invest_opp_checkbox"
-                  type="checkbox"
-                  name="closed"
-                  value="closed"
-                  checked={filterValuesArray.includes(4)}
-                  onChange={handleChangeCheckbox}
+                    className="invest_opp_checkbox"
+                    type="checkbox"
+                    name="closed"
+                    value="closed"
+                    checked={filterValuesArray.includes(4)}
+                    onChange={handleChangeCheckbox}
                 />
                 {t("investment_opportunities_page.closed")}
               </label>
@@ -184,10 +187,10 @@ const CampaignsListSection = ({companiesList}) => {
             </div>
             <DropdownItem>
               <Button
-                colorStyle="light-blue"
-                type="button"
-                className="invest_opp_menu_button"
-                onClick={handleSubmitFilters}
+                  colorStyle="light-blue"
+                  type="button"
+                  className="invest_opp_menu_button"
+                  onClick={handleSubmitFilters}
               >
                 {t("investment_opportunities_page.dropdown_button")}
               </Button>
@@ -195,75 +198,83 @@ const CampaignsListSection = ({companiesList}) => {
           </DropdownMenu>
         </DropDownComponent>
         <Button
-          colorStyle="grey"
-          type="button"
-          className="invest_opp_mobile_filter_btn"
-          onClick={setFilterMenu}
+            colorStyle="grey"
+            type="button"
+            className="invest_opp_mobile_filter_btn"
+            onClick={setFilterMenu}
         >
           {t("investment_opportunities_page.filter_button")}
         </Button>
       </div>
       {currentFilter.length > 0 && (
         <div className="invest_opp_filters_list">
-          <span className="invest_opp_filters_list_text">
-            {t("investment_opportunities_page.filter_modal_text")}
-          </span>
-          {currentFilter.includes(3) && (
+        <span className="invest_opp_filters_list_text">
+        {t("investment_opportunities_page.filter_modal_text")}
+        </span>
+        {currentFilter.includes(3) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.live")}
               <IconComponent
-                icon={faTimes}
-                data-value="live"
-                onClick={handleChangeCheckbox}
-                className="invest_opp_delete_filter"
+                  icon={faTimes}
+                  data-value="live"
+                  onClick={handleChangeCheckbox}
+                  className="invest_opp_delete_filter"
               />
             </div>
-          )}
-          {currentFilter.includes(1) && (
+        )}
+        {currentFilter.includes(1) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.upcoming")}
               <IconComponent
-                icon={faTimes}
-                data-value="upcoming"
-                onClick={handleChangeCheckbox}
-                className="invest_opp_delete_filter"
+                  icon={faTimes}
+                  data-value="upcoming"
+                  onClick={handleChangeCheckbox}
+                  className="invest_opp_delete_filter"
               />
             </div>
-          )}
-          {currentFilter.includes(2) && (
-              <div className="invest_opp_active_filter">
-                {t("investment_opportunities_page.completed")}
-                <IconComponent
-                    icon={faTimes}
-                    data-value="completed"
-                    onClick={handleChangeCheckbox}
-                    className="invest_opp_delete_filter"
-                />
-              </div>
-          )}
-          {currentFilter.includes(4) && (
+        )}
+        {currentFilter.includes(2) && (
+            <div className="invest_opp_active_filter">
+              {t("investment_opportunities_page.completed")}
+              <IconComponent
+                  icon={faTimes}
+                  data-value="completed"
+                  onClick={handleChangeCheckbox}
+                  className="invest_opp_delete_filter"
+              />
+            </div>
+        )}
+        {currentFilter.includes(4) && (
             <div className="invest_opp_active_filter">
               {t("investment_opportunities_page.closed")}
               <IconComponent
-                icon={faTimes}
-                data-value="closed"
-                onClick={handleChangeCheckbox}
-                className="invest_opp_delete_filter"
+                  icon={faTimes}
+                  data-value="closed"
+                  onClick={handleChangeCheckbox}
+                  className="invest_opp_delete_filter"
               />
             </div>
-          )}
+        )}
         </div>
-      )}
+        )}
       {showFilterMenu && (
         <FilterMobileMenu
-          onChangeFilter={handleChangeCheckbox}
-          onClose={setShowFilterMenu}
-          currentFilters={filterValuesArray}
-          changeCurrentFilter={setFilterValuesArray}
+        onChangeFilter={handleChangeCheckbox}
+        onClose={setShowFilterMenu}
+        currentFilters={filterValuesArray}
+        changeCurrentFilter={setFilterValuesArray}
         />
+        )}
+        </>
+        )}
+      {querySearch && (
+          <SearchForm offset={currentOffset}/>
       )}
       <CampaignsList content={companiesList} />
-      {isMoreCampaigns && (
+      {!isFetching && querySearch  && !companiesList.length && (
+          <p className='empty_search_results'>{t("investment_opportunities_page.no_results")}</p>
+      )}
+      {isMoreCampaigns && !isFetching && (
         <Button
           colorStyle="dark-green"
           className="invest_opp_middle_button"

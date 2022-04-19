@@ -7,7 +7,7 @@ import Schema from "components/Schema";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
-import {getCompanyListSelector, getIsFetchingCampaignsSelector} from "redux/reducers/companies";
+import {getCompanyListSelector, getIsFetchingCampaignsSelector, getListOfFoundCampaignsSelector} from "redux/reducers/companies";
 
 import {
     getCompaniesList,
@@ -16,11 +16,17 @@ import {
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
 import isEqual from "lodash/isEqual";
+import {useRouter} from "next/router";
 
 const InvestmentOpportunitiesPage = () => {
     const dispatch = useDispatch();
     const isFetching = useSelector(getIsFetchingCampaignsSelector);
-    const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
+    const router = useRouter()
+    const querySearch = router?.query?.search
+
+
+    const companiesList = useSelector(querySearch ? getListOfFoundCampaignsSelector :getCompanyListSelector, isEqual) || [];
+
 
     const _getCompaniesHeaderList = useCallback(() => {
         dispatch(getCompaniesHeaderList());
@@ -34,8 +40,8 @@ const InvestmentOpportunitiesPage = () => {
         <>
             <Schema makeSchema={makeInvestPageSchema} data={companiesList} />
             {isFetching && <SpinnerStyled/>}
-            <InvestTopSlider/>
-            <CampaignsListSection companiesList={companiesList}/>
+            {!querySearch && <InvestTopSlider/>}
+            <CampaignsListSection companiesList={companiesList} isFetching={isFetching}/>
         </>
     );
 };

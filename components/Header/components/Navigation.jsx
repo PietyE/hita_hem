@@ -26,6 +26,7 @@ import { getSelectedLangSelector } from "redux/reducers/language";
 import { useTranslation } from "react-i18next";
 import {recaptcha} from "../../../utils/recaptcha";
 import {getRedirectUrlForBlog} from "../../../utils/utils";
+import Search from "../../Search";
 
 const socials = [
   {
@@ -203,6 +204,17 @@ const Navigation = ({ className, initLang }) => {
               {/*</NavDropdown.Item>*/}
               <NavDropdown.Item as="div" className="nav_item_socials">
                 <SocialTab socials={socials} />
+              </NavDropdown.Item>
+              <NavDropdown.Item as="div" className="nav_item_search">
+                <Search
+                    formClassName='nav_search_form'
+                    inputWrapperClassName='nav_search_wrapper'
+                    inputClassName='nav_search_input'
+                    openButtonClass='nav_search_open_button'
+                    closeButtonClass='nav_search_close_button'
+                    alwaysShow={true}
+                    placeholder= {t("search.placeholder_mobile")}
+                />
               </NavDropdown.Item>
               <SplitLine className="nav_btn_split_line" />
               <NavDropdown.Item as="div" className="nav_item_buttons">

@@ -182,7 +182,7 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
 
             </nav>
           </div>
-          <Search/>
+          <Search formClassName='header_desktop_search'/>
           <div className="header_item right">
             {!isAuth && (
               <>

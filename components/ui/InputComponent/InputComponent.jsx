@@ -58,7 +58,7 @@ const InputComponent = ({
 
   };
   const errorValue = get(errors, inputName);
-  const touchedValue = get(touched, inputName);
+  // const touchedValue = get(touched, inputName);
   return (
     <>
       <label className={`input_component_label ${labelClassName}`}>

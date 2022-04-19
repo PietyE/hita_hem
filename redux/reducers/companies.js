@@ -12,6 +12,8 @@ import {
     RESET_COMPANY_LIST,
     IS_MORE_COMPANIES,
     SET_IS_REDIRECT,
+    SET_SEARCH_CAMPAIGNS,
+    CLEAN_SEARCH_CAMPAIGNS,
 } from "constants/actionsConstant";
 
 import {companyTabConstants} from "constants/companyTabConstant";
@@ -35,6 +37,7 @@ const setFilter = (state, actions) => {
 
 const initialState = {
     companiesList: [],
+    listOfFoundCampaigns: [],
     companyDetail: {
         pk: "",
         seo: {},
@@ -165,7 +168,7 @@ const initialState = {
     },
     is_redirect_on: false,
     paymentDetails: {},
-    isMoreCampaignsOnTheApi: true,
+    isMoreCampaignsOnTheApi: false,
     faq_posts: [],
     investCompanyHeaderList: [],
     filter: [],
@@ -184,6 +187,7 @@ export const getMinimumInvestAmountSelector = state => state.companies.companyDe
 export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
 
 export const getCompanyListSelector = (state) => state.companies.companiesList;
+export const getListOfFoundCampaignsSelector = (state) => state.companies.listOfFoundCampaigns;
 
 export const getInvestHeaderCompanyListSelector = (state) =>
     state.companies.investCompanyHeaderList;
@@ -361,6 +365,13 @@ export const companies = (state = initialState, actions) => {
                 ...state,
                 companiesList: [...state.companiesList, ...actions.payload],
             };
+        case SET_SEARCH_CAMPAIGNS:
+            return {
+                ...state,
+                listOfFoundCampaigns: [...state.listOfFoundCampaigns, ...actions.payload],
+            };
+        case CLEAN_SEARCH_CAMPAIGNS:
+            return {...state, listOfFoundCampaigns: actions.payload};
         case IS_MORE_COMPANIES:
             return {...state, isMoreCampaignsOnTheApi: actions.payload};
         case SET_COMPANY_BY_ID:

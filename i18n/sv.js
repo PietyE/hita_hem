@@ -19,8 +19,9 @@ export const sv = {
             },
         },
         search: {
-            hint: 'Tryck på enter för att söka',
-            placeholder: 'Sök efter kampanjnamn eller nyckelord',
+            hint: 'Tryck på enter för sökning',
+            placeholder: 'Sök efter kampanjnamn eller sökord och tryck på enter för sökning',
+            placeholder_mobile: 'Sök efter kampanjnamn eller sökord',
         },
         raisePage: {
             top_slider: {
@@ -320,6 +321,10 @@ investment_opportunities_page: {
         more_campaigns_button: "Visa fler kampanjer",
         mobile_filter_button_clear: "Rensa",
         mobile_filter_button_apply: "Tilllämpa filter",
+    search_page_title: 'Sökkampanjer',
+    search_page_button: 'Sök',
+    no_results: 'Tyvärr, inget matchade dina söktermer',
+
 },
 launching_soon_page: {
     image_block_button: "Prenumerera",
