@@ -100,14 +100,18 @@ const TopSliderComponent = ({
                         title,
                         description,
                         first_button_title,
+                        first_button_color,
                         second_button_title,
                         first_button_url,
                         second_button_url,
+                        second_button_color,
                         status,
                         pk,
                         percentage,
                     } = headerItem;
                     const img = getCorrectImage(images)
+                    const _firstButtonColor = first_button_color ? {color: first_button_color, borderColor: first_button_color} : {}
+                    const _secondButtonColor = second_button_color ? {color: second_button_color, borderColor:second_button_color} : {}
                     return (
                         <Carousel.Item key={pk + title}>
                             <div className='item_component_container' style={{position: 'relative'}}>
@@ -146,6 +150,7 @@ const TopSliderComponent = ({
                                                     <Button
                                                         className={`slider_component_first_btn ${firstButtonClass}`}
                                                         colorStyle={type === 'home_page' ? "black" : "white"}
+                                                        style={_firstButtonColor}
                                                     >
                                                         {first_button_title.toUpperCase()}
                                                     </Button>
@@ -156,6 +161,8 @@ const TopSliderComponent = ({
                                                     <Button
                                                         className={`slider_component_second_btn ${secondButtonClass}`}
                                                         colorStyle={type === 'home_page' ? "outline-black" : "outline-white"}
+                                                        style={_secondButtonColor}
+
                                                     >
                                                         {second_button_title.toUpperCase()}
                                                     </Button>
