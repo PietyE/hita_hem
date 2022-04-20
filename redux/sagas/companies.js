@@ -22,7 +22,7 @@ import {setShowQuiz, setShowSuccessfulFAQPopup, setShowSuccessfulInvestment} fro
 import { getProfileFromApi } from "./user";
 
 import api from "api";
-import { getCompanyIdSelector } from "../reducers/companies";
+import {getCompanyIdSelector} from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import {setFaqPosts, setRedirect} from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
@@ -65,7 +65,7 @@ function* getCompaniesHeaderListWorker() {
 function* searchCampaignsWorker({payload}) {
   try {
     yield put(setIsFetchingCompany(true));
-    let filter = `?limit=9&offset=${payload.offset}&search=${payload?.data}`;
+    let filter = `?limit=9&offset=${payload?.offset}&search=${payload?.data}`;
     const res = yield call([companies, "getCompaniesList"],filter);
     yield put(saveSearchedCampaigns(res?.data?.results))
     yield put(isMoreCampaignsOnTheApi(res?.data?.next));

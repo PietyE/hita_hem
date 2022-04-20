@@ -137,4 +137,3 @@ export const cleanSearchedCampaigns = (payload) => ({
   type: CLEAN_SEARCH_CAMPAIGNS,
   payload,
 });
-

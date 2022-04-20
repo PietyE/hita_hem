@@ -8,12 +8,16 @@ import Schema from "components/Schema";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
-import {getCompanyListSelector, getIsFetchingCampaignsSelector, getListOfFoundCampaignsSelector} from "redux/reducers/companies";
+import {
+    getCompanyListSelector,
+    getIsFetchingCampaignsSelector,
+    getListOfFoundCampaignsSelector
+} from "redux/reducers/companies";
 
 import {
     getCompaniesList,
     getCompaniesHeaderList,
-    searchCampaigns,
+
 } from "redux/actions/companies";
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
@@ -31,16 +35,6 @@ const InvestmentOpportunitiesPage = () => {
         _getCompaniesHeaderList();
     }, []);
 
-    useEffect(()=>{
-        _search({data: querySearch})
-    },[querySearch])
-
-    const _search = useCallback(
-        (data) => {
-            dispatch(searchCampaigns(data));
-        },
-        [dispatch]
-    );
 
     const _getCompaniesHeaderList = useCallback(() => {
         dispatch(getCompaniesHeaderList());
@@ -48,7 +42,7 @@ const InvestmentOpportunitiesPage = () => {
 
     return (
         <>
-            <Schema makeSchema={makeInvestPageSchema} data={companiesList} />
+            <Schema makeSchema={makeInvestPageSchema} data={companiesList}/>
             {isFetching && <SpinnerStyled/>}
             {!querySearch && <InvestTopSlider/>}
             <CampaignsListSection companiesList={companiesList} isFetching={isFetching}/>

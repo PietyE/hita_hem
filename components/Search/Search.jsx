@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import CloseButton from 'react-bootstrap/CloseButton'
-import {cleanSearchedCampaigns, searchCampaigns} from "redux/actions/companies";
+import {cleanSearchedCampaigns} from "redux/actions/companies";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
@@ -30,9 +30,9 @@ const Search = ({
     }, [asPath])
 
     useEffect(() => {
-        if(visible){
+        if (visible) {
             window.addEventListener('keydown', handlePressEsc)
-        }else{
+        } else {
             window.removeEventListener('keydown', handlePressEsc);
         }
         return () => {
@@ -54,6 +54,13 @@ const Search = ({
         [dispatch]
     );
 
+    // const _setOffset = useCallback(
+    //     (data) => {
+    //         dispatch(setCampaignsOffset(data));
+    //     },
+    //     [dispatch]
+    // );
+
     const handleClickButton = (e) => {
         e.preventDefault()
         setVisible(!visible)
@@ -63,11 +70,24 @@ const Search = ({
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (search) {
+        if (search && router?.query?.search !== search) {
             _cleanSearchedCampaigns([])
-            // _search({data: search, action: router})
-            router?.push(lang === 'en' ? `/investment-opportunities?search=${search}` : `/investeringsmojligheter?search=${search}` )
-
+            // _setOffset(0)
+            let query
+            if (lang === 'en') {
+                // query = `/investment-opportunities?search=${search}`
+                query = {
+                    pathname: '/investment-opportunities',
+                    search: `?search=${search}`
+                }
+            } else {
+                // query = `/investeringsmojligheter?search=${search}`
+                query = {
+                    pathname: '/investeringsmojligheter',
+                    search: `?search=${search}`
+                }
+            }
+            router?.push(query)
             setVisible(false)
         }
     }

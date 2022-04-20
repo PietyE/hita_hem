@@ -12,7 +12,6 @@ const SearchForm = ({
                         searchFormClassName,
                         searchInputClassName,
                         searchButtonClassName,
-                        offset
                     }) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
@@ -42,11 +41,29 @@ const SearchForm = ({
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (search) {
+        if (search && querySearch !== search) {
+            let query
+            if (lang === 'en') {
+                // query = `/investment-opportunities?search=${search}`
+                query = {
+                    pathname: '/investment-opportunities',
+                    search: `?search=${search}`
+                }
+            } else {
+                // query = `/investeringsmojligheter?search=${search}`
+                query = {
+                    pathname: '/investeringsmojligheter',
+                    search: `?search=${search}`
+                }
+            }
             _cleanSearchedCampaigns([])
-            router?.push(lang === 'en' ? `/investment-opportunities?search=${search}` : `/investeringsmojligheter?search=${search}` )
-
-            // _search({data: search, action: router, offset: offset})
+            router?.push(query)
+            // _setOffset(0)
+            // if(router.query.offset){
+            //     delete router.query.offset
+            // }
+            // router.query.search = search
+            // router?.push(router)
         }
     }
     return (
