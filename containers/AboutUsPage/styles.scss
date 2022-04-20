@@ -162,6 +162,18 @@
       color: #1f607c;
     }
   }
+  .team_socials{
+    padding-top: 20px;
+    .social_link{
+      margin-right: 10px;
+      &:last-child{
+        margin-right: 0;
+      svg{
+        margin-right: 0;
+      }
+      }
+    }
+  }
 }
 
 
