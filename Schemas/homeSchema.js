@@ -14,11 +14,13 @@ const makeHomePageSchema = (data) => {
                     "@id": "https://accumeo.com/#organization",
                     "name": "Accumeo",
                     "url": "https://accumeo.com/",
+                    "email":"info@accumeo.com",
                     "sameAs": [
-                        "https://www.allabolag.se/5593140071/produkter",
+                        "https://www.allabolag.se/what/accumeo",
+                        "https://www.linkedin.com/company/accumeo/",
                         "https://twitter.com/accumeo",
-                        "https://www.instagram.com/accumeo/",
-                        "https://www.facebook.com/Accumeo/"
+                        "https://www.facebook.com/Accumeo/",
+                        "https://www.instagram.com/accumeo/"
                     ],
                     "logo": {
                         "@type": "ImageObject",
@@ -26,12 +28,6 @@ const makeHomePageSchema = (data) => {
                         "url": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
                         "caption": "Accumeo"
                     },
-                    "image": {
-                        "@type": "ImageObject",
-                        "@id": "https://accumeo.com/#image",
-                        "url": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-                        "caption": "Accumeo"
-                    }
                 },
                 {
                     "@type": "WebSite",
