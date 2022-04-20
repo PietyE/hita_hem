@@ -8,12 +8,10 @@ import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
 
 import {
-    getFilterSelector,
     getIsMoreCampaignsSelector,
 } from "redux/reducers/companies";
 import {
     getCompaniesList,
-    setFilter,
     resetCompanyList, searchCampaigns,
 } from "redux/actions/companies";
 import {useRouter} from "next/router";
@@ -41,35 +39,54 @@ const DropdownItem = dynamic(() =>
 const CampaignsListSection = ({companiesList = [], isFetching}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const currentFilter = useSelector(getFilterSelector);
     const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
     const router = useRouter()
     const querySearch = router?.query?.search
     const offset = router?.query?.offset || 0
+    let activeStatuses =  []
+
+    if(router?.query?.status ){
+        activeStatuses = [...router?.query?.status ]
+    }
 
     const [showFilterMenu, setShowFilterMenu] = useState(false);
     const [filterValuesArray, setFilterValuesArray] = useState([]);
 
-    const _setFilter = useCallback(
-        (data) => {
-            dispatch(setFilter(data));
-        },
-        [dispatch]
-    );
 
-    const _getCompanyList = useCallback(
-        (data) => {
+    const _getCompanyList = useCallback((data) => {
             dispatch(getCompaniesList(data));
         },
         [dispatch]
     );
 
-    const _search = useCallback(
-        (data) => {
+    const _search = useCallback((data) => {
             dispatch(searchCampaigns(data));
         },
         [dispatch]
     );
+
+    const changeStatus =(data) => {
+        if (offset) {
+            const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+            const removeOffset = removeProperty('offset')
+            const queryWithoutOffset = removeOffset(router?.query)
+            router.push({
+                pathname: router.pathname,
+                query: {...queryWithoutOffset,
+                    status: data
+                },
+            })
+            _resetCompanyList()
+        }else{
+            router.push({
+                pathname: router.pathname,
+                query: {
+                    ...router.query,
+                    status: data
+                }
+            })
+        }
+    }
 
     const _resetCompanyList = useCallback(() => {
         dispatch(resetCompanyList());
@@ -79,6 +96,10 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
         dispatch(cleanSearchedCampaigns([]));
     }, [dispatch]);
 
+    useEffect(()=>{
+        const temp = [...activeStatuses].map(el=>Number(el))
+        setFilterValuesArray(temp)
+    },[router?.query?.status ])
 
     useEffect(() => {
         if (offset && companiesList?.length === 0) {
@@ -88,16 +109,19 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
             _search({data: querySearch, offset: offset})
 
         } else {
-            if (!currentFilter) {
+            if (!activeStatuses) {
                 _getCompanyList();
             } else {
-                _getCompanyList({filter: currentFilter, offset: offset});
+                const filter = filterValuesArray?.length > 0 ? filterValuesArray : activeStatuses
+                _getCompanyList({filter: filter, offset: offset});
 
-                setFilterValuesArray(currentFilter);
+                // setFilterValuesArray(activeStatuses);
             }
         }
 
-    }, [currentFilter, offset, querySearch]);
+    }, [router?.query?.status, offset, querySearch]);
+
+
 
     useEffect(() => {
         if (querySearch) {
@@ -105,12 +129,11 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
         } else {
             _resetCompanyList();
         }
-
         return () => {
             _cleanSearchedCampaigns()
             _resetCompanyList();
         }
-    }, [_resetCompanyList, currentFilter, querySearch]);
+    }, [_resetCompanyList, querySearch]);
 
     const setFilterList = (data) => {
         if (filterValuesArray.includes(data)) {
@@ -119,7 +142,15 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
         } else {
             setFilterValuesArray([...filterValuesArray, data]);
         }
+
     };
+
+    const removeFromQueryStatus = (data) => {
+        const newArr = [...activeStatuses].filter(el => Number(el) !== data)
+        if(newArr){
+            changeStatus(newArr)
+        }
+    }
 
     const handleChangeCheckbox = (e) => {
         if (e.target.name === "live") {
@@ -131,13 +162,13 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
         } else if (e.target.name === "closed") {
             setFilterList(4);
         } else if (e.target.dataset.value === "live") {
-            _setFilter(3);
+            removeFromQueryStatus(3);
         } else if (e.target.dataset.value === "upcoming") {
-            _setFilter(1);
+            removeFromQueryStatus(1);
         } else if (e.target.dataset.value === "completed") {
-            _setFilter(2);
+            removeFromQueryStatus(2);
         } else if (e.target.dataset.value === "closed") {
-            _setFilter(4);
+            removeFromQueryStatus(4);
         }
     };
 
@@ -147,9 +178,6 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
     };
 
     const getMoreCampaigns = () => {
-        // router.query.offset=( (router?.query?.offset || 0) +9)
-        // router.push(router)
-
         router.push({
             pathname: router.pathname,
             query: {
@@ -157,15 +185,10 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                 offset: ((router?.query?.offset || 0) + 9)
             }
         })
-
     };
 
     const handleSubmitFilters = () => {
-        _setFilter(filterValuesArray);
-        if (offset) {
-            clearOffset(router)
-        }
-
+        changeStatus(filterValuesArray)
     };
     return (
         <section className="invest_opp_middle_container">
@@ -251,12 +274,12 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                             {t("investment_opportunities_page.filter_button")}
                         </Button>
                     </div>
-                    {currentFilter.length > 0 && (
+                    {activeStatuses.length > 0 && (
                         <div className="invest_opp_filters_list">
         <span className="invest_opp_filters_list_text">
         {t("investment_opportunities_page.filter_modal_text")}
         </span>
-                            {currentFilter.includes(3) && (
+                            {activeStatuses.includes('3') && (
                                 <div className="invest_opp_active_filter">
                                     {t("investment_opportunities_page.live")}
                                     <IconComponent
@@ -267,7 +290,7 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                                     />
                                 </div>
                             )}
-                            {currentFilter.includes(1) && (
+                            {activeStatuses.includes('1') && (
                                 <div className="invest_opp_active_filter">
                                     {t("investment_opportunities_page.upcoming")}
                                     <IconComponent
@@ -278,7 +301,7 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                                     />
                                 </div>
                             )}
-                            {currentFilter.includes(2) && (
+                            {activeStatuses.includes('2') && (
                                 <div className="invest_opp_active_filter">
                                     {t("investment_opportunities_page.completed")}
                                     <IconComponent
@@ -289,7 +312,7 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                                     />
                                 </div>
                             )}
-                            {currentFilter.includes(4) && (
+                            {activeStatuses.includes('4') && (
                                 <div className="invest_opp_active_filter">
                                     {t("investment_opportunities_page.closed")}
                                     <IconComponent
@@ -308,6 +331,8 @@ const CampaignsListSection = ({companiesList = [], isFetching}) => {
                             onClose={setShowFilterMenu}
                             currentFilters={filterValuesArray}
                             changeCurrentFilter={setFilterValuesArray}
+                            onSubmit={changeStatus}
+                            resetCompanyList = {_resetCompanyList}
                         />
                     )}
                 </>

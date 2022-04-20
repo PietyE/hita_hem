@@ -274,3 +274,13 @@ export const clearOffset = (router) => {
         query: queryWithoutOffset,
     })
 }
+
+export const clearStatus = (router) => {
+    const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+    const removeOffset = removeProperty('status')
+    const queryWithoutOffset = removeOffset(router?.query)
+    router.push({
+        pathname: router.pathname,
+        query: queryWithoutOffset,
+    })
+}
