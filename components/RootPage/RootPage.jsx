@@ -261,34 +261,34 @@ const RootPage = ({ children, initLang = "" }) => {
 
 
     
-    useEffect(()=>{
-        const isServiceStart = sessionStorage.getItem('isServiceWork')
-        let timerId = null
-        if(!isAuth && (!isServiceStart || isServiceStart === 'true') && window?.localStorage){
-            sessionStorage.setItem('isServiceWork', "true")
-            timerId = setTimeout(()=>{
-                _showSessionSignUp(true)
-                sessionStorage.setItem('isServiceWork', "false")
-            },30000)
-        }
-
-        if(isAuth && isServiceStart === 'true'){
-            sessionStorage.setItem('isServiceWork', "false")
-            clearTimeout(timerId)
-        }
-        if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword || isShowCompleteBankIdRegistration){
-            clearTimeout(timerId)
-        }
-        if(showSuccessfulSignUpWindow && isServiceStart === 'true'){
-            clearTimeout(timerId)
-            sessionStorage.setItem('isServiceWork', "false")
-        }
-
-        return () => {
-            clearTimeout(timerId)
-        }
-        
-    },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, isShowCompleteBankIdRegistration])
+    // useEffect(()=>{
+    //     const isServiceStart = sessionStorage.getItem('isServiceWork')
+    //     let timerId = null
+    //     if(!isAuth && (!isServiceStart || isServiceStart === 'true') && window?.localStorage){
+    //         sessionStorage.setItem('isServiceWork', "true")
+    //         timerId = setTimeout(()=>{
+    //             _showSessionSignUp(true)
+    //             sessionStorage.setItem('isServiceWork', "false")
+    //         },30000)
+    //     }
+    //
+    //     if(isAuth && isServiceStart === 'true'){
+    //         sessionStorage.setItem('isServiceWork', "false")
+    //         clearTimeout(timerId)
+    //     }
+    //     if(isShowQuiz || showSignInWindow || showSigUpWindow || showSignResetPassWindow || canResetPassword || isShowCompleteBankIdRegistration){
+    //         clearTimeout(timerId)
+    //     }
+    //     if(showSuccessfulSignUpWindow && isServiceStart === 'true'){
+    //         clearTimeout(timerId)
+    //         sessionStorage.setItem('isServiceWork', "false")
+    //     }
+    //
+    //     return () => {
+    //         clearTimeout(timerId)
+    //     }
+    //
+    // },[isAuth, isShowQuiz, showSignInWindow, showSigUpWindow, showSignResetPassWindow, canResetPassword, isShowCompleteBankIdRegistration])
     
 
     useEffect(() => {
