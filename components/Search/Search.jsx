@@ -2,8 +2,9 @@ import React, {useCallback, useEffect, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import CloseButton from 'react-bootstrap/CloseButton'
 import {cleanSearchedCampaigns, searchCampaigns} from "redux/actions/companies";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const Search = ({
                     formClassName,
@@ -18,7 +19,7 @@ const Search = ({
     const dispatch = useDispatch();
     const router = useRouter();
     const asPath = router?.asPath
-
+    const lang = useSelector(getSelectedLangSelector)
     const [visible, setVisible] = useState(false)
     const [search, setSearch] = useState('')
 
@@ -46,12 +47,6 @@ const Search = ({
         }
     }
 
-    const _search = useCallback(
-        (data) => {
-            dispatch(searchCampaigns(data));
-        },
-        [dispatch]
-    );
     const _cleanSearchedCampaigns = useCallback(
         (data) => {
             dispatch(cleanSearchedCampaigns(data));
@@ -70,7 +65,9 @@ const Search = ({
         e.preventDefault()
         if (search) {
             _cleanSearchedCampaigns([])
-            _search({data: search, action: router})
+            // _search({data: search, action: router})
+            router?.push(lang === 'en' ? `/investment-opportunities?search=${search}` : `/investeringsmojligheter?search=${search}` )
+
             setVisible(false)
         }
     }

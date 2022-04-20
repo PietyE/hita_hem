@@ -1,6 +1,7 @@
 import React, {useEffect, useCallback} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {END} from "redux-saga";
+import {useRouter} from "next/router";
 
 import {wrapper} from "/redux/store";
 import Schema from "components/Schema";
@@ -12,29 +13,38 @@ import {getCompanyListSelector, getIsFetchingCampaignsSelector, getListOfFoundCa
 import {
     getCompaniesList,
     getCompaniesHeaderList,
+    searchCampaigns,
 } from "redux/actions/companies";
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
 import isEqual from "lodash/isEqual";
-import {useRouter} from "next/router";
 
 const InvestmentOpportunitiesPage = () => {
     const dispatch = useDispatch();
-    const isFetching = useSelector(getIsFetchingCampaignsSelector);
     const router = useRouter()
     const querySearch = router?.query?.search
 
-
-    const companiesList = useSelector(querySearch ? getListOfFoundCampaignsSelector :getCompanyListSelector, isEqual) || [];
-
-
-    const _getCompaniesHeaderList = useCallback(() => {
-        dispatch(getCompaniesHeaderList());
-    }, [dispatch]);
+    const isFetching = useSelector(getIsFetchingCampaignsSelector);
+    const companiesList = useSelector(querySearch ? getListOfFoundCampaignsSelector : getCompanyListSelector, isEqual) || [];
 
     useEffect(() => {
         _getCompaniesHeaderList();
     }, []);
+
+    useEffect(()=>{
+        _search({data: querySearch})
+    },[querySearch])
+
+    const _search = useCallback(
+        (data) => {
+            dispatch(searchCampaigns(data));
+        },
+        [dispatch]
+    );
+
+    const _getCompaniesHeaderList = useCallback(() => {
+        dispatch(getCompaniesHeaderList());
+    }, [dispatch]);
 
     return (
         <>

@@ -69,10 +69,6 @@ function* searchCampaignsWorker({payload}) {
     const res = yield call([companies, "getCompaniesList"],filter);
     yield put(saveSearchedCampaigns(res?.data?.results))
     yield put(isMoreCampaignsOnTheApi(res?.data?.next));
-    if(payload?.action){
-      const lang = yield select(getSelectedLangSelector)
-      payload?.action?.push(lang === 'en' ? `/investment-opportunities?search=${payload?.data}` : `/investeringsmojligheter?search=${payload?.data}` )
-    }
   } catch (error) {
     yield put(
         setError({ status: error?.response?.status, data: error?.response?.data })
