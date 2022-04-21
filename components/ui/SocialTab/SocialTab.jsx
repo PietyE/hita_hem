@@ -39,9 +39,9 @@ const SocialTab = ({ socials = [], classNameContainer = "", type = "" }) => {
                 icon={_data[s.name]?.iconName}
                 className="social_icon"
               />
-              {type === "campaign_socials" && (
-              <span className="social_text">{s.name}</span>
-              )}
+              {/*{type === "campaign_socials" && (*/}
+              {/*<span className="social_text">{s.name}</span>*/}
+              {/*)}*/}
               </>
             ) : (
                 <>
@@ -62,9 +62,9 @@ const SocialTab = ({ socials = [], classNameContainer = "", type = "" }) => {
                       fill="white"
                   />
                 </svg>
-                  {type === "campaign_socials" && (
-                      <span className="social_text">AllaBolag</span>
-                  )}
+                  {/*{type === "campaign_socials" && (*/}
+                  {/*    <span className="social_text">AllaBolag</span>*/}
+                  {/*)}*/}
                 </>
             )}
           </a>

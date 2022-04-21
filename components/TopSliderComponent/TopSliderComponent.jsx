@@ -100,14 +100,22 @@ const TopSliderComponent = ({
                         title,
                         description,
                         first_button_title,
+                        first_button_color,
+                        first_button_text_color,
                         second_button_title,
                         first_button_url,
                         second_button_url,
+                        second_button_color,
+                        second_button_text_color,
                         status,
                         pk,
                         percentage,
                     } = headerItem;
+
                     const img = getCorrectImage(images)
+                    const _firstButtonColor = changeButtonColor(first_button_text_color, first_button_color)
+                    const _secondButtonColor = changeButtonColor(second_button_text_color, second_button_color)
+
                     return (
                         <Carousel.Item key={pk + title}>
                             <div className='item_component_container' style={{position: 'relative'}}>
@@ -146,6 +154,7 @@ const TopSliderComponent = ({
                                                     <Button
                                                         className={`slider_component_first_btn ${firstButtonClass}`}
                                                         colorStyle={type === 'home_page' ? "black" : "white"}
+                                                        style={_firstButtonColor}
                                                     >
                                                         {first_button_title.toUpperCase()}
                                                     </Button>
@@ -156,6 +165,8 @@ const TopSliderComponent = ({
                                                     <Button
                                                         className={`slider_component_second_btn ${secondButtonClass}`}
                                                         colorStyle={type === 'home_page' ? "outline-black" : "outline-white"}
+                                                        style={_secondButtonColor}
+
                                                     >
                                                         {second_button_title.toUpperCase()}
                                                     </Button>
@@ -177,5 +188,17 @@ const TopSliderComponent = ({
         </div>
     );
 };
+
+const changeButtonColor = (textColor, backGroundColor) => {
+    let resultStyle = {}
+    if(textColor && backGroundColor){
+        resultStyle = {color: textColor, borderColor: textColor, backgroundColor: backGroundColor}
+    }else if(!textColor && backGroundColor){
+        resultStyle = { backgroundColor: backGroundColor}
+    }else if(textColor && !backGroundColor){
+        resultStyle = {color: textColor, borderColor: textColor}
+    }
+    return resultStyle
+}
 
 export default TopSliderComponent;

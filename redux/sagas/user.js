@@ -766,6 +766,7 @@ function* uploadUserData() {
             }
         } else {
             yield put(setAuth(false));
+            yield call([localStorage, "removeItem"], "auth_data");
         }
     } catch {
         yield put(

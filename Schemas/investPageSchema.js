@@ -21,6 +21,8 @@ const makeInvestPageSchema = (campaigns) => {
                 "@id": "https://accumeo.com/investeringsmojligheter/#webpage",
                 "url": "https://accumeo.com/investeringsmojligheter",
                 "name": "Investeringsmöjligheter",
+                "description": "Här kan du se vilka företag som ligger ute på plattformen",
+
             },
             {
                 "@type":"ItemList",

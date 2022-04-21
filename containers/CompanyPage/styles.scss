@@ -808,9 +808,50 @@
       line-height: 120%;
       color: #616161;
       font-size: 18px;
-
+overflow: hidden;
       font-family: 'Source sans Pro', sans-serif;
       margin-bottom: 15px;
+    }
+    .member_card_item_description_collapsed{
+      @extend .member_card_item_description;
+      height: 110px;
+    }
+    .member_card_social{
+      margin-bottom: 15px;
+    }
+    .team_show_more {
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      width: 100%;
+      height: 1px;
+      justify-content: center;
+      transform: translateX(-123px);
+      width: calc(100% - 123px);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      .team_show_more_button {
+        font-family: 'Source sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #fb7f73;
+        background: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        border-radius: 32px;
+        line-height: 28px;
+        width: fit-content;
+        padding: 0 8px;
+        position: absolute;
+        left: 50%;
+        top: -50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
     }
   }
 
@@ -1255,6 +1296,7 @@
   display: block;
 }
 
+
 @media screen and (min-width: 1921px) {
   .company-page-container {
     .financial_info_documents {
@@ -1306,7 +1348,12 @@
       width: 75px;
       height: 75px;
     }
+    .team_show_more{
+      width: calc(100% - 100px);
+      transform: translateX(-100px);
+    }
   }
+
 }
 }
 
@@ -1323,6 +1370,10 @@
     .member_card_image{
       width: 60px;
       height: 60px;
+    }
+    .team_show_more{
+      width: calc(100% - 70px);
+      transform: translateX(-120px);
     }
   }
 
@@ -1341,6 +1392,10 @@
       .member_card_image{
         width: 60px;
         height: 60px;
+      }
+      .team_show_more{
+        //width: calc(100% - 70px);
+        transform: translateX(-110px);
       }
     }
 
@@ -1366,6 +1421,9 @@
       .member_card_image{
         width: 60px;
         height: 60px;
+      }
+      .team_show_more{
+        transform: translateX(-120px);
       }
     }
 
@@ -1455,6 +1513,9 @@
         }
       }
       .member_card_image{
+      }
+      .team_show_more{
+        transform: translateX(-110px);
       }
     }
 
@@ -1680,6 +1741,10 @@
         width: 98px;
         height: 98px;
       }
+      .team_show_more{
+        width: calc(100% - 120px);
+        transform: translateX(-130px);
+      }
     }
 
   }
@@ -1742,6 +1807,20 @@
   .company_info_quiz_message{
     max-width: 250px;
   }
+  .company_info_sig{
+    .company_info_sig_wrapper{
+      justify-content: flex-start;
+      .company_info_sig_item_last{
+        margin-right: 30px;
+      }
+      .company_info_social {
+
+        .social_link {
+        }
+      }
+    }
+  }
+
 
 }
 
@@ -2295,11 +2374,10 @@
     }
 
     .idea_section_container,
-    .team_section_container {
-      padding: 30px 0 0 0;
-    }
 
     .team_section_container {
+      padding: 30px 0 0 0;
+
       flex-direction: column;
 
       .member_card_item {
@@ -2322,6 +2400,11 @@
           height: 120px;
           border-radius: 100px;
           margin-bottom: 15px;
+        }
+
+        .team_show_more{
+          width: 100%;
+          transform: translate(-50%,-40px);
         }
 
         .member_card_item_position {
@@ -2799,12 +2882,12 @@
 .company-page-container {
   .show_more {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    display: flex;
     justify-content: center;
     transform: translate(-50%,-15px);
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 50%;display: flex;
+
   }
   .show_more_clicked{
     transform: translate(0,0);
@@ -2852,9 +2935,10 @@
   //justify-content: space-between;
   //margin-bottom: 20px;
   .company_info_social{
-    width: 100%;
+    //width: 100%;
+    //margin-left: auto;
     .social_link{
-      margin-right: 35px;
+      margin-right: 15px;
     }
   }
   .company_info_sig_item{
@@ -2865,6 +2949,10 @@
     align-items: center;
     &:last-child{
       margin-right: 0;
+    }
+
+    &:nth-last-child(2){
+      margin-right: 55px;
     }
     .title{
       margin-right: 15px;
