@@ -8,6 +8,7 @@ import {
   GET_POSTS,
   ADD_FAQ_ANSWER,
   MAKE_PAYMENT,
+  GET_SEARCH_CAMPAIGNS
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,
@@ -15,13 +16,13 @@ import {
   setInvestCompaniesList,
   setCompanyById,
   setError404,
-  isMoreCampaignsOnTheApi,
+  isMoreCampaignsOnTheApi, saveSearchedCampaigns,
 } from "redux/actions/companies";
 import {setShowQuiz, setShowSuccessfulFAQPopup, setShowSuccessfulInvestment} from "../actions/authPopupWindows";
 import { getProfileFromApi } from "./user";
 
 import api from "api";
-import { getCompanyIdSelector } from "../reducers/companies";
+import {getCompanyIdSelector} from "../reducers/companies";
 import { getProfile, getUserIdSelector } from "../reducers/user";
 import {setFaqPosts, setRedirect} from "../actions/companies";
 import isEmpty from "lodash/isEmpty";
@@ -55,6 +56,22 @@ function* getCompaniesHeaderListWorker() {
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  } finally {
+    yield put(setIsFetchingCompany(false));
+  }
+}
+
+function* searchCampaignsWorker({payload}) {
+  try {
+    yield put(setIsFetchingCompany(true));
+    let filter = `?limit=9&offset=${payload?.offset}&search=${payload?.data}`;
+    const res = yield call([companies, "getCompaniesList"],filter);
+    yield put(saveSearchedCampaigns(res?.data?.results))
+    yield put(isMoreCampaignsOnTheApi(res?.data?.next));
+  } catch (error) {
+    yield put(
+        setError({ status: error?.response?.status, data: error?.response?.data })
     );
   } finally {
     yield put(setIsFetchingCompany(false));
@@ -233,4 +250,5 @@ export function* companiesSagaWatcher() {
   yield takeEvery(ADD_FAQ_ANSWER, addAnswer);
   yield takeEvery(GET_POSTS, getFaqPosts);
   yield takeEvery(MAKE_PAYMENT, makePayment);
+  yield takeEvery(GET_SEARCH_CAMPAIGNS, searchCampaignsWorker);
 }

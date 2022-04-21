@@ -1,17 +1,23 @@
 import React, {useEffect, useCallback} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {END} from "redux-saga";
+import {useRouter} from "next/router";
 
 import {wrapper} from "/redux/store";
 import Schema from "components/Schema";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
-import {getCompanyListSelector, getIsFetchingCampaignsSelector} from "redux/reducers/companies";
+import {
+    getCompanyListSelector,
+    getIsFetchingCampaignsSelector,
+    getListOfFoundCampaignsSelector
+} from "redux/reducers/companies";
 
 import {
     getCompaniesList,
     getCompaniesHeaderList,
+
 } from "redux/actions/companies";
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
@@ -19,23 +25,27 @@ import isEqual from "lodash/isEqual";
 
 const InvestmentOpportunitiesPage = () => {
     const dispatch = useDispatch();
-    const isFetching = useSelector(getIsFetchingCampaignsSelector);
-    const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
+    const router = useRouter()
+    const querySearch = router?.query?.search
 
-    const _getCompaniesHeaderList = useCallback(() => {
-        dispatch(getCompaniesHeaderList());
-    }, [dispatch]);
+    const isFetching = useSelector(getIsFetchingCampaignsSelector);
+    const companiesList = useSelector(querySearch ? getListOfFoundCampaignsSelector : getCompanyListSelector, isEqual) || [];
 
     useEffect(() => {
         _getCompaniesHeaderList();
     }, []);
 
+
+    const _getCompaniesHeaderList = useCallback(() => {
+        dispatch(getCompaniesHeaderList());
+    }, [dispatch]);
+
     return (
         <>
-            <Schema makeSchema={makeInvestPageSchema} data={companiesList} />
+            <Schema makeSchema={makeInvestPageSchema} data={companiesList}/>
             {isFetching && <SpinnerStyled/>}
-            <InvestTopSlider/>
-            <CampaignsListSection companiesList={companiesList}/>
+            {!querySearch && <InvestTopSlider/>}
+            <CampaignsListSection companiesList={companiesList} isFetching={isFetching}/>
         </>
     );
 };

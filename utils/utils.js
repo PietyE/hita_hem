@@ -265,3 +265,22 @@ export const getImgMeta = (url, callback) =>{
     });
     img.src = url;
 }
+export const clearOffset = (router) => {
+    const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+    const removeOffset = removeProperty('offset')
+    const queryWithoutOffset = removeOffset(router?.query)
+    router.push({
+        pathname: router.pathname,
+        query: queryWithoutOffset,
+    })
+}
+
+export const clearStatus = (router) => {
+    const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+    const removeOffset = removeProperty('status')
+    const queryWithoutOffset = removeOffset(router?.query)
+    router.push({
+        pathname: router.pathname,
+        query: queryWithoutOffset,
+    })
+}
