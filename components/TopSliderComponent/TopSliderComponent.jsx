@@ -101,17 +101,21 @@ const TopSliderComponent = ({
                         description,
                         first_button_title,
                         first_button_color,
+                        first_button_text_color,
                         second_button_title,
                         first_button_url,
                         second_button_url,
                         second_button_color,
+                        second_button_text_color,
                         status,
                         pk,
                         percentage,
                     } = headerItem;
+
                     const img = getCorrectImage(images)
-                    const _firstButtonColor = first_button_color ? {color: first_button_color, borderColor: first_button_color} : {}
-                    const _secondButtonColor = second_button_color ? {color: second_button_color, borderColor:second_button_color} : {}
+                    const _firstButtonColor = changeButtonColor(first_button_text_color, first_button_color)
+                    const _secondButtonColor = changeButtonColor(second_button_text_color, second_button_color)
+
                     return (
                         <Carousel.Item key={pk + title}>
                             <div className='item_component_container' style={{position: 'relative'}}>
@@ -184,5 +188,17 @@ const TopSliderComponent = ({
         </div>
     );
 };
+
+const changeButtonColor = (textColor, backGroundColor) => {
+    let resultStyle = {}
+    if(textColor && backGroundColor){
+        resultStyle = {color: textColor, borderColor: textColor, backgroundColor: backGroundColor}
+    }else if(!textColor && backGroundColor){
+        resultStyle = { backgroundColor: backGroundColor}
+    }else if(textColor && !backGroundColor){
+        resultStyle = {color: textColor, borderColor: textColor}
+    }
+    return resultStyle
+}
 
 export default TopSliderComponent;
