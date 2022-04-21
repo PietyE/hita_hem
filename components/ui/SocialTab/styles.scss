@@ -19,10 +19,27 @@
         fill: #1f7396;
       }
     }
+    svg{
+      margin-right: 6px;
+    }
+    .social_text{
+      font-family: "Source Sans Pro", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      color: #0e5394;
+      font-size: 14px;
+      line-height: 150%;
+      letter-spacing: 0.002em;
+    &:first-letter {
+      text-transform: uppercase;
+    }
+    }
     &:hover {
-      .social_icon {
-        color: #1f7396;
+      .social_text {
+        //color: #1f7396;
+        opacity: 0.6;
         transition: 0.3s;
+        text-decoration: underline;
       }
     }
   }

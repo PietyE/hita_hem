@@ -8,13 +8,16 @@ import {getIsSignInUserSelector} from "redux/reducers/user";
 import {getIsFetchingHomePageSelector} from "redux/reducers/homePage";
 import {getHomePage} from "redux/actions/homePage";
 
+import Schema from "../components/Schema";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
-import {getSeoSelector} from "redux/reducers/homePage";
+import {getSeoSelector, getHomePageDataForSchema} from "redux/reducers/homePage";
 import SpinnerStyled from "components/ui/Spinner";
 import useDropInBlog from "../customHooks/useDropInBlog";
 import MetaTags from "../components/MetaTags";
+
+import makeHomePageSchema from "../Schemas/homeSchema";
 
 const InstructionSection = dynamic(() => import("containers/HomePage/InstructionSection"), {
     ssr: false,
@@ -29,6 +32,7 @@ const Index = () => {
     const isAuth = useSelector(getIsSignInUserSelector);
     const isFetching = useSelector(getIsFetchingHomePageSelector);
     const seo = useSelector(getSeoSelector);
+    const dataForSchema = useSelector(getHomePageDataForSchema)
     useDropInBlog()
 
     const _getHomePage = useCallback(
@@ -45,6 +49,7 @@ const Index = () => {
     return (
         <>
             <MetaTags seo={seo}/>
+            <Schema makeSchema={makeHomePageSchema} data={dataForSchema}/>
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}
                 <div className="home_page_container">
@@ -55,7 +60,6 @@ const Index = () => {
                     <UpcomingCampaigns/>
                     <InstructionSection/>
                     {!isAuth && <JoinSection/>}
-                    {/*<div id="dib-specific-posts"></div>*/}
                     <div id="dib-recent-posts"></div>
                 </div>
             </div>

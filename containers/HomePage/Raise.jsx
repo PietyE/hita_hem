@@ -6,18 +6,17 @@ import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
 
 function Raise() {
   const homePageRaise = useSelector(getHomePageRaisesSelector, isEqual) || [];
-
   return (
     <div className="raise_instruction_container">
       {!!homePageRaise &&
         homePageRaise.map((el) => {
-          const { index, logo, title, description } = el;
+          const {index, logo, title, description } = el;
           return (
-            <div key={index} className="raise_step step1">
+            <div key={title} className="raise_step step1">
               <div className="step_icon_wrapper">
                 <img
                   src={logo}
-                  alt={logo ? 'step icon' : ' '}
+                  alt={homePageRaise?.alter_text || ' '}
                   className="raise_step_icon"
                   loading="lazy"
                 />

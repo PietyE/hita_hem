@@ -1,4 +1,4 @@
-    import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
 import {Formik, Form, Field} from "formik";
@@ -32,8 +32,8 @@ import useProfileErrorHandler from "customHooks/useProfileErrorHandler";
 import {recaptcha} from "../../utils/recaptcha";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import CaptchaPrivacyBlock from "../../components/CaptchaPrivacyBlock";
-    import {getIsBankIdResident, getUserEmailSelector} from "../../redux/reducers/user";
-    import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
+import {getIsBankIdResident, getUserEmailSelector} from "../../redux/reducers/user";
+import {setShowPostalCodeNotification} from "../../redux/actions/authPopupWindows";
 
 const PersonalDetails = ({
                              type,
@@ -120,17 +120,17 @@ const PersonalDetails = ({
         }
     }, [profile]);
 
-    useEffect(()=>{
-        return(
+    useEffect(() => {
+        return (
             errorHandlerHook.clearAllProfileErrors()
         )
-    },[])
+    }, [])
 
-    useEffect(()=>{
-        if(isBankIdResident && emailFromAccount && isEmpty(profile)){
+    useEffect(() => {
+        if (isBankIdResident && emailFromAccount && isEmpty(profile)) {
             setValuesFromApi({email: emailFromAccount})
         }
-    },[profile,isBankIdResident,emailFromAccount])
+    }, [profile, isBankIdResident, emailFromAccount])
 
     const _createProfile = useCallback(
         (data) => {
@@ -147,23 +147,21 @@ const PersonalDetails = ({
     );
 
 
-
-
     const handleInput = (e) => {
-        if(campaignNumberWarning){
+        if (campaignNumberWarning) {
             setCampaignNumberWarning(false)
         }
         setCompanyNumber(e.target.value)
     }
 
-    useEffect(()=>{
-        if(isCompanyInvest){
+    useEffect(() => {
+        if (isCompanyInvest) {
             companyInputRef.current.focus()
         }
-    },[isCompanyInvest])
+    }, [isCompanyInvest])
 
     const handleChangeCompanyCheckbox = () => {
-        if(isCompanyInvest){
+        if (isCompanyInvest) {
             setCompanyNumber('')
         }
         setIsCompanyInvest(!isCompanyInvest)
@@ -181,10 +179,10 @@ const PersonalDetails = ({
         const newProfile = JSON.parse(JSON.stringify(values));
         newProfile.first_name = capitalize(newProfile.first_name.toLowerCase());
         newProfile.second_name = capitalize(newProfile.second_name.toLowerCase());
-        if(!isBankIdResident){
+        if (!isBankIdResident) {
             delete newProfile.email;
         }
-        if(isBankIdResident && valuesFromApi?.email === newProfile?.email){
+        if (isBankIdResident && valuesFromApi?.email === newProfile?.email) {
             delete newProfile.email;
         }
         delete newProfile.day;
@@ -219,23 +217,30 @@ const PersonalDetails = ({
     };
 
     const onSubmitInvest = (values) => {
-        if(!isEmpty(profile) && !profile?.zip_code){
+        if (!isEmpty(profile) && !profile?.zip_code) {
             dispatch(setShowPostalCodeNotification(true));
             return
-                }
+        }
 
-        
-        if(companyNumber){
-            if(validateCampaignNumber(companyNumber.toUpperCase())){
+
+        if (companyNumber) {
+            if (validateCampaignNumber(companyNumber.toUpperCase())) {
                 const dataForApi = prepareDataForApi(values);
-                const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment, company_number_invest: companyNumber.toUpperCase()} : {profile: dataForApi, amount: currentInvestment}
+                const investData = companyNumber ? {
+                    profile: dataForApi,
+                    amount: currentInvestment,
+                    company_number_invest: companyNumber.toUpperCase()
+                } : {profile: dataForApi, amount: currentInvestment}
                 recaptcha('create_profile_in_invest_form', onMakePayment, investData)
-            }else{
+            } else {
                 setCampaignNumberWarning(true)
             }
-        }else{
+        } else {
             const dataForApi = prepareDataForApi(values);
-            const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment} : {profile: dataForApi, amount: currentInvestment}
+            const investData = companyNumber ? {profile: dataForApi, amount: currentInvestment} : {
+                profile: dataForApi,
+                amount: currentInvestment
+            }
             recaptcha('create_profile_in_invest_form', onMakePayment, investData)
         }
 
@@ -243,31 +248,31 @@ const PersonalDetails = ({
     };
 
     let _footerStyles
-    if(isInputsReadOnly){
+    if (isInputsReadOnly) {
         _footerStyles = 'profile_form_footer profile_form_footer_column'
-    }else{
-        _footerStyles = isEmpty(profile) || type ? "profile_form_footer": 'profile_form_footer profile_form_footer_column'
+    } else {
+        _footerStyles = isEmpty(profile) || type ? "profile_form_footer" : 'profile_form_footer profile_form_footer_column'
     }
     const years = createYearList();
     return (
-        <section className = {`profile_personal_details ${sectionClassName}`}>
+        <section className={`profile_personal_details ${sectionClassName}`}>
             {!type && (
-                <h2 className = "profile_personal_details_title">
+                <h2 className="profile_personal_details_title">
                     {t("profile_page.personal.main_title")}
                 </h2>
             )}
             <Formik
-                initialValues = {valuesFromApi || initialValues}
-                validationSchema = {
+                initialValues={valuesFromApi || initialValues}
+                validationSchema={
                     isEmpty(profile)
                         ? personalDetailsCreateSchema
                         : personalDetailsUpdateSchema
                 }
-                onSubmit = {type ? onSubmitInvest : onSubmitProfile}
+                onSubmit={type ? onSubmitInvest : onSubmitProfile}
                 enableReinitialize
                 // validateOnMount
-                validateOnChange = {false}
-                validateOnBlur = {false}
+                validateOnChange={false}
+                validateOnBlur={false}
             >
                 {({
                       values,
@@ -293,224 +298,225 @@ const PersonalDetails = ({
                     }
                     return (
                         <>
-                            <Form className = "profile_form" action = 'make_payment'>
+                            <Form className="profile_form" action='make_payment'>
                                 {!type && (
                                     <PersonalDetailsUpload
-                                        setFieldValue = {setFieldValue}
-                                        values = {values}
+                                        setFieldValue={setFieldValue}
+                                        values={values}
                                     />
                                 )}
-                                    <div className = {isEmpty(profile) || type ? "profile_form_data_container": 'profile_form_data_container data_container_for_edit'}>
+                                <div
+                                    className={isEmpty(profile) || type ? "profile_form_data_container" : 'profile_form_data_container data_container_for_edit'}>
 
-                                    <h3 className = "profile_form_data_container_title">
+                                    <h3 className="profile_form_data_container_title">
                                         {t("profile_page.personal.profile_title")}
                                     </h3>
-                                    <div className = "profile_form_inputs_container">
+                                    <div className="profile_form_inputs_container">
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_first_name"
-                                            label = {t("profile_page.personal.first_name_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "first_name"
-                                            values = {values}
-                                            restrictInput = {restrictOnlyLetters}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.firstNameError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_first_name"
+                                            label={t("profile_page.personal.first_name_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="first_name"
+                                            values={values}
+                                            restrictInput={restrictOnlyLetters}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.firstNameError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_second_name"
-                                            label = {t("profile_page.personal.second_name_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "second_name"
-                                            values = {values}
-                                            restrictInput = {restrictOnlyLetters}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.secondNameError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_second_name"
+                                            label={t("profile_page.personal.second_name_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="second_name"
+                                            values={values}
+                                            restrictInput={restrictOnlyLetters}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.secondNameError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
 
                                         {isBankIdResident &&
-                                            <InputComponent
-                                                labelClassName = "profile_input_big profile_email"
-                                                label = {t("profile_page.personal.email")}
-                                                inputClassName = "profile_form_input"
-                                                errorClassName = "profile_form_warning_text"
-                                                inputName = "email"
-                                                values = {values}
-                                                // restrictInput = {restrictOnlyLetters}
-                                                setFieldValue = {setFieldValue}
-                                                setFieldError = {setFieldError}
-                                                touched = {touched}
-                                                errors = {errors}
-                                                disabled = {isInputsReadOnly}
-                                                errorFromApi = {errorHandlerHook?.emailError}
-                                                clearError = {errorHandlerHook?.clearProfileErrorFromApi}
-                                            />
+                                        <InputComponent
+                                            labelClassName="profile_input_big profile_email"
+                                            label={t("profile_page.personal.email")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="email"
+                                            values={values}
+                                            // restrictInput = {restrictOnlyLetters}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.emailError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
+                                        />
                                         }
-                                        <p className = "profile_form_birth_text">
+                                        <p className="profile_form_birth_text">
                                             {t("profile_page.personal.date_title")}
                                         </p>
-                                        <div className = "profile_form_date_block">
-                                            <label className = "profile_input_small profile_month">
+                                        <div className="profile_form_date_block">
+                                            <label className="profile_input_small profile_month">
                                                 {t("profile_page.personal.month_label")}
                                                 <br/>
                                                 <Field
-                                                    name = "month"
-                                                    as = "select"
-                                                    disabled = {isInputsReadOnly}
-                                                    onBlur = {() => {
+                                                    name="month"
+                                                    as="select"
+                                                    disabled={isInputsReadOnly}
+                                                    onBlur={() => {
                                                         setFieldError("month", undefined);
                                                     }}
-                                                    className = {
+                                                    className={
                                                         errors.month
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
                                                 >
                                                     <option
-                                                        label = {t("profile_page.personal.month_placeholder")}
-                                                        disabled = {true}
+                                                        label={t("profile_page.personal.month_placeholder")}
+                                                        disabled={true}
                                                     />
                                                     {months.map((el) => {
                                                         return (
-                                                            <option key = {el.id} value = {el.id}>
+                                                            <option key={el.id} value={el.id}>
                                                                 {language === "en" ? el.month : el.monthSw}
                                                             </option>
                                                         );
                                                     })}
                                                 </Field>
-                                                <div className = "profile_input_arrow">
-                                                    <IconComponent icon = {faCaretDown}/>
+                                                <div className="profile_input_arrow">
+                                                    <IconComponent icon={faCaretDown}/>
                                                 </div>
                                                 {errors.month ? (
-                                                    <p className = {"input_warning_text warning_date_text"}>
+                                                    <p className={"input_warning_text warning_date_text"}>
                                                         {errors.month}
                                                     </p>
                                                 ) : null}
                                             </label>
-                                            <label className = "profile_input_small profile_day">
+                                            <label className="profile_input_small profile_day">
                                                 {t("profile_page.personal.day_label")}
                                                 <br/>
                                                 <Field
-                                                    name = "day"
-                                                    as = "select"
-                                                    onBlur = {() => {
+                                                    name="day"
+                                                    as="select"
+                                                    onBlur={() => {
                                                         setFieldError("day", undefined);
                                                     }}
-                                                    disabled = {!values?.month || isInputsReadOnly}
-                                                    className = {
+                                                    disabled={!values?.month || isInputsReadOnly}
+                                                    className={
                                                         errors.day
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
                                                 >
                                                     <option
-                                                        label = {t("profile_page.personal.day_placeholder")}
-                                                        disabled = {true}
+                                                        label={t("profile_page.personal.day_placeholder")}
+                                                        disabled={true}
                                                     />
                                                     {days.map((el) => {
                                                         return (
-                                                            <option key = {el} value = {el}>
+                                                            <option key={el} value={el}>
                                                                 {el}
                                                             </option>
                                                         );
                                                     })}
                                                 </Field>
-                                                <div className = "profile_input_arrow">
-                                                    <IconComponent icon = {faCaretDown}/>
+                                                <div className="profile_input_arrow">
+                                                    <IconComponent icon={faCaretDown}/>
                                                 </div>
                                                 {errors.day ? (
-                                                    <p className = {"input_warning_text warning_date_text"}>
+                                                    <p className={"input_warning_text warning_date_text"}>
                                                         {errors.day}
                                                     </p>
                                                 ) : null}
                                             </label>
-                                            <label className = "  profile_input_small profile_year">
+                                            <label className="  profile_input_small profile_year">
                                                 {t("profile_page.personal.year_label")}
                                                 <br/>
                                                 <Field
-                                                    name = "year"
-                                                    as = "select"
-                                                    disabled = {isInputsReadOnly}
-                                                    onBlur = {() => {
+                                                    name="year"
+                                                    as="select"
+                                                    disabled={isInputsReadOnly}
+                                                    onBlur={() => {
                                                         setFieldError("year", undefined);
                                                     }}
-                                                    className = {
+                                                    className={
                                                         errors.year
                                                             ? "profile_form_input_warning profile_form_input_with_arrow"
                                                             : "profile_form_input profile_form_input_with_arrow"
                                                     }
                                                 >
                                                     <option
-                                                        label = {t("profile_page.personal.year_placeholder")}
-                                                        disabled = {true}
+                                                        label={t("profile_page.personal.year_placeholder")}
+                                                        disabled={true}
                                                     />
                                                     {years.map((year) => {
                                                         return (
-                                                            <option key = {year} value = {year}>
+                                                            <option key={year} value={year}>
                                                                 {year}
                                                             </option>
                                                         );
                                                     })}
                                                 </Field>
-                                                <div className = "profile_input_arrow">
-                                                    <IconComponent icon = {faCaretDown}/>
+                                                <div className="profile_input_arrow">
+                                                    <IconComponent icon={faCaretDown}/>
                                                 </div>
                                                 {errors.year ? (
-                                                    <p className = {"input_warning_text warning_date_text"}>
+                                                    <p className={"input_warning_text warning_date_text"}>
                                                         {errors.year}
                                                     </p>
                                                 ) : null}
                                             </label>
                                         </div>
-                                        <label className = "  profile_input_middle profile_country">
+                                        <label className="  profile_input_middle profile_country">
                                             {t("profile_page.personal.country_label")}
                                             <br/>
                                             <CountryDropdown
-                                                className = {
-                                                    ((errors.address?.country ) || errorHandlerHook?.countryError)
+                                                className={
+                                                    ((errors.address?.country) || errorHandlerHook?.countryError)
                                                         ? "profile_form_input_warning profile_form_input_with_arrow"
                                                         : "profile_form_input profile_form_input_with_arrow"
                                                 }
-                                                name = "address.country"
-                                                values = {values?.address?.country}
-                                                value = {values?.address?.country}
-                                                disabled = {isInputsReadOnly}
-                                                valueType = "short"
-                                                onChange = {(_, e) => {
+                                                name="address.country"
+                                                values={values?.address?.country}
+                                                value={values?.address?.country}
+                                                disabled={isInputsReadOnly}
+                                                valueType="short"
+                                                onChange={(_, e) => {
                                                     errorHandlerHook?.clearProfileErrorFromApi(
                                                         "address.country"
                                                     );
                                                     handleChange(e);
                                                 }}
-                                                onBlur = {(_, e) => {
+                                                onBlur={(_, e) => {
                                                     setFieldError("address.country", undefined);
                                                     handleBlur(e);
                                                 }}
-                                                      showDefaultOption={isEmpty(profile) && !values?.address?.country }
-                                                defaultOptionLabel = {t("profile_page.personal.country_placeholder")}
+                                                showDefaultOption={isEmpty(profile) && !values?.address?.country}
+                                                defaultOptionLabel={t("profile_page.personal.country_placeholder")}
 
                                             />
-                                            <div className = "profile_input_arrow">
-                                                <IconComponent icon = {faCaretDown}/>
+                                            <div className="profile_input_arrow">
+                                                <IconComponent icon={faCaretDown}/>
                                             </div>
                                             {errors.address?.country ? (
-                                                <p className = {"input_warning_text warning_date_text"}>
+                                                <p className={"input_warning_text warning_date_text"}>
                                                     {errors.address?.country}
                                                 </p>
                                             ) : null}
                                             {errorHandlerHook?.countryError ? (
-                                                <p className = {"input_warning_text warning_date_text"}>
+                                                <p className={"input_warning_text warning_date_text"}>
                                                     {Array.isArray(errorHandlerHook?.countryError)
                                                         ? errorHandlerHook?.countryError[0]
                                                         : errorHandlerHook?.countryError}
@@ -518,148 +524,148 @@ const PersonalDetails = ({
                                             ) : null}
                                         </label>
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_city"
-                                            label = {t("profile_page.personal.city_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "address.city"
-                                            values = {values}
-                                            restrictInput = {restrictCity}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.cityError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_city"
+                                            label={t("profile_page.personal.city_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="address.city"
+                                            values={values}
+                                            restrictInput={restrictCity}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.cityError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_address"
-                                            label = {t("profile_page.personal.address_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "address.address"
-                                            values = {values}
-                                            restrictInput = {restrictLettersNumbersAndSpecialCharacters}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.addressError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_address"
+                                            label={t("profile_page.personal.address_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="address.address"
+                                            values={values}
+                                            restrictInput={restrictLettersNumbersAndSpecialCharacters}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.addressError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_zip"
-                                            label = {t("profile_page.personal.zip")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "zip_code"
-                                            values = {values}
-                                            restrictInput = {restrictLettersNumbersAndSpecialCharacters}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.zipError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_zip"
+                                            label={t("profile_page.personal.zip")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="zip_code"
+                                            values={values}
+                                            restrictInput={restrictLettersNumbersAndSpecialCharacters}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.zipError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_id_number"
-                                            label = {t("profile_page.personal.personal_id_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "personal_id"
-                                            values = {values}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.personalIdError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_id_number"
+                                            label={t("profile_page.personal.personal_id_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="personal_id"
+                                            values={values}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.personalIdError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                         <InputComponent
-                                            labelClassName = "profile_input_middle profile_phone"
-                                            label = {t("profile_page.personal.phone_label")}
-                                            inputClassName = "profile_form_input"
-                                            errorClassName = "profile_form_warning_text"
-                                            inputName = "phone_number"
-                                            values = {values}
-                                            setFieldValue = {setFieldValue}
-                                            setFieldError = {setFieldError}
-                                            touched = {touched}
-                                            errors = {errors}
-                                            disabled = {isInputsReadOnly}
-                                            errorFromApi = {errorHandlerHook?.phoneError}
-                                            clearError = {errorHandlerHook?.clearProfileErrorFromApi}
+                                            labelClassName="profile_input_middle profile_phone"
+                                            label={t("profile_page.personal.phone_label")}
+                                            inputClassName="profile_form_input"
+                                            errorClassName="profile_form_warning_text"
+                                            inputName="phone_number"
+                                            values={values}
+                                            setFieldValue={setFieldValue}
+                                            setFieldError={setFieldError}
+                                            touched={touched}
+                                            errors={errors}
+                                            disabled={isInputsReadOnly}
+                                            errorFromApi={errorHandlerHook?.phoneError}
+                                            clearError={errorHandlerHook?.clearProfileErrorFromApi}
                                         />
                                     </div>
                                     {isInputsReadOnly &&
-                                    <p className = 'profile_form_footer_text'>{t("profile_page.personal.footer_text1")}<a
-                                        onClick = {handleClick} className = 'profile_form_footer_link'>
+                                    <p className='profile_form_footer_text'>{t("profile_page.personal.footer_text1")}<a
+                                        onClick={handleClick} className='profile_form_footer_link'>
                                         {t("profile_page.personal.footer_link")}
                                     </a>{t("profile_page.personal.footer_text2")}</p>}
                                     {isEmpty(profile) && (
-                                        <div className = "profile_form_agreement">
+                                        <div className="profile_form_agreement">
                                             <Field
-                                                type = "checkbox"
-                                                name = "is_agree"
-                                                className = "profile_form_checkbox"
+                                                type="checkbox"
+                                                name="is_agree"
+                                                className="profile_form_checkbox"
                                             />
                                             {t("profile_page.personal.agreement_text")}
                                             <a
-                                                className = "profile_form_agreement_link"
-                                                target = "_blank"
-                                                rel = "noopener noreferrer"
-                                                href = {documentUrl?.file || documentUrl?.url}
+                                                className="profile_form_agreement_link"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                href={documentUrl?.file || documentUrl?.url}
                                             >
                                                 {t("profile_page.personal.agreement_link")}
                                             </a>
                                         </div>
                                     )}
-                                        {!type && <SplitLine className = "profile_form_split_line"/>}
-                                        {type && (
-                                            <div className="company_number_block">
-                                                <label className='company_number_label'>
-                                                    <input
-                                                        type='checkbox'
-                                                        className='company_number_block_checkbox'
-                                                        checked={isCompanyInvest}
-                                                        onChange={handleChangeCompanyCheckbox}
-                                                    />
-                                                    {t("profile_page.personal.company_number_text")}
-                                                </label>
+                                    {!type && <SplitLine className="profile_form_split_line"/>}
+                                    {type && (
+                                        <div className="company_number_block">
+                                            <label className='company_number_label'>
                                                 <input
-                                                    type='text'
-                                                    className= {campaignNumberWarning? 'profile_form_input company_number_block_input profile_form_input_warning': 'profile_form_input company_number_block_input'}
-                                                    placeholder={t("profile_page.personal.company_number_placeholder")}
-                                                    value={companyNumber}
-                                                    autoFocus={true}
-                                                    onChange={handleInput}
-                                                    disabled={!isCompanyInvest}
-                                                    // ref={companyInputRef => {
-                                                    //     if(isCompanyInvest){
-                                                    //         companyInputRef?.focus()
-                                                    //     }
-                                                    // }}
-                                                    ref={companyInputRef}
+                                                    type='checkbox'
+                                                    className='company_number_block_checkbox'
+                                                    checked={isCompanyInvest}
+                                                    onChange={handleChangeCompanyCheckbox}
                                                 />
+                                                {t("profile_page.personal.company_number_text")}
+                                            </label>
+                                            <input
+                                                type='text'
+                                                className={campaignNumberWarning ? 'profile_form_input company_number_block_input profile_form_input_warning' : 'profile_form_input company_number_block_input'}
+                                                placeholder={t("profile_page.personal.company_number_placeholder")}
+                                                value={companyNumber}
+                                                autoFocus={true}
+                                                onChange={handleInput}
+                                                disabled={!isCompanyInvest}
+                                                // ref={companyInputRef => {
+                                                //     if(isCompanyInvest){
+                                                //         companyInputRef?.focus()
+                                                //     }
+                                                // }}
+                                                ref={companyInputRef}
+                                            />
 
-                                            </div>
-                                        )}
-                                        {campaignNumberWarning && (
-                                            <p className='profile_form_campaign_number_warning input_warning_text'>{t("profile_page.personal.company_number_warning")}</p>
-                                        )}
-                                    <div className = {_footerStyles}>
+                                        </div>
+                                    )}
+                                    {campaignNumberWarning && (
+                                        <p className='profile_form_campaign_number_warning input_warning_text'>{t("profile_page.personal.company_number_warning")}</p>
+                                    )}
+                                    <div className={_footerStyles}>
                                         <CaptchaPrivacyBlock className='profile_form_captcha_text'/>
                                         <div className='profile_form_footer_button_wrapper'>
                                             {!isEmpty(profile) && (
                                                 <Button
-                                                    colorStyle = "link"
-                                                    className = "profile_form_button_cancel"
-                                                    onClick = {() =>
+                                                    colorStyle="link"
+                                                    className="profile_form_button_cancel"
+                                                    onClick={() =>
                                                         setValues(valuesFromApi || initialValues)
                                                     }
                                                 >
@@ -667,15 +673,15 @@ const PersonalDetails = ({
                                                 </Button>
                                             )}
                                             <Button
-                                                colorStyle = "dark-green"
-                                                type = "submit"
-                                                disabled = {isButtonDisabled}
-                                                className = {isEmpty(profile) || type ? "profile_form_agreement_button" : "profile_form_agreement_button profile_form_agreement_button_big"}
+                                                colorStyle="dark-green"
+                                                type="submit"
+                                                disabled={isButtonDisabled}
+                                                className={isEmpty(profile) || type ? "profile_form_agreement_button" : "profile_form_agreement_button profile_form_agreement_button_big"}
                                             >
                                                 {isEmpty(profile) || type
                                                     ? t("profile_page.personal.submit_button")
                                                     : t("profile_page.personal.save_button")}
-                                                    {/*<p className='profile_form_agreement_button_notification'>zzzzzzz</p>*/}
+                                                {/*<p className='profile_form_agreement_button_notification'>zzzzzzz</p>*/}
                                             </Button>
 
                                         </div>

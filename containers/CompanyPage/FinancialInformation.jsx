@@ -34,7 +34,7 @@ const FinancialInformation = () => {
                         <Image
                             src = {IconDocument}
                             alt = ""alt = {IconDocument ? 'document icon' : ' '}
-                            className = "fin_document_icon"
+                            className = "fin_document"
                         />
                         <a
                             href = {document?.document}

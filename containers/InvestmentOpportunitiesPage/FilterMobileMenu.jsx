@@ -1,199 +1,185 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useCallback, useState} from "react";
 import Accordion from "react-bootstrap/Accordion";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import ButtonStyled from "components/ui/Button";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import IconComponent from "components/ui/IconComponent";
-import { setFilter } from "redux/actions/companies";
+import {setFilter} from "redux/actions/companies";
 import {
-  faCheck,
-  faChevronDown,
-  faChevronRight,
+    faCheck,
+    faChevronDown,
+    faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import useDisableScroll from "customHooks/useDisableScroll";
 
 const FilterMobileMenu = ({
-  onChangeFilter,
-  onClose,
-  currentFilters,
-  changeCurrentFilter,
-}) => {
-  const dispatch = useDispatch();
-  const { t } = useTranslation();
+                              onChangeFilter,
+                              onClose,
+                              currentFilters,
+                              changeCurrentFilter,
+                          }) => {
+    const dispatch = useDispatch();
+    const {t} = useTranslation();
 
-  const _setFilter = useCallback(
-    (data) => {
-      dispatch(setFilter(data));
-    },
-    [dispatch]
-  );
+    useDisableScroll();
 
-  const resetFilters = () => {
-    changeCurrentFilter([]);
-  };
+    const _setFilter = useCallback(
+        (data) => {
+            dispatch(setFilter(data));
+        },
+        [dispatch]
+    );
 
-  const handleSubmitFilters = () => {
-    _setFilter(currentFilters);
-    onClose(false);
-  };
+    const resetFilters = () => {
+        changeCurrentFilter([]);
+    };
 
-  const [activeTab, setActiveTab] = useState(null);
+    const handleSubmitFilters = () => {
+        _setFilter(currentFilters);
+        onClose(false);
+    };
 
-  const handleTabClick = (e) => {
-    if (activeTab === e.target.dataset.value) {
-      setActiveTab([]);
-      return;
-    }
-    setActiveTab(e.target.dataset.value);
-  };
+    const [activeTab, setActiveTab] = useState(null);
 
-  const handleClose = (e) => {
-    e.preventDefault();
-    onClose(false);
-  };
+    const handleTabClick = (e) => {
+        if (activeTab === e.target.dataset.value) {
+            setActiveTab([]);
+            return;
+        }
+        setActiveTab(e.target.dataset.value);
+    };
 
+    const handleClose = (e) => {
+        e.preventDefault();
+        onClose(false);
+    };
 
-  useEffect(()=>{
-    document.addEventListener('wheel', preventScroll, {passive: false});
+    return (
+        <div className="filter_mobile_menu">
+            <button className="filter_mobile_menu_close_button" onClick={handleClose}>
+                &#215;
+            </button>
+            <h2 className="filter_mobile_menu_title">
+                {t("investment_opportunities_page.filter_results")}
+            </h2>
+            <Accordion>
+                <Card>
+                    <Card.Header>
+                        <Accordion.Toggle
+                            as={Button}
+                            variant="link"
+                            eventKey="0"
+                            className="filter_mobile_menu_accordion_button"
+                            data-value="1"
+                            onClick={handleTabClick}
+                        >
+                            {t("investment_opportunities_page.status")}
+                            <IconComponent
+                                icon={activeTab === "1" ? faChevronDown : faChevronRight}
+                                className="filter_mobile_menu_accordion_button_chevron"
+                            />
+                        </Accordion.Toggle>
+                    </Card.Header>
+                    <Accordion.Collapse eventKey="0">
+                        <Card.Body className="filter_mobile_menu_accordion_tab">
+                            <ButtonStyled
+                                colorStyle={
+                                    currentFilters.includes(3)
+                                        ? "light-blue-white-text"
+                                        : "outline-blue"
+                                }
+                                className="filter_mobile_menu_accordion_tab_button"
+                                onClick={onChangeFilter}
+                                name="live"
+                            >
+                                {t("investment_opportunities_page.live")}
+                                {currentFilters.includes(3) && (
+                                    <IconComponent
+                                        icon={faCheck}
+                                        className="filter_mobile_menu_accordion_tab_button_chevron"
+                                    />
+                                )}
+                            </ButtonStyled>
+                            <ButtonStyled
+                                colorStyle={
+                                    currentFilters.includes(1)
+                                        ? "light-blue-white-text"
+                                        : "outline-blue"
+                                }
+                                className="filter_mobile_menu_accordion_tab_button"
+                                onClick={onChangeFilter}
+                                name="upcoming"
+                            >
+                                {t("investment_opportunities_page.upcoming")}
+                                {currentFilters.includes(1) && (
+                                    <IconComponent
+                                        icon={faCheck}
+                                        className="filter_mobile_menu_accordion_tab_button_chevron"
+                                    />
+                                )}
+                            </ButtonStyled>
 
-    function preventScroll(e){
-      e.preventDefault();
-      e.stopPropagation();
+                            <ButtonStyled
+                                colorStyle={
+                                    currentFilters.includes(2)
+                                        ? "light-blue-white-text"
+                                        : "outline-blue"
+                                }
+                                className="filter_mobile_menu_accordion_tab_button"
+                                onClick={onChangeFilter}
+                                name="completed"
+                            >
+                                {t("investment_opportunities_page.completed")}
+                                {currentFilters.includes(2) && (
+                                    <IconComponent
+                                        icon={faCheck}
+                                        className="filter_mobile_menu_accordion_tab_button_chevron"
+                                    />
+                                )}
+                            </ButtonStyled>
 
-      return false;
-    }
-
-    return () => {
-      document.removeEventListener('wheel', preventScroll);
-
-    }
-  },[])
-
-  return (
-    <div className="filter_mobile_menu">
-      <button className="filter_mobile_menu_close_button" onClick={handleClose}>
-        &#215;
-      </button>
-      <h2 className="filter_mobile_menu_title">
-        {t("investment_opportunities_page.filter_results")}
-      </h2>
-      <Accordion>
-        <Card>
-          <Card.Header>
-            <Accordion.Toggle
-              as={Button}
-              variant="link"
-              eventKey="0"
-              className="filter_mobile_menu_accordion_button"
-              data-value="1"
-              onClick={handleTabClick}
-            >
-              {t("investment_opportunities_page.status")}
-              <IconComponent
-                icon={activeTab === "1" ? faChevronDown : faChevronRight}
-                className="filter_mobile_menu_accordion_button_chevron"
-              />
-            </Accordion.Toggle>
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body className="filter_mobile_menu_accordion_tab">
-              <ButtonStyled
-                colorStyle={
-                  currentFilters.includes(3)
-                    ? "light-blue-white-text"
-                    : "outline-blue"
-                }
-                className="filter_mobile_menu_accordion_tab_button"
-                onClick={onChangeFilter}
-                name="live"
-              >
-                {t("investment_opportunities_page.live")}
-                {currentFilters.includes(3) && (
-                  <IconComponent
-                    icon={faCheck}
-                    className="filter_mobile_menu_accordion_tab_button_chevron"
-                  />
-                )}
-              </ButtonStyled>
-              <ButtonStyled
-                colorStyle={
-                  currentFilters.includes(1)
-                    ? "light-blue-white-text"
-                    : "outline-blue"
-                }
-                className="filter_mobile_menu_accordion_tab_button"
-                onClick={onChangeFilter}
-                name="upcoming"
-              >
-                {t("investment_opportunities_page.upcoming")}
-                {currentFilters.includes(1) && (
-                  <IconComponent
-                    icon={faCheck}
-                    className="filter_mobile_menu_accordion_tab_button_chevron"
-                  />
-                )}
-              </ButtonStyled>
-
-              <ButtonStyled
-                  colorStyle={
-                    currentFilters.includes(2)
-                        ? "light-blue-white-text"
-                        : "outline-blue"
-                  }
-                  className="filter_mobile_menu_accordion_tab_button"
-                  onClick={onChangeFilter}
-                  name="completed"
-              >
-                {t("investment_opportunities_page.completed")}
-                {currentFilters.includes(2) && (
-                    <IconComponent
-                        icon={faCheck}
-                        className="filter_mobile_menu_accordion_tab_button_chevron"
-                    />
-                )}
-              </ButtonStyled>
-
-              <ButtonStyled
-                colorStyle={
-                  currentFilters.includes(4)
-                    ? "light-blue-white-text"
-                    : "outline-blue"
-                }
-                onClick={onChangeFilter}
-                name="closed"
-                className="filter_mobile_menu_accordion_tab_button_last"
-              >
-                {t("investment_opportunities_page.closed")}
-                {currentFilters.includes(4) && (
-                  <IconComponent
-                    icon={faCheck}
-                    className="filter_mobile_menu_accordion_tab_button_chevron"
-                  />
-                )}
-              </ButtonStyled>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-      <div className="filter_mobile_menu_buttons_container">
-        <ButtonStyled
-          colorStyle="link"
-          className="filter_mobile_menu_buttons_cancel"
-          onClick={resetFilters}
-        >
-          {t("investment_opportunities_page.mobile_filter_button_clear")}
-        </ButtonStyled>
-        <ButtonStyled
-          colorStyle="grey"
-          className="filter_mobile_menu_buttons_apply"
-          onClick={handleSubmitFilters}
-        >
-          {t("investment_opportunities_page.mobile_filter_button_apply")}
-        </ButtonStyled>
-      </div>
-    </div>
-  );
+                            <ButtonStyled
+                                colorStyle={
+                                    currentFilters.includes(4)
+                                        ? "light-blue-white-text"
+                                        : "outline-blue"
+                                }
+                                onClick={onChangeFilter}
+                                name="closed"
+                                className="filter_mobile_menu_accordion_tab_button_last"
+                            >
+                                {t("investment_opportunities_page.closed")}
+                                {currentFilters.includes(4) && (
+                                    <IconComponent
+                                        icon={faCheck}
+                                        className="filter_mobile_menu_accordion_tab_button_chevron"
+                                    />
+                                )}
+                            </ButtonStyled>
+                        </Card.Body>
+                    </Accordion.Collapse>
+                </Card>
+            </Accordion>
+            <div className="filter_mobile_menu_buttons_container">
+                <ButtonStyled
+                    colorStyle="link"
+                    className="filter_mobile_menu_buttons_cancel"
+                    onClick={resetFilters}
+                >
+                    {t("investment_opportunities_page.mobile_filter_button_clear")}
+                </ButtonStyled>
+                <ButtonStyled
+                    colorStyle="grey"
+                    className="filter_mobile_menu_buttons_apply"
+                    onClick={handleSubmitFilters}
+                >
+                    {t("investment_opportunities_page.mobile_filter_button_apply")}
+                </ButtonStyled>
+            </div>
+        </div>
+    );
 };
 
 export default FilterMobileMenu;
