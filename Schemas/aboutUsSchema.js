@@ -24,7 +24,7 @@ const makeAboutUsSchema = (data) => {
             {
                 "@type": "AboutPage",
                 "name": "Om oss",
-                "description": "",
+                "description": "Här kan du låtar dig mer om Accumeo, vårt uppdrag och vårt team",
                 "url": "https://accumeo.com/om-oss"
             },
             {
