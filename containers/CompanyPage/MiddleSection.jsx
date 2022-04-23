@@ -2,7 +2,7 @@ import React, {useCallback, memo, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
-import TabBar from "components/ui/TabBar";
+// import TabBar from "components/ui/TabBar";
 import Overview from "./Overview";
 import TabAccordion from "components/ui/TabAccordion";
 
@@ -34,12 +34,13 @@ import {useTranslation} from "react-i18next";
 import ProjectInvestInfoSection from "./ProjectInvestInfoSection";
 import {useMediaQueries} from "@react-hook/media-query";
 import {getQuizIsPassedSelector} from "redux/reducers/user";
-import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
+// import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
 import {getCompanyLogoAltTextSelector, getCompanySubTitleSelector} from "../../redux/reducers/companies";
 import ImageComponent from "../../components/ui/ImageComponent";
+import throttle  from "lodash/throttle"
 
 const MiddleSection = ({isAuth}) => {
     const {t} = useTranslation();
@@ -56,6 +57,7 @@ const MiddleSection = ({isAuth}) => {
     const alter_text = useSelector(getCompanyLogoAltTextSelector)
 
     const sectionRef = useRef();
+    const sectionsContainerRef = useRef()
 
     const _changeCompanuTab = useCallback(
         (key) => {
@@ -106,12 +108,12 @@ const MiddleSection = ({isAuth}) => {
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;
-        const documentHeight = document.documentElement.offsetHeight;
-        const clientHeight = document.documentElement.clientHeight;
+        // const documentHeight = document.documentElement.offsetHeight;
+        // const clientHeight = document.documentElement.clientHeight;
         //change tab when scrolling to the bottom of page
-        if (clientHeight + scrolled + 1 > documentHeight) {
-            setCanChangeTab(true)
-        }
+        // if (clientHeight + scrolled + 1 > documentHeight) {
+        //     setCanChangeTab(true)
+        // }
         //mobile - scroll to top when changing tab
         const projectInfoHeight = sectionRef?.current?.offsetHeight
         const previousSibling = sectionRef?.current?.previousSibling?.offsetHeight
@@ -142,6 +144,58 @@ const MiddleSection = ({isAuth}) => {
             window.removeEventListener("scroll", toggleVisible);
         };
     }, []);
+
+    const [showFaq, setShowFaq] = useState(false)
+
+    const _faqBlock = !showFaq ? {display: 'none'} : {}
+    const _notFaqBlock = showFaq ? {display: 'none'} : {}
+
+    const handleClickFaqTab = () => {
+        if(!showFaq){
+            setShowFaq(true)
+        }
+    }
+
+    const handleClickNotFaqTab = () => {
+        if(showFaq){
+            setShowFaq(false)
+        }
+    }
+
+
+    useEffect(()=>{
+
+        let menuElementsList = []
+        let sectionsList = []
+        if(typeof window !== 'undefined') {
+            menuElementsList = document.querySelectorAll('.tab_bar_item')
+        }
+
+        if(typeof window !== 'undefined') {
+            sectionsList = document.querySelectorAll('.campaigns_section')
+        }
+        const sectionsTracking = () => {
+            const currentSectionIndex = [...sectionsList].reduceRight((acc,el,i)=>{
+                if(el.offsetHeight + el.offsetTop - 135 >= window.scrollY){
+                    acc = i
+                }
+                return acc
+            },3)
+
+                menuElementsList.forEach(el=>el.classList.remove('selected'), {passive:true})
+                menuElementsList[currentSectionIndex].classList.add('selected')
+
+        }
+
+        sectionsTracking()
+        window.addEventListener("scroll", throttle(sectionsTracking, 250))
+
+        return () => {
+            window.removeEventListener("scroll", sectionsTracking)
+        }
+    },[])
+
+
 
     return (
         <div className="middle_section_container">
@@ -202,26 +256,78 @@ const MiddleSection = ({isAuth}) => {
                 </div>
 
                 }
-                <div className="middle_tabbr_wrapp">
+                <nav className="middle_tabbr_wrapp" >
 
-                    <TabBar
-                        data={[
-                            {name: t("tab_accordion.OVERVIEW"), key: companyTabConstants.OVERVIEW},
-                            {name: t("tab_accordion.Idea"), key: companyTabConstants.IDEA},
-                            {name: t("tab_accordion.Team"), key: companyTabConstants.TEAM},
-                            {
-                                name: t("tab_accordion.Financial_information"),
-                                key: companyTabConstants.FIN_INFO,
-                            },
-                            {name: t("tab_accordion.FAQ"), key: companyTabConstants.FAQ},
+                    {/*<TabBar*/}
+                    {/*    data={[*/}
+                    {/*        {name: t("tab_accordion.OVERVIEW"), key: companyTabConstants.OVERVIEW},*/}
+                    {/*        {name: t("tab_accordion.Idea"), key: companyTabConstants.IDEA},*/}
+                    {/*        {name: t("tab_accordion.Team"), key: companyTabConstants.TEAM},*/}
+                    {/*        {*/}
+                    {/*            name: t("tab_accordion.Financial_information"),*/}
+                    {/*            key: companyTabConstants.FIN_INFO,*/}
+                    {/*        },*/}
+                    {/*        {name: t("tab_accordion.FAQ"), key: companyTabConstants.FAQ},*/}
 
-                        ]}
-                        onClick={_changeCompanuTab}
-                        selectedKey={selectedTab}
-                        className="middle_tabbr"
-                    />
-                </div>
-                <TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>
+                    {/*    ]}*/}
+                    {/*    onClick={_changeCompanuTab}*/}
+                    {/*    selectedKey={selectedTab}*/}
+                    {/*    className="middle_tabbr"*/}
+                    {/*/>*/}
+                        <ul className='tab_bar_container middle_tabbr'>
+                            <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
+                                <a href="#Overview" className='tab_bar_item_button'>Overview</a>
+                                <span className="vertical_line"></span>
+
+                            </li>
+                            <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
+                                <a href="#Idea" className='tab_bar_item_button'>Idea</a>
+                            </li>
+                            <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
+                                <a href="#Team" className='tab_bar_item_button'>Team</a>
+                            </li>
+                            <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
+                                <a href="#FinancialInformation" className='tab_bar_item_button'>FinancialInformation</a>
+                            </li>
+                            <li className='tab_bar_item'  onClick={handleClickFaqTab}>
+                                <a href="#Faq" className='tab_bar_item_button'>Faq</a>
+                            </li>
+                        </ul>
+                </nav>
+                    <div style={_notFaqBlock} ref = {sectionsContainerRef}>
+                        <section id='Overview' className='campaigns_section'>
+                            <Overview/>
+                        </section>
+                        <section id='Idea' className='campaigns_section'>
+                            {isAuth ? <Idea/> : (
+                                <>
+                                    <h2 className='campaign_guest_title'>Idea title</h2>
+                                <CampaignTabSignUp/>
+                                </>
+                            )}
+                        </section>
+                        <section id='Team' className='campaigns_section'>
+                            {isAuth ? <Team/> : (
+                                <>
+                                <h2 className='campaign_guest_title'>Team title</h2>
+                                <CampaignTabSignUp/>
+                                </>
+                            )}
+                        </section>
+                        <section id='FinancialInformation' className='campaigns_section'>
+                            {isAuth ? <FinancialInformation/> : (
+                                <>
+                                    <h2 className='campaign_guest_title'>Fin title</h2>
+                                    <CampaignTabSignUp/>
+                                </>
+                            )}
+                        </section>
+                    </div>
+                <section id='Faq' style={_faqBlock}  className='campaigns_section'>
+                    {isAuth ? <Faq/> :  <CampaignTabSignUp/>}
+                </section>
+
+                {/*<TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>*/}
             </div>
 
             <div className='middle_mobile_header_container'>
@@ -255,34 +361,34 @@ const MiddleSection = ({isAuth}) => {
     );
 };
 
-const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
-    const renderTabIFauts = (Сomponent) => {
-        if (!isAuth) {
-            return <CampaignTabSignUp/>
-        } else {
-            if (!isQuizPassed) {
-                return <CampaignTabQuizRequest/>
-            } else {
-                return <Сomponent/>
-            }
-        }
-    };
-
-    switch (selectedTab) {
-        case companyTabConstants.OVERVIEW:
-            return <Overview/>;
-        case companyTabConstants.IDEA:
-            return renderTabIFauts(Idea);
-        case companyTabConstants.TEAM:
-            return renderTabIFauts(Team);
-        case companyTabConstants.FIN_INFO:
-            return renderTabIFauts(FinancialInformation);
-        case companyTabConstants.FAQ:
-            return renderTabIFauts(Faq);
-
-        default:
-            return null;
-    }
-});
+// const TabContent = memo(({selectedTab, isAuth, isQuizPassed}) => {
+//     const renderTabIFauts = (Сomponent) => {
+//         if (!isAuth) {
+//             return <CampaignTabSignUp/>
+//         } else {
+//             if (!isQuizPassed) {
+//                 return <CampaignTabQuizRequest/>
+//             } else {
+//                 return <Сomponent/>
+//             }
+//         }
+//     };
+//
+//     switch (selectedTab) {
+//         case companyTabConstants.OVERVIEW:
+//             return <Overview/>;
+//         case companyTabConstants.IDEA:
+//             return renderTabIFauts(Idea);
+//         case companyTabConstants.TEAM:
+//             return renderTabIFauts(Team);
+//         case companyTabConstants.FIN_INFO:
+//             return renderTabIFauts(FinancialInformation);
+//         case companyTabConstants.FAQ:
+//             return renderTabIFauts(Faq);
+//
+//         default:
+//             return null;
+//     }
+// });
 
 export default MiddleSection;
