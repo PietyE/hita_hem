@@ -2961,3 +2961,12 @@ overflow: hidden;
 }
 
 
+.campaigns_section{
+  &::before {
+    content: '';
+    display: block;
+    height:      135px;
+    margin-top: -135px;
+    visibility: hidden;
+  }
+}
