@@ -38,6 +38,12 @@ const TopSliderComponent = ({
             const authLocalData = localStorage.getItem("auth_data")
             if (!authLocalData) {
                 setShowSlider(true)
+            } else {
+                const nowTime = Math.floor(new Date().getTime() / 1000);
+                const expiration_timestamp = authLocalData?.expiration_timestamp;
+                    if(nowTime > expiration_timestamp){
+                        setShowSlider(true)
+                    }
             }
         }
     }, [type, isAuth])
