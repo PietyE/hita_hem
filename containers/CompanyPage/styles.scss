@@ -321,13 +321,14 @@
       top: 80px;
       height: 650px;
       margin-left: auto;
+      width: 350px;
+
       //right: 230px;
 
       .project_info_right_status_container {
         display: flex;
         justify-content: space-between;
         padding-bottom: 20px;
-
         .project_info_right_status_text {
           font-family: Source Sans Pro;
           font-style: normal;
@@ -339,7 +340,6 @@
 
       .invest_info {
         margin-bottom: 27px;
-        width: 350px;
         background: #ffffff;
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-sizing: border-box;
@@ -1653,8 +1653,8 @@ overflow: hidden;
     }
   }
   .sticky_invest_button {
-    width: 200px;
-    margin-right: 189px;
+    //width: 200px;
+    //margin-right: 189px;
   }
 }
 
@@ -1686,8 +1686,11 @@ overflow: hidden;
 
     .middle_section_container {
       .project_info_right_section {
+        width: 300px;
+
+        .project_info_right_status_container{
+        }
         .invest_info {
-          width: 300px;
           .invest_info_item{
             .currensy_text{
               font-size: 24px;
@@ -1720,8 +1723,8 @@ overflow: hidden;
     }
   }
   .sticky_invest_button {
-    width: 150px;
-    margin-right: 50px;
+    width: 300px;
+    //margin-right: 50px;
   }
 }
 
@@ -1773,8 +1776,15 @@ overflow: hidden;
       }
 
       .project_info_right_section {
-        .invest_info {
+        width: 250px;
+        .project_info_right_status_container{
+        }
+        .sticky_invest_button{
           width: 250px;
+          margin: 20px auto 0 auto;
+
+        }
+        .invest_info {
 
 
           .invest_info_item {
@@ -2187,6 +2197,10 @@ overflow: hidden;
         .project_info_right_status_container{
          display: none;
         }
+        .project_info_right_status_container{
+          width: 420px;
+        }
+
         .invest_info {
           margin: 35px auto 15px auto;
           width: 420px;
@@ -2764,6 +2778,9 @@ overflow: hidden;
     }
 
     .middle_section_container {
+      .project_info_right_status_container{
+        width: 30px;
+      }
       .project_info_right_section {
         .invest_info {
           width: 300px;
@@ -2828,7 +2845,9 @@ overflow: hidden;
 
       .project_info_right_section {
         padding: 30px 10px;
-
+        .project_info_right_status_container{
+          width: 270px;
+        }
         .invest_info {
           width: 270px;
 

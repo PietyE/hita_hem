@@ -28,7 +28,7 @@ import {
 } from "redux/reducers/companies";
 import { getSelectedLangSelector } from "redux/reducers/language";
 import useMoneyFormat from "customHooks/useMoneyFormat";
-import {getCompanySlugSelector, getLeftDate} from "../../redux/reducers/companies";
+import {getCampaignTypeSelector, getCompanySlugSelector, getLeftDate} from "../../redux/reducers/companies";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
@@ -54,7 +54,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
   const userCanInvest = useSelector(canUserInvestSelector);
   const isCompanyClosed = useSelector(getIsCompanyClosedSelector);
   const status = useSelector(getCompanyStatusSelector);
-
+  const type = useSelector(getCampaignTypeSelector)
   const dataOptions = {
     day: "numeric",
     month: "long",
@@ -122,61 +122,63 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
                 classNameContainer="project_info_right_status"
             />
           </div>
-      <div className="invest_info">
-        <div className="invest_info_item">
+          { type === 1 &&
+            <div className="invest_info">
+              <div className="invest_info_item">
           <span className="invest_info_item_date">
             <span>{t("company_page.company_start_date")}</span>{" "}
             <span className="date">{_startDayLocal}</span>
           </span>
-          <span className="invest_info_item_date">
+                <span className="invest_info_item_date">
             <span>{t("company_page.company_end_date")}</span>{" "}
-            <span className="date">{_endDayLocal}</span>
+                  <span className="date">{_endDayLocal}</span>
           </span>
-        </div>
+              </div>
 
-        {isAuth && (
-            <div className = "invest_info_item">
-          <CurrensyText
-              value = {moneyFormat.format(parseInt(invested))}
-              currency = {currency}
-          />
-          <span className = "invest_info_param">
+              {isAuth && (
+                  <div className = "invest_info_item">
+                    <CurrensyText
+                        value = {moneyFormat.format(parseInt(invested))}
+                        currency = {currency}
+                    />
+                    <span className = "invest_info_param">
             {t("company_page.company_invested")}
           </span>
-        </div>)}
-        {isAuth && (
-        <div className="invest_info_item">
-          <CurrensyText
-            value={moneyFormat.format(parseInt(goal))}
-            currency={currency}
-          />
-          <span className="invest_info_param">
+                  </div>)}
+              {isAuth && (
+                  <div className="invest_info_item">
+                    <CurrensyText
+                        value={moneyFormat.format(parseInt(goal))}
+                        currency={currency}
+                    />
+                    <span className="invest_info_param">
             {t("company_page.company_goal")}
           </span>
-        </div>
-        )}
-        {valuation && isAuth &&
-        <div className="invest_info_item">
-          <CurrensyText
-              value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
-              currency={currency}
-          />
-          <span className="invest_info_param">
+                  </div>
+              )}
+              {valuation && isAuth &&
+              <div className="invest_info_item">
+                <CurrensyText
+                    value={valuation? moneyFormat.format(parseInt(valuation)) : ''}
+                    currency={currency}
+                />
+                <span className="invest_info_param">
             {t("company_page.company_valuation")}
           </span>
-        </div>
-        }
+              </div>
+              }
 
-        <div className="invest_info_item">
-          <Progress
-            title={t("company_page.company_raised")}
-            percent={percentage}
-            left_date={leftDate}
-            className='invest_info_progress'
-          />
-        </div>
-      </div>
-      {!isCompanyClosed && (
+              <div className="invest_info_item">
+                <Progress
+                    title={t("company_page.company_raised")}
+                    percent={percentage}
+                    left_date={leftDate}
+                    className='invest_info_progress'
+                />
+              </div>
+            </div>
+          }
+      {!isCompanyClosed && type === 1 &&(
         <Button
           colorStyle="dark-green"
           className="invest_button"
@@ -186,6 +188,18 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
           {t("company_page.button_invest")}
         </Button>
       )}
+
+          { type === 2 &&(
+              <a href = {"mailto:" + "info@accumeo.com"}>
+                <Button
+                    colorStyle = "dark-green"
+                    className = {`sticky_invest_button ${classNameVisible}`}
+                    // disabled = {!isAuth}
+                >
+                  {t("company_page.button_contact")}
+                </Button>
+              </a>
+          )}
 
       {isCompanyClosed && (
           isAuth
@@ -248,7 +262,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
       {!isAuth && <SignUpMessage />}
           {isAuth && !isPassedQuiz && <PassQuizMessage className='company_info_quiz_message'/>}
     </div>
-        {!isCompanyClosed &&   (
+        {!isCompanyClosed  && type === 1 &&   (
             <div className={userCanInvest ? `sticky_invest_button_container ${classNameVisible}` : `sticky_invest_button_container sticky_invest_button_container_closed ${classNameVisible}`}>
               <div className='sticky_invest_content_wrapper'>
                 {userCanInvest && <Button

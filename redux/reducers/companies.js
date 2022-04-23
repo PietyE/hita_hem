@@ -47,6 +47,7 @@ const initialState = {
         hidden_mode: false,
         website: "",
         title: "",
+        type: 2,
         description: "",
         left_date_start: '',
         left_date_end: '',
@@ -210,6 +211,9 @@ export const getTeatMateSetSelector = (state) =>
 
 export const getFaqSetSelector = (state) =>
     state.companies.companyDetail.faq_set;
+
+export const getCampaignTypeSelector = (state) =>
+    state.companies.companyDetail.type;
 
 export const getRecommendedCampaignsSelector = (state) =>
     state.companies.companyDetail.recommended_campaign;
