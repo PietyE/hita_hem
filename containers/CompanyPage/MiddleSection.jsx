@@ -299,17 +299,32 @@ const MiddleSection = ({isAuth}) => {
                             <Overview/>
                         </section>
                         <section id='Idea' className='campaigns_section'>
-                            {isAuth ? <Idea/> : <CampaignTabSignUp/>}
+                            {isAuth ? <Idea/> : (
+                                <>
+                                    <h2 className='campaign_guest_title'>Idea title</h2>
+                                <CampaignTabSignUp/>
+                                </>
+                            )}
                         </section>
                         <section id='Team' className='campaigns_section'>
-                            {isAuth ? <Team/> : <CampaignTabSignUp/>}
+                            {isAuth ? <Team/> : (
+                                <>
+                                <h2 className='campaign_guest_title'>Team title</h2>
+                                <CampaignTabSignUp/>
+                                </>
+                            )}
                         </section>
                         <section id='FinancialInformation' className='campaigns_section'>
-                            {isAuth ? <FinancialInformation/> : <CampaignTabSignUp/>}
+                            {isAuth ? <FinancialInformation/> : (
+                                <>
+                                    <h2 className='campaign_guest_title'>Fin title</h2>
+                                    <CampaignTabSignUp/>
+                                </>
+                            )}
                         </section>
                     </div>
                 <section id='Faq' style={_faqBlock}  className='campaigns_section'>
-                    {isAuth ? <Faq/> : <CampaignTabSignUp/>}
+                    {isAuth ? <Faq/> :  <CampaignTabSignUp/>}
                 </section>
 
                 {/*<TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>*/}
