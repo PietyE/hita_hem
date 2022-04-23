@@ -34,7 +34,7 @@ import {useTranslation} from "react-i18next";
 import ProjectInvestInfoSection from "./ProjectInvestInfoSection";
 import {useMediaQueries} from "@react-hook/media-query";
 import {getQuizIsPassedSelector} from "redux/reducers/user";
-// import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
+import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
@@ -55,7 +55,6 @@ const MiddleSection = ({isAuth}) => {
     const campaignName = useSelector(getCompanyNameSelector)
     const logo = useSelector(getCompanyLogoUrlSelector)
     const alter_text = useSelector(getCompanyLogoAltTextSelector)
-
     const sectionRef = useRef();
     const sectionsContainerRef = useRef()
 
@@ -299,35 +298,80 @@ const MiddleSection = ({isAuth}) => {
                             <Overview/>
                         </section>
                         <section id='Idea' className='campaigns_section'>
-                            {isAuth ? <Idea/> : (
+
+
+                            {!isAuth ?(
                                 <>
                                     <h2 className='campaign_guest_title'>Idea title</h2>
-                                <CampaignTabSignUp/>
+                                    <CampaignTabSignUp/>
+                                </>
+                            ) :(
+                                <>
+                                    {!isQuizPassed ? (
+                                        <>
+                                            <h2 className='campaign_guest_title'>Idea title</h2>
+                                            <CampaignTabQuizRequest/>
+                                        </>
+
+                                    )
+                                        :
+                                        <Idea/>
+                                    }
                                 </>
                             )}
                         </section>
                         <section id='Team' className='campaigns_section'>
-                            {isAuth ? <Team/> : (
+                            {!isAuth ?(
                                 <>
-                                <h2 className='campaign_guest_title'>Team title</h2>
-                                <CampaignTabSignUp/>
+                                    <h2 className='campaign_guest_title'>Team title</h2>
+                                    <CampaignTabSignUp/>
+                                </>
+                            ) :(
+                                <>
+                                    {!isQuizPassed ? (
+                                            <>
+                                                <h2 className='campaign_guest_title'>Team title</h2>
+                                                <CampaignTabQuizRequest/>
+                                            </>
+
+                                        )
+                                        :
+                                        <Team/>
+                                    }
                                 </>
                             )}
                         </section>
                         <section id='FinancialInformation' className='campaigns_section'>
-                            {isAuth ? <FinancialInformation/> : (
+                            {!isAuth ?(
                                 <>
-                                    <h2 className='campaign_guest_title'>Fin title</h2>
+                                    <h2 className='campaign_guest_title'>FinancialInformation title</h2>
                                     <CampaignTabSignUp/>
+                                </>
+                            ) :(
+                                <>
+                                    {!isQuizPassed ? (
+                                            <>
+                                                <h2 className='campaign_guest_title'>FinancialInformation title</h2>
+                                                <CampaignTabQuizRequest/>
+                                            </>
+
+                                        )
+                                        :
+                                        <FinancialInformation/>
+                                    }
                                 </>
                             )}
                         </section>
                     </div>
                 <section id='Faq' style={_faqBlock}  className='campaigns_section'>
-                    {isAuth ? <Faq/> :  <CampaignTabSignUp/>}
+                    {!isAuth ?
+                        <CampaignTabSignUp/>
+                     :
+                        <>
+                            {!isQuizPassed ? <CampaignTabQuizRequest/> : <Faq/> }
+                        </>
+                    }
                 </section>
-
-                {/*<TabContent selectedTab={selectedTab} isAuth={isAuth} isQuizPassed={isQuizPassed}/>*/}
             </div>
 
             <div className='middle_mobile_header_container'>
@@ -390,5 +434,8 @@ const MiddleSection = ({isAuth}) => {
 //             return null;
 //     }
 // });
+
+
+
 
 export default MiddleSection;
