@@ -52,7 +52,7 @@ const TeamMemberCard = ({item}) => {
             const blockHeight = descriptionRef?.current?.offsetHeight
 
             if (blockHeight !== 0) {
-                setIsShowButton(blockHeight > 450);
+                setIsShowButton(blockHeight > 110);
             }
         }
 
@@ -60,13 +60,13 @@ const TeamMemberCard = ({item}) => {
 
     useEffect(() => {
         if (descriptionRef.current) {
-            setIsShowButton(descriptionRef.current.offsetHeight > 100);
+            setIsShowButton(descriptionRef.current.offsetHeight > 110);
         }
     }, []);
 
     let _descriptionStyle = "member_card_item_description"
 
-    if (!isShowMore && descriptionRef?.current?.offsetHeight > 100) {
+    if (!isShowMore && descriptionRef?.current?.offsetHeight > 110) {
         _descriptionStyle = "member_card_item_description_collapsed"
     }
 
