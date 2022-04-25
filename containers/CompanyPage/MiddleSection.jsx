@@ -274,21 +274,21 @@ const MiddleSection = ({isAuth}) => {
                     {/*/>*/}
                         <ul className='tab_bar_container middle_tabbr'>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#Overview" className='tab_bar_item_button'>Overview</a>
+                                <a href="#Overview" className='tab_bar_item_button'>{t("tab_accordion.OVERVIEW")}</a>
                                 <span className="vertical_line"></span>
 
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#Idea" className='tab_bar_item_button'>Idea</a>
+                                <a href="#Idea" className='tab_bar_item_button'>{t("tab_accordion.Idea")}</a>
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#Team" className='tab_bar_item_button'>Team</a>
+                                <a href="#Team" className='tab_bar_item_button'>{t("tab_accordion.Team")}</a>
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#FinancialInformation" className='tab_bar_item_button'>FinancialInformation</a>
+                                <a href="#FinancialInformation" className='tab_bar_item_button'>{t("tab_accordion.Financial_information")}</a>
                             </li>
                             <li className='tab_bar_item'  onClick={handleClickFaqTab}>
-                                <a href="#Faq" className='tab_bar_item_button'>Faq</a>
+                                <a href="#Faq" className='tab_bar_item_button'>{t("tab_accordion.FAQ")}</a>
                             </li>
                         </ul>
                 </nav>
