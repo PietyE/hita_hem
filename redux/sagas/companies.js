@@ -65,7 +65,7 @@ function* getCompaniesHeaderListWorker() {
 function* searchCampaignsWorker({payload}) {
   try {
     yield put(setIsFetchingCompany(true));
-    let filter = `?limit=9&offset=${payload?.offset}&search=${payload?.data}`;
+    let filter = `?limit=9&offset=${payload?.offset || 0}&search=${payload?.data}`;
     const res = yield call([companies, "getCompaniesList"],filter);
     yield put(saveSearchedCampaigns(res?.data?.results))
     yield put(isMoreCampaignsOnTheApi(res?.data?.next));

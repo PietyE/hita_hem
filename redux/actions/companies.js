@@ -23,6 +23,8 @@ import {
   GET_SEARCH_CAMPAIGNS,
   SET_SEARCH_CAMPAIGNS,
   CLEAN_SEARCH_CAMPAIGNS,
+  SET_CAMPAIGN_SEARCH_QUERY,
+  SET_CAMPAIGN_OFFSET,
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -135,5 +137,15 @@ export const saveSearchedCampaigns = (payload) => ({
 
 export const cleanSearchedCampaigns = (payload) => ({
   type: CLEAN_SEARCH_CAMPAIGNS,
+  payload,
+});
+
+export const setCampaignSearchQuery = (payload) => ({
+  type: SET_CAMPAIGN_SEARCH_QUERY,
+  payload,
+});
+
+export const setCampaignOffset = (payload) => ({
+  type: SET_CAMPAIGN_OFFSET,
   payload,
 });

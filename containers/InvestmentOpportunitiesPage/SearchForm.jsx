@@ -1,10 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import ButtonStyled from "../../components/ui/Button";
 import {useTranslation} from "react-i18next";
-import {cleanSearchedCampaigns} from "../../redux/actions/companies";
+import {cleanSearchedCampaigns, setCampaignOffset, setCampaignSearchQuery} from "../../redux/actions/companies";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
+import {getCampaignOffsetSelector, getCampaignSearchQuerySelector} from "../../redux/reducers/companies";
+import {SEARCH_ROUTE, SEARCH_ROUTE_EN} from "../../constants/routesConstant";
 
 const SearchForm = ({
                         searchContainerClassName,
@@ -17,20 +19,32 @@ const SearchForm = ({
     const dispatch = useDispatch();
     const router = useRouter();
     const lang = useSelector(getSelectedLangSelector)
-
+    const campaignSearchQuery = useSelector(getCampaignSearchQuerySelector)
+    const campaignOffset = useSelector(getCampaignOffsetSelector)
     const [search, setSearch] = useState('')
 
-    const querySearch = router?.query?.search
 
     useEffect(() => {
-        if (querySearch) {
-            setSearch(querySearch.toString())
+        if (campaignSearchQuery) {
+            setSearch(campaignSearchQuery.toString())
         }
-    }, [querySearch])
+    }, [campaignSearchQuery])
 
     const _cleanSearchedCampaigns = useCallback(
         (data) => {
             dispatch(cleanSearchedCampaigns(data));
+        },
+        [dispatch]
+    );
+    const _setOffset = useCallback(
+        (data) => {
+            dispatch(setCampaignOffset(data));
+        },
+        [dispatch]
+    );
+    const _setCampaignSearchQuery = useCallback(
+        (data) => {
+            dispatch(setCampaignSearchQuery(data));
         },
         [dispatch]
     );
@@ -41,30 +55,14 @@ const SearchForm = ({
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (search && querySearch !== search) {
-            let query
-            if (lang === 'en') {
-                // query = `/investment-opportunities?search=${search}`
-                query = {
-                    pathname: '/investment-opportunities',
-                    search: `?search=${search}`
-                }
-            } else {
-                // query = `/investeringsmojligheter?search=${search}`
-                query = {
-                    pathname: '/investeringsmojligheter',
-                    search: `?search=${search}`
-                }
-            }
-            _cleanSearchedCampaigns([])
-            router?.push(query)
-            // _setOffset(0)
-            // if(router.query.offset){
-            //     delete router.query.offset
-            // }
-            // router.query.search = search
-            // router?.push(router)
+        if (search && campaignSearchQuery !== search) {
+            _setOffset(0)
+
+            router.push(lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE)
+            _setCampaignSearchQuery(search)
         }
+
+        _cleanSearchedCampaigns([])
     }
     return (
         <div className={`invest_search_container ${searchContainerClassName}`}>
