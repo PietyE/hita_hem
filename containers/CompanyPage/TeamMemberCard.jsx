@@ -41,7 +41,7 @@ const TeamMemberCard = ({item}) => {
                 }
             }, 100);
 
-            if (descriptionRef?.current?.offsetHeight ===110) {
+            if (descriptionRef?.current?.offsetHeight === 110) {
                 setTimeout(() => clearInterval(timerId), 50);
             }
 
@@ -66,7 +66,7 @@ const TeamMemberCard = ({item}) => {
 
     let _descriptionStyle = "member_card_item_description"
 
-    if(!isShowMore && descriptionRef?.current?.offsetHeight > 100){
+    if (!isShowMore && descriptionRef?.current?.offsetHeight > 100) {
         _descriptionStyle = "member_card_item_description_collapsed"
     }
 
@@ -85,31 +85,33 @@ const TeamMemberCard = ({item}) => {
                     alt={photo_alter_text || ' '}
                 />}
             </div>
-
-            <h3 className="member_card_item_name">{name}</h3>
-            <span className="member_card_item_position">{position}</span>
-            <a className="member_card_item_email" href={`mailto:${email}`}>
-                {email}
-            </a>
-            { teammatesocialurl_set?.length > 0 &&
+            <div className='member_card_content_wrapper'>
+                <h3 className="member_card_item_name">{name}</h3>
+                <span className="member_card_item_position">{position}</span>
+                <a className="member_card_item_email" href={`mailto:${email}`}>
+                    {email}
+                </a>
+                {teammatesocialurl_set?.length > 0 &&
                 <SocialTab
                     socials={getSocialsCompanySelector(teammatesocialurl_set)}
                     classNameContainer="member_card_social"
                 />
-            }
+                }
 
-            <span
-                ref={descriptionRef}
-                className={_descriptionStyle}
-            >{description}
-                { isShowButton && (
-                    <div className="team_show_more">
+                <span
+                    ref={descriptionRef}
+                    className={_descriptionStyle}
+                >{description}
+                    {isShowButton && (
+                        <div className="team_show_more">
           <span className="team_show_more_button" onClick={_handleClickShowMore}>
             {isShowMore ? t("company_page.button_show_less") : t("company_page.button_show_more")}
           </span>
-                    </div>
-                )}
+                        </div>
+                    )}
             </span>
+            </div>
+
 
         </div>
     );
