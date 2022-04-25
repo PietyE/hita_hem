@@ -135,7 +135,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
           </span>
               </div>
 
-              {isAuth && (
+              {isAuth && invested && (
                   <div className = "invest_info_item">
                     <CurrensyText
                         value = {moneyFormat.format(parseInt(invested))}
@@ -145,7 +145,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
             {t("company_page.company_invested")}
           </span>
                   </div>)}
-              {isAuth && (
+              {isAuth && goal && (
                   <div className="invest_info_item">
                     <CurrensyText
                         value={moneyFormat.format(parseInt(goal))}
