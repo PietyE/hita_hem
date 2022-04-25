@@ -14,6 +14,8 @@ import {
     SET_IS_REDIRECT,
     SET_SEARCH_CAMPAIGNS,
     CLEAN_SEARCH_CAMPAIGNS,
+    SET_CAMPAIGN_SEARCH_QUERY,
+    SET_CAMPAIGN_OFFSET,
 } from "constants/actionsConstant";
 
 import {companyTabConstants} from "constants/companyTabConstant";
@@ -38,6 +40,8 @@ const setFilter = (state, actions) => {
 const initialState = {
     companiesList: [],
     listOfFoundCampaigns: [],
+    campaignSearchQuery: '',
+    campaignOffset: 0,
     companyDetail: {
         pk: "",
         seo: {},
@@ -189,6 +193,8 @@ export const getVideoLinkSelector = state => state.companies.companyDetail.youtu
 
 export const getCompanyListSelector = (state) => state.companies.companiesList;
 export const getListOfFoundCampaignsSelector = (state) => state.companies.listOfFoundCampaigns;
+export const getCampaignSearchQuerySelector = (state) => state.companies.campaignSearchQuery;
+export const getCampaignOffsetSelector = (state) => state.companies.campaignOffset;
 
 export const getInvestHeaderCompanyListSelector = (state) =>
     state.companies.investCompanyHeaderList;
@@ -398,6 +404,10 @@ export const companies = (state = initialState, actions) => {
             return {...state, faq_posts: actions.payload};
         case SET_IS_REDIRECT:
             return {...state, is_redirect_on: actions.payload};
+        case SET_CAMPAIGN_SEARCH_QUERY:
+            return {...state, campaignSearchQuery: actions.payload};
+        case SET_CAMPAIGN_OFFSET:
+            return {...state, campaignOffset: actions.payload};
         default:
             return state;
     }

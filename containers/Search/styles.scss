@@ -1,0 +1,106 @@
+.invest_search_container{
+  width: 1490px;
+  margin: 0 auto 50px auto;
+  padding: 0 25px;
+  .invest_search_title{
+    color: rgba(0, 0, 0, 0.87);
+    font-feature-settings: "kern";
+    font-kerning: normal;
+    font-family: "Source sans Pro";
+    font-size: 40px;
+    font-weight: 900;
+    font-style: normal;
+    line-height: 70px;
+    overflow-wrap: break-word;
+    margin-bottom: 30px;
+  }
+
+  .invest_search_form{
+    display: flex;
+    .invest_search_input{
+      all: unset;
+      font-family: "Source sans Pro", sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 28px;
+      color: rgba(0, 0, 0, 0.87);
+      width: 100%;
+      height: 46px;
+      background: #ffffff;
+      border: 1px solid #c4c4c4;
+      border-radius: 4px;
+      padding: 0 10px;
+      box-sizing: border-box;
+      margin-right: 30px;
+    }
+    .invest_search_button{
+      width: 100px;
+    }
+  }
+
+
+}
+
+.search_campaign_list{
+  justify-content: center;
+}
+
+.empty_search_results{
+  font-family: "Source sans Pro", sans-serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 28px;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 0 15px;
+  text-align: center;
+
+}
+
+.invest_opp_middle_button {
+  width: 260px;
+  height: 56px;
+  margin-bottom: 88px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (max-width: 1490px) {
+  .invest_search_container {
+    width: 1157px;
+  }
+}
+
+@media screen and (max-width: 1157px) {
+  .invest_search_container{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .invest_search_form{
+      width: 100%;
+      max-width: 778px;
+      //padding: 0 25px;
+    }
+  }
+}
+
+@media screen and (max-width: 540px) {
+    .invest_search_container{
+      .invest_search_title{
+        font-size: 35px;
+        line-height: 40px;
+        text-align: center;
+      }
+      .invest_search_form{
+        flex-direction: column;
+        .invest_search_input{
+          margin-right: 0;
+          margin-bottom: 20px;
+        }
+        .invest_search_button{
+          width: 100%;
+        }
+      }
+    }
+}

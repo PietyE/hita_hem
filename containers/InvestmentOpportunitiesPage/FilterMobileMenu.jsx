@@ -19,8 +19,6 @@ const FilterMobileMenu = ({
                               onClose,
                               currentFilters,
                               changeCurrentFilter,
-                              onSubmit,
-                              resetCompanyList,
                           }) => {
     const dispatch = useDispatch();
     const {t} = useTranslation();
@@ -39,9 +37,8 @@ const FilterMobileMenu = ({
     };
 
     const handleSubmitFilters = () => {
-        onSubmit(currentFilters);
+        _setFilter(currentFilters);
         onClose(false);
-        resetCompanyList()
     };
 
     const [activeTab, setActiveTab] = useState(null);
