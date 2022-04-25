@@ -37,12 +37,10 @@ const FinArticle = ({item}) => {
     const altText = getImageAltText(images)
 
     const contentRef = useRef();
-
     const [isShowButton, setIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
     const [itemClass, setItemClass] = useState('fin_article')
     const [imageMeta, setImageMeta] = useState({})
-
     const {matchesAll} = useMediaQueries({
         screen: "screen",
         width: "(max-device-width: 900px)",
@@ -63,13 +61,12 @@ const FinArticle = ({item}) => {
             }
         }
     }, [isShowMore, isShowButton])
+    const blockHeight = contentRef?.current?.offsetHeight
 
     useEffect(() => {
         if (matchesAll) {
 
             let timerId = setInterval(() => {
-                const blockHeight = contentRef?.current?.offsetHeight
-
                 if (blockHeight !== 0 && blockHeight !== 450) {
                     setIsShowButton(blockHeight > 450);
                 }
@@ -83,14 +80,12 @@ const FinArticle = ({item}) => {
         }
 
         if (!matchesAll) {
-            const blockHeight = contentRef?.current?.offsetHeight
-
-            if (blockHeight !== 0) {
+            if (blockHeight !== 0 && blockHeight !== 450) {
                 setIsShowButton(blockHeight > 450);
             }
         }
 
-    }, [matchesAll]);
+    }, [matchesAll,blockHeight]);
 
     const _handleClickShowMore = () => {
         setIsShowMore((prev) => !prev);
