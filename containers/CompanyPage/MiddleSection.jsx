@@ -1,8 +1,7 @@
-import React, {useCallback, memo, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
 
-// import TabBar from "components/ui/TabBar";
 import Overview from "./Overview";
 import TabAccordion from "components/ui/TabAccordion";
 
@@ -302,14 +301,14 @@ const MiddleSection = ({isAuth}) => {
 
                             {!isAuth ?(
                                 <>
-                                    <h2 className='campaign_guest_title'>Idea title</h2>
+                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Idea")}</h2>
                                     <CampaignTabSignUp/>
                                 </>
                             ) :(
                                 <>
                                     {!isQuizPassed ? (
                                         <>
-                                            <h2 className='campaign_guest_title'>Idea title</h2>
+                                            <h2 className='campaign_guest_title'>{t("tab_accordion.Idea")}</h2>
                                             <CampaignTabQuizRequest/>
                                         </>
 
@@ -323,14 +322,14 @@ const MiddleSection = ({isAuth}) => {
                         <section id='Team' className='campaigns_section'>
                             {!isAuth ?(
                                 <>
-                                    <h2 className='campaign_guest_title'>Team title</h2>
+                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Team")}</h2>
                                     <CampaignTabSignUp/>
                                 </>
                             ) :(
                                 <>
                                     {!isQuizPassed ? (
                                             <>
-                                                <h2 className='campaign_guest_title'>Team title</h2>
+                                                <h2 className='campaign_guest_title'>{t("tab_accordion.Team")}</h2>
                                                 <CampaignTabQuizRequest/>
                                             </>
 
@@ -344,14 +343,14 @@ const MiddleSection = ({isAuth}) => {
                         <section id='FinancialInformation' className='campaigns_section'>
                             {!isAuth ?(
                                 <>
-                                    <h2 className='campaign_guest_title'>FinancialInformation title</h2>
+                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Financial_information")}</h2>
                                     <CampaignTabSignUp/>
                                 </>
                             ) :(
                                 <>
                                     {!isQuizPassed ? (
                                             <>
-                                                <h2 className='campaign_guest_title'>FinancialInformation title</h2>
+                                                <h2 className='campaign_guest_title'>{t("tab_accordion.Financial_information")}</h2>
                                                 <CampaignTabQuizRequest/>
                                             </>
 
