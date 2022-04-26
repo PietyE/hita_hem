@@ -11,6 +11,7 @@ export const INVEST_ROUTE = "/investeringsmojligheter";
 export const ABOUT_US_ROUTE = "/om-oss";
 export const COMPANY_ROUTE = "/foretag";
 export const SEARCH_ROUTE = "/search"
+export const FAQ_ROUTE = '/faq'
 
 
 export const RAISE_ROUTE_EN = "/raise";
@@ -19,6 +20,7 @@ export const ABOUT_US_ROUTE_EN = "/about-us";
 export const COMPANY_ROUTE_EN = "/company";
 export const BLOG_EN = "/news"
 export const SEARCH_ROUTE_EN = "/search"
+export const FAQ_ROUTE_EN = '/faq'
 
 
 
