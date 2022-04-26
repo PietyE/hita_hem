@@ -3,10 +3,7 @@ import ButtonStyled from "../../components/ui/Button";
 import {useTranslation} from "react-i18next";
 import {cleanSearchedCampaigns, setCampaignOffset, setCampaignSearchQuery} from "../../redux/actions/companies";
 import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/router";
-import {getSelectedLangSelector} from "../../redux/reducers/language";
-import {getCampaignOffsetSelector, getCampaignSearchQuerySelector} from "../../redux/reducers/companies";
-import {SEARCH_ROUTE, SEARCH_ROUTE_EN} from "../../constants/routesConstant";
+import {getCampaignSearchQuerySelector} from "../../redux/reducers/companies";
 
 const SearchForm = ({
                         searchContainerClassName,
@@ -17,10 +14,7 @@ const SearchForm = ({
                     }) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const router = useRouter();
-    const lang = useSelector(getSelectedLangSelector)
     const campaignSearchQuery = useSelector(getCampaignSearchQuerySelector)
-    const campaignOffset = useSelector(getCampaignOffsetSelector)
     const [search, setSearch] = useState('')
 
 
@@ -58,11 +52,10 @@ const SearchForm = ({
         if (search && campaignSearchQuery !== search) {
             _setOffset(0)
 
-            router.push(lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE)
             _setCampaignSearchQuery(search)
+            _cleanSearchedCampaigns([])
         }
 
-        _cleanSearchedCampaigns([])
     }
     return (
         <div className={`invest_search_container ${searchContainerClassName}`}>
