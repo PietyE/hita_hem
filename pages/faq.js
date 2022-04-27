@@ -15,7 +15,7 @@ const Faq = () => {
 
     return (
         <section className='faq_section'>
-            <TopContainer/>
+            <TopContainer searchResults={searchResults}/>
 
             {!Array.isArray(searchResults) && (
                 <Categories/>

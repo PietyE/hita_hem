@@ -5,6 +5,7 @@
 }
 
 .faq_top_section {
+  position: relative;
   max-width: 1920px;
   margin: 0 auto;
   padding: 55px 225px;
@@ -16,6 +17,23 @@
   font-kerning: normal;
 
   color: #000;
+
+  .faq_back_button{
+    position: absolute;
+    top: 30px;
+    right: 230px;
+    background-color: #1F607C;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 8px 10px;
+    color: #fff;
+    font-weight: 600;
+
+    .faq_back_button_arrow{
+      margin-right: 10px;
+      height: 18px;
+    }
+  }
 
   .faq_top_title {
     font-size: 40px;
@@ -309,6 +327,10 @@
 @media screen and (max-width: 1570px) {
   .faq_top_section {
     padding: 55px 160px;
+
+    .faq_back_button{
+      right: 160px;
+    }
   }
 
   .faq_categories_section {
@@ -325,6 +347,10 @@
 @media screen and (max-width: 1440px) {
   .faq_top_section {
     padding: 55px 120px;
+
+    .faq_back_button{
+      right: 120px;
+    }
   }
 
 
@@ -342,6 +368,10 @@
 @media screen and (max-width: 1350px) {
   .faq_top_section {
     padding: 55px 70px;
+
+    .faq_back_button{
+      right: 70px;
+    }
   }
 
 
@@ -409,6 +439,11 @@
     .faq_search_form {
       max-width: 100%;
     }
+
+    .faq_back_button{
+      right: 33px;
+      top: 120px;
+    }
   }
 
 
@@ -424,7 +459,21 @@
   }
 }
 
+@media screen and (max-width: 900px) {
+  .faq_top_section{
+    padding-top: 65px;
+    .faq_back_button{
+      top: 0;
+      left: 0;
+      right: 0;
+      border-radius: 0;
 
+    }
+    .faq_top_title, .faq_top_subtitle{
+      text-align: center;
+    }
+  }
+}
 
 @media screen and (max-width: 500px) {
   .faq_top_section {
