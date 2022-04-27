@@ -55,7 +55,7 @@ const Search = () => {
     }
 
     return (
-        <section>
+        <section className='search_section'>
             {isFetching && <SpinnerStyled/>}
                 <SearchForm/>
             <CampaignsList content={companiesList} className='search_campaign_list'/>

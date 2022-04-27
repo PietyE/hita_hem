@@ -95,7 +95,7 @@ export const convertStatusToText = (status, language = 'en') => {
         case 2:
             return language === 'en' ? "COMPLETED" : "AVSLUTAD";
         case 3:
-            return "LIVE";
+            return language === 'en' ? "Open for investments" : "Öppet för investering";
         case 4:
             return language === 'en' ? "SUCCESSFULLY CLOSED" : "Stängd";
         default:

@@ -8,9 +8,9 @@ const StatusCompanyBadge = (props) => {
     const { status = "", classNameContainer, percentage='' } = props;
     const _status = convertStatusToText(status, language)
     let statusStyle = `status${status}`
-    if(Number(status) === 3){
-        statusStyle = percentage >= 100 ? 'status3_1' : 'status3'
-    }
+    // if(Number(status) === 3){
+    //     statusStyle = percentage >= 100 ? 'status3_1' : 'status3'
+    // }
     return (
     <div className={`status ${statusStyle} ${classNameContainer}`}>
       <span className={`status${status}`}>{_status}</span>
