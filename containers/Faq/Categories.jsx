@@ -1,24 +1,25 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {getFaqCategories, getOneCategory, saveOneCategory} from "../../redux/actions/faq";
+import React, {useCallback, useEffect, useRef} from 'react';
+import {getFaqCategories, setFaqCategories} from "../../redux/actions/faq";
 import {useDispatch, useSelector} from "react-redux";
-import {getFaqCategoriesSelector, getOneCategorySelector} from "../../redux/reducers/faq";
+import {getFaqCategoriesSelector} from "../../redux/reducers/faq";
 import {useTranslation} from "react-i18next";
-import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
+import {useRouter} from "next/router";
+import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const Categories = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
+    const router = useRouter()
 
     const categories = useSelector(getFaqCategoriesSelector)
-    const oneCategoryData = useSelector(getOneCategorySelector)
+    const lang = useSelector(getSelectedLangSelector)
 
     const categoriesRef = useRef()
 
-    const [selectedQuestion, setSelectedQuestion] = useState(0)
     useEffect(() => {
         _getCategories()
-
-        return () => _resetOneCategory()
+        return () => _resetCategories()
     }, [])
 
 
@@ -29,40 +30,32 @@ const Categories = () => {
         [dispatch]
     );
 
-    const _resetOneCategory = useCallback(
+    const _resetCategories = useCallback(
         () => {
-            dispatch(saveOneCategory([]));
+            dispatch(setFaqCategories([]));
         },
         [dispatch]
     );
 
-    const _getOneCategory = useCallback(
-        (data) => {
-            dispatch(getOneCategory(data));
-        },
-        [dispatch]
-    );
 
     const handleClickCategory = (e) => {
-        _getOneCategory(e.target.dataset.pk)
-    }
-
-    const handleClickQuestion = (e) => {
-        setSelectedQuestion(e.target.dataset.index)
+        const categoryId = (e.target.dataset.pk)
+        router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${categoryId}`: `${FAQ_ROUTE}/${categoryId}` )
     }
 
     let _sectionHeight = {}
     if(typeof window !== 'undefined') {
-        const contentSectionHeight = categoriesRef?.current?.offsetHeight
         const calculatedHeight = window.innerHeight - categoriesRef?.current?.offsetTop - 100
 
-        _sectionHeight = {height: calculatedHeight ? `${calculatedHeight}px` : 'auto'}
+        _sectionHeight = {minHeight: calculatedHeight ? `${calculatedHeight}px` : 'auto'}
     }
 
     return (
+        <>
+            {categories.length > 0 &&
+
         <section className='faq_categories_section' ref={categoriesRef} style={_sectionHeight}>
             <div className='faq_categories_content_container'>
-                {oneCategoryData.length === 0 &&
                 <>
                     <h2 className='faq_categories_title'>{t("faq_page.categories_title")}</h2>
                     <ul className='faq_categories_list'>
@@ -78,43 +71,11 @@ const Categories = () => {
                         ))}
                     </ul>
                 </>
-                }
-                {oneCategoryData.length !== 0 &&
-                <div className='faq_one_category_block'>
-                    <ul className='faq_one_category_questions'>
-                        {oneCategoryData.map((item, i) => (
-                            <li
-                                className='faq_one_category_questions_item'
-                                key={item.question}
-                                data-index={i}
-                                onClick={handleClickQuestion}
-                                dangerouslySetInnerHTML={{
-                                    __html: sanitizeHtmlFromBack(item.question)
-                                }}
-                            />
-                        ))}
-                    </ul>
-                    <div className='faq_one_category_answers'>
-                        <p
-                            className='faq_one_category_question'
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizeHtmlFromBack(oneCategoryData[Number(selectedQuestion)].question)
-                            }}
-                        />
-                        <p
-                            className='faq_one_category_answer'
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizeHtmlFromBack(oneCategoryData[Number(selectedQuestion)].answer)
-                            }}
-                        />
-                    </div>
-
-                </div>
-                }
-
             </div>
 
         </section>
+            }
+            </>
     );
 }
 

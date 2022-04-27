@@ -44,7 +44,6 @@ function* getFaqByCategoryWorker({payload}) {
     try {
         yield put(setFaqFetching(true))
         const res = yield call([faq, "getByCategory"], payload)
-        console.log('res',res)
         yield put(saveOneCategory(res?.data))
     } catch (error) {
         yield put(

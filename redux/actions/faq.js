@@ -6,6 +6,8 @@ import {
     SAVE_FAQ_SEARCH,
     GET_ONE_CATEGORY,
     SAVE_ONE_CATEGORY,
+    SET_CURRENT_CATEGORY,
+    SET_CURRENT_QUESTION,
 } from "constants/actionsConstant";
 
 
@@ -41,5 +43,15 @@ export const getOneCategory = (payload) => ({
 
 export const saveOneCategory = (payload) => ({
     type: SAVE_ONE_CATEGORY,
+    payload,
+});
+
+export const setCurrentCategory = (payload) => ({
+    type: SET_CURRENT_CATEGORY,
+    payload,
+});
+
+export const setCurrentQuestion = (payload) => ({
+    type: SET_CURRENT_QUESTION,
     payload,
 });

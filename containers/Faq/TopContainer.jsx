@@ -2,11 +2,16 @@ import React, {useCallback, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import CloseButton from "react-bootstrap/CloseButton";
 import {faqSearch} from "../../redux/actions/faq";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
+import {getSelectedLangSelector} from "../../redux/reducers/language";
+import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 
 const TopContainer = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
+    const router = useRouter()
+    const lang = useSelector(getSelectedLangSelector)
 
     const [search, setSearch] = useState('')
 
@@ -22,7 +27,11 @@ const TopContainer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(search){
+
+        if (search) {
+            if (router.pathname !== '/faq') {
+                router.push(lang === 'en' ? FAQ_ROUTE_EN : FAQ_ROUTE)
+            }
             _faqSearch(search)
         }
     }
@@ -46,9 +55,9 @@ const TopContainer = () => {
                     value={search}
                     onChange={handleChangeSearch}
                 />
-                <button type='submit'></button>
-                { !search &&
-                <span  className='faq_search_icon'>
+                <button type='submit' className='faq_search_submit_button'></button>
+                {!search &&
+                <span className='faq_search_icon'>
                     <svg className="search_icon" aria-labelledby="title desc" role="img"
                          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title id="title">Search
                         Icon</title>
@@ -60,9 +69,9 @@ const TopContainer = () => {
                     </svg>
                 </span>
                 }
-                { search &&
-                    <CloseButton aria-label="Hide" onClick={handleResetSearch}
-                                 className='faq_reset_button'/>
+                {search &&
+                <CloseButton aria-label="Hide" onClick={handleResetSearch}
+                             className='faq_reset_button'/>
                 }
 
             </form>

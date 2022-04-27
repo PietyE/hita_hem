@@ -14,7 +14,7 @@ const Faq = () => {
     const searchResults = useSelector(getFaqSearchResultsSelector, isEqual)
 
     return (
-        <section>
+        <section className='faq_section'>
             <TopContainer/>
 
             {!Array.isArray(searchResults) && (
