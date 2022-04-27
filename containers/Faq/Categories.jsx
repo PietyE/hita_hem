@@ -40,42 +40,33 @@ const Categories = () => {
 
     const handleClickCategory = (e) => {
         const categoryId = (e.target.dataset.pk)
-        router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${categoryId}`: `${FAQ_ROUTE}/${categoryId}` )
-    }
-
-    let _sectionHeight = {}
-    if(typeof window !== 'undefined') {
-        const calculatedHeight = window.innerHeight - categoriesRef?.current?.offsetTop - 100
-
-        _sectionHeight = {minHeight: calculatedHeight ? `${calculatedHeight}px` : 'auto'}
+        router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${categoryId}` : `${FAQ_ROUTE}/${categoryId}`)
     }
 
     return (
         <>
             {categories.length > 0 &&
-
-        <section className='faq_categories_section' ref={categoriesRef} style={_sectionHeight}>
-            <div className='faq_categories_content_container'>
-                <>
-                    <h2 className='faq_categories_title'>{t("faq_page.categories_title")}</h2>
-                    <ul className='faq_categories_list'>
-                        {categories.map(item => (
-                            <li
-                                key={item?.title}
-                                className='faq_categories_item'
-                                data-pk={item.pk}
-                                onClick={handleClickCategory}
-                            >
-                                <span className='faq_categories_item_text'>{item?.title}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </>
-            </div>
-
-        </section>
+            <section className='faq_categories_section' ref={categoriesRef}>
+                <div className='faq_categories_content_container'>
+                    <>
+                        <h2 className='faq_categories_title'>{t("faq_page.categories_title")}</h2>
+                        <ul className='faq_categories_list'>
+                            {categories.map(item => (
+                                <li
+                                    key={item?.title}
+                                    className='faq_categories_item'
+                                    data-pk={item.pk}
+                                    onClick={handleClickCategory}
+                                >
+                                    <span className='faq_categories_item_text'>{item?.title}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </>
+                </div>
+            </section>
             }
-            </>
+        </>
     );
 }
 

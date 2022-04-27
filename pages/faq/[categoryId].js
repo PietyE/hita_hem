@@ -1,10 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import TopContainer from "../../containers/Faq/TopContainer";
+import MobileView from "../../containers/FaqCategory/MobileView";
 import {useDispatch, useSelector} from "react-redux";
 import {getCurrentQuestionSelector, getOneCategorySelector} from "../../redux/reducers/faq";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import {getOneCategory, saveOneCategory, setCurrentQuestion} from "../../redux/actions/faq";
 import {useRouter} from "next/router";
+import {useMediaQueries} from "@react-hook/media-query";
 
 const Category = () => {
     const dispatch = useDispatch();
@@ -31,6 +33,11 @@ const Category = () => {
         _getOneCategory(categoryId)
         return () => _resetOneCategory()
     }, [])
+
+    const {matchesAll} = useMediaQueries({
+        screen: "screen",
+        width: "(max-device-width: 900px)",
+    });
 
     const _getOneCategory = useCallback(
         (data) => {
@@ -59,11 +66,12 @@ const Category = () => {
     return(
     <>
         <TopContainer/>
-
         <div className='faq_one_category_block'>
             {oneCategoryData.length > 0 &&
             <h2 className='faq_one_category_title'>{oneCategoryData[0].category.title}</h2>
             }
+            {!matchesAll &&
+
             <div className='faq_one_category_content_container'>
                 <ul className='faq_one_category_questions'>
                     {oneCategoryData.map((item, i) => (
@@ -100,9 +108,14 @@ const Category = () => {
 
                 </div>
             </div>
-
-
+            }
+            {matchesAll &&
+            <MobileView
+                oneCategoryData={oneCategoryData}
+            />
+            }
         </div>
+
     </>
 );
 }
