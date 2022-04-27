@@ -2,7 +2,7 @@ import CRUD from "../base";
 
 class FaqCRUD extends CRUD {
     getCategoriesList() {
-        const url = `${this.url}/`;
+        const url = '/faq-page-categories/';
         return this.request({
             url,
             method: "GET",
@@ -11,6 +11,14 @@ class FaqCRUD extends CRUD {
 
     faqSearch(params) {
         const url = `${this.url}/?search=${params}`;
+        return this.request({
+            url,
+            method: "GET",
+        });
+    }
+
+    getByCategory(params) {
+        const url = `${this.url}/?category_pk=${params}`;
         return this.request({
             url,
             method: "GET",

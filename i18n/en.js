@@ -565,6 +565,8 @@ export const en = {
             subtitle: 'Get answers about Accumeo and investing',
             categories_title: 'Categories of questions',
             placeholder: 'Ask a question or search by keyword',
+            search_results_title: 'Search results',
+            no_results: 'Sorry, nothing matched your search terms',
         },
     },
 

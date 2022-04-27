@@ -4,6 +4,8 @@ import {
     SET_FAQ_FETCHING,
     FAQ_SEARCH,
     SAVE_FAQ_SEARCH,
+    GET_ONE_CATEGORY,
+    SAVE_ONE_CATEGORY,
 } from "constants/actionsConstant";
 
 
@@ -29,5 +31,15 @@ export const faqSearch = (payload) => ({
 
 export const saveSearchResults = (payload) => ({
     type: SAVE_FAQ_SEARCH,
+    payload,
+});
+
+export const getOneCategory = (payload) => ({
+    type: GET_ONE_CATEGORY,
+    payload,
+});
+
+export const saveOneCategory = (payload) => ({
+    type: SAVE_ONE_CATEGORY,
     payload,
 });

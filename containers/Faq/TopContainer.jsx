@@ -22,7 +22,9 @@ const TopContainer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        _faqSearch(search)
+        if(search){
+            _faqSearch(search)
+        }
     }
 
     const _faqSearch = useCallback(

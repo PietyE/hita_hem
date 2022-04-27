@@ -1,23 +1,26 @@
 import {takeEvery, call, put} from "redux-saga/effects";
-
 import api from "api";
-
-const {faq} = api;
-
-
 import {
     GET_FAQ_CATEGORIES,
     FAQ_SEARCH,
+    GET_ONE_CATEGORY,
 } from "constants/actionsConstant";
-import {setFaqFetching} from "../actions/faq";
+import {saveOneCategory, saveSearchResults, setFaqCategories, setFaqFetching} from "../actions/faq";
+import {setError} from "../actions/errors";
+
+const {faq} = api;
+
 
 function* getCategoriesWorker() {
     try {
         yield put(setFaqFetching(true))
         const res = yield call([faq, "getCategoriesList"])
-        console.log('res', res)
+        yield put(setFaqCategories(res?.data))
+
     } catch (error) {
-        console.dir(error)
+        yield put(
+            setError({ status: error?.response?.status, data: error?.response?.data })
+        );
     } finally {
         yield put(setFaqFetching(false))
     }
@@ -27,9 +30,26 @@ function* faqSearchWorker({payload}) {
     try {
         yield put(setFaqFetching(true))
         const res = yield call([faq, "faqSearch"], payload)
-        console.log('res', res)
+        yield put(saveSearchResults(res?.data))
     } catch (error) {
-        console.dir(error)
+        yield put(
+            setError({ status: error?.response?.status, data: error?.response?.data })
+        );
+    } finally {
+        yield put(setFaqFetching(false))
+    }
+}
+
+function* getFaqByCategoryWorker({payload}) {
+    try {
+        yield put(setFaqFetching(true))
+        const res = yield call([faq, "getByCategory"], payload)
+        console.log('res',res)
+        yield put(saveOneCategory(res?.data))
+    } catch (error) {
+        yield put(
+            setError({ status: error?.response?.status, data: error?.response?.data })
+        );
     } finally {
         yield put(setFaqFetching(false))
     }
@@ -39,4 +59,5 @@ function* faqSearchWorker({payload}) {
 export function* faqWatcher() {
     yield takeEvery(GET_FAQ_CATEGORIES, getCategoriesWorker);
     yield takeEvery(FAQ_SEARCH, faqSearchWorker);
+    yield takeEvery(GET_ONE_CATEGORY, getFaqByCategoryWorker);
 }
