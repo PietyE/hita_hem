@@ -16,6 +16,7 @@ const SearchResults = ({searchResults}) => {
     const dispatch = useDispatch();
     const router = useRouter()
     const [activeKey, setActiveKey] = useState(null)
+    const [accordionKey, setAccordionKey] = useState(0)
     const lang = useSelector(getSelectedLangSelector)
 
     useEffect(() => {
@@ -23,6 +24,11 @@ const SearchResults = ({searchResults}) => {
             _resetSearchResults()
         }
     }, [])
+
+    useEffect(()=>{
+        setAccordionKey(accordionKey + 1)
+        setActiveKey(null)
+    },[searchResults])
 
     const _resetSearchResults = useCallback(
         () => {
@@ -56,8 +62,9 @@ const SearchResults = ({searchResults}) => {
         router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${categoryId}` : `${FAQ_ROUTE}/${categoryId}`)
     }
 
+
     return (
-        <section className='search_results_section'>
+        <section className='search_results_section' key={accordionKey}>
             <h2 className='search_results_title'>{t("faq_page.search_results_title")}:</h2>
 
             {searchResults.length > 0 &&
