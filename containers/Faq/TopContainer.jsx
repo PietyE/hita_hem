@@ -6,8 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
+import BackButton from "./BackButton";
 
-const TopContainer = () => {
+const TopContainer = ({searchResults = []}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const router = useRouter()
@@ -45,6 +46,9 @@ const TopContainer = () => {
 
     return (
         <section className='faq_top_section'>
+            { (router.pathname !== '/faq' || searchResults?.length > 0) &&
+            <BackButton lang={lang}/>
+            }
             <h1 className='faq_top_title'>{t("faq_page.title")}</h1>
             <p className='faq_top_subtitle'>{t("faq_page.subtitle")}</p>
             <form onSubmit={handleSubmit} className='faq_search_form'>
