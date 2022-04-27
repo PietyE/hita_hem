@@ -293,7 +293,7 @@ const MiddleSection = ({isAuth}) => {
                         </ul>
                 </nav>
                     <div style={_notFaqBlock} ref = {sectionsContainerRef}>
-                        <section id='Overview' className='campaigns_section'>
+                        <section id='Overview' className='campaigns_section mb-5'>
                             <Overview/>
                         </section>
                         <section id='Idea' className='campaigns_section'>

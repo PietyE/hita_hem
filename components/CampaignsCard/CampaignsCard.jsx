@@ -38,6 +38,9 @@ const CampaignsCard = (props) => {
         cardImage = image
 
     }
+
+    const _cardClassName = type === 1 ? 'campaigns_card' : 'campaigns_card_small'
+
     return (
         <>
             {!!props?.content && (
@@ -46,7 +49,7 @@ const CampaignsCard = (props) => {
                     href={lang === 'sv' ? "/foretag/[companyId]" : "/company/[companyId]"}
                     prefetch={false}
                 >
-                    <li className={`campaigns_card ${className}`}>
+                    <li className={`${_cardClassName} ${className}`}>
 
                         <div className='campaigns_card_image' style={{position: 'relative'}}>
                             {cardImage && (
