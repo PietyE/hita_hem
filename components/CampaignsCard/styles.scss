@@ -21,6 +21,15 @@
   }
 }
 
+.campaigns_card_small{
+  @extend .campaigns_card;
+  padding-bottom: 0;
+  align-self: flex-start;
+  .progress_container{
+    display: none;
+  }
+}
+
 .campaigns_card_image {
   border-radius: 0;
   height: 254px;
