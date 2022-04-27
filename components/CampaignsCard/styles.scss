@@ -21,6 +21,15 @@
   }
 }
 
+.campaigns_card_small{
+  @extend .campaigns_card;
+  padding-bottom: 0;
+  align-self: flex-start;
+  .progress_container{
+    display: none;
+  }
+}
+
 .campaigns_card_image {
   border-radius: 0;
   height: 254px;
@@ -243,6 +252,9 @@
     .campaigns_card_button {
       font-size: 14px;
       line-height: 32px;
+    }
+    .card_progress{
+      transform: translateY(-11px);
     }
   }
 }

@@ -321,13 +321,14 @@
       top: 80px;
       height: 650px;
       margin-left: auto;
+      width: 350px;
+
       //right: 230px;
 
       .project_info_right_status_container {
         display: flex;
         justify-content: space-between;
         padding-bottom: 20px;
-
         .project_info_right_status_text {
           font-family: Source Sans Pro;
           font-style: normal;
@@ -339,7 +340,6 @@
 
       .invest_info {
         margin-bottom: 27px;
-        width: 350px;
         background: #ffffff;
         border: 1px solid rgba(0, 0, 0, 0.2);
         box-sizing: border-box;
@@ -729,11 +729,22 @@
 
   }
 
+  .team_title{
+    font-weight: 900;
+    font-family: "Source sans Pro";
+    font-style: normal;
+    line-height: 70px;
+    font-size: 44px;
+    margin-bottom: 30px;
+  }
+
   .team_section_container {
     display: flex;
     flex-wrap: wrap;
     padding-top: 25px;
     padding-bottom: 60px;
+
+
 
     .member_card_item {
       position: relative;
@@ -766,6 +777,13 @@
     .member_card_image img {
       height: 100%;
       object-fit: cover;
+    }
+
+    .member_card_content_wrapper{
+      padding-bottom: 10px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
     }
 
     .member_card_item_name {
@@ -803,6 +821,7 @@
     }
 
     .member_card_item_description {
+      display: block;
       font-style: normal;
       font-weight: 500;
       line-height: 120%;
@@ -825,11 +844,11 @@ overflow: hidden;
       width: 100%;
       height: 1px;
       justify-content: center;
-      transform: translateX(-123px);
-      width: calc(100% - 123px);
+      //transform: translateX(-123px);
+      width: 100%;
       position: absolute;
       bottom: 0;
-      left: 50%;
+      //left: 50%;
       .team_show_more_button {
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
@@ -1032,7 +1051,7 @@ overflow: hidden;
   align-items: center;
   text-align: center;
   //width: 860px;
-  padding-top: 75px;
+  padding-top: 25px;
   padding-bottom: 50px;
   margin-right: auto;
 
@@ -1068,7 +1087,7 @@ overflow: hidden;
   }
 
   .campaigns_tab_sign-up_bottom {
-    margin-bottom: 100px;
+    //margin-bottom: 100px;
   }
 
   .campaigns_tab_sign-up_link {
@@ -1078,7 +1097,7 @@ overflow: hidden;
   }
 }
 .campaigns_tab_request_quiz_container{
-  padding-bottom: 375px;
+  //padding-bottom: 375px;
 }
 .faq {
   padding: 40px 0;
@@ -1290,6 +1309,7 @@ overflow: hidden;
   width: 350px;
   height: 56px;
   z-index: 2;
+  margin-bottom: 23px;
 }
 
 .invest_button_visible {
@@ -1349,8 +1369,8 @@ overflow: hidden;
       height: 75px;
     }
     .team_show_more{
-      width: calc(100% - 100px);
-      transform: translateX(-100px);
+      //width: calc(100% - 100px);
+      //transform: translateX(-100px);
     }
   }
 
@@ -1372,8 +1392,8 @@ overflow: hidden;
       height: 60px;
     }
     .team_show_more{
-      width: calc(100% - 70px);
-      transform: translateX(-120px);
+      //width: calc(100% - 70px);
+      //transform: translateX(-120px);
     }
   }
 
@@ -1395,7 +1415,7 @@ overflow: hidden;
       }
       .team_show_more{
         //width: calc(100% - 70px);
-        transform: translateX(-110px);
+        //transform: translateX(-110px);
       }
     }
 
@@ -1423,7 +1443,7 @@ overflow: hidden;
         height: 60px;
       }
       .team_show_more{
-        transform: translateX(-120px);
+        //transform: translateX(-120px);
       }
     }
 
@@ -1515,7 +1535,7 @@ overflow: hidden;
       .member_card_image{
       }
       .team_show_more{
-        transform: translateX(-110px);
+        //transform: translateX(-110px);
       }
     }
 
@@ -1653,8 +1673,8 @@ overflow: hidden;
     }
   }
   .sticky_invest_button {
-    width: 200px;
-    margin-right: 189px;
+    //width: 200px;
+    //margin-right: 189px;
   }
 }
 
@@ -1686,8 +1706,11 @@ overflow: hidden;
 
     .middle_section_container {
       .project_info_right_section {
+        width: 300px;
+
+        .project_info_right_status_container{
+        }
         .invest_info {
-          width: 300px;
           .invest_info_item{
             .currensy_text{
               font-size: 24px;
@@ -1720,8 +1743,8 @@ overflow: hidden;
     }
   }
   .sticky_invest_button {
-    width: 150px;
-    margin-right: 50px;
+    width: 300px;
+    //margin-right: 50px;
   }
 }
 
@@ -1742,8 +1765,8 @@ overflow: hidden;
         height: 98px;
       }
       .team_show_more{
-        width: calc(100% - 120px);
-        transform: translateX(-130px);
+        //width: calc(100% - 120px);
+        //transform: translateX(-130px);
       }
     }
 
@@ -1773,8 +1796,15 @@ overflow: hidden;
       }
 
       .project_info_right_section {
-        .invest_info {
+        width: 250px;
+        .project_info_right_status_container{
+        }
+        .sticky_invest_button{
           width: 250px;
+          margin: 20px auto 0 auto;
+
+        }
+        .invest_info {
 
 
           .invest_info_item {
@@ -2187,6 +2217,10 @@ overflow: hidden;
         .project_info_right_status_container{
          display: none;
         }
+        .project_info_right_status_container{
+          width: 420px;
+        }
+
         .invest_info {
           margin: 35px auto 15px auto;
           width: 420px;
@@ -2379,6 +2413,11 @@ overflow: hidden;
       padding: 30px 0 0 0;
 
       flex-direction: column;
+.member_card_content_wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
       .member_card_item {
         padding-left: 0;
@@ -2404,7 +2443,7 @@ overflow: hidden;
 
         .team_show_more{
           width: 100%;
-          transform: translate(-50%,-40px);
+          //transform: translateY(-40px);
         }
 
         .member_card_item_position {
@@ -2764,6 +2803,9 @@ overflow: hidden;
     }
 
     .middle_section_container {
+      .project_info_right_status_container{
+        width: 30px;
+      }
       .project_info_right_section {
         .invest_info {
           width: 300px;
@@ -2828,7 +2870,9 @@ overflow: hidden;
 
       .project_info_right_section {
         padding: 30px 10px;
-
+        .project_info_right_status_container{
+          width: 270px;
+        }
         .invest_info {
           width: 270px;
 
@@ -2961,3 +3005,26 @@ overflow: hidden;
 }
 
 
+.campaigns_section{
+  &::before {
+    content: '';
+    display: block;
+    height:      135px;
+    margin-top: -135px;
+    visibility: hidden;
+  }
+}
+
+
+.campaign_guest_title{
+  text-align: center;
+  font-family: 'Source sans Pro', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 62px;
+  letter-spacing: 0.2px;
+  //color: #ffffff;
+  //max-width: 485px;
+  //width: 100%;
+}

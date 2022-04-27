@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+import Search from "../Search";
 import Logo from "components/Logo";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
@@ -182,6 +183,8 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
             </nav>
           </div>
           <div className="header_item right">
+            <Search formClassName='header_desktop_search'/>
+
             {!isAuth && (
               <>
                 <Button

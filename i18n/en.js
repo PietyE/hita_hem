@@ -18,6 +18,12 @@ export const en = {
                 Log_Out: "Log Out",
             },
         },
+        search: {
+            hint: 'Press enter for search',
+            placeholder: 'Search for campaign name or keyword and press Enter for search',
+            placeholder_mobile: 'Search for campaign name or keyword',
+
+        },
         raisePage: {
             top_slider: {
                 button: "Start a project",
@@ -317,6 +323,9 @@ export const en = {
             more_campaigns_button: "Show more campaigns",
             mobile_filter_button_clear: "Clear all",
             mobile_filter_button_apply: "Apply filters",
+            search_page_title: 'Search campaigns',
+            search_page_button: 'Search',
+            no_results: 'Sorry, nothing matched your search terms',
         },
         launching_soon_page: {
             image_block_button: "Subscribe",

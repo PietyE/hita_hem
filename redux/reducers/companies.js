@@ -12,6 +12,10 @@ import {
     RESET_COMPANY_LIST,
     IS_MORE_COMPANIES,
     SET_IS_REDIRECT,
+    SET_SEARCH_CAMPAIGNS,
+    CLEAN_SEARCH_CAMPAIGNS,
+    SET_CAMPAIGN_SEARCH_QUERY,
+    SET_CAMPAIGN_OFFSET,
 } from "constants/actionsConstant";
 
 import {companyTabConstants} from "constants/companyTabConstant";
@@ -35,6 +39,9 @@ const setFilter = (state, actions) => {
 
 const initialState = {
     companiesList: [],
+    listOfFoundCampaigns: [],
+    campaignSearchQuery: '',
+    campaignOffset: 0,
     companyDetail: {
         pk: "",
         seo: {},
@@ -44,6 +51,7 @@ const initialState = {
         hidden_mode: false,
         website: "",
         title: "",
+        type: 2,
         description: "",
         left_date_start: '',
         left_date_end: '',
@@ -165,7 +173,7 @@ const initialState = {
     },
     is_redirect_on: false,
     paymentDetails: {},
-    isMoreCampaignsOnTheApi: true,
+    isMoreCampaignsOnTheApi: false,
     faq_posts: [],
     investCompanyHeaderList: [],
     filter: [],
@@ -184,6 +192,9 @@ export const getMinimumInvestAmountSelector = state => state.companies.companyDe
 export const getVideoLinkSelector = state => state.companies.companyDetail.youtube_link;
 
 export const getCompanyListSelector = (state) => state.companies.companiesList;
+export const getListOfFoundCampaignsSelector = (state) => state.companies.listOfFoundCampaigns;
+export const getCampaignSearchQuerySelector = (state) => state.companies.campaignSearchQuery;
+export const getCampaignOffsetSelector = (state) => state.companies.campaignOffset;
 
 export const getInvestHeaderCompanyListSelector = (state) =>
     state.companies.investCompanyHeaderList;
@@ -206,6 +217,9 @@ export const getTeatMateSetSelector = (state) =>
 
 export const getFaqSetSelector = (state) =>
     state.companies.companyDetail.faq_set;
+
+export const getCampaignTypeSelector = (state) =>
+    state.companies.companyDetail.type;
 
 export const getRecommendedCampaignsSelector = (state) =>
     state.companies.companyDetail.recommended_campaign;
@@ -361,6 +375,13 @@ export const companies = (state = initialState, actions) => {
                 ...state,
                 companiesList: [...state.companiesList, ...actions.payload],
             };
+        case SET_SEARCH_CAMPAIGNS:
+            return {
+                ...state,
+                listOfFoundCampaigns: [...state.listOfFoundCampaigns, ...actions.payload],
+            };
+        case CLEAN_SEARCH_CAMPAIGNS:
+            return {...state, listOfFoundCampaigns: actions.payload};
         case IS_MORE_COMPANIES:
             return {...state, isMoreCampaignsOnTheApi: actions.payload};
         case SET_COMPANY_BY_ID:
@@ -383,6 +404,10 @@ export const companies = (state = initialState, actions) => {
             return {...state, faq_posts: actions.payload};
         case SET_IS_REDIRECT:
             return {...state, is_redirect_on: actions.payload};
+        case SET_CAMPAIGN_SEARCH_QUERY:
+            return {...state, campaignSearchQuery: actions.payload};
+        case SET_CAMPAIGN_OFFSET:
+            return {...state, campaignOffset: actions.payload};
         default:
             return state;
     }

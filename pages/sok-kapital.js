@@ -60,7 +60,7 @@ const RaisePage = () => {
 
     const scrollTo = (e) => {
         e.preventDefault();
-        myRef.current.scrollIntoView();
+        myRef?.current?.scrollIntoView();
 
     };
 

@@ -23,13 +23,13 @@ const CampaignsCard = (props) => {
         images,
         slug,
         percentage,
-        left_date
+        left_date,
+        type
     } = props?.content;
     const lang = useSelector(getSelectedLangSelector)
     const altText = getImageAltText(images)
 
     let cardImage = null
-
     if (images && !isEmpty(images)) {
         cardImage = images['desktop'] || images['laptop'] || images['mobile']
     } else if (images && isEmpty(images) && image) {
@@ -38,6 +38,9 @@ const CampaignsCard = (props) => {
         cardImage = image
 
     }
+
+    const _cardClassName = type === 1 ? 'campaigns_card' : 'campaigns_card_small'
+
     return (
         <>
             {!!props?.content && (
@@ -46,7 +49,7 @@ const CampaignsCard = (props) => {
                     href={lang === 'sv' ? "/foretag/[companyId]" : "/company/[companyId]"}
                     prefetch={false}
                 >
-                    <li className={`campaigns_card ${className}`}>
+                    <li className={`${_cardClassName} ${className}`}>
 
                         <div className='campaigns_card_image' style={{position: 'relative'}}>
                             {cardImage && (
@@ -83,13 +86,14 @@ const CampaignsCard = (props) => {
                                 <h3 className="campaigns_card_title">{title}</h3>
                                 <p className="campaigns_card_description">{short_description}</p>
                             </div>
+                                <Progress
+                                    title={t("campaigns_card.progress_title")}
+                                    percent={percentage}
+                                    className='card_progress'
+                                    leftDate={left_date}
+                                    type={type}
+                                />
 
-                            <Progress
-                                title={t("campaigns_card.progress_title")}
-                                percent={percentage}
-                                className='card_progress'
-                                leftDate={left_date}
-                            />
                         </div>
                     </li>
                 </Link>
