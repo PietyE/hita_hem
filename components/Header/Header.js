@@ -106,7 +106,7 @@ const Header = ({initLang}) => {
                     as={LinkStyled}
                     to={_selectedLanguage === 'sv' ? INVEST_ROUTE : INVEST_ROUTE_EN}
                     className={`menu_item_link ${
-                        pathname.includes(_selectedLanguage === 'sv' ? INVEST_ROUTE : INVEST_ROUTE_EN) ? "active" : ""
+                        pathname.includes(INVEST_ROUTE) ? "active" : ""
                     }`}
                 >
                   {t("header.invest").toLocaleUpperCase()}
@@ -114,12 +114,12 @@ const Header = ({initLang}) => {
               </span>
                             <span className="menu_item">
                 <Button
-                    className={`menu_item_link menu_item_link_raise ${
-                        pathname.includes(_selectedLanguage === 'sv' ? RAISE_ROUTE : RAISE_ROUTE_EN) ? "active" : ""
-                    }`}
-                    colorStyle="link"
-                    as={LinkStyled}
-                    to={_selectedLanguage === 'sv' ? RAISE_ROUTE : RAISE_ROUTE_EN}
+                  className={`menu_item_link menu_item_link_raise ${
+                    pathname.includes(RAISE_ROUTE) ? "active" : ""
+                  }`}
+                  colorStyle="link"
+                  as={LinkStyled}
+                  to={_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN}
                 >
                   {t("header.raise").toLocaleUpperCase()}
                 </Button>
@@ -142,7 +142,7 @@ const Header = ({initLang}) => {
                     (<a
                         href={`${redirectUrlForBlog}`}
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(_selectedLanguage === 'sv' ? BLOG : BLOG_EN) ? "active" : ""
+                            pathname.includes(BLOG) ? "active" : ""
                         }`}
                         // colorStyle="link"
                         // as={LinkStyled}
@@ -153,7 +153,7 @@ const Header = ({initLang}) => {
                     :
                     (<Button
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(_selectedLanguage === 'sv' ? BLOG : BLOG_EN) ? "active" : ""
+                            pathname.includes(BLOG) ? "active" : ""
                         }`}
                         colorStyle="link"
                         as={LinkStyled}
@@ -175,7 +175,7 @@ const Header = ({initLang}) => {
                     as={LinkStyled}
                     to={_selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN}
                     className={`menu_item_link ${
-                        pathname.includes(_selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN) ? "active" : ""
+                        pathname.includes(FAQ_ROUTE) ? "active" : ""
                     }`}
                 >
                   {t("faq").toLocaleUpperCase()}
