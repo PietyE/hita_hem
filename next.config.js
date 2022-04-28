@@ -47,8 +47,14 @@ module.exports = withBundleAnalyzer({
         source: '/news',
         destination: '/nyheter',
       },
-
-
+      {
+        source: '/faq/:path',
+        destination: '/fragor&svar/:path',
+      },
+      {
+        source: '/faq',
+        destination: '/fragor&svar',
+      },
 
     ]
   },
@@ -168,7 +174,54 @@ module.exports = withBundleAnalyzer({
         permanent: false,
         destination: '/nyheter',
       },
-
+      {
+        source: '/fragor&svar/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/faq/:slug*',
+      },
+      {
+        source: '/fragor&svar',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'en',
+          },
+        ],
+        permanent: false,
+        destination: '/faq',
+      },
+      {
+        source: '/faq/:slug*',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'sv',
+          },
+        ],
+        permanent: false,
+        destination: '/fragor&svar/:slug*',
+      },
+      {
+        source: '/faq',
+        has: [
+          {
+            type: 'cookie',
+            key: 'NEXT_LOCALE',
+            value: 'sv',
+          },
+        ],
+        permanent: false,
+        destination: '/fragor&svar',
+      },
 
     ]
   },

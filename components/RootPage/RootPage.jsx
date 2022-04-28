@@ -193,18 +193,18 @@ const RootPage = ({ children, initLang = "" }) => {
 
 
 
-    const canResetPassword = useSelector(getCanResetPasswordSelector)
+    // const canResetPassword = useSelector(getCanResetPasswordSelector)
 
     const router = useRouter()
 
     const {pathname} = router
 
-    const _showSessionSignUp = useCallback(
-        (data) => {
-            dispatch(setShowSessionSignUp(data));
-        },
-        [dispatch]
-    );
+    // const _showSessionSignUp = useCallback(
+    //     (data) => {
+    //         dispatch(setShowSessionSignUp(data));
+    //     },
+    //     [dispatch]
+    // );
 
 
     const _logOut = useCallback((data) => {

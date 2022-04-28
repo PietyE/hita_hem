@@ -559,6 +559,15 @@ export const en = {
         faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
+
+        faq_page: {
+            title: 'Advice and answers from the Accumeo Team',
+            subtitle: 'Get answers about Accumeo and investing',
+            categories_title: 'Categories of questions',
+            placeholder: 'Ask a question or search by keyword',
+            search_results_title: 'Search results',
+            no_results: 'Sorry, nothing matched your search terms',
+        },
     },
 
 
