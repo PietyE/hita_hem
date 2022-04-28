@@ -216,7 +216,7 @@
         white-space: nowrap;
         font-size: 12px;
         border: none;
-        padding: 12px 30px;
+        //padding: 12px 30px;
 
         .faq_link_to_categories {
           svg {
@@ -262,7 +262,7 @@
       }
 
       .search_results_answer {
-        padding: 20px 30px;
+        //padding: 20px 30px;
         p {
           font-family: 'Source sans Pro', sans-serif;
           font-style: normal;
@@ -515,7 +515,9 @@
   .faq_top_section{
     padding-top: 65px;
     .faq_back_button{
-      top: 0;
+      top: 80px;
+      position: fixed;
+      z-index: 5;
       left: 0;
       right: 0;
       border-radius: 0;
@@ -523,6 +525,15 @@
     }
     .faq_top_title, .faq_top_subtitle{
       text-align: center;
+    }
+  }
+  .search_results_section {
+    .search_results_list {
+      .search_results_item {
+        .search_results_item_header{
+          padding-right: 36px;
+        }
+      }
     }
   }
 }

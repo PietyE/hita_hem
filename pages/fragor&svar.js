@@ -10,7 +10,7 @@ const SearchResults = dynamic(() =>
     import("../containers/Faq/SearchResults"), {ssr: false}
 );
 
-const Faq = () => {
+const FragorSvar = () => {
     const searchResults = useSelector(getFaqSearchResultsSelector, isEqual)
 
     return (
@@ -27,4 +27,4 @@ const Faq = () => {
     );
 }
 
-export default Faq;
+export default FragorSvar;

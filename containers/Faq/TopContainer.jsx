@@ -43,10 +43,11 @@ const TopContainer = ({searchResults = []}) => {
         },
         [dispatch]
     );
-
+console.log('router.pathname',router.pathname)
+console.log('searchResults',searchResults)
     return (
         <section className='faq_top_section'>
-            { (router.pathname !== '/faq' || searchResults?.length > 0) &&
+            { (router.pathname !== '/fragor&svar' || searchResults?.length > 0) &&
             <BackButton lang={lang}/>
             }
             <h1 className='faq_top_title'>{t("faq_page.title")}</h1>
