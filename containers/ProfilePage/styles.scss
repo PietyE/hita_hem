@@ -571,6 +571,8 @@
   }
 
   .account_settings_subscribes {
+    display: flex;
+    flex-direction: column;
     width: 596px;
     min-height: 100%;
     background-color: #fff;
@@ -638,7 +640,7 @@
       margin-left: auto;
       font-family: Source Sans Pro, sans-serif;
       margin-top: auto;
-      margin-bottom: 25px;
+      //margin-bottom: 25px;
       font-size: 14px;
     }
   }
