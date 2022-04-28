@@ -30,7 +30,7 @@ const TopContainer = ({searchResults = []}) => {
         e.preventDefault()
 
         if (search) {
-            if (router.pathname !== '/faq') {
+            if (router.pathname !== (lang === 'en' ? '/faq' : '/fragor&svar')) {
                 router.push(lang === 'en' ? FAQ_ROUTE_EN : FAQ_ROUTE)
             }
             _faqSearch(search)
