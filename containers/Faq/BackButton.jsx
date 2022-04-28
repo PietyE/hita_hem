@@ -14,7 +14,7 @@ const BackButton = ({lang}) => {
 
     const goToCategories = e => {
         e.preventDefault()
-        if (router.pathname !== '/faq') {
+        if (router.pathname !== '/fragor&svar') {
             router.push(lang === 'en' ? FAQ_ROUTE_EN : FAQ_ROUTE)
         } else {
             _resetSearchResults()

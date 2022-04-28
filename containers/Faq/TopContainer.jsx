@@ -30,7 +30,7 @@ const TopContainer = ({searchResults = []}) => {
         e.preventDefault()
 
         if (search) {
-            if (router.pathname !== '/faq') {
+            if (router.pathname !== (lang === 'en' ? '/faq' : '/fragor&svar')) {
                 router.push(lang === 'en' ? FAQ_ROUTE_EN : FAQ_ROUTE)
             }
             _faqSearch(search)
@@ -43,10 +43,11 @@ const TopContainer = ({searchResults = []}) => {
         },
         [dispatch]
     );
-
+console.log('router.pathname',router.pathname)
+console.log('searchResults',searchResults)
     return (
         <section className='faq_top_section'>
-            { (router.pathname !== '/faq' || searchResults?.length > 0) &&
+            { (router.pathname !== '/fragor&svar' || searchResults?.length > 0) &&
             <BackButton lang={lang}/>
             }
             <h1 className='faq_top_title'>{t("faq_page.title")}</h1>
