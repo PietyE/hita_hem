@@ -175,7 +175,7 @@ const Header = ({initLang}) => {
                     as={LinkStyled}
                     to={_selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN}
                     className={`menu_item_link ${
-                        pathname.includes(_selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN) ? "active" : ""
+                        pathname.includes(FAQ_ROUTE) ? "active" : ""
                     }`}
                 >
                   {t("faq").toLocaleUpperCase()}
