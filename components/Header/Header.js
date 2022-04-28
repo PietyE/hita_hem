@@ -104,7 +104,7 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
                   as={LinkStyled}
                   to={_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN}
                   className={`menu_item_link ${
-                    pathname.includes(_selectedLanguage === 'sv'?INVEST_ROUTE:INVEST_ROUTE_EN) ? "active" : ""
+                    pathname.includes(INVEST_ROUTE) ? "active" : ""
                   }`}
                 >
                   {t("header.invest").toLocaleUpperCase()}
@@ -113,7 +113,7 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
               <span className="menu_item">
                 <Button
                   className={`menu_item_link menu_item_link_raise ${
-                    pathname.includes(_selectedLanguage === 'sv'?RAISE_ROUTE:RAISE_ROUTE_EN) ? "active" : ""
+                    pathname.includes(RAISE_ROUTE) ? "active" : ""
                   }`}
                   colorStyle="link"
                   as={LinkStyled}
@@ -140,7 +140,7 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
                     (<a
                         href= {`${redirectUrlForBlog}`}
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
+                            pathname.includes(BLOG) ? "active" : ""
                         }`}
                         // colorStyle="link"
                         // as={LinkStyled}
@@ -151,7 +151,7 @@ const redirectUrlForBlog = getRedirectUrlForBlog(selectedLanguage)
                 :
                     (<Button
                         className={`menu_item_link menu_item_link_blog ${
-                            pathname.includes(_selectedLanguage === 'sv'?BLOG:BLOG_EN) ? "active" : ""
+                            pathname.includes(BLOG) ? "active" : ""
                         }`}
                         colorStyle="link"
                         as={LinkStyled}
