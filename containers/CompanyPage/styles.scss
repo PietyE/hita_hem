@@ -421,6 +421,7 @@
 
       //padding-top: 20px;
       max-width: calc(100% - 390px);
+      width: 100%;
 
       .middle_tabbr_title_wrapper{
         padding-top: 20px;
@@ -470,7 +471,7 @@
         top: 80px;
         padding-top: 19px;
         z-index: 2;
-        max-width: 840px;
+        //max-width: 840px;
         margin-bottom: 20px;
         width: 100%;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -2196,6 +2197,21 @@ overflow: hidden;
       }
     }
 
+    .project_info_left_section{
+      .project_info_description_section{
+        .project_info_title {
+          line-height: 30px;
+        }
+      }
+    }
+    .middle_section_container{
+      .idea_section_container{
+        .idea_title{
+          line-height: 30px;
+        }
+      }
+    }
+
     .project_info_container {
       padding-right: 25px;
       padding-left: 25px;
@@ -2214,6 +2230,7 @@ overflow: hidden;
 
           .project_info_description_section {
             .project_info_title {
+              line-height: 30px;
               font-size: 24px;
             }
 
@@ -2513,7 +2530,7 @@ overflow: hidden;
 
         .fin_article_title {
           font-size: 24px;
-          line-height: 44px;
+          line-height: 30px;
         }
 
         .fin_article {
@@ -2690,6 +2707,13 @@ overflow: hidden;
 
         .invest_info {
           .invest_info_item {
+            span {
+              font-size: 14px;
+            }
+
+            .values{
+              margin-bottom: 17px;
+            }
             &:last-child {
               height: 100px;
             }
