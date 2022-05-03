@@ -7,6 +7,9 @@ import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import {getOneCategory, saveOneCategory, setCurrentQuestion} from "../../redux/actions/faq";
 import {useRouter} from "next/router";
 import {useMediaQueries} from "@react-hook/media-query";
+import MetaTags from "../../components/MetaTags";
+import Schema from "../../components/Schema";
+import makeCategoriesSchema from "../../Schemas/faqCategoriesSchema";
 
 const Category = () => {
     const dispatch = useDispatch();
@@ -18,7 +21,6 @@ const Category = () => {
 
     const oneCategoryData = useSelector(getOneCategorySelector)
     const currentQuestion = useSelector(getCurrentQuestionSelector)
-
     useEffect(()=>{
         if(currentQuestion){
             const questionIndex = oneCategoryData.findIndex(el => el.question === currentQuestion)
@@ -63,8 +65,17 @@ const Category = () => {
     const handleClickQuestion = (e) => {
         setSelectedQuestion(e.target.dataset.index)
     }
+
+    const seo = {
+        title: '',
+        description: '',
+    }
+
     return(
     <>
+        <MetaTags seo={seo}/>
+        <Schema makeSchema={makeCategoriesSchema} data={''}/>
+
         <TopContainer/>
         <div className='faq_one_category_block'>
             {oneCategoryData.length > 0 &&

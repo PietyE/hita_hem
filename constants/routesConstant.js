@@ -10,7 +10,7 @@ export const RAISE_ROUTE = "/sok-kapital";
 export const INVEST_ROUTE = "/investeringsmojligheter";
 export const ABOUT_US_ROUTE = "/om-oss";
 export const COMPANY_ROUTE = "/foretag";
-export const SEARCH_ROUTE = "/search"
+export const SEARCH_ROUTE = "/soksida"
 export const FAQ_ROUTE = '/fragor&svar'
 
 

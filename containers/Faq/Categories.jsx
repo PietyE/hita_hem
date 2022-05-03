@@ -1,18 +1,16 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 import {getFaqCategories, setFaqCategories} from "../../redux/actions/faq";
 import {useDispatch, useSelector} from "react-redux";
-import {getFaqCategoriesSelector} from "../../redux/reducers/faq";
 import {useTranslation} from "react-i18next";
 import {useRouter} from "next/router";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 
-const Categories = () => {
+const Categories = ({categories}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
     const router = useRouter()
 
-    const categories = useSelector(getFaqCategoriesSelector)
     const lang = useSelector(getSelectedLangSelector)
 
     const categoriesRef = useRef()

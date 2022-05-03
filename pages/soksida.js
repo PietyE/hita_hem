@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect} from 'react';
 import CampaignsList from "../components/CampaignsList";
 import SpinnerStyled from "../components/ui/Spinner";
+import MetaTags from "../components/MetaTags";
 import {useDispatch, useSelector} from "react-redux";
 import {
     getCampaignOffsetSelector, getCampaignSearchQuerySelector,
@@ -12,8 +13,11 @@ import SearchForm from "../containers/InvestmentOpportunitiesPage/SearchForm";
 import Button from "../components/ui/Button";
 import {useTranslation} from "react-i18next";
 import {cleanSearchedCampaigns, searchCampaigns, setCampaignOffset} from "../redux/actions/companies";
+import Schema from "../components/Schema";
+import makeCategoriesSchema from "../Schemas/faqCategoriesSchema";
+import makeSearchSchema from "../Schemas/searchSchema";
 
-const Search = () => {
+const Soksida = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
@@ -54,8 +58,18 @@ const Search = () => {
         _setOffset(campaignsOffset + 9)
     }
 
+    const seo = {
+        title: '',
+        description: '',
+    }
+
     return (
-        <section className='search_section'>
+        <>
+            <MetaTags seo={seo}/>
+            <Schema makeSchema={makeSearchSchema} data={''}/>
+
+
+            <section className='search_section'>
             {isFetching && <SpinnerStyled/>}
                 <SearchForm/>
             <CampaignsList content={companiesList} className='search_campaign_list'/>
@@ -73,7 +87,8 @@ const Search = () => {
                 </Button>
             )}
         </section>
+        </>
     );
 }
 
-export default Search;
+export default Soksida;
