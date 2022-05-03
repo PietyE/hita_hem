@@ -109,7 +109,7 @@ const Search = ({
                             placeholder={placeholder || t("search.placeholder")}
                             value={search}
                             onChange={handleChange}
-                            autoFocus
+                            // autoFocus
                         />
                     </div>
                 </>
