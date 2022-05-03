@@ -66,7 +66,7 @@ const SearchForm = ({
                     type='text'
                     value={search}
                     onChange={handleChangeSearch}
-                    autoFocus
+                    // autoFocus
                 />
                 <ButtonStyled
                     className={`invest_search_button ${searchButtonClassName}`}

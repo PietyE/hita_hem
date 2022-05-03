@@ -263,7 +263,9 @@
     width: 280px;
   }
   .campaigns_card_status {
-    font-size: 12px;
+    span{
+      font-size: 12px;
+    }
     right: 13px;
   }
   .campaigns_card_content_wrapper {
