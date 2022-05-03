@@ -2413,10 +2413,13 @@ overflow: hidden;
         width: 100%;
 
         .middle_photo {
-          margin-bottom: 10px;
-          width: 100%;
-          height: auto;
-          margin-right: 0;
+          //margin-bottom: 10px;
+          width: auto;
+
+          max-height:100%;
+          //height: auto;
+          //margin-right: 0;
+          margin: 0 auto 10px auto;
         }
       }
 
