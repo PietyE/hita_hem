@@ -16,6 +16,7 @@ const Search = ({
                     closeButtonClass,
                     alwaysShow,
                     placeholder,
+                    closeNavMenu,
                 }) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
@@ -84,6 +85,9 @@ const Search = ({
             _setOffset(0)
             _setCampaignSearchQuery(search)
             setVisible(false)
+            if(closeNavMenu){
+                closeNavMenu()
+            }
         } else if (router?.pathname !== (lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE) && search) {
             router.push(lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE)
             _cleanSearchedCampaigns([])

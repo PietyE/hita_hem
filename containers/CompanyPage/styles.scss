@@ -114,6 +114,7 @@
 
         .company_info_social {
           padding-bottom: 8px;
+          transform: translateY(6px);
 
         }
       }
@@ -521,6 +522,14 @@
 
         }
 
+      }
+      .company_info_sig{
+        padding-bottom: 8px;
+
+      }
+      .company_info_social{
+        box-sizing: border-box;
+        transform: translateY(6px);
       }
     }
 
