@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react';
+import {useTranslation} from "react-i18next";
 
 const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
+    const {t} = useTranslation();
+
     const [isOn, setIsOn] = useState(true);
 
 
@@ -28,7 +31,7 @@ const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
             <span className='subscribe_text'>{data.name} :</span>
             <div className='subscribe_inputs_container'>
                 <label className={isOn ? 'subscribe_label active_radio' : 'subscribe_label'}>
-                    on
+                    {t("profile_page.account.subscribe_on")}
                     <input
                         className='subscribe_input'
                         type='radio'
@@ -37,7 +40,7 @@ const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
                     />
                 </label>
                 <label className={isOn ? 'subscribe_label' : 'subscribe_label active_radio'}>
-                    off
+                    {t("profile_page.account.subscribe_off")}
                     <input
                         className='subscribe_input'
                         type='radio'

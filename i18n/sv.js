@@ -350,6 +350,8 @@ profile_page: {
             text: "Genom att ta bort kontot kommer all din data försvinna.",
         subscribe_title:'Prenumerationer',
         subscribe_button:'Bekräfta Prenumerationer',
+        subscribe_on: 'på',
+        subscribe_off: 'av',
     },
     reset_email: {
         title: "Byt e-post",
