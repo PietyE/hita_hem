@@ -135,7 +135,7 @@ const SignUp = ({ show }) => {
             <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
             <div className='sign_in_socials_buttons_wrapper'>
                 <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
-                    BankID
+                    <span>BankID</span>
                 </button>
                 <GoogleLogin
                     clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}

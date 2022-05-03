@@ -51,9 +51,12 @@ const SearchForm = ({
         e.preventDefault()
         if (search && campaignSearchQuery !== search) {
             _setOffset(0)
-
             _setCampaignSearchQuery(search)
             _cleanSearchedCampaigns([])
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
         }
 
     }

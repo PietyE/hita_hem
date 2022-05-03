@@ -7,6 +7,7 @@ import {useRouter} from "next/router";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import {getCampaignSearchQuerySelector} from "../../redux/reducers/companies";
 import {SEARCH_ROUTE, SEARCH_ROUTE_EN} from "../../constants/routesConstant";
+import {useMediaQueries} from "@react-hook/media-query";
 
 const Search = ({
                     formClassName,
@@ -76,6 +77,11 @@ const Search = ({
         setVisible(!visible)
     }
 
+    const {matchesAll} = useMediaQueries({
+        screen: "screen",
+        width: "(max-width: 1200px)",
+    });
+
     const handleChange = (e) => setSearch(e?.target?.value)
 
     const handleSubmit = (e) => {
@@ -87,6 +93,10 @@ const Search = ({
             setVisible(false)
             if(closeNavMenu){
                 closeNavMenu()
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth",
+                });
             }
         } else if (router?.pathname !== (lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE) && search) {
             router.push(lang === 'en' ? SEARCH_ROUTE_EN : SEARCH_ROUTE)
@@ -109,7 +119,7 @@ const Search = ({
                             placeholder={placeholder || t("search.placeholder")}
                             value={search}
                             onChange={handleChange}
-                            // autoFocus
+                            autoFocus={!matchesAll}
                         />
                     </div>
                 </>
