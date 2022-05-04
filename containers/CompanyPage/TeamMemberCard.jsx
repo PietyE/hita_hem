@@ -51,12 +51,12 @@ const TeamMemberCard = ({item}) => {
         if (!matchesAll) {
             const blockHeight = descriptionRef?.current?.offsetHeight
 
-            if (blockHeight !== 0) {
+            if (blockHeight !== 0 && blockHeight !== 110) {
                 setIsShowButton(blockHeight > 110);
             }
         }
 
-    }, [matchesAll]);
+    }, [matchesAll,description]);
 
     useEffect(() => {
         if (descriptionRef.current) {
@@ -66,7 +66,7 @@ const TeamMemberCard = ({item}) => {
 
     let _descriptionStyle = "member_card_item_description"
 
-    if (!isShowMore && descriptionRef?.current?.offsetHeight > 110) {
+    if (!isShowMore && isShowButton) {
         _descriptionStyle = "member_card_item_description_collapsed"
     }
 
@@ -101,15 +101,17 @@ const TeamMemberCard = ({item}) => {
                 <span
                     ref={descriptionRef}
                     className={_descriptionStyle}
-                >{description}
+                >
+                    {description}
+
                     {isShowButton && (
                         <div className="team_show_more">
-          <span className="team_show_more_button" onClick={_handleClickShowMore}>
-            {isShowMore ? t("company_page.button_show_less") : t("company_page.button_show_more")}
-          </span>
+                            <span className="team_show_more_button" onClick={_handleClickShowMore}>
+                                {isShowMore ? t("company_page.button_show_less") : t("company_page.button_show_more")}
+                            </span>
                         </div>
                     )}
-            </span>
+                </span>
             </div>
 
 
