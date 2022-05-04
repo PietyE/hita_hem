@@ -17,6 +17,14 @@ class FaqCRUD extends CRUD {
         });
     }
 
+    getQuestion(params) {
+        const url = `${this.url}/${params}`;
+        return this.request({
+            url,
+            method: "GET",
+        });
+    }
+
     getByCategory(params) {
         const url = `${this.url}/?category_pk=${params}`;
         return this.request({

@@ -12,9 +12,8 @@ const Categories = () => {
     const dispatch = useDispatch();
     const router = useRouter()
 
-    const categories = useSelector(getFaqCategoriesSelector)
     const lang = useSelector(getSelectedLangSelector)
-
+    const categories = useSelector(getFaqCategoriesSelector)
     const categoriesRef = useRef()
 
     useEffect(() => {
@@ -39,8 +38,10 @@ const Categories = () => {
 
 
     const handleClickCategory = (e) => {
-        const categoryId = (e.target.dataset.pk)
-        router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${categoryId}` : `${FAQ_ROUTE}/${categoryId}`)
+        const slug = (e.target.dataset.slug)
+        if(slug){
+            router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`)
+        }
     }
 
     return (
@@ -55,7 +56,7 @@ const Categories = () => {
                                 <li
                                     key={item?.title}
                                     className='faq_categories_item'
-                                    data-pk={item.pk}
+                                    data-slug={item?.post_slugs[0]}
                                     onClick={handleClickCategory}
                                 >
                                     <span className='faq_categories_item_text'>{item?.title}</span>

@@ -24,26 +24,24 @@
     .faq_one_category_questions_item {
       border-bottom: 1px solid #bfbfbf;
       cursor: pointer;
+      //pointer-events: none;
+      font-family: "Source sans Pro", sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 10px 0;
 
-      &:hover p {
+      &:hover {
         transition: 0.3s;
         transform: translateY(-3px);
       }
 
-      p {
-        pointer-events: none;
-        font-family: "Source sans Pro", sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 18px;
-        margin: 10px 0;
-      }
     }
 
     .faq_one_category_questions_item_selected {
       @extend .faq_one_category_questions_item;
 
-      &:hover p {
+      &:hover {
         transition: 0.3s;
         transform: translateY(0);
       }
@@ -95,33 +93,30 @@
         list-style: none;
         padding: 0 0 0 20px;
         margin: 22px 0;
+      }
+      li {
+        font-family: 'Source sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 22px;
+        line-height: 170%;
+        position: relative;
+        //display: flex;
+        //align-items: center;
+        padding-left: 20px;
+        color: #424242;
 
-
-        li {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: normal;
-          font-size: 22px;
-          line-height: 170%;
-          position: relative;
-          //display: flex;
-          //align-items: center;
-          padding-left: 20px;
-          color: #424242;
-
-          &::before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: 0;
-            top: 18px;
-            width: 6px;
-            height: 6px;
-            background: #fb7f73;
-            border-radius: 50%;
-          }
+        &::before {
+          content: "";
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 18px;
+          width: 6px;
+          height: 6px;
+          background: #fb7f73;
+          border-radius: 50%;
         }
-
       }
 
     }
@@ -142,11 +137,11 @@
   .mobile_one_category_question{
     white-space: nowrap;
 
-    p{
-      pointer-events: none;
+    //p{
+    //  pointer-events: none;
         font-weight: 600;
         font-size: 18px;
-    }
+    //}
 
     button{
       white-space: normal;
