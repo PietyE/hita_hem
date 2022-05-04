@@ -14,7 +14,6 @@ const Categories = () => {
 
     const categories = useSelector(getFaqCategoriesSelector)
     const lang = useSelector(getSelectedLangSelector)
-console.log('categories',categories)
     const categoriesRef = useRef()
 
     useEffect(() => {

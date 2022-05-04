@@ -43,8 +43,6 @@ const TopContainer = ({searchResults = []}) => {
         },
         [dispatch]
     );
-console.log('router.pathname',router.pathname)
-console.log('searchResults',searchResults)
     return (
         <section className='faq_top_section'>
             { (router.pathname !== '/fragor&svar' || searchResults?.length > 0) &&
