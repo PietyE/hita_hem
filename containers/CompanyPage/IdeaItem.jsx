@@ -29,20 +29,29 @@ const IdeaItem = ({section}) => {
     const {
         type,
         first_images,
+        first_image,
+        first_image_alter_text,
         second_images,
+        second_image,
+        second_image_alter_text,
         third_images,
+        third_image,
+        third_image_alter_text,
         fourth_images,
+        fourth_image,
+        fourth_image_alter_text,
         title,
         description,
     } = section;
-    const img1 = getCorrectImage(first_images)
-    const img2 = getCorrectImage(second_images)
-    const img3 = getCorrectImage(third_images)
-    const img4 = getCorrectImage(fourth_images)
-    const altText1 = getImageAltText(first_images)
-    const altText2 = getImageAltText(second_images)
-    const altText3 = getImageAltText(third_images)
-    const altText4 = getImageAltText(fourth_images)
+
+    const img1 = first_image || getCorrectImage(first_images)
+    const img2 = second_image || getCorrectImage(second_images)
+    const img3 = third_image || getCorrectImage(third_images)
+    const img4 = fourth_image || getCorrectImage(fourth_images)
+    const altText1 = first_image_alter_text || getImageAltText(first_images)
+    const altText2 = second_image_alter_text || getImageAltText(second_images)
+    const altText3 = third_image_alter_text || getImageAltText(third_images)
+    const altText4 = fourth_image_alter_text || getImageAltText(fourth_images)
 
 
     // const [firstImageSize, setFirstImageSize] = useState({})

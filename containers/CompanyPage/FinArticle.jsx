@@ -32,7 +32,7 @@ const options = {
 
 const FinArticle = ({item}) => {
     const {t} = useTranslation();
-    const {title, description, images} = item;
+    const {title, description, images, image, image_alter_text} = item;
     const img = getCorrectImage(images)
     const altText = getImageAltText(images)
 
@@ -47,7 +47,7 @@ const FinArticle = ({item}) => {
     });
 
     useEffect(() => {
-        getImgMeta(img, setImageMeta)
+        getImgMeta(image || img, setImageMeta)
     }, [])
 
     useEffect(() => {
@@ -64,28 +64,32 @@ const FinArticle = ({item}) => {
     const blockHeight = contentRef?.current?.offsetHeight
 
     useEffect(() => {
-        if (matchesAll) {
+       if(!description){
+           setIsShowButton(false)
+       }else{
+           if (matchesAll) {
 
-            let timerId = setInterval(() => {
-                if (blockHeight !== 0 && blockHeight !== 450) {
-                    setIsShowButton(blockHeight > 450);
-                }
-            }, 100);
+               let timerId = setInterval(() => {
+                   if (blockHeight !== 0 && blockHeight !== 450) {
+                       setIsShowButton(blockHeight > 450);
+                   }
+               }, 100);
 
-            if (contentRef?.current?.offsetHeight === 450) {
-                setTimeout(() => clearInterval(timerId), 50);
-            }
+               if (contentRef?.current?.offsetHeight === 450) {
+                   setTimeout(() => clearInterval(timerId), 50);
+               }
 
-            return () => clearInterval(timerId);
-        }
+               return () => clearInterval(timerId);
+           }
 
-        if (!matchesAll) {
-            if (blockHeight !== 0 && blockHeight !== 450) {
-                setIsShowButton(blockHeight > 450);
-            }
-        }
+           if (!matchesAll) {
+               if (blockHeight !== 0 && blockHeight !== 450) {
+                   setIsShowButton(blockHeight > 450);
+               }
+           }
+       }
 
-    }, [matchesAll,blockHeight]);
+    }, [description, matchesAll,blockHeight]);
 
     const _handleClickShowMore = () => {
         setIsShowMore((prev) => !prev);
@@ -114,14 +118,14 @@ const FinArticle = ({item}) => {
                                 }}
                             />
                         </div>
-                        {!!img && (
+                        {(!!image || !!img) && (
                             <Image
-                                src={img}
+                                src={image || img}
                                 layout="responsive"
                                 width={imageMeta?.width || 192}
                                 height={imageMeta?.height || 108}
                                 className='fin_article_image'
-                                alt={altText}
+                                alt={image_alter_text || altText}
                             />
                         )}
                         {matchesAll && isShowButton && (
