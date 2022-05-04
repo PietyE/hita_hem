@@ -11,7 +11,7 @@ import {getQuestion, saveOneCategory, set404InQuestion, setQuestion} from "../..
 import {ERROR_PAGE, FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import TopContainer from "../../containers/Faq/TopContainer";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
-import MobileView from "../../containers/FaqCategory/MobileView";
+import MobileView from "../../containers/FaqQuestion/MobileView";
 import {useMediaQueries} from "@react-hook/media-query";
 import SpinnerStyled from "../../components/ui/Spinner";
 
