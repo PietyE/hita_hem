@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import ButtonStyled from "../../components/ui/Button";
 import {useTranslation} from "react-i18next";
 import {cleanSearchedCampaigns, setCampaignOffset, setCampaignSearchQuery} from "../../redux/actions/companies";
@@ -17,6 +17,7 @@ const SearchForm = ({
     const campaignSearchQuery = useSelector(getCampaignSearchQuerySelector)
     const [search, setSearch] = useState('')
 
+    const inputRef = useRef()
 
     useEffect(() => {
         if (campaignSearchQuery) {
@@ -53,6 +54,7 @@ const SearchForm = ({
             _setOffset(0)
             _setCampaignSearchQuery(search)
             _cleanSearchedCampaigns([])
+            inputRef?.current?.blur()
             window.scrollTo({
                 top: 0,
                 behavior: "smooth",
@@ -69,6 +71,7 @@ const SearchForm = ({
                     type='text'
                     value={search}
                     onChange={handleChangeSearch}
+                    ref={inputRef}
                     // autoFocus
                 />
                 <ButtonStyled
