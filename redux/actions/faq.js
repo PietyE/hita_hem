@@ -8,6 +8,9 @@ import {
     SAVE_ONE_CATEGORY,
     SET_CURRENT_CATEGORY,
     SET_CURRENT_QUESTION,
+    GET_QUESTION,
+    SET_QUESTION,
+    SET_404_IN_QUESTION,
 } from "constants/actionsConstant";
 
 
@@ -53,5 +56,20 @@ export const setCurrentCategory = (payload) => ({
 
 export const setCurrentQuestion = (payload) => ({
     type: SET_CURRENT_QUESTION,
+    payload,
+});
+
+export const getQuestion = (payload) => ({
+    type: GET_QUESTION,
+    payload,
+});
+
+export const setQuestion = (payload) => ({
+    type: SET_QUESTION,
+    payload,
+});
+
+export const set404InQuestion = (payload) => ({
+    type: SET_404_IN_QUESTION,
     payload,
 });
