@@ -18,9 +18,11 @@ export const RAISE_ROUTE_EN = "/raise";
 export const INVEST_ROUTE_EN = "/investment-opportunities";
 export const ABOUT_US_ROUTE_EN = "/about-us";
 export const COMPANY_ROUTE_EN = "/company";
-export const BLOG_EN = "/news"
-export const SEARCH_ROUTE_EN = "/search"
-export const FAQ_ROUTE_EN = '/faq'
+export const BLOG_EN = "/news";
+export const SEARCH_ROUTE_EN = "/search";
+export const FAQ_ROUTE_EN = '/faq';
+
+export const ERROR_PAGE = '/404'
 
 
 

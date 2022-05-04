@@ -5,6 +5,8 @@ import {
     SAVE_ONE_CATEGORY,
     SET_CURRENT_CATEGORY,
     SET_CURRENT_QUESTION,
+    SET_QUESTION,
+    SET_404_IN_QUESTION,
 } from "constants/actionsConstant";
 
 
@@ -15,6 +17,8 @@ const initialState = {
     isFetching: false,
     currentCategory: '',
     currentQuestion: '',
+    questionFromApi: {},
+    isError404: false,
 }
 
 export const getFaqCategoriesSelector = state => state?.faq?.categories;
@@ -22,6 +26,8 @@ export const getFaqSearchResultsSelector = state => state?.faq?.search_results;
 export const getOneCategorySelector = state => state?.faq?.one_category;
 export const getCurrentCategorySelector = state => state?.faq?.currentCategory;
 export const getCurrentQuestionSelector = state => state?.faq?.currentQuestion;
+export const getQuestionSelector = state => state?.faq?.questionFromApi;
+export const getIs404QuestionSelector = state => state?.faq?.isError404;
 
 
 export const faq = (state = initialState, actions) => {
@@ -36,6 +42,10 @@ export const faq = (state = initialState, actions) => {
             return {...state, one_category: actions.payload};
         case SET_CURRENT_QUESTION:
             return {...state, currentQuestion: actions.payload};
+        case SET_QUESTION:
+            return {...state, questionFromApi: actions.payload};
+        case SET_404_IN_QUESTION:
+            return {...state, isError404: actions.payload};
         default:
             return state;
     }
