@@ -5,7 +5,7 @@ import Card from "react-bootstrap/Card";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import {faChevronDown, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "../../components/ui/IconComponent";
-import {saveSearchResults, setCurrentQuestion} from "../../redux/actions/faq";
+import {saveSearchResults} from "../../redux/actions/faq";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
@@ -37,13 +37,6 @@ const SearchResults = ({searchResults}) => {
         [dispatch]
     );
 
-    // const _setCurrentQuestion = useCallback(
-    //     (data) => {
-    //         dispatch(setCurrentQuestion(data));
-    //     },
-    //     [dispatch]
-    // );
-
     const handleClickQuestion = (e) => {
         if (e.target?.dataset?.key !== activeKey) {
             setActiveKey(e.target?.dataset?.key)
@@ -57,11 +50,8 @@ const SearchResults = ({searchResults}) => {
     const goToCategories =(e) => {
         e.preventDefault()
         const slug = e.target.dataset.slug
-        // const question = e.target.dataset.question
-        // _setCurrentQuestion(question)
         router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`)
     }
-
     return (
         <section className='search_results_section' key={accordionKey}>
             <h2 className='search_results_title'>{t("faq_page.search_results_title")}:</h2>
@@ -81,16 +71,14 @@ const SearchResults = ({searchResults}) => {
                                 data-key={i + 1}
                                 style={Number(activeKey) === i + 1 ? {color: '#1F607C'} : {}}
                                 className='search_results_question'
-                                dangerouslySetInnerHTML={{
-                                    __html: sanitizeHtmlFromBack(el.question)
-                                }}>
+                            >
+                                {el.question}
                             </Accordion.Toggle>
                             {Number(activeKey) === i + 1 &&
                             <button
                                 className='faq_link_to_categories'
                                 onClick={goToCategories}
                                 data-slug = {el.slug}
-                                // data-question = {el.question}
                             >
                                 <svg  width="20px" height="20px" viewBox="0 0 593.52 593.52">
 	                                <path d="M500.45 15.736C490.624 5.911 477.562.5 463.667.5s-26.959 5.411-36.783 15.236L270.42 172.2c-9.826 9.825-15.236 22.888-15.236 36.784 0 13.895 5.411 26.958 15.236 36.784l23.52 23.52-24.651 24.651-23.52-23.52c-9.825-9.826-22.888-15.236-36.784-15.236-.001 0 0 0 0 0-13.895 0-26.959 5.412-36.784 15.236L15.737 426.883C5.911 436.707.501 449.77.501 463.666c0 13.895 5.411 26.959 15.236 36.783l77.333 77.334c9.826 9.824 22.889 15.236 36.784 15.236s26.958-5.412 36.783-15.236L323.1 421.318c9.826-9.824 15.236-22.889 15.236-36.783 0-13.896-5.41-26.959-15.236-36.783l-23.52-23.521 24.65-24.65 23.52 23.52c9.826 9.826 22.889 15.236 36.785 15.236 13.895 0 26.957-5.412 36.783-15.236l156.463-156.464c9.826-9.825 15.236-22.888 15.236-36.784s-5.41-26.958-15.236-36.784L500.45 15.736zM292.809 378.043c2.339 2.34 2.688 5.072 2.688 6.492s-.349 4.15-2.689 6.49L136.345 547.49c-2.339 2.338-5.07 2.688-6.49 2.688s-4.152-.348-6.491-2.689L46.03 470.156c-2.339-2.338-2.689-5.07-2.689-6.49s.349-4.152 2.689-6.49l156.464-156.465c2.339-2.34 5.071-2.689 6.491-2.689s4.151.35 6.49 2.689l23.521 23.521-42.249 42.248c-8.365 8.365-8.365 21.928 0 30.293 4.183 4.182 9.665 6.273 15.146 6.273 5.482 0 10.964-2.092 15.146-6.273l42.249-42.25 23.521 23.52zm254.682-241.699L391.026 292.808c-2.338 2.339-5.07 2.688-6.49 2.688s-4.152-.349-6.49-2.689l-23.521-23.521 44.473-44.472c8.365-8.365 8.365-21.927 0-30.292-8.365-8.365-21.928-8.365-30.293 0l-44.473 44.472-23.52-23.521c-2.34-2.339-2.689-5.07-2.689-6.49s.35-4.152 2.689-6.491L457.177 46.029c2.338-2.339 5.07-2.688 6.49-2.688s4.15.349 6.49 2.689l77.334 77.332c2.34 2.339 2.688 5.071 2.688 6.491 0 1.419-.348 4.151-2.688 6.491z" />

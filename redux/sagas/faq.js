@@ -65,8 +65,11 @@ function* getFaqByCategoryWorker({payload}) {
 function* getFaqQuestionWorker({payload}) {
     try {
         yield put(setFaqFetching(true))
-        const res = yield call([faq, "getQuestion"], payload)
-        yield put(setQuestion(res?.data))
+        const questionResponse = yield call([faq, "getQuestion"], payload)
+        const categoryPk = questionResponse?.data?.category?.pk
+        const categoryResponse = yield call([faq, "getByCategory"], categoryPk)
+        yield put(setQuestion(questionResponse?.data))
+        yield put(saveOneCategory(categoryResponse?.data))
     } catch (error) {
         if(error.response.status === 404){
             yield put(set404InQuestion(true))

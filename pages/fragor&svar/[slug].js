@@ -1,15 +1,21 @@
 import React, {useCallback, useEffect} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {getIs404QuestionSelector, getOneCategorySelector, getQuestionSelector} from "../../redux/reducers/faq";
-import {getOneCategory, getQuestion, saveOneCategory, set404InQuestion} from "../../redux/actions/faq";
-import {ERROR_PAGE} from "../../constants/routesConstant";
+import {
+    getFaqIsFetchingSelector,
+    getIs404QuestionSelector,
+    getOneCategorySelector,
+    getQuestionSelector
+} from "../../redux/reducers/faq";
+import {getQuestion, saveOneCategory, set404InQuestion, setQuestion} from "../../redux/actions/faq";
+import {ERROR_PAGE, FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import TopContainer from "../../containers/Faq/TopContainer";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import MobileView from "../../containers/FaqCategory/MobileView";
 import {useMediaQueries} from "@react-hook/media-query";
+import SpinnerStyled from "../../components/ui/Spinner";
 
-const Slug = () => {
+const Slug = ({initialLang}) => {
     const dispatch = useDispatch();
 
     const router = useRouter()
@@ -17,10 +23,7 @@ const Slug = () => {
 
     const question = useSelector(getQuestionSelector)
     const oneCategoryData = useSelector(getOneCategorySelector)
-
-    const categoryId = question?.category?.pk
-    console.log('question',question)
-    console.log('oneCategoryData',oneCategoryData)
+    const isFetching = useSelector(getFaqIsFetchingSelector)
     const is404Error = useSelector(getIs404QuestionSelector)
 
     const {matchesAll} = useMediaQueries({
@@ -28,23 +31,23 @@ const Slug = () => {
         width: "(max-device-width: 900px)",
     });
 
-    useEffect(()=>{
-        if(slug){
+    useEffect(() => {
+        if (slug) {
             _getQuestion(slug)
         }
-    },[])
+
+        return () => {
+            _resetQuestion()
+            _resetOneCategory()
+        }
+    }, [slug])
 
     useEffect(() => {
-        _getOneCategory(categoryId)
-        return () => _resetOneCategory()
-    }, [categoryId])
-
-    useEffect(()=>{
-        if(is404Error){
+        if (is404Error) {
             _resetError()
             router.push(ERROR_PAGE)
         }
-    },[is404Error])
+    }, [is404Error])
 
     const _getQuestion = useCallback(
         (data) => {
@@ -53,16 +56,15 @@ const Slug = () => {
         [dispatch]
     );
 
-    const _getOneCategory = useCallback(
-        (data) => {
-            dispatch(getOneCategory(data));
-        },
-        [dispatch]
-    );
-
     const _resetOneCategory = useCallback(
         () => {
             dispatch(saveOneCategory([]));
+        },
+        [dispatch]
+    );
+    const _resetQuestion = useCallback(
+        () => {
+            dispatch(setQuestion([]));
         },
         [dispatch]
     );
@@ -75,11 +77,16 @@ const Slug = () => {
     );
 
     const handleClickQuestion = (e) => {
-        router.push
+        const questionSlug = e.target.dataset.slug
+        if (questionSlug !== slug) {
+            router.push(initialLang === 'en' ? `${FAQ_ROUTE_EN}/${questionSlug}` : `${FAQ_ROUTE}/${questionSlug}`)
+        }
     }
 
     return (
         <>
+            {isFetching && <SpinnerStyled/>}
+
             <TopContainer/>
             <div className='faq_one_category_block'>
                 {oneCategoryData.length > 0 &&
@@ -91,28 +98,26 @@ const Slug = () => {
                     <ul className='faq_one_category_questions'>
                         {oneCategoryData.map((item, i) => (
                             <li
-                                className={item?.question === question.question ?'faq_one_category_questions_item_selected': 'faq_one_category_questions_item'}
+                                className={item?.question === question.question ? 'faq_one_category_questions_item_selected' : 'faq_one_category_questions_item'}
                                 key={item.question}
                                 data-index={i}
-                                style = {item?.question === question.question ? {color: '#1F607C'} : {}}
-
+                                style={item?.question === question.question ? {color: '#1F607C'} : {}}
+                                data-slug={item.slug}
                                 onClick={handleClickQuestion}
-                                dangerouslySetInnerHTML={{
-                                    __html: sanitizeHtmlFromBack(item.question)
-                                }}
-                            />
+                            >
+                                {item?.question}
+                            </li>
                         ))}
                     </ul>
                     <div className='faq_one_category_answers'>
                         {question?.question &&
                         <p
                             className='faq_one_category_question'
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizeHtmlFromBack(question?.question)
-                            }}
-                        />
+                        >
+                            {question?.question}
+                        </p>
                         }
-                        { question?.answer &&
+                        {question?.answer &&
                         <p
                             className='faq_one_category_answer'
                             dangerouslySetInnerHTML={{
@@ -126,7 +131,9 @@ const Slug = () => {
                 }
                 {matchesAll &&
                 <MobileView
-                    // oneCategoryData={oneCategoryData}
+                    oneCategoryData={oneCategoryData}
+                    slug={slug}
+                    handleClickQuestion={handleClickQuestion}
                 />
                 }
             </div>

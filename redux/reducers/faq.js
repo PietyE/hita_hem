@@ -28,6 +28,7 @@ export const getCurrentCategorySelector = state => state?.faq?.currentCategory;
 export const getCurrentQuestionSelector = state => state?.faq?.currentQuestion;
 export const getQuestionSelector = state => state?.faq?.questionFromApi;
 export const getIs404QuestionSelector = state => state?.faq?.isError404;
+export const getFaqIsFetchingSelector = state => state?.faq?.isFetching;
 
 
 export const faq = (state = initialState, actions) => {
