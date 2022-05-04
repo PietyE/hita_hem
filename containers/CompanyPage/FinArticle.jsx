@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState, memo} from "react";
 import Button from "components/ui/Button";
 import {useMediaQueries} from "@react-hook/media-query";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
@@ -39,7 +39,6 @@ const FinArticle = ({item}) => {
     const contentRef = useRef();
     const [isShowButton, setIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
-    const [itemClass, setItemClass] = useState('fin_article')
     const [imageMeta, setImageMeta] = useState({})
     const {matchesAll} = useMediaQueries({
         screen: "screen",
@@ -51,45 +50,36 @@ const FinArticle = ({item}) => {
     }, [])
 
     useEffect(() => {
-        if (!isShowButton) {
-            setItemClass('fin_article')
-        } else {
-            if (isShowMore) {
-                setItemClass('fin_article')
-            } else {
-                setItemClass('fin_article_fade')
+
+        if (matchesAll) {
+
+            let timerId = setInterval(() => {
+                const blockHeight = contentRef?.current?.offsetHeight
+
+                if (blockHeight !== 0 && blockHeight !== 450) {
+                    if(description) {
+                        setIsShowButton(blockHeight > 450);
+                    }
+                }
+            }, 100);
+
+            if (contentRef?.current?.offsetHeight === 450) {
+                setTimeout(() => clearInterval(timerId), 50);
+            }
+
+            return () => clearInterval(timerId);
+        }
+
+        if (!matchesAll) {
+            const blockHeight = contentRef?.current?.offsetHeight
+            if (blockHeight !== 0 && blockHeight !== 450) {
+                if(description){
+                setIsShowButton(blockHeight > 450);
+                }
             }
         }
-    }, [isShowMore, isShowButton])
-    const blockHeight = contentRef?.current?.offsetHeight
 
-    useEffect(() => {
-       if(!description){
-           setIsShowButton(false)
-       }else{
-           if (matchesAll) {
-
-               let timerId = setInterval(() => {
-                   if (blockHeight !== 0 && blockHeight !== 450) {
-                       setIsShowButton(blockHeight > 450);
-                   }
-               }, 100);
-
-               if (contentRef?.current?.offsetHeight === 450) {
-                   setTimeout(() => clearInterval(timerId), 50);
-               }
-
-               return () => clearInterval(timerId);
-           }
-
-           if (!matchesAll) {
-               if (blockHeight !== 0 && blockHeight !== 450) {
-                   setIsShowButton(blockHeight > 450);
-               }
-           }
-       }
-
-    }, [description, matchesAll,blockHeight]);
+    }, [item, matchesAll]);
 
     const _handleClickShowMore = () => {
         setIsShowMore((prev) => !prev);
@@ -100,10 +90,15 @@ const FinArticle = ({item}) => {
         }
     };
 
+    let itemClass = 'fin_article'
+
+    if(!isShowMore && isShowButton){
+        itemClass = 'fin_article_fade'
+    }
+
     return (
-        <section className="fin_article_wrapper">
-            <SimpleReactLightbox>
-                <SRLWrapper options={options}>
+                <section className="fin_article_wrapper">
+
                     <li className={itemClass}
                         ref={contentRef}
                     >
@@ -118,7 +113,10 @@ const FinArticle = ({item}) => {
                                 }}
                             />
                         </div>
+
                         {(!!image || !!img) && (
+                            <SimpleReactLightbox>
+                                <SRLWrapper options={options}>
                             <Image
                                 src={image || img}
                                 layout="responsive"
@@ -127,6 +125,8 @@ const FinArticle = ({item}) => {
                                 className='fin_article_image'
                                 alt={image_alter_text || altText}
                             />
+                            </SRLWrapper>
+                            </SimpleReactLightbox>
                         )}
                         {matchesAll && isShowButton && (
                             <div className={isShowMore ? "show_more show_more_clicked" : "show_more "}>
@@ -148,10 +148,9 @@ const FinArticle = ({item}) => {
                             </Button>
                         )}
                     </li>
-                </SRLWrapper>
-            </SimpleReactLightbox>
-        </section>
+                </section>
+
     );
 };
 
-export default FinArticle;
+export default memo(FinArticle);
