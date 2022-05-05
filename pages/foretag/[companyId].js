@@ -81,6 +81,10 @@ const CompanyPage = () => {
     }, [isRedirectOnSelector])
 
     useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
         if (!isAuth) {
             const authLocalData = localStorage.getItem("auth_data")
             if (authLocalData) {
