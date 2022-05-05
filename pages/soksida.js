@@ -14,7 +14,7 @@ import Button from "../components/ui/Button";
 import {useTranslation} from "react-i18next";
 import {cleanSearchedCampaigns, searchCampaigns, setCampaignOffset} from "../redux/actions/companies";
 import Schema from "../components/Schema";
-import makeCategoriesSchema from "../Schemas/faqCategoriesSchema";
+import makeCategoriesSchema from "../Schemas/faqQuestionSchema";
 import makeSearchSchema from "../Schemas/searchSchema";
 
 const Soksida = () => {

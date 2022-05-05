@@ -1,13 +1,12 @@
 const makeFaqSchema = (categories) => {
-
     let listOfCategories = []
 
 
-    if(listOfCategories && listOfCategories.length > 0){
+    if(categories && categories.length > 0){
         listOfCategories = categories.map((el, i) => ({
                 "@type":"ListItem",
                 "position":`${i}`,
-                "url":`https://accumeo.com/fragor&svar/${el.pk}`
+                "name":`${el.title}`
             })
         )
     }

@@ -12,7 +12,6 @@ const Categories = ({categories}) => {
     const router = useRouter()
 
     const lang = useSelector(getSelectedLangSelector)
-    const categories = useSelector(getFaqCategoriesSelector)
     const categoriesRef = useRef()
 
     useEffect(() => {

@@ -30,7 +30,7 @@ const FragorSvar = () => {
                 <TopContainer searchResults={searchResults}/>
 
                 {!Array.isArray(searchResults) && (
-                    <Categories/>
+                    <Categories categories={categories}/>
                 )}
                 {Array.isArray(searchResults) && (
                     <SearchResults searchResults={searchResults}/>
