@@ -1,10 +1,7 @@
 const makeHomePageSchema = (data) => {
-    let title = ''
-    let description = ''
-    if (data?.banner_images && Array.isArray(data?.banner_images) && data?.banner_images.length > 0) {
-        title = data?.banner_images[0].title
-        description = data?.banner_images[0].description
-    }
+    let title = data?.title
+    let description = data?.description
+
     return (
         {
             "@context": "http://www.schema.org",
@@ -22,12 +19,6 @@ const makeHomePageSchema = (data) => {
                         "https://www.facebook.com/Accumeo/",
                         "https://www.instagram.com/accumeo/"
                     ],
-                    "logo": {
-                        "@type": "ImageObject",
-                        "@id": "https://accumeo.com/#logo",
-                        "url": "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@",
-                        "caption": "Accumeo"
-                    },
                 },
                 {
                     "@type": "WebSite",
@@ -57,7 +48,7 @@ const makeHomePageSchema = (data) => {
                                     "@type": "WebPage",
                                     "@id": "https://accumeo.com/",
                                     "url": "https://accumeo.com/",
-                                    "name": "Home"
+                                    "name": "Hemsida"
                                 }
                         },
                         {
@@ -65,9 +56,9 @@ const makeHomePageSchema = (data) => {
                             "position": 2,
                             "item": {
                                 "@type": "WebPage",
-                                "@id": "https://accumeo.com/investment-opportunities/",
-                                "url": "https://accumeo.com/investment-opportunities/",
-                                "name": "Investment opportunities"
+                                "@id": "https://accumeo.com/investeringsmojligheter",
+                                "url": "https://accumeo.com/investeringsmojligheter",
+                                "name": "Investeringsmojligheter"
                             }
                         },
                         {
@@ -75,9 +66,9 @@ const makeHomePageSchema = (data) => {
                             "position": 3,
                             "item": {
                                 "@type": "WebPage",
-                                "@id": "https://accumeo.com/raise/",
-                                "url": "https://accumeo.com/raise/",
-                                "name": "Accelerera er tillväxt och säkra finansiering"
+                                "@id": "https://accumeo.com/sok-kapital",
+                                "url": "https://accumeo.com/sok-kapital",
+                                "name": "Sök kapital"
                             }
                         },
                         {
@@ -85,8 +76,8 @@ const makeHomePageSchema = (data) => {
                             "position": 4,
                             "item": {
                                 "@type": "WebPage",
-                                "@id": "https://accumeo.com/news/",
-                                "url": "https://accumeo.com/news/",
+                                "@id": "https://accumeo.com/nyheter",
+                                "url": "https://accumeo.com/nyheter",
                                 "name": "Blogg"
                             }
                         },
@@ -95,9 +86,9 @@ const makeHomePageSchema = (data) => {
                             "position": 5,
                             "item": {
                                 "@type": "WebPage",
-                                "@id": "https://accumeo.com/about-us/",
-                                "url": "https://accumeo.com/about-us/",
-                                "name": "We are Accumeo"
+                                "@id": "https://accumeo.com/om-oss",
+                                "url": "https://accumeo.com/om-oss",
+                                "name": "Om oss"
                             }
                         },
                     ]
