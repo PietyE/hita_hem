@@ -78,7 +78,7 @@ const RaisePage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
-            <Schema makeSchema={makeRaiseSchema} data={{}}/>
+            <Schema makeSchema={makeRaiseSchema} data={{}} key='raise-page'/>
 
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">

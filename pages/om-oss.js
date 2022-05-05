@@ -55,7 +55,7 @@ const AboutUsPage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
-            <Schema makeSchema={makeAboutUsSchema} data={team_members}/>
+            <Schema makeSchema={makeAboutUsSchema} data={team_members} key='about-us-page'/>
             {isFetching && <SpinnerStyled/>}
             <div className="about_us_container">
                 <TopSection content={topSectionContent}/>

@@ -32,7 +32,7 @@ const InvestmentOpportunitiesPage = () => {
 
     return (
         <>
-            <Schema makeSchema={makeInvestPageSchema} data={companiesList} />
+            <Schema makeSchema={makeInvestPageSchema} data={companiesList} key='invest-page' />
             {isFetching && <SpinnerStyled/>}
             <InvestTopSlider/>
             <CampaignsListSection companiesList={companiesList}/>
