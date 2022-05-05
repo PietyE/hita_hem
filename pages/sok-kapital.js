@@ -18,7 +18,7 @@ import {
 import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
 import Schema from "../components/Schema";
-import makeRaiseSchema from "../Schemas/blogSchema";
+import makeRaiseSchema from "../Schemas/raiseSchema";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
