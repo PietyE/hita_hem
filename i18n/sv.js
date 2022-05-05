@@ -18,6 +18,11 @@ export const sv = {
                 Log_Out: "Logga ut",
             },
         },
+        search: {
+            hint: 'Tryck på enter för sökning',
+            placeholder: 'Sök efter kampanjnamn eller sökord och tryck på enter för sökning',
+            placeholder_mobile: 'Sök efter kampanjnamn eller sökord',
+        },
         raisePage: {
             top_slider: {
                 button: "Starta ett projekt",
@@ -316,6 +321,10 @@ investment_opportunities_page: {
         more_campaigns_button: "Visa fler kampanjer",
         mobile_filter_button_clear: "Rensa",
         mobile_filter_button_apply: "Tilllämpa filter",
+    search_page_title: 'Sökkampanjer',
+    search_page_button: 'Sök',
+    no_results: 'Tyvärr, inget matchade dina söktermer',
+
 },
 launching_soon_page: {
     image_block_button: "Prenumerera",
@@ -341,6 +350,8 @@ profile_page: {
             text: "Genom att ta bort kontot kommer all din data försvinna.",
         subscribe_title:'Prenumerationer',
         subscribe_button:'Bekräfta Prenumerationer',
+        subscribe_on: 'på',
+        subscribe_off: 'av',
     },
     reset_email: {
         title: "Byt e-post",

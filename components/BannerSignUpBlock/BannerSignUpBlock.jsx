@@ -92,7 +92,7 @@ const BannerSignUpBlock = () => {
 
             <div className='sign_in_socials_buttons_wrapper'>
                 <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
-                    BankID
+                    <span>BankID</span>
                 </button>
 
                 <GoogleLogin

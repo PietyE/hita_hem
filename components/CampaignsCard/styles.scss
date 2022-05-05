@@ -21,6 +21,15 @@
   }
 }
 
+.campaigns_card_small{
+  @extend .campaigns_card;
+  padding-bottom: 0;
+  align-self: flex-start;
+  .progress_container{
+    display: none;
+  }
+}
+
 .campaigns_card_image {
   border-radius: 0;
   height: 254px;
@@ -244,6 +253,9 @@
       font-size: 14px;
       line-height: 32px;
     }
+    .card_progress{
+      transform: translateY(-11px);
+    }
   }
 }
 @media screen and (max-width: 399px) {
@@ -251,7 +263,9 @@
     width: 280px;
   }
   .campaigns_card_status {
-    font-size: 12px;
+    span{
+      font-size: 12px;
+    }
     right: 13px;
   }
   .campaigns_card_content_wrapper {

@@ -20,6 +20,11 @@ import {
   MAKE_PAYMENT,
   SET_IS_REDIRECT,
   GET_COMPANY_BY_NAME,
+  GET_SEARCH_CAMPAIGNS,
+  SET_SEARCH_CAMPAIGNS,
+  CLEAN_SEARCH_CAMPAIGNS,
+  SET_CAMPAIGN_SEARCH_QUERY,
+  SET_CAMPAIGN_OFFSET,
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -120,3 +125,27 @@ export const getCompanyByName = (payload) => ({
   payload,
 });
 
+export const searchCampaigns = (payload) => ({
+  type: GET_SEARCH_CAMPAIGNS,
+  payload,
+});
+
+export const saveSearchedCampaigns = (payload) => ({
+  type: SET_SEARCH_CAMPAIGNS,
+  payload,
+});
+
+export const cleanSearchedCampaigns = (payload) => ({
+  type: CLEAN_SEARCH_CAMPAIGNS,
+  payload,
+});
+
+export const setCampaignSearchQuery = (payload) => ({
+  type: SET_CAMPAIGN_SEARCH_QUERY,
+  payload,
+});
+
+export const setCampaignOffset = (payload) => ({
+  type: SET_CAMPAIGN_OFFSET,
+  payload,
+});

@@ -53,6 +53,16 @@ export const getCorrectImage = (images) => {
     return img
 }
 
+export const getImageAltText = (images) => {
+    let alt;
+    if (typeof window !== "undefined" && images) {
+        alt = images['alter_text'] || ' '
+    } else {
+        alt = ' '
+    }
+    return alt
+}
+
 export const chooseCorrectResolution = (imageList) => {
     const imageSize = checkCurrentResolution();
     /////////remove after fix on beck-end
@@ -85,7 +95,7 @@ export const convertStatusToText = (status, language = 'en') => {
         case 2:
             return language === 'en' ? "COMPLETED" : "AVSLUTAD";
         case 3:
-            return "LIVE";
+            return language === 'en' ? "Open for investments" : "Öppet för investering";
         case 4:
             return language === 'en' ? "SUCCESSFULLY CLOSED" : "Stängd";
         default:
@@ -254,4 +264,23 @@ export const getImgMeta = (url, callback) =>{
         callback({width: this.naturalWidth,height: this.naturalHeight})
     });
     img.src = url;
+}
+export const clearOffset = (router) => {
+    const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+    const removeOffset = removeProperty('offset')
+    const queryWithoutOffset = removeOffset(router?.query)
+    router.push({
+        pathname: router.pathname,
+        query: queryWithoutOffset,
+    })
+}
+
+export const clearStatus = (router) => {
+    const removeProperty = prop => ({ [prop]: _, ...rest }) => rest
+    const removeOffset = removeProperty('status')
+    const queryWithoutOffset = removeOffset(router?.query)
+    router.push({
+        pathname: router.pathname,
+        query: queryWithoutOffset,
+    })
 }

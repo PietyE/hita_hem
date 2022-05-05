@@ -39,8 +39,18 @@ export const getBannerSelector = (state) => {
     } else {
         return null
     }
-}
 
+
+}
+export const getHomePageDataForSchema = state => {
+    return ({
+        banner_images: state.homePage?.homePageContent?.banner_images,
+        future: state.homePage?.homePageContent?.future,
+        upcoming: state.homePage?.homePageContent?.upcoming,
+        raise_set: state.homePage?.homePageContent?.raise_set,
+        invest_set: state.homePage?.homePageContent?.invest_set,
+    })
+}
 
 export const homePage = (state = initialState, actions) => {
     switch (actions.type) {

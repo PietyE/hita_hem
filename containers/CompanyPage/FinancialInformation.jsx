@@ -19,7 +19,8 @@ const FinancialInformation = () => {
   const document = useSelector(getFinDocumentSelector, isEqual) || [];
   return (
     <>
-      <ul className="financial_info_articles_list">
+        <h2 className='team_title'>{t("tab_accordion.Financial_information")}</h2>
+        <ul className="financial_info_articles_list">
         {finInfo.map((article, index) => (
           <FinArticle key={index} item={article} />
         ))}
@@ -34,7 +35,7 @@ const FinancialInformation = () => {
                         <Image
                             src = {IconDocument}
                             alt = ""alt = {IconDocument ? 'document icon' : ' '}
-                            className = "fin_document_icon"
+                            className = "fin_document"
                         />
                         <a
                             href = {document?.document}

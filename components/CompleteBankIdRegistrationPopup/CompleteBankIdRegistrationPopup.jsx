@@ -10,13 +10,13 @@ import {signUpWithBankId} from "../../redux/actions/user";
 import useAuthErrorHandler from "../../customHooks/useAuthErrorHandler";
 import {HOME_ROUTE} from "../../constants/routesConstant";
 import CaptchaPrivacyBlock from "../CaptchaPrivacyBlock";
-import {getDocumentsSelector} from "../../redux/reducers/documents";
+import {getMembershipAgreementDocument} from "../../redux/reducers/documents";
 
 const CompleteBankIdRegistrationPopup = ({show}) => {
     const { t } = useTranslation();
     const dispatch = useDispatch()
     const router = useRouter()
-    const documentUrl = useSelector(getDocumentsSelector)
+    const documentUrl = useSelector(getMembershipAgreementDocument)
 
     const [isAgree, setIsAgree] = useState(false)
 

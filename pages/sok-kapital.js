@@ -15,8 +15,10 @@ import {
     getRaisePageImageSelector,
     getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
-import {getCorrectImage, getImgMeta} from "../utils/utils";
+import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
+import Schema from "../components/Schema";
+import makeRaiseSchema from "../Schemas/blogSchema";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
@@ -36,6 +38,7 @@ const RaisePage = () => {
     const isScrollToForm = useSelector(getScrollToFormSelector)
 
     const img = getCorrectImage(images)
+    const altText = getImageAltText(images)
 
     const [imageSize, setImageSize] = useState({})
 
@@ -57,7 +60,7 @@ const RaisePage = () => {
 
     const scrollTo = (e) => {
         e.preventDefault();
-        myRef.current.scrollIntoView();
+        myRef?.current?.scrollIntoView();
 
     };
 
@@ -75,6 +78,8 @@ const RaisePage = () => {
     return (
         <>
             <MetaTags seo={seo}/>
+            <Schema makeSchema={makeRaiseSchema} data={{}}/>
+
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">
                 <RaisePageTopSlider onScrollTo={scrollTo}/>
@@ -84,6 +89,7 @@ const RaisePage = () => {
                         <Image
                             src={img}
                             width={imageSize?.width || 192} height={imageSize?.height || 108} layout="responsive"
+                            alt={altText}
                         />
                     </div>
                 )}

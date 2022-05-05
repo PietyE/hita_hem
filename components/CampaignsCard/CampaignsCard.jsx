@@ -2,7 +2,8 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
+import {getImageAltText} from "../../utils/utils";
 
 import StatusCompanyBadge from "../StatusCompany";
 import Progress from "../Proggres";
@@ -11,133 +12,94 @@ import {getSelectedLangSelector} from "../../redux/reducers/language";
 import isEmpty from "lodash/isEmpty";
 
 const CampaignsCard = (props) => {
-  const { t } = useTranslation();
-  const { className } = props;
-  const {
-    logo,
-    status,
-    title,
-    short_description,
-      image,
-      images,
-      slug,
-    percentage,
-    left_date
-  } = props?.content;
+    const {t} = useTranslation();
+    const {className} = props;
+    const {
+        logo,
+        status,
+        title,
+        short_description,
+        image,
+        images,
+        slug,
+        percentage,
+        left_date,
+        type
+    } = props?.content;
+    const lang = useSelector(getSelectedLangSelector)
+    const altText = getImageAltText(images)
 
-  const lang = useSelector(getSelectedLangSelector)
+    let cardImage = null
+    if (images && !isEmpty(images)) {
+        cardImage = images['desktop'] || images['laptop'] || images['mobile']
+    } else if (images && isEmpty(images) && image) {
+        cardImage = image
+    } else if (!images && image) {
+        cardImage = image
 
-  let cardImage = null
+    }
 
-  if(images && !isEmpty(images)) {
-    cardImage = images['desktop'] || images['laptop'] || images['mobile']
-  }else if(images && isEmpty(images) && image){
-    cardImage = image
-  }else if(!images && image){
-    cardImage = image
+    const _cardClassName = type === 1 ? 'campaigns_card' : 'campaigns_card_small'
 
-  }
-  return (
-    <>
-      {!!props?.content && (
-          <Link
-              as={lang === 'sv'?`/foretag/${slug}`:`/company/${slug}`}
-              href={lang === 'sv'?"/foretag/[companyId]":"/company/[companyId]"}
-              prefetch={false}
-          >
-        <li className={`campaigns_card ${className}`} >
+    return (
+        <>
+            {!!props?.content && (
+                <Link
+                    as={lang === 'sv' ? `/foretag/${slug}` : `/company/${slug}`}
+                    href={lang === 'sv' ? "/foretag/[companyId]" : "/company/[companyId]"}
+                    prefetch={false}
+                >
+                    <li className={`${_cardClassName} ${className}`}>
 
-            <div className='campaigns_card_image' style={{  position: 'relative'}}>
-              {cardImage && (
-                  <Image
-                      src = {cardImage}
-                      layout = "fill"
-                      objectFit = "cover"
-                      priority = {true}
-
-                  />)}
-            </div>
-            <span className="campaigns_card_logo" >
-              {/*<img*/}
-              {/*  className="featured_campaigns_logo_img"*/}
-              {/*  src={logo}*/}
-              {/*  alt="campaigns_logo"*/}
-              {/*  loading="lazy"*/}
-              {/*/>*/}
-              <div className="featured_campaigns_logo_img" style={{  position: 'relative'}}>
+                        <div className='campaigns_card_image' style={{position: 'relative'}}>
+                            {cardImage && (
+                                <Image
+                                    src={cardImage}
+                                    layout="fill"
+                                    objectFit="cover"
+                                    priority={true}
+                                    alt={altText}
+                                />)}
+                        </div>
+                        <span className="campaigns_card_logo">
+              <div className="featured_campaigns_logo_img" style={{position: 'relative'}}>
                  <Image
-
                      src={logo}
                      layout="fill"
                      objectFit="cover"
-                     // priority={true}
-
+                     alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
                  />
               </div>
 
             </span>
 
-          <StatusCompanyBadge
-            status={status}
-            classNameContainer="campaigns_card_status"
-            percentage={percentage}
-          />
+                        <StatusCompanyBadge
+                            status={status}
+                            classNameContainer="campaigns_card_status"
+                            percentage={percentage}
+                        />
 
-          <div className="campaigns_card_content_wrapper">
+                        <div className="campaigns_card_content_wrapper">
 
-            <div className="campaigns_card_text_wrapper">
+                            <div className="campaigns_card_text_wrapper">
 
-                <h3 className="campaigns_card_title">{title}</h3>
-              <p className="campaigns_card_description">{short_description}</p>
-            </div>
+                                <h3 className="campaigns_card_title">{title}</h3>
+                                <p className="campaigns_card_description">{short_description}</p>
+                            </div>
+                                <Progress
+                                    title={t("campaigns_card.progress_title")}
+                                    percent={percentage}
+                                    className='card_progress'
+                                    leftDate={left_date}
+                                    type={type}
+                                />
 
-            <Progress
-              title={t("campaigns_card.progress_title")}
-              percent={percentage}
-              className='card_progress'
-              leftDate={left_date}
-            />
-
-            {/*{isAuth && (*/}
-            {/*    <div className = "campaigns_card_target">*/}
-            {/*  <p className = "campaigns_card_target_title">*/}
-            {/*    {t("campaigns_card.target_title")}*/}
-            {/*  </p>*/}
-            {/*  <p className = "campaigns_card_target_value">*/}
-            {/*    {currency} {moneyFormat.format(goal)}*/}
-            {/*  </p>*/}
-            {/*</div>)}*/}
-
-            {/*<Button*/}
-            {/*  colorStyle="outline-green"*/}
-            {/*  className="campaigns_card_button"*/}
-            {/*  as={LinkStyled}*/}
-            {/*  to={`/foretag/${pk}`}*/}
-            {/*  title="This link leads to the foretag detail page"*/}
-            {/*>*/}
-            {/*  {t("campaigns_card.button")}*/}
-            {/*</Button>*/}
-          </div>
-        </li>
-           </Link>
-      )}
-    </>
-  );
+                        </div>
+                    </li>
+                </Link>
+            )}
+        </>
+    );
 };
-
-// const LinkStyled = (props) => {
-//   const router = useRouter();
-//   const { children, to = "", ...extra } = props;
-//
-//   const handleClickLinkButton = () => {
-//     router.push(to);
-//   };
-//
-//   return (
-//     <button onClick={handleClickLinkButton} type="button">
-//       <span {...extra}>{children}</span>
-//     </button>
-//   );
-// };
 
 export default CampaignsCard;
