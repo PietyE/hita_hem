@@ -2514,8 +2514,8 @@ overflow: hidden;
         .fin_article_image{
           //width: 100%;
           padding-top: 1080px / 1920px * 100%;
-          width: calc(100% + 2.5rem);
-          transform: translateX(-1.25rem);
+          //width: calc(100% + 2.5rem);
+          //transform: translateX(-1.25rem);
         }
         &:nth-child(odd) {
           .fin_article {
