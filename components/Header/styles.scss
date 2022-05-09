@@ -59,6 +59,7 @@
       .logn_in_button_container {
         color: #0E5394;
         margin-right: 10px;
+        margin-left: 25px;
       }
       .ln_button_container {
         button {
@@ -157,6 +158,23 @@
   }
   }
 }
+@media screen and (max-width: 1270px) {
+  .right{
+    .header_search_form{
+      margin-right: 15px;
+      margin-left: 0;
+    }
+  }
+}
+@media screen and (max-width: 1210px) {
+  .right{
+    .header_search_form{
+      margin-right: 10px;
+      margin-left: 0;
+    }
+  }
+}
+
 @media screen and (max-width: 1200px) {
   .header_container {
     .header_desktop_search{

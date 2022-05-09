@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
-import {getDocumentsSelector} from "../../redux/reducers/documents";
+import {getMembershipAgreementDocument} from "../../redux/reducers/documents";
 import {signUpWithSocials} from "../../redux/actions/user";
 import {setShowCompleteSocialsRegistration} from "../../redux/actions/authPopupWindows";
 import Modal from "../ui/Modal";
@@ -11,7 +11,7 @@ import Button from "../ui/Button";
 const CompleteSocialsRegistrationPopup = ({show}) => {
     const { t } = useTranslation();
     const dispatch = useDispatch()
-    const documentUrl = useSelector(getDocumentsSelector)
+    const documentUrl = useSelector(getMembershipAgreementDocument)
 
     const [isAgree, setIsAgree] = useState(false)
 

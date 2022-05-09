@@ -26,7 +26,7 @@ function TabAccordion({ isAuth, isQuizPassed }) {
   const overviewRef = useRef();
 
 
-  const [activeTab, setActiveTab] = useState(null);
+  const [activeTab, setActiveTab] = useState('0');
 
   const renderTabIFauts = (Сomponent) => {
     if(!isAuth){
