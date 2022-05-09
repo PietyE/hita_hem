@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useTranslation} from "react-i18next";
 import Accordion from 'react-bootstrap/Accordion'
 import Card from "react-bootstrap/Card";
@@ -18,6 +18,8 @@ const SearchResults = ({searchResults}) => {
     const [activeKey, setActiveKey] = useState(null)
     const [accordionKey, setAccordionKey] = useState(0)
     const lang = useSelector(getSelectedLangSelector)
+
+    const titleRef = useRef()
 
     useEffect(() => {
         return () => {
@@ -40,6 +42,11 @@ const SearchResults = ({searchResults}) => {
     const handleClickQuestion = (e) => {
         if (e.target?.dataset?.key !== activeKey) {
             setActiveKey(e.target?.dataset?.key)
+            if(titleRef?.current){
+                window.scrollTo({top: titleRef?.current.offsetTop - 140,
+                    // behavior: 'smooth'
+                })
+            }
         } else {
             setActiveKey(null)
         }
@@ -50,11 +57,14 @@ const SearchResults = ({searchResults}) => {
     const goToCategories =(e) => {
         e.preventDefault()
         const slug = e.target.dataset.slug
-        router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`)
+        router.push(
+            lang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+            lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`,
+            {scroll: false})
     }
     return (
         <section className='search_results_section' key={accordionKey}>
-            <h2 className='search_results_title'>{t("faq_page.search_results_title")}:</h2>
+            <h2 className='search_results_title' ref={titleRef}>{t("faq_page.search_results_title")}:</h2>
 
             {searchResults.length > 0 &&
             <Accordion as='ul' className='search_results_list'>
