@@ -352,6 +352,8 @@ export const en = {
                 text: "By deleting your account you will lose all your data.",
                 subscribe_title:'Subscriptions',
                 subscribe_button:'Submit Subscriptions',
+                subscribe_on: 'on',
+                subscribe_off: 'off',
             },
             reset_email: {
                 title: "Change email",

@@ -81,24 +81,29 @@ const CompanyPage = () => {
     }, [isRedirectOnSelector])
 
     useEffect(() => {
-        if (!isAuth) {
-            const authLocalData = localStorage.getItem("auth_data")
-            if (authLocalData) {
-                const data = JSON.parse(authLocalData);
-                const {expiration_timestamp, key: token} = data;
-                const nowTime = Math.floor(new Date().getTime() / 1000);
-                if (token && expiration_timestamp && nowTime < expiration_timestamp) {
-                    return
-                } else {
-                    _getCompanyDetail(companyName)
-
-                }
-            } else {
-                _getCompanyDetail(companyName)
-            }
-        } else {
-            _getCompanyDetail(companyName)
-        }
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+        _getCompanyDetail(companyName)
+        // if (!isAuth) {
+        //     const authLocalData = localStorage.getItem("auth_data")
+        //     if (authLocalData) {
+        //         const data = JSON.parse(authLocalData);
+        //         const {expiration_timestamp, key: token} = data;
+        //         const nowTime = Math.floor(new Date().getTime() / 1000);
+        //         if (token && expiration_timestamp && nowTime < expiration_timestamp) {
+        //             return
+        //         } else {
+        //             _getCompanyDetail(companyName)
+        //
+        //         }
+        //     } else {
+        //         _getCompanyDetail(companyName)
+        //     }
+        // } else {
+        //     _getCompanyDetail(companyName)
+        // }
 
         return () => {
             _clearCompanyDetail();

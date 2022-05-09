@@ -49,7 +49,7 @@ const Index = () => {
     return (
         <>
             <MetaTags seo={seo}/>
-            <Schema makeSchema={makeHomePageSchema} data={dataForSchema}/>
+            <Schema makeSchema={makeHomePageSchema} data={dataForSchema} key='home-page'/>
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}
                 <div className="home_page_container">

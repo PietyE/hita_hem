@@ -59,9 +59,13 @@ const Navigation = ({className, initLang}) => {
     const router = useRouter();
     const {asPath, pathname, locale} = router;
 
+    const closeNavMenu = () => {
+        menuBtn.current.click()
+
+    }
 
     useEffect(() => {
-        menuBtn.current.click()
+        closeNavMenu()
     }, [asPath])
 
     const dispatch = useDispatch();
@@ -235,7 +239,7 @@ const Navigation = ({className, initLang}) => {
                                     closeButtonClass='nav_search_close_button'
                                     alwaysShow={true}
                                     placeholder={t("search.placeholder_mobile")}
-                                    // menuRef = {menuBtn}
+                                    closeNavMenu={closeNavMenu}
                                 />
                             </div>
                             <SplitLine className="nav_btn_split_line"/>

@@ -372,7 +372,7 @@ const MiddleSection = ({isAuth}) => {
                     }
                 </section>
             </div>
-
+{/*//////////////////////////MOBILE///////////////////////////////////*/}
             <div className='middle_mobile_header_container'>
                 <div className='middle_tabbr_title_wrapper'>
                     {logo && (
