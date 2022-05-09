@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useRef} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {
@@ -14,10 +14,12 @@ import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import MobileView from "../../containers/FaqQuestion/MobileView";
 import {useMediaQueries} from "@react-hook/media-query";
 import SpinnerStyled from "../../components/ui/Spinner";
+import {wrapper} from "../../redux/store";
+import {END} from "redux-saga";
 
 const Slug = ({initialLang}) => {
     const dispatch = useDispatch();
-
+    const titleRef = useRef()
     const router = useRouter()
     const slug = router?.query?.slug
 
@@ -32,15 +34,14 @@ const Slug = ({initialLang}) => {
     });
 
     useEffect(() => {
-        if (slug) {
+        if (slug && oneCategoryData.length === 0) {
             _getQuestion(slug)
         }
-
         return () => {
             _resetQuestion()
             _resetOneCategory()
         }
-    }, [slug])
+    }, [])
 
     useEffect(() => {
         if (is404Error) {
@@ -79,7 +80,10 @@ const Slug = ({initialLang}) => {
     const handleClickQuestion = (e) => {
         const questionSlug = e.target.dataset.slug
         if (questionSlug !== slug) {
-            router.push(initialLang === 'en' ? `${FAQ_ROUTE_EN}/${questionSlug}` : `${FAQ_ROUTE}/${questionSlug}`)
+            router.push(
+                initialLang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+                initialLang === 'en' ? `${FAQ_ROUTE_EN}/${questionSlug}` : `${FAQ_ROUTE}/${questionSlug}`,
+                {scroll: false})
         }
     }
 
@@ -89,9 +93,7 @@ const Slug = ({initialLang}) => {
 
             <TopContainer/>
             <div className='faq_one_category_block'>
-                {oneCategoryData.length > 0 &&
-                <h2 className='faq_one_category_title'>{oneCategoryData[0].category.title}</h2>
-                }
+                <h2 className='faq_one_category_title' ref={titleRef}>{question?.category?.title}</h2>
                 {!matchesAll &&
 
                 <div className='faq_one_category_content_container'>
@@ -130,16 +132,32 @@ const Slug = ({initialLang}) => {
                 </div>
                 }
                 {matchesAll &&
-                <MobileView
-                    oneCategoryData={oneCategoryData}
-                    slug={slug}
-                    handleClickQuestion={handleClickQuestion}
-                />
+                <div >
+                    <MobileView
+                        oneCategoryData={oneCategoryData}
+                        slug={slug}
+                        handleClickQuestion={handleClickQuestion}
+                        parentTitleRef={titleRef?.current}
+                    />
+                </div>
                 }
             </div>
 
         </>
     );
 }
+
+// export const getServerSideProps = wrapper.getServerSideProps(
+//     (store) =>
+//         async ({req, res, params, ...etc}) => {
+//             if(req?.__NEXT_INIT_QUERY.inside){
+//             store.dispatch(getQuestion(params.slug));
+//
+//             store.dispatch(END);
+//
+//             await store.sagaTask.toPromise();
+//             }
+//         }
+// );
 
 export default Slug;
