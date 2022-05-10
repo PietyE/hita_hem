@@ -48,7 +48,7 @@ const Index = () => {
 
     return (
         <>
-            <MetaTags seo={seo}/>
+            <MetaTags seo={seo} url={'https://accumeo.com'}/>
             <Schema makeSchema={makeHomePageSchema} data={dataForSchema} key='home-page'/>
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}

@@ -113,7 +113,7 @@ const CompanyPage = () => {
 
     return (
         <>
-            <MetaTags seo={seo}/>
+            <MetaTags seo={seo} url={`https://accumeo.com/foretag/${companyName}`}/>
           <Schema makeSchema={makeCampaignSchema} data={dataForSchema}/>
 
           {isFetching && <SpinnerStyled/>}
