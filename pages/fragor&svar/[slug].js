@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {
@@ -27,6 +27,11 @@ const Slug = ({initialLang}) => {
     const oneCategoryData = useSelector(getOneCategorySelector)
     const isFetching = useSelector(getFaqIsFetchingSelector)
     const is404Error = useSelector(getIs404QuestionSelector)
+
+    const [isMounted,setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    },[]);
 
     const {matchesAll} = useMediaQueries({
         screen: "screen",
@@ -86,7 +91,6 @@ const Slug = ({initialLang}) => {
                 {scroll: false})
         }
     }
-
     return (
         <>
             {isFetching && <SpinnerStyled/>}
@@ -119,7 +123,7 @@ const Slug = ({initialLang}) => {
                             {question?.question}
                         </p>
                         }
-                        {question?.answer &&
+                        {question?.answer && isMounted &&
                         <p
                             className='faq_one_category_answer'
                             dangerouslySetInnerHTML={{
@@ -150,13 +154,9 @@ const Slug = ({initialLang}) => {
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
         async ({req, res, params, ...etc}) => {
-            if(req?.__NEXT_INIT_QUERY.inside){
             store.dispatch(getQuestion(params.slug));
-
             store.dispatch(END);
-
             await store.sagaTask.toPromise();
-            }
         }
 );
 
