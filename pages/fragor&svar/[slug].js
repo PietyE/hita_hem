@@ -34,14 +34,14 @@ const Slug = ({initialLang}) => {
     });
 
     useEffect(() => {
-        if (slug && oneCategoryData.length === 0) {
+        // if (slug && oneCategoryData.length === 0) {
             _getQuestion(slug)
-        }
+        // }
         return () => {
             _resetQuestion()
             _resetOneCategory()
         }
-    }, [])
+    }, [slug])
 
     useEffect(() => {
         if (is404Error) {
@@ -147,17 +147,17 @@ const Slug = ({initialLang}) => {
     );
 }
 
-// export const getServerSideProps = wrapper.getServerSideProps(
-//     (store) =>
-//         async ({req, res, params, ...etc}) => {
-//             if(req?.__NEXT_INIT_QUERY.inside){
-//             store.dispatch(getQuestion(params.slug));
-//
-//             store.dispatch(END);
-//
-//             await store.sagaTask.toPromise();
-//             }
-//         }
-// );
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store) =>
+        async ({req, res, params, ...etc}) => {
+            if(req?.__NEXT_INIT_QUERY.inside){
+            store.dispatch(getQuestion(params.slug));
+
+            store.dispatch(END);
+
+            await store.sagaTask.toPromise();
+            }
+        }
+);
 
 export default Slug;
