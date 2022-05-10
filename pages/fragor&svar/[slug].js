@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import {
@@ -18,10 +18,12 @@ import MetaTags from "../../components/MetaTags";
 import Schema from "../../components/Schema";
 import makeFaqSchema from "../../Schemas/faqSchema";
 import makeQuestionSchema from "../../Schemas/faqQuestionSchema";
+import {wrapper} from "../../redux/store";
+import {END} from "redux-saga";
 
 const Slug = ({initialLang}) => {
     const dispatch = useDispatch();
-
+    const titleRef = useRef()
     const router = useRouter()
     const slug = router?.query?.slug
 
@@ -29,17 +31,21 @@ const Slug = ({initialLang}) => {
     const oneCategoryData = useSelector(getOneCategorySelector)
     const isFetching = useSelector(getFaqIsFetchingSelector)
     const is404Error = useSelector(getIs404QuestionSelector)
-console.log('oneCategoryData',oneCategoryData)
+
+    const [isMounted,setIsMounted] = useState(false);
+    useEffect(() => {
+        setIsMounted(true);
+    },[]);
+
     const {matchesAll} = useMediaQueries({
         screen: "screen",
         width: "(max-device-width: 900px)",
     });
 
     useEffect(() => {
-        if (slug) {
+        // if (slug && oneCategoryData.length === 0) {
             _getQuestion(slug)
-        }
-
+        // }
         return () => {
             _resetQuestion()
             _resetOneCategory()
@@ -83,7 +89,10 @@ console.log('oneCategoryData',oneCategoryData)
     const handleClickQuestion = (e) => {
         const questionSlug = e.target.dataset.slug
         if (questionSlug !== slug) {
-            router.push(initialLang === 'en' ? `${FAQ_ROUTE_EN}/${questionSlug}` : `${FAQ_ROUTE}/${questionSlug}`)
+            router.push(
+                initialLang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+                initialLang === 'en' ? `${FAQ_ROUTE_EN}/${questionSlug}` : `${FAQ_ROUTE}/${questionSlug}`,
+                {scroll: false})
         }
     }
 
@@ -100,9 +109,7 @@ console.log('oneCategoryData',oneCategoryData)
 
             <TopContainer/>
             <div className='faq_one_category_block'>
-                {oneCategoryData.length > 0 &&
-                <h2 className='faq_one_category_title'>{oneCategoryData[0].category.title}</h2>
-                }
+                <h2 className='faq_one_category_title' ref={titleRef}>{question?.category?.title}</h2>
                 {!matchesAll &&
 
                 <div className='faq_one_category_content_container'>
@@ -128,7 +135,7 @@ console.log('oneCategoryData',oneCategoryData)
                             {question?.question}
                         </p>
                         }
-                        {question?.answer &&
+                        {question?.answer && isMounted &&
                         <p
                             className='faq_one_category_answer'
                             dangerouslySetInnerHTML={{
@@ -141,16 +148,28 @@ console.log('oneCategoryData',oneCategoryData)
                 </div>
                 }
                 {matchesAll &&
-                <MobileView
-                    oneCategoryData={oneCategoryData}
-                    slug={slug}
-                    handleClickQuestion={handleClickQuestion}
-                />
+                <div >
+                    <MobileView
+                        oneCategoryData={oneCategoryData}
+                        slug={slug}
+                        handleClickQuestion={handleClickQuestion}
+                        parentTitleRef={titleRef?.current}
+                    />
+                </div>
                 }
             </div>
 
         </>
     );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store) =>
+        async ({req, res, params, ...etc}) => {
+            store.dispatch(getQuestion(params.slug));
+            store.dispatch(END);
+            await store.sagaTask.toPromise();
+        }
+);
 
 export default Slug;

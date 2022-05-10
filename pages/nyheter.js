@@ -7,7 +7,7 @@ const Nyheter = () => {
     useDropInBlog()
     return (
         <>
-            <Schema makeSchema={makeBlogSchema} data={{}}/>
+            <Schema makeSchema={makeBlogSchema} data={{}} key='blog-page'/>
             <div id="dib-posts"></div>
             </>
     );

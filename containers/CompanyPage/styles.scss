@@ -114,6 +114,7 @@
 
         .company_info_social {
           padding-bottom: 8px;
+          transform: translateY(6px);
 
         }
       }
@@ -280,9 +281,11 @@
       position: absolute;
       top: 0;
       bottom: 0;
-      right: 0;
-      left: 0;
-      box-shadow: inset 0 150px 150px #fff;
+      right: -60px;
+      left: -60px;
+      box-shadow: inset 0 130px 90px #fff;
+      //box-shadow: inset 0 150px 150px #fff;
+
       transform: rotate(180deg);
     }
     //&:before {
@@ -418,6 +421,7 @@
 
       //padding-top: 20px;
       max-width: calc(100% - 390px);
+      width: 100%;
 
       .middle_tabbr_title_wrapper{
         padding-top: 20px;
@@ -467,7 +471,7 @@
         top: 80px;
         padding-top: 19px;
         z-index: 2;
-        max-width: 840px;
+        //max-width: 840px;
         margin-bottom: 20px;
         width: 100%;
         //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -519,6 +523,14 @@
 
         }
 
+      }
+      .company_info_sig{
+        padding-bottom: 8px;
+
+      }
+      .company_info_social{
+        box-sizing: border-box;
+        transform: translateY(5px);
       }
     }
 
@@ -912,14 +924,17 @@ overflow: hidden;
         @extend .fin_article;
         height: 450px;
         overflow: hidden;
+        position: relative;
         &:before {
-          content:'';
-          width:100%;
-          height:100%;
-          position:absolute;
-          left:0;
-          top:0;
-          background:linear-gradient(transparent 70px, white);
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          right: -60px;
+          left: -60px;
+          box-shadow: inset 0 130px 90px #fff;
+          //      box-shadow: inset 0 150px 150px #fff;
+          transform: rotate(180deg);
         }
       }
 
@@ -2052,6 +2067,10 @@ overflow: hidden;
 
 @media screen and (max-width: 900px) {
   .company-page-container {
+    .team_title{
+      display: none;
+    }
+
     .project_info_container {
       .project_info_left_section {
         .project_info_description {
@@ -2178,6 +2197,21 @@ overflow: hidden;
       }
     }
 
+    .project_info_left_section{
+      .project_info_description_section{
+        .project_info_title {
+          line-height: 30px;
+        }
+      }
+    }
+    .middle_section_container{
+      .idea_section_container{
+        .idea_title{
+          line-height: 30px;
+        }
+      }
+    }
+
     .project_info_container {
       padding-right: 25px;
       padding-left: 25px;
@@ -2196,6 +2230,7 @@ overflow: hidden;
 
           .project_info_description_section {
             .project_info_title {
+              line-height: 30px;
               font-size: 24px;
             }
 
@@ -2378,10 +2413,13 @@ overflow: hidden;
         width: 100%;
 
         .middle_photo {
-          margin-bottom: 10px;
-          width: 100%;
-          height: auto;
-          margin-right: 0;
+          //margin-bottom: 10px;
+          width: auto;
+
+          max-height:100%;
+          //height: auto;
+          //margin-right: 0;
+          margin: 0 auto 10px auto;
         }
       }
 
@@ -2476,8 +2514,8 @@ overflow: hidden;
         .fin_article_image{
           //width: 100%;
           padding-top: 1080px / 1920px * 100%;
-          width: calc(100% + 2.5rem);
-          transform: translateX(-1.25rem);
+          //width: calc(100% + 2.5rem);
+          //transform: translateX(-1.25rem);
         }
         &:nth-child(odd) {
           .fin_article {
@@ -2495,7 +2533,7 @@ overflow: hidden;
 
         .fin_article_title {
           font-size: 24px;
-          line-height: 44px;
+          line-height: 30px;
         }
 
         .fin_article {
@@ -2672,6 +2710,13 @@ overflow: hidden;
 
         .invest_info {
           .invest_info_item {
+            span {
+              font-size: 14px;
+            }
+
+            .values{
+              margin-bottom: 17px;
+            }
             &:last-child {
               height: 100px;
             }

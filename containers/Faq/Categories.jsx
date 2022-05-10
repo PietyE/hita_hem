@@ -1,44 +1,39 @@
 import React, {useCallback, useEffect, useRef} from 'react';
 import {getFaqCategories, setFaqCategories} from "../../redux/actions/faq";
 import {useDispatch, useSelector} from "react-redux";
+import {getFaqCategoriesSelector} from "../../redux/reducers/faq";
 import {useTranslation} from "react-i18next";
 import {useRouter} from "next/router";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 
-const Categories = ({categories}) => {
+const Categories = () => {
     const {t} = useTranslation();
-    const dispatch = useDispatch();
     const router = useRouter()
-
     const lang = useSelector(getSelectedLangSelector)
+    const categories = useSelector(getFaqCategoriesSelector)
     const categoriesRef = useRef()
-
-    useEffect(() => {
-        _getCategories()
-        return () => _resetCategories()
-    }, [])
-
-
-    const _getCategories = useCallback(
-        () => {
-            dispatch(getFaqCategories());
-        },
-        [dispatch]
-    );
-
-    const _resetCategories = useCallback(
-        () => {
-            dispatch(setFaqCategories([]));
-        },
-        [dispatch]
-    );
-
 
     const handleClickCategory = (e) => {
         const slug = (e.target.dataset.slug)
         if(slug){
-            router.push(lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`)
+            router.push(
+
+                {
+                    pathname: lang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+                    // pathname: `${FAQ_ROUTE}/[slug]`,
+                    query: { slug: slug},
+                },
+                // {
+                //     pathname: lang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+                //     // pathname: `${FAQ_ROUTE}/[slug]`,
+                //     query: { slug: slug},
+                // },
+
+                // lang === 'en' ? `${FAQ_ROUTE_EN}/[slug]` : `${FAQ_ROUTE}/[slug]`,
+                // lang === 'en' ? `${FAQ_ROUTE_EN}/${slug}` : `${FAQ_ROUTE}/${slug}`,
+                // {shallow: true}
+            )
         }
     }
 
