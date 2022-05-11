@@ -1,5 +1,5 @@
-const makeAboutUsSchema = (data) => {
-    const teamMembers = data?.map((member) => (
+const makeAboutUsSchema = ({seo, team}) => {
+    const teamMembers = team?.map((member) => (
             {
                 "@type": "ListItem",
                 "position": `${member.index}`,
@@ -23,8 +23,8 @@ const makeAboutUsSchema = (data) => {
         "@graph": [
             {
                 "@type": "AboutPage",
-                "name": "Om oss",
-                "description": "Här kan du låtar dig mer om Accumeo, vårt uppdrag och vårt team",
+                "name": `${seo.title}`,
+                "description": `${seo.description}`,
                 "url": "https://accumeo.com/om-oss",
                 "@id": "https://accumeo.com/om-oss/#webpage",
             },

@@ -6,15 +6,22 @@ import {useDispatch, useSelector} from "react-redux";
 import {
     getCampaignOffsetSelector, getCampaignSearchQuerySelector,
     getIsFetchingCampaignsSelector, getIsMoreCampaignsSelector,
-    getListOfFoundCampaignsSelector
+    getListOfFoundCampaignsSelector, getSearchPageSeoSelector
 } from "../redux/reducers/companies";
 import isEqual from "lodash/isEqual";
 import SearchForm from "../containers/InvestmentOpportunitiesPage/SearchForm";
 import Button from "../components/ui/Button";
 import {useTranslation} from "react-i18next";
-import {cleanSearchedCampaigns, searchCampaigns, setCampaignOffset} from "../redux/actions/companies";
+import {
+    cleanSearchedCampaigns,
+    getSearchPageSeo,
+    searchCampaigns,
+    setCampaignOffset
+} from "../redux/actions/companies";
 import Schema from "../components/Schema";
 import makeSearchSchema from "../Schemas/searchSchema";
+import {wrapper} from "../redux/store";
+import {END} from "redux-saga";
 
 const Soksida = () => {
     const {t} = useTranslation();
@@ -25,8 +32,10 @@ const Soksida = () => {
     const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
     const campaignsOffset = useSelector(getCampaignOffsetSelector)
     const campaignSearchQuery = useSelector(getCampaignSearchQuerySelector)
+    const seo = useSelector(getSearchPageSeoSelector)
 
     useEffect(()=>{
+        _getSearchPageSeo()
         _cleanSearchedCampaigns()
         _setOffset(0)
         return ()=> {
@@ -43,6 +52,10 @@ const Soksida = () => {
             dispatch(searchCampaigns(data));
         },[dispatch]);
 
+    const _getSearchPageSeo = useCallback((data) => {
+        dispatch(getSearchPageSeo(data));
+    },[dispatch]);
+
     const _cleanSearchedCampaigns = useCallback(() => {
         dispatch(cleanSearchedCampaigns([]));
     }, [dispatch]);
@@ -57,15 +70,10 @@ const Soksida = () => {
         _setOffset(campaignsOffset + 9)
     }
 
-    const seo = {
-        title: '',
-        description: '',
-    }
-
     return (
         <>
-            <MetaTags seo={seo}/>
-            <Schema makeSchema={makeSearchSchema} data={''} keyName='search'/>
+            <MetaTags seo={seo} url={'https://accumeo.com/soksida'}/>
+            <Schema makeSchema={makeSearchSchema} data={seo?.mark_up} keyName='search'/>
 
             <section className='search_section'>
             {isFetching && <SpinnerStyled/>}
@@ -88,5 +96,14 @@ const Soksida = () => {
         </>
     );
 }
+
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store) =>
+        async ({req, res, ...etc}) => {
+            store.dispatch(getSearchPageSeo());
+            store.dispatch(END);
+            await store.sagaTask.toPromise();
+        }
+);
 
 export default Soksida;

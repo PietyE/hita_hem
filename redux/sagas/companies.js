@@ -8,7 +8,9 @@ import {
   GET_POSTS,
   ADD_FAQ_ANSWER,
   MAKE_PAYMENT,
-  GET_SEARCH_CAMPAIGNS
+  GET_SEARCH_CAMPAIGNS,
+    GET_INVEST_PAGE_SEO,
+    GET_SEARCH_PAGE_SEO,
 } from "constants/actionsConstant";
 import {
   setIsFetchingCompany,
@@ -16,7 +18,7 @@ import {
   setInvestCompaniesList,
   setCompanyById,
   setError404,
-  isMoreCampaignsOnTheApi, saveSearchedCampaigns,
+  isMoreCampaignsOnTheApi, saveSearchedCampaigns, setInvestPageSeo, setSearchPageSeo,
 } from "redux/actions/companies";
 import {setShowQuiz, setShowSuccessfulFAQPopup, setShowSuccessfulInvestment} from "../actions/authPopupWindows";
 import { getProfileFromApi } from "./user";
@@ -181,6 +183,28 @@ function* getFaqPosts() {
   }
 }
 
+function* getInvestPageSeoWorker() {
+  try {
+      const response = yield call([companies, "getInvestPageSeo"]);
+      yield put(setInvestPageSeo(response?.data?.seo));
+  } catch (error) {
+    yield put(
+      setError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  }
+}
+
+function* getSearchPageSeoWorker() {
+  try {
+    const response = yield call([companies, "getSearchPageSeo"]);
+    yield put(setSearchPageSeo(response?.data?.seo));
+  } catch (error) {
+    yield put(
+        setError({ status: error?.response?.status, data: error?.response?.data })
+    );
+  }
+}
+
 function* makePayment({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
@@ -251,4 +275,6 @@ export function* companiesSagaWatcher() {
   yield takeEvery(GET_POSTS, getFaqPosts);
   yield takeEvery(MAKE_PAYMENT, makePayment);
   yield takeEvery(GET_SEARCH_CAMPAIGNS, searchCampaignsWorker);
+  yield takeEvery(GET_INVEST_PAGE_SEO, getInvestPageSeoWorker);
+  yield takeEvery(GET_SEARCH_PAGE_SEO, getSearchPageSeoWorker);
 }

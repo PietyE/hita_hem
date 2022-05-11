@@ -1,6 +1,6 @@
 import {convertStatusToText} from "../utils/utils";
 
-const makeCampaignSchema = (campaign) => {
+const makeCampaignSchema = ({campaign, seo}) => {
     let socials = []
     if(campaign?.social_url && campaign?.social_url.length > 0){
         socials = campaign?.social_url.map(el=>el.url)
@@ -30,9 +30,9 @@ const makeCampaignSchema = (campaign) => {
                 },
                 {
                     "@type": "Offer",
-                    "name": `${campaign?.name}`,
+                    "name": `${seo?.title}`,
                     "areaServed": `${campaign?.country}`,
-                    "description": `${campaign?.short_description}`,
+                    "description": `${seo?.description}`,
 
                     "availability": `${convertStatusToText(campaign?.status)}`,
                     "availabilityEnds": `${campaign?.end_date}`,

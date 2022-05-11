@@ -62,6 +62,25 @@ class CompaniesCRUD extends CRUD {
       data,
     });
   }
+
+  getInvestPageSeo() {
+    const url = '/invest-page-seo/';
+
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
+  getSearchPageSeo() {
+    const url = '/search-page-seo/';
+
+    return this.request({
+      url,
+      method: "GET",
+    });
+  }
+
 }
 
 export default function companiesCRUD(request) {
@@ -70,3 +89,4 @@ export default function companiesCRUD(request) {
     request,
   });
 }
+

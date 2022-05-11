@@ -55,7 +55,7 @@ const AboutUsPage = () => {
     return (
         <>
             <MetaTags seo={seo} url={'https://accumeo.com/om-oss'}/>
-            <Schema makeSchema={makeAboutUsSchema} data={team_members} keyName='about-us-page'/>
+            <Schema makeSchema={makeAboutUsSchema} data={{team:team_members, seo:seo.mark_up}} keyName='about-us-page'/>
             {isFetching && <SpinnerStyled/>}
             <div className="about_us_container">
                 <TopSection content={topSectionContent}/>
