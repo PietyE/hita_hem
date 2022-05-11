@@ -2,8 +2,8 @@ import {convertStatusToText} from "../utils/utils";
 
 const makeCampaignSchema = ({campaign, seo}) => {
     let socials = []
-    if(campaign?.social_url && campaign?.social_url.length > 0){
-        socials = campaign?.social_url.map(el=>el.url)
+    if (campaign?.social_url && campaign?.social_url.length > 0) {
+        socials = campaign?.social_url.map(el => el.url)
     }
 
     return (campaign?.hidden_mode ? {}
@@ -22,7 +22,7 @@ const makeCampaignSchema = ({campaign, seo}) => {
                     },
                     "image": {
                         "@type": "ImageObject",
-                        "url":  `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
+                        "url": `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
                         "caption": `${campaign?.name}`
                     },
                     "url": `https://accumeo.com/foretag/${campaign?.slug}`,
@@ -40,7 +40,7 @@ const makeCampaignSchema = ({campaign, seo}) => {
                     "priceCurrency": `${campaign?.currency}`,
 
                 }
-                ]
+            ]
 
         })
 

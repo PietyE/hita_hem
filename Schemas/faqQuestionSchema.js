@@ -1,14 +1,14 @@
-const makeQuestionSchema = ({questionsList,question,seo}) => {
+const makeQuestionSchema = ({questionsList, question, seo}) => {
     let listOfQuestions = []
     const slug = question?.slug || ''
 
     const articleBody = removeTags(question?.answer) || ''
 
-    if(questionsList && questionsList.length > 0){
+    if (questionsList && questionsList.length > 0) {
         listOfQuestions = questionsList?.map((el, i) => ({
-                "@type":"ListItem",
-                "position":`${i}`,
-                "name":`${el?.question}`,
+                "@type": "ListItem",
+                "position": `${i}`,
+                "name": `${el?.question}`,
                 "url": `https://accumeo.com/fragor&svar/${el?.slug}`
             })
         )
@@ -25,8 +25,8 @@ const makeQuestionSchema = ({questionsList,question,seo}) => {
                 "@id": "https://accumeo.com/fragor&svar/question/#webpage",
             },
             {
-                "@type":"ItemList",
-                "itemListElement":listOfQuestions,
+                "@type": "ItemList",
+                "itemListElement": listOfQuestions,
                 "isPartOf": {"@id": "https://accumeo.com/fragor&svar/question/#webpage"},
             },
             {
@@ -39,12 +39,12 @@ const makeQuestionSchema = ({questionsList,question,seo}) => {
     })
 }
 
-const  removeTags = (str) => {
-    if ((str===null) || (str===''))
+const removeTags = (str) => {
+    if ((str === null) || (str === ''))
         return false;
     else
         str = str.toString();
-    return str.replace( /(<([^>]+)>)/ig, '');
+    return str.replace(/(<([^>]+)>)/ig, '');
 }
 
 export default makeQuestionSchema

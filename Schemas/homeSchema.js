@@ -11,7 +11,7 @@ const makeHomePageSchema = (data) => {
                     "@id": "https://accumeo.com/#organization",
                     "name": "Accumeo",
                     "url": "https://accumeo.com/",
-                    "email":"info@accumeo.com",
+                    "email": "info@accumeo.com",
                     "sameAs": [
                         "https://www.allabolag.se/what/accumeo",
                         "https://www.linkedin.com/company/accumeo/",

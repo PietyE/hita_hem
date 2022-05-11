@@ -1,12 +1,12 @@
-const makeFaqSchema = ({categories,seo}) => {
+const makeFaqSchema = ({categories, seo}) => {
     let listOfCategories = []
 
 
-    if(categories && categories.length > 0){
+    if (categories && categories.length > 0) {
         listOfCategories = categories.map((el, i) => ({
-                "@type":"ListItem",
-                "position":`${i}`,
-                "name":`${el.title}`
+                "@type": "ListItem",
+                "position": `${i}`,
+                "name": `${el.title}`
             })
         )
     }
@@ -22,11 +22,11 @@ const makeFaqSchema = ({categories,seo}) => {
                 "description": `${seo?.description}`,
             },
             {
-                "@type":"ItemList",
+                "@type": "ItemList",
                 "isPartOf": {"@id": "https://accumeo.com/fragor&svar/#qapage"},
-                "itemListElement":listOfCategories,
+                "itemListElement": listOfCategories,
             }
-],
+        ],
 
 
     })
