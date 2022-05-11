@@ -16,6 +16,8 @@ import {
     CLEAN_SEARCH_CAMPAIGNS,
     SET_CAMPAIGN_SEARCH_QUERY,
     SET_CAMPAIGN_OFFSET,
+    SET_INVEST_PAGE_SEO,
+    SET_SEARCH_PAGE_SEO,
 } from "constants/actionsConstant";
 
 import {companyTabConstants} from "constants/companyTabConstant";
@@ -182,6 +184,8 @@ const initialState = {
     companyTabSelected: companyTabConstants.OVERVIEW,
     private_mod_viewers: [],
     private_mode: false,
+    investPageSeo: {},
+    searchPageSeo: {},
 };
 
 
@@ -290,6 +294,12 @@ export const getPercentageSelector = (state) =>
 
 export const getCompanySlugSelector = (state) =>
     state.companies.companyDetail.slug;
+
+export const getInvestPageSeoSelector = (state) =>
+    state.companies.investPageSeo;
+
+export const getSearchPageSeoSelector = (state) =>
+    state.companies.searchPageSeo;
 
 export const getCampaignDataForSchemaSelector = state => {
     return {
@@ -408,6 +418,10 @@ export const companies = (state = initialState, actions) => {
             return {...state, campaignSearchQuery: actions.payload};
         case SET_CAMPAIGN_OFFSET:
             return {...state, campaignOffset: actions.payload};
+            case SET_INVEST_PAGE_SEO:
+            return {...state, investPageSeo: actions.payload};
+            case SET_SEARCH_PAGE_SEO:
+            return {...state, searchPageSeo: actions.payload};
         default:
             return state;
     }

@@ -78,7 +78,7 @@ const RaisePage = () => {
     return (
         <>
             <MetaTags seo={seo} url={'https://accumeo.com/sok-kapital'} />
-            <Schema makeSchema={makeRaiseSchema} data={{}} key='raise-page'/>
+            <Schema makeSchema={makeRaiseSchema} data={seo.markup} keyName='raise-page'/>
 
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">

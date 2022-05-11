@@ -1,13 +1,16 @@
 import React, {useCallback, useEffect} from 'react';
 import Categories from "../containers/Faq/Categories";
 import TopContainer from "../containers/Faq/TopContainer";
-import {useDispatch, useSelector} from "react-redux";
-import {getFaqIsFetchingSelector, getFaqSearchResultsSelector} from "../redux/reducers/faq";
+import {useSelector, useDispatch} from "react-redux";
+import {getFaqIsFetchingSelector, getFaqCategoriesSelector, getFaqSearchResultsSelector} from "../redux/reducers/faq";
 import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 import SpinnerStyled from "../components/ui/Spinner";
+import MetaTags from "../components/MetaTags";
+import Schema from "../components/Schema";
+import makeFaqSchema from "../Schemas/faqSchema";
 import {wrapper} from "../redux/store";
-import {getFaqCategories, setFaqCategories} from "../redux/actions/faq";
+import {getFaqCategories, getFaqPageSeo, setFaqCategories} from "../redux/actions/faq";
 import {END} from "redux-saga";
 
 const SearchResults = dynamic(() =>
@@ -19,9 +22,12 @@ const FragorSvar = () => {
 
     const searchResults = useSelector(getFaqSearchResultsSelector, isEqual)
     const isFetching = useSelector(getFaqIsFetchingSelector)
+    const categories = useSelector(getFaqCategoriesSelector, isEqual)
+    const seo = useSelector(getFaqPageSeo)
 
     useEffect(() => {
         _getCategories()
+        _getFaqPageSeo()
         return () => _resetCategories()
     }, [])
 
@@ -32,22 +38,29 @@ const FragorSvar = () => {
         [dispatch]
     );
 
+    const _getFaqPageSeo = useCallback(
+        () => {
+            dispatch(getFaqPageSeo());
+        },
+        [dispatch]
+    );
+
     const _resetCategories = useCallback(
         () => {
             dispatch(setFaqCategories([]));
         },
         [dispatch]
     );
-
     return (
         <>
             {isFetching && <SpinnerStyled/>}
-
+            <MetaTags seo={seo} url='https://accumeo.com/fragor&svar'/>
+            <Schema makeSchema={makeFaqSchema} data={{categories: categories, seo: seo?.mark_up}} keyName='q&a'/>
             <section className='faq_section'>
                 <TopContainer searchResults={searchResults}/>
 
                 {!Array.isArray(searchResults) && (
-                    <Categories/>
+                    <Categories categories={categories}/>
                 )}
                 {Array.isArray(searchResults) && (
                     <SearchResults searchResults={searchResults}/>
@@ -60,9 +73,11 @@ const FragorSvar = () => {
 export const getServerSideProps = wrapper.getServerSideProps(
     (store) =>
         async ({req, res, params, ...etc}) => {
-                store.dispatch(getFaqCategories());
-                store.dispatch(END);
-                await store.sagaTask.toPromise();
+            store.dispatch(getFaqCategories());
+            store.dispatch(END);
+            store.dispatch(getFaqPageSeo());
+            store.dispatch(END);
+            await store.sagaTask.toPromise();
         }
 );
 

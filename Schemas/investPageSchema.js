@@ -1,4 +1,4 @@
-const makeInvestPageSchema = (campaigns) => {
+const makeInvestPageSchema = ({campaigns, seo}) => {
 
     let listForSchema = []
 
@@ -18,12 +18,14 @@ const makeInvestPageSchema = (campaigns) => {
             {
                 "@type": "WebPage",
                 "url": "https://accumeo.com/investeringsmojligheter",
-                "name": "Investeringsmöjligheter",
-                "description": "Här kan du se vilka företag som ligger ute på plattformen",
+                "name": `${seo?.title}`,
+                "description": `${seo?.description}`,
+                "@id": "https://accumeo.com/investeringsmojligheter/#webpage",
             },
             {
                 "@type":"ItemList",
                 "itemListElement":listForSchema,
+                "isPartOf": {"@id": "https://accumeo.com/investeringsmojligheter/#webpage"},
             }
         ]
 

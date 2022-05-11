@@ -5,13 +5,14 @@ import {
     FAQ_SEARCH,
     GET_ONE_CATEGORY,
     GET_QUESTION,
+    GET_FAQ_PAGE_SEO,
 } from "constants/actionsConstant";
 import {
     saveOneCategory,
     saveSearchResults,
     set404InQuestion,
     setFaqCategories,
-    setFaqFetching,
+    setFaqFetching, setFaqPageSeo,
     setQuestion
 } from "../actions/faq";
 import {setError} from "../actions/errors";
@@ -82,6 +83,19 @@ function* getFaqQuestionWorker({payload}) {
         yield put(setFaqFetching(false))
     }
 }
+function* getFaqPageSeoWorker() {
+    try {
+        yield put(setFaqFetching(true))
+        const res = yield call([faq, "getFaqPageSeo"])
+        yield put(setFaqPageSeo(res?.data?.seo))
+    } catch (error) {
+            yield put(
+                setError({ status: error?.response?.status, data: error?.response?.data })
+            );
+    } finally {
+        yield put(setFaqFetching(false))
+    }
+}
 
 
 export function* faqWatcher() {
@@ -89,4 +103,5 @@ export function* faqWatcher() {
     yield takeEvery(FAQ_SEARCH, faqSearchWorker);
     yield takeEvery(GET_ONE_CATEGORY, getFaqByCategoryWorker);
     yield takeEvery(GET_QUESTION, getFaqQuestionWorker);
+    yield takeEvery(GET_FAQ_PAGE_SEO, getFaqPageSeoWorker);
 }

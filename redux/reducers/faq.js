@@ -7,6 +7,7 @@ import {
     SET_CURRENT_QUESTION,
     SET_QUESTION,
     SET_404_IN_QUESTION,
+    SET_FAQ_PAGE_SEO,
 } from "constants/actionsConstant";
 
 
@@ -19,6 +20,7 @@ const initialState = {
     currentQuestion: '',
     questionFromApi: {},
     isError404: false,
+    seo: {},
 }
 
 export const getFaqCategoriesSelector = state => state?.faq?.categories;
@@ -29,6 +31,7 @@ export const getCurrentQuestionSelector = state => state?.faq?.currentQuestion;
 export const getQuestionSelector = state => state?.faq?.questionFromApi;
 export const getIs404QuestionSelector = state => state?.faq?.isError404;
 export const getFaqIsFetchingSelector = state => state?.faq?.isFetching;
+export const getFaqPageSeoSelector = state => state?.faq?.seo;
 
 
 export const faq = (state = initialState, actions) => {
@@ -47,6 +50,8 @@ export const faq = (state = initialState, actions) => {
             return {...state, questionFromApi: actions.payload};
         case SET_404_IN_QUESTION:
             return {...state, isError404: actions.payload};
+        case SET_FAQ_PAGE_SEO:
+            return {...state, seo: actions.payload};
         default:
             return state;
     }

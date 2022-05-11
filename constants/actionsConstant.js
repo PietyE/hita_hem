@@ -109,7 +109,10 @@ export const SET_SEARCH_CAMPAIGNS = "companies/SET_SEARCH_CAMPAIGNS";
 export const CLEAN_SEARCH_CAMPAIGNS = "companies/CLEAN_SEARCH_CAMPAIGNS";
 export const SET_CAMPAIGN_SEARCH_QUERY = "companies/SET_CAMPAIGN_SEARCH_QUERY";
 export const SET_CAMPAIGN_OFFSET = "companies/SET_CAMPAIGN_OFFSET";
-
+export const SET_INVEST_PAGE_SEO = "companies/SET_INVEST_PAGE_SEO";
+export const GET_INVEST_PAGE_SEO = "companies/GET_INVEST_PAGE_SEO";
+export const SET_SEARCH_PAGE_SEO = "companies/SET_SEARCH_PAGE_SEO";
+export const GET_SEARCH_PAGE_SEO = "companies/GET_SEARCH_PAGE_SEO";
 
 export const SET_IS_REDIRECT = 'companies/SET_IS_REDIRECT'
 
@@ -237,3 +240,5 @@ export const SET_CURRENT_QUESTION = 'faq/SET_CURRENT_QUESTION'
 export const GET_QUESTION = 'faq/GET_QUESTION'
 export const SET_QUESTION = 'faq/SET_QUESTION'
 export const SET_404_IN_QUESTION = 'faq/SET_404_IN_QUESTION'
+export const SET_FAQ_PAGE_SEO = 'faq/SET_FAQ_PAGE_SEO'
+export const GET_FAQ_PAGE_SEO = 'faq/GET_FAQ_PAGE_SEO'
