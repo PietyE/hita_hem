@@ -484,8 +484,9 @@ export const en = {
 
             long_error_part1: "Must be at most",
             long_error_part2: "characters.",
-
-
+            auth_social_account_error: {
+                title: 'An account with this email address already exists',
+            }
         },
         cookie: {
             text: 'Accumeo uses cookies to provide necessary website functionality, improve your experience and analyze our traffic. By using our website, you agree to our',
