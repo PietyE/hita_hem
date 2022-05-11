@@ -405,7 +405,7 @@
   }
 
   .account_settings_form_text_wrapper {
-    width: 60%;
+    width: 64%;
   }
 
   .account_settings_form_button_wrapper {
@@ -522,6 +522,22 @@
       color: #3c64b1;
       cursor: pointer;
       z-index: 2;
+    }
+
+    .account_settings_change_email_language_container{
+      display: flex;
+      margin: 0 auto 10px auto;
+      button{
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        color: black;
+        padding-left: 45px;
+        &:active{
+          color: black;
+        }
+      }
     }
 
     .account_settings_text_delete {
@@ -1776,6 +1792,38 @@
         width: 100%;
         padding: 23px 0 30px 0;
         margin-bottom: 0;
+
+        .account_settings_change_email_language_container{
+          padding-bottom: 20px;
+          margin: 0;
+          width: 100%;
+          button{
+            padding: 8px 0;
+            width: 100%;
+            border: 1px  solid #0E5394;
+
+            &:active{
+              color: black;
+            }
+          }
+          .dropdown_menu{
+            width: 100%;
+            text-align: center;
+            border: 1px  solid #0E5394;
+            background-color: #0E5394;
+
+            .dropdown_menu_item{
+              border-bottom: 1px solid #7fa7cf;
+              color: #FFFFFF;
+              font-family: "Source Sans Pro", sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              &:last-child{
+                border-bottom: none;
+              }
+            }
+        }
+        }
 
         .account_settings_form_email,
         .account_settings_form_password {

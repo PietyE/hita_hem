@@ -51,6 +51,7 @@ const initialsState = {
     social_accounts: [],
     unsubscribes: [],
     answers: [],
+    language: '',
   },
   isFirstHydrate: false,
 };
@@ -127,6 +128,7 @@ export const getIsSocialAccount = (state) => state?.user?.account?.social_accoun
 
 export const getUnsubscribesSelector = (state) => state?.user?.account?.unsubscribes;
 export const getAnswersSelector = (state) => state?.user?.account?.answers;
+export const getUserEmailLanguageSelector = (state) => state.user.account?.language;
 
 export const getSavedEmail = state => state?.user?.savedEmail
 
