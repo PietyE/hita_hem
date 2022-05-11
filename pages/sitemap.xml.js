@@ -2,8 +2,8 @@ import React from "react";
 const baseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
 const baseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
 
-const categoryBaseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&svar/`
-const categoryBaseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq/`
+const questionBaseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&svar/`
+const questionBaseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq/`
 
 const createDynamicMarkup = async () => {
 
@@ -14,7 +14,7 @@ const createDynamicMarkup = async () => {
         },
     })
 
-        const fetchCategories = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/faq-page-categories/`,{
+        const fetchQuestions = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/faq-page/`,{
         headers:{
             'content-type': 'application/json',
             'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
@@ -37,16 +37,16 @@ const createDynamicMarkup = async () => {
 `
     })
 
-    const categories = await fetchCategories.json()
-    const listOfCategories =   categories.map((category=>category?.pk))
-    const categoriesMarkup = listOfCategories.map((pk) => {
+    const questions = await fetchQuestions.json()
+    const listOfQuestions =   questions.map((question=>question?.slug))
+    const questionsMarkup = listOfQuestions.map((slug) => {
         return `
             <url>
-              <loc>${categoryBaseUrlSv}${pk}</loc>
+              <loc>${questionBaseUrlSv}${slug}</loc>
               <xhtml:link
                rel="alternate"
                hreflang="en"
-               href="${categoryBaseUrlEn}${pk}"/>
+               href="${questionBaseUrlEn}${slug}"/>
               <lastmod>${new Date().toISOString()}</lastmod>
               <priority>0.80</priority>
             </url>
@@ -71,7 +71,7 @@ const createDynamicMarkup = async () => {
 `
     })
 
-    const markup = dibMarkup.concat(campaignsMarkup).concat(categoriesMarkup)
+    const markup = dibMarkup.concat(campaignsMarkup).concat(questionsMarkup)
 
     return markup.join('')
 }

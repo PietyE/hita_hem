@@ -114,7 +114,7 @@ const CompanyPage = () => {
     return (
         <>
             <MetaTags seo={seo} url={`https://accumeo.com/foretag/${companyName}`}/>
-          <Schema makeSchema={makeCampaignSchema} data={dataForSchema}/>
+          <Schema makeSchema={makeCampaignSchema} data={dataForSchema} keyName='campaign'/>
 
           {isFetching && <SpinnerStyled/>}
             {!isError404 && <div className="company-page-container">

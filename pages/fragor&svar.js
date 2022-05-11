@@ -49,7 +49,7 @@ const FragorSvar = () => {
         <>
             {isFetching && <SpinnerStyled/>}
             <MetaTags seo={seo}/>
-            <Schema makeSchema={makeFaqSchema} data={categories}/>
+            <Schema makeSchema={makeFaqSchema} data={categories} keyName='q&a'/>
             <section className='faq_section'>
                 <TopContainer searchResults={searchResults}/>
 

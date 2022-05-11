@@ -25,11 +25,13 @@ const makeAboutUsSchema = (data) => {
                 "@type": "AboutPage",
                 "name": "Om oss",
                 "description": "Här kan du låtar dig mer om Accumeo, vårt uppdrag och vårt team",
-                "url": "https://accumeo.com/om-oss"
+                "url": "https://accumeo.com/om-oss",
+                "@id": "https://accumeo.com/om-oss/#webpage",
             },
             {
                 "@type": "ItemList",
                 "itemListElement": teamMembers,
+                "isPartOf": {"@id": "https://accumeo.com/om-oss/#webpage"},
             }
         ]
 

@@ -22,11 +22,12 @@ const makeQuestionSchema = (data) => {
                 "url": `https://accumeo.com/fragor&svar/${slug}`,
                 "name": `${title}`,
                 "description": "",
+                "@id": "https://accumeo.com/fragor&svar/question/#webpage",
             },
             {
                 "@type":"ItemList",
                 "itemListElement":listOfQuestions,
-                "@id": "https://accumeo.com/fragor/#webpage",
+                "isPartOf": {"@id": "https://accumeo.com/fragor&svar/question/#webpage"},
             },
             {
 

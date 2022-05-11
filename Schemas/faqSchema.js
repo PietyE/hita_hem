@@ -16,14 +16,14 @@ const makeFaqSchema = (categories) => {
         "@graph": [
             {
                 "@type": "QAPage",
-                "@id": "https://accumeo.com/fragor/#qapage",
+                "@id": "https://accumeo.com/fragor&svar/#qapage",
                 "url": "https://accumeo.com/fragor&svar",
                 "name": "FRÅGOR & SVAR",
                 "description": "",
             },
             {
                 "@type":"ItemList",
-                "isPartOf": {"@id": "https://accumeo.com/fragor/#qapage"},
+                "isPartOf": {"@id": "https://accumeo.com/fragor&svar/#qapage"},
                 "itemListElement":listOfCategories,
             }
 ],

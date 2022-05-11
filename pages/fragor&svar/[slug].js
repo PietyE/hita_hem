@@ -103,7 +103,7 @@ const Slug = ({initialLang}) => {
     return (
         <>
             <MetaTags seo={seo}/>
-            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question}}/>
+            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question}} keyName='question'/>
 
             {isFetching && <SpinnerStyled/>}
 
