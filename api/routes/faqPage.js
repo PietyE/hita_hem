@@ -32,6 +32,15 @@ class FaqCRUD extends CRUD {
             method: "GET",
         });
     }
+
+    getFaqPageSeo() {
+        const url = '/faq-page-seo/';
+        return this.request({
+            url,
+            method: "GET",
+        });
+    }
+
 }
 
 

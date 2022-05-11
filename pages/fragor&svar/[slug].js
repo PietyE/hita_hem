@@ -102,8 +102,8 @@ const Slug = ({initialLang}) => {
     }
     return (
         <>
-            <MetaTags seo={seo}/>
-            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question}} keyName='question'/>
+            <MetaTags seo={seo}  url={`https://accumeo.com/fragor&svar/${slug}`}/>
+            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question, seo:seo?.mark_up}} keyName='question'/>
 
             {isFetching && <SpinnerStyled/>}
 

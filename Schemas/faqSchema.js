@@ -1,4 +1,4 @@
-const makeFaqSchema = (categories) => {
+const makeFaqSchema = ({categories,seo}) => {
     let listOfCategories = []
 
 
@@ -18,8 +18,8 @@ const makeFaqSchema = (categories) => {
                 "@type": "QAPage",
                 "@id": "https://accumeo.com/fragor&svar/#qapage",
                 "url": "https://accumeo.com/fragor&svar",
-                "name": "FRÅGOR & SVAR",
-                "description": "",
+                "name": `${seo?.title}`,
+                "description": `${seo?.description}`,
             },
             {
                 "@type":"ItemList",
