@@ -134,6 +134,7 @@ export const getIsSignInUserSelector = (state) => state.user.isAuth;
 export const getUserSelector = (state) => state.user;
 export const getUserCampaignsSelector = (state) => state.user.user?.companies;
 export const getUserPaymentsSelector = (state) => state.user.user?.payments;
+export const getUserEmailLanguageSelector = (state) => state.user.user?.language;
 export const getPaymentsByCurrentCompanySelector = (state) => {
   const companyId = state.companies.companyDetail.pk;
   let filteredPayments = [];

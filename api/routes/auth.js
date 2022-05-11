@@ -314,6 +314,20 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  setEmailLanguage(data) {
+    // const {data, token} = payload
+
+    const url = `${this.url}/update_user_language/`;
+    return this.request({
+      url,
+      data,
+      method: "POST",
+      // headers: {
+      //   "x-recaptcha-token": token,
+      // },
+    });
+  }
+
 }
 
 export default function authCRUD(request) {

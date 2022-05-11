@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import ResetEmail from "./ResetEmail";
 import SubscribeItem from "./SubscribeItem";
 import AccountSettingsResetPassword from "./AccountSettingsResetPassword";
+import ChangeEmailLanguage from "./ChangeEmailLanguage";
 import { useTranslation } from "react-i18next";
 import { setShowConfirmationOfAccountDeleting } from "redux/actions/authPopupWindows";
 import SplitLine from "components/ui/SplitLine";
@@ -84,6 +85,8 @@ const AccountSettings = () => {
                         <SplitLine className='account_settings_split_line'/>
                     </>)
                 }
+                <ChangeEmailLanguage/>
+                <SplitLine className='account_settings_split_line'/>
                 <p className="account_settings_text_delete" onClick={handleClickDelete}>
                     {t("profile_page.account.text_delete")}
                 </p>

@@ -363,6 +363,9 @@ export const en = {
                 button_cancel: "Cancel",
                 button_save: "Save changes",
             },
+            changeEmailLanguage: {
+                title: 'Change the email notifications language',
+            },
             reset_password: {
                 title: "Change password",
                 forgot_password: "Forgot your password?",
