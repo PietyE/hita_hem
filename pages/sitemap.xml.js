@@ -1,4 +1,5 @@
 import React from "react";
+
 const baseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
 const baseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
 
@@ -7,22 +8,22 @@ const questionBaseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq/`
 
 const createDynamicMarkup = async () => {
 
-    const fetchCampaigns = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`,{
-        headers:{
+    const fetchCampaigns = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`, {
+        headers: {
             'content-type': 'application/json',
             'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
         },
     })
 
-        const fetchQuestions = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/faq-page/`,{
-        headers:{
+    const fetchQuestions = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/faq-page/`, {
+        headers: {
             'content-type': 'application/json',
             'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
         },
     })
 
     const campaigns = await fetchCampaigns.json()
-    const listOfSlugs =   campaigns.map((campaign=>campaign?.slug))
+    const listOfSlugs = campaigns.map((campaign => campaign?.slug))
     const campaignsMarkup = listOfSlugs.map((slug) => {
         return `
             <url>
@@ -38,7 +39,7 @@ const createDynamicMarkup = async () => {
     })
 
     const questions = await fetchQuestions.json()
-    const listOfQuestions =   questions.map((question=>question?.slug))
+    const listOfQuestions = questions.map((question => question?.slug))
     const questionsMarkup = listOfQuestions.map((slug) => {
         return `
             <url>
@@ -56,7 +57,7 @@ const createDynamicMarkup = async () => {
 
     const dibPosts = await fetch(`https://api.dropinblog.com/v1/json/?b=${process.env.NEXT_PUBLIC_DIP_ID}`)
     const dibData = await dibPosts.json()
-    const listOfDibSlugs = dibData?.data?.posts.map(post=>post?.slug)
+    const listOfDibSlugs = dibData?.data?.posts.map(post => post?.slug)
     const dibMarkup = listOfDibSlugs.map((slug) => {
         return `
             <url>
@@ -80,7 +81,7 @@ const Sitemap = () => {
     return null
 };
 
-export const getServerSideProps = async({res}) => {
+export const getServerSideProps = async ({res}) => {
     const markup = await createDynamicMarkup()
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
