@@ -7,6 +7,7 @@ import IconChevronDown from "../../components/ui/IconChevronDown";
 import {useDispatch, useSelector} from "react-redux";
 import {getUserEmailLanguageSelector} from "../../redux/reducers/user";
 import {setEmailLanguage} from "../../redux/actions/user";
+import {recaptcha} from "../../utils/recaptcha";
 
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent"), {ssr: false}
@@ -25,7 +26,7 @@ const ChangeEmailLanguage = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
-    const emailLanguage = useSelector(getUserEmailLanguageSelector) || 'sv'
+    const emailLanguage = useSelector(getUserEmailLanguageSelector)
 
     const _setEmailLanguage = useCallback(
         (data) => {
@@ -36,7 +37,7 @@ const ChangeEmailLanguage = () => {
 
     const handleSelectLang = (e) => {
         if (emailLanguage === lang[e.target.dataset.ln].code) return;
-        _setEmailLanguage(lang[e.target.dataset.ln].code)
+        recaptcha('request_for_change_email_language',_setEmailLanguage, {language: lang[e.target.dataset.ln].code} )
     }
 
     return (
