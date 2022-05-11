@@ -48,6 +48,7 @@ export const SET_UNSUBSCRIBE_LIST = 'user/SET_UNSUBSCRIBE_LIST'
 export const SET_SOCIALS_KEY = 'SET_SOCIALS_KEY'
 
 export const SAVE_EMAIL = 'user/SAVE_EMAIL'
+export const SET_EMAIL_LANGUAGE = 'user/SET_EMAIL_LANGUAGE'
 
 
 

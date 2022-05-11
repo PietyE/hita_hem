@@ -27,6 +27,7 @@ import {
     SIGN_UP_WITH_BANK_ID, REQUEST_SUBSCRIBE_LIST,
     CHANGE_UNSUBSCRIBE_LIST,
     SIGN_UP_WITH_SOCIALS,
+    SET_EMAIL_LANGUAGE,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -818,6 +819,21 @@ function* changeUnsubscribeListWorker({payload}) {
     }
 }
 
+function* setEmailLanguageWorker({payload}) {
+    try{
+        yield put(setFetchingUsers(true));
+        yield call([auth, "setEmailLanguage"], payload);
+        yield call(uploadUserData)
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
 
 
 
@@ -907,6 +923,7 @@ export function* userWorker() {
     yield takeEvery(REQUEST_SUBSCRIBE_LIST, requestSubscribeListWorker)
     yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
     yield takeEvery(SIGN_UP_WITH_SOCIALS, signUpWithSocialsWorker)
+    yield takeEvery(SET_EMAIL_LANGUAGE, setEmailLanguageWorker)
 
 
 

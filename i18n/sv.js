@@ -361,6 +361,9 @@ profile_page: {
             button_cancel: "Avbryt",
             button_save: "Spara ändringar",
     },
+    changeEmailLanguage: {
+        title: 'Ändra språket för e-postmeddelanden',
+    },
     reset_password: {
         title: "Ändra lösenord",
             forgot_password: "Glömt ditt lösenord?",
