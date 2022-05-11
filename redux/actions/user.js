@@ -50,6 +50,7 @@ import {
   SET_SOCIALS_KEY,
   SIGN_UP_WITH_SOCIALS,
   SAVE_EMAIL,
+  SET_EMAIL_LANGUAGE,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -301,5 +302,10 @@ export const setSocialsKey = payload => ({
 
 export const saveEmail = payload => ({
   type: SAVE_EMAIL,
+  payload
+})
+
+export const setEmailLanguage = payload => ({
+  type: SET_EMAIL_LANGUAGE,
   payload
 })
