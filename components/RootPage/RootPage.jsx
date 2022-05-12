@@ -38,7 +38,8 @@ import {
     getShowCompleteSocialsRegistration,
     getShowSuccessfulQuizMessage,
     getShowOptionalQuizMessage,
-    getShowDataLossWarningFromProfile,
+  getShowDataLossWarningFromProfile,
+  getShowAuthSocialAccountError
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
@@ -63,6 +64,9 @@ const ResetPassword = dynamic(() => import("components/auth/ResetPassword"));
 const SuccessfulSignUpModal = dynamic(() =>
     import("components/SuccessfulSignUpModal")
 );
+
+const SingInErrorModal = dynamic(() =>import("components/SingInErrorModal"), { ssr: false });
+
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
     import("components/SuccessfullyCampaignRegistrationModal"), { ssr: false }
 );
@@ -188,7 +192,8 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowCompleteSocialsRegistration = useSelector(getShowCompleteSocialsRegistration)
     const isShowSuccessfulQuizMessage = useSelector(getShowSuccessfulQuizMessage)
     const isShowOptionalQuizMessage = useSelector(getShowOptionalQuizMessage)
-    const showDataLossWarningFromProfile = useSelector(getShowDataLossWarningFromProfile)
+  const showDataLossWarningFromProfile = useSelector(getShowDataLossWarningFromProfile)
+  const showSocialAccountErrorModal = useSelector(getShowAuthSocialAccountError)
 
 
 
@@ -370,7 +375,8 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowCompleteSocialsRegistration && <CompleteSocialsRegistrationPopup show={!!isShowCompleteSocialsRegistration}/>}
           {!!isShowSuccessfulQuizMessage && <SuccessfulQuizMessage show={!!isShowSuccessfulQuizMessage}/>}
           {!!isShowOptionalQuizMessage && <SuccessfulOptionalQuiz show={!!isShowOptionalQuizMessage}/>}
-          {!!showDataLossWarningFromProfile && <DataLossWarningFromProfile data={showDataLossWarningFromProfile}/>}
+          {!!showDataLossWarningFromProfile && <DataLossWarningFromProfile data={showDataLossWarningFromProfile} />}
+          {showSocialAccountErrorModal && <SingInErrorModal show={showSocialAccountErrorModal} />}
 
 
 

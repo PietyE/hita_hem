@@ -66,7 +66,7 @@ import {
     setShowRequestForChangePassword,
     setShowFirstLoginPopup,
     setShowCompleteBankIdRegistration,
-    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage,
+    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage, setShowAuthSocialAccountError, 
 } from "../actions/authPopupWindows";
 import {getBIdKeySelector, getQuizIsPassedSelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -77,6 +77,9 @@ import {
     setResponseFromApi,
     setTokenForQuizSocialsSignIn, setUnSubscribeList
 } from "../actions/user";
+import {
+    setNotificationMessage,
+} from "../actions/notification";
 import api from "api";
 import {getDocumentsWorker} from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
@@ -220,13 +223,14 @@ function* signInWithGoogle({payload}) {
         if(error?.response?.data?.user){
             yield put(setShowCompleteSocialsRegistration(true))
             yield put(setSocialsKey(payload))
-        }else{
-            const hideNotification = !!error?.response?.data?.social_account
+        }else if (!!error?.response?.data?.social_account){
+            yield put(setNotificationMessage(error?.response?.data?.social_account[0]))
+            yield put(setShowAuthSocialAccountError(true));
+        } else {
             yield put(
                 setAuthError({
                     status: error?.response?.status,
                     data: error?.response?.data,
-                    hideNotification: hideNotification
                 })
             );
         }
@@ -358,15 +362,21 @@ function* signUpWithBankIdWorker({payload}) {
         yield put(setShowCompleteBankIdRegistration(false))
         yield put(setBIdKey(''))
     } catch (error) {
-        const hideNotification =  !!error?.response?.data?.email
+        if (!!error?.response?.data?.email?.social_account){
+            yield put(setNotificationMessage(error?.response?.data?.email?.social_account))
+            yield put(setShowAuthSocialAccountError(true));
+        } else {
+            const hideNotification =  !!error?.response?.data?.email
 
-        yield put(
-                setAuthError({
-                    status: error?.response?.status,
-                    data: error?.response?.data,
-                    hideNotification:hideNotification,
-                })
-            );
+            yield put(
+                    setAuthError({
+                        status: error?.response?.status,
+                        data: error?.response?.data,
+                        hideNotification:hideNotification,
+                    })
+                );
+        }
+       
 
     } finally {
         yield put(setFetchingUsers(false));

@@ -499,6 +499,9 @@ errors: {
 
     long_error_part1: "Måste vara högst",
     long_error_part2: "tecken.",
+    auth_social_account_error: {
+        title: 'Ett konto med denna mejladress finns redan',
+    }
 },
 cookie: {
     text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webbtrafiken. Genom att använda vår webbplats godkänner du vår',
