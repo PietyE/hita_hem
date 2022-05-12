@@ -208,6 +208,14 @@
 
     }
   }
+    .mobile_one_category_answer_closed{
+      @extend .mobile_one_category_answer;
+      display: none;
+      height: 0;
+    }
+//    .mobile_one_category_answer_open{
+//@extend .mobile_one_category_answer;
+//  }
 }
 
 
@@ -240,7 +248,6 @@
   .faq_one_category_title{
     font-size: 33px;
   }
-
-
 }
+
 }

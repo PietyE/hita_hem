@@ -16,7 +16,6 @@ import {useMediaQueries} from "@react-hook/media-query";
 import SpinnerStyled from "../../components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import Schema from "../../components/Schema";
-import makeFaqSchema from "../../Schemas/faqSchema";
 import makeQuestionSchema from "../../Schemas/faqQuestionSchema";
 import {wrapper} from "../../redux/store";
 import {END} from "redux-saga";
@@ -43,14 +42,14 @@ const Slug = ({initialLang}) => {
     });
 
     useEffect(() => {
-        // if (slug && oneCategoryData.length === 0) {
+        if (slug && oneCategoryData.length === 0) {
             _getQuestion(slug)
-        // }
+        }
         return () => {
             _resetQuestion()
             _resetOneCategory()
         }
-    }, [slug])
+    }, [])
 
     useEffect(() => {
         if (is404Error) {
