@@ -25,6 +25,10 @@ import {
   CLEAN_SEARCH_CAMPAIGNS,
   SET_CAMPAIGN_SEARCH_QUERY,
   SET_CAMPAIGN_OFFSET,
+  GET_INVEST_PAGE_SEO,
+  SET_INVEST_PAGE_SEO,
+  GET_SEARCH_PAGE_SEO,
+  SET_SEARCH_PAGE_SEO
 } from "constants/actionsConstant";
 
 export const setSelectedTab = (payload) => ({
@@ -147,5 +151,25 @@ export const setCampaignSearchQuery = (payload) => ({
 
 export const setCampaignOffset = (payload) => ({
   type: SET_CAMPAIGN_OFFSET,
+  payload,
+});
+
+export const setInvestPageSeo = (payload) => ({
+  type: SET_INVEST_PAGE_SEO,
+  payload,
+});
+
+export const getInvestPageSeo = (payload) => ({
+  type: GET_INVEST_PAGE_SEO,
+  payload,
+});
+
+export const setSearchPageSeo = (payload) => ({
+  type: SET_SEARCH_PAGE_SEO,
+  payload,
+});
+
+export const getSearchPageSeo = (payload) => ({
+  type: GET_SEARCH_PAGE_SEO,
   payload,
 });

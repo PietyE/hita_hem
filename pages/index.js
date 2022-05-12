@@ -12,7 +12,7 @@ import Schema from "../components/Schema";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
-import {getSeoSelector, getHomePageDataForSchema} from "redux/reducers/homePage";
+import {getSeoSelector} from "redux/reducers/homePage";
 import SpinnerStyled from "components/ui/Spinner";
 import useDropInBlog from "../customHooks/useDropInBlog";
 import MetaTags from "../components/MetaTags";
@@ -32,7 +32,6 @@ const Index = () => {
     const isAuth = useSelector(getIsSignInUserSelector);
     const isFetching = useSelector(getIsFetchingHomePageSelector);
     const seo = useSelector(getSeoSelector);
-    const dataForSchema = useSelector(getHomePageDataForSchema)
     useDropInBlog()
 
     const _getHomePage = useCallback(
@@ -49,7 +48,7 @@ const Index = () => {
     return (
         <>
             <MetaTags seo={seo} url={'https://accumeo.com'}/>
-            <Schema makeSchema={makeHomePageSchema} data={dataForSchema} key='home-page'/>
+            <Schema makeSchema={makeHomePageSchema} data={seo?.mark_up} keyName='home-page'/>
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}
                 <div className="home_page_container">

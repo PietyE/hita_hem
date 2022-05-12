@@ -11,6 +11,8 @@ import {
     GET_QUESTION,
     SET_QUESTION,
     SET_404_IN_QUESTION,
+    SET_FAQ_PAGE_SEO,
+    GET_FAQ_PAGE_SEO,
 } from "constants/actionsConstant";
 
 
@@ -71,5 +73,15 @@ export const setQuestion = (payload) => ({
 
 export const set404InQuestion = (payload) => ({
     type: SET_404_IN_QUESTION,
+    payload,
+});
+
+export const setFaqPageSeo = (payload) => ({
+    type: SET_FAQ_PAGE_SEO,
+    payload,
+});
+
+export const getFaqPageSeo = (payload) => ({
+    type: GET_FAQ_PAGE_SEO,
     payload,
 });

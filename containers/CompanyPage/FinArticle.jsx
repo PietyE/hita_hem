@@ -3,7 +3,7 @@ import Button from "components/ui/Button";
 import {useMediaQueries} from "@react-hook/media-query";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
-import {getCorrectImage, getImgMeta, getImageAltText} from "../../utils/utils";
+import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 
@@ -32,9 +32,7 @@ const options = {
 
 const FinArticle = ({item}) => {
     const {t} = useTranslation();
-    const {title, description, images, image, image_alter_text} = item;
-    const img = getCorrectImage(images)
-    const altText = getImageAltText(images)
+    const {title, description, image, image_alter_text} = item;
 
     const contentRef = useRef();
     const [isShowButton, setIsShowButton] = useState(false);
@@ -46,7 +44,7 @@ const FinArticle = ({item}) => {
     });
 
     useEffect(() => {
-        getImgMeta(image || img, setImageMeta)
+        getImgMeta(image, setImageMeta)
     }, [])
 
     useEffect(() => {
@@ -114,16 +112,16 @@ const FinArticle = ({item}) => {
                             />
                         </div>
 
-                        {(!!image || !!img) && (
+                        {(!!image) && (
                             <SimpleReactLightbox>
                                 <SRLWrapper options={options}>
                             <Image
-                                src={image || img}
+                                src={image}
                                 layout="responsive"
                                 width={imageMeta?.width || 192}
                                 height={imageMeta?.height || 108}
                                 className='fin_article_image'
-                                alt={image_alter_text || altText}
+                                alt={image_alter_text}
                             />
                             </SRLWrapper>
                             </SimpleReactLightbox>

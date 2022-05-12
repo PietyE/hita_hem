@@ -1,5 +1,5 @@
 import React from 'react';
-import {getCorrectImage, getImageAltText} from "../../utils/utils";
+// import {getCorrectImage, getImageAltText} from "../../utils/utils";
 import InfoBlockColor from "../../components/ui/InfoBlockColor";
 import Title from "../../components/ui/Title";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
@@ -28,31 +28,17 @@ const options = {
 const IdeaItem = ({section}) => {
     const {
         type,
-        first_images,
         first_image,
         first_image_alter_text,
-        second_images,
         second_image,
         second_image_alter_text,
-        third_images,
         third_image,
         third_image_alter_text,
-        fourth_images,
         fourth_image,
         fourth_image_alter_text,
         title,
         description,
     } = section;
-
-    const img1 = first_image || getCorrectImage(first_images)
-    const img2 = second_image || getCorrectImage(second_images)
-    const img3 = third_image || getCorrectImage(third_images)
-    const img4 = fourth_image || getCorrectImage(fourth_images)
-    const altText1 = first_image_alter_text || getImageAltText(first_images)
-    const altText2 = second_image_alter_text || getImageAltText(second_images)
-    const altText3 = third_image_alter_text || getImageAltText(third_images)
-    const altText4 = fourth_image_alter_text || getImageAltText(fourth_images)
-
 
     // const [firstImageSize, setFirstImageSize] = useState({})
     // const [secondImageSize, setSecondImageSize] = useState({})
@@ -96,10 +82,10 @@ const IdeaItem = ({section}) => {
                     <SimpleReactLightbox>
                         <SRLWrapper options={options}>
 
-                            {!!img1 && (
+                            {!!first_image && (
                                 <ImageComponent
-                                    alt={altText1}
-                                    src={img1}
+                                    alt={first_image_alter_text}
+                                    src={first_image}
                                     className="mb-4"
                                 />
                                 // <div className='solution_image_wrapper'>
@@ -113,8 +99,8 @@ const IdeaItem = ({section}) => {
                                 //     />
                                 // </div>
                             )}
-                            {!!img2 && (
-                                <ImageComponent alt={altText2} src={img2} />
+                            {!!second_image && (
+                                <ImageComponent alt={second_image_alter_text} src={second_image} />
                                 // <div className='solution_image_wrapper'>
                                 //     <Image
                                 //         src={img2}
@@ -188,34 +174,34 @@ const IdeaItem = ({section}) => {
 
                         {/*</div>*/}
                         <div className="idea_image_container">
-                            {!!img1 && (
+                            {!!first_image && (
                                 <ImageComponent
-                                    alt={altText1}
-                                    src={img1}
+                                    alt={first_image_alter_text}
+                                    src={first_image}
                                     className="middle_photo"
                                 />
 
                             )}
-                            {!!img2 && (
+                            {!!second_image && (
                                 <ImageComponent
-                                    alt={altText2}
-                                    src={img2}
+                                    alt={second_image_alter_text}
+                                    src={second_image}
                                     className="middle_photo"
                                 />
 
                             )}
-                            {!!img3 && (
+                            {!!third_image && (
                                 <ImageComponent
-                                    alt={altText3}
-                                    src={img3}
+                                    alt={third_image_alter_text}
+                                    src={third_image}
                                     className="middle_photo"
                                 />
 
                             )}
-                            {!!img4 && (
+                            {!!fourth_image && (
                                 <ImageComponent
-                                    alt={altText4}
-                                    src={img4}
+                                    alt={fourth_image_alter_text}
+                                    src={fourth_image}
                                     className="middle_photo"
                                 />
 

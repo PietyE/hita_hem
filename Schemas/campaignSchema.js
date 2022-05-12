@@ -1,9 +1,9 @@
 import {convertStatusToText} from "../utils/utils";
 
-const makeCampaignSchema = (campaign) => {
+const makeCampaignSchema = ({campaign, seo}) => {
     let socials = []
-    if(campaign?.social_url && campaign?.social_url.length > 0){
-        socials = campaign?.social_url.map(el=>el.url)
+    if (campaign?.social_url && campaign?.social_url.length > 0) {
+        socials = campaign?.social_url.map(el => el.url)
     }
 
     return (campaign?.hidden_mode ? {}
@@ -22,7 +22,7 @@ const makeCampaignSchema = (campaign) => {
                     },
                     "image": {
                         "@type": "ImageObject",
-                        "url":  `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
+                        "url": `${campaign?.images['desktop'] || campaign?.images['laptop'] || campaign?.images['mobile']}`,
                         "caption": `${campaign?.name}`
                     },
                     "url": `https://accumeo.com/foretag/${campaign?.slug}`,
@@ -30,9 +30,9 @@ const makeCampaignSchema = (campaign) => {
                 },
                 {
                     "@type": "Offer",
-                    "name": `${campaign?.name}`,
+                    "name": `${seo?.title}`,
                     "areaServed": `${campaign?.country}`,
-                    "description": `${campaign?.short_description}`,
+                    "description": `${seo?.description}`,
 
                     "availability": `${convertStatusToText(campaign?.status)}`,
                     "availabilityEnds": `${campaign?.end_date}`,
@@ -40,7 +40,7 @@ const makeCampaignSchema = (campaign) => {
                     "priceCurrency": `${campaign?.currency}`,
 
                 }
-                ]
+            ]
 
         })
 

@@ -14,6 +14,10 @@ import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import MobileView from "../../containers/FaqQuestion/MobileView";
 import {useMediaQueries} from "@react-hook/media-query";
 import SpinnerStyled from "../../components/ui/Spinner";
+import MetaTags from "../../components/MetaTags";
+import Schema from "../../components/Schema";
+import makeFaqSchema from "../../Schemas/faqSchema";
+import makeQuestionSchema from "../../Schemas/faqQuestionSchema";
 import {wrapper} from "../../redux/store";
 import {END} from "redux-saga";
 
@@ -91,8 +95,16 @@ const Slug = ({initialLang}) => {
                 {scroll: false})
         }
     }
+
+    const seo = {
+        title: '',
+        description: '',
+    }
     return (
         <>
+            <MetaTags seo={seo}  url={`https://accumeo.com/fragor&svar/${slug}`}/>
+            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question, seo:seo?.mark_up}} keyName='question'/>
+
             {isFetching && <SpinnerStyled/>}
 
             <TopContainer/>

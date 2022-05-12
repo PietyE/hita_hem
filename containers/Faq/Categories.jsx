@@ -8,7 +8,6 @@ import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 
 const Categories = () => {
-
     const {t} = useTranslation();
     const router = useRouter()
     const lang = useSelector(getSelectedLangSelector)
