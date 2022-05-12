@@ -50,6 +50,7 @@ const ChangeEmailLanguage = () => {
                 <DropdownMenu
                     className="dropdown_menu"
                     onClick={handleSelectLang}
+                    align='right'
                 >
                     {Object.keys(lang).map((l) => {
                         return (

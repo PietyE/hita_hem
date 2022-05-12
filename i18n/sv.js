@@ -362,7 +362,7 @@ profile_page: {
             button_save: "Spara ändringar",
     },
     changeEmailLanguage: {
-        title: 'Ändra språket för e-postmeddelanden',
+        title: 'Byt språk för e-postmeddelanden',
     },
     reset_password: {
         title: "Ändra lösenord",
