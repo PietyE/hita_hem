@@ -25,11 +25,11 @@ const SingInErrorModal = ({show}) => {
             backdrop={true}
             keyboard={false}
             centered={true}
-            className="quiz_error_modal"
-            bodyClassName="quiz_error_body"
-            dialogClassName='quiz_error_dialog'
+            className="sing_in_error_modal"
+            bodyClassName="sing_in_error_body"
+            dialogClassName='sing_in_error_dialog'
         >
-            <div className="successful_investment_icon_container quiz_error_dialog_icon_container">
+            <div className="successful_investment_icon_container sing_in_error_dialog_icon_container">
                 <Image src={Icon} alt={Icon ? 'icon' : ' '}/>
             </div>
             <h2 className='successful_investment_title'>{t("errors.auth_social_account_error.title")}</h2>

@@ -65,7 +65,7 @@ const SuccessfulSignUpModal = dynamic(() =>
     import("components/SuccessfulSignUpModal")
 );
 
-const SingInErrorModal = dynamic(() =>import("components/SingInErrorModal"));
+const SingInErrorModal = dynamic(() =>import("components/SingInErrorModal"), { ssr: false });
 
 const SuccessfullyCampaignRegistrationModal = dynamic(() =>
     import("components/SuccessfullyCampaignRegistrationModal"), { ssr: false }
