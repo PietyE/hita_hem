@@ -573,6 +573,7 @@ export const en = {
             placeholder: 'Ask a question or search by keyword',
             search_results_title: 'Search results',
             no_results: 'Sorry, nothing matched your search terms',
+            back_button: 'Back',
         },
     },
 

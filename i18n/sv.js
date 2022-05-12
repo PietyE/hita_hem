@@ -573,6 +573,7 @@ cookie: {
             placeholder: 'Ställ en fråga eller sök med nyckelord',
             search_results_title: 'Sökresultat',
             no_results: 'Tyvärr, inget matchade dina söktermer',
+            back_button: 'Tillbaka',
         },
 
     },
