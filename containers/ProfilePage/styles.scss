@@ -526,14 +526,14 @@
 
     .account_settings_change_email_language_container{
       display: flex;
-      margin: 0 auto 10px auto;
+      margin: 0 10px 10px auto;
       button{
         font-family: "Source Sans Pro", sans-serif;
         font-style: normal;
         font-weight: 600;
         font-size: 15px;
         color: black;
-        padding-left: 45px;
+        //padding-left: 45px;
         &:active{
           color: black;
         }
