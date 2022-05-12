@@ -39,7 +39,7 @@ const Categories = () => {
 
     return (
         <>
-            {categories.length > 0 &&
+            {categories?.length > 0 &&
             <section className='faq_categories_section' ref={categoriesRef}>
                 <div className='faq_categories_content_container'>
                     <>

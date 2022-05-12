@@ -40,7 +40,7 @@
 
     .faq_one_category_questions_item_selected {
       @extend .faq_one_category_questions_item;
-
+      //color: #1F607C;
       &:hover {
         transition: 0.3s;
         transform: translateY(0);
@@ -59,6 +59,9 @@
       font-weight: 700;
       font-size: 24px;
       color: #000;
+
+
+
     }
 
     .faq_one_category_answer {
@@ -76,6 +79,9 @@
         font-size: 22px;
         line-height: 150%;
         color: #424242;
+        img{
+          max-width: 100%;
+        }
       }
 
       h3 {
@@ -94,6 +100,11 @@
         padding: 0 0 0 20px;
         margin: 22px 0;
       }
+
+      img{
+        max-width: 100%;
+      }
+
       li {
         font-family: 'Source sans Pro', sans-serif;
         font-style: normal;
@@ -105,6 +116,9 @@
         //align-items: center;
         padding-left: 20px;
         color: #424242;
+        img{
+          max-width: 100%;
+        }
 
         &::before {
           content: "";
@@ -135,17 +149,30 @@
     }
   }
   .mobile_one_category_question{
-    white-space: nowrap;
+    //white-space: nowrap;
 
     //p{
     //  pointer-events: none;
         font-weight: 600;
         font-size: 18px;
     //}
+    svg{
+      margin-right: 7px;
+      pointer-events: none;
+    }
 
     button{
       white-space: normal;
       text-align: left;
+    }
+
+  }
+  .mobile_one_category_question_active{
+    @extend .mobile_one_category_question;
+    color: #1F607C;
+    svg{
+      margin-right: 7px;
+      pointer-events: none;
     }
   }
   .mobile_one_category_answer{
@@ -173,6 +200,10 @@
       line-height: 40px;
       letter-spacing: 0.1px;
       color: rgba(0, 0, 0, 0.87);
+    }
+
+    img{
+      max-width: 100%;
     }
 
     ul {
@@ -208,11 +239,12 @@
 
     }
   }
-    .mobile_one_category_answer_closed{
-      @extend .mobile_one_category_answer;
-      display: none;
-      height: 0;
-    }
+  .mobile_one_category_answer_closed{
+    //@extend .mobile_one_category_answer;
+    display: none;
+    height: 0;
+    overflow: hidden;
+  }
 //    .mobile_one_category_answer_open{
 //@extend .mobile_one_category_answer;
 //  }
@@ -247,6 +279,13 @@
 .faq_one_category_block {
   .faq_one_category_title{
     font-size: 33px;
+  }
+
+  .faq_one_category_questions{
+    margin: 0;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
   }
 }
 
