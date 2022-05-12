@@ -5,10 +5,10 @@ import {useRouter} from "next/router";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import {useDispatch} from "react-redux";
 import {saveSearchResults} from "../../redux/actions/faq";
-// import {useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
 
 const BackButton = ({lang}) => {
-    // const {t} = useTranslation();
+    const {t} = useTranslation();
     const dispatch = useDispatch();
     const router = useRouter()
 
@@ -36,7 +36,7 @@ const BackButton = ({lang}) => {
                 icon={faArrowLeft}
                 className="faq_back_button_arrow"
             />
-            To Categories
+            {t("faq_page.back_button")}
         </button>
     );
 }
