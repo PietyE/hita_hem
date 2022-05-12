@@ -16,7 +16,6 @@ import {useMediaQueries} from "@react-hook/media-query";
 import SpinnerStyled from "../../components/ui/Spinner";
 import MetaTags from "../../components/MetaTags";
 import Schema from "../../components/Schema";
-import makeFaqSchema from "../../Schemas/faqSchema";
 import makeQuestionSchema from "../../Schemas/faqQuestionSchema";
 import {wrapper} from "../../redux/store";
 import {END} from "redux-saga";
@@ -32,10 +31,10 @@ const Slug = ({initialLang}) => {
     const isFetching = useSelector(getFaqIsFetchingSelector)
     const is404Error = useSelector(getIs404QuestionSelector)
 
-    const [isMounted,setIsMounted] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     useEffect(() => {
         setIsMounted(true);
-    },[]);
+    }, []);
 
     const {matchesAll} = useMediaQueries({
         screen: "screen",
@@ -44,7 +43,7 @@ const Slug = ({initialLang}) => {
 
     useEffect(() => {
         // if (slug && oneCategoryData.length === 0) {
-            _getQuestion(slug)
+        _getQuestion(slug)
         // }
         return () => {
             _resetQuestion()
@@ -102,60 +101,64 @@ const Slug = ({initialLang}) => {
     }
     return (
         <>
-            <MetaTags seo={seo}  url={`https://accumeo.com/fragor&svar/${slug}`}/>
-            <Schema makeSchema={makeQuestionSchema} data={{questionsList: oneCategoryData, question:question, seo:seo?.mark_up}} keyName='question'/>
+            <MetaTags seo={seo} url={`https://accumeo.com/fragor&svar/${slug}`}/>
+            <Schema makeSchema={makeQuestionSchema}
+                    data={{questionsList: oneCategoryData, question: question, seo: seo?.mark_up}} keyName='question'/>
 
             {isFetching && <SpinnerStyled/>}
 
             <TopContainer/>
             <div className='faq_one_category_block'>
                 <h2 className='faq_one_category_title' ref={titleRef}>{question?.category?.title}</h2>
-                {!matchesAll &&
 
-                <div className='faq_one_category_content_container'>
-                    <ul className='faq_one_category_questions'>
-                        {oneCategoryData.map((item, i) => (
-                            <li
-                                className={item?.question === question.question ? 'faq_one_category_questions_item_selected' : 'faq_one_category_questions_item'}
-                                key={item.question}
-                                data-index={i}
-                                style={item?.question === question.question ? {color: '#1F607C'} : {}}
-                                data-slug={item.slug}
-                                onClick={handleClickQuestion}
-                            >
-                                {item?.question}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className='faq_one_category_answers'>
-                        {question?.question &&
-                        <p
-                            className='faq_one_category_question'
-                        >
-                            {question?.question}
-                        </p>
-                        }
-                        {question?.answer && isMounted &&
-                        <p
-                            className='faq_one_category_answer'
-                            dangerouslySetInnerHTML={{
-                                __html: sanitizeHtmlFromBack(question?.answer)
-                            }}
-                        />
-                        }
+                {
+                    !matchesAll ? (
+                            <div className='faq_one_category_content_container'>
+                                <ul className='faq_one_category_questions'>
+                                    {oneCategoryData.map((item, i) => (
+                                        <li
+                                            className={item?.question === question.question ? 'faq_one_category_questions_item_selected' : 'faq_one_category_questions_item'}
+                                            key={item.question}
+                                            data-index={i}
+                                            data-slug={item.slug}
+                                            onClick={handleClickQuestion}
+                                        >
+                                <span
+                                    data-slug={item.slug}
+                                    style={item?.question === question.question ? {color: '#1F607C'} : {}}
+                                >
+                                     {item?.question}
+                                </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <div className='faq_one_category_answers'>
+                                    {question?.question &&
+                                    <p className='faq_one_category_question'>
+                                        {question?.question}
+                                    </p>
+                                    }
+                                    {question?.answer && isMounted &&
+                                    <p
+                                        className='faq_one_category_answer'
+                                        dangerouslySetInnerHTML={{
+                                            __html: sanitizeHtmlFromBack(question?.answer)
+                                        }}
+                                    />
+                                    }
 
-                    </div>
-                </div>
-                }
-                {matchesAll &&
-                <div >
-                    <MobileView
-                        oneCategoryData={oneCategoryData}
-                        slug={slug}
-                        handleClickQuestion={handleClickQuestion}
-                        parentTitleRef={titleRef?.current}
-                    />
-                </div>
+                                </div>
+                            </div>
+                        )
+                        :
+                        (
+                            <MobileView
+                                oneCategoryData={oneCategoryData}
+                                slug={slug}
+                                handleClickQuestion={handleClickQuestion}
+                                parentTitleRef={titleRef?.current}
+                            />
+                        )
                 }
             </div>
 
