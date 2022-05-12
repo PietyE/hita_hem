@@ -5,7 +5,7 @@
       width: auto;
       box-shadow: none;
     }
-  }
+ 
   .quiz_error_dialog_icon_container{
     background-color: rgba(255, 77, 79, 0.2);
   }
@@ -18,15 +18,13 @@
     line-height: 150%;
     text-align: center;
     color: #000;
-  
   }
+}
   
   @media screen and (max-width: 500px) {
     .sing_in_error_modal{
       .quiz_error_body{
         padding: 30px 45px;
       }
-  
     }
-  
   }
