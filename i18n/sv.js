@@ -500,7 +500,7 @@ errors: {
     long_error_part1: "Måste vara högst",
     long_error_part2: "tecken.",
     auth_social_account_error: {
-        title: 'Ett konto med denna mejladress finns redan',
+        title: 'Ett konto med denna mejladress finns redan.',
     }
 },
 cookie: {
@@ -515,7 +515,7 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Instruktionerna för att ändra din registrerade mailadress kommer skickas till din för närvarande registrerade mailadress',
+            title: 'Instruktionerna för att ändra din registrerade mailadress kommer skickas till din för närvarande registrerade mailadress.',
             text: 'Var vänlig att inte logga inte ut från Accumeo innan du är klar med ändringen av din e-post.',
         },
         request_for_change_password:{
