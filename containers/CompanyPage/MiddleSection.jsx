@@ -177,9 +177,9 @@ const MiddleSection = ({isAuth}) => {
                 if(el.offsetHeight + el.offsetTop - 135 >= window.scrollY){
                     acc = i
                 }
-                return acc
-            },3)
 
+                return acc
+            }, (showFaq? 4: !isQuizPassed? 0 : 3))
                 menuElementsList.forEach(el=>el.classList.remove('selected'), {passive:true})
                 menuElementsList[currentSectionIndex].classList.add('selected')
 
@@ -191,7 +191,7 @@ const MiddleSection = ({isAuth}) => {
         return () => {
             window.removeEventListener("scroll", sectionsTracking)
         }
-    },[])
+    },[showFaq, isAuth, isQuizPassed])
 
 
 
@@ -279,13 +279,13 @@ const MiddleSection = ({isAuth}) => {
 
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#Idea" className='tab_bar_item_button'>{t("tab_accordion.Idea")}</a>
+                                <a href={!isAuth ? "#notAuth" : !isQuizPassed ? "#notQuiz": "#Idea" } className='tab_bar_item_button'>{t("tab_accordion.Idea")}</a>
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#Team" className='tab_bar_item_button'>{t("tab_accordion.Team")}</a>
+                                <a href={!isAuth ? "#notAuth" : !isQuizPassed ? "#notQuiz": "#Team"} className='tab_bar_item_button'>{t("tab_accordion.Team")}</a>
                             </li>
                             <li className='tab_bar_item' onClick={handleClickNotFaqTab}>
-                                <a href="#FinancialInformation" className='tab_bar_item_button'>{t("tab_accordion.Financial_information")}</a>
+                                <a href={!isAuth ? "#notAuth" : !isQuizPassed ? "#notQuiz": "#FinancialInformation"} className='tab_bar_item_button'>{t("tab_accordion.Financial_information")}</a>
                             </li>
                             <li className='tab_bar_item'  onClick={handleClickFaqTab}>
                                 <a href="#Faq" className='tab_bar_item_button'>{t("tab_accordion.FAQ")}</a>
@@ -294,72 +294,26 @@ const MiddleSection = ({isAuth}) => {
                 </nav>
                     <div style={_notFaqBlock} ref = {sectionsContainerRef}>
                         <section id='Overview' className='campaigns_section mb-5'>
-                            <Overview/>
+                        <Overview />
+                        {!isAuth ? (
+                            <section id='notAuth' className='campaigns_section_sing_in'>
+                                <CampaignTabSignUp />
+                            </section>
+                        ) : !isQuizPassed ? (
+                            <section id='notQuiz' className='campaigns_section_sing_in'>
+                                <CampaignTabQuizRequest/>
+                            </section>
+                        ) : null}
                         </section>
+                        
                         <section id='Idea' className='campaigns_section'>
-
-
-                            {!isAuth ?(
-                                <>
-                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Idea")}</h2>
-                                    <CampaignTabSignUp/>
-                                </>
-                            ) :(
-                                <>
-                                    {!isQuizPassed ? (
-                                        <>
-                                            <h2 className='campaign_guest_title'>{t("tab_accordion.Idea")}</h2>
-                                            <CampaignTabQuizRequest/>
-                                        </>
-
-                                    )
-                                        :
-                                        <Idea/>
-                                    }
-                                </>
-                            )}
+                            {(isAuth && isQuizPassed) && <Idea/> }
                         </section>
                         <section id='Team' className='campaigns_section'>
-                            {!isAuth ?(
-                                <>
-                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Team")}</h2>
-                                    <CampaignTabSignUp/>
-                                </>
-                            ) :(
-                                <>
-                                    {!isQuizPassed ? (
-                                            <>
-                                                <h2 className='campaign_guest_title'>{t("tab_accordion.Team")}</h2>
-                                                <CampaignTabQuizRequest/>
-                                            </>
-
-                                        )
-                                        :
-                                        <Team/>
-                                    }
-                                </>
-                            )}
+                            {(isAuth && isQuizPassed) && <Team/> }
                         </section>
                         <section id='FinancialInformation' className='campaigns_section'>
-                            {!isAuth ?(
-                                <>
-                                    <h2 className='campaign_guest_title'>{t("tab_accordion.Financial_information")}</h2>
-                                    <CampaignTabSignUp/>
-                                </>
-                            ) :(
-                                <>
-                                    {!isQuizPassed ? (
-                                            <>
-                                                <h2 className='campaign_guest_title'>{t("tab_accordion.Financial_information")}</h2>
-                                                <CampaignTabQuizRequest/>
-                                            </>
-
-                                        )
-                                        :
-                                        <FinancialInformation/>
-                                    }
-                                </>
-                            )}
+                            {(isAuth && isQuizPassed) && <FinancialInformation/> }
                         </section>
                     </div>
                 <section id='Faq' style={_faqBlock}  className='campaigns_section'>

@@ -3120,7 +3120,25 @@ overflow: hidden;
   &::before {
     content: '';
     display: block;
-    height:      135px;
+    height: 135px;
+    margin-top: -135px;
+    visibility: hidden;
+  }
+}
+.campaigns_section_sing_in {
+  &::before{
+    content: '';
+    display: block;
+    height: 135px;
+    margin-top: -135px;
+    visibility: hidden;
+  }
+}
+.campaigns_section_tab_quiz{
+  &::before{
+    content: '';
+    display: block;
+    height: 135px;
     margin-top: -135px;
     visibility: hidden;
   }
