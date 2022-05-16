@@ -228,7 +228,7 @@
       .warning_date_text {
         transform: translateY(0);
         bottom: -34px;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .profile_form_input {
@@ -1561,7 +1561,7 @@
           }
 
           .profile_form_warning_text {
-            font-size: 10px;
+            font-size: 12px;
           }
 
           .profile_input_arrow {
@@ -1925,6 +1925,17 @@
           .mobile_investments_field_values {
             font-size: 16px;
           }
+        }
+      }
+    }
+  }
+
+
+  .profile_personal_details {
+    .profile_form{
+      .profile_form_data_container{
+        .warning_date_text {
+font-size: 12px;
         }
       }
     }
