@@ -178,11 +178,8 @@ const MiddleSection = ({isAuth}) => {
                     acc = i
                 }
 
-                if (sectionsList.length === 2 && acc === 1 && (!isAuth || !isQuizPassed)) {
-                    acc = menuElementsList.length-1
-                }
                 return acc
-            },0)
+            }, (showFaq? 4: !isQuizPassed? 0 : 3))
                 menuElementsList.forEach(el=>el.classList.remove('selected'), {passive:true})
                 menuElementsList[currentSectionIndex].classList.add('selected')
 
@@ -194,7 +191,7 @@ const MiddleSection = ({isAuth}) => {
         return () => {
             window.removeEventListener("scroll", sectionsTracking)
         }
-    },[isAuth, isQuizPassed])
+    },[showFaq, isAuth, isQuizPassed])
 
 
 
@@ -309,20 +306,15 @@ const MiddleSection = ({isAuth}) => {
                         ) : null}
                         </section>
                         
-
-                    {(isAuth && isQuizPassed) &&  (
-                                    <>
-                                        <section id='Idea' className='campaigns_section'>
-                                            <Idea/>
-                                        </section>
-                                        <section id='Team' className='campaigns_section'>
-                                            <Team/>
-                                        </section>
-                                        <section id='FinancialInformation' className='campaigns_section'>
-                                            <FinancialInformation />
-                                        </section>
-                                    </>
-                            ) }
+                        <section id='Idea' className='campaigns_section'>
+                            {(isAuth && isQuizPassed) && <Idea/> }
+                        </section>
+                        <section id='Team' className='campaigns_section'>
+                            {(isAuth && isQuizPassed) && <Team/> }
+                        </section>
+                        <section id='FinancialInformation' className='campaigns_section'>
+                            {(isAuth && isQuizPassed) && <FinancialInformation/> }
+                        </section>
                     </div>
                 <section id='Faq' style={_faqBlock}  className='campaigns_section'>
                     {!isAuth ?
