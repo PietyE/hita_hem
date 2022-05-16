@@ -14,10 +14,6 @@ const MobileView = ({oneCategoryData, slug, handleClickQuestion, parentTitleRef}
         }
     }, [slug, offsetTop])
 
-    useEffect(() => {
-        console.log('start')
-    }, [])
-
     return (
         <ul className='mobile_one_category_list'>
             {oneCategoryData.map(item => {
