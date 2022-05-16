@@ -165,7 +165,7 @@ export const en = {
             text: "You have now completed the quiz and are ready to invest.",
         },
         successfulInvestment: {
-            title: "You have successfully completed the form!",
+            title: "You have successfully completed the form.",
             text: "We will get back to you with further instructions.",
         },
         successfulDeletedAccount: {
@@ -488,7 +488,7 @@ export const en = {
             long_error_part1: "Must be at most",
             long_error_part2: "characters.",
             auth_social_account_error: {
-                title: 'An account with this email address already exists',
+                title: 'An account with this email address already exists.',
             }
         },
         cookie: {
