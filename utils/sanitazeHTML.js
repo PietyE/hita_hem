@@ -16,6 +16,7 @@ export const sanitizeHtmlFromBack = (html) => {
       "h5",
       "h6",
       "ul",
+      "ol",
       "li",
       "img",
     ],
