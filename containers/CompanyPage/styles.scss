@@ -267,6 +267,34 @@
             }
           }
         }
+        ol {
+          padding: 0;
+          //list-style: none;
+
+          li {
+            font-family: 'Source sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 31px;
+            letter-spacing: 0.3px;
+            color: #000;
+            position: relative;
+            padding-left: 18px;
+
+            //&::before {
+            //  content: "";
+            //  position: absolute;
+            //  left: 0;
+            //  top: 14px;
+            //  width: 6px;
+            //  height: 6px;
+            //  background: #0E5394;
+            //  border-radius: 50px;
+            //}
+          }
+        }
+
       }
     }
   }
@@ -617,6 +645,39 @@
           }
 
         }
+        ol {
+          //list-style: none;
+          padding: 0 0 0 20px;
+          margin: 22px 0;
+
+
+          li {
+            font-family: 'Source sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 22px;
+            line-height: 170%;
+            position: relative;
+            //display: flex;
+            //align-items: center;
+            padding-left: 20px;
+            color: #424242;
+
+            //&::before {
+            //  content: "";
+            //  display: block;
+            //  position: absolute;
+            //  left: 0;
+            //  top: 18px;
+            //  width: 6px;
+            //  height: 6px;
+            //  background: #fb7f73;
+            //  border-radius: 50%;
+            //}
+          }
+
+        }
+
       }
 
       .solution_image_wrapper{
