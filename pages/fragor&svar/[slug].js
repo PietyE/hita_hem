@@ -30,8 +30,8 @@ const Slug = ({initialLang}) => {
     const oneCategoryData = useSelector(getOneCategorySelector)
     const isFetching = useSelector(getFaqIsFetchingSelector)
     const is404Error = useSelector(getIs404QuestionSelector)
-
     const [isMounted, setIsMounted] = useState(false);
+
     useEffect(() => {
         setIsMounted(true);
     }, []);
@@ -95,15 +95,11 @@ const Slug = ({initialLang}) => {
         }
     }
 
-    const seo = {
-        title: '',
-        description: '',
-    }
     return (
         <>
-            <MetaTags seo={seo} url={`https://accumeo.com/fragor&svar/${slug}`}/>
+            <MetaTags seo={question?.seo} url={`https://accumeo.com/fragor&svar/${slug}`}/>
             <Schema makeSchema={makeQuestionSchema}
-                    data={{questionsList: oneCategoryData, question: question, seo: seo?.mark_up}} keyName='question'/>
+                    data={{questionsList: oneCategoryData, question: question, seo: question?.seo?.mark_up}} keyName='question'/>
 
             {isFetching && <SpinnerStyled/>}
 

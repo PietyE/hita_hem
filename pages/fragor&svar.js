@@ -2,7 +2,12 @@ import React, {useCallback, useEffect} from 'react';
 import Categories from "../containers/Faq/Categories";
 import TopContainer from "../containers/Faq/TopContainer";
 import {useSelector, useDispatch} from "react-redux";
-import {getFaqIsFetchingSelector, getFaqCategoriesSelector, getFaqSearchResultsSelector} from "../redux/reducers/faq";
+import {
+    getFaqIsFetchingSelector,
+    getFaqCategoriesSelector,
+    getFaqSearchResultsSelector,
+    getFaqPageSeoSelector
+} from "../redux/reducers/faq";
 import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 import SpinnerStyled from "../components/ui/Spinner";
@@ -23,7 +28,7 @@ const FragorSvar = () => {
     const searchResults = useSelector(getFaqSearchResultsSelector, isEqual)
     const isFetching = useSelector(getFaqIsFetchingSelector)
     const categories = useSelector(getFaqCategoriesSelector, isEqual)
-    const seo = useSelector(getFaqPageSeo)
+    const seo = useSelector(getFaqPageSeoSelector)
 
     useEffect(() => {
         _getCategories()
