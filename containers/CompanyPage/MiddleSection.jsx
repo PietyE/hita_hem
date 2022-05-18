@@ -24,11 +24,7 @@ const CampaignTabSignUp = dynamic(() =>
 
 
 import {companyTabConstants} from "constants/companyTabConstant";
-import {
-    setSelectedTab,
-    getCompanyBySlag,
-    clearCompany,
-} from "redux/actions/companies";
+import { setSelectedTab} from "redux/actions/companies";
 import {
     getCompanyIndustryTitleSelector, getCompanyLogoUrlSelector, getCompanyNameSelector,
     getCompanyTabSelected,
@@ -49,7 +45,6 @@ import throttle  from "lodash/throttle"
 const MiddleSection = ({isAuth}) => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
-    const router = useRouter();
     const selectedTab = useSelector(getCompanyTabSelected);
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
     const industryTitle = useSelector(getCompanyIndustryTitleSelector);
@@ -62,8 +57,6 @@ const MiddleSection = ({isAuth}) => {
     const alter_text = useSelector(getCompanyLogoAltTextSelector)
     const sectionRef = useRef();
     const sectionsContainerRef = useRef()
-   
-    const companyName = router?.query?.companyId;
 
     const _changeCompanuTab = useCallback(
         (key) => {
@@ -71,17 +64,6 @@ const MiddleSection = ({isAuth}) => {
         },
         [dispatch]
     );
-
-    const _getCompanyDetail = useCallback(
-        (name) => {
-            dispatch(getCompanyBySlag(name));
-        },
-        [dispatch]
-    );
-
-    const _clearCompanyDetail = useCallback(() => {
-        dispatch(clearCompany());
-    }, [dispatch]);
 
     const {matchesAll} = useMediaQueries({
         screen: "screen",
@@ -210,16 +192,6 @@ const MiddleSection = ({isAuth}) => {
             window.removeEventListener("scroll", sectionsTracking)
         }
     },[showFaq, isAuth, isQuizPassed])
-
-    useEffect(() => {
-        if (isQuizPassed) {
-            _getCompanyDetail(companyName)
-        }
-        return () => {
-            _clearCompanyDetail();
-        };
-    }, [isQuizPassed])
-
 
 
     return (
