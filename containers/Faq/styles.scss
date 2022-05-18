@@ -614,3 +614,28 @@
   }
 
 }
+
+
+@media screen and (max-width: 375px) {
+  .faq_top_section{
+    .faq_search_form{
+      .faq_search_input{
+        &::placeholder{
+          font-size: 14px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 335px) {
+  .faq_top_section{
+    .faq_search_form{
+      .faq_search_input{
+        &::placeholder{
+          font-size: 11px;
+        }
+      }
+    }
+  }
+}
