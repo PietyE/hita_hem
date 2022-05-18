@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
+import {useRouter} from "next/router";
 
 import Overview from "./Overview";
 import TabAccordion from "components/ui/TabAccordion";
@@ -23,7 +24,7 @@ const CampaignTabSignUp = dynamic(() =>
 
 
 import {companyTabConstants} from "constants/companyTabConstant";
-import {setSelectedTab} from "redux/actions/companies";
+import { setSelectedTab} from "redux/actions/companies";
 import {
     getCompanyIndustryTitleSelector, getCompanyLogoUrlSelector, getCompanyNameSelector,
     getCompanyTabSelected,
@@ -63,7 +64,6 @@ const MiddleSection = ({isAuth}) => {
         },
         [dispatch]
     );
-
 
     const {matchesAll} = useMediaQueries({
         screen: "screen",
@@ -192,7 +192,6 @@ const MiddleSection = ({isAuth}) => {
             window.removeEventListener("scroll", sectionsTracking)
         }
     },[showFaq, isAuth, isQuizPassed])
-
 
 
     return (

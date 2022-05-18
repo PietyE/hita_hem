@@ -15,7 +15,7 @@ import {
     setError404,
     resetCompanyTab, setRedirect,
 } from "redux/actions/companies";
-import {getIsSignInUserSelector} from "redux/reducers/user";
+import {getIsSignInUserSelector, getQuizIsPassedSelector} from "redux/reducers/user";
 import {getCampaignDataForSchemaSelector, getCampaignSeoSelector} from "redux/reducers/companies";
 import {
     getIsError404Selector,
@@ -37,7 +37,8 @@ const CompanyPage = () => {
     const isFetching = useSelector(getIsFetchingCampaignsSelector);
     const isRedirectOnSelector = useSelector(getIsRedirectOnSelector)
     const seo = useSelector(getCampaignSeoSelector)
-  const dataForSchema = useSelector(getCampaignDataForSchemaSelector)
+    const dataForSchema = useSelector(getCampaignDataForSchemaSelector)
+    const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
 
     const _getCompanyDetail = useCallback(
@@ -109,7 +110,7 @@ const CompanyPage = () => {
             _clearCompanyDetail();
             _resetCompanyTab();
         };
-    }, [isAuth, companyName])
+    }, [isAuth, companyName, isQuizPassed])
 
     return (
         <>
