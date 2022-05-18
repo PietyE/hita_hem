@@ -52,9 +52,9 @@ form3: {
         video_link: "Länk till videopresentation",
         social_media: "Länk till sociala medier",
         followers: "Antal följare",
-        social_media_facebook: "Facebook.",
-        social_media_linkedin: "LinkedIn.",
-        social_media_instagram: "Instagram.",
+        social_media_facebook: "Länk till Facebook",
+        social_media_linkedin: "Länk till LinkedIn",
+        social_media_instagram: "Länk till Instagram",
 },
 form4: {
     attach_text: "Länk till pitch deck eller företagspresentation",
