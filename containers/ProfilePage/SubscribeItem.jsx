@@ -28,7 +28,7 @@ const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
 
     return (
         <li className='subscribe_item'>
-            <span className='subscribe_text'>{data.name} :</span>
+            <span className='subscribe_text'>{data.name}:</span>
             <div className='subscribe_inputs_container'>
                 <label className={isOn ? 'subscribe_label active_radio' : 'subscribe_label'}>
                     {t("profile_page.account.subscribe_on")}
