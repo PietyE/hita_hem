@@ -567,7 +567,7 @@ cookie: {
         faq:'Frågor & svar',
 
         faq_page: {
-            title: 'Råd och svar från Accumeo-teamet',
+            title: 'Frågor & Svar',
             subtitle: 'Få svar om Accumeo och investeringar',
             categories_title: 'Kategorier av frågor',
             placeholder: 'Ställ en fråga eller sök med nyckelord',
