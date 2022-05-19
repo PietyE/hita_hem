@@ -35,34 +35,34 @@ const Overview = () => {
     const isAuth = useSelector(getIsSignInUserSelector)
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
 
-    const {matchesAll} = useMediaQueries({
-        screen: "screen",
-        width: "(max-device-width: 500px)",
-    });
+    // const {matchesAll} = useMediaQueries({
+    //     screen: "screen",
+    //     width: "(max-device-width: 500px)",
+    // });
 
     const [isShowButton, setiIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
     const [imageSize, setImageSize] = useState({})
 
-    const _handleClickShowMore = () => {
-        setIsShowMore((prev) => !prev);
-    };
+    // const _handleClickShowMore = () => {
+    //     setIsShowMore((prev) => !prev);
+    // };
 
     useEffect(() => {
         getImgMeta(image, setImageSize)
     }, [])
 
-    useEffect(() => {
-        if (projectInfotRef.current) {
-            setiIsShowButton(projectInfotRef.current.offsetHeight > 350);
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (projectInfotRef.current) {
+    //         setiIsShowButton(projectInfotRef.current.offsetHeight > 350);
+    //     }
+    // }, []);
 
-    const _style = isShowButton
-        ? {
-            height: isShowMore ? "auto" : "400px",
-        }
-        : {};
+    // const _style = isShowButton
+    //     ? {
+    //         height: isShowMore ? "auto" : "400px",
+    //     }
+    //     : {};
 
     const _descriptionSectionStyle = !isAuth || !isQuizPassed ? 'project_info_description_section_fade' : 'project_info_description_section'
 
@@ -120,13 +120,13 @@ const Overview = () => {
                     <span
                         className="project_info_description"
                         ref={projectInfotRef}
-                        style={_style}
+                        // style={_style}
                         dangerouslySetInnerHTML={{
                             __html: sanitizeHtmlFromBack(description),
                         }}
                     />
 
-                    {matchesAll && isShowButton && (
+                    {/* {matchesAll && isShowButton && (
                         <div className="show_more">
                 <span
                     className="show_more_button"
@@ -135,7 +135,7 @@ const Overview = () => {
                   {isShowMore ? "Show less" : "Show more"}
                 </span>
                         </div>
-                    )}
+                    )} */}
                 </div>
                 {!isAuth &&
                 <ButtonStyled

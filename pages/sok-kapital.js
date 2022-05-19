@@ -18,7 +18,7 @@ import {
 import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
 import MetaTags from "../components/MetaTags";
 import Schema from "../components/Schema";
-import makeRaiseSchema from "../Schemas/blogSchema";
+import makeRaiseSchema from "../Schemas/raiseSchema";
 
 
 const RaiseForm = dynamic(() => import("containers/RaisePage/RaiseForm"), {
@@ -77,8 +77,8 @@ const RaisePage = () => {
 
     return (
         <>
-            <MetaTags seo={seo}/>
-            <Schema makeSchema={makeRaiseSchema} data={{}}/>
+            <MetaTags seo={seo} url={'https://accumeo.com/sok-kapital'} />
+            <Schema makeSchema={makeRaiseSchema} data={seo.markup} keyName='raise-page'/>
 
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">

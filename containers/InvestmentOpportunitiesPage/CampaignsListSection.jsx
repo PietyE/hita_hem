@@ -6,7 +6,7 @@ import dynamic from "next/dynamic";
 import CampaignsList from "components/CampaignsList";
 import Button from "components/ui/Button";
 import IconComponent from "components/ui/IconComponent";
-
+import FilterMobileMenu from "./FilterMobileMenu";
 import {
     getCampaignOffsetSelector,
     getFilterSelector,
@@ -18,9 +18,9 @@ import {
     resetCompanyList, setCampaignOffset,
 } from "redux/actions/companies";
 
-const FilterMobileMenu = dynamic(() =>
-    import("containers/InvestmentOpportunitiesPage/FilterMobileMenu")
-);
+// const FilterMobileMenu = dynamic(() =>
+//     import("containers/InvestmentOpportunitiesPage/FilterMobileMenu")
+// );
 
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent")

@@ -35,6 +35,7 @@
 @import "../components/Notification/styles.scss";
 @import "../components/ShowConfirmationOfAccountDeletion/styles";
 @import "../components/QuizPopup/styles.scss";
+@import "../components/SingInErrorModal/styles.scss";
 @import "../components/QuizWrongAnswersModal/styles.scss";
 @import "../components/ScrollToTopButton/style.scss";
 @import "../components/RaiseWrongAnswersModal/styles.scss";
@@ -59,3 +60,5 @@
 @import "../containers/InvestFormPage/styles.scss";
 @import "../containers/ChangeEmailPage/styles.scss";
 @import "../containers/Search/styles.scss";
+@import "../containers/Faq/styles.scss";
+@import "../containers/FaqQuestion/styles.scss";

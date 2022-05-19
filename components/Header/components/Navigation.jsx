@@ -10,6 +10,8 @@ import {
     RAISE_ROUTE_EN,
     BLOG,
     BLOG_EN,
+    FAQ_ROUTE_EN,
+    FAQ_ROUTE,
 } from "constants/routesConstant";
 import Button from "../../ui/Button";
 import SplitLine from "../../ui/SplitLine";
@@ -195,14 +197,24 @@ const Navigation = ({className, initLang}) => {
                             {/*    </a>*/}
                             {/*  </Link>*/}
                             {/*</NavDropdown.Item>*/}
+                            {/*<NavDropdown.Item as="div" className="nav_item">*/}
+                            {/*    <a className="footer_nav_link"*/}
+                            {/*       target="_blank"*/}
+                            {/*       rel="noopener noreferrer"*/}
+                            {/*       href={selectedLanguage === 'en' ? 'http://help.accumeo.com/en/' : 'http://help.accumeo.com/sv/'}*/}
+                            {/*    >{t("faq").toLocaleUpperCase()}</a>*/}
+                            {/*</NavDropdown.Item>*/}
                             <NavDropdown.Item as="div" className="nav_item">
-                                <a className="footer_nav_link"
-                                   target="_blank"
-                                   rel="noopener noreferrer"
-                                   href={selectedLanguage === 'en' ? 'http://help.accumeo.com/en/' : 'http://help.accumeo.com/sv/'}
-                                >{t("faq").toLocaleUpperCase()}</a>
+                                <Link href={selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN} prefetch={false}>
+                                    <a
+                                        className={`${
+                                            pathname.includes(selectedLanguage === 'sv' ? FAQ_ROUTE : FAQ_ROUTE_EN) ? "active" : ""
+                                        }`}
+                                    >
+                                        {t("faq").toLocaleUpperCase()}
+                                    </a>
+                                </Link>
                             </NavDropdown.Item>
-
                             {/*<NavDropdown.Item as="div" className="nav_item">*/}
                             {/*  <Link href={LAUNCHING_SOON} prefetch={false}>*/}
                             {/*    <a*/}

@@ -27,6 +27,7 @@ import {
     SIGN_UP_WITH_BANK_ID, REQUEST_SUBSCRIBE_LIST,
     CHANGE_UNSUBSCRIBE_LIST,
     SIGN_UP_WITH_SOCIALS,
+    SET_EMAIL_LANGUAGE,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -65,7 +66,7 @@ import {
     setShowRequestForChangePassword,
     setShowFirstLoginPopup,
     setShowCompleteBankIdRegistration,
-    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage,
+    setShowCompleteSocialsRegistration, setShowSuccessfulQuizMessage, setShowOptionalQuizMessage, setShowAuthSocialAccountError, 
 } from "../actions/authPopupWindows";
 import {getBIdKeySelector, getQuizIsPassedSelector, getSocialsKeySelector, getUserIdSelector} from "../reducers/user";
 import {setAuthError, setProfileError, clearErrors} from "../actions/errors";
@@ -76,6 +77,9 @@ import {
     setResponseFromApi,
     setTokenForQuizSocialsSignIn, setUnSubscribeList
 } from "../actions/user";
+import {
+    setNotificationMessage,
+} from "../actions/notification";
 import api from "api";
 import {getDocumentsWorker} from "./documents";
 import {getSelectedLangSelector} from "../reducers/language";
@@ -219,13 +223,14 @@ function* signInWithGoogle({payload}) {
         if(error?.response?.data?.user){
             yield put(setShowCompleteSocialsRegistration(true))
             yield put(setSocialsKey(payload))
-        }else{
-            const hideNotification = !!error?.response?.data?.social_account
+        }else if (!!error?.response?.data?.social_account){
+            yield put(setNotificationMessage(error?.response?.data?.social_account[0]))
+            yield put(setShowAuthSocialAccountError(true));
+        } else {
             yield put(
                 setAuthError({
                     status: error?.response?.status,
                     data: error?.response?.data,
-                    hideNotification: hideNotification
                 })
             );
         }
@@ -357,15 +362,21 @@ function* signUpWithBankIdWorker({payload}) {
         yield put(setShowCompleteBankIdRegistration(false))
         yield put(setBIdKey(''))
     } catch (error) {
-        const hideNotification =  !!error?.response?.data?.email
+        if (!!error?.response?.data?.email?.social_account){
+            yield put(setNotificationMessage(error?.response?.data?.email?.social_account))
+            yield put(setShowAuthSocialAccountError(true));
+        } else {
+            const hideNotification =  !!error?.response?.data?.email
 
-        yield put(
-                setAuthError({
-                    status: error?.response?.status,
-                    data: error?.response?.data,
-                    hideNotification:hideNotification,
-                })
-            );
+            yield put(
+                    setAuthError({
+                        status: error?.response?.status,
+                        data: error?.response?.data,
+                        hideNotification:hideNotification,
+                    })
+                );
+        }
+       
 
     } finally {
         yield put(setFetchingUsers(false));
@@ -808,6 +819,21 @@ function* changeUnsubscribeListWorker({payload}) {
     }
 }
 
+function* setEmailLanguageWorker({payload}) {
+    try{
+        yield put(setFetchingUsers(true));
+        yield call([auth, "setEmailLanguage"], payload);
+        yield call(uploadUserData)
+
+    } catch (error) {
+        yield put(
+            setAuthError({status: error?.response?.status, data: error?.response?.data})
+        );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
+
 
 
 
@@ -897,6 +923,7 @@ export function* userWorker() {
     yield takeEvery(REQUEST_SUBSCRIBE_LIST, requestSubscribeListWorker)
     yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
     yield takeEvery(SIGN_UP_WITH_SOCIALS, signUpWithSocialsWorker)
+    yield takeEvery(SET_EMAIL_LANGUAGE, setEmailLanguageWorker)
 
 
 

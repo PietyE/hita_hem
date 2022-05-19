@@ -1,19 +1,29 @@
 import React, {useCallback, useEffect} from 'react';
 import CampaignsList from "../components/CampaignsList";
 import SpinnerStyled from "../components/ui/Spinner";
+import MetaTags from "../components/MetaTags";
 import {useDispatch, useSelector} from "react-redux";
 import {
     getCampaignOffsetSelector, getCampaignSearchQuerySelector,
     getIsFetchingCampaignsSelector, getIsMoreCampaignsSelector,
-    getListOfFoundCampaignsSelector
+    getListOfFoundCampaignsSelector, getSearchPageSeoSelector
 } from "../redux/reducers/companies";
 import isEqual from "lodash/isEqual";
 import SearchForm from "../containers/InvestmentOpportunitiesPage/SearchForm";
 import Button from "../components/ui/Button";
 import {useTranslation} from "react-i18next";
-import {cleanSearchedCampaigns, searchCampaigns, setCampaignOffset} from "../redux/actions/companies";
+import {
+    cleanSearchedCampaigns,
+    getSearchPageSeo,
+    searchCampaigns,
+    setCampaignOffset
+} from "../redux/actions/companies";
+import Schema from "../components/Schema";
+import makeSearchSchema from "../Schemas/searchSchema";
+import {wrapper} from "../redux/store";
+import {END} from "redux-saga";
 
-const Search = () => {
+const Soksida = () => {
     const {t} = useTranslation();
     const dispatch = useDispatch();
 
@@ -22,8 +32,10 @@ const Search = () => {
     const isMoreCampaigns = useSelector(getIsMoreCampaignsSelector);
     const campaignsOffset = useSelector(getCampaignOffsetSelector)
     const campaignSearchQuery = useSelector(getCampaignSearchQuerySelector)
+    const seo = useSelector(getSearchPageSeoSelector)
 
     useEffect(()=>{
+        _getSearchPageSeo()
         _cleanSearchedCampaigns()
         _setOffset(0)
         return ()=> {
@@ -40,6 +52,10 @@ const Search = () => {
             dispatch(searchCampaigns(data));
         },[dispatch]);
 
+    const _getSearchPageSeo = useCallback((data) => {
+        dispatch(getSearchPageSeo(data));
+    },[dispatch]);
+
     const _cleanSearchedCampaigns = useCallback(() => {
         dispatch(cleanSearchedCampaigns([]));
     }, [dispatch]);
@@ -55,7 +71,11 @@ const Search = () => {
     }
 
     return (
-        <section className='search_section'>
+        <>
+            <MetaTags seo={seo} url={'https://accumeo.com/soksida'}/>
+            <Schema makeSchema={makeSearchSchema} data={seo?.mark_up} keyName='search'/>
+
+            <section className='search_section'>
             {isFetching && <SpinnerStyled/>}
                 <SearchForm/>
             <CampaignsList content={companiesList} className='search_campaign_list'/>
@@ -73,7 +93,17 @@ const Search = () => {
                 </Button>
             )}
         </section>
+        </>
     );
 }
 
-export default Search;
+export const getServerSideProps = wrapper.getServerSideProps(
+    (store) =>
+        async ({req, res, ...etc}) => {
+            store.dispatch(getSearchPageSeo());
+            store.dispatch(END);
+            await store.sagaTask.toPromise();
+        }
+);
+
+export default Soksida;

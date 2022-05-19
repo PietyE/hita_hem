@@ -10,15 +10,19 @@ export const RAISE_ROUTE = "/sok-kapital";
 export const INVEST_ROUTE = "/investeringsmojligheter";
 export const ABOUT_US_ROUTE = "/om-oss";
 export const COMPANY_ROUTE = "/foretag";
-export const SEARCH_ROUTE = "/search"
+export const SEARCH_ROUTE = "/soksida"
+export const FAQ_ROUTE = '/fragor&svar'
 
 
 export const RAISE_ROUTE_EN = "/raise";
 export const INVEST_ROUTE_EN = "/investment-opportunities";
 export const ABOUT_US_ROUTE_EN = "/about-us";
 export const COMPANY_ROUTE_EN = "/company";
-export const BLOG_EN = "/news"
-export const SEARCH_ROUTE_EN = "/search"
+export const BLOG_EN = "/news";
+export const SEARCH_ROUTE_EN = "/search";
+export const FAQ_ROUTE_EN = '/faq';
+
+export const ERROR_PAGE = '/404'
 
 
 

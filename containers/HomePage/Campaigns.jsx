@@ -36,8 +36,11 @@ const Campaigns = ({ title, type, buttonText }) => {
 
   const handleUpcomingButtonClick = () => {
     if (type === "upcoming") {
-      _setFilter(1);
+      _setFilter([1]);
     }
+      if (type === "featured") {
+          _setFilter([]);
+      }
   };
   return (
       <>{ !!content?.length &&
