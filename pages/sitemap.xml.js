@@ -3,7 +3,7 @@ import React from "react";
 const baseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
 const baseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
 
-const questionBaseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&svar/`
+const questionBaseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&amp;svar/`
 const questionBaseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq/`
 
 const createDynamicMarkup = async () => {
@@ -138,20 +138,20 @@ export const getServerSideProps = async ({res}) => {
 <priority>0.80</priority>
 </url>
 <url>
-<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&svar</loc>
-<xhtml:link
-        rel="alternate"
-        hreflang="en"
-        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq"/>
-<lastmod>2022-01-20T10:44:23+00:00</lastmod>
-<priority>0.80</priority>
-</url>
-<url>
 <loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/soksida</loc>
 <xhtml:link
         rel="alternate"
         hreflang="en"
         href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/search"/>
+<lastmod>2022-01-20T10:44:23+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&amp;svar</loc>
+<xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>

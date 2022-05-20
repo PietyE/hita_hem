@@ -52,7 +52,7 @@ const SignUp = ({ show }) => {
         [dispatch]
     );
     const onSubmit = (values) => {
-        recaptcha('sign_up', _signUp, values)
+        recaptcha('sign_up', _signUp, {...values, email: values.email.toLowerCase()})
 
     };
     const signUpSchema = yup.object({
