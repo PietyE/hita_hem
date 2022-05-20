@@ -625,12 +625,14 @@
         }
 
         .subscribe_label {
+          font-family: "Source Sans Pro", sans-serif;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 0;
           width: 50px;
           height: 30px;
+          font-size: 13px;
           cursor: pointer;
           border-bottom-left-radius: 5px;
           border-top-left-radius: 5px;
@@ -658,8 +660,11 @@
       margin-left: auto;
       font-family: Source Sans Pro, sans-serif;
       margin-top: auto;
+      height: 40px;
       //margin-bottom: 25px;
       font-size: 14px;
+      padding-right: 18px;
+      padding-left: 18px;
     }
   }
 }
