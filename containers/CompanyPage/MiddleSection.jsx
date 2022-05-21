@@ -1,28 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
-import {useRouter} from "next/router";
-
-import Overview from "./Overview";
-import TabAccordion from "components/ui/TabAccordion";
-
-const Idea = dynamic(() =>
-    import("./Idea"), {ssr: false}
-);
-const Team = dynamic(() =>
-    import("./Team"), {ssr: false}
-);
-const FinancialInformation = dynamic(() =>
-    import("./FinancialInformation"), {ssr: false}
-);
-const Faq = dynamic(() =>
-    import("./Faq"), {ssr: false}
-);
-const CampaignTabSignUp = dynamic(() =>
-    import("./CampaignTabSignUp"), {ssr: false}
-);
-
-
 import {companyTabConstants} from "constants/companyTabConstant";
 import { setSelectedTab} from "redux/actions/companies";
 import {
@@ -41,6 +19,29 @@ import isEqual from "lodash/isEqual";
 import {getCompanyLogoAltTextSelector, getCompanySubTitleSelector} from "../../redux/reducers/companies";
 import ImageComponent from "../../components/ui/ImageComponent";
 import throttle  from "lodash/throttle"
+import Overview from "./Overview";
+import TabAccordion from "components/ui/TabAccordion";
+import Idea from "./Idea";
+import Team from "./Team";
+import FinancialInformation from "./FinancialInformation";
+// const Idea = dynamic(() =>
+//     import("./Idea"), {ssr: false}
+// );
+// const Team = dynamic(() =>
+//     import("./Team"), {ssr: false}
+// );
+// const FinancialInformation = dynamic(() =>
+//     import("./FinancialInformation"), {ssr: false}
+// );
+const Faq = dynamic(() =>
+    import("./Faq"), {ssr: false}
+);
+const CampaignTabSignUp = dynamic(() =>
+    import("./CampaignTabSignUp"), {ssr: false}
+);
+
+
+
 
 const MiddleSection = ({isAuth}) => {
     const {t} = useTranslation();

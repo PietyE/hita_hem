@@ -4,9 +4,14 @@ import CloseButton from "react-bootstrap/CloseButton";
 import {faqSearch} from "../../redux/actions/faq";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import dynamic from "next/dynamic";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
-import BackButton from "./BackButton";
+
+const BackButton = dynamic(() =>
+    import("./BackButton"), {ssr: false}
+);
+
 
 const TopContainer = ({searchResults = []}) => {
     const {t} = useTranslation();

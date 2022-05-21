@@ -1,7 +1,12 @@
 import React, {useCallback, useState} from "react";
-import Accordion from "react-bootstrap/Accordion";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import {
+    AccordionComponent,
+    AccordionCollapse,
+    AccordionToggle,
+    CardComponent,
+    CardBody,
+    CardHeader,
+} from "../../components/ui/AccordionComponent";
 import ButtonStyled from "components/ui/Button";
 import {useDispatch} from "react-redux";
 import IconComponent from "components/ui/IconComponent";
@@ -64,11 +69,11 @@ const FilterMobileMenu = ({
             <h2 className="filter_mobile_menu_title">
                 {t("investment_opportunities_page.filter_results")}
             </h2>
-            <Accordion>
-                <Card>
-                    <Card.Header>
-                        <Accordion.Toggle
-                            as={Button}
+            <AccordionComponent>
+                <CardComponent>
+                    <CardHeader>
+                        <AccordionToggle
+                            as={ButtonStyled}
                             variant="link"
                             eventKey="0"
                             className="filter_mobile_menu_accordion_button"
@@ -80,10 +85,10 @@ const FilterMobileMenu = ({
                                 icon={activeTab === "1" ? faChevronDown : faChevronRight}
                                 className="filter_mobile_menu_accordion_button_chevron"
                             />
-                        </Accordion.Toggle>
-                    </Card.Header>
-                    <Accordion.Collapse eventKey="0">
-                        <Card.Body className="filter_mobile_menu_accordion_tab">
+                        </AccordionToggle>
+                    </CardHeader>
+                    <AccordionCollapse eventKey="0">
+                        <CardBody className="filter_mobile_menu_accordion_tab">
                             <ButtonStyled
                                 colorStyle={
                                     currentFilters.includes(3)
@@ -158,10 +163,10 @@ const FilterMobileMenu = ({
                                     />
                                 )}
                             </ButtonStyled>
-                        </Card.Body>
-                    </Accordion.Collapse>
-                </Card>
-            </Accordion>
+                        </CardBody>
+                    </AccordionCollapse>
+                </CardComponent>
+            </AccordionComponent>
             <div className="filter_mobile_menu_buttons_container">
                 <ButtonStyled
                     colorStyle="link"

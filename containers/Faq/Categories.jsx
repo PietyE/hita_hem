@@ -1,11 +1,10 @@
-import React, {useCallback, useEffect, useRef} from 'react';
-import {getFaqCategories, setFaqCategories} from "../../redux/actions/faq";
-import {useDispatch, useSelector} from "react-redux";
-import {getFaqCategoriesSelector} from "../../redux/reducers/faq";
+import React, {useRef} from 'react';
+import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import {useRouter} from "next/router";
 import {FAQ_ROUTE, FAQ_ROUTE_EN} from "../../constants/routesConstant";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
+import {getFaqCategoriesSelector} from "../../redux/reducers/faq";
 
 const Categories = () => {
     const {t} = useTranslation();

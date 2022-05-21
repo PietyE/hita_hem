@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from "react";
-import Carousel from "react-bootstrap/Carousel";
-import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
-import Button from "../ui/Button";
-import StatusCompanyBadge from "../StatusCompany";
-import {checkCurrentResolution, getCorrectImage, getImageAltText} from "../../utils/utils";
-import SliderImage from "../../containers/HomePage/SliderImage";
 import dynamic from "next/dynamic";
+
+import StatusCompanyBadge from "../StatusCompany";
+import SliderImage from "../../containers/HomePage/SliderImage";
+
+import Carousel from "react-bootstrap/Carousel";
+import Button from "../ui/Button";
+
+import {checkCurrentResolution, getCorrectImage, getImageAltText} from "../../utils/utils";
+import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
+
 
 const BannerSignUpBlock = dynamic(() =>
     import("components/BannerSignUpBlock"), {ssr: false}
