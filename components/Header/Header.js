@@ -5,7 +5,6 @@ import {useRouter} from "next/router";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 
-import Search from "../Search";
 import Logo from "components/Logo";
 import IconChevronDown from "components/ui/IconChevronDown";
 import Button from "components/ui/Button";
@@ -28,8 +27,9 @@ import {getIsSignInUserSelector} from "redux/reducers/user";
 
 import {getRedirectUrlForBlog} from "../../utils/utils";
 
-const UserPanel = dynamic(() => import("components/UserPanel"));
-const Navigation = dynamic(() => import("./components/Navigation"));
+const UserPanel = dynamic(() => import("components/UserPanel"), {ssr: false});
+const Navigation = dynamic(() => import("./components/Navigation"), {ssr: false});
+const Search = dynamic(() => import("../Search"), {ssr: false});
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent"), {ssr: false}
 );

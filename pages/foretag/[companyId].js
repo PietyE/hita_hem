@@ -4,11 +4,11 @@ import {END} from "redux-saga";
 import {wrapper} from "/redux/store";
 import {useRouter} from "next/router";
 
-import Schema from "../../components/Schema";
+import MetaTags from "components/MetaTags";
+import Schema from "components/Schema";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
-import RecommendedCampaigns from "containers/CompanyPage/RecommendedCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
-import MetaTags from "../../components/MetaTags";
+
 import {
     getCompanyBySlag,
     clearCompany,
@@ -23,8 +23,13 @@ import {
     getIsRedirectOnSelector,
 } from "redux/reducers/companies";
 
-
 import makeCampaignSchema from "../../Schemas/campaignSchema";
+import dynamic from "next/dynamic";
+
+const RecommendedCampaigns = dynamic(() => import("containers/CompanyPage/RecommendedCampaigns"), {
+    ssr: false,
+});
+
 const CompanyPage = () => {
 
     const router = useRouter();
