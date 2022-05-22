@@ -13,7 +13,7 @@ import {
     getOverviewImageAltTextSelector,
 } from "redux/reducers/companies";
 import {useTranslation} from "react-i18next";
-import {useMediaQueries} from "@react-hook/media-query";
+// import {useMediaQueries} from "@react-hook/media-query";
 import ButtonStyled from "components/ui/Button";
 import {getIsSignInUserSelector, getQuizIsPassedSelector} from "redux/reducers/user";
 import {setShowSignIn} from "redux/actions/authPopupWindows";
@@ -40,8 +40,8 @@ const Overview = () => {
     //     width: "(max-device-width: 500px)",
     // });
 
-    const [isShowButton, setiIsShowButton] = useState(false);
-    const [isShowMore, setIsShowMore] = useState(false);
+    // const [isShowButton, setiIsShowButton] = useState(false);
+    // const [isShowMore, setIsShowMore] = useState(false);
     const [imageSize, setImageSize] = useState({})
 
     // const _handleClickShowMore = () => {
