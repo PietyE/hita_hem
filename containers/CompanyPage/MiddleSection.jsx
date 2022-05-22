@@ -138,7 +138,7 @@ const MiddleSection = ({isAuth}) => {
 
 
     useEffect(() => {
-        window.addEventListener("scroll", toggleVisible);
+        window.addEventListener("scroll", toggleVisible, {passive: true});
         return () => {
             window.removeEventListener("scroll", toggleVisible);
         };
@@ -187,13 +187,12 @@ const MiddleSection = ({isAuth}) => {
         }
 
         sectionsTracking()
-        window.addEventListener("scroll", throttle(sectionsTracking, 250))
+        window.addEventListener("scroll", throttle(sectionsTracking, 250), {passive: true})
 
         return () => {
             window.removeEventListener("scroll", sectionsTracking)
         }
     },[showFaq, isAuth, isQuizPassed])
-
 
     return (
         <div className="middle_section_container">
