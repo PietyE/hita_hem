@@ -68,6 +68,7 @@ const CampaignsCard = (props) => {
                      layout="fill"
                      objectFit="cover"
                      alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
+                     loading='lazy'
                  />
               </div>
 

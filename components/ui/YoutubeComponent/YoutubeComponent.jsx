@@ -7,6 +7,7 @@ function YoutubeComponent({className, link}) {
     return (
         <iframe
             className={className}
+            title='youtube video'
             src={`https://www.youtube.com/embed/${youtubeId}`}
             frameBorder="0"
             allowFullScreen
