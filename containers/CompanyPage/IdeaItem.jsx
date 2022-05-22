@@ -96,6 +96,7 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         className='idea_next_image'
+                                        loading='lazy'
                                     />
                                 </div>
                             )}
@@ -109,6 +110,7 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         className='idea_next_image'
+                                        loading='lazy'
                                     />
                                 </div>
                             )}
@@ -131,6 +133,8 @@ const IdeaItem = ({section}) => {
                                         height={firstImageSize?.height || 0}
                                         layout="responsive"
                                         alt={first_image_alter_text}
+                                        loading='lazy'
+
                                     />
                                 </div>
                             )}
@@ -143,6 +147,8 @@ const IdeaItem = ({section}) => {
                                         height={secondImageSize?.height || 0}
                                         layout="responsive"
                                         alt={second_image_alter_text}
+                                        loading='lazy'
+
                                     />
                                 </div>
                             )}
@@ -155,6 +161,8 @@ const IdeaItem = ({section}) => {
                                         height={thirdImageSize?.height || 0}
                                         layout="responsive"
                                         alt={third_image_alter_text}
+                                        loading='lazy'
+
                                     />
                                 </div>
                             )}
@@ -167,6 +175,8 @@ const IdeaItem = ({section}) => {
                                         height={fourthImageSize?.height || 0}
                                         layout="responsive"
                                         alt={fourth_image_alter_text}
+                                        loading='lazy'
+
                                     />
                                 </div>
 

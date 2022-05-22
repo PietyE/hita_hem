@@ -122,6 +122,7 @@ const FinArticle = ({item}) => {
                                 height={imageMeta?.height || 108}
                                 className='fin_article_image'
                                 alt={image_alter_text}
+                                loading='lazy'
                             />
                             </SRLWrapper>
                             </SimpleReactLightbox>

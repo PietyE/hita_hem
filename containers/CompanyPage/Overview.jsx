@@ -89,6 +89,7 @@ const Overview = () => {
                             width={imageSize?.width || 0}
                             height={imageSize?.height || 0}
                             layout="responsive"
+                            loading='lazy'
                             alt={imageAltText || ' '}
                         />
                     </div>
