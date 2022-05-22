@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect} from 'react';
+import SeoComponent from "../components/SeoComponent";
 import Categories from "../containers/Faq/Categories";
 import TopContainer from "../containers/Faq/TopContainer";
 import {useSelector, useDispatch} from "react-redux";
@@ -11,8 +12,6 @@ import {
 import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 import SpinnerStyled from "../components/ui/Spinner";
-import MetaTags from "../components/MetaTags";
-import Schema from "../components/Schema";
 import makeFaqSchema from "../Schemas/faqSchema";
 import {wrapper} from "../redux/store";
 import {getFaqCategories, getFaqPageSeo, setFaqCategories} from "../redux/actions/faq";
@@ -59,8 +58,12 @@ const FragorSvar = () => {
     return (
         <>
             {isFetching && <SpinnerStyled/>}
-            <MetaTags seo={seo} url='https://accumeo.com/fragor&svar'/>
-            <Schema makeSchema={makeFaqSchema} data={{categories: categories, seo: seo?.mark_up}} keyName='q&a'/>
+            <SeoComponent seo={seo}
+                          url='https://accumeo.com/fragor&svar'
+                          makeSchema={makeFaqSchema}
+                          data={{categories: categories, seo: seo?.mark_up}}
+                          keyName='q&a'
+            />
             <section className='faq_section'>
                 <TopContainer searchResults={searchResults}/>
 

@@ -3,11 +3,15 @@ import {useSelector, useDispatch} from "react-redux";
 import {END} from "redux-saga";
 
 import {wrapper} from "/redux/store";
-import Schema from "components/Schema";
+import SeoComponent from "../components/SeoComponent";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
-import {getCompanyListSelector, getIsFetchingCampaignsSelector} from "redux/reducers/companies";
+import {
+    getCompanyListSelector,
+    getInvestPageSeoSelector,
+    getIsFetchingCampaignsSelector
+} from "redux/reducers/companies";
 
 import {
     getCompaniesList,
@@ -17,13 +21,12 @@ import {
 import makeInvestPageSchema from "../Schemas/investPageSchema";
 import isEqual from "lodash/isEqual";
 import {getInvestPageSeo} from "../redux/actions/companies";
-import MetaTags from "../components/MetaTags";
 
 const InvestmentOpportunitiesPage = () => {
     const dispatch = useDispatch();
     const isFetching = useSelector(getIsFetchingCampaignsSelector);
     const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
-    const seo = useSelector(getInvestPageSeo)
+    const seo = useSelector(getInvestPageSeoSelector)
     const _getCompaniesHeaderListAndSeo = useCallback(() => {
         dispatch(getCompaniesHeaderList());
         dispatch(getInvestPageSeo());
@@ -35,8 +38,12 @@ const InvestmentOpportunitiesPage = () => {
 
     return (
         <>
-            <MetaTags seo={seo} url={'https://accumeo.com/investeringsmojligheter'}/>
-            <Schema makeSchema={makeInvestPageSchema} data={{seo: seo?.mark_up, campaigns: companiesList}} keyName='invest-page' />
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com/investeringsmojligheter'}
+                          makeSchema={makeInvestPageSchema}
+                          data={{seo: seo?.mark_up, campaigns: companiesList}}
+                          keyName='invest-page'
+            />
             {isFetching && <SpinnerStyled/>}
             <InvestTopSlider/>
             <CampaignsListSection companiesList={companiesList}/>
