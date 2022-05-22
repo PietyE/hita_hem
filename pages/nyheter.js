@@ -1,13 +1,16 @@
 import React from 'react';
 import useDropInBlog from "../customHooks/useDropInBlog";
-import Schema from "../components/Schema";
+import SeoComponent from "../components/SeoComponent";
 import makeBlogSchema from "../Schemas/blogSchema";
 
 const Nyheter = () => {
     useDropInBlog()
     return (
         <>
-            <Schema makeSchema={makeBlogSchema} data={{}} keyName='blog-page'/>
+            <SeoComponent makeSchema={makeBlogSchema}
+                          data={{}}
+                          keyName='blog-page'
+            />
             <div id="dib-posts"></div>
             </>
     );

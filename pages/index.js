@@ -8,14 +8,13 @@ import {getIsSignInUserSelector} from "redux/reducers/user";
 import {getIsFetchingHomePageSelector} from "redux/reducers/homePage";
 import {getHomePage} from "redux/actions/homePage";
 
-import Schema from "../components/Schema";
+import SeoComponent from "../components/SeoComponent";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
 import {getSeoSelector} from "redux/reducers/homePage";
 import SpinnerStyled from "components/ui/Spinner";
 import useDropInBlog from "../customHooks/useDropInBlog";
-import MetaTags from "../components/MetaTags";
 
 import makeHomePageSchema from "../Schemas/homeSchema";
 
@@ -47,8 +46,12 @@ const Index = () => {
 
     return (
         <>
-            <MetaTags seo={seo} url={'https://accumeo.com'}/>
-            <Schema makeSchema={makeHomePageSchema} data={seo?.mark_up} keyName='home-page'/>
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com'}
+                          makeSchema={makeHomePageSchema}
+                          data={seo?.mark_up}
+                          keyName='home-page'
+            />
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}
                 <div className="home_page_container">
