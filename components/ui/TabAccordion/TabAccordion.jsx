@@ -21,7 +21,7 @@ import iconTeam from "public/images/users.svg";
 import iconChart from "public/images/chart.svg";
 import iconComments from "public/images/comments.svg";
 
-function TabAccordion({ isAuth, isQuizPassed }) {
+function TabAccordion({ isAuth, isQuizPassed, status }) {
   const { t } = useTranslation();
   const overviewRef = useRef();
 
@@ -49,9 +49,15 @@ function TabAccordion({ isAuth, isQuizPassed }) {
     if (Number(e.target.dataset.value) !== 0 ) {
 
       overviewRef.current.scrollIntoView();
-
       const scrolled = window.scrollY
-      window.scrollTo({top: scrolled - 160})
+
+      if(status === 1){
+        window.scrollTo({top: scrolled - 80})
+
+      }else{
+        window.scrollTo({top: scrolled - 160})
+
+      }
 
     }
   };
