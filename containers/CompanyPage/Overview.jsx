@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
-import {getYoutubeId, getImgMeta} from "utils/utils";
+import {getImgMeta} from "utils/utils";
 
 import Title from "components/ui/Title";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,12 +13,16 @@ import {
     getOverviewImageAltTextSelector,
 } from "redux/reducers/companies";
 import {useTranslation} from "react-i18next";
-// import {useMediaQueries} from "@react-hook/media-query";
 import ButtonStyled from "components/ui/Button";
 import {getIsSignInUserSelector, getQuizIsPassedSelector} from "redux/reducers/user";
 import {setShowSignIn} from "redux/actions/authPopupWindows";
 import {getQuiz} from "redux/actions/user";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+const YoutubeComponent = dynamic(() => import("components/ui/YoutubeComponent"), {
+    ssr: false,
+});
 
 const Overview = () => {
     const {t} = useTranslation();
@@ -50,7 +54,7 @@ const Overview = () => {
 
     useEffect(() => {
         getImgMeta(image, setImageSize)
-    }, [])
+    }, [image])
 
     // useEffect(() => {
     //     if (projectInfotRef.current) {
@@ -73,7 +77,7 @@ const Overview = () => {
     const handleOpenQuiz = () => {
         dispatch(getQuiz());
     }
-    const youtubeId = getYoutubeId(videoLink)
+
     return (
         <div>
             <div className="project_info_left_section">
@@ -82,23 +86,18 @@ const Overview = () => {
                         <Image
                             src={image}
                             className='project_info_overview_image'
-                            width={imageSize?.width || 192}
-                            height={imageSize?.height || 108}
+                            width={imageSize?.width || 0}
+                            height={imageSize?.height || 0}
                             layout="responsive"
                             alt={imageAltText || ' '}
                         />
                     </div>
                 )}
-                {youtubeId &&
+                {videoLink &&
                 (<div
                     className="project_info_player_wrapper"
                 >
-                    <iframe
-                        className='project_info_player'
-                        src={`https://www.youtube.com/embed/${youtubeId}`}
-                        frameBorder="0"
-                        allowFullScreen
-                    />
+                    <YoutubeComponent link={videoLink} className='project_info_player'/>
                 </div>)
                 }
 

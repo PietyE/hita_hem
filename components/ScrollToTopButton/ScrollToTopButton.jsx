@@ -22,7 +22,7 @@ const ScrollToTopButton = forwardRef(({ className = "" }, ref) => {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisible);
+    window.addEventListener("scroll", toggleVisible, {passive: true});
     return () => {
       window.removeEventListener("scroll", toggleVisible);
     };
