@@ -79,7 +79,7 @@ const RaisePage = () => {
             <SeoComponent seo={seo}
                           url={'https://accumeo.com/sok-kapital'}
                           makeSchema={makeRaiseSchema}
-                          data={seo.markup}
+                          data={seo?.markup}
                           keyName='raise-page'
             />
 
