@@ -55,7 +55,7 @@ const AboutUsPage = () => {
             <SeoComponent seo={seo}
                           url={'https://accumeo.com/om-oss'}
                           makeSchema={makeAboutUsSchema}
-                          data={{team:team_members, seo:seo.mark_up}}
+                          data={{team:team_members, seo:seo?.mark_up}}
                           keyName='about-us-page'
             />
             {isFetching && <SpinnerStyled/>}
