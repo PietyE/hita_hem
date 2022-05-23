@@ -242,3 +242,8 @@ export const SET_QUESTION = 'faq/SET_QUESTION'
 export const SET_404_IN_QUESTION = 'faq/SET_404_IN_QUESTION'
 export const SET_FAQ_PAGE_SEO = 'faq/SET_FAQ_PAGE_SEO'
 export const GET_FAQ_PAGE_SEO = 'faq/GET_FAQ_PAGE_SEO'
+
+export const GET_NEWS_PAGE_SEO = 'news/GET_NEWS_PAGE_SEO'
+export const SET_NEWS_PAGE_SEO = 'news/SET_NEWS_PAGE_SEO'
+export const SET_NEWS_PAGE_FETCHING = 'news/SET_NEWS_PAGE_FETCHING'
+
