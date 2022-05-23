@@ -45,17 +45,6 @@ export const getBannerSelector = (state) => {
 
 
 }
-export const getHomePageDataForSchema = state => {
-    return ({
-        // banner_images: state.homePage?.homePageContent?.banner_images,
-        // future: state.homePage?.homePageContent?.future,
-        // upcoming: state.homePage?.homePageContent?.upcoming,
-        // raise_set: state.homePage?.homePageContent?.raise_set,
-        // invest_set: state.homePage?.homePageContent?.invest_set,
-        title: state.homePage?.homePageContent?.seo?.seo_title,
-        description: state.homePage?.homePageContent?.seo?.seo_description,
-    })
-}
 
 export const homePage = (state = initialState, actions) => {
     switch (actions.type) {

@@ -52,9 +52,9 @@ form3: {
         video_link: "Länk till videopresentation",
         social_media: "Länk till sociala medier",
         followers: "Antal följare",
-        social_media_facebook: "Facebook.",
-        social_media_linkedin: "LinkedIn.",
-        social_media_instagram: "Instagram.",
+        social_media_facebook: "Länk till Facebook",
+        social_media_linkedin: "Länk till LinkedIn",
+        social_media_instagram: "Länk till Instagram",
 },
 form4: {
     attach_text: "Länk till pitch deck eller företagspresentation",
@@ -361,6 +361,9 @@ profile_page: {
             button_cancel: "Avbryt",
             button_save: "Spara ändringar",
     },
+    changeEmailLanguage: {
+        title: 'Byt språk för e-postmeddelanden',
+    },
     reset_password: {
         title: "Ändra lösenord",
             forgot_password: "Glömt ditt lösenord?",
@@ -496,6 +499,9 @@ errors: {
 
     long_error_part1: "Måste vara högst",
     long_error_part2: "tecken.",
+    auth_social_account_error: {
+        title: 'Ett konto med denna mejladress finns redan.',
+    }
 },
 cookie: {
     text: 'Accumeo använder cookies för att tillhandahålla nödvändig webbplatsfunktionalitet, förbättra din upplevelse och analysera webbtrafiken. Genom att använda vår webbplats godkänner du vår',
@@ -509,7 +515,7 @@ cookie: {
             return: 'Nej, jag vill fortsätta',
         },
         request_for_change:{
-            title: 'Instruktionerna för att ändra din registrerade mailadress kommer skickas till din för närvarande registrerade mailadress',
+            title: 'Instruktionerna för att ändra din registrerade mailadress kommer skickas till din för närvarande registrerade mailadress.',
             text: 'Var vänlig att inte logga inte ut från Accumeo innan du är klar med ändringen av din e-post.',
         },
         request_for_change_password:{
@@ -560,6 +566,15 @@ cookie: {
         },
         faq:'Frågor & svar',
 
+        faq_page: {
+            title: 'Frågor & Svar',
+            subtitle: 'Få svar om Accumeo och investeringar',
+            categories_title: 'Kategorier av frågor',
+            placeholder: 'Ställ en fråga eller sök med nyckelord',
+            search_results_title: 'Sökresultat',
+            no_results: 'Tyvärr, inget matchade dina söktermer',
+            back_button: 'Tillbaka',
+        },
 
     },
 };

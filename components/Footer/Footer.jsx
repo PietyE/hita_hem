@@ -19,6 +19,8 @@ import {
     INVEST_ROUTE_EN,
     ABOUT_US_ROUTE_EN,
   BLOG,
+    FAQ_ROUTE_EN,
+    FAQ_ROUTE,
 } from "constants/routesConstant";
 import { getPrivacyPolicyDocument } from "redux/reducers/documents";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
@@ -49,11 +51,14 @@ const Footer = () => {
           {/*<Link href={LAUNCHING_SOON} prefetch={false}>*/}
           {/*  <a className="footer_nav_link">{t("footer.launching_soon_link")}</a>*/}
           {/*</Link>*/}
-            <a className="footer_nav_link"
-               target="_blank"
-               rel="noopener noreferrer"
-               href= {language === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}
-            >{t("faq")}</a>
+          {/*  <a className="footer_nav_link"*/}
+          {/*     target="_blank"*/}
+          {/*     rel="noopener noreferrer"*/}
+          {/*     href= {language === 'en' ? 'https://intercom.help/accumeo/en/' : 'https://intercom.help/accumeo/sv/'}*/}
+          {/*  >{t("faq")}</a>*/}
+          <Link href={language==='sv'?FAQ_ROUTE:FAQ_ROUTE_EN} prefetch={false}>
+            <a className="footer_nav_link">{t("faq")}</a>
+          </Link>
           {!!(documentUrl?.file || documentUrl?.url) && (
             <a
               className="footer_nav_link"

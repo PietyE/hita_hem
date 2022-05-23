@@ -665,7 +665,7 @@
           //color: #0000EE;
           color: #3e77b5;
           cursor: pointer;
-          margin-left: 5px;
+          margin-left: 3px;
         }
       }
     }
@@ -1095,7 +1095,15 @@
           .raise_agreement {
             margin-bottom: 45px;
             margin-right: auto;
-            font-size: 9px;
+            font-size: 12px;
+            display: flex;
+            align-items: flex-start;
+            .raise_agreement_checkbox_text{
+              margin-right: 0;
+            }
+            .raise_agreement_link{
+              margin-left: 3px;
+            }
           }
         }
       }

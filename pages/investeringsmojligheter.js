@@ -3,11 +3,15 @@ import {useSelector, useDispatch} from "react-redux";
 import {END} from "redux-saga";
 
 import {wrapper} from "/redux/store";
-import Schema from "components/Schema";
+import SeoComponent from "../components/SeoComponent";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
-import {getCompanyListSelector, getIsFetchingCampaignsSelector} from "redux/reducers/companies";
+import {
+    getCompanyListSelector,
+    getInvestPageSeoSelector,
+    getIsFetchingCampaignsSelector
+} from "redux/reducers/companies";
 
 import {
     getCompaniesList,
@@ -16,23 +20,30 @@ import {
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
 import isEqual from "lodash/isEqual";
+import {getInvestPageSeo} from "../redux/actions/companies";
 
 const InvestmentOpportunitiesPage = () => {
     const dispatch = useDispatch();
     const isFetching = useSelector(getIsFetchingCampaignsSelector);
     const companiesList = useSelector(getCompanyListSelector, isEqual) || [];
-
-    const _getCompaniesHeaderList = useCallback(() => {
+    const seo = useSelector(getInvestPageSeoSelector)
+    const _getCompaniesHeaderListAndSeo = useCallback(() => {
         dispatch(getCompaniesHeaderList());
+        dispatch(getInvestPageSeo());
     }, [dispatch]);
 
     useEffect(() => {
-        _getCompaniesHeaderList();
+        _getCompaniesHeaderListAndSeo();
     }, []);
 
     return (
         <>
-            <Schema makeSchema={makeInvestPageSchema} data={companiesList} key='invest-page' />
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com/investeringsmojligheter'}
+                          makeSchema={makeInvestPageSchema}
+                          data={{seo: seo?.mark_up, campaigns: companiesList}}
+                          keyName='invest-page'
+            />
             {isFetching && <SpinnerStyled/>}
             <InvestTopSlider/>
             <CampaignsListSection companiesList={companiesList}/>
@@ -51,6 +62,8 @@ export const getServerSideProps = wrapper.getServerSideProps(
             store.dispatch(getCompaniesHeaderList());
             store.dispatch(END);
             store.dispatch(getCompaniesList());
+            store.dispatch(END);
+            store.dispatch(getInvestPageSeo());
             store.dispatch(END);
             await store.sagaTask.toPromise();
         }

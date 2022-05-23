@@ -228,7 +228,7 @@
       .warning_date_text {
         transform: translateY(0);
         bottom: -34px;
-        font-size: 12px;
+        font-size: 14px;
       }
 
       .profile_form_input {
@@ -405,7 +405,7 @@
   }
 
   .account_settings_form_text_wrapper {
-    width: 60%;
+    width: 64%;
   }
 
   .account_settings_form_button_wrapper {
@@ -524,6 +524,22 @@
       z-index: 2;
     }
 
+    .account_settings_change_email_language_container{
+      display: flex;
+      margin: 0 10px 10px auto;
+      button{
+        font-family: "Source Sans Pro", sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 15px;
+        color: black;
+        //padding-left: 45px;
+        &:active{
+          color: black;
+        }
+      }
+    }
+
     .account_settings_text_delete {
       font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
@@ -586,7 +602,7 @@
       font-family: "Source Sans Pro", sans-serif;
       font-style: normal;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 20px;
       line-height: 32px;
       font-feature-settings: "pnum" on, "lnum" on;
       color: #0b5394;
@@ -609,12 +625,14 @@
         }
 
         .subscribe_label {
+          font-family: "Source Sans Pro", sans-serif;
           display: flex;
           align-items: center;
           justify-content: center;
           margin-bottom: 0;
           width: 50px;
           height: 30px;
+          font-size: 13px;
           cursor: pointer;
           border-bottom-left-radius: 5px;
           border-top-left-radius: 5px;
@@ -642,8 +660,11 @@
       margin-left: auto;
       font-family: Source Sans Pro, sans-serif;
       margin-top: auto;
+      height: 40px;
       //margin-bottom: 25px;
       font-size: 14px;
+      padding-right: 18px;
+      padding-left: 18px;
     }
   }
 }
@@ -1545,7 +1566,7 @@
           }
 
           .profile_form_warning_text {
-            font-size: 10px;
+            font-size: 12px;
           }
 
           .profile_input_arrow {
@@ -1718,12 +1739,16 @@
     }
   }
   .account_settings_container {
-    padding-bottom: 40px;
+    padding: 0 ;
 
     .account_settings_title {
+      text-align: center;
       font-size: 24px;
+      background-color: #fff;
       line-height: 32px;
-      margin-bottom: 26px;
+      width: 100%;
+      padding: 20px 25px 40px 25px;
+      margin-bottom: 0;
     }
 
 
@@ -1733,6 +1758,10 @@
 
     .account_settings_change_block {
       flex-direction: column;
+      padding: 25px;
+      margin-bottom: 25px;
+      background-color: #FFFFFF;
+
 
       .account_settings_form_text_wrapper {
         text-align: center;
@@ -1744,7 +1773,6 @@
       .account_settings_form_button_wrapper {
         width: 100%;
         padding-left: 0;
-        margin-bottom: 25px;
 
         .account_settings_button_save {
           margin-bottom: 0;
@@ -1758,7 +1786,9 @@
       all: unset;
       height: auto;
       width: 100%;
-      padding-bottom: 30px;
+      padding: 25px 25px 45px 25px;
+      box-sizing: border-box;
+      background-color: #FFFFFF;
 
       .account_settings_subscribes_title {
         text-align: center;
@@ -1774,8 +1804,40 @@
         all: unset;
         height: auto;
         width: 100%;
-        padding: 23px 0 30px 0;
+        padding: 0 0 30px 0;
         margin-bottom: 0;
+
+        .account_settings_change_email_language_container{
+          padding-bottom: 20px;
+          margin: 0;
+          width: 100%;
+          button{
+            padding: 8px 0;
+            width: 100%;
+            border: 1px  solid #0E5394;
+
+            &:active{
+              color: black;
+            }
+          }
+          .dropdown_menu{
+            width: 100%;
+            text-align: center;
+            border: 1px  solid #0E5394;
+            background-color: #0E5394;
+
+            .dropdown_menu_item{
+              border-bottom: 1px solid #7fa7cf;
+              color: #FFFFFF;
+              font-family: "Source Sans Pro", sans-serif;
+              font-size: 16px;
+              font-weight: 600;
+              &:last-child{
+                border-bottom: none;
+              }
+            }
+        }
+        }
 
         .account_settings_form_email,
         .account_settings_form_password {
@@ -1818,7 +1880,9 @@
         .account_settings_text_delete {
           display: flex;
           justify-content: center;
-          margin-bottom: 20px;
+          padding: 25px 25px 0 25px;
+          background-color: #FFFFFF;
+          margin-bottom: 0;
         }
 
         .account_settings_text {
@@ -1827,8 +1891,8 @@
           margin-bottom: 0;
           display: block;
           text-align: center;
-          padding-right: 20px;
-          padding-left: 20px;
+          padding: 0 25px 25px 25px;
+          background-color: #FFFFFF;
         }
 
         .account_settings_buttons_container {
@@ -1881,6 +1945,17 @@
       }
     }
   }
+
+
+  .profile_personal_details {
+    .profile_form{
+      .profile_form_data_container{
+        .warning_date_text {
+font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
 
@@ -1890,18 +1965,18 @@
       .profile_form {
         .profile_form_data_container {
           .warning_date_text {
-            font-size: 8px;
+            font-size: 10px;
           }
 
           .profile_form_warning_text {
-            font-size: 7px;
+            font-size: 10px;
           }
 
           .profile_form_footer {
             padding-left: 0;
 
             .profile_form_captcha_text {
-              font-size: 8px;
+              font-size: 10px;
             }
 
 
@@ -1916,12 +1991,36 @@
     }
   }
   .account_settings_container {
-    padding-right: 15px;
-    padding-left: 15px;
+    //padding-right: 15px;
+    //padding-left: 15px;
+
+    .account_settings_forms_container {
+      .account_settings_form{
+        .account_settings_change_email_language_container{
+          padding-bottom: 10px;
+        }
+        .account_settings_form_title{
+          width: 100%;
+          margin-bottom: 20px;
+        }
+        .account_settings_text_delete, .account_settings_text{
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+      }
+      .account_settings_subscribes{
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+    }
 
     .account_settings_form {
       .account_settings_form_title {
         font-size: 17px;
+      }
+
+      .account_settings_change_block{
+        padding: 25px 15px;
       }
 
       .account_settings_buttons_container {
@@ -1982,7 +2081,7 @@
         .profile_form_data_container {
           .profile_form_footer {
             .profile_form_captcha_text {
-              font-size: 7px;
+              font-size: 10px;
             }
           }
         }

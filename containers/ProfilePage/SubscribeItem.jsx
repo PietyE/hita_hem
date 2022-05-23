@@ -28,10 +28,10 @@ const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
 
     return (
         <li className='subscribe_item'>
-            <span className='subscribe_text'>{data.name} :</span>
+            <span className='subscribe_text'>{data.name}:</span>
             <div className='subscribe_inputs_container'>
                 <label className={isOn ? 'subscribe_label active_radio' : 'subscribe_label'}>
-                    {t("profile_page.account.subscribe_on")}
+                    {t("profile_page.account.subscribe_on").toLocaleUpperCase()}
                     <input
                         className='subscribe_input'
                         type='radio'
@@ -40,7 +40,7 @@ const SubscribeItem = ({data, unsubscribes, changeUnsubscribesList}) => {
                     />
                 </label>
                 <label className={isOn ? 'subscribe_label' : 'subscribe_label active_radio'}>
-                    {t("profile_page.account.subscribe_off")}
+                    {t("profile_page.account.subscribe_off").toLocaleUpperCase()}
                     <input
                         className='subscribe_input'
                         type='radio'

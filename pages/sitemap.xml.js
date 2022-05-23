@@ -1,17 +1,29 @@
 import React from "react";
+
 const baseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/foretag/`
 const baseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/company/`
 
-const createDynamicMarkupForCampaigns = async () => {
+const questionBaseUrlSv = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&amp;svar/`
+const questionBaseUrlEn = `${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq/`
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`,{
-        headers:{
+const createDynamicMarkup = async () => {
+
+    const fetchCampaigns = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/companies/`, {
+        headers: {
             'content-type': 'application/json',
             'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
         },
     })
-    const data = await response.json()
-    const listOfSlugs =   data.map((campaign=>campaign?.slug))
+
+    const fetchQuestions = await fetch(`${process.env.NEXT_PUBLIC_SITEMAP_API_URL}/api/faq-page/`, {
+        headers: {
+            'content-type': 'application/json',
+            'origin': process.env.NEXT_PUBLIC_SITEMAP_URL
+        },
+    })
+
+    const campaigns = await fetchCampaigns.json()
+    const listOfSlugs = campaigns.map((campaign => campaign?.slug))
     const campaignsMarkup = listOfSlugs.map((slug) => {
         return `
             <url>
@@ -26,9 +38,26 @@ const createDynamicMarkupForCampaigns = async () => {
 `
     })
 
+    const questions = await fetchQuestions.json()
+    const listOfQuestions = questions.map((question => question?.slug))
+    const questionsMarkup = listOfQuestions.map((slug) => {
+        return `
+            <url>
+              <loc>${questionBaseUrlSv}${slug}</loc>
+              <xhtml:link
+               rel="alternate"
+               hreflang="en"
+               href="${questionBaseUrlEn}${slug}"/>
+              <lastmod>${new Date().toISOString()}</lastmod>
+              <priority>0.80</priority>
+            </url>
+`
+    })
+
+
     const dibPosts = await fetch(`https://api.dropinblog.com/v1/json/?b=${process.env.NEXT_PUBLIC_DIP_ID}`)
     const dibData = await dibPosts.json()
-    const listOfDibSlugs = dibData?.data?.posts.map(post=>post?.slug)
+    const listOfDibSlugs = dibData?.data?.posts.map(post => post?.slug)
     const dibMarkup = listOfDibSlugs.map((slug) => {
         return `
             <url>
@@ -43,7 +72,7 @@ const createDynamicMarkupForCampaigns = async () => {
 `
     })
 
-    const markup = dibMarkup.concat(campaignsMarkup)
+    const markup = dibMarkup.concat(campaignsMarkup).concat(questionsMarkup)
 
     return markup.join('')
 }
@@ -52,8 +81,8 @@ const Sitemap = () => {
     return null
 };
 
-export const getServerSideProps = async({res}) => {
-    const markup = await createDynamicMarkupForCampaigns()
+export const getServerSideProps = async ({res}) => {
+    const markup = await createDynamicMarkup()
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
          <urlset
@@ -105,6 +134,24 @@ export const getServerSideProps = async({res}) => {
         rel="alternate"
         hreflang="en"
         href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/about-us"/>
+<lastmod>2022-01-20T10:44:23+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/soksida</loc>
+<xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/search"/>
+<lastmod>2022-01-20T10:44:23+00:00</lastmod>
+<priority>0.80</priority>
+</url>
+<url>
+<loc>${process.env.NEXT_PUBLIC_SITEMAP_URL}/fragor&amp;svar</loc>
+<xhtml:link
+        rel="alternate"
+        hreflang="en"
+        href="${process.env.NEXT_PUBLIC_SITEMAP_URL}/en/faq"/>
 <lastmod>2022-01-20T10:44:23+00:00</lastmod>
 <priority>0.80</priority>
 </url>

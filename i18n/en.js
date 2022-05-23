@@ -165,7 +165,7 @@ export const en = {
             text: "You have now completed the quiz and are ready to invest.",
         },
         successfulInvestment: {
-            title: "You have successfully completed the form!",
+            title: "You have successfully completed the form.",
             text: "We will get back to you with further instructions.",
         },
         successfulDeletedAccount: {
@@ -363,6 +363,9 @@ export const en = {
                 button_cancel: "Cancel",
                 button_save: "Save changes",
             },
+            changeEmailLanguage: {
+                title: 'Change the email notifications language',
+            },
             reset_password: {
                 title: "Change password",
                 forgot_password: "Forgot your password?",
@@ -484,8 +487,9 @@ export const en = {
 
             long_error_part1: "Must be at most",
             long_error_part2: "characters.",
-
-
+            auth_social_account_error: {
+                title: 'An account with this email address already exists.',
+            }
         },
         cookie: {
             text: 'Accumeo uses cookies to provide necessary website functionality, improve your experience and analyze our traffic. By using our website, you agree to our',
@@ -561,6 +565,16 @@ export const en = {
         faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',
         change_password_saga_title: 'Your password has been successfully updated.',
+
+        faq_page: {
+            title: 'Advice and answers from the Accumeo Team',
+            subtitle: 'Get answers about Accumeo and investing',
+            categories_title: 'Categories of questions',
+            placeholder: 'Ask a question or search by keyword',
+            search_results_title: 'Search results',
+            no_results: 'Sorry, nothing matched your search terms',
+            back_button: 'Back',
+        },
     },
 
 

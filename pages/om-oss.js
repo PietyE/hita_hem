@@ -4,7 +4,7 @@ import {END} from "redux-saga";
 import dynamic from "next/dynamic";
 
 import {wrapper} from "/redux/store";
-
+import SeoComponent from "../components/SeoComponent";
 import TopSection from "containers/AboutUsPage/TopSection";
 import MiddleSection from "containers/AboutUsPage/MiddleSection";
 import SpinnerStyled from "components/ui/Spinner";
@@ -19,8 +19,6 @@ import {
     getTeamMembersSelector,
 } from "redux/reducers/aboutUs";
 import {getAboutUsSeoSelector} from "../redux/reducers/aboutUs";
-import MetaTags from "../components/MetaTags";
-import Schema from "../components/Schema";
 import makeAboutUsSchema from "../Schemas/aboutUsSchema";
 
 const SubscrebeFormSection = dynamic(() => import("containers/AboutUsPage/SubscrebeFormSection"), {
@@ -54,8 +52,12 @@ const AboutUsPage = () => {
 
     return (
         <>
-            <MetaTags seo={seo}/>
-            <Schema makeSchema={makeAboutUsSchema} data={team_members} key='about-us-page'/>
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com/om-oss'}
+                          makeSchema={makeAboutUsSchema}
+                          data={{team:team_members, seo:seo.mark_up}}
+                          keyName='about-us-page'
+            />
             {isFetching && <SpinnerStyled/>}
             <div className="about_us_container">
                 <TopSection content={topSectionContent}/>

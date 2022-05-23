@@ -4,6 +4,7 @@ import {END} from "redux-saga";
 import {wrapper} from "redux/store";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import SeoComponent from "../components/SeoComponent";
 import RaisePageTopSlider from "containers/RaisePage/RaisePageTopSlider";
 import RaiseOpportunities from "containers/RaisePage/RaiseOpportunities";
 import RaiseAdvantages from "containers/RaisePage/RaiseAdvantages";
@@ -16,8 +17,6 @@ import {
     getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
 import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
-import MetaTags from "../components/MetaTags";
-import Schema from "../components/Schema";
 import makeRaiseSchema from "../Schemas/raiseSchema";
 
 
@@ -77,8 +76,12 @@ const RaisePage = () => {
 
     return (
         <>
-            <MetaTags seo={seo}/>
-            <Schema makeSchema={makeRaiseSchema} data={{}} key='raise-page'/>
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com/sok-kapital'}
+                          makeSchema={makeRaiseSchema}
+                          data={seo.markup}
+                          keyName='raise-page'
+            />
 
             {isFetching && <SpinnerStyled/>}
             <section className="raise_page_container">

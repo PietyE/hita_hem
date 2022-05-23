@@ -9,6 +9,8 @@ import homePageCRUD from "./routes/homePage";
 import launchingSoonCRUD from "./routes/launchingSoon";
 import raisePageCRUD from "./routes/raisePage";
 import documentsCRUD from "./routes/documents";
+import faqCRUD from "./routes/faqPage";
+import newsCRUD from "./routes/news";
 
 const _baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -48,6 +50,8 @@ class Client {
     this.launchingSoon = launchingSoonCRUD(this.instanse);
     this.raisePage = raisePageCRUD(this.instanse);
     this.documents = documentsCRUD(this.instanse);
+    this.faq = faqCRUD(this.instanse)
+    this.news = newsCRUD(this.instanse)
   }
 
   setToken(token) {

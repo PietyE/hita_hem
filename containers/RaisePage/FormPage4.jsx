@@ -117,15 +117,18 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
                 name="is_agree"
                 className="raise_agreement_checkbox"
               />
-              {t("raisePage.form_footer.privacy_policy1")}
-              <a
-                className="raise_agreement_link"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={documentUrl?.file || documentUrl?.url}
-              >
+              <span>
+                  <span className="raise_agreement_checkbox_text">{t("raisePage.form_footer.privacy_policy1")}</span>
+                  <a
+                      className="raise_agreement_link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={documentUrl?.file || documentUrl?.url}
+                  >
                 {t("raisePage.form_footer.privacy_policy2")}
               </a>
+              </span>
+
             </label>
             <div className="raise_form_button_container">
               <Button
