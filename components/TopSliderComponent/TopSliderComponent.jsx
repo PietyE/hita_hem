@@ -45,9 +45,9 @@ const TopSliderComponent = ({
             } else {
                 const nowTime = Math.floor(new Date().getTime() / 1000);
                 const expiration_timestamp = authLocalData?.expiration_timestamp;
-                    if(nowTime > expiration_timestamp){
-                        setShowSlider(true)
-                    }
+                if (nowTime > expiration_timestamp) {
+                    setShowSlider(true)
+                }
             }
         }
     }, [type, isAuth])
@@ -96,7 +96,7 @@ const TopSliderComponent = ({
                                     img={getCorrectImage(bannerData.images)}
                                     screenSize={screenSize}
                                     alter_text={getImageAltText(bannerData?.images?.alter_text)}
-
+                                    loading='eager'
                                 />
                             )}
 
@@ -104,7 +104,7 @@ const TopSliderComponent = ({
                     </Carousel.Item>
                 )}
                 {!!data?.length && !showSlider &&
-                data?.map((headerItem) => {
+                data?.map((headerItem,i) => {
                     const {
                         images,
                         title,
@@ -121,7 +121,6 @@ const TopSliderComponent = ({
                         pk,
                         percentage,
                     } = headerItem;
-
                     const img = getCorrectImage(images)
                     const _firstButtonColor = changeButtonColor(first_button_text_color, first_button_color)
                     const _secondButtonColor = changeButtonColor(second_button_text_color, second_button_color)
@@ -187,7 +186,11 @@ const TopSliderComponent = ({
                                 </div>
 
                                 {img && screenSize && (
-                                    <SliderImage img={img} screenSize={screenSize}/>
+                                    <SliderImage img={img}
+                                                 screenSize={screenSize}
+                                                 alter_text={getImageAltText(images?.alter_text)}
+                                                 loading={!!i ? 'lazy' : 'eager'}
+                                    />
                                 )}
 
                             </div>
@@ -201,11 +204,11 @@ const TopSliderComponent = ({
 
 const changeButtonColor = (textColor, backGroundColor) => {
     let resultStyle = {}
-    if(textColor && backGroundColor){
+    if (textColor && backGroundColor) {
         resultStyle = {color: textColor, borderColor: textColor, backgroundColor: backGroundColor}
-    }else if(!textColor && backGroundColor){
-        resultStyle = { backgroundColor: backGroundColor}
-    }else if(textColor && !backGroundColor){
+    } else if (!textColor && backGroundColor) {
+        resultStyle = {backgroundColor: backGroundColor}
+    } else if (textColor && !backGroundColor) {
         resultStyle = {color: textColor, borderColor: textColor}
     }
     return resultStyle

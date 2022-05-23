@@ -90,16 +90,14 @@ const Overview = () => {
                             height={imageSize?.height || 0}
                             layout="responsive"
                             loading='lazy'
-                            alt={imageAltText || ' '}
+                            alt={imageAltText || 'image'}
                         />
                     </div>
                 )}
-                {videoLink &&
-                (<div
-                    className="project_info_player_wrapper"
-                >
-                    <YoutubeComponent link={videoLink} className='project_info_player'/>
-                </div>)
+                {videoLink && (
+                    <div className="project_info_player_wrapper">
+                        <YoutubeComponent link={videoLink} className='project_info_player'/>
+                    </div>)
                 }
 
                 {!!businessHighlights && (

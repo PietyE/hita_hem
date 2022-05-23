@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from "next/image";
 
-const SliderImage = ({img, screenSize, alter_text}) => {
+const SliderImage = ({img, screenSize, alter_text, loading}) => {
     return (
         <>
             {img && (
@@ -11,8 +11,8 @@ const SliderImage = ({img, screenSize, alter_text}) => {
                             src = {img}
                             layout = "fill"
                             objectFit = "cover"
-                            priority = {true}
                             alt = {alter_text || ' '}
+                            loading={loading}
 
                         />)}
                     {( screenSize === 'laptop' && img &&
@@ -20,18 +20,16 @@ const SliderImage = ({img, screenSize, alter_text}) => {
                             src = {img}
                             layout = "fill"
                             objectFit = "cover"
-                            priority = {true}
                             alt = {alter_text || ' '}
-
+                            loading={loading}
                         />)}
                     {( screenSize === 'mobile' && img &&
                         <Image
                             src = {img}
                             layout = "fill"
                             objectFit = "cover"
-                            priority = {true}
                             alt = {alter_text || ' '}
-
+                            loading={loading}
                         />)}
                 </div>
             )}

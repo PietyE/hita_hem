@@ -5,15 +5,7 @@ import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
-    ssr: false,
-});
-
-const SRLWrapper = dynamic(() =>
-    import('simple-react-lightbox').then((mod) => mod.SRLWrapper), {ssr: false}
-)
+import {SRLWrapperComponent,SimpleReactLightboxComponent} from "../../components/ui/SimpleReactLightboxComponent";
 
 const options = {
     buttons: {
@@ -113,8 +105,8 @@ const FinArticle = ({item}) => {
                         </div>
 
                         {(!!image) && (
-                            <SimpleReactLightbox>
-                                <SRLWrapper options={options}>
+                            <SimpleReactLightboxComponent>
+                                <SRLWrapperComponent options={options}>
                             <Image
                                 src={image}
                                 layout="responsive"
@@ -124,8 +116,8 @@ const FinArticle = ({item}) => {
                                 alt={image_alter_text}
                                 loading='lazy'
                             />
-                            </SRLWrapper>
-                            </SimpleReactLightbox>
+                            </SRLWrapperComponent>
+                            </SimpleReactLightboxComponent>
                         )}
                         {matchesAll && isShowButton && (
                             <div className={isShowMore ? "show_more show_more_clicked" : "show_more "}>

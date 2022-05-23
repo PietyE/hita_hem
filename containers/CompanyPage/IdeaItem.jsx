@@ -4,16 +4,10 @@ import InfoBlockColor from "../../components/ui/InfoBlockColor";
 import Title from "../../components/ui/Title";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-// import ImageComponent from "../../components/ui/ImageComponent";
 
-const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
-    ssr: false,
-});
+import {SimpleReactLightboxComponent, SRLWrapperComponent} from "../../components/ui/SimpleReactLightboxComponent";
 
-const SRLWrapper = dynamic(() =>
-    import('simple-react-lightbox').then((mod) => mod.SRLWrapper), {ssr: false}
-)
+
 
 const options = {
     buttons: {
@@ -79,8 +73,8 @@ const IdeaItem = ({section}) => {
                     }}
                 />
                 {type === "Solution" && (
-                    <SimpleReactLightbox>
-                        <SRLWrapper options={options}>
+                    <SimpleReactLightboxComponent>
+                        <SRLWrapperComponent options={options}>
 
                             {!!first_image && (
                                 // <ImageComponent
@@ -114,13 +108,13 @@ const IdeaItem = ({section}) => {
                                     />
                                 </div>
                             )}
-                        </SRLWrapper>
-                    </SimpleReactLightbox>
+                        </SRLWrapperComponent>
+                    </SimpleReactLightboxComponent>
                 )}
             </section>
             {type === "Result" && (
-                <SimpleReactLightbox>
-                    <SRLWrapper options={options}>
+                <SimpleReactLightboxComponent>
+                    <SRLWrapperComponent options={options}>
 
                         <div className="idea_image_container">
 
@@ -217,8 +211,8 @@ const IdeaItem = ({section}) => {
 
                         {/*    )}*/}
                         {/*</div>*/}
-                    </SRLWrapper>
-                </SimpleReactLightbox>
+                    </SRLWrapperComponent>
+                </SimpleReactLightboxComponent>
 
             )}
         </>
