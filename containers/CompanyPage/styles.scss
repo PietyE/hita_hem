@@ -186,7 +186,7 @@
       overflow: hidden;
     }
 
-    .project_info_description_section {
+    .project_info_description_section, .project_info_description_section_fade {
       .project_info_title {
         line-height: 54px;
         font-weight: 700;
@@ -2259,7 +2259,7 @@ overflow: hidden;
     }
 
     .project_info_left_section{
-      .project_info_description_section{
+      .project_info_description_section, .project_info_description_section_fade{
         .project_info_title {
           line-height: 30px;
         }
@@ -2289,7 +2289,7 @@ overflow: hidden;
           max-width: 100%;
           padding-top: 35px;
 
-          .project_info_description_section {
+          .project_info_description_section, .project_info_description_section_fade {
             .project_info_title {
               line-height: 30px;
               font-size: 24px;
@@ -2905,7 +2905,7 @@ overflow: hidden;
       }
 
       .project_info_left_section {
-        .project_info_description_section {
+        .project_info_description_section, .project_info_description_section_fade {
           .project_info_description {
             overflow: hidden;
           }
