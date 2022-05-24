@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { getHomePageRaisesSelector } from "redux/reducers/homePage";
 import isEqual from "lodash/isEqual";
 import { sanitizeHtmlFromBack } from "utils/sanitazeHTML";
+import Image from "next/image";
 
 function Raise() {
   const homePageRaise = useSelector(getHomePageRaisesSelector, isEqual) || [];
@@ -13,13 +14,17 @@ function Raise() {
           const {index, logo, title, description } = el;
           return (
             <div key={title} className="raise_step step1">
-              <div className="step_icon_wrapper">
-                <img
-                  src={logo}
-                  alt={homePageRaise?.alter_text || ' '}
-                  className="raise_step_icon"
-                  loading="lazy"
-                />
+              <div className="step_icon_wrapper" style={{position: 'relative'}}>
+                {logo && (
+                    <Image
+                        src={logo}
+                        alt={homePageRaise?.alter_text || 'image'}
+                        className="raise_step_icon"
+                        layout='fill'
+                        objectFit="cover"
+                        loading="lazy"
+                    />
+                )}
               </div>
               <div className="raise_step_text_wrapper">
                 <h3 className="raise_step_title">

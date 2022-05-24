@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useTranslation} from "react-i18next";
-import Accordion from 'react-bootstrap/Accordion'
+import {AccordionComponent} from "../../components/ui/AccordionComponent";
 import ResultItem from "./ResultItem";
 import {saveSearchResults} from "../../redux/actions/faq";
 import {useDispatch} from "react-redux";
@@ -37,7 +37,7 @@ const SearchResults = ({searchResults}) => {
             <h2 className='search_results_title' ref={titleRef}>{t("faq_page.search_results_title")}:</h2>
 
             {searchResults.length > 0 &&
-            <Accordion as='ul' className='search_results_list'>
+            <AccordionComponent as='ul' className='search_results_list'>
                 {searchResults.map((el, i) => (
                     <ResultItem key={el.question}
                                 el={el}
@@ -47,7 +47,7 @@ const SearchResults = ({searchResults}) => {
                                 titleRef={titleRef}
                     />
                 ))}
-            </Accordion>
+            </AccordionComponent>
             }
 
             {searchResults.length === 0 && (

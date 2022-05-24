@@ -8,7 +8,7 @@ import Footer from "components/Footer";
 import {
     getIsSignInUserSelector,
     getUserEmailSelector,
-    getFullNameSelector, getCanResetPasswordSelector
+    getFullNameSelector,
 } from "redux/reducers/user";
 import {
   getShowSignIn,
@@ -49,7 +49,6 @@ import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
-import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),

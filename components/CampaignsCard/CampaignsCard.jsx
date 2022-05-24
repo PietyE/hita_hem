@@ -57,7 +57,8 @@ const CampaignsCard = (props) => {
                                     src={cardImage}
                                     layout="fill"
                                     objectFit="cover"
-                                    priority={true}
+                                    // priority={true}
+                                    loading='lazy'
                                     alt={altText}
                                 />)}
                         </div>
@@ -68,6 +69,7 @@ const CampaignsCard = (props) => {
                      layout="fill"
                      objectFit="cover"
                      alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
+                     loading='lazy'
                  />
               </div>
 
