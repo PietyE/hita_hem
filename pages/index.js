@@ -4,10 +4,6 @@ import dynamic from "next/dynamic";
 import {END} from "redux-saga";
 import {wrapper} from "redux/store";
 
-import {getIsSignInUserSelector} from "redux/reducers/user";
-import {getIsFetchingHomePageSelector} from "redux/reducers/homePage";
-import {getHomePage} from "redux/actions/homePage";
-
 import SeoComponent from "../components/SeoComponent";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";

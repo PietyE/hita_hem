@@ -9,8 +9,6 @@ import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSli
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
 
-import {getCompanyListSelector,getInvestPageSeoSelector, getIsFetchingCampaignsSelector} from "redux/reducers/companies";
-import {getCompaniesList,getCompaniesHeaderList} from "redux/actions/companies";
 import {
     getCompanyListSelector,
     getInvestPageSeoSelector,

@@ -16,8 +16,6 @@ import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
-import {getCompanyLogoAltTextSelector, getCompanySubTitleSelector} from "../../redux/reducers/companies";
-// import ImageComponent from "../../components/ui/ImageComponent";
 import {
     getCompanyLogoAltTextSelector,
     getCompanyStatusSelector,

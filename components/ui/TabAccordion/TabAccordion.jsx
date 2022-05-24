@@ -55,15 +55,16 @@ function TabAccordion({ isAuth, isQuizPassed, status }) {
         setActiveTab(e.target.dataset.value);
         if (Number(e.target.dataset.value) !== 0) {
 
-      overviewRef.current.scrollIntoView();
-      const scrolled = window.scrollY
+            overviewRef.current.scrollIntoView();
+            const scrolled = window.scrollY
 
-      if(status === 1){
-        window.scrollTo({top: scrolled - 80})
+            if (status === 1) {
+                window.scrollTo({top: scrolled - 80})
 
-      }else{
-        window.scrollTo({top: scrolled - 160})
+            } else {
+                window.scrollTo({top: scrolled - 160})
 
+            }
         }
     };
     return (
