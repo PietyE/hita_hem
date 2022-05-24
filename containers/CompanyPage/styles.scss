@@ -1050,6 +1050,71 @@ overflow: hidden;
         font-size: 22px;
         line-height: 160%;
         color: #424242;
+
+        p {
+          font-family: 'Source sans Pro', sans-serif;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 22px;
+          line-height: 150%;
+          color: #424242;
+        }
+
+        ul {
+          padding: 0;
+          list-style: none;
+
+          li {
+            font-family: 'Source sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 31px;
+            letter-spacing: 0.3px;
+            color: #000;
+            position: relative;
+            padding-left: 18px;
+
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 14px;
+              width: 6px;
+              height: 6px;
+              background: #fb7f73;
+              border-radius: 50px;
+            }
+          }
+        }
+        ol {
+          padding: 0;
+          //list-style: none;
+
+          li {
+            font-family: 'Source sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 31px;
+            letter-spacing: 0.3px;
+            color: #000;
+            position: relative;
+            padding-left: 18px;
+
+            //&::before {
+            //  content: "";
+            //  position: absolute;
+            //  left: 0;
+            //  top: 14px;
+            //  width: 6px;
+            //  height: 6px;
+            //  background: #0E5394;
+            //  border-radius: 50px;
+            //}
+          }
+        }
+
       }
 
       .fin_article_large_button {
@@ -2155,6 +2220,16 @@ overflow: hidden;
                 }
               }
             }
+            ol {
+              li {
+                font-size: 18px;
+
+                &:before {
+                  top: 12px;
+                }
+              }
+            }
+
           }
         }
 
@@ -2180,6 +2255,16 @@ overflow: hidden;
               }
             }
           }
+          ol {
+            li {
+              font-size: 18px;
+
+              &:before {
+                top: 12px;
+              }
+            }
+          }
+
         }
       }
     }
@@ -2188,6 +2273,30 @@ overflow: hidden;
       .fin_article_wrapper {
         .fin_article_text {
           font-size: 18px;
+          p {
+            font-size: 18px;
+          }
+
+          ul {
+            font-size: 18px;
+
+            li {
+              font-size: 18px;
+
+              &:before {
+                top: 13px;
+              }
+            }
+          }
+          ol {
+            li {
+              font-size: 18px;
+
+              &:before {
+                top: 12px;
+              }
+            }
+          }
         }
       }
     }
