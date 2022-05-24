@@ -4,13 +4,11 @@ import dynamic from "next/dynamic";
 import {END} from "redux-saga";
 import {wrapper} from "redux/store";
 
+import SeoComponent from "../components/SeoComponent";
 import TopSlider from "containers/HomePage/TopSlider";
 import FeaturedCampaigns from "containers/HomePage/FeaturedCampaigns";
 import UpcomingCampaigns from "containers/HomePage/UpcomingCampaigns";
-
-import Schema from "components/Schema";
 import SpinnerStyled from "components/ui/Spinner";
-import MetaTags from "components/MetaTags";
 
 import makeHomePageSchema from "../Schemas/homeSchema";
 import useDropInBlog from "../customHooks/useDropInBlog";
@@ -51,8 +49,12 @@ const Index = () => {
 
     return (
         <>
-            <MetaTags seo={seo} url={'https://accumeo.com'}/>
-            <Schema makeSchema={makeHomePageSchema} data={seo?.mark_up} keyName='home-page'/>
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com'}
+                          makeSchema={makeHomePageSchema}
+                          data={seo?.mark_up}
+                          keyName='home-page'
+            />
             <div className="home_page_container">
                 {isFetching && <SpinnerStyled/>}
                 <div className="home_page_container">

@@ -4,8 +4,7 @@ import {END} from "redux-saga";
 import {wrapper} from "/redux/store";
 import {useRouter} from "next/router";
 
-import MetaTags from "components/MetaTags";
-import Schema from "components/Schema";
+import SeoComponent from "../../components/SeoComponent";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
 import SpinnerStyled from "components/ui/Spinner";
 
@@ -119,8 +118,12 @@ const CompanyPage = () => {
 
     return (
         <>
-            <MetaTags seo={seo} url={`https://accumeo.com/foretag/${companyName}`}/>
-          <Schema makeSchema={makeCampaignSchema} data={{campaign:dataForSchema, seo: seo?.mark_up}} keyName='campaign'/>
+            <SeoComponent seo={seo}
+                          url={`https://accumeo.com/foretag/${companyName}`}
+                          makeSchema={makeCampaignSchema}
+                          data={{campaign:dataForSchema, seo: seo?.mark_up}}
+                          keyName='campaign'
+            />
 
           {isFetching && <SpinnerStyled/>}
             {!isError404 && <div className="company-page-container">

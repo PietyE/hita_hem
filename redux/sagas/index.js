@@ -9,6 +9,7 @@ import { launchingSoonWatcher } from "./launchingSoon";
 import { raisePageWatcher } from "./raisePage";
 import { errorsWatcher } from "./errors";
 import { faqWatcher } from "./faq";
+import { newsPageWatcher} from "./news";
 
 export function* rootSagas() {
   yield all([
@@ -21,6 +22,7 @@ export function* rootSagas() {
     raisePageWatcher(),
     errorsWatcher(),
     faqWatcher(),
+    newsPageWatcher(),
   ]);
 }
 

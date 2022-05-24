@@ -1,7 +1,6 @@
 import React, {useCallback, useEffect} from 'react';
 import CampaignsList from "../components/CampaignsList";
 import SpinnerStyled from "../components/ui/Spinner";
-import MetaTags from "../components/MetaTags";
 import {useDispatch, useSelector} from "react-redux";
 import {
     getCampaignOffsetSelector, getCampaignSearchQuerySelector,
@@ -9,6 +8,7 @@ import {
     getListOfFoundCampaignsSelector, getSearchPageSeoSelector
 } from "../redux/reducers/companies";
 import isEqual from "lodash/isEqual";
+import SeoComponent from "../components/SeoComponent";
 import SearchForm from "../containers/InvestmentOpportunitiesPage/SearchForm";
 import Button from "../components/ui/Button";
 import {useTranslation} from "react-i18next";
@@ -18,7 +18,6 @@ import {
     searchCampaigns,
     setCampaignOffset
 } from "../redux/actions/companies";
-import Schema from "../components/Schema";
 import makeSearchSchema from "../Schemas/searchSchema";
 import {wrapper} from "../redux/store";
 import {END} from "redux-saga";
@@ -72,8 +71,12 @@ const Soksida = () => {
 
     return (
         <>
-            <MetaTags seo={seo} url={'https://accumeo.com/soksida'}/>
-            <Schema makeSchema={makeSearchSchema} data={seo?.mark_up} keyName='search'/>
+            <SeoComponent seo={seo}
+                          url={'https://accumeo.com/soksida'}
+                          makeSchema={makeSearchSchema}
+                          data={seo?.mark_up}
+                          keyName='search'
+            />
 
             <section className='search_section'>
             {isFetching && <SpinnerStyled/>}

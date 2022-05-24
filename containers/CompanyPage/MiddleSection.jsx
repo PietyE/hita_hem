@@ -16,8 +16,11 @@ import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
-import {getCompanyLogoAltTextSelector, getCompanySubTitleSelector} from "../../redux/reducers/companies";
-// import ImageComponent from "../../components/ui/ImageComponent";
+import {
+    getCompanyLogoAltTextSelector,
+    getCompanyStatusSelector,
+    getCompanySubTitleSelector
+} from "../../redux/reducers/companies";
 import throttle  from "lodash/throttle"
 import Overview from "./Overview";
 import TabAccordion from "components/ui/TabAccordion";
@@ -47,6 +50,7 @@ const MiddleSection = ({isAuth}) => {
     const campaignName = useSelector(getCompanyNameSelector)
     const logo = useSelector(getCompanyLogoUrlSelector)
     const alter_text = useSelector(getCompanyLogoAltTextSelector)
+    const status = useSelector(getCompanyStatusSelector)
     const sectionRef = useRef();
     const sectionsContainerRef = useRef()
 
@@ -356,7 +360,7 @@ const MiddleSection = ({isAuth}) => {
             <div
                 className=" middle_mobile_tabbr_container">
 
-                <TabAccordion isAuth={isAuth} isQuizPassed={isQuizPassed}/>
+                <TabAccordion isAuth={isAuth} isQuizPassed={isQuizPassed} status={status}/>
             </div>
         </div>
     );

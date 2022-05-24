@@ -14,6 +14,7 @@ import { notification } from "../reducers/notification";
 import { errors } from "../reducers/errors";
 import { documents } from "../reducers/documents";
 import { faq } from "../reducers/faq"
+import { news } from "../reducers/news"
 
 import rootSaga from "../sagas/index";
 
@@ -40,6 +41,7 @@ function rootReducer(state = {}, action) {
         errors,
         documents,
         faq,
+        news,
       });
       return combineReducer(state, action);
     }
