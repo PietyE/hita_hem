@@ -70,7 +70,7 @@ function ChangeEmail() {
     })
 
     const onSubmitEmail = (values) => {
-        recaptcha('change_email', _changeEmail, values)
+        recaptcha('change_email', _changeEmail, {...values, email: values.email.toLowerCase()})
         // _changeEmail(values);
         errorHandlerHook?._clearErrors()
     };
