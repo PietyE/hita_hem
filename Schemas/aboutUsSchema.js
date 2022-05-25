@@ -2,17 +2,17 @@ const makeAboutUsSchema = ({seo, team}) => {
     const teamMembers = team?.map((member) => (
             {
                 "@type": "ListItem",
-                "position": `${member.index}`,
+                "position": `${member?.index}`,
                 "item": {
                     "@type": "Person",
-                    "name": `${member.name}`,
-                    "jobTitle": `${member.position}`,
-                    "email": `${member.email}`,
-                    "description": `${member.description}`,
+                    "name": `${member?.name}`,
+                    "jobTitle": `${member?.position}`,
+                    "email": `${member?.email}`,
+                    "description": `${member?.description}`,
                     "image": {
                         "@type": "ImageObject",
-                        "url": `${member.photo}`,
-                        "caption": `${member.name}`
+                        "url": `${member?.photo}`,
+                        "caption": `${member?.name}`
                     }
                 }
             }
@@ -23,8 +23,8 @@ const makeAboutUsSchema = ({seo, team}) => {
         "@graph": [
             {
                 "@type": "AboutPage",
-                "name": `${seo.title}`,
-                "description": `${seo.description}`,
+                "name": `${seo?.title}`,
+                "description": `${seo?.description}`,
                 "url": "https://accumeo.com/om-oss",
                 "@id": "https://accumeo.com/om-oss/#webpage",
             },
