@@ -365,8 +365,11 @@ function* signUpWithBankIdWorker({payload}) {
         if (!!error?.response?.data?.email?.social_account){
             yield put(setNotificationMessage(error?.response?.data?.email?.social_account))
             yield put(setShowAuthSocialAccountError(true));
-        } else {
-            const hideNotification =  !!error?.response?.data?.email
+        } else if(!!error?.response?.data?.social_account){
+            yield put(setNotificationMessage(error?.response?.data?.social_account))
+            yield put(setShowAuthSocialAccountError(true));
+        }else {
+            const hideNotification =  !!error?.response?.data?.email || !!error?.response?.data?.social_account
 
             yield put(
                     setAuthError({

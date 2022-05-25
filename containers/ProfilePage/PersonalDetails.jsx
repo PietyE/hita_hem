@@ -179,6 +179,7 @@ const PersonalDetails = ({
         const newProfile = JSON.parse(JSON.stringify(values));
         newProfile.first_name = capitalize(newProfile.first_name.toLowerCase());
         newProfile.second_name = capitalize(newProfile.second_name.toLowerCase());
+        newProfile.email = newProfile.email.toLowerCase()
         if (!isBankIdResident) {
             delete newProfile.email;
         }
