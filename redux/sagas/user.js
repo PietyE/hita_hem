@@ -28,6 +28,7 @@ import {
     CHANGE_UNSUBSCRIBE_LIST,
     SIGN_UP_WITH_SOCIALS,
     SET_EMAIL_LANGUAGE,
+    CHANGE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 import {setSelectedLanguage} from "redux/actions/language";
 import {
@@ -603,6 +604,19 @@ export function* deleteUserAccount() {
         yield put(setFetchingUsers(false));
     }
 }
+export function* changeAccountTypeWorker({payload}) {
+
+    try {
+        yield put(setFetchingUsers(true));
+        yield call([auth, "changeAccountType"], payload);
+    } catch (error) {
+            yield put(
+                setAuthError({status: error?.response?.status, data: error?.response?.data})
+            );
+    } finally {
+        yield put(setFetchingUsers(false));
+    }
+}
 
 function* requestForChangingEmail({payload}) {
     try {
@@ -924,6 +938,7 @@ export function* userWorker() {
     yield takeEvery(CHANGE_UNSUBSCRIBE_LIST, changeUnsubscribeListWorker)
     yield takeEvery(SIGN_UP_WITH_SOCIALS, signUpWithSocialsWorker)
     yield takeEvery(SET_EMAIL_LANGUAGE, setEmailLanguageWorker)
+    yield takeEvery(CHANGE_ACCOUNT_TYPE, changeAccountTypeWorker)
 
 
 

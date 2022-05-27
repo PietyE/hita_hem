@@ -328,6 +328,20 @@ class AuthCRUD extends CRUD {
     });
   }
 
+  changeAccountType(payload) {
+    const {data, token} = payload
+
+    const url = `${this.url}/update_user_to_social_user/`;
+    return this.request({
+      url,
+      data,
+      method: "POST",
+      headers: {
+        "x-recaptcha-token": token,
+      },
+    });
+  }
+
 }
 
 export default function authCRUD(request) {

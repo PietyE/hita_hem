@@ -1756,6 +1756,15 @@
       display: none;
     }
 
+    .account_settings_change_profile_type_block{
+      padding: 25px;
+      margin-bottom: 25px;
+      background-color: #FFFFFF;
+      text-align: center;
+      margin-top: 25px;
+      margin-bottom: 0;
+    }
+
     .account_settings_change_block {
       flex-direction: column;
       padding: 25px;
@@ -1991,11 +2000,26 @@ font-size: 12px;
     }
   }
   .account_settings_container {
-    //padding-right: 15px;
-    //padding-left: 15px;
-
     .account_settings_forms_container {
       .account_settings_form{
+        .account_settings_change_profile_type_block{
+          .socials_buttons_wrapper{
+            .auth_bank_id{
+              margin-left: 0;
+              width: 115px;
+              &:before{
+                margin-right: 5px;
+              }
+            }
+            .auth_google{
+              width: 115px;
+              margin-right: 0;
+              &:before{
+                margin-right: 5px;
+              }
+            }
+          }
+        }
         .account_settings_change_email_language_container{
           padding-bottom: 10px;
         }

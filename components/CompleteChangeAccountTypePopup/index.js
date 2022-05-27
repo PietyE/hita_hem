@@ -1,0 +1,3 @@
+import CompleteChangeAccountTypePopup from './CompleteChangeAccountTypePopup'
+
+export default CompleteChangeAccountTypePopup

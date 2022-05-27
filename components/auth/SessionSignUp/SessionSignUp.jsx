@@ -11,12 +11,11 @@ import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
 import {getMembershipAgreementDocument} from "redux/reducers/documents";
-import {makeRequestForSignInWithBankId, signInWithGoogle, signUp} from "redux/actions/user";
+import {signUp} from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
-import {GoogleLogin} from "react-google-login";
-import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
+import SocialsAuthButtons from "../../SocialsAuthButtons";
 
 const SessionSignUp = ({show}) => {
     const dispatch = useDispatch();
@@ -24,7 +23,6 @@ const SessionSignUp = ({show}) => {
     const {t} = useTranslation();
     const documentUrl = useSelector(getMembershipAgreementDocument);
     const isFetching = useSelector(getIsFetchingAuthSelector);
-    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
     const initialValues = {
         email: "",
@@ -67,35 +65,6 @@ const SessionSignUp = ({show}) => {
             })
     })
 
-    const _signInWithBankId = useCallback(
-        () => {
-            dispatch(makeRequestForSignInWithBankId());
-        },
-        [dispatch]
-    );
-
-    const _signInWithGoogle = useCallback(
-        (values) => {
-            dispatch(signInWithGoogle(values));
-        },
-        [dispatch]
-    );
-
-    const responseGoogle = (response) => {
-        if (socialAccountError) {
-            errorHandlerHook._clearErrors()
-        }
-        _signInWithGoogle(response.tokenId)
-    }
-
-    const handleSignInWithBankId = (e) => {
-        e.preventDefault()
-        if (socialAccountError) {
-            errorHandlerHook._clearErrors()
-        }
-        _signInWithBankId()
-    }
-
     return (
         <Modal
             show={show}
@@ -116,29 +85,8 @@ const SessionSignUp = ({show}) => {
 
             </header>
             <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
-            <div className='sign_in_socials_buttons_wrapper'>
-                <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
-                    <span>BankID</span>
-                </button>
-                <GoogleLogin
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                    render={renderProps => (
-                        <button
-                            className='sign_in_google sign_in_social_button'
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                        >
-                            <span>Google</span>
-                        </button>
-                    )}
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
-            </div>
-            {socialAccountError && (
-                <p className='sign_in_socials_account_error'>{socialAccountError}</p>
-            )}
+            <SocialsAuthButtons containerClassName='auth_socials_buttons'/>
+
             <SplitLine className='sign_in_split_line'/>
             <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
             <Formik
