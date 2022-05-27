@@ -30,6 +30,7 @@ import {
   SET_SHOW_OPTIONAL_QUIZ_MESSAGE,
   SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE,
   SET_SHOW_AUTH_SOCIAL_ACCOUNT_ERROR,
+  SET_SHOW_COMPLETE_CHANGE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 
 const initialValues = {
@@ -65,6 +66,7 @@ const initialValues = {
   showCookie: false,
   dataLossWarningFromProfile: false,
   showAuthSocialAccountError: false,
+  showCompleteChangeAccountType: false,
 };
 
 export const getShowCookiePopup = state => state.authPopupWindows.showCookie;
@@ -112,6 +114,8 @@ export const getShowSuccessfulQuizMessage = state => state.authPopupWindows.show
 export const getShowOptionalQuizMessage = state => state.authPopupWindows.showOptionalQuizMessage;
 
 export const getShowAuthSocialAccountError = state => state.authPopupWindows.showAuthSocialAccountError;
+
+export const getShowCompleteChangeAccountTypeSelector = state => state.authPopupWindows.showCompleteChangeAccountType;
 
 
 export const authPopupWindows = (state = initialValues, actions) => {
@@ -180,6 +184,8 @@ export const authPopupWindows = (state = initialValues, actions) => {
       return { ...state, dataLossWarningFromProfile: actions.payload }
     case SET_SHOW_AUTH_SOCIAL_ACCOUNT_ERROR:
       return { ...state, showAuthSocialAccountError: actions.payload }
+      case SET_SHOW_COMPLETE_CHANGE_ACCOUNT_TYPE:
+      return { ...state, showCompleteChangeAccountType: actions.payload }
 
     default:
       return state;

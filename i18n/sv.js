@@ -364,6 +364,10 @@ profile_page: {
     changeEmailLanguage: {
         title: 'Byt språk för e-postmeddelanden',
     },
+    changeProfileType: {
+        title: 'Byt inloggningsmetod',
+        description: 'Du kan ändra inloggningsmetoden för ditt konto till BankID eller Google.',
+    },
     reset_password: {
         title: "Ändra lösenord",
             forgot_password: "Glömt ditt lösenord?",
@@ -563,6 +567,14 @@ cookie: {
         complete_socials_registration: {
             title: 'Vänligen godkänn medlemsskapsavtalet för att slutför registreringen.',
             button: 'Bli medlem',
+        },
+        complete_change_account_type: {
+            title: 'Du kommer nu att byta inloggningsmetoden till ',
+            description: 'Efter du har bytt inloggningsmetod kommer du INTE kunna logga in med dit lösenord.',
+            description2: 'All din data kommer att flyttas över till det nya kontot.',
+            back_button: "Tillbaka",
+            button: 'Bli medlem',
+
         },
         faq:'Frågor & svar',
 

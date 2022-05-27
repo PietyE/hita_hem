@@ -29,7 +29,8 @@ import {
   SET_SHOW_COMPLETE_SOCIALS_REGISTRATION,
   SET_SHOW_OPTIONAL_QUIZ_MESSAGE,
   SET_SHOW_DATA_LOSS_WARNING_FROM_PROFILE,
-  SET_SHOW_AUTH_SOCIAL_ACCOUNT_ERROR
+  SET_SHOW_AUTH_SOCIAL_ACCOUNT_ERROR,
+  SET_SHOW_COMPLETE_CHANGE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 
 export const setShowSignIn = (payload) => ({
@@ -187,6 +188,11 @@ export const setShowOptionalQuizMessage = payload =>({
 
 export const setShowAuthSocialAccountError= payload =>({
   type: SET_SHOW_AUTH_SOCIAL_ACCOUNT_ERROR,
+  payload,
+})
+
+export const setShowCompleteChangeAccountType= payload =>({
+  type: SET_SHOW_COMPLETE_CHANGE_ACCOUNT_TYPE,
   payload,
 })
 

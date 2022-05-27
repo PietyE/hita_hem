@@ -1,0 +1,67 @@
+.socials_buttons_wrapper{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  //padding-bottom: 40px;
+  .auth_social_button{
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    margin-right: 10px;
+    margin-left: 10px;
+    width: 130px;
+    height: 44px;
+    border: 1px solid rgba(0, 0, 0, 0.18);
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: "Source Sans Pro",sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 150%;
+    color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    margin-bottom: 15px;
+    &:hover{
+      border-color: rgb(14, 83, 148);
+      color: rgb(14, 83, 148);
+    }
+  }
+
+  .auth_bank_id{
+
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/logo-bank-id.svg");
+      background-size: 75%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+  .auth_google{
+    &:before{
+      content: '';
+      display: block;
+      height: 44px;
+      width: 44px;
+      background-image: url("../../public/images/googleIcon.svg");
+      background-size: 70%;
+      background-repeat: no-repeat;
+      background-position: 0 6px;
+      margin-right: 10px;
+    }
+  }
+}
+.socials_account_error{
+  margin-bottom: 40px;
+  color: red;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 120%;
+  font-family: "Source sans Pro", Mulish, sans-serif;
+}
