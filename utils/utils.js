@@ -204,6 +204,25 @@ export const getRedirectUrl = (currentLanguage) => {
     return _link
 }
 
+export const getRedirectUrlForChangeAccountType = (currentLanguage) => {
+    let _link;
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+        _link = currentLanguage === 'en' ? `https://dev.accumeo.com/en/authBankId?account_type=bankId` : `https://dev.accumeo.com/authBankId?account_type=bankId`
+    }
+
+    // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    //     _link = currentLanguage === 'en'?`http://localhost:3000/en/authBankId?account_type=bankId`:`http://localhost:3000/authBankId?account_type=bankId`
+    // }
+
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId` : `https://stage.accumeo.com/authBankId`
+    }
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production') {
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId` : `https://accumeo.com/authBankId`
+    }
+    return _link
+}
+
 export const getRedirectUrlForBlog = (currentLanguage) => {
     let _link;
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {

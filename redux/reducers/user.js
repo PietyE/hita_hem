@@ -22,6 +22,7 @@ import {
   SET_UNSUBSCRIBE_LIST,
   SET_SOCIALS_KEY,
   SAVE_EMAIL,
+  SET_CHANGEABLE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 
 const initialsState = {
@@ -35,6 +36,7 @@ const initialsState = {
   isShowQuizForBankId: false,
   isSuccessfulResponseFromApi: false,
   isBankIdResident: false,
+  changeableAccountType: '',
   bidSessionKey: '',
   socialsSessionKey:'',
   currentPath: '',
@@ -104,6 +106,8 @@ export const user = (state = initialsState, actions) => {
       return {...state, savedEmail: actions.payload}
     case SET_SOCIALS_KEY:
       return {...state, socialsSessionKey: actions.payload}
+      case SET_CHANGEABLE_ACCOUNT_TYPE:
+      return {...state, changeableAccountType: actions.payload}
 
 
     default:
@@ -169,5 +173,6 @@ export const getActiveTabSelector = (state) => state.user.activeTab;
 export const getIsFetchingAuthSelector = (state) => state.user.isFetching;
 export const getBIdKeySelector = (state) => state.user.bidSessionKey;
 export const getSocialsKeySelector = (state) => state.user.socialsSessionKey;
+export const getChangeableAccountTypeSelector = (state) => state.user.changeableAccountType;
 
 

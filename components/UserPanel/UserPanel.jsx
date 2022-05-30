@@ -29,7 +29,7 @@ function UserPanel() {
           <span className="user_panel_text">{`${user?.first_name} ${user?.second_name}`}</span>
         )}
           {(!user?.first_name ) && (
-            <span className="user_panel_text"> {account.email}</span>
+            <span className="user_panel_text"> {account?.email}</span>
           )}
 
         {/*{(!user?.first_name && !isBankIdResident) && (*/}

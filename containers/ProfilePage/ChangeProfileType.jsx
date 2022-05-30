@@ -1,19 +1,39 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useTranslation} from "react-i18next";
-import SocialsAuthButtons from "../../components/SocialsAuthButtons";
+import Button from "../../components/ui/Button";
+import {setShowCompleteChangeAccountType} from "../../redux/actions/authPopupWindows";
+import {useDispatch} from "react-redux";
 
 const ChangeProfileType = () => {
+    const dispatch = useDispatch();
     const {t} = useTranslation();
 
-    return (
-        <div className='account_settings_change_profile_type_block '>
+    const _setShowCompleteChangeAccountType = useCallback(() => {
+        dispatch(setShowCompleteChangeAccountType(true));
+    }, [dispatch]);
 
-            <h2 className = "account_settings_form_title">
-                {t("profile_page.changeProfileType.title")}
-            </h2>
-            <p>{t("profile_page.changeProfileType.description")}</p>
-            <SocialsAuthButtons type='change_account_type'/>
-        </div>
+    return (
+        <section className='account_settings_change_block'>
+            <div className='account_settings_form_text_wrapper '>
+
+                <h2 className="account_settings_form_title">
+                    {t("profile_page.changeProfileType.title")}
+                </h2>
+                <p>{t("profile_page.changeProfileType.description")}</p>
+
+            </div>
+            <div className='account_settings_form_button_wrapper'>
+                <Button
+                    type="submit"
+                    colorStyle="dark-green"
+                    className="account_settings_button_save"
+                    onClick={_setShowCompleteChangeAccountType}
+                >
+                    {t("profile_page.changeProfileType.change_button")}
+                </Button>
+            </div>
+        </section>
+
     );
 }
 
