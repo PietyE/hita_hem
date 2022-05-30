@@ -179,6 +179,7 @@
     }
 
     .project_info_overview_image_wrapper{
+      background-color: #d7d7d7;
       width: 100%;
       //padding-top: 1080px / 1920px * 100%;
       margin-bottom: 20px;
@@ -681,7 +682,7 @@
       }
 
       .solution_image_wrapper{
-
+background-color: #d7d7d7;
         border-radius: 6px;
         overflow: hidden;
         margin-bottom: 30px;
@@ -741,6 +742,7 @@
       margin-bottom: 80px;
 
       .middle_photo {
+        background-color: #d7d7d7;
         height: auto;
         //max-height: 270px;
         width: 24%;
@@ -1007,7 +1009,7 @@ overflow: hidden;
         border-radius: 6px;
         overflow: hidden;
         cursor: pointer;
-
+        background-color: #d7d7d7;
         img{
         }
       }
@@ -1174,6 +1176,21 @@ overflow: hidden;
         margin-right: 12px;
       }
     }
+  }
+
+  .show_more {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    transform: translate(-50%,-15px);
+    position: absolute;
+    bottom: 0;
+    left: 50%;display: flex;
+
+  }
+  .show_more_clicked{
+    transform: translate(0,0);
+    position: relative;
+    left: 0;
   }
 }
 .company_info_quiz_message{
@@ -2782,6 +2799,14 @@ overflow: hidden;
   }
 }
 
+@media screen and (max-width: 850px){
+  .company-page-container{
+    .show_more_clicked{
+transform: translate(0,20px);
+    }
+  }
+}
+
 @media screen and (max-width: 767px) {
   .company-page-container{
     .middle_section_container{
@@ -3148,22 +3173,22 @@ overflow: hidden;
   color: #000;
 }
 
-.company-page-container {
-  .show_more {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    justify-content: center;
-    transform: translate(-50%,-15px);
-    position: absolute;
-    bottom: 0;
-    left: 50%;display: flex;
-
-  }
-  .show_more_clicked{
-    transform: translate(0,0);
-    position: relative;
-    left: 0;
-  }
-}
+//.company-page-container {
+//  .show_more {
+//    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+//    justify-content: center;
+//    transform: translate(-50%,-15px);
+//    position: absolute;
+//    bottom: 0;
+//    left: 50%;display: flex;
+//
+//  }
+//  .show_more_clicked{
+//    transform: translate(0,0);
+//    position: relative;
+//    left: 0;
+//  }
+//}
 
 .fin_show_more {
   transform: translateY(14px);

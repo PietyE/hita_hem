@@ -91,6 +91,8 @@ const Overview = () => {
                             layout="responsive"
                             loading='lazy'
                             alt={imageAltText || 'image'}
+                            placeholder="blur"
+                            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
                         />
                     </div>
                 )}
