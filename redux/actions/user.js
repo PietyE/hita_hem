@@ -52,6 +52,7 @@ import {
   SAVE_EMAIL,
   SET_EMAIL_LANGUAGE,
   CHANGE_ACCOUNT_TYPE,
+  SET_CHANGEABLE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -313,5 +314,10 @@ export const setEmailLanguage = payload => ({
 
 export const changeAccountType = payload => ({
   type: CHANGE_ACCOUNT_TYPE,
+  payload
+})
+
+export const setChangeableAccountType = payload => ({
+  type: SET_CHANGEABLE_ACCOUNT_TYPE,
   payload
 })

@@ -90,7 +90,9 @@ const CompanyPage = () => {
             top: 0,
             behavior: "smooth",
         });
-        _getCompanyDetail(companyName)
+        if(!!companyName){
+            _getCompanyDetail(companyName)
+        }
         // if (!isAuth) {
         //     const authLocalData = localStorage.getItem("auth_data")
         //     if (authLocalData) {

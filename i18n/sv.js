@@ -367,6 +367,7 @@ profile_page: {
     changeProfileType: {
         title: 'Byt inloggningsmetod',
         description: 'Du kan ändra inloggningsmetoden för ditt konto till BankID eller Google.',
+        change_button: 'Endre metode',
     },
     reset_password: {
         title: "Ändra lösenord",
@@ -569,7 +570,7 @@ cookie: {
             button: 'Bli medlem',
         },
         complete_change_account_type: {
-            title: 'Du kommer nu att byta inloggningsmetoden till ',
+            title: 'Du kommer nu att byta inloggningsmetoden',
             description: 'Efter du har bytt inloggningsmetod kommer du INTE kunna logga in med dit lösenord.',
             description2: 'All din data kommer att flyttas över till det nya kontot.',
             back_button: "Tillbaka",

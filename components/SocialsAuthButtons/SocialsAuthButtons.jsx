@@ -3,8 +3,12 @@ import {GoogleLogin} from "react-google-login";
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthSocialAccountErrorSelector} from "../../redux/reducers/errors";
 import useAuthErrorHandler from "../../customHooks/useAuthErrorHandler";
-import {changeAccountType, makeRequestForSignInWithBankId, signInWithGoogle} from "../../redux/actions/user";
-import {setShowCompleteChangeAccountType} from "../../redux/actions/authPopupWindows";
+import {
+    changeAccountType,
+    makeRequestForSignInWithBankId,
+    setChangeableAccountType,
+    signInWithGoogle
+} from "../../redux/actions/user";
 import {recaptcha} from "../../utils/recaptcha";
 
 const SocialsAuthButtons = ({containerClassName, type}) => {
@@ -13,9 +17,6 @@ const SocialsAuthButtons = ({containerClassName, type}) => {
 
     const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
 
-    const _setShowCompleteChangeAccountType = useCallback((data) => {
-        dispatch(setShowCompleteChangeAccountType(data));
-    }, [dispatch]);
 
     const responseGoogle = (response) => {
         if(socialAccountError){
@@ -36,7 +37,8 @@ const SocialsAuthButtons = ({containerClassName, type}) => {
             errorHandlerHook._clearErrors()
         }
         if(type === 'change_account_type' ){
-            // _setShowCompleteChangeAccountType('BankID')
+            _setChangeableAccountType('BankID')
+            _signInWithBankId()
             // recaptcha('change_account_type', _changeAccountType, {token:response.tokenId, provider: 'bankid'})
         }else {
             _signInWithBankId()
@@ -63,6 +65,11 @@ const SocialsAuthButtons = ({containerClassName, type}) => {
         },
         [dispatch]
     );
+
+
+    const _setChangeableAccountType = useCallback((data) => {
+        dispatch(setChangeableAccountType(data));
+    }, [dispatch]);
 
     return (
         <>
