@@ -79,7 +79,7 @@ const TeamMemberCard = ({item}) => {
 
     return (
         <div className="member_card_item">
-            <div className="member_card_image" style={{position: 'relative'}}>
+            <div className="member_card_image">
                 {/*{photo && <ImageComponent*/}
                 {/*    className="member_card_image"*/}
                 {/*    src={photo}*/}

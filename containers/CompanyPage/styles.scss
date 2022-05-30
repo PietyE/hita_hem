@@ -684,7 +684,7 @@
 
         border-radius: 6px;
         overflow: hidden;
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         cursor: pointer;
         &:last-child{
           margin-bottom: 0;
@@ -955,7 +955,7 @@ overflow: hidden;
     padding-left: 0;
 
     .fin_article_wrapper {
-      margin-bottom: 50px;
+      margin-bottom: 30px;
 
       //&:nth-child(even) .fin_article {
       //  flex-direction: row-reverse;
@@ -1870,7 +1870,7 @@ overflow: hidden;
       }
 
       .idea_section_container {
-        width: 88%;
+        width: 100%;
       }
     }
 
