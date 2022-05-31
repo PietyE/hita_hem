@@ -367,7 +367,7 @@ profile_page: {
     changeProfileType: {
         title: 'Byt inloggningsmetod',
         description: 'Du kan ändra inloggningsmetoden för ditt konto till BankID eller Google.',
-        change_button: 'Endre metode',
+        change_button: 'Ändra metod',
     },
     reset_password: {
         title: "Ändra lösenord",
