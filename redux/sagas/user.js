@@ -631,8 +631,9 @@ export function* changeAccountTypeWorker({payload}) {
         }
         yield put(setShowCompleteChangeAccountType(false))
         yield call(cleanAuthData)
-        yield call([api, "setToken"], res?.data?.token);
-        yield call(fetchProfileFromApi)
+        yield put(setIsAthOnAndSaveUserProfile(res?.data))
+        // yield call([api, "setToken"], res?.data?.token);
+        // yield call(getProfileFromApi)
         if (!!payload?.data?.action && payload?.data?.provider === 'bank_id') {
             const current_pathname = yield call([localStorage, "getItem"], "current_pathname");
             yield call([localStorage, 'removeItem'], 'current_pathname')
