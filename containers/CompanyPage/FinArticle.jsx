@@ -8,6 +8,9 @@ import Image from "next/image";
 import {SRLWrapperComponent,SimpleReactLightboxComponent} from "../../components/ui/SimpleReactLightboxComponent";
 
 const options = {
+    // settings: {
+    //     overlayColor: 'rgba(30, 30, 30, 0.9)',
+    // },
     buttons: {
         showDownloadButton: false,
         showAutoplayButton: false,
@@ -37,7 +40,7 @@ const FinArticle = ({item}) => {
 
     useEffect(() => {
         getImgMeta(image, setImageMeta)
-    }, [])
+    }, [image])
 
     useEffect(() => {
 
@@ -106,18 +109,18 @@ const FinArticle = ({item}) => {
 
                         {(!!image) && (
                             <SimpleReactLightboxComponent>
-                                <SRLWrapperComponent options={options}>
+                                  <SRLWrapperComponent options={options}>
                             <Image
                                 src={image}
                                 layout="responsive"
-                                width={imageMeta?.width || 192}
-                                height={imageMeta?.height || 108}
+                                width={imageMeta?.width || 0}
+                                height={imageMeta?.height || 0}
                                 className='fin_article_image'
                                 alt={image_alter_text}
                                 loading='lazy'
                             />
-                            </SRLWrapperComponent>
-                            </SimpleReactLightboxComponent>
+                               </SRLWrapperComponent>
+                               </SimpleReactLightboxComponent>
                         )}
                         {matchesAll && isShowButton && (
                             <div className={isShowMore ? "show_more show_more_clicked" : "show_more "}>
