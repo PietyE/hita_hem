@@ -93,6 +93,8 @@ const IdeaItem = ({section}) => {
                                         alt={first_image_alter_text}
                                         className='idea_next_image'
                                         loading='lazy'
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
                             )}
@@ -107,6 +109,8 @@ const IdeaItem = ({section}) => {
                                         alt={second_image_alter_text}
                                         className='idea_next_image'
                                         loading='lazy'
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
                             )}
@@ -130,7 +134,8 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         loading='lazy'
-
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
                             )}
@@ -144,7 +149,8 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         loading='lazy'
-
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
                             )}
@@ -158,7 +164,8 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={third_image_alter_text}
                                         loading='lazy'
-
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
                             )}
@@ -172,7 +179,8 @@ const IdeaItem = ({section}) => {
                                         layout="responsive"
                                         alt={fourth_image_alter_text}
                                         loading='lazy'
-
+                                        placeholder="blur"
+                                        blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
 
