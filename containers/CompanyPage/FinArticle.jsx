@@ -39,7 +39,9 @@ const FinArticle = ({item}) => {
     });
 
     useEffect(() => {
-        getImgMeta(image, setImageMeta)
+        if(image){
+            getImgMeta(image, setImageMeta)
+        }
     }, [image])
 
     useEffect(() => {

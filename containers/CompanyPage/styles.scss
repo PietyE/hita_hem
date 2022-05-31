@@ -269,7 +269,8 @@
           }
         }
         ol {
-          padding: 0;
+          padding: 0 0 0 20px;
+          margin: 22px 0;
           //list-style: none;
 
           li {
@@ -281,7 +282,7 @@
             letter-spacing: 0.3px;
             color: #000;
             position: relative;
-            padding-left: 18px;
+            //padding-left: 18px;
 
             //&::before {
             //  content: "";
@@ -1090,7 +1091,8 @@ overflow: hidden;
           }
         }
         ol {
-          padding: 0;
+          padding: 0 0 0 20px;
+          margin: 22px 0;
           //list-style: none;
 
           li {
@@ -1102,7 +1104,7 @@ overflow: hidden;
             letter-spacing: 0.3px;
             color: #000;
             position: relative;
-            padding-left: 18px;
+            //padding-left: 18px;
 
             //&::before {
             //  content: "";
@@ -2669,7 +2671,7 @@ overflow: hidden;
         }
 
         .member_card_image {
-          position: static;
+          position: relative;
           width: 120px;
           height: 120px;
           border-radius: 100px;
