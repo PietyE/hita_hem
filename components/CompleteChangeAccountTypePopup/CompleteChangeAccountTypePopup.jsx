@@ -36,7 +36,7 @@ const CompleteChangeAccountTypePopup = ({show}) => {
             <span className="deleting_account_text deleting_account_text_first">
         {t("complete_change_account_type.description")}
       </span>
-            <span className="deleting_account_text">
+            <span className="deleting_account_text deleting_account_text_second">
         {t("complete_change_account_type.description2")}
       </span>
             <SocialsAuthButtons type='change_account_type'/>
