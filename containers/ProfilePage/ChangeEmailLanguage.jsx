@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserEmailLanguageSelector} from "../../redux/reducers/user";
 import {setEmailLanguage} from "../../redux/actions/user";
 import {recaptcha} from "../../utils/recaptcha";
+import IconComponent from "../../components/ui/IconComponent";
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent"), {ssr: false}
@@ -80,7 +82,9 @@ const CustomToggle = forwardRef(({children, onClick}, ref) => (
     >
         <span>{children}</span>
         <div className='account_settings_change_email_language_button_arrow'>
-            <IconChevronDown className=""/>
+            {/*<IconChevronDown className=""/>*/}
+            <IconComponent icon={faCaretDown}/>
+
         </div>
     </Button>
 ));

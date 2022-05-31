@@ -42,8 +42,10 @@ const RaisePage = () => {
     const [imageSize, setImageSize] = useState({})
 
     useEffect(() => {
-        getImgMeta(img, setImageSize)
-    }, [])
+        if(img){
+            getImgMeta(img, setImageSize)
+        }
+    }, [img])
 
 
     const _getRaisePage = useCallback(() => {
