@@ -415,6 +415,42 @@
     //align-items: center;
     padding-left: 45px;
 
+    .account_settings_change_email_language_button{
+      display: flex;
+      justify-content: space-between;
+      font-family: Source Sans Pro,sans-serif;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      color: #000;
+      border:1px solid #c4c4c4;
+      width: 100%;
+      transform: translateY(-6px);
+      text-align: left;
+      padding-left: 15px;
+
+      &:hover{
+        border:1px solid #c4c4c4;
+        filter: brightness(1) opacity(1);
+        color: #000;
+      }
+
+      .account_settings_change_email_language_button_arrow{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40px;
+        width: 45px;
+        background: rgba(31, 96, 124, 0.2);
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-left: 1px solid #c4c4c4;
+        cursor: pointer;
+        pointer-events: none;
+      }
+
+    }
+
     .account_settings_button_save {
       background-color: #0b5394;
       font-family: "Source Sans Pro", sans-serif;
@@ -597,6 +633,7 @@
     box-sizing: border-box;
     border-radius: 8px;
     padding: 17px 25px 20px 25px;
+    align-self: flex-start;
 
     .account_settings_subscribes_title {
       font-family: "Source Sans Pro", sans-serif;
@@ -1782,6 +1819,19 @@
       .account_settings_form_button_wrapper {
         width: 100%;
         padding-left: 0;
+        .account_settings_change_email_language_button{
+          height: 46px;
+          font-size: 18px;
+
+          padding-left: 48%;
+          .account_settings_change_email_language_button_arrow{
+            height: 46px;
+          }
+        }
+        .dropdown_menu{
+          width: 100%;
+          text-align: center;
+        }
 
         .account_settings_button_save {
           margin-bottom: 0;
