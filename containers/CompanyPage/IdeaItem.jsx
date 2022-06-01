@@ -1,13 +1,10 @@
 import React, {memo, useEffect, useState} from 'react';
-import {getImgMeta} from "../../utils/utils";
-import InfoBlockColor from "../../components/ui/InfoBlockColor";
-import Title from "../../components/ui/Title";
+import InfoBlockColor from "components/ui/InfoBlockColor";
+import Title from "components/ui/Title";
+import {SimpleReactLightboxComponent, SRLWrapperComponent} from "components/ui/SimpleReactLightboxComponent";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
+import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
-
-import {SimpleReactLightboxComponent, SRLWrapperComponent} from "../../components/ui/SimpleReactLightboxComponent";
-
-
 
 const options = {
     buttons: {
@@ -79,11 +76,6 @@ const IdeaItem = ({section}) => {
                         <SRLWrapperComponent options={options}>
 
                             {!!first_image && (
-                                // <ImageComponent
-                                //     alt={first_image_alter_text}
-                                //     src={first_image}
-                                //     className="mb-4"
-                                // />
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={first_image}
@@ -99,7 +91,6 @@ const IdeaItem = ({section}) => {
                                 </div>
                             )}
                             {!!second_image && (
-                                // <ImageComponent alt={second_image_alter_text} src={second_image} />
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={second_image}
@@ -123,10 +114,8 @@ const IdeaItem = ({section}) => {
                     <SRLWrapperComponent options={options}>
 
                         <div className="idea_image_container">
-
                             {!!first_image && (
                                 <div className='middle_photo'>
-
                                     <Image
                                         src={first_image}
                                         width={firstImageSize?.width || 0}
@@ -141,7 +130,6 @@ const IdeaItem = ({section}) => {
                             )}
                             {!!second_image && (
                                 <div className='middle_photo'>
-
                                     <Image
                                         src={second_image}
                                         width={secondImageSize?.width || 0}
@@ -156,7 +144,6 @@ const IdeaItem = ({section}) => {
                             )}
                             {!!third_image && (
                                 <div className='middle_photo'>
-
                                     <Image
                                         src={third_image}
                                         width={thirdImageSize?.width || 0}
@@ -171,7 +158,6 @@ const IdeaItem = ({section}) => {
                             )}
                             {!!fourth_image && (
                                 <div className='middle_photo'>
-
                                     <Image
                                         src={fourth_image}
                                         width={fourthImageSize?.width || 0}
@@ -183,44 +169,8 @@ const IdeaItem = ({section}) => {
                                         blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                     />
                                 </div>
-
                             )}
-
                         </div>
-                        {/*<div className="idea_image_container">*/}
-                        {/*    {!!first_image && (*/}
-                        {/*        <ImageComponent*/}
-                        {/*            alt={first_image_alter_text}*/}
-                        {/*            src={first_image}*/}
-                        {/*            className="middle_photo"*/}
-                        {/*        />*/}
-
-                        {/*    )}*/}
-                        {/*    {!!second_image && (*/}
-                        {/*        <ImageComponent*/}
-                        {/*            alt={second_image_alter_text}*/}
-                        {/*            src={second_image}*/}
-                        {/*            className="middle_photo"*/}
-                        {/*        />*/}
-
-                        {/*    )}*/}
-                        {/*    {!!third_image && (*/}
-                        {/*        <ImageComponent*/}
-                        {/*            alt={third_image_alter_text}*/}
-                        {/*            src={third_image}*/}
-                        {/*            className="middle_photo"*/}
-                        {/*        />*/}
-
-                        {/*    )}*/}
-                        {/*    {!!fourth_image && (*/}
-                        {/*        <ImageComponent*/}
-                        {/*            alt={fourth_image_alter_text}*/}
-                        {/*            src={fourth_image}*/}
-                        {/*            className="middle_photo"*/}
-                        {/*        />*/}
-
-                        {/*    )}*/}
-                        {/*</div>*/}
                     </SRLWrapperComponent>
                 </SimpleReactLightboxComponent>
 

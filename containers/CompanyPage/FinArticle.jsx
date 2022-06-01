@@ -1,16 +1,13 @@
 import React, {useEffect, useRef, useState, memo} from "react";
+import Image from "next/image";
+import {useTranslation} from "react-i18next";
 import Button from "components/ui/Button";
+import {SRLWrapperComponent,SimpleReactLightboxComponent} from "components/ui/SimpleReactLightboxComponent";
 import {useMediaQueries} from "@react-hook/media-query";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
-import {useTranslation} from "react-i18next";
-import {getImgMeta} from "../../utils/utils";
-import Image from "next/image";
-import {SRLWrapperComponent,SimpleReactLightboxComponent} from "../../components/ui/SimpleReactLightboxComponent";
+import {getImgMeta} from "utils/utils";
 
 const options = {
-    // settings: {
-    //     overlayColor: 'rgba(30, 30, 30, 0.9)',
-    // },
     buttons: {
         showDownloadButton: false,
         showAutoplayButton: false,
@@ -18,7 +15,6 @@ const options = {
         showPrevButton: false,
         showThumbnailsButton: false,
         showFullscreenButton: false,
-
     },
     thumbnails: {
         showThumbnails: false,
