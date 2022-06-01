@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 
 import SocialTab from "components/ui/SocialTab";
-// import ImageComponent from "components/ui/ImageComponent";
 import {useTranslation} from "react-i18next";
 import {useMediaQueries} from "@react-hook/media-query";
 import Image from "next/image";
@@ -80,11 +79,6 @@ const TeamMemberCard = ({item}) => {
     return (
         <div className="member_card_item">
             <div className="member_card_image">
-                {/*{photo && <ImageComponent*/}
-                {/*    className="member_card_image"*/}
-                {/*    src={photo}*/}
-                {/*    alt={photo_alter_text || ' '}*/}
-                {/*/>}*/}
                 {photo &&
                 <Image src={photo} alt={photo_alter_text}
                        layout="fill"
@@ -92,7 +86,6 @@ const TeamMemberCard = ({item}) => {
                        loading='lazy'
                 />
                 }
-
             </div>
             <div className='member_card_content_wrapper'>
                 <h3 className="member_card_item_name">{name}</h3>
@@ -106,7 +99,6 @@ const TeamMemberCard = ({item}) => {
                     classNameContainer="member_card_social"
                 />
                 }
-
                 <span
                     ref={descriptionRef}
                     className={_descriptionStyle}

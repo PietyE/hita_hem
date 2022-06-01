@@ -57,7 +57,6 @@ const CampaignsCard = (props) => {
                                     src={cardImage}
                                     layout="fill"
                                     objectFit="cover"
-                                    // priority={true}
                                     loading='lazy'
                                     alt={altText}
                                     placeholder="blur"
@@ -66,13 +65,15 @@ const CampaignsCard = (props) => {
                         </div>
                         <span className="campaigns_card_logo">
               <div className="featured_campaigns_logo_img" style={{position: 'relative'}}>
-                 <Image
-                     src={logo}
-                     layout="fill"
-                     objectFit="cover"
-                     alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
-                     loading='lazy'
-                 />
+                  {logo &&
+                  <Image
+                      src={logo}
+                      layout="fill"
+                      objectFit="cover"
+                      alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
+                      loading='lazy'
+                  />
+                  }
               </div>
 
             </span>
