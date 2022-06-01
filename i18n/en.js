@@ -366,6 +366,11 @@ export const en = {
             changeEmailLanguage: {
                 title: 'Change the email notifications language',
             },
+            changeProfileType: {
+                title: 'Change the login to your account',
+                description: 'You can change the login type of your account to BankID or Google.',
+                change_button: 'Change type',
+            },
             reset_password: {
                 title: "Change password",
                 forgot_password: "Forgot your password?",
@@ -561,6 +566,15 @@ export const en = {
         complete_socials_registration: {
             title: 'Please agree with the terms of the Membership Agreement to complete registration.',
             button: 'Submit',
+        },
+        complete_change_account_type: {
+            title: 'You are now changing the login method of your account',
+            description: 'After changing the login method you will NOT be able to sign in with your password.',
+            description2: 'All your data will be transferred to your new login.',
+            back_button: 'Back',
+            button: 'Submit',
+            change_button: 'Change type',
+
         },
         faq:'FAQ',
         change_email_saga_title: 'Your mail has been successfully updated.',

@@ -57,8 +57,11 @@ const CampaignsCard = (props) => {
                                     src={cardImage}
                                     layout="fill"
                                     objectFit="cover"
-                                    priority={true}
+                                    // priority={true}
+                                    loading='lazy'
                                     alt={altText}
+                                    placeholder="blur"
+                                    blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                 />)}
                         </div>
                         <span className="campaigns_card_logo">
@@ -68,6 +71,7 @@ const CampaignsCard = (props) => {
                      layout="fill"
                      objectFit="cover"
                      alt={altText !== ' ' ? altText + ' ' + 'logo' : 'logo' }
+                     loading='lazy'
                  />
               </div>
 

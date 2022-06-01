@@ -69,27 +69,27 @@
     }
   }
 
-  .sign_in_socials_buttons_wrapper {
+  .socials_buttons_wrapper {
     width: 400px;
     padding-bottom: 60px;
 
-    .sign_in_social_button {
+    .auth_social_button {
       background-color: #fff;
 
     }
 
-    .sign_in_bank_id {
+    .auth_bank_id {
       margin: 0 20px 20px 0;
 
     }
 
-    .sign_in_google {
+    .auth_google {
       margin: 0 0 20px 0;
 
     }
   }
 
-  .sign_in_socials_account_error {
+  .socials_account_error {
     text-align: center;
     font-size: 21px;
     transform: translateY(-65px);
@@ -129,11 +129,11 @@
       }
     }
 
-    .sign_in_socials_account_error {
+    .socials_account_error {
       width: 280px;
     }
 
-    .sign_in_socials_buttons_wrapper {
+    .socials_buttons_wrapper {
       width: 280px;
     }
   }

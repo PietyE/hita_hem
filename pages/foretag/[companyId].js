@@ -6,8 +6,8 @@ import {useRouter} from "next/router";
 
 import SeoComponent from "../../components/SeoComponent";
 import MiddleSection from "containers/CompanyPage/MiddleSection";
-import RecommendedCampaigns from "containers/CompanyPage/RecommendedCampaigns";
 import SpinnerStyled from "components/ui/Spinner";
+
 import {
     getCompanyBySlag,
     clearCompany,
@@ -22,8 +22,13 @@ import {
     getIsRedirectOnSelector,
 } from "redux/reducers/companies";
 
-
 import makeCampaignSchema from "../../Schemas/campaignSchema";
+import dynamic from "next/dynamic";
+
+const RecommendedCampaigns = dynamic(() => import("containers/CompanyPage/RecommendedCampaigns"), {
+    ssr: false,
+});
+
 const CompanyPage = () => {
 
     const router = useRouter();
@@ -85,7 +90,9 @@ const CompanyPage = () => {
             top: 0,
             behavior: "smooth",
         });
-        _getCompanyDetail(companyName)
+        if(!!companyName){
+            _getCompanyDetail(companyName)
+        }
         // if (!isAuth) {
         //     const authLocalData = localStorage.getItem("auth_data")
         //     if (authLocalData) {

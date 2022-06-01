@@ -104,12 +104,13 @@ function* getCompaniesListWorker({ payload }) {
 function* getCompanyBySlagWorker({ payload }) {
   try {
     yield put(setIsFetchingCompany(true));
-    const { data } = yield call([companies, "getCompanyBySlag"], payload);
-    if(data?.hidden_mode && typeof window !== 'undefined'){
-      yield put(setRedirect(true))
+    if(payload){
+      const { data } = yield call([companies, "getCompanyBySlag"], payload);
+      if(data?.hidden_mode && typeof window !== 'undefined'){
+        yield put(setRedirect(true))
+      }
+      yield put(setCompanyById(data));
     }
-
-    yield put(setCompanyById(data));
   } catch (error) {
     yield put(
       setError({ status: error?.response?.status, data: error?.response?.data })

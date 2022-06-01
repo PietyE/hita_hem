@@ -5,17 +5,12 @@ import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
 import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-
-const SimpleReactLightbox = dynamic(() => import("simple-react-lightbox"), {
-    ssr: false,
-});
-
-const SRLWrapper = dynamic(() =>
-    import('simple-react-lightbox').then((mod) => mod.SRLWrapper), {ssr: false}
-)
+import {SRLWrapperComponent,SimpleReactLightboxComponent} from "../../components/ui/SimpleReactLightboxComponent";
 
 const options = {
+    // settings: {
+    //     overlayColor: 'rgba(30, 30, 30, 0.9)',
+    // },
     buttons: {
         showDownloadButton: false,
         showAutoplayButton: false,
@@ -44,8 +39,10 @@ const FinArticle = ({item}) => {
     });
 
     useEffect(() => {
-        getImgMeta(image, setImageMeta)
-    }, [])
+        if(image){
+            getImgMeta(image, setImageMeta)
+        }
+    }, [image])
 
     useEffect(() => {
 
@@ -113,18 +110,21 @@ const FinArticle = ({item}) => {
                         </div>
 
                         {(!!image) && (
-                            <SimpleReactLightbox>
-                                <SRLWrapper options={options}>
+                            <SimpleReactLightboxComponent>
+                                  <SRLWrapperComponent options={options}>
                             <Image
                                 src={image}
                                 layout="responsive"
-                                width={imageMeta?.width || 192}
-                                height={imageMeta?.height || 108}
+                                width={imageMeta?.width || 0}
+                                height={imageMeta?.height || 0}
                                 className='fin_article_image'
                                 alt={image_alter_text}
+                                loading='lazy'
+                                placeholder="blur"
+                                blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                             />
-                            </SRLWrapper>
-                            </SimpleReactLightbox>
+                               </SRLWrapperComponent>
+                               </SimpleReactLightboxComponent>
                         )}
                         {matchesAll && isShowButton && (
                             <div className={isShowMore ? "show_more show_more_clicked" : "show_more "}>
