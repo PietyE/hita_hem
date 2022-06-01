@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {useDispatch, useSelector} from 'react-redux';
 import Modal from "../../ui/Modal";
-import { Form, Formik } from "formik";
+import {FormikFormComponent,FormikComponent} from "components/ui/FormikComponent";
 import Button from "../../ui/Button";
 import { setShowResetPassword } from "redux/actions/authPopupWindows";
 import { makeRequestForResetPassword } from "redux/actions/user";
@@ -60,7 +60,7 @@ const ResetPassword = ({ show }) => {
       <p className="reset_password_text">
         {t("auth.resetPasswordPopup.description")}
       </p>
-      <Formik
+      <FormikComponent
         initialValues={{ email: "" }}
         validationSchema={resetPasswordSchema}
         onSubmit={onSubmit}
@@ -70,7 +70,7 @@ const ResetPassword = ({ show }) => {
         {({ touched, errors, values, setFieldValue, setFieldError, setFieldTouched }) => {
           useTranslateFormErrors(errors, touched,setFieldTouched)
          return (
-              <Form className = "auth_form">
+              <FormikFormComponent className = "auth_form">
                 <InputComponent
                     labelClassName = "auth_login_container auth_container"
                     label = {t("auth.resetPasswordPopup.label")}
@@ -93,10 +93,10 @@ const ResetPassword = ({ show }) => {
                 >
                   {t("auth.resetPasswordPopup.button")}
                 </Button>
-              </Form>
+              </FormikFormComponent>
           )
         }}
-      </Formik>
+      </FormikComponent>
     </Modal>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Field, Form, Formik } from "formik";
+import {FormikFormComponent,FormikComponent, FormikFieldComponent} from "../../components/ui/FormikComponent";
+
 import IconComponent from "components/ui/IconComponent";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -72,7 +73,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
   })
 
   return (
-    <Formik
+    <FormikComponent
       initialValues={{
         documents: data.form4.documents,
         comments: data.form4.comments,
@@ -85,7 +86,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
       validateOnBlur={false}
     >
       {({ setFieldValue, values }) => (
-        <Form className="raise_form">
+        <FormikFormComponent className="raise_form">
           <h4 className="form4_title">{t("raisePage.form4.attach_text")}</h4>
           <div className="raise_form_download_block">
             <UploadComponent setFieldValue={setFieldValue} values={values} />
@@ -112,7 +113,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
           <CaptchaPrivacyBlock/>
           <div className="raise_form_footer">
             <label className="raise_agreement">
-              <Field
+              <FormikFieldComponent
                 type="checkbox"
                 name="is_agree"
                 className="raise_agreement_checkbox"
@@ -154,9 +155,9 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
               </Button>
             </div>
           </div>
-        </Form>
+        </FormikFormComponent>
       )}
-    </Formik>
+    </FormikComponent>
   );
 };
 

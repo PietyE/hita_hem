@@ -93,8 +93,13 @@ const RaisePage = () => {
                     <div className="raise_page_image ">
                         <Image
                             src={img}
-                            width={imageSize?.width || 192} height={imageSize?.height || 108} layout="responsive"
+                            width={imageSize?.width || 0}
+                            height={imageSize?.height || 0}
+                            layout="responsive"
                             alt={altText}
+                            loading='lazy'
+                            placeholder="blur"
+                            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                         />
                     </div>
                 )}
