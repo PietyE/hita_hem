@@ -1,6 +1,6 @@
 import React, {useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Formik, Form, Field } from "formik";
+import {FormikFormComponent,FormikComponent, FormikFieldComponent} from "components/ui/FormikComponent";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
 import SocialsAuthButtons from "../../SocialsAuthButtons";
@@ -105,7 +105,7 @@ const SignUp = ({ show }) => {
             <SocialsAuthButtons containerClassName='auth_socials_buttons'/>
             <SplitLine className='sign_in_split_line'/>
             <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
-            <Formik
+            <FormikComponent
                 initialValues={initialValues}
                 validationSchema={signUpSchema}
                 onSubmit={onSubmit}
@@ -116,7 +116,7 @@ const SignUp = ({ show }) => {
 
                     return (
                         <>
-                            <Form className="auth_form">
+                            <FormikFormComponent className="auth_form">
                                 <InputComponent
                                     type="email"
                                     labelClassName="auth_login_container auth_container"
@@ -168,7 +168,7 @@ const SignUp = ({ show }) => {
                                     iconClassName="auth_password_eye"
                                 />
                                 <label className="sign_up_checkbox">
-                                    <Field
+                                    <FormikFieldComponent
                                         name="is_agree"
                                         type="checkbox"
                                         className={
@@ -205,12 +205,12 @@ const SignUp = ({ show }) => {
                 {t("auth.sign_up.sign_up_link")}
               </span>
                                 </p>
-                            </Form>
+                            </FormikFormComponent>
                         </>
                     )
                 }
                 }
-            </Formik>
+            </FormikComponent>
         </Modal>
     );
 };

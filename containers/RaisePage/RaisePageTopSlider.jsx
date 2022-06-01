@@ -1,8 +1,7 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import Carousel from "react-bootstrap/Carousel";
 import isEqual from "lodash/isEqual";
-
+import {CarouselComponent, CarouselItem} from "../../components/ui/CarouselComponent";
 import Button from "components/ui/Button";
 import {getRaisePageHeadersSelector} from "redux/reducers/raisePage";
 import {checkCurrentResolution, getCorrectImage, getImageAltText} from "utils/utils";
@@ -14,7 +13,7 @@ const RaisePageTopSlider = ({onScrollTo}) => {
     const screenSize = checkCurrentResolution()
     return (
         <div className="raise_page_slider_container">
-            <Carousel controls={headerContent?.length > 1} slide={true} interval={null} touch={true}
+            <CarouselComponent controls={headerContent?.length > 1} slide={true} interval={null} touch={true}
                       indicators={headerContent?.length > 1}>
                 {headerContent.length > 0 &&
                 headerContent.map((content) => {
@@ -22,7 +21,7 @@ const RaisePageTopSlider = ({onScrollTo}) => {
                     const altText = getImageAltText(content?.images)
 
                     return (
-                        <Carousel.Item key={content?.index + content?.title}>
+                        <CarouselItem key={content?.index + content?.title}>
                             <div className="raise_page_slider_item" style={{position: 'relative'}}>
 
                                 <div className='raise_page_slider_content_container'>
@@ -45,33 +44,33 @@ const RaisePageTopSlider = ({onScrollTo}) => {
                                         src={img}
                                         layout="fill"
                                         objectFit="cover"
-                                        priority={true}
                                         className="raise_page_slider_image "
                                         alt={altText}
+                                        loading='eager'
                                     />)}
                                     {screenSize === 'laptop' && img && (<Image
                                         src={img}
                                         layout="fill"
                                         objectFit="cover"
-                                        priority={true}
                                         className="raise_page_slider_image "
                                         alt={altText}
+                                        loading='eager'
                                     />)}
                                     {screenSize === 'mobile' && img && (<Image
                                         src={img}
                                         layout="fill"
                                         objectFit="cover"
-                                        priority={true}
                                         className="raise_page_slider_image "
                                         alt={altText}
+                                        loading='eager'
                                     />)}
                                 </div>
                             </div>
 
-                        </Carousel.Item>
+                        </CarouselItem>
                     );
                 })}
-            </Carousel>
+            </CarouselComponent>
         </div>
     );
 };

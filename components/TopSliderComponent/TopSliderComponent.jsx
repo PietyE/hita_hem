@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import StatusCompanyBadge from "../StatusCompany";
 import SliderImage from "../../containers/HomePage/SliderImage";
 
-import Carousel from "react-bootstrap/Carousel";
+import {CarouselComponent, CarouselItem} from "../ui/CarouselComponent";
 import Button from "../ui/Button";
 
 import {checkCurrentResolution, getCorrectImage, getImageAltText} from "../../utils/utils";
@@ -65,10 +65,10 @@ const TopSliderComponent = ({
 
     return (
         <div className={`slider_component_container ${sectionClass}`}>
-            <Carousel controls={isShowControls} slide={!showSlider} interval={8000}
+            <CarouselComponent controls={isShowControls} slide={!showSlider} interval={8000}
                       touch={true} indicators={isShowControls}>
                 {bannerData && showSlider && (
-                    <Carousel.Item key='banner' className={_activeClass}>
+                    <CarouselItem key='banner' className={_activeClass}>
                         <section className='item_component_container' style={{position: 'relative'}}>
                             <div className={`item_component_content_container ${containerClass}`}>
                                 {bannerData?.title && (
@@ -101,7 +101,7 @@ const TopSliderComponent = ({
                             )}
 
                         </section>
-                    </Carousel.Item>
+                    </CarouselItem>
                 )}
                 {!!data?.length && !showSlider &&
                 data?.map((headerItem,i) => {
@@ -126,7 +126,7 @@ const TopSliderComponent = ({
                     const _secondButtonColor = changeButtonColor(second_button_text_color, second_button_color)
 
                     return (
-                        <Carousel.Item key={pk + title}>
+                        <CarouselItem key={pk + title}>
                             <div className='item_component_container' style={{position: 'relative'}}>
                                 <div className={`item_component_content_container ${containerClass}`}>
                                     {status && (
@@ -194,10 +194,10 @@ const TopSliderComponent = ({
                                 )}
 
                             </div>
-                        </Carousel.Item>
+                        </CarouselItem>
                     );
                 })}
-            </Carousel>
+            </CarouselComponent>
         </div>
     );
 };
