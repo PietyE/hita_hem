@@ -24,7 +24,7 @@ const SubscrebeFormSection = ({content = []}) => {
 
     const handleClickSubscribe = () => {
         if (validateEmail(email)) {
-            recaptcha('about_us_subscribe', _addEmail, email)
+            recaptcha('about_us_subscribe', _addEmail, email.toLowerCase())
             // _addEmail({email, token});
             setEmail("");
         } else {
