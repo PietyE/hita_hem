@@ -14,7 +14,7 @@ function Invest() {
                 const {index, logo, title, description} = el;
                 return (
                     <div key={title} className="raise_step step1">
-                        <div className="step_icon_wrapper" style={{position: 'relative'}}>
+                        <div className="step_icon_wrapper">
                             {logo && (
                                 <Image
                                     src={logo}

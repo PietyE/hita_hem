@@ -615,6 +615,10 @@
           color: rgba(0, 0, 0, 0.87);
         }
 
+        img{
+          max-width: 100%;
+        }
+
         ul {
           list-style: none;
           padding: 0 0 0 20px;
@@ -1061,6 +1065,10 @@ overflow: hidden;
           font-size: 22px;
           line-height: 150%;
           color: #424242;
+        }
+
+        img{
+          max-width: 100%;
         }
 
         ul {
