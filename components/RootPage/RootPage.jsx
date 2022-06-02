@@ -249,7 +249,7 @@ const RootPage = ({ children, initLang = "" }) => {
         language_override: initLang,
       })
     }
-  }, [email, fullName]);
+  }, [email, fullName, isIntercomLoaded]);
 
   useEffect(() => {
     // if(process?.env?.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
