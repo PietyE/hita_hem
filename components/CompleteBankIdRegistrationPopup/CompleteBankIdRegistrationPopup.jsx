@@ -68,7 +68,7 @@ const CompleteBankIdRegistrationPopup = ({show}) => {
     }
     const handleSubmit = () => {
         if(emailRegExp.test(email)){
-            _signUpWithBankId({email:email, action: router, is_agree: isAgree})
+            _signUpWithBankId({email:email.toLowerCase(), action: router, is_agree: isAgree})
 
         }else{
             setShowError(true)

@@ -79,6 +79,8 @@ const initialState = {
         header_image_list: [],
         images: [],
         image: '',
+        image_height: 0,
+        image_width: 0,
         image_alter_text: ' ',
         header_title: "",
         start_date: "",
@@ -243,7 +245,7 @@ export const getIdeaSectionContentSelector = (state) =>
     state.companies.companyDetail.ideas;
 
 export const getHeaderImageSelector = (state) => state.companies.companyDetail.images;
-export const getOverviewImageSelector = (state) => state.companies.companyDetail.image;
+export const getOverviewImageSelector = (state) => ({ image: state.companies.companyDetail.image,image_height: state.companies.companyDetail.image_height, image_width: state.companies.companyDetail.image_width});
 export const getOverviewImageAltTextSelector = (state) => state.companies.companyDetail.image_alter_text;
 
 export const getCampaignSeoSelector = (state) =>

@@ -63,6 +63,18 @@ export const getImageAltText = (images) => {
     return alt
 }
 
+export const getImageSizes = images => {
+    const currentImageSize = checkCurrentResolution();
+    let width = 0;
+    let height = 0;
+
+    if (typeof window !== "undefined" && images) {
+        width = images[`${currentImageSize}_width`] || images['desktop_width'] || images['laptop_width'] || images['mobile_width']
+        height = images[`${currentImageSize}_height`] || images['desktop_height'] || images['laptop_height'] || images['mobile_height']
+    }
+    return {width, height}
+}
+
 export const chooseCorrectResolution = (imageList) => {
     const imageSize = checkCurrentResolution();
     /////////remove after fix on beck-end
@@ -215,10 +227,10 @@ export const getRedirectUrlForChangeAccountType = (currentLanguage) => {
     // }
 
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
-        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId` : `https://stage.accumeo.com/authBankId`
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId?account_type=bankId` : `https://stage.accumeo.com/authBankId?account_type=bankId`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production') {
-        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId` : `https://accumeo.com/authBankId`
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId?account_type=bankId` : `https://accumeo.com/authBankId?account_type=bankId`
     }
     return _link
 }
