@@ -1,6 +1,5 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-//import IconComponent from "components/ui/IconComponent";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 import IconComponent from "components/ui/IconComponent";

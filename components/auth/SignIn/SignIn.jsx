@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import { Form, Formik } from "formik";
+import {FormikFormComponent,FormikComponent} from "components/ui/FormikComponent";
 import InputComponent from "components/ui/InputComponent";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import Modal from "components/ui/Modal";
@@ -80,7 +80,7 @@ const SignIn = ({ show }) => {
 <SocialsAuthButtons containerClassName='auth_socials_buttons'/>
       <SplitLine className='sign_in_split_line'/>
         <span className='sign_in_alt_text'>{t("auth.sign_in.alt_sign_in")}</span>
-      <Formik
+      <FormikComponent
         initialValues={initialValues}
         validationSchema={signInSchema}
         onSubmit={onSubmit}
@@ -88,7 +88,7 @@ const SignIn = ({ show }) => {
         validateOnBlur={false}
       >
         {({ touched, errors, values, setFieldValue, setFieldError }) => (
-          <Form className="auth_form">
+          <FormikFormComponent className="auth_form">
             <InputComponent
                 type = "email"
               labelClassName="auth_login_container auth_container"
@@ -144,9 +144,9 @@ const SignIn = ({ show }) => {
                 {t("auth.sign_in.sign_up_link")}
               </span>
             </p>
-          </Form>
+          </FormikFormComponent>
         )}
-      </Formik>
+      </FormikComponent>
     </Modal>
   );
 };

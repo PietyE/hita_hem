@@ -464,6 +464,7 @@
       .middle_section_logo{
         width: 160px;
         height: 160px;
+        flex-shrink: 0;
         //filter: drop-shadow(0px 2px 9px rgba(0, 0, 0, 0.15));
         border-radius: 50%;
         background: #ffffff;
@@ -617,6 +618,8 @@
 
         img{
           max-width: 100%;
+          width: 100%;
+
         }
 
         ul {
@@ -1069,6 +1072,7 @@ overflow: hidden;
 
         img{
           max-width: 100%;
+          width: 100%;
         }
 
         ul {

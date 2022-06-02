@@ -6,6 +6,7 @@ import {
     getRaisePagePlatformAdvantagesTitleSelector,
     getRaisePagePlatformSelector,
 } from "redux/reducers/raisePage";
+import Image from "next/image";
 
 const RaiseAdvantages = () => {
     const title = useSelector(getRaisePagePlatformAdvantagesTitleSelector);
@@ -20,12 +21,26 @@ const RaiseAdvantages = () => {
                 platform.map((el, i) => {
                     return (
                         <div key={i} className="raise_advantages_item">
-                            <ImageComponent
-                                src={el?.logo}
-                                alt={platform?.alter_text || ' '}
+                            {/*<ImageComponent*/}
+                            {/*    src={el?.logo}*/}
+                            {/*    alt={platform?.alter_text || ' '}*/}
 
-                                className="raise_advantages_img"
-                            />
+                            {/*    className="raise_advantages_img"*/}
+                            {/*/>*/}
+                            <div className="raise_advantages_img">
+                                {el?.logo &&
+                                <Image
+                                    src={el?.logo}
+                                    alt={platform?.alter_text || ' '}
+                                    layout = "fill"
+                                    objectFit = "cover"
+                                    loading='lazy'
+                                    placeholder="blur"
+                                    blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
+
+                                />
+                                }
+                            </div>
                             <div className="raise_advantages_item_text_wrapper">
                                 <h3 className="raise_advantages_item_title">{el.title}</h3>
                                 <p className="raise_advantages_text">{el.description}</p>

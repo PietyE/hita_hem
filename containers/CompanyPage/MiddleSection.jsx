@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import {companyTabConstants} from "constants/companyTabConstant";
 import { setSelectedTab} from "redux/actions/companies";
 import {
@@ -16,18 +17,14 @@ import CampaignTabQuizRequest from "./CampaignTabQuizRequest";
 import InfoWithTitle from "../../components/ui/InfoWithTitle";
 import SocialTab from "../../components/ui/SocialTab";
 import isEqual from "lodash/isEqual";
+import throttle  from "lodash/throttle"
 import {
     getCompanyLogoAltTextSelector,
     getCompanyStatusSelector,
     getCompanySubTitleSelector
 } from "../../redux/reducers/companies";
-import throttle  from "lodash/throttle"
 import Overview from "./Overview";
 import TabAccordion from "components/ui/TabAccordion";
-import Image from "next/image";
-// import Idea from "./Idea";
-// import Team from "./Team";
-// import FinancialInformation from "./FinancialInformation";
 const Idea = dynamic(() => import("./Idea"));
 const Team = dynamic(() =>import("./Team"));
 const FinancialInformation = dynamic(() =>import("./FinancialInformation"));
@@ -194,11 +191,6 @@ const MiddleSection = ({isAuth}) => {
             <div className="middle_tabbr_container">
                 <div className='middle_tabbr_title_wrapper' >
                     {logo && (
-                        // <ImageComponent
-                        //     src={logo}
-                        //     alt={alter_text || ' '}
-                        //     className='middle_section_logo'
-                        // />
                         <div className='middle_section_logo' style={{position: 'relative'}}>
                             <Image src={logo} alt={alter_text}
                                    layout="fill"
@@ -331,18 +323,12 @@ const MiddleSection = ({isAuth}) => {
             <div className='middle_mobile_header_container'>
                 <div className='middle_tabbr_title_wrapper'>
                     {logo && (
-                        // <ImageComponent
-                        //     src={logo}
-                        //     alt={alter_text || ' '}
-                        //     className='middle_section_logo'
-                        // />
                         <div className='middle_section_logo' style={{position: 'relative'}}>
                             <Image src={logo} alt={alter_text}
                                    layout="fill"
                                    objectFit="cover"
                             />
                         </div>
-
                     )}
                     {campaignName && (
                         <h1 className='middle_section_title'>{campaignName}</h1>

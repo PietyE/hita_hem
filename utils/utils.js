@@ -63,6 +63,18 @@ export const getImageAltText = (images) => {
     return alt
 }
 
+export const getImageSizes = images => {
+    const currentImageSize = checkCurrentResolution();
+    let width = 0;
+    let height = 0;
+
+    if (typeof window !== "undefined" && images) {
+        width = images[`${currentImageSize}_width`] || images['desktop_width'] || images['laptop_width'] || images['mobile_width']
+        height = images[`${currentImageSize}_height`] || images['desktop_height'] || images['laptop_height'] || images['mobile_height']
+    }
+    return {width, height}
+}
+
 export const chooseCorrectResolution = (imageList) => {
     const imageSize = checkCurrentResolution();
     /////////remove after fix on beck-end

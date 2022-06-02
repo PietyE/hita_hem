@@ -1,11 +1,10 @@
 import React, {useCallback, useEffect, useRef, useState} from "react";
 import {useRouter} from "next/router";
 import {useTranslation} from "react-i18next";
-import {Formik, Form, Field} from "formik";
+import {FormikFormComponent,FormikComponent, FormikFieldComponent} from "components/ui/FormikComponent";
 import * as yup from "yup";
 
-
-import {CountryDropdown} from "react-country-region-selector";
+import CountryDropdownComponent from "components/ui/CountryDropdownComponent";
 import IconComponent from "components/ui/IconComponent";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
@@ -262,7 +261,7 @@ const PersonalDetails = ({
                     {t("profile_page.personal.main_title")}
                 </h2>
             )}
-            <Formik
+            <FormikComponent
                 initialValues={valuesFromApi || initialValues}
                 validationSchema={
                     isEmpty(profile)
@@ -299,7 +298,7 @@ const PersonalDetails = ({
                     }
                     return (
                         <>
-                            <Form className="profile_form" action='make_payment'>
+                            <FormikFormComponent className="profile_form" action='make_payment'>
                                 {!type && (
                                     <PersonalDetailsUpload
                                         setFieldValue={setFieldValue}
@@ -371,7 +370,7 @@ const PersonalDetails = ({
                                             <label className="profile_input_small profile_month">
                                                 {t("profile_page.personal.month_label")}
                                                 <br/>
-                                                <Field
+                                                <FormikFieldComponent
                                                     name="month"
                                                     as="select"
                                                     disabled={isInputsReadOnly}
@@ -395,7 +394,7 @@ const PersonalDetails = ({
                                                             </option>
                                                         );
                                                     })}
-                                                </Field>
+                                                </FormikFieldComponent>
                                                 <div className="profile_input_arrow">
                                                     <IconComponent icon={faCaretDown}/>
                                                 </div>
@@ -408,7 +407,7 @@ const PersonalDetails = ({
                                             <label className="profile_input_small profile_day">
                                                 {t("profile_page.personal.day_label")}
                                                 <br/>
-                                                <Field
+                                                <FormikFieldComponent
                                                     name="day"
                                                     as="select"
                                                     onBlur={() => {
@@ -432,7 +431,7 @@ const PersonalDetails = ({
                                                             </option>
                                                         );
                                                     })}
-                                                </Field>
+                                                </FormikFieldComponent>
                                                 <div className="profile_input_arrow">
                                                     <IconComponent icon={faCaretDown}/>
                                                 </div>
@@ -445,7 +444,7 @@ const PersonalDetails = ({
                                             <label className="  profile_input_small profile_year">
                                                 {t("profile_page.personal.year_label")}
                                                 <br/>
-                                                <Field
+                                                <FormikFieldComponent
                                                     name="year"
                                                     as="select"
                                                     disabled={isInputsReadOnly}
@@ -469,7 +468,7 @@ const PersonalDetails = ({
                                                             </option>
                                                         );
                                                     })}
-                                                </Field>
+                                                </FormikFieldComponent>
                                                 <div className="profile_input_arrow">
                                                     <IconComponent icon={faCaretDown}/>
                                                 </div>
@@ -483,7 +482,7 @@ const PersonalDetails = ({
                                         <label className="  profile_input_middle profile_country">
                                             {t("profile_page.personal.country_label")}
                                             <br/>
-                                            <CountryDropdown
+                                            <CountryDropdownComponent
                                                 className={
                                                     ((errors.address?.country) || errorHandlerHook?.countryError)
                                                         ? "profile_form_input_warning profile_form_input_with_arrow"
@@ -610,7 +609,7 @@ const PersonalDetails = ({
                                     </a>{t("profile_page.personal.footer_text2")}</p>}
                                     {isEmpty(profile) && (
                                         <div className="profile_form_agreement">
-                                            <Field
+                                            <FormikFieldComponent
                                                 type="checkbox"
                                                 name="is_agree"
                                                 className="profile_form_checkbox"
@@ -689,11 +688,11 @@ const PersonalDetails = ({
 
                                     </div>
                                 </div>
-                            </Form>
+                            </FormikFormComponent>
                         </>
                     );
                 }}
-            </Formik>
+            </FormikComponent>
         </section>
     );
 };

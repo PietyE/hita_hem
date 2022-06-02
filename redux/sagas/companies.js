@@ -49,7 +49,6 @@ function* getCompaniesHeaderListWorker() {
       title: el?.investment_page_title,
       description: el?.investment_page_description,
       images: el?.images,
-      header_image: el?.header_image,
       percentage: el?.percentage,
       first_button_title: _title,
       first_button_url: language === "en"?`/en/foretag/${el?.slug}`:`/foretag/${el?.slug}`,

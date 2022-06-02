@@ -11,7 +11,7 @@ import {
 import {changePassword, setResponseFromApi} from "../redux/actions/user";
 import * as yup from "yup";
 import {passwordRegExp} from "../utils/vadidationSchemas";
-import {Form, Formik} from "formik";
+import {FormikFormComponent,FormikComponent} from "components/ui/FormikComponent";
 import InputComponent from "../components/ui/InputComponent";
 import Button from "../components/ui/Button";
 import {useRouter} from "next/router";
@@ -96,7 +96,7 @@ const ChangePassword = () => {
             <h3 className="account_settings_form_title change_email_title">
                 {t("profile_page.reset_password.title")}
             </h3>
-            <Formik
+            <FormikComponent
                 innerRef={formikRef}
                 initialValues={initialValuesPassword}
                 validationSchema={accountSettingsResetPasswordSchema}
@@ -106,8 +106,7 @@ const ChangePassword = () => {
             >
                 {({ values, errors, touched, setFieldValue, setValues, setFieldError }) => {
                     return (
-                        <Form className="auth_form">
-
+                        <FormikFormComponent className="auth_form">
                             <InputComponent
                                 type="password"
                                 labelClassName=" auth_container"
@@ -169,10 +168,10 @@ const ChangePassword = () => {
                                     {t("change_email_page.button_submit")}
                                 </Button>
                             </div>
-                        </Form>
+                        </FormikFormComponent>
                     );
                 }}
-            </Formik>
+            </FormikComponent>
             <CaptchaPrivacyBlock/>
         </Modal>)
             }

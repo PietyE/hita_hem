@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import SplitLine from "components/ui/SplitLine";
 import Button from "components/ui/Button";
 import InputComponent from "components/ui/InputComponent";
-import { Formik, Form } from "formik";
+import {FormikFormComponent,FormikComponent} from "../../components/ui/FormikComponent";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import IconComponent from "components/ui/IconComponent";
 import useRaiseForm2ErrorHandler from "customHooks/useRaiseForm2ErrorHandler";
@@ -36,7 +36,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
   };
 
   return (
-    <Formik
+    <FormikComponent
       initialValues={initialValues}
       validationSchema={raiseForm2}
       onSubmit={onSubmit}
@@ -44,7 +44,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
       validateOnBlur={false}
     >
       {({ errors, touched, values, setFieldValue, setFieldError }) => (
-        <Form className="raise_form">
+        <FormikFormComponent className="raise_form">
           <InputComponent
             labelClassName="raise_form_input_container"
             label={t("raisePage.form2.company_name")}
@@ -131,9 +131,9 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
               />
             </Button>
           </div>
-        </Form>
+        </FormikFormComponent>
       )}
-    </Formik>
+    </FormikComponent>
   );
 };
 

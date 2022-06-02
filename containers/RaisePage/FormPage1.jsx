@@ -1,10 +1,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
-import { Formik, Form } from "formik";
+import {FormikFormComponent,FormikComponent} from "../../components/ui/FormikComponent";
 import Button from "components/ui/Button";
 import SplitLine from "components/ui/SplitLine";
 import InputComponent from "components/ui/InputComponent";
-import { CountryDropdown } from "react-country-region-selector";
+import CountryDropdownComponent from "components/ui/CountryDropdownComponent";
 import IconComponent from "components/ui/IconComponent";
 import { faArrowRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import useRaiseFormErrorHandler from "customHooks/useRaiseFormErrorHandler";
@@ -36,7 +36,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
     changePage(formNumber + 1);
   };
   return (
-    <Formik
+    <FormikComponent
       initialValues={initialValues}
       validationSchema={raiseForm1}
       onSubmit={onSubmit}
@@ -52,7 +52,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
         setFieldValue,
         setFieldError,
       }) => (
-        <Form className="raise_form">
+        <FormikFormComponent className="raise_form">
           <InputComponent
             labelClassName="raise_form_input_container"
             label={t("raisePage.form1.first_name")}
@@ -118,7 +118,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
           >
             {t("raisePage.form1.country")}
             <br />
-            <CountryDropdown
+            <CountryDropdownComponent
               className={
                 ((touched.country && errors.country)|| errorHandlerHook?.countryError)
                   ? "raise_form_input_warning raise_form_country"
@@ -168,9 +168,9 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
               className="raise_form_button_arrow_right"
             />
           </Button>
-        </Form>
+        </FormikFormComponent>
       )}
-    </Formik>
+    </FormikComponent>
   );
 };
 

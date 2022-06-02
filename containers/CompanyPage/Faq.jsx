@@ -37,10 +37,7 @@ const Faq = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (e?.target[0]?.value) {
-      // _addFaqPost(filterComments(e.target[0].value));
       recaptcha('add_faq_post',_addFaqPost,e.target[0].value)
-      // _addFaqPost(e.target[0].value);
-
       e.target[0].value = "";
     }
   };
