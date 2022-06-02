@@ -215,10 +215,10 @@ export const getRedirectUrlForChangeAccountType = (currentLanguage) => {
     // }
 
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
-        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId` : `https://stage.accumeo.com/authBankId`
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId?account_type=bankId` : `https://stage.accumeo.com/authBankId?account_type=bankId`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production') {
-        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId` : `https://accumeo.com/authBankId`
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId?account_type=bankId` : `https://accumeo.com/authBankId?account_type=bankId`
     }
     return _link
 }
