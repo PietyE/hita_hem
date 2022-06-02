@@ -19,7 +19,7 @@ function App({Component, pageProps}) {
                       content = "Accumeo gör delägarskap i onoterade bolag åtkomligt för fler genom gräsrotsfinansiering"/>
                 <script
                     // strategy = "lazyOnload"
-                    defer
+                    async
                     id = 'intercom_settings'>
                     {` window.intercomSettings = {
     app_id: "${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}",
@@ -29,7 +29,7 @@ function App({Component, pageProps}) {
                 <script
                     id = 'intercom_boot'
                     // strategy = "lazyOnload"
-                    defer
+                    async
                     dangerouslySetInnerHTML = {{
                         __html: `
 
