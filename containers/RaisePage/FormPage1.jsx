@@ -32,7 +32,7 @@ const FormPage1 = ({ changePage, submit, formNumber, data }) => {
   })
 
   const onSubmit = (values) => {
-    submit(values, `form${formNumber}`);
+    submit({...values, email:values?.email?.toLowerCase()}, `form${formNumber}`);
     changePage(formNumber + 1);
   };
   return (

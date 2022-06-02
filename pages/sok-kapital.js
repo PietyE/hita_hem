@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {END} from "redux-saga";
 import {wrapper} from "redux/store";
@@ -16,7 +16,7 @@ import {
     getRaisePageImageSelector,
     getRaisePageSeoSelector, getScrollToFormSelector
 } from "redux/reducers/raisePage";
-import {getCorrectImage, getImageAltText, getImgMeta} from "../utils/utils";
+import {getCorrectImage, getImageAltText, getImageSizes} from "../utils/utils";
 import makeRaiseSchema from "../Schemas/raiseSchema";
 
 
@@ -35,18 +35,9 @@ const RaisePage = () => {
     const images = useSelector(getRaisePageImageSelector)
     const seo = useSelector(getRaisePageSeoSelector)
     const isScrollToForm = useSelector(getScrollToFormSelector)
-
     const img = getCorrectImage(images)
     const altText = getImageAltText(images)
-
-    const [imageSize, setImageSize] = useState({})
-
-    useEffect(() => {
-        if(img){
-            getImgMeta(img, setImageSize)
-        }
-    }, [img])
-
+    const {height, width} = getImageSizes(images)
 
     const _getRaisePage = useCallback(() => {
         dispatch(getRaisePage());
@@ -93,8 +84,8 @@ const RaisePage = () => {
                     <div className="raise_page_image ">
                         <Image
                             src={img}
-                            width={imageSize?.width || 0}
-                            height={imageSize?.height || 0}
+                            width={width}
+                            height={height}
                             layout="responsive"
                             alt={altText}
                             loading='lazy'

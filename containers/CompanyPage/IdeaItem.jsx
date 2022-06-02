@@ -1,10 +1,9 @@
-import React, {memo, useEffect, useState} from 'react';
-import InfoBlockColor from "components/ui/InfoBlockColor";
-import Title from "components/ui/Title";
-import {SimpleReactLightboxComponent, SRLWrapperComponent} from "components/ui/SimpleReactLightboxComponent";
+import React, {memo} from 'react';
+import InfoBlockColor from "../../components/ui/InfoBlockColor";
+import Title from "../../components/ui/Title";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
-import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
+import {SimpleReactLightboxComponent, SRLWrapperComponent} from "components/ui/SimpleReactLightboxComponent";
 
 const options = {
     buttons: {
@@ -21,41 +20,24 @@ const IdeaItem = ({section}) => {
         type,
         first_image,
         first_image_alter_text,
+        first_image_height,
+        first_image_width,
         second_image,
         second_image_alter_text,
+        second_image_height,
+        second_image_width,
         third_image,
         third_image_alter_text,
+        third_image_height,
+        third_image_width,
         fourth_image,
         fourth_image_alter_text,
+        fourth_image_height,
+        fourth_image_width,
         title,
         description,
     } = section;
 
-    const [firstImageSize, setFirstImageSize] = useState({})
-    const [secondImageSize, setSecondImageSize] = useState({})
-    const [thirdImageSize, setThirdImageSize] = useState({})
-    const [fourthImageSize, setFourthImageSize] = useState({})
-
-    useEffect(() => {
-        if(first_image ){
-            getImgMeta(first_image, setFirstImageSize)
-        }
-    }, [first_image])
-    useEffect(() => {
-        if(second_image){
-            getImgMeta(second_image, setSecondImageSize)
-        }
-    }, [second_image])
-    useEffect(() => {
-        if(third_image){
-            getImgMeta(third_image, setThirdImageSize)
-        }
-    }, [third_image])
-    useEffect(() => {
-        if(fourth_image){
-            getImgMeta(fourth_image, setFourthImageSize)
-        }
-    }, [fourth_image])
     if (type === "Challenge") {
         return (
             <section className="idea_section mb-5">
@@ -90,8 +72,8 @@ const IdeaItem = ({section}) => {
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={first_image}
-                                        width={firstImageSize?.width || 0}
-                                        height={firstImageSize?.height || 0}
+                                        width={first_image_width || 0}
+                                        height={first_image_height || 0}
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         className='idea_next_image'
@@ -105,8 +87,8 @@ const IdeaItem = ({section}) => {
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={second_image}
-                                        width={secondImageSize?.width || 0}
-                                        height={secondImageSize?.height || 0}
+                                        width={second_image_width || 0}
+                                        height={second_image_height || 0}
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         className='idea_next_image'
@@ -129,8 +111,8 @@ const IdeaItem = ({section}) => {
                                 <div className='middle_photo'>
                                     <Image
                                         src={first_image}
-                                        width={firstImageSize?.width || 0}
-                                        height={firstImageSize?.height || 0}
+                                        width={first_image_width || 0}
+                                        height={first_image_height || 0}
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         loading='lazy'
@@ -143,8 +125,8 @@ const IdeaItem = ({section}) => {
                                 <div className='middle_photo'>
                                     <Image
                                         src={second_image}
-                                        width={secondImageSize?.width || 0}
-                                        height={secondImageSize?.height || 0}
+                                        width={second_image_width || 0}
+                                        height={second_image_height || 0}
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         loading='lazy'
@@ -157,8 +139,8 @@ const IdeaItem = ({section}) => {
                                 <div className='middle_photo'>
                                     <Image
                                         src={third_image}
-                                        width={thirdImageSize?.width || 0}
-                                        height={thirdImageSize?.height || 0}
+                                        width={third_image_width || 0}
+                                        height={third_image_height || 0}
                                         layout="responsive"
                                         alt={third_image_alter_text}
                                         loading='lazy'
@@ -171,8 +153,8 @@ const IdeaItem = ({section}) => {
                                 <div className='middle_photo'>
                                     <Image
                                         src={fourth_image}
-                                        width={fourthImageSize?.width || 0}
-                                        height={fourthImageSize?.height || 0}
+                                        width={fourth_image_width || 0}
+                                        height={fourth_image_height || 0}
                                         layout="responsive"
                                         alt={fourth_image_alter_text}
                                         loading='lazy'
