@@ -37,14 +37,25 @@ const IdeaItem = ({section}) => {
     const [fourthImageSize, setFourthImageSize] = useState({})
 
     useEffect(() => {
-        if(first_image || second_image || third_image || first_image){
+        if(first_image ){
             getImgMeta(first_image, setFirstImageSize)
+        }
+    }, [first_image])
+    useEffect(() => {
+        if(second_image){
             getImgMeta(second_image, setSecondImageSize)
+        }
+    }, [second_image])
+    useEffect(() => {
+        if(third_image){
             getImgMeta(third_image, setThirdImageSize)
+        }
+    }, [third_image])
+    useEffect(() => {
+        if(fourth_image){
             getImgMeta(fourth_image, setFourthImageSize)
         }
-    }, [first_image,second_image,third_image,first_image])
-
+    }, [fourth_image])
     if (type === "Challenge") {
         return (
             <section className="idea_section mb-5">
