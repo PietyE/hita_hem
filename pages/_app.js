@@ -1,6 +1,6 @@
 import Head from "next/head";
 import api from "api";
-import Script from 'next/script'
+// import Script from 'next/script'
 import "i18n";
 import "../styles/index.scss";
 
