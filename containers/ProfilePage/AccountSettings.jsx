@@ -14,6 +14,7 @@ import {getSubscribeListSelector, getUnsubscribesSelector} from "redux/reducers/
 import Button from "../../components/ui/Button";
 import isEqual from "lodash/isEqual";
 import {recaptcha} from "../../utils/recaptcha";
+import ChangeProfileType from "./ChangeProfileType";
 
 const AccountSettings = () => {
   const { t } = useTranslation();
@@ -87,12 +88,19 @@ const AccountSettings = () => {
                 }
                 <ChangeEmailLanguage/>
                 <SplitLine className='account_settings_split_line'/>
+                {isEmpty(isSocialAccount) && !isBankIdResident &&
+                <>
+                    <ChangeProfileType />
+                    <SplitLine className='account_settings_split_line'/>
+                </>
+                }
                 <p className="account_settings_text_delete" onClick={handleClickDelete}>
                     {t("profile_page.account.text_delete")}
                 </p>
                 <p className="account_settings_text" style={isBankIdResident?{marginBottom: '0'}: {}}>
                     {t("profile_page.account.text")}
                 </p>
+
             </div>
             <div className='account_settings_subscribes'>
                 <h2 className='account_settings_subscribes_title'>

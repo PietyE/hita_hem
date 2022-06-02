@@ -8,6 +8,7 @@ import {setShowSignUp} from "../../redux/actions/authPopupWindows";
 import {getAuthSocialAccountErrorSelector} from "../../redux/reducers/errors";
 import useAuthErrorHandler from "../../customHooks/useAuthErrorHandler";
 import {getSelectedLangSelector} from "../../redux/reducers/language";
+import SocialsAuthButtons from "../SocialsAuthButtons";
 
 const BannerSignUpBlock = () => {
     const {t} = useTranslation();
@@ -89,32 +90,32 @@ const BannerSignUpBlock = () => {
             </label>
 
             <p className={_splitLineStyle}>{t("home_page.split_line_text")}</p>
+            <SocialsAuthButtons/>
+            {/*<div className='sign_in_socials_buttons_wrapper'>*/}
+            {/*    <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>*/}
+            {/*        <span>BankID</span>*/}
+            {/*    </button>*/}
 
-            <div className='sign_in_socials_buttons_wrapper'>
-                <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
-                    <span>BankID</span>
-                </button>
+            {/*    <GoogleLogin*/}
+            {/*        clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}*/}
+            {/*        render={renderProps => (*/}
+            {/*            <button*/}
+            {/*                className='sign_in_google sign_in_social_button'*/}
+            {/*                onClick={renderProps.onClick}*/}
+            {/*                disabled={renderProps.disabled}*/}
+            {/*            >*/}
+            {/*                <span>Google</span>*/}
+            {/*            </button>*/}
+            {/*        )}*/}
+            {/*        onSuccess={responseGoogle}*/}
+            {/*        onFailure={responseGoogle}*/}
+            {/*        cookiePolicy={'single_host_origin'}*/}
+            {/*    />*/}
 
-                <GoogleLogin
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                    render={renderProps => (
-                        <button
-                            className='sign_in_google sign_in_social_button'
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                        >
-                            <span>Google</span>
-                        </button>
-                    )}
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
-
-            </div>
-            {socialAccountError && (
-                <p className='sign_in_socials_account_error'>{socialAccountError}</p>
-            )}
+            {/*</div>*/}
+            {/*{socialAccountError && (*/}
+            {/*    <p className='sign_in_socials_account_error'>{socialAccountError}</p>*/}
+            {/*)}*/}
         </div>
 
     );

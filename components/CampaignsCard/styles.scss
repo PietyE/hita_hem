@@ -31,6 +31,7 @@
 }
 
 .campaigns_card_image {
+  //background-color: #d7d7d7;
   border-radius: 0;
   height: 254px;
   margin-bottom: 57px;
@@ -237,8 +238,25 @@
     }
   }
 }
+
+
+.campaigns_card_small{
+  @extend .campaigns_card;
+  padding-bottom: 0;
+  align-self: flex-start;
+  .progress_container{
+    display: none;
+  }
+}
+
+
+
 @media screen and (max-width: 767px) {
+  .campaigns_card_small{
+    align-self: center;
+  }
   .campaigns_card {
+
     margin-right: 0px;
     &:nth-child(3n) {
       margin-right: 0;

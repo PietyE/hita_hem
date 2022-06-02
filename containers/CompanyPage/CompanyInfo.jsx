@@ -38,6 +38,7 @@ const CompanyInfo = () => {
                     objectFit="cover"
                     priority={true}
                     alt={logoAltText}
+                    loading='lazy'
                 />)}
             </div>
             <div className="company_info_sig_container">

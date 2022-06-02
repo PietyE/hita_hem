@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import Modal from "components/ui/Modal";
 import Button from "../../ui/Button";
+import SocialsAuthButtons from "../../SocialsAuthButtons";
 import { setShowSignIn, setShowSignUp } from "redux/actions/authPopupWindows";
 import InputComponent from "../../ui/InputComponent";
 import { useTranslation } from "react-i18next";
@@ -10,12 +11,10 @@ import { getIsFetchingAuthSelector } from "redux/reducers/user";
 import useAuthErrorHandler from 'customHooks/useAuthErrorHandler'
 import * as yup from "yup";
 import {emailRegExp, passwordRegExp} from "../../../utils/vadidationSchemas";
-import {signUp, makeRequestForSignInWithBankId, saveEmail, signInWithGoogle} from "redux/actions/user";
+import {signUp, saveEmail} from "redux/actions/user";
 import {recaptcha} from "../../../utils/recaptcha";
 import CaptchaPrivacyBlock from "../../CaptchaPrivacyBlock";
 import SplitLine from "../../ui/SplitLine";
-import {GoogleLogin} from "react-google-login";
-import {getAuthSocialAccountErrorSelector} from "../../../redux/reducers/errors";
 import {getSavedEmail} from "../../../redux/reducers/user";
 
 import {getMembershipAgreementDocument} from "../../../redux/reducers/documents";
@@ -25,7 +24,6 @@ const SignUp = ({ show }) => {
   const errorHandlerHook = useAuthErrorHandler()
   const { t } = useTranslation();
   const isFetching = useSelector(getIsFetchingAuthSelector);
-    const socialAccountError = useSelector(getAuthSocialAccountErrorSelector)
     const savedEmail = useSelector(getSavedEmail)
     const documentUrl = useSelector(getMembershipAgreementDocument)
     const initialValues = {
@@ -69,41 +67,12 @@ const SignUp = ({ show }) => {
             })
     })
 
-    const _signInWithBankId = useCallback(
-        () => {
-            dispatch(makeRequestForSignInWithBankId());
-        },
-        [dispatch]
-    );
-
-    const _signInWithGoogle = useCallback(
-        (values) => {
-            dispatch(signInWithGoogle(values));
-        },
-        [dispatch]
-    );
-
     const _saveEmail = useCallback(
         (data) => {
             dispatch(saveEmail(data));
         },
         [dispatch]
     );
-
-    const responseGoogle = (response) => {
-        if (socialAccountError) {
-            errorHandlerHook._clearErrors()
-        }
-        _signInWithGoogle(response.tokenId)
-    }
-
-  const handleSignInWithBankId = (e) => {
-    e.preventDefault()
-      if(socialAccountError){
-          errorHandlerHook._clearErrors()
-      }
-    _signInWithBankId()
-  }
 
   useEffect(()=>{
       return ()=> {
@@ -133,29 +102,7 @@ const SignUp = ({ show }) => {
 
             </header>
             <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
-            <div className='sign_in_socials_buttons_wrapper'>
-                <button className='sign_in_bank_id sign_in_social_button' onClick={handleSignInWithBankId}>
-                    <span>BankID</span>
-                </button>
-                <GoogleLogin
-                    clientId={process.env.NEXT_PUBLIC_GOOGLE_OAUTH}
-                    render={renderProps => (
-                        <button
-                            className='sign_in_google sign_in_social_button'
-                            onClick={renderProps.onClick}
-                            disabled={renderProps.disabled}
-                        >
-                            <span>Google</span>
-                        </button>
-                    )}
-                    onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
-                    cookiePolicy={'single_host_origin'}
-                />
-            </div>
-            {socialAccountError && (
-                <p className='sign_in_socials_account_error'>{socialAccountError}</p>
-            )}
+            <SocialsAuthButtons containerClassName='auth_socials_buttons'/>
             <SplitLine className='sign_in_split_line'/>
             <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
             <Formik

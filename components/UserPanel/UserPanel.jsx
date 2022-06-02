@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import {getIsBankIdResident, getUserSelector} from "redux/reducers/user";
+import {getUserSelector} from "redux/reducers/user";
 import isEqual from "lodash/isEqual";
 import dynamic from "next/dynamic";
 
@@ -19,7 +19,7 @@ function UserPanel() {
     const { t } = useTranslation();
 
     const userInfo = useSelector(getUserSelector, isEqual);
-  const isBankIdResident = useSelector(getIsBankIdResident)
+  // const isBankIdResident = useSelector(getIsBankIdResident)
   const { account, user } = userInfo;
 
   return (
@@ -29,7 +29,7 @@ function UserPanel() {
           <span className="user_panel_text">{`${user?.first_name} ${user?.second_name}`}</span>
         )}
           {(!user?.first_name ) && (
-            <span className="user_panel_text"> {account.email}</span>
+            <span className="user_panel_text"> {account?.email}</span>
           )}
 
         {/*{(!user?.first_name && !isBankIdResident) && (*/}
@@ -50,7 +50,8 @@ function UserPanel() {
                   src = {user?.image}
                   layout = "fill"
                   objectFit = "cover"
-                  priority = {true}
+                  // priority = {true}
+                  loading='lazy'
                   alt = 'avatar'
               />
           )}

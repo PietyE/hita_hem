@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import dynamic from "next/dynamic";
 
 import TabBar from "components/ui/TabBar";
 import Invest from "./Invest";
-import Raise from "./Raise";
+
+const Raise = dynamic(() => import("./Raise"), {
+  ssr: false,
+});
 
 const InstructionSection = () => {
   const { t } = useTranslation();

@@ -8,7 +8,7 @@ import Footer from "components/Footer";
 import {
     getIsSignInUserSelector,
     getUserEmailSelector,
-    getFullNameSelector, getCanResetPasswordSelector
+    getFullNameSelector,
 } from "redux/reducers/user";
 import {
   getShowSignIn,
@@ -39,17 +39,17 @@ import {
     getShowSuccessfulQuizMessage,
     getShowOptionalQuizMessage,
   getShowDataLossWarningFromProfile,
-  getShowAuthSocialAccountError
+  getShowAuthSocialAccountError,
+    getShowCompleteChangeAccountTypeSelector,
+    getShowDenyDeletingAccount,
 } from "redux/reducers/authPopupWindows.js";
 import {getNotificationStatusSelector} from "redux/reducers/notification";
 import {bootstap, logOut} from "redux/actions/user";
 import IdleTimer from "utils/idle";
-import {getShowDenyDeletingAccount} from "redux/reducers/authPopupWindows";
 
 import {recaptcha} from "../../utils/recaptcha";
 import * as ga from '../../utils/ga'
 import {useRouter} from "next/router";
-import {setShowSessionSignUp} from "../../redux/actions/authPopupWindows";
 
 const ScrollToTopButton = dynamic(
     () => import("components/ScrollToTopButton"),
@@ -145,6 +145,9 @@ const SuccessfulOptionalQuiz = dynamic(() =>
 const DataLossWarningFromProfile = dynamic(() =>
     import("components/DataLossWarningFromProfile"), { ssr: false }
 );
+const CompleteChangeAccountTypePopup = dynamic(() =>
+    import("components/CompleteChangeAccountTypePopup"), { ssr: false }
+);
 
 const RootPage = ({ children, initLang = "" }) => {
   const dispatch = useDispatch();
@@ -194,6 +197,7 @@ const RootPage = ({ children, initLang = "" }) => {
     const isShowOptionalQuizMessage = useSelector(getShowOptionalQuizMessage)
   const showDataLossWarningFromProfile = useSelector(getShowDataLossWarningFromProfile)
   const showSocialAccountErrorModal = useSelector(getShowAuthSocialAccountError)
+  const showCompleteChangeAccountType = useSelector(getShowCompleteChangeAccountTypeSelector)
 
 
 
@@ -377,6 +381,7 @@ const RootPage = ({ children, initLang = "" }) => {
           {!!isShowOptionalQuizMessage && <SuccessfulOptionalQuiz show={!!isShowOptionalQuizMessage}/>}
           {!!showDataLossWarningFromProfile && <DataLossWarningFromProfile data={showDataLossWarningFromProfile} />}
           {showSocialAccountErrorModal && <SingInErrorModal show={showSocialAccountErrorModal} />}
+          {showCompleteChangeAccountType && <CompleteChangeAccountTypePopup show={showCompleteChangeAccountType}/>}
 
 
 

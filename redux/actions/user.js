@@ -51,6 +51,8 @@ import {
   SIGN_UP_WITH_SOCIALS,
   SAVE_EMAIL,
   SET_EMAIL_LANGUAGE,
+  CHANGE_ACCOUNT_TYPE,
+  SET_CHANGEABLE_ACCOUNT_TYPE,
 } from "constants/actionsConstant";
 
 export const bootstap = (payload) => ({
@@ -307,5 +309,15 @@ export const saveEmail = payload => ({
 
 export const setEmailLanguage = payload => ({
   type: SET_EMAIL_LANGUAGE,
+  payload
+})
+
+export const changeAccountType = payload => ({
+  type: CHANGE_ACCOUNT_TYPE,
+  payload
+})
+
+export const setChangeableAccountType = payload => ({
+  type: SET_CHANGEABLE_ACCOUNT_TYPE,
   payload
 })

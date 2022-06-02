@@ -34,8 +34,10 @@ const FinancialInformation = () => {
                     <li key = {document?.document} className = "fin_document">
                         <Image
                             src = {IconDocument}
-                            alt = ""alt = {IconDocument ? 'document icon' : ' '}
+                            alt = {IconDocument ? 'document icon' : ' '}
                             className = "fin_document"
+                            loading='lazy'
+
                         />
                         <a
                             href = {document?.document}

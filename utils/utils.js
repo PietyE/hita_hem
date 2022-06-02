@@ -7,7 +7,7 @@ export const validateEmail = (email) => {
 
 export const validateCampaignNumber = (number) => {
     //eslint-disable-next-line
-    const re = /^([A-Z]{1,3}[0-9]{1,10}|[0-9]{5,14}|[0-9]{1,6}[A-Z]{1,1}|[0-9]{7}-[0-9]{4}|[A-Z]{1,3}[0-9]{1,6}[A-Z]{1,2}|[A-Z]{1}[0-9]{7}[A-Z]{1}|[0-9]{3}\s[0-9]{2}\s[0-9]{3})$/;
+    const re = /^([A-Z]{1,3}[0-9]{1,10}|[0-9]{5,14}|[0-9]{1,6}[A-Z]{1,1}|[0-9]{7}-[0-9]{4}|[A-Z]{1,3}[0-9]{1,6}[A-Z]{1,2}|[A-Z]{1}[0-9]{7}[A-Z]{1}|[0-9]{3}\s[0-9]{2}\s[0-9]{3}|[0-9]{6}-[0-9]{4})$/;
     return re.test(number);
 };
 
@@ -204,6 +204,25 @@ export const getRedirectUrl = (currentLanguage) => {
     return _link
 }
 
+export const getRedirectUrlForChangeAccountType = (currentLanguage) => {
+    let _link;
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+        _link = currentLanguage === 'en' ? `https://dev.accumeo.com/en/authBankId?account_type=bankId` : `https://dev.accumeo.com/authBankId?account_type=bankId`
+    }
+
+    // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
+    //     _link = currentLanguage === 'en'?`http://localhost:3000/en/authBankId?account_type=bankId`:`http://localhost:3000/authBankId?account_type=bankId`
+    // }
+
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'staging') {
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/authBankId?account_type=bankId` : `https://stage.accumeo.com/authBankId?account_type=bankId`
+    }
+    if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'production') {
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/authBankId?account_type=bankId` : `https://accumeo.com/authBankId?account_type=bankId`
+    }
+    return _link
+}
+
 export const getRedirectUrlForBlog = (currentLanguage) => {
     let _link;
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === 'development') {
@@ -223,18 +242,21 @@ export const getUrlForMyInvestments = (currentLanguage, data) => {
     let _link;
     let _textLink;
 
+    // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+    //     _link = currentLanguage === 'en' ? `http://localhost:3000/en/company/${data?.company_slug}` : `http://localhost:3000/foretag/${data?.company_slug}`
+    // }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-        _link = currentLanguage === 'en' ? `http://localhost:3000/en/company/${data?.company_slug}` : `http://localhost:3000/company/${data?.company_slug}`
-        _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+        _link = currentLanguage === 'en' ? `https://dev.accumeo.com/en/company/${data?.company_slug}` : `http://dev.accumeo.com/foretag/${data?.company_slug}`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/company/${data?.company_slug}` : `https://stage.accumeo.com/company/${data?.company_slug}`
-        _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/company/${data?.company_slug}` : `https://stage.accumeo.com/foretag/${data?.company_slug}`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-        _link = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.company_slug}` : `https://accumeo.com/company/${data?.company_slug}`
-        _textLink = `https://accumeo.com/company/${data?.company_slug}`;
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.company_slug}` : `https://accumeo.com/foretag/${data?.company_slug}`
     }
+
+    _textLink = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.company_slug}` : `https://accumeo.com/foretag/${data?.company_slug}` ;
+
     return {link: _link, text_link: _textLink}
 }
 
@@ -243,18 +265,22 @@ export const getUrlForMyCampaigns = (currentLanguage, data) => {
     let _link;
     let _textLink;
 
+    // if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
+    //     _link = currentLanguage === 'en' ? `http://localhost:3000/en/company/${data?.slug}` : `http://localhost:3000/foretag/${data?.slug}`
+    // }
+
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "development") {
-        _link = currentLanguage === 'en' ? `http://localhost:3000/en/company/${data?.slug}` : `http://localhost:3000/company/${data?.slug}`
-        _textLink = `https://accumeo.com/company/${data?.slug}`;
+        _link = currentLanguage === 'en' ? `http://dev.accumeo.com/en/company/${data?.slug}` : `http://dev.accumeo.com/foretag/${data?.slug}`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "staging") {
-        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/company/${data?.slug}` : `https://stage.accumeo.com/company/${data?.slug}`
-        _textLink = `https://accumeo.com/company/${data?.slug}`;
+        _link = currentLanguage === 'en' ? `https://stage.accumeo.com/en/company/${data?.slug}` : `https://stage.accumeo.com/foretag/${data?.slug}`
     }
     if (process.env.NEXT_PUBLIC_CUSTOM_NODE_ENV === "production") {
-        _link = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.slug}` : `https://accumeo.com/company/${data?.slug}`
-        _textLink = `https://accumeo.com/company/${data?.slug}`;
+        _link = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.slug}` : `https://accumeo.com/foretag/${data?.slug}`
     }
+
+    _textLink = currentLanguage === 'en' ? `https://accumeo.com/en/company/${data?.slug}` : `https://accumeo.com/foretag/${data?.slug}`;
+
     return {link: _link, text_link: _textLink}
 }
 

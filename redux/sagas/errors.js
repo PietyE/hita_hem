@@ -28,6 +28,7 @@ function* errorHandler() {
             );
             break;
         case 401:
+
             yield put(setAccount({}));
             yield put(setToken({}));
             yield put(setProfile({}));

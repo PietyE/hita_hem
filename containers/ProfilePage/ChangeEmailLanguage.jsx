@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {getUserEmailLanguageSelector} from "../../redux/reducers/user";
 import {setEmailLanguage} from "../../redux/actions/user";
 import {recaptcha} from "../../utils/recaptcha";
+import IconComponent from "../../components/ui/IconComponent";
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent"), {ssr: false}
@@ -43,14 +45,14 @@ const ChangeEmailLanguage = () => {
     return (
         <section className='account_settings_change_block'>
             <h2 className = "account_settings_form_title account_settings_form_text_wrapper">{t("profile_page.changeEmailLanguage.title")}</h2>
-            <DropDownComponent className="ln_button_container account_settings_change_email_language_container">
-                <DropdownToggle as={CustomToggle} className='account_settings_change_email_language_button'>
+            <DropDownComponent className="account_settings_form_button_wrapper ">
+                <DropdownToggle as={CustomToggle}>
                     {emailLanguage?.toUpperCase()}
                 </DropdownToggle>
                 <DropdownMenu
                     className="dropdown_menu"
                     onClick={handleSelectLang}
-                    align='right'
+                    align='left'
                 >
                     {Object.keys(lang).map((l) => {
                         return (
@@ -72,13 +74,18 @@ const CustomToggle = forwardRef(({children, onClick}, ref) => (
     <Button
         ref={ref}
         colorStyle="link"
+        className='account_settings_change_email_language_button'
         onClick={(e) => {
             e.preventDefault();
             onClick(e);
         }}
     >
-        {children}
-        <IconChevronDown className="chevron_icon"/>
+        <span>{children}</span>
+        <div className='account_settings_change_email_language_button_arrow'>
+            {/*<IconChevronDown className=""/>*/}
+            <IconComponent icon={faCaretDown}/>
+
+        </div>
     </Button>
 ));
 export default ChangeEmailLanguage;

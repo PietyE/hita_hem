@@ -1,12 +1,14 @@
 import React, {useEffect, useCallback} from "react";
 import {useSelector, useDispatch} from "react-redux";
-import {END} from "redux-saga";
 
+import {END} from "redux-saga";
 import {wrapper} from "/redux/store";
+
 import SeoComponent from "../components/SeoComponent";
 import InvestTopSlider from "containers/InvestmentOpportunitiesPage/InvestTopSlider";
 import CampaignsListSection from "containers/InvestmentOpportunitiesPage/CampaignsListSection";
 import SpinnerStyled from "components/ui/Spinner";
+
 import {
     getCompanyListSelector,
     getInvestPageSeoSelector,
@@ -19,6 +21,7 @@ import {
 } from "redux/actions/companies";
 
 import makeInvestPageSchema from "../Schemas/investPageSchema";
+
 import isEqual from "lodash/isEqual";
 import {getInvestPageSeo} from "../redux/actions/companies";
 
