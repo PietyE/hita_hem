@@ -2348,7 +2348,9 @@ overflow: hidden;
       .recommended_campaigns_list {
         flex-direction: column;
         align-items: center;
-
+        .campaigns_card_small{
+          align-self: center;
+        }
         .campaigns_card {
           margin-right: 0;
         }
