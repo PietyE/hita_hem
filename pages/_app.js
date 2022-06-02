@@ -53,7 +53,7 @@ function App({Component, pageProps}) {
  s.src='https://widget.intercom.io/widget/${process.env.NEXT_PUBLIC_INTERCOM_APP_ID}';
  const x=d.getElementsByTagName('script')[0];
  x.parentNode.insertBefore(s,x);
- }, 3000);
+ }, 5000);
  
  };
  if(document.readyState==='complete'){l();
