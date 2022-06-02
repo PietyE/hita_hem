@@ -95,9 +95,10 @@ const Overview = () => {
                     </div>
                 )}
                 {videoLink && (
-                    <div className="project_info_player_wrapper">
+                    // <div className="project_info_player_wrapper">
                         <YoutubeComponent link={videoLink} className='project_info_player'/>
-                    </div>)
+                    // </div>
+                    )
                 }
 
                 {!!businessHighlights && (
