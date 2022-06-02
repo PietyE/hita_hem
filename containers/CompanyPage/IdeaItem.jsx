@@ -1,5 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
-import {getImgMeta} from "../../utils/utils";
+import React, {memo} from 'react';
 import InfoBlockColor from "../../components/ui/InfoBlockColor";
 import Title from "../../components/ui/Title";
 import {sanitizeHtmlFromBack} from "../../utils/sanitazeHTML";
@@ -24,29 +23,23 @@ const IdeaItem = ({section}) => {
         type,
         first_image,
         first_image_alter_text,
+        first_image_height,
+        first_image_width,
         second_image,
         second_image_alter_text,
+        second_image_height,
+        second_image_width,
         third_image,
         third_image_alter_text,
+        third_image_height,
+        third_image_width,
         fourth_image,
         fourth_image_alter_text,
+        fourth_image_height,
+        fourth_image_width,
         title,
         description,
     } = section;
-
-    const [firstImageSize, setFirstImageSize] = useState({})
-    const [secondImageSize, setSecondImageSize] = useState({})
-    const [thirdImageSize, setThirdImageSize] = useState({})
-    const [fourthImageSize, setFourthImageSize] = useState({})
-
-    useEffect(() => {
-        if(first_image || second_image || third_image || first_image){
-            getImgMeta(first_image, setFirstImageSize)
-            getImgMeta(second_image, setSecondImageSize)
-            getImgMeta(third_image, setThirdImageSize)
-            getImgMeta(fourth_image, setFourthImageSize)
-        }
-    }, [first_image,second_image,third_image,first_image])
 
     if (type === "Challenge") {
         return (
@@ -87,8 +80,8 @@ const IdeaItem = ({section}) => {
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={first_image}
-                                        width={firstImageSize?.width || 0}
-                                        height={firstImageSize?.height || 0}
+                                        width={first_image_width || 0}
+                                        height={first_image_height || 0}
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         className='idea_next_image'
@@ -103,8 +96,8 @@ const IdeaItem = ({section}) => {
                                 <div className='solution_image_wrapper'>
                                     <Image
                                         src={second_image}
-                                        width={secondImageSize?.width || 0}
-                                        height={secondImageSize?.height || 0}
+                                        width={second_image_width || 0}
+                                        height={second_image_height || 0}
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         className='idea_next_image'
@@ -129,8 +122,8 @@ const IdeaItem = ({section}) => {
 
                                     <Image
                                         src={first_image}
-                                        width={firstImageSize?.width || 0}
-                                        height={firstImageSize?.height || 0}
+                                        width={first_image_width || 0}
+                                        height={first_image_height || 0}
                                         layout="responsive"
                                         alt={first_image_alter_text}
                                         loading='lazy'
@@ -144,8 +137,8 @@ const IdeaItem = ({section}) => {
 
                                     <Image
                                         src={second_image}
-                                        width={secondImageSize?.width || 0}
-                                        height={secondImageSize?.height || 0}
+                                        width={second_image_width || 0}
+                                        height={second_image_height || 0}
                                         layout="responsive"
                                         alt={second_image_alter_text}
                                         loading='lazy'
@@ -159,8 +152,8 @@ const IdeaItem = ({section}) => {
 
                                     <Image
                                         src={third_image}
-                                        width={thirdImageSize?.width || 0}
-                                        height={thirdImageSize?.height || 0}
+                                        width={third_image_width || 0}
+                                        height={third_image_height || 0}
                                         layout="responsive"
                                         alt={third_image_alter_text}
                                         loading='lazy'
@@ -174,8 +167,8 @@ const IdeaItem = ({section}) => {
 
                                     <Image
                                         src={fourth_image}
-                                        width={fourthImageSize?.width || 0}
-                                        height={fourthImageSize?.height || 0}
+                                        width={fourth_image_width || 0}
+                                        height={fourth_image_height || 0}
                                         layout="responsive"
                                         alt={fourth_image_alter_text}
                                         loading='lazy'

@@ -3,7 +3,6 @@ import Button from "components/ui/Button";
 import {useMediaQueries} from "@react-hook/media-query";
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
 import {useTranslation} from "react-i18next";
-import {getImgMeta} from "../../utils/utils";
 import Image from "next/image";
 import {SRLWrapperComponent,SimpleReactLightboxComponent} from "../../components/ui/SimpleReactLightboxComponent";
 
@@ -27,22 +26,15 @@ const options = {
 
 const FinArticle = ({item}) => {
     const {t} = useTranslation();
-    const {title, description, image, image_alter_text} = item;
+    const {title, description, image, image_alter_text,image_height, image_width} = item;
 
     const contentRef = useRef();
     const [isShowButton, setIsShowButton] = useState(false);
     const [isShowMore, setIsShowMore] = useState(false);
-    const [imageMeta, setImageMeta] = useState({})
     const {matchesAll} = useMediaQueries({
         screen: "screen",
         width: "(max-device-width: 900px)",
     });
-
-    useEffect(() => {
-        if(image){
-            getImgMeta(image, setImageMeta)
-        }
-    }, [image])
 
     useEffect(() => {
 
@@ -115,8 +107,8 @@ const FinArticle = ({item}) => {
                             <Image
                                 src={image}
                                 layout="responsive"
-                                width={imageMeta?.width || 0}
-                                height={imageMeta?.height || 0}
+                                width={image_width || 0}
+                                height={image_height || 0}
                                 className='fin_article_image'
                                 alt={image_alter_text}
                                 loading='lazy'
