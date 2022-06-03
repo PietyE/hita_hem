@@ -23,7 +23,6 @@ const makeFaqSchema = ({categories, seo}) => {
             },
             {
                 "@type": "ItemList",
-                "isPartOf": {"@id": "https://accumeo.com/fragor&svar/#qapage"},
                 "itemListElement": listOfCategories,
             }
         ],

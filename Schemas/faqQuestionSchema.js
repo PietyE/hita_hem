@@ -27,7 +27,6 @@ const makeQuestionSchema = ({questionsList, question, seo}) => {
             {
                 "@type": "ItemList",
                 "itemListElement": listOfQuestions,
-                "isPartOf": {"@id": "https://accumeo.com/fragor&svar/question/#webpage"},
             },
             {
                 "@type": "Article",
