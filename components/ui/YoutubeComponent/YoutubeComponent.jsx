@@ -34,9 +34,9 @@ function YoutubeComponent({className, link}) {
                         width: '100%',
                     }}
                     src={`https://www.youtube.com/embed/${youtubeId}`}
-                    frameborder="0"
+                    frameBorder="0"
                     allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen="allowfullscreen"
+                    allowFullScreen="allowfullscreen"
                 ></iframe>
             )}
         </div>
