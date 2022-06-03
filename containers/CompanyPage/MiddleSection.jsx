@@ -67,6 +67,12 @@ const MiddleSection = ({isAuth}) => {
     const [visible, setVisible] = useState(false);
     const [canChangeTab, setCanChangeTab] = useState(false)
 
+    const [renderContent, setRenderContent] = useState(false)
+
+    useEffect(()=>{
+        setRenderContent(!matchesAll)
+    },[])
+
     useEffect(() => {
         if (canChangeTab && !matchesAll) {
             switch (selectedTab) {
@@ -247,6 +253,7 @@ const MiddleSection = ({isAuth}) => {
                 </div>
 
                 }
+
                 <nav className="middle_tabbr_wrapp" >
 
                     {/*<TabBar*/}
@@ -309,15 +316,17 @@ const MiddleSection = ({isAuth}) => {
                             {(isAuth && isQuizPassed) && <FinancialInformation/> }
                         </section>
                     </div>
+                { renderContent &&
                 <section id='Faq' style={_faqBlock}  className='campaigns_section'>
                     {!isAuth ?
                         <CampaignTabSignUp/>
                      :
                         <>
-                            {!isQuizPassed ? <CampaignTabQuizRequest/> : <Faq/> }
+                            {!isQuizPassed  ? <CampaignTabQuizRequest/> : <Faq/> }
                         </>
                     }
                 </section>
+                }
             </div>
 {/*//////////////////////////MOBILE///////////////////////////////////*/}
             <div className='middle_mobile_header_container'>
@@ -345,7 +354,6 @@ const MiddleSection = ({isAuth}) => {
 
             <div
                 className=" middle_mobile_tabbr_container">
-
                 <TabAccordion isAuth={isAuth} isQuizPassed={isQuizPassed} status={status}/>
             </div>
         </div>
