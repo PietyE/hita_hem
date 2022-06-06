@@ -1,6 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {sanitizeHtmlFromBack} from "utils/sanitazeHTML";
-import {getImgMeta} from "utils/utils";
 
 import Title from "components/ui/Title";
 import {useDispatch, useSelector} from "react-redux";
@@ -34,11 +33,10 @@ const Overview = () => {
     const title = useSelector(getAboutProjectTitleSelector);
     const description = useSelector(getAboutProjectDescriptionSelector);
     const videoLink = useSelector(getVideoLinkSelector)
-    const image = useSelector(getOverviewImageSelector)
+    const {image,  image_height,image_width} = useSelector(getOverviewImageSelector)
     const imageAltText = useSelector(getOverviewImageAltTextSelector)
     const isAuth = useSelector(getIsSignInUserSelector)
     const isQuizPassed = useSelector(getQuizIsPassedSelector)
-
     // const {matchesAll} = useMediaQueries({
     //     screen: "screen",
     //     width: "(max-device-width: 500px)",
@@ -46,15 +44,15 @@ const Overview = () => {
 
     // const [isShowButton, setiIsShowButton] = useState(false);
     // const [isShowMore, setIsShowMore] = useState(false);
-    const [imageSize, setImageSize] = useState({})
+    // const [imageSize, setImageSize] = useState({})
 
     // const _handleClickShowMore = () => {
     //     setIsShowMore((prev) => !prev);
     // };
 
-    useEffect(() => {
-        getImgMeta(image, setImageSize)
-    }, [image])
+    // useEffect(() => {
+    //     getImgMeta(image, setImageSize)
+    // }, [image])
 
     // useEffect(() => {
     //     if (projectInfotRef.current) {
@@ -86,8 +84,8 @@ const Overview = () => {
                         <Image
                             src={image}
                             className='project_info_overview_image'
-                            width={imageSize?.width || 0}
-                            height={imageSize?.height || 0}
+                            width={image_width || 0}
+                            height={image_height || 0}
                             layout="responsive"
                             loading='lazy'
                             alt={imageAltText || 'image'}
@@ -97,9 +95,10 @@ const Overview = () => {
                     </div>
                 )}
                 {videoLink && (
-                    <div className="project_info_player_wrapper">
+                    // <div className="project_info_player_wrapper">
                         <YoutubeComponent link={videoLink} className='project_info_player'/>
-                    </div>)
+                    // </div>
+                    )
                 }
 
                 {!!businessHighlights && (

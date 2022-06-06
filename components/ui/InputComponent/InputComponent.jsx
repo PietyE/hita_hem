@@ -1,5 +1,5 @@
 import React, { memo, useState } from "react";
-import { Field } from "formik";
+import {FormikFieldComponent} from "../FormikComponent/FormikComponent";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import get from "lodash/get";
 
@@ -72,7 +72,7 @@ const InputComponent = ({
                    : `input_wrapper ${inputClassName}` : ''
              }
         >
-          <Field
+          <FormikFieldComponent
               type={passInputType}
               name={inputName}
               onChange={handleChange}

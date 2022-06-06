@@ -5,7 +5,7 @@ import {
     getIsSignInUserSelector,
     isSuccessfulResponseFromApiSelector
 } from "../redux/reducers/user";
-import {Form, Formik} from "formik";
+import {FormikFormComponent,FormikComponent} from "components/ui/FormikComponent";
 import InputComponent from "../components/ui/InputComponent";
 import Button from "../components/ui/Button";
 import * as yup from "yup";
@@ -95,7 +95,7 @@ function ChangeEmail() {
     >
         <h1 className = "account_settings_form_title change_email_title">{t("profile_page.reset_email.title")}</h1>
 
-        <Formik
+        <FormikComponent
             innerRef = {formikRef}
             initialValues = {initialValuesEmail}
             validationSchema = {accountSettingsResetEmailSchema}
@@ -106,7 +106,7 @@ function ChangeEmail() {
         >
             {({errors, touched, setFieldValue, setFieldError}) => {
                 return (
-                    <Form className = "auth_form">
+                    <FormikFormComponent className = "auth_form">
                         <InputComponent
                             labelClassName = "auth_login_container auth_container"
                             label = {t("change_email_page.new_email")}
@@ -153,10 +153,10 @@ function ChangeEmail() {
                                 {t("change_email_page.button_submit")}
                             </Button>
                         </div>
-                    </Form>
+                    </FormikFormComponent>
                 );
             }}
-        </Formik>
+        </FormikComponent>
         <CaptchaPrivacyBlock/>
     </Modal>)
 }

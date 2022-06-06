@@ -9,6 +9,7 @@ import {
     getRaisePageExtraSelector,
     getRaisePageExtraFeaturesTitleSelector,
 } from "redux/reducers/raisePage";
+import Image from "next/image";
 
 const RaiseInstructionsBlock = ({type}) => {
     const opportunitiesDescription = useSelector(
@@ -42,12 +43,18 @@ const RaiseInstructionsBlock = ({type}) => {
                             return (
                                 <li key={i} className="raise_item_container">
                                     <div className="raise_item_icon_wrapper">
-                                        <img
-                                            className="raise_item_img"
+                                        {el?.logo &&
+                                        <Image
+                                            // className="raise_item_img"
+                                            layout = "fill"
+                                            objectFit = "cover"
                                             src={el?.logo}
-                                            alt={el?.alter_text || ' '}
+                                            alt={el?.alter_text}
                                             loading="lazy"
+                                            placeholder="blur"
+                                            blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mO8Xw8AAkMBYCz7bH0AAAAASUVORK5CYII='
                                         />
+                                        }
                                     </div>
                                     <h3 className="rise_item_title">{el.title}</h3>
                                     <p className="raise_item_text">{el.description}</p>

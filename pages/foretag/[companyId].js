@@ -86,27 +86,33 @@ const CompanyPage = () => {
     }, [isRedirectOnSelector])
 
     useEffect(() => {
+
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
-        if(!!companyName){
-            _getCompanyDetail(companyName)
+        if((isAuth && isQuizPassed) || (isAuth && !isQuizPassed) || (!isAuth && !isQuizPassed)){
+            if(!!companyName){
+                _getCompanyDetail(companyName)
+            }
         }
+
+
         // if (!isAuth) {
-        //     const authLocalData = localStorage.getItem("auth_data")
-        //     if (authLocalData) {
-        //         const data = JSON.parse(authLocalData);
-        //         const {expiration_timestamp, key: token} = data;
-        //         const nowTime = Math.floor(new Date().getTime() / 1000);
-        //         if (token && expiration_timestamp && nowTime < expiration_timestamp) {
-        //             return
+        //     if(!isQuizPassed){
+        //         const authLocalData = localStorage.getItem("auth_data")
+        //         if (authLocalData) {
+        //             const data = JSON.parse(authLocalData);
+        //             const {expiration_timestamp, key: token} = data;
+        //             const nowTime = Math.floor(new Date().getTime() / 1000);
+        //             if (token && expiration_timestamp && nowTime < expiration_timestamp) {
+        //                 return
+        //             } else {
+        //                 _getCompanyDetail(companyName)
+        //             }
         //         } else {
         //             _getCompanyDetail(companyName)
-        //
         //         }
-        //     } else {
-        //         _getCompanyDetail(companyName)
         //     }
         // } else {
         //     _getCompanyDetail(companyName)
