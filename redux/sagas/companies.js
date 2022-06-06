@@ -35,7 +35,7 @@ const { auth, companies } = api;
 
 function* getCompaniesHeaderListWorker() {
   try {
-    yield put(setIsFetchingCompany(true));
+    // yield put(setIsFetchingCompany(true));
     const { data } = yield call(
       [companies, "getCompaniesList"],
       "?view_on_investment_page_header=true"
@@ -59,7 +59,7 @@ function* getCompaniesHeaderListWorker() {
       setError({ status: error?.response?.status, data: error?.response?.data })
     );
   } finally {
-    yield put(setIsFetchingCompany(false));
+    // yield put(setIsFetchingCompany(false));
   }
 }
 
