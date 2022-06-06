@@ -103,7 +103,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
             </ul>
           </div>
           <h4 className="form4_title">{t("raisePage.form4.comments")}</h4>
-          <Field
+          <FormikFieldComponent
             id="comments"
             name="comments"
             as="textarea"
