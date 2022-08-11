@@ -10,10 +10,7 @@
     color: rgba(0, 0, 0, 0.87);
     font-feature-settings: "kern";
     font-kerning: normal;
-    font-family: "Source sans Pro";
     font-size: 40px;
-    font-weight: 900;
-    font-style: normal;
     line-height: 70px;
     overflow-wrap: break-word;
     margin-bottom: 30px;
@@ -23,9 +20,7 @@
     display: flex;
     .invest_search_input{
       all: unset;
-      font-family: "Source sans Pro", sans-serif;
       font-size: 16px;
-      font-weight: 500;
       line-height: 28px;
       color: rgba(0, 0, 0, 0.87);
       width: 100%;
@@ -50,14 +45,11 @@
 }
 
 .empty_search_results{
-  font-family: "Source sans Pro", sans-serif;
   font-size: 22px;
-  font-weight: 500;
   line-height: 28px;
   color: rgba(0, 0, 0, 0.87);
   padding: 0 15px;
   text-align: center;
-
 }
 
 .invest_opp_middle_button {

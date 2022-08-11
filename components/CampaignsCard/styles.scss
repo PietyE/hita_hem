@@ -93,10 +93,6 @@
 
 .campaigns_card_industry,
 .campaigns_card_location {
-
-  font-family: "Source Sans Pro",sans-serif;
-  font-style: normal;
-  font-weight: 600;
   font-size: 12px;
   line-height: 150%;
   color: #1f607c;
@@ -124,12 +120,6 @@
 
 .campaigns_card_title {
   font-kerning: normal;
-
-
-  font-family: 'Source sans Pro', sans-serif;
-
-  font-style: normal;
-  font-weight: 700;
   font-size: 28px;
   line-height: 35px;
   font-feature-settings: "pnum" on, "lnum" on;
@@ -142,18 +132,12 @@
 }
 
 .campaigns_card_description {
-  font-family: 'Source sans Pro', sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 20px;
   line-height: 22px;
   color: #000;
 }
 
 .campaigns_card_target_title {
-  font-family: 'Source sans Pro', sans-serif;
-  font-style: normal;
-  font-weight: 600;
   font-size: 12px;
   line-height: 150%;
   color: #000;
@@ -163,11 +147,7 @@
 }
 
 .campaigns_card_target_value {
-  font-weight: 500;
-  font-style: normal;
   font-size: 22px;
-
-  font-family: 'Source sans Pro', sans-serif;
   line-height: 32px;
   font-feature-settings: "pnum" on, "lnum" on;
   color: #333333;

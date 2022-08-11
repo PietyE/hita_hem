@@ -14,14 +14,11 @@
 
     .campaigns_title {
       font-kerning: normal;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 900;
       font-size: 40px;
       line-height: 40px;
       text-align: center;
       letter-spacing: 1px;
-      font-style: normal;
+
       color: #424242;
 
       margin-bottom: 52px;
@@ -31,10 +28,6 @@
       margin-bottom: 60px;
       width: 260px;
       height: 56px;
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      //font-weight: bold;
       font-size: 16px;
       line-height: 18px;
     }
@@ -52,9 +45,6 @@
 
     .raise_step {
       position: relative;
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
       width: 335px;
       overflow: hidden;
       margin-right: 100px;
@@ -96,16 +86,13 @@
 
     .raise_step_title {
       font-kerning: normal;
-      font-family: 'Source sans Pro';
       font-size: 22px;
-      font-weight: 700;
-      font-style: normal;
       line-height: 28px;
       color: #424242;
     }
 
     .raise_step_title_accent {
-      font-weight: bold;
+
       font-size: 24px;
       line-height: 32px;
       font-feature-settings: 'pnum' on, 'lnum' on;
@@ -114,9 +101,9 @@
     }
 
     .raise_step_text {
-      font-weight: normal;
+
       font-size: 22px;
-      font-weight: 500;
+
       line-height: 28px;
       color: #000000;
       //opacity: 0.6;
@@ -137,10 +124,6 @@
     width: 100%;
 
     .instructions_title {
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
       font-size: 32px;
       line-height: 40px;
       text-align: center;
@@ -168,10 +151,6 @@
     background-position: center 82%, -10% 45%, 110% 45%;
 
     .join-us_title {
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
       font-size: 32px;
       line-height: 64px;
       text-align: center;
@@ -195,12 +174,8 @@
 
 .home_page_top_title {
   font-kerning: normal;
-  font-family: 'Source sans Pro';
-  font-weight: 900;
   font-size: 400%;
-  font-style: normal;
   line-height: 60px;
-
 }
 
 .banner_title {

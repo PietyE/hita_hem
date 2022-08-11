@@ -3,9 +3,6 @@
   top: 25px !important;
   background: #FFFFFF;
   border-radius: 8px;
-  font-family: "Source Sans Pro",sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 16px;
   line-height: 150%;
   color: rgba(0, 0, 0, 0.87);
@@ -22,7 +19,7 @@
     background: rgba(60, 100, 177, 0.1);
     //opacity: 0.1;
     transform: translateY(8px);
-    font-weight: 600;
+
     color: #1F607C;
     &:hover{
       background: rgba(60, 100, 177, 0.3);

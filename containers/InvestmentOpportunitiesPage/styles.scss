@@ -54,10 +54,7 @@
     .invest_opp_middle_title {
       color: rgba(0, 0, 0, 0.87);
       font-kerning: normal;
-      font-family: 'Source sans Pro';
       font-size: 40px;
-      font-weight: 900;
-      font-style: normal;
       line-height: 70px;
       overflow-wrap: break-word;
 
@@ -77,9 +74,6 @@
       box-sizing: border-box;
       border-radius: 4px;
       padding-left: 15px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       line-height: 22px;
       color: #000;
@@ -144,9 +138,6 @@
         .invest_opp_label {
           display: flex;
           align-items: center;
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: 600;
           font-size: 14px;
           line-height: 150%;
           color: rgba(0, 0, 0, 0.87);
@@ -185,9 +176,6 @@
     margin-left: auto;
 
     .invest_opp_filters_list_text {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 16px;
       line-height: 150%;
       color: #000;
@@ -200,9 +188,6 @@
       padding: 9px;
       height: 40px;
       margin-right: 17px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       line-height: 150%;
       color: rgba(0, 0, 0, 0.38);
@@ -390,7 +375,7 @@
         top: 5px;
         right: 15px;
         font-size: 22px;
-        font-weight: 700;
+
         color: #000;
         cursor: pointer;
       }
@@ -406,9 +391,6 @@
       }
 
       .filter_mobile_menu_title {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: 600;
         font-size: 20px;
         line-height: 150%;
         color: #000;
@@ -421,9 +403,6 @@
         align-items: center;
         width: 100%;
         text-align: left;
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: bold;
         font-size: 18px;
         line-height: 150%;
         color: rgba(0, 0, 0, 0.87);
@@ -466,9 +445,6 @@
 
         .filter_mobile_menu_buttons_cancel {
           margin-right: 30px;
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: bold;
           font-size: 15px;
           line-height: 150%;
           color: #000;

@@ -27,7 +27,7 @@
 
     .menu_item_link_faq{
       color: rgba(0, 0, 0, 0.87);
-      font-weight: 500;
+
       font-size: 16px;
       line-height: 28px;
     }
@@ -36,15 +36,15 @@
       flex: 1;
       justify-content: flex-end;
       .sign_in_item {
-        @extend .mulish-font;
+        //@extend .mulish-font;
         font-size: 14px;
         letter-spacing: 0.3px;
-        font-weight: 700;
+
         button {
-          @extend .mulish-font;
+          //@extend .mulish-font;
           font-size: 14px;
           letter-spacing: 0.3px;
-          font-weight: 700;
+
         }
       }
       .sing_up_button_container {
@@ -91,14 +91,9 @@
 
       .menu_item_link,
       .menu_item_link > button {
-
         font-kerning: normal;
-        font-family: "Source Sans Pro",sans-serif;
         font-size: 16px;
-        font-weight: 500;
-        font-style: normal;
         line-height: 28px;
-
         letter-spacing: 0.07em;
         text-transform: uppercase;
         color: rgba(0, 0, 0, 0.87);
@@ -116,9 +111,6 @@
       }
     }
     .dropdown_menu_item {
-      font-family: "Source Sans Pro",sans-serif;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       color: rgba(0, 0, 0, 0.87);
     }
@@ -217,7 +209,7 @@
         height: 34px;
         background: #0E5394;
         border-radius: 89px;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         font-size: 15px !important;
         line-height: 18px;
         color: #ffffff !important;
@@ -244,9 +236,6 @@
         display: flex;
         align-items: center;
         a {
-          font-family: "Source Sans Pro",sans-serif;
-          font-style: normal;
-          font-weight: 600;
           font-size: 18px;
           line-height: 150%;
           letter-spacing: 0.003em;
@@ -257,9 +246,6 @@
         }
       }
       .nav_item_about_us {
-        font-family: "Source Sans Pro",sans-serif;
-        font-style: normal;
-        font-weight: 600;
         font-size: 18px;
         line-height: 150%;
         letter-spacing: 0.003em;
@@ -368,9 +354,6 @@
           .nav_language,
           .nav_language_en,
           .nav_language_sv-active {
-            font-family: "Source Sans Pro",sans-serif;
-            font-style: normal;
-            font-weight: 700;
             font-size: 16px;
             color: rgba(0, 0, 0, 0.87);
           }
