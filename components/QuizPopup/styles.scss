@@ -19,7 +19,7 @@
 .quiz {
   .quiz_header {
     //height: 231px;
-    background: #89CFF0;
+    background: #B2B5BD;
     padding: 60px 110px;
 
     .quiz_header_title {
@@ -46,7 +46,7 @@
 
   .quiz_body {
     padding: 20px 35px 0 35px;
-    background-color: rgba(220, 232, 248, 0.5);
+    background-color: #E6E6E6;
 
     .quiz_item_warning {
       border: 1px solid #FF4D4F;
@@ -163,7 +163,7 @@
     padding: 40px;
 
     //height: 150px;
-    background-color: rgba(220, 232, 248, 0.5);
+    background-color: #E6E6E6;
 
     .quiz_footer_buttons_wrapper{
       //padding-top: 20px;
@@ -174,7 +174,7 @@
 
     .quiz_footer_button_back {
       margin-right: 20px;
-      background-color: rgba(220, 232, 248, 0.5);
+      background-color: #E6E6E6;
 
       font-size: 18px;
       line-height: 150%;

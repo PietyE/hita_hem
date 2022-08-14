@@ -82,13 +82,13 @@
     color: #5400E2;
     &:focus {
       transition: 0.3s;
-      background-color: #89cff0;
+      background-color: #B2B5BD;
       color: #ffffff !important;
       outline: none;
       box-shadow: none;
     }
     &:hover {
-      background-color: #89cff0;
+      background-color: #B2B5BD;
       transition: 0.3s;
       outline: none;
       box-shadow: none;
@@ -223,7 +223,7 @@
     box-shadow: none;
   }
   &.blue {
-    background: #89cff0;
+    background: #B2B5BD;
     box-shadow: 0px 1px 12px rgba(74, 87, 133, 0.25);
     font-size: 18px;
     color: #ffffff;
@@ -308,7 +308,7 @@
     }
   }
   &.light-blue {
-    background: #89cff0;
+    background: #B2B5BD;
     font-size: 14px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
@@ -334,7 +334,7 @@
     }
   }
   &.grey {
-    background: rgba(220, 232, 248, 0.5);
+    background: #E6E6E6;
     font-size: 16px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
@@ -360,12 +360,12 @@
     }
   }
   &.outline-blue {
-    border: 1px solid #89cff0;
+    border: 1px solid #B2B5BD;
     box-sizing: border-box;
     border-radius: 6px;
     font-size: 15px;
     line-height: 150%;
-    color: #89cff0;
+    color: #B2B5BD;
     background-color: #F2F2F2;
     &:focus {
       filter: brightness(1);
@@ -375,7 +375,7 @@
     }
     &:hover {
       //filter: brightness(1.2);
-      color: #57a9d0;
+      //color: #57a9d0;
 
       transition: 0.3s;
       outline: none;
@@ -391,7 +391,7 @@
     }
   }
   &.light-blue-white-text {
-    background: #89cff0;
+    background: #5400E2;
     font-size: 15px;
     line-height: 150%;
     color: #ffffff;
@@ -410,7 +410,7 @@
     }
     &:active {
       //background: #58d0e0 !important;
-      background: #89cff0 !important;
+      background: #B2B5BD !important;
       //filter: brightness(1.4);
       transition: 0.3s;
     }
