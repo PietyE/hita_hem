@@ -88,10 +88,18 @@
   }
 }
 
+@media screen and (max-width: 1550px) {
+  .footer_container {
+    .footer_content_container {
+      padding: 0 150px;
+    }
+  }
+}
+
 @media screen and (max-width: 1350px) {
   .footer_container {
     .footer_content_container {
-      padding: 0 50px;
+      padding: 0 85px;
     }
     .footer_nav {
       flex: 2;

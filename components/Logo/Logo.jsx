@@ -13,14 +13,22 @@ const Logo = ({ classNameContainer, type }) => {
       <a className={`logo_container ${classNameContainer}`}>
           {type === 'header' && (
               <>
-              <Image src={BlackFullLogo}/>
-              <Image src={BlackShortLogo}/>
+                  <div className='full_logo'>
+                      <Image src={BlackFullLogo}/>
+                  </div>
+                  <div className='short_logo'>
+                      <Image src={BlackShortLogo}/>
+                  </div>
               </>
           )}
           {type === 'footer' && (
               <>
-              <Image src={WhiteFullLogo}/>
-              <Image src={WhiteShortLogo}/>
+                  <div className='full_logo'>
+                      <Image src={WhiteFullLogo}/>
+                  </div>
+                  <div className='short_logo'>
+                      <Image src={WhiteShortLogo}/>
+                  </div>
                 </>
           )}
 
