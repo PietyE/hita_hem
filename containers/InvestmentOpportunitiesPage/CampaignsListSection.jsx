@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import dynamic from "next/dynamic";
-
+import InvestPageImage from './assets/investPage.png'
 import {faCaretDown, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import CampaignsList from "components/CampaignsList";
@@ -24,6 +24,7 @@ import {
 //     import("containers/InvestmentOpportunitiesPage/FilterMobileMenu")
 // );
 import FilterMobileMenu from "./FilterMobileMenu";
+import Image from "next/image";
 
 const DropDownComponent = dynamic(() =>
     import("components/ui/DropDownComponent")
@@ -140,11 +141,13 @@ const CampaignsListSection = ({companiesList}) => {
 
     return (
         <section className="invest_opp_middle_container">
+            <div className='invest_opp_top_image_wrapper'>
+                <Image src={InvestPageImage} alt="Invest"/>
+            </div>
             <div className="invest_opp_nav">
                 <h1 className="invest_opp_middle_title">
                     {t("investment_opportunities_page.title")}
                 </h1>
-
                 <DropDownComponent className="invest_opp_dropdown">
                     <DropdownToggle className="invest_opp_select">
                         {t("investment_opportunities_page.status")}
@@ -279,6 +282,7 @@ const CampaignsListSection = ({companiesList}) => {
                     changeCurrentFilter={setFilterValuesArray}
                 />
             )}
+
             <CampaignsList content={companiesList}/>
             {isMoreCampaigns && (
                 <Button

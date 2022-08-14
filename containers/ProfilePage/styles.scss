@@ -1,5 +1,5 @@
 .profile_section {
-  background: rgba(220, 232, 248, 0.5);
+  background: #E6E6E6;
   min-height: calc(100vh - 180px);
 
   .profile_section_content_container {
@@ -34,7 +34,7 @@
     align-items: center;
     width: 224px;
     height: 224px;
-    background: #ffffff;
+    background: #F2F2F2;
     border-radius: 6px;
     margin-bottom: 24px;
 
@@ -66,7 +66,7 @@
       width: 162px;
       height: 162px;
       overflow: hidden;
-      background-color: #ffffff;
+      background-color: #F2F2F2;
       object-fit: cover;
     }
   }
@@ -99,12 +99,13 @@
     font-size: 14px;
     line-height: 32px;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #1f607c;
+    color: #5400E2;
   }
 }
 
 .profile_personal_details {
   .profile_personal_details_title {
+    font-weight: 700;
     font-size: 20px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
@@ -117,7 +118,7 @@
     .profile_form_data_container {
       width: 596px;
       //height: 640px;
-      background: #ffffff;
+      background: #F2F2F2;
       border-radius: 6px;
       padding: 28px 22px 15px 27px;
       margin-bottom: 40px;
@@ -216,7 +217,7 @@
       .profile_form_input {
         width: 100%;
         height: 40px;
-        background: #ffffff;
+        background: #F2F2F2;
         border: 1px solid #c4c4c4;
         border-radius: 4px;
         margin-top: 0;
@@ -226,7 +227,7 @@
         &:focus {
           outline: none;
           background: rgba(137, 207, 240, 0.2);
-          border: 1px solid #0E5394;
+          border: 1px solid #5400E2;
           resize: none;
         }
       }
@@ -260,12 +261,12 @@
           cursor: pointer;
           width: 20px;
           height: 20px;
-          background: #0E5394;
+          background: #5400E2;
           border-radius: 2px;
         }
 
         .profile_form_agreement_link {
-          color: #3e77b5;
+          color: #5400E2;
           margin-left: 5px;
           cursor: pointer;
         }
@@ -349,7 +350,7 @@
   .profile_form_button_cancel {
     font-size: 16px;
     line-height: 150%;
-    color: #1f607c;
+    color: #5400E2;
     margin-left: 25px;
     margin-right: 25px;
   }
@@ -418,7 +419,7 @@
     }
 
     .account_settings_button_save {
-      background-color: #0b5394;
+      background-color: #5400E2;
       margin-top: auto;
       margin-bottom: 25px;
       font-size: 14px;
@@ -436,6 +437,7 @@
   }
 
   .account_settings_title {
+    font-weight: 700;
     font-size: 24px;
     line-height: 32px;
     font-feature-settings: "pnum" on, "lnum" on;
@@ -449,7 +451,7 @@
     flex-direction: column;
     width: 596px;
     margin-right: 20px;
-    background-color: #fff;
+    background-color: #F2F2F2;
     border: 1px solid #dce8f8;
     box-sizing: border-box;
     border-radius: 8px;
@@ -457,10 +459,11 @@
     align-self: flex-start;
 
     .account_settings_form_title {
+      font-weight: 700;
       font-size: 18px;
       line-height: 32px;
       font-feature-settings: "pnum" on, "lnum" on;
-      color: #0b5394;
+      color: #5400E2;
       margin-bottom: 10px;
     }
 
@@ -474,7 +477,7 @@
 
       .account_settings_form_input {
         height: 40px;
-        background: #ffffff;
+        background: #F2F2F2;
         border: 1px solid #c4c4c4;
         border-radius: 4px;
         width: 100%;
@@ -484,7 +487,7 @@
         &:focus {
           outline: none;
           background: rgba(137, 207, 240, 0.2);
-          border: 1px solid #0E5394;
+          border: 1px solid #5400E2;
         }
       }
 
@@ -508,7 +511,7 @@
       top: 160px;
       font-size: 12px;
       line-height: 150%;
-      color: #3c64b1;
+      color: #5400E2;
       cursor: pointer;
       z-index: 2;
     }
@@ -558,7 +561,7 @@
         font-size: 16px;
         line-height: 150%;
         text-align: center;
-        color: #1f607c;
+        color: #5400E2;
       }
 
     }
@@ -569,7 +572,7 @@
     flex-direction: column;
     width: 596px;
     min-height: 100%;
-    background-color: #fff;
+    background-color: #F2F2F2;
     border: 1px solid #dce8f8;
     box-sizing: border-box;
     border-radius: 8px;
@@ -577,10 +580,11 @@
     align-self: flex-start;
 
     .account_settings_subscribes_title {
+      font-weight: 700;
       font-size: 20px;
       line-height: 32px;
       font-feature-settings: "pnum" on, "lnum" on;
-      color: #0b5394;
+      color: #5400E2;
       margin-bottom: 10px;
     }
 
@@ -624,7 +628,7 @@
         }
 
         .active_radio {
-          background-color: #0e5394;
+          background-color: #5400E2;
           color: #fff;
         }
       }
@@ -647,6 +651,7 @@
   max-width: 1338px;
 
   .profile_campaigns_title {
+    font-weight: 700;
     font-size: 24px;
     line-height: 32px;
     color: rgba(0, 0, 0, 0.87);
@@ -659,7 +664,7 @@
     justify-content: space-between;
     width: 100%;
     height: 56px;
-    background-color: #0b5394;
+    background-color: #5400E2;
     border-radius: 8px 8px 0 0;
     padding-left: 25px;
     padding-right: 25px;
@@ -727,7 +732,7 @@
     align-items: flex-start;
 
     overflow: hidden;
-    background: #ffffff;
+    background: #F2F2F2;
     border: 1px solid #dce8f8;
     box-sizing: border-box;
     border-bottom-right-radius: 8px;
@@ -742,7 +747,7 @@
 
     .profile_campaigns_empty_list_link {
       cursor: pointer;
-      color: #0b5394;
+      color: #5400E2;
     }
 
     .profile_campaigns_item {
@@ -772,7 +777,7 @@
         width: 29%;
 
 
-        color: #3c64b1;
+        color: #5400E2;
       }
 
       .table_item_campaign_s_date {
@@ -791,7 +796,7 @@
 
         font-size: 16px;
         line-height: 150%;
-        color: #1f607c;
+        color: #5400E2;
       }
 
       .table_item_campaign_raised {
@@ -808,7 +813,7 @@
         width: 32%;
 
 
-        color: #3c64b1;
+        color: #5400E2;
         margin-right: 1%;
       }
 
@@ -837,6 +842,7 @@
 
 .quiz_tab {
   .quiz_tab_title {
+    font-weight: 700;
     font-size: 24px;
     line-height: 32px;
     color: rgba(0, 0, 0, 0.87);
@@ -853,7 +859,7 @@
       width: 596px;
       height: fit-content;
       margin-right: 20px;
-      background-color: #fff;
+      background-color: #F2F2F2;
       border: 1px solid #dce8f8;
       box-sizing: border-box;
       border-radius: 8px;
@@ -872,7 +878,7 @@
       width: 596px;
       height: fit-content;
 
-      background-color: #fff;
+      background-color: #F2F2F2;
       border: 1px solid #dce8f8;
       box-sizing: border-box;
       border-radius: 8px;
@@ -883,7 +889,7 @@
   .quiz_item {
     display: flex;
     flex-direction: column;
-    background: #FFFFFF;
+    background: #F2F2F2;
     border-radius: 8px;
     padding: 30px;
     margin-bottom: 20px;
@@ -896,6 +902,7 @@
     }
 
     .quiz_item_title {
+      font-weight: 700;
       font-size: 18px;
       line-height: 150%;
       margin-bottom: 16px;
@@ -931,7 +938,7 @@
         position: absolute;
         width: 16px;
         height: 16px;
-        background: #1F607C;
+        background: #5400E2;
         left: 3px;
         top: 3px;
         border-radius: 50px;
@@ -1003,7 +1010,7 @@
       height: 56px;
 
       &:focus {
-        color: #0E5394 !important;
+        color: #5400E2 !important;
       }
     }
 
@@ -1204,21 +1211,21 @@
 
     .mobile_empty_list_link {
       cursor: pointer;
-      color: #0b5394;
+      color: #5400E2;
     }
   }
   .mobile_investments_container {
     display: block;
 
     .mobile_investments_card {
-      background: #ffffff;
+      background: #F2F2F2;
       box-shadow: 0 2px 15px rgba(142, 146, 184, 0.25);
       border-radius: 6px;
 
       .mobile_investments_toggle {
         display: flex;
         justify-content: space-between;
-        background: #0E5394;
+        background: #5400E2;
         font-size: 18px;
         line-height: 32px;
         color: #ffffff;
@@ -1260,7 +1267,7 @@
           .mobile_investments_field_link {
             font-size: 14px;
             line-height: 150%;
-            color: #3c64b1;
+            color: #5400E2;
           }
 
           .mobile_investments_field_values {
@@ -1354,7 +1361,7 @@
           .profile_form_upload_avatar_container {
             flex-direction: column;
             position: relative;
-            background: #ffffff;
+            background: #F2F2F2;
             border-radius: 6px;
             margin-right: 20px;
             margin-left: 20px;
@@ -1465,6 +1472,7 @@
           margin-bottom: 90px;
 
           .profile_form_data_container_title {
+            font-weight: 700;
             font-size: 20px;
             line-height: 150%;
             margin-bottom: 12px;
@@ -1692,7 +1700,7 @@
     .account_settings_change_profile_type_block{
       padding: 25px;
       margin-bottom: 25px;
-      background-color: #FFFFFF;
+      background-color: #F2F2F2;
       text-align: center;
       margin-top: 25px;
       margin-bottom: 0;
@@ -1702,7 +1710,7 @@
       flex-direction: column;
       padding: 25px;
       margin-bottom: 25px;
-      background-color: #FFFFFF;
+      background-color: #F2F2F2;
 
 
       .account_settings_form_text_wrapper {
@@ -1743,7 +1751,7 @@
       width: 100%;
       padding: 25px 25px 45px 25px;
       box-sizing: border-box;
-      background-color: #FFFFFF;
+      background-color: #F2F2F2;
 
       .account_settings_subscribes_title {
         text-align: center;
@@ -1769,7 +1777,7 @@
           button{
             padding: 8px 0;
             width: 100%;
-            border: 1px  solid #0E5394;
+            border: 1px  solid #5400E2;
 
             &:active{
               color: black;
@@ -1778,8 +1786,8 @@
           .dropdown_menu{
             width: 100%;
             text-align: center;
-            border: 1px  solid #0E5394;
-            background-color: #0E5394;
+            border: 1px  solid #5400E2;
+            background-color: #5400E2;
 
             .dropdown_menu_item{
               border-bottom: 1px solid #7fa7cf;
@@ -1834,7 +1842,7 @@
           display: flex;
           justify-content: center;
           padding: 25px 25px 0 25px;
-          background-color: #FFFFFF;
+          background-color: #F2F2F2;
           margin-bottom: 0;
         }
 
@@ -1845,7 +1853,7 @@
           display: block;
           text-align: center;
           padding: 0 25px 25px 25px;
-          background-color: #FFFFFF;
+          background-color: #F2F2F2;
         }
 
         .account_settings_buttons_container {

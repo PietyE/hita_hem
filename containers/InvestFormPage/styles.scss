@@ -1,5 +1,5 @@
 .invest_form_section{
-  background: rgba(220, 232, 248, 0.5);
+  background: #E6E6E6invest_form_content_block_footer;
   min-height: calc(100vh - 180px);
   width: 100%;
 
@@ -11,6 +11,7 @@
     margin-left: auto;
   }
   .invest_form_section_title{
+    font-weight: 700;
     font-size: 32px;
     line-height: 32px;
     color: rgba(0, 0, 0, 0.87);
@@ -32,7 +33,7 @@
 
       .invest_form_invest_progress_bar_container{
         height: 115px;
-        background: #FFFFFF;
+        background: #F2F2F2;
         border-radius: 6px;
         padding: 21px 24px;
         margin-bottom: 25px;
@@ -47,10 +48,11 @@
       }
       .invest_form_invest{
         height: 476px;
-        background: #FFFFFF;
+        background: #F2F2F2;
         border-radius: 6px;
         padding: 26px;
         .invest_form_invest_title{
+          font-weight: 700;
           font-size: 20px;
           line-height: 150%;
           color: rgba(0, 0, 0, 0.87);
@@ -67,7 +69,7 @@
           padding-left: 40px;
 
           span{
-            color: #1F607C;
+            color: #5400E2;
           }
 
           &::before{
@@ -92,7 +94,7 @@
           .invest_form_invest_input{
             width: 254.06px;
             height: 40px;
-            background: #FFFFFF;
+            background: #F2F2F2;
             border: 1px solid #C4C4C4;
             border-radius: 4px;
             margin-top: 6px;
@@ -100,7 +102,7 @@
             &:focus {
               outline: none;
               background: rgba(137, 207, 240, 0.2);
-              border: 1px solid #0E5394;
+              border: 1px solid #5400E2;
               resize: none;
             }
             &::placeholder{
@@ -111,6 +113,7 @@
           }
         }
         .invest_form_invest_statistics_title{
+          font-weight: 700;
           font-size: 20px;
           line-height: 150%;
           color: rgba(0, 0, 0, 0.87);
@@ -130,9 +133,9 @@
             text-align: center;
             min-width: 125.76px;
             min-height: 36px;
-            background: rgba(137, 207, 240, 0.3);
+            background: #E6E6E6;
             border-radius: 45px;
-            color: #1F607C;
+            color: #5400E2;
             padding-right: 10px;
             padding-left: 10px;
             margin-right: 15px;
@@ -155,7 +158,7 @@
           align-items: center;
           font-size: 22px;
           line-height: 150%;
-          color: #1F607C;
+          color: #5400E2;
           p{
             margin-bottom: 0;
           }
@@ -315,6 +318,7 @@
             margin-bottom: 90px;
 
             .profile_form_data_container_title {
+              font-weight: 700;
               font-size: 20px;
               line-height: 150%;
               margin-bottom: 12px;

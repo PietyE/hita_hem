@@ -9,6 +9,7 @@
   }
 
   .invest_opp_top_title {
+    font-weight: 700;
     width: 550px;
     margin-left: 320px;
     text-align: left;
@@ -41,6 +42,11 @@
   text-align: left;
   padding-top: 55px;
 
+
+  .invest_opp_top_image_wrapper{
+    padding: 10px 10px 60px;
+  }
+
   .invest_opp_nav {
     width: 1490px;
     padding-right: 25px;
@@ -52,6 +58,7 @@
     margin-bottom: 55px;
 
     .invest_opp_middle_title {
+      font-weight: 700;
       color: rgba(0, 0, 0, 0.87);
       font-kerning: normal;
       font-size: 40px;
@@ -69,7 +76,7 @@
       position: relative;
       width: 248px;
       height: 40px;
-      background: #FFFFFF;
+      background: #F2F2F2;
       border: 1px solid #C4C4C4;
       box-sizing: border-box;
       border-radius: 4px;
@@ -83,7 +90,7 @@
       }
 
       &:active {
-        background-color: #fff;
+        background-color: #F2F2F2;
         color: #000;
         border: 1px solid #C4C4C4;
       }
@@ -118,7 +125,7 @@
       position: absolute;
       bottom: -215px;
       left: 0;
-      background: #FFFFFF;
+      background: #F2F2F2;
       box-shadow: 0px 3px 9px rgba(41, 40, 70, 0.3);
       border-radius: 4px;
       z-index: 1;
@@ -127,7 +134,7 @@
         padding: 0;
 
         &:active {
-          background-color: #fff;
+          background-color: #F2F2F2;
         }
       }
 
@@ -365,7 +372,7 @@
       left: 0;
       right: 0;
       height: calc(100vh - 100px);
-      background: #fff;
+      background: #F2F2F2;
       border-radius: 16px 16px 0px 0px;
       padding: 22px 15px;
       z-index: 2;
@@ -387,10 +394,11 @@
 
       .card-header {
         border-bottom: none;
-        background-color: #fff;
+        background-color: #F2F2F2;
       }
 
       .filter_mobile_menu_title {
+        font-weight: 700;
         font-size: 20px;
         line-height: 150%;
         color: #000;

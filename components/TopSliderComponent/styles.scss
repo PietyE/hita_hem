@@ -26,7 +26,7 @@
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: #F2F2F2;
     margin-right: 5px;
     &.active {
       width: 18px;
@@ -76,6 +76,7 @@
 }
 
 .item_component_title {
+  font-weight: 700;
   width: 100%;
   max-width: 665px;
   font-size: 48px;
@@ -86,10 +87,11 @@
   margin-bottom: 52px;
 }
 
-.item_component_home_title{
-  @extend .item_component_title;
-  color: #000;
-}
+//.item_component_home_title{
+//  @extend .item_component_title;
+//  color: #000;
+//
+//}
 
 .item_component_description {
   font-size: 20px;

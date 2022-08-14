@@ -2,7 +2,7 @@
   height: 80px;
 
   position: sticky;
-  background-color: $WHITE;
+  background-color: #F2F2F2;
   z-index: 3;
   top: 0;
   filter: drop-shadow(0px 2px 6px rgba(89, 88, 128, 0.15));
@@ -16,7 +16,7 @@
     margin-right: auto;
     margin-left: auto;
     flex: 1;
-    background-color: $WHITE;
+    background-color: #F2F2F2;
     z-index: 3;
     padding: 0 225px;
   }
@@ -51,13 +51,13 @@
         @extend .d-flex-center;
         padding: 0 16px;
         height: 38px;
-        background: #0E5394;
-        border-color: #0E5394;
+        background: #5400E2;
+        border-color: #5400E2;
         border-radius: 6px;
         margin-right: 50px;
       }
       .logn_in_button_container {
-        color: #0E5394;
+        color: #5400E2;
         margin-right: 10px;
         margin-left: 25px;
       }
@@ -123,7 +123,7 @@
   display: none;
 }
 .dropdown_menu {
-  background: #ffffff;
+  background: #F2F2F2;
   box-shadow: 0px 2px 10px rgba(26, 38, 100, 0.14);
   border-radius: 6px;
   min-width: 8rem;
@@ -207,7 +207,7 @@
         width: 74px;
         //width: 43px;
         height: 34px;
-        background: #0E5394;
+        background: #5400E2;
         border-radius: 89px;
         font-weight: 700 !important;
         font-size: 15px !important;
@@ -221,7 +221,7 @@
           top: 58px;
           left: -25px;
           width: calc(100vw - 2px);
-          background-color: #fff;
+          background-color: #F2F2F2;
           padding: 0 15px;
           z-index: 99;
           box-sizing: border-box;
@@ -250,7 +250,7 @@
         line-height: 150%;
         letter-spacing: 0.003em;
         color: rgba(0, 0, 0, 0.87);
-        background-color: #fff;
+        background-color: #F2F2F2;
         height: 80px;
         display: flex;
         align-items: center;
@@ -275,7 +275,7 @@
         .nav_item_invest_chevron {
           height: 16px;
           width: 16px;
-          color: #0E5394;
+          color: #5400E2;
         }
       }
       .nav_item_socials {
@@ -334,7 +334,7 @@
           background-color: transparent;
         }
         &:active {
-          background-color: #fff;
+          background-color: #F2F2F2;
         }
         .nav_btn_sign_up {
           min-width: 90px;

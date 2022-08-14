@@ -22,6 +22,7 @@
     z-index: -1;
   }
   .top_section_title {
+    font-weight: 700;
     font-size: 48px;
     line-height: 58px;
     color: #ffffff;
@@ -71,11 +72,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #f0f0ff;
+  background-color: #E6E6E6;
 
   padding-top: 55px;
   margin-bottom: 60px;
   .bottom_section_title {
+    font-weight: 700;
     margin-bottom: 5px;
   }
   .bottom_section_team_container {
@@ -105,6 +107,7 @@
     margin-bottom: 35px;
   }
   .team_item_name {
+    font-weight: 700;
     font-kerning: normal;
     font-size: 28px;
     line-height: 32px;
@@ -132,7 +135,7 @@
     text-align: center;
     color: #000;
     &:hover {
-      color: #1f607c;
+      color: #5400E2;
     }
   }
   .team_socials{
@@ -164,6 +167,7 @@
   background-position: 15% 30px;
   background-size: 200px auto;
   .subscribe_form_section_title {
+    font-weight: 700;
     margin-bottom: 10px;
     font-size: 34px;
     line-height: 44px;
@@ -175,9 +179,7 @@
     line-height: 150%;
     text-align: center;
     color: #000;
-
     margin-bottom: 20px;
-
     font-size: 16px;
 
   }
@@ -189,7 +191,7 @@
     margin-bottom: 5px;
     .subscribe_form_section_button {
       padding: 0 42px;
-      background: #0E5394;
+      background: #5400E2;
       border-radius: 6px;
       font-size: 16px;
       line-height: 150%;
@@ -214,7 +216,7 @@
     }
     .subscribe_form_section_input {
       height: 48px;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid #949494;
       border-right: none;
       border-radius: 4px;
@@ -404,7 +406,7 @@
       align-items: center;
       text-align: center;
       color: #fb7f73;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
       border-radius: 32px;
@@ -443,7 +445,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background: #ffffff;
+    background: #F2F2F2;
     padding: 55px 16px 16px;
     margin-bottom: 60px;
     .bottom_section_team_container {

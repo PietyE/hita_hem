@@ -1,7 +1,7 @@
 .footer_container {
   width: 100%;
   height: 100px;
-  background: #3c4a67;
+  background: #191C24;
   position: absolute;
   bottom: 0;
 
@@ -15,7 +15,7 @@
     padding: 0 230px;
     height: 100px;
     align-items: center;
-    background-color: #3c4a67;
+    background-color: #191C24;
     border-style: none;
     color: #ffffff;
 
@@ -75,11 +75,11 @@
 
         &:hover {
           path {
-            fill: #89cff0;
+            fill: #B2B5BD;
           }
 
           .social_icon {
-            color: #89cff0;
+            color: #B2B5BD;
             transition: 0.3s;
           }
         }

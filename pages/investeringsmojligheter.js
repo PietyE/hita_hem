@@ -49,6 +49,7 @@ const InvestmentOpportunitiesPage = () => {
             />
             {isFetching && <SpinnerStyled/>}
             <InvestTopSlider/>
+
             <CampaignsListSection companiesList={companiesList}/>
         </>
     );

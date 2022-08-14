@@ -3,7 +3,7 @@
   width: 464px;
   //height: 550px;
 
-  background: #ffffff;
+  background: #F2F2F2;
   border: 1px solid #dce8f8;
   box-sizing: border-box;
   border-radius: 8px;
@@ -52,7 +52,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #ffffff;
+  background: #F2F2F2;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50px;
   overflow: hidden;
@@ -75,7 +75,7 @@
 }
 
 .campaigns_card_content_wrapper {
-  background-color: #ffffff;
+  background-color: #F2F2F2;
   padding-right: 24px;
   padding-left: 24px;
   //margin-bottom: 25px;
@@ -119,6 +119,7 @@
 }
 
 .campaigns_card_title {
+  font-weight: 700;
   font-kerning: normal;
   font-size: 28px;
   line-height: 35px;
@@ -138,10 +139,10 @@
 }
 
 .campaigns_card_target_title {
+  font-weight: 700;
   font-size: 12px;
   line-height: 150%;
   color: #000;
-
   opacity: 0.7;
   margin-bottom: 0;
 }
@@ -157,7 +158,7 @@
 }
 
 .campaigns_card_button {
-  background-color: #ffffff;
+  background-color: #F2F2F2;
   color: #1155cc;
   font-size: 14px;
 
@@ -236,15 +237,12 @@
     align-self: center;
   }
   .campaigns_card {
-
     margin-right: 0px;
     &:nth-child(3n) {
       margin-right: 0;
     }
-    .campaigns_card_target_value {
-      //font-size: 19px;
-    }
     .campaigns_card_target_title {
+      font-weight: 700;
       margin-bottom: 10px;
     }
     .campaigns_card_button {

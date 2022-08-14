@@ -13,6 +13,7 @@
     align-items: center;
 
     .campaigns_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 40px;
       line-height: 40px;
@@ -71,7 +72,7 @@
       left: 0;
       height: 65px;
       width: 65px;
-      background-color: #fff;
+      //background-color: #F2F2F2;
       border-radius: 50px;
       display: flex;
       align-items: center;
@@ -85,6 +86,7 @@
     }
 
     .raise_step_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 22px;
       line-height: 28px;
@@ -117,13 +119,14 @@
   }
 
   .instructions_container {
-    background-color: #f0f0ff;
+    background-color: #E6E6E6;
     padding-bottom: 40px;
     padding-top: 60px;
 
     width: 100%;
 
     .instructions_title {
+      font-weight: 700;
       font-size: 32px;
       line-height: 40px;
       text-align: center;
@@ -134,7 +137,7 @@
 
     .instructions_tab-bar {
       width: 470px;
-      background: #fff;
+      background: #F2F2F2;
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 75px;
@@ -145,12 +148,13 @@
 
   .join-us_container {
     padding: 90px 15px;
-    background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: 253px auto, 500px auto, 500px auto;
-    background-position: center 82%, -10% 45%, 110% 45%;
+    //background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
+    //background-repeat: no-repeat, no-repeat, no-repeat;
+    //background-size: 253px auto, 500px auto, 500px auto;
+    //background-position: center 82%, -10% 45%, 110% 45%;
 
     .join-us_title {
+      font-weight: 700;
       font-size: 32px;
       line-height: 64px;
       text-align: center;
@@ -173,12 +177,14 @@
 }
 
 .home_page_top_title {
+  font-weight: 700;
   font-kerning: normal;
   font-size: 400%;
   line-height: 60px;
 }
 
 .banner_title {
+  font-weight: 700;
   color: black;
 }
 

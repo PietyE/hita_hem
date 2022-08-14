@@ -93,8 +93,9 @@ const Header = ({initLang}) => {
                 <Navigation className="header_mobile_navigation" initLang={initLang}/>
                 <div className="header_item logo left">
                     <Logo
+                        type='header'
                         classNameContainer={"header_logo_container"}
-                        classNameText={"header_logo_text"}
+                        // classNameText={"header_logo_text"}
                     />
                 </div>
                 <>

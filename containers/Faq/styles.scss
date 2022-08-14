@@ -17,7 +17,7 @@
     position: absolute;
     top: 30px;
     right: 230px;
-    background-color: #0E5394;
+    background-color: #5400E2;
     border-radius: 6px;
     font-size: 20px;
     padding: 8px 20px;
@@ -31,8 +31,8 @@
   }
 
   .faq_top_title {
+    font-weight: 700;
     font-size: 40px;
-
     line-height: 40px;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.87);
@@ -60,7 +60,7 @@
       box-sizing: border-box;
       width: 100%;
       height: 50px;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid #c4c4c4;
       border-radius: 4px;
       box-sizing: border-box;
@@ -82,7 +82,7 @@
       pointer-events: none;
       //opacity: 0.7;
       .search_icon {
-        stroke: #0E5394;
+        stroke: #5400E2;
       }
 
     }
@@ -93,7 +93,7 @@
       position: absolute;
       top: 4px;
       right: 3px;
-      color: #0E5394;
+      color: #5400E2;
       font-size: 32px;
     }
   }
@@ -103,7 +103,7 @@
 
 .faq_categories_section {
   flex-grow: 2;
-  background-color: #f0f0ff;
+  background-color: #E6E6E6;
 
   .faq_categories_content_container {
     max-width: 1920px;
@@ -111,6 +111,7 @@
     padding: 55px 225px;
 
     .faq_categories_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 36px;
       line-height: 36px;
@@ -131,7 +132,7 @@
         cursor: pointer;
         height: 80px;
         width: 350px;
-        background-color: #fff;
+        background-color: #F2F2F2;
         border-radius: 6px;
         margin: 0 23px 30px 0;
         font-size: 18px;
@@ -151,7 +152,7 @@
 
         &:hover {
           transform: translateY(-3px);
-          //color: #1F607C;
+          //color: #5400E2;
           //
           box-shadow: 0px 2px 6px rgb(0 0 0 / 20%);
           transition: 0.3s;
@@ -176,6 +177,7 @@
   padding: 40px 225px 0 225px;
 
   .search_results_title {
+    font-weight: 700;
     font-kerning: normal;
     font-size: 36px;
     line-height: 36px;
@@ -209,7 +211,7 @@
 
           &:hover {
             svg {
-              fill: #1F607C;
+              fill: #5400E2;
             }
           }
         }
@@ -222,7 +224,7 @@
       }
 
       div {
-        background-color: #fff;
+        background-color: #F2F2F2;
       }
 
       p {
@@ -238,7 +240,7 @@
 
 
         &:hover  {
-          color: #1F607C;
+          color: #5400E2;
         }
       }
 

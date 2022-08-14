@@ -7,7 +7,7 @@
 
   .faq_one_category_title {
     font-size: 40px;
-
+    font-weight: 700;
     line-height: 40px;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.87);
@@ -36,7 +36,7 @@
 
     .faq_one_category_questions_item_selected {
       @extend .faq_one_category_questions_item;
-      //color: #1F607C;
+      //color: #5400E2;
       &:hover {
         transition: 0.3s;
         transform: translateY(0);
@@ -50,6 +50,7 @@
     flex-direction: column;
 
     .faq_one_category_question {
+      font-weight: 700;
       font-size: 24px;
       color: #000;
     }
@@ -151,7 +152,7 @@
     border: none;
     div{
       border: none;
-      background-color: #fff;
+      background-color: #F2F2F2;
     }
   }
   .mobile_one_category_question{
@@ -175,7 +176,7 @@
   }
   .mobile_one_category_question_active{
     @extend .mobile_one_category_question;
-    color: #1F607C;
+    color: #5400E2;
     svg{
       margin-right: 7px;
       pointer-events: none;

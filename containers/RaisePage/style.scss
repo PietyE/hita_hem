@@ -22,7 +22,7 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: #ffffff;
+        background-color: #F2F2F2;
         margin-right: 5px;
         &.active {
           width: 18px;
@@ -57,10 +57,11 @@
       left: 0;
       object-fit: cover;
       z-index: -1;
-      background-color: #fff;
+      background-color: #F2F2F2;
     }
 
     .raise_page_slider_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 48px;
       width: 450px;
@@ -90,6 +91,7 @@
     padding-top: 55px;
 
     .raise_instructions_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 40px;
       line-height: 40px;
@@ -113,7 +115,7 @@
 
     .raise_item-list_instructions_container {
       width: 1216px;
-      background: #ffffff;
+      background: #F2F2F2;
       box-shadow: 0 2px 31px rgba(167, 167, 204, 0.25);
       border-radius: 8px;
       margin-right: auto;
@@ -142,7 +144,7 @@
 
         .raise_item_icon_wrapper {
           position: relative;
-          background: rgba(220, 232, 248, 0.5);
+          background: #F2F2F2;
           height: 88px;
           width: 88px;
           border-radius: 50px;
@@ -159,6 +161,7 @@
         }
 
         .rise_item_title {
+          font-weight: 700;
           line-height: 22px;
           text-align: center;
           font-feature-settings: "pnum" on, "lnum" on;
@@ -222,6 +225,7 @@
       }
 
       .raise_advantages_title {
+        font-weight: 700;
         width: 460px;
         font-size: 48px;
         line-height: 130%;
@@ -245,6 +249,7 @@
         //height: 328px;
 
         .raise_advantages_item_title {
+          font-weight: 700;
           font-size: 24px;
           line-height: 32px;
           font-feature-settings: "pnum" on, "lnum" on;
@@ -264,9 +269,10 @@
   }
 
   .raise_form_container {
-    background-color: #f0f0ff;
+    background-color: #E6E6E6;
     padding-top: 30px;
     .raise_form_title {
+      font-weight: 700;
       font-kerning: normal;
       font-size: 40px;
       line-height: 36px;
@@ -285,7 +291,7 @@
     }
 
     .raise_form_bottom_block {
-      background-color: #f0f0ff;
+      background-color: #E6E6E6;
       padding-top: 20px;
       padding-bottom: 80px;
 
@@ -309,7 +315,7 @@
       align-items: flex-start;
       width: 600px;
       //height: 405px;
-      background: #ffffff;
+      //background: #F2F2F2;
       border: 1px solid #dce8f8;
       box-sizing: border-box;
       box-shadow: 0 38px 80px rgba(98, 97, 138, 0.07),
@@ -354,7 +360,7 @@
           border: unset;
           width: 265.13px;
           height: 40px;
-          background: #ffffff;
+          background: #F2F2F2;
           border: 1px solid #c4c4c4;
           border-radius: 4px;
           padding-left: 10px;
@@ -362,7 +368,7 @@
           &:focus {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
             resize: none;
           }
 
@@ -375,7 +381,7 @@
           us {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
           }
         }
         .raise_error_label {
@@ -436,6 +442,7 @@
     }
 
     .form4_title {
+      font-weight: 700;
       font-size: 14px;
       line-height: 150%;
       color: rgba(0, 0, 0, 0.87);
@@ -471,7 +478,7 @@
           border: unset;
           width: 265.13px;
           height: 40px;
-          background: #ffffff;
+          background: #F2F2F2;
           border: 1px solid #c4c4c4;
           border-radius: 4px;
           padding-left: 10px;
@@ -480,7 +487,7 @@
           &:focus {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
             resize: none;
           }
 
@@ -565,7 +572,7 @@
     .raise_form_comment_area {
       width: 552px;
       height: 130px;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid #c4c4c4;
       border-radius: 4px;
       padding: 15px 15px 10px 15px;
@@ -575,7 +582,7 @@
       &:focus {
         outline: none;
         background: rgba(137, 207, 240, 0.2);
-        border: 1px solid #0E5394;
+        border: 1px solid #5400E2;
         resize: none;
       }
     }
@@ -630,15 +637,15 @@
 
     .raise_form_button_alone {
       margin-left: auto;
-      background-color: #0e5394;
+      background-color: #5400E2;
 
     }
 
     .raise_form_button_back {
-      color: #0E5394;
+      color: #5400E2;
       width: 80px;
       box-shadow: none;
-      background-color: #fff;
+      background-color: #F2F2F2;
       margin-left: auto;
       margin-right: 15px;
 

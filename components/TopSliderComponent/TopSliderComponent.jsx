@@ -72,7 +72,7 @@ const TopSliderComponent = ({
                         <section className='item_component_container' style={{position: 'relative'}}>
                             <div className={`item_component_content_container ${containerClass}`}>
                                 {bannerData?.title && (
-                                    <h1 className={`item_component_title ${itemTitleClass} banner_title`}>
+                                    <h1 className={`item_component_title ${itemTitleClass}`}>
                                         {bannerData.title}
                                     </h1>)
                                 }
@@ -80,7 +80,7 @@ const TopSliderComponent = ({
 
                                 {bannerData?.sub_title && (
                                     <div
-                                        className={`item_component_description ${itemDescriptionClass} banner_description`}>
+                                        className={`item_component_description ${itemDescriptionClass}`}>
                                         <p>
                                             {bannerData.sub_title}
                                         </p>
@@ -137,18 +137,18 @@ const TopSliderComponent = ({
                                         />
                                     )}
                                     {title && type === 'home_page' && (
-                                        <h1 className={`${type === 'home_page' ? 'item_component_home_title' : 'item_component_title'} ${itemTitleClass}`}>
+                                        <h1 className={`item_component_title ${itemTitleClass}`}>
                                             {title}
                                         </h1>
                                     )}
                                     {title && type !== 'home_page' && (
-                                        <h2 className={`${type === 'home_page' ? 'item_component_home_title' : 'item_component_title'} ${itemTitleClass}`}>
+                                        <h2 className={`item_component_title ${itemTitleClass}`}>
                                             {title}
                                         </h2>
                                     )}
                                     {description && (
                                         <div
-                                            className={`${type === 'home_page' ? 'item_component_home_description' : 'item_component_description'} ${itemDescriptionClass}`}
+                                            className={`item_component_description ${itemDescriptionClass}`}
                                             dangerouslySetInnerHTML={{
                                                 __html: sanitizeHtmlFromBack(description),
                                             }}
@@ -162,7 +162,7 @@ const TopSliderComponent = ({
                                                 <a href={first_button_url}>
                                                     <Button
                                                         className={`slider_component_first_btn ${firstButtonClass}`}
-                                                        colorStyle={type === 'home_page' ? "black" : "white"}
+                                                        // colorStyle={type === 'home_page' ? "black" : "white"}
                                                         style={_firstButtonColor}
                                                     >
                                                         {first_button_title.toUpperCase()}
@@ -173,7 +173,7 @@ const TopSliderComponent = ({
                                                 <a href={second_button_url}>
                                                     <Button
                                                         className={`slider_component_second_btn ${secondButtonClass}`}
-                                                        colorStyle={type === 'home_page' ? "outline-black" : "outline-white"}
+                                                        // colorStyle={type === 'home_page' ? "outline-black" : "outline-white"}
                                                         style={_secondButtonColor}
 
                                                     >

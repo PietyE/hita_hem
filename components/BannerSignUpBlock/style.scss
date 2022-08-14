@@ -7,7 +7,7 @@
       width: 400px;
       height: 50px;
       border-radius: 6px;
-      background-color: #fff;
+      background-color: #F2F2F2;
       padding-left: 10px;
       padding-right: 105px;
       overflow: hidden;
@@ -33,7 +33,7 @@
   .sign_in_alt_text {
     position: relative;
     background-color: transparent;
-    color: #000;
+    color: #fff;
     margin: 0 auto 20px auto;
     text-align: center;
     padding: 0;
@@ -45,7 +45,7 @@
       content: '';
       height: 0;
       width: 180px;
-      border-top: 1px solid #000;
+      border-top: 1px solid #fff;
     }
 
     &:after {
@@ -55,7 +55,7 @@
       content: '';
       height: 0;
       width: 180px;
-      border-top: 1px solid #000;
+      border-top: 1px solid #fff;
     }
   }
 
@@ -74,7 +74,7 @@
     padding-bottom: 60px;
 
     .auth_social_button {
-      background-color: #fff;
+      background-color: #F2F2F2;
 
     }
 
