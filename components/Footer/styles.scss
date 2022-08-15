@@ -1,7 +1,7 @@
 .footer_container {
   width: 100%;
   height: 100px;
-  background: #3c4a67;
+  background: #191C24;
   position: absolute;
   bottom: 0;
 
@@ -15,7 +15,7 @@
     padding: 0 230px;
     height: 100px;
     align-items: center;
-    background-color: #3c4a67;
+    background-color: #191C24;
     border-style: none;
     color: #ffffff;
 
@@ -27,15 +27,10 @@
     align-items: center;
 
     .footer_text {
-      font-family: Quicksand,sans-serif;
       font-size: 1.25rem;
-      //font-size: 18px;
-
-      font-weight: 700;
-      font-style: normal;
       line-height: 18px;
       letter-spacing: 0.2px;
-      color: #89cff0;
+      color: #B2B5BD;
       margin-right: 10px;
     }
 
@@ -44,17 +39,11 @@
       .footer_nav_link {
         color: #ffffff;
         font-kerning: normal;
-        font-family: 'Source sans Pro', sans-serif;
         font-size: 16px;
-        font-weight: 500;
-        font-style: normal;
-        //line-height: 28px;
-
         letter-spacing: 0.2px;
         margin-right: 18px;
-
         &:hover {
-          color: #89cff0;
+          color: #B2B5BD;
           transition: 0.3s;
         }
       }
@@ -86,11 +75,11 @@
 
         &:hover {
           path {
-            fill: #89cff0;
+            fill: #B2B5BD;
           }
 
           .social_icon {
-            color: #89cff0;
+            color: #B2B5BD;
             transition: 0.3s;
           }
         }
@@ -99,10 +88,18 @@
   }
 }
 
+@media screen and (max-width: 1550px) {
+  .footer_container {
+    .footer_content_container {
+      padding: 0 150px;
+    }
+  }
+}
+
 @media screen and (max-width: 1350px) {
   .footer_container {
     .footer_content_container {
-      padding: 0 50px;
+      padding: 0 85px;
     }
     .footer_nav {
       flex: 2;
@@ -179,9 +176,6 @@
 }
 
 .menu_item_link_faq{
-  font-family: 'Source sans Pro', sans-serif;
-  font-style: normal;
-  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.07em;
   text-transform: uppercase;

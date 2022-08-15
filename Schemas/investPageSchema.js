@@ -25,7 +25,6 @@ const makeInvestPageSchema = ({campaigns, seo}) => {
             {
                 "@type": "ItemList",
                 "itemListElement": listForSchema,
-                "isPartOf": {"@id": "https://accumeo.com/investeringsmojligheter/#webpage"},
             }
         ]
 

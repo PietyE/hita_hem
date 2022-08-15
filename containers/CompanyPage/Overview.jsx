@@ -95,9 +95,10 @@ const Overview = () => {
                     </div>
                 )}
                 {videoLink && (
-                    <div className="project_info_player_wrapper">
+                    // <div className="project_info_player_wrapper">
                         <YoutubeComponent link={videoLink} className='project_info_player'/>
-                    </div>)
+                    // </div>
+                    )
                 }
 
                 {!!businessHighlights && (
@@ -137,7 +138,7 @@ const Overview = () => {
                 </div>
                 {!isAuth &&
                 <ButtonStyled
-                    colorStyle='dark-green'
+                    colorStyle='dark-violet'
                     className='project_info_show_more_button'
                     onClick={handleSignIn}
                 >
@@ -146,7 +147,7 @@ const Overview = () => {
                 }
                 {isAuth && !isQuizPassed &&
                 <ButtonStyled
-                    colorStyle='dark-green'
+                    colorStyle='dark-violet'
                     className='project_info_show_more_button'
                     onClick={handleOpenQuiz}
                 >

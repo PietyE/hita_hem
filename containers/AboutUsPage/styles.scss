@@ -22,9 +22,7 @@
     z-index: -1;
   }
   .top_section_title {
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 48px;
     line-height: 58px;
     color: #ffffff;
@@ -34,9 +32,6 @@
   }
   .top_section_description {
     display: block;
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 18px;
     line-height: 150%;
     width: 100%;
@@ -63,10 +58,6 @@
   }
 
   .middle_section_content {
-
-    font-family: "Source Sans Pro", sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 22px;
     line-height: 28px;
     color: #000;
@@ -81,11 +72,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: #f0f0ff;
+  background-color: #E6E6E6;
 
   padding-top: 55px;
   margin-bottom: 60px;
   .bottom_section_title {
+    font-weight: 700;
     margin-bottom: 5px;
   }
   .bottom_section_team_container {
@@ -106,11 +98,7 @@
   width: 16%;
   margin-bottom: 50px;
   font-kerning: normal;
-  font-family: 'Source sans Pro';
   font-size: 40px;
-  font-weight: 900;
-  font-style: normal;
-
 
   .team_item_foto {
     width: 160px;
@@ -119,20 +107,15 @@
     margin-bottom: 35px;
   }
   .team_item_name {
+    font-weight: 700;
     font-kerning: normal;
-    font-family: 'Source sans Pro', sans-serif;
     font-size: 28px;
-    font-weight: 900;
-    font-style: normal;
     line-height: 32px;
     text-align: center;
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 9px;
   }
   .team_item_position {
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 18px;
     line-height: 150%;
     text-align: center;
@@ -140,10 +123,6 @@
     margin-bottom: 12px;
   }
   .team_item_description {
-
-    font-family: "Source Sans Pro", sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 150%;
     text-align: center;
@@ -151,15 +130,12 @@
     margin-bottom: 12px;
   }
   .team_item_email {
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 16px;
     line-height: 150%;
     text-align: center;
     color: #000;
     &:hover {
-      color: #1f607c;
+      color: #5400E2;
     }
   }
   .team_socials{
@@ -191,26 +167,19 @@
   background-position: 15% 30px;
   background-size: 200px auto;
   .subscribe_form_section_title {
+    font-weight: 700;
     margin-bottom: 10px;
-    font-weight: 900;
-    font-family: 'Source sans Pro', sans-serif;
     font-size: 34px;
-
-    font-style: normal;
     line-height: 44px;
     text-align: center;
     letter-spacing: 0.2px;
     color: rgba(0, 0, 0, 0.87);
   }
   .subscribe_form_section_subtitle {
-    font-family: 'Source sans Pro',Mulish, sans-serif;
-    font-style: normal;
     line-height: 150%;
     text-align: center;
     color: #000;
-
     margin-bottom: 20px;
-    font-weight: 500;
     font-size: 16px;
 
   }
@@ -222,11 +191,8 @@
     margin-bottom: 5px;
     .subscribe_form_section_button {
       padding: 0 42px;
-      background: #0E5394;
+      background: #5400E2;
       border-radius: 6px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 16px;
       line-height: 150%;
       color: #ffffff;
@@ -242,9 +208,6 @@
       z-index: 5;
     }
     .subscribe_form_warning_text{
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 16px;
       color:red;
       position: absolute;
@@ -253,13 +216,10 @@
     }
     .subscribe_form_section_input {
       height: 48px;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid #949494;
       border-right: none;
       border-radius: 4px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: normal;
       font-size: 14px;
       line-height: 22px;
       color: #000;
@@ -283,9 +243,6 @@
     }
   }
   .subscribe_form_section_below_message {
-    font-family: 'Source sans Pro',Mulish, sans-serif;
-    font-style: normal;
-    font-weight: 400;
     font-size: 16px;
     line-height: 150%;
     text-align: center;
@@ -294,10 +251,7 @@
   .about_us_captcha_text{
       margin-bottom: 10px;
     margin-top: 20px;
-      font-weight: 500;
-      font-family: 'Source sans Pro';
       font-size: 16px;
-
     max-width: 488px;
     text-align: center;
   }
@@ -447,15 +401,12 @@
     width: 100%;
     height: 1px;
     .show_more_button {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       display: flex;
       align-items: center;
       text-align: center;
       color: #fb7f73;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
       border-radius: 32px;
@@ -494,7 +445,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background: #ffffff;
+    background: #F2F2F2;
     padding: 55px 16px 16px;
     margin-bottom: 60px;
     .bottom_section_team_container {
@@ -506,7 +457,7 @@
 
       .team_item {
         width: 100%;
-        background: rgba(220, 232, 248, 0.5);
+        background: #E6E6E6;
         border-radius: 8px;
         margin-bottom: 20px;
         padding: 40px 20px 20px;

@@ -54,7 +54,7 @@ const UploadComponent = ({ setFieldValue, values }) => {
         </p>
       )}
       <ButtonStyled
-        colorStyle="dark-green"
+        colorStyle="dark-violet"
         className="raise_form_drop_area_button"
         type="submit"
         onClick={addFiles}

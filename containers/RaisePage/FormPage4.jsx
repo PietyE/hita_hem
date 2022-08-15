@@ -103,7 +103,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
             </ul>
           </div>
           <h4 className="form4_title">{t("raisePage.form4.comments")}</h4>
-          <Field
+          <FormikFieldComponent
             id="comments"
             name="comments"
             as="textarea"
@@ -147,7 +147,7 @@ const FormPage4 = ({ changePage, formNumber, data }) => {
               <Button
                 type="submit"
                 action='rise_form_send'
-                colorStyle="dark-green"
+                colorStyle="dark-violet"
                 className="raise_form_button g-recaptcha"
                 disabled={!values.is_agree}
               >

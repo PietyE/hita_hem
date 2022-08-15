@@ -14,7 +14,7 @@ const JoinSection = () => {
     <div className="join-us_container">
       <h2 className="join-us_title">{t("home_page.join_title")}</h2>
       <Button
-        colorStyle="dark-green"
+        colorStyle="dark-violet"
         className="join-us_button"
         onClick={handleShowSignUp}
       >

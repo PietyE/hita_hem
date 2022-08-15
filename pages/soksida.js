@@ -87,7 +87,7 @@ const Soksida = () => {
             )}
             {isMoreCampaigns && !isFetching && (
                 <Button
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     className="invest_opp_middle_button"
                     onClick={getMore}
                     disabled={!isMoreCampaigns}

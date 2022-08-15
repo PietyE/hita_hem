@@ -121,7 +121,7 @@ const FormPage2 = ({ changePage, submit, formNumber, data }) => {
             </Button>
             <Button
               type="submit"
-              colorStyle="dark-green"
+              colorStyle="dark-violet"
               className="raise_form_button"
             >
               {t("raisePage.form_footer.button_next")}

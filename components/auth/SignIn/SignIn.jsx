@@ -132,7 +132,7 @@ const SignIn = ({ show }) => {
             <CaptchaPrivacyBlock/>
             <Button
               type="submit"
-              colorStyle={"dark-green"}
+              colorStyle={"dark-violet"}
               className="auth_button"
               disabled={isFetching}
             >

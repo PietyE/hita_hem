@@ -118,7 +118,7 @@ const AccountSettings = () => {
                 </ul>
                 <Button
                     type="submit"
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     className="account_settings_subscribe_button"
                     onClick={handleChangeUnsubscribe}
                 >

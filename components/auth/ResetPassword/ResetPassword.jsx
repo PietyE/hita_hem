@@ -88,7 +88,7 @@ const ResetPassword = ({ show }) => {
                 <CaptchaPrivacyBlock/>
                 <Button
                     type = "submit"
-                    colorStyle = {"dark-green"}
+                    colorStyle = {"dark-violet"}
                     className = "auth_button"
                 >
                   {t("auth.resetPasswordPopup.button")}

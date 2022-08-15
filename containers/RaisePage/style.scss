@@ -1,7 +1,5 @@
 .raise_page_container {
   .raise_page_slider_container {
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
     position: relative;
     overflow: hidden;
     .carousel-control-prev-icon, .carousel-control-next-icon{
@@ -24,12 +22,12 @@
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background-color: #ffffff;
+        background-color: #F2F2F2;
         margin-right: 5px;
         &.active {
           width: 18px;
           height: 8px;
-          background: #89cff0;
+          background: #B2B5BD;
           border-radius: 4px;
           border: none;
         }
@@ -59,17 +57,13 @@
       left: 0;
       object-fit: cover;
       z-index: -1;
-      background-color: #fff;
+      background-color: #F2F2F2;
     }
 
     .raise_page_slider_title {
+      font-weight: 700;
       font-kerning: normal;
-      font-family: 'Source sans Pro';
       font-size: 48px;
-      font-weight: 900;
-      font-style: normal;
-
-      //
       width: 450px;
       margin-bottom: 20px;
       line-height: 56px;
@@ -79,7 +73,7 @@
 
     .raise_page_slider_text {
       width: 350px;
-      font-weight: bold;
+
       font-size: 16px;
       line-height: 140%;
       color: rgba(255, 255, 255, 0.9);
@@ -97,12 +91,9 @@
     padding-top: 55px;
 
     .raise_instructions_title {
+      font-weight: 700;
       font-kerning: normal;
-      font-family: 'Source sans Pro', sans-serif;
       font-size: 40px;
-      font-weight: 500;
-      font-style: normal;
-
       line-height: 40px;
       text-align: center;
       letter-spacing: 1px;
@@ -114,9 +105,6 @@
       width: 450px;
       margin-right: auto;
       margin-left: auto;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 170%;
       text-align: center;
@@ -127,7 +115,7 @@
 
     .raise_item-list_instructions_container {
       width: 1216px;
-      background: #ffffff;
+      background: #F2F2F2;
       box-shadow: 0 2px 31px rgba(167, 167, 204, 0.25);
       border-radius: 8px;
       margin-right: auto;
@@ -156,7 +144,7 @@
 
         .raise_item_icon_wrapper {
           position: relative;
-          background: rgba(220, 232, 248, 0.5);
+          background: #F2F2F2;
           height: 88px;
           width: 88px;
           border-radius: 50px;
@@ -173,26 +161,19 @@
         }
 
         .rise_item_title {
-          font-family: 'Source sans Pro',Mulish, sans-serif;
+          font-weight: 700;
           line-height: 22px;
           text-align: center;
           font-feature-settings: "pnum" on, "lnum" on;
           margin-bottom: 20px;
-          //padding: 0 20px;
           max-height: 60px;
           overflow: hidden;
-
-          font-weight: 600;
-          font-style: normal;
           color: #424242;
           font-size: 24px;
 
         }
 
         .raise_item_text {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: normal;
           font-size: 18px;
           line-height: 150%;
           text-align: center;
@@ -230,7 +211,7 @@
       justify-content: center;
       width: 720px;
       height: 328px;
-      background: rgba(220, 232, 248, 0.5);
+      background: #E6E6E6;
       border-radius: 8px;
       margin-bottom: 35px;
       overflow: hidden;
@@ -244,10 +225,8 @@
       }
 
       .raise_advantages_title {
+        font-weight: 700;
         width: 460px;
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: 800;
         font-size: 48px;
         line-height: 130%;
         text-align: center;
@@ -270,9 +249,7 @@
         //height: 328px;
 
         .raise_advantages_item_title {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: bold;
+          font-weight: 700;
           font-size: 24px;
           line-height: 32px;
           font-feature-settings: "pnum" on, "lnum" on;
@@ -282,9 +259,6 @@
         }
 
         .raise_advantages_text {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: normal;
           font-size: 16px;
           line-height: 160%;
           color: #000;
@@ -295,36 +269,29 @@
   }
 
   .raise_form_container {
-    background-color: #f0f0ff;
+    background-color: #E6E6E6;
     padding-top: 30px;
     .raise_form_title {
+      font-weight: 700;
       font-kerning: normal;
-      font-family: 'Source sans Pro',Mulish, sans-serif;
       font-size: 40px;
-      font-weight: 500;
-      font-style: normal;
       line-height: 36px;
       text-align: center;
       color: rgba(0, 0, 0, 0.87);
       padding: 0 10px;
-
     }
 
     .raise_form_description {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: normal;
       font-size: 18px;
       line-height: 150%;
       text-align: center;
       color: #000;
-
       margin-bottom: 10px;
       padding: 0 10px;
     }
 
     .raise_form_bottom_block {
-      background-color: #f0f0ff;
+      background-color: #E6E6E6;
       padding-top: 20px;
       padding-bottom: 80px;
 
@@ -348,7 +315,7 @@
       align-items: flex-start;
       width: 600px;
       //height: 405px;
-      background: #ffffff;
+      //background: #F2F2F2;
       border: 1px solid #dce8f8;
       box-sizing: border-box;
       box-shadow: 0 38px 80px rgba(98, 97, 138, 0.07),
@@ -361,10 +328,6 @@
       margin-right: auto;
       margin-left: auto;
       padding: 30px 25px;
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       line-height: 22px;
       color: #000;
@@ -397,7 +360,7 @@
           border: unset;
           width: 265.13px;
           height: 40px;
-          background: #ffffff;
+          background: #F2F2F2;
           border: 1px solid #c4c4c4;
           border-radius: 4px;
           padding-left: 10px;
@@ -405,14 +368,11 @@
           &:focus {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
             resize: none;
           }
 
           &::placeholder {
-            font-family: 'Source sans Pro', sans-serif;
-            font-style: normal;
-            font-weight: normal;
             font-size: 14px;
             line-height: 22px;
             color: rgba(0, 0, 0, 0.38);
@@ -421,7 +381,7 @@
           us {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
           }
         }
         .raise_error_label {
@@ -482,9 +442,7 @@
     }
 
     .form4_title {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 14px;
       line-height: 150%;
       color: rgba(0, 0, 0, 0.87);
@@ -520,7 +478,7 @@
           border: unset;
           width: 265.13px;
           height: 40px;
-          background: #ffffff;
+          background: #F2F2F2;
           border: 1px solid #c4c4c4;
           border-radius: 4px;
           padding-left: 10px;
@@ -529,14 +487,11 @@
           &:focus {
             outline: none;
             background: rgba(137, 207, 240, 0.2);
-            border: 1px solid #0E5394;
+            border: 1px solid #5400E2;
             resize: none;
           }
 
           &::placeholder {
-            font-family: 'Source sans Pro', sans-serif;
-            font-style: normal;
-            font-weight: normal;
             font-size: 14px;
             line-height: 22px;
             color: rgba(0, 0, 0, 0.38);
@@ -557,9 +512,6 @@
           margin-right: auto;
           margin-left: auto;
           margin-bottom: 0;
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: 600;
           font-size: 14px;
           line-height: 24px;
           display: flex;
@@ -620,7 +572,7 @@
     .raise_form_comment_area {
       width: 552px;
       height: 130px;
-      background: #ffffff;
+      background: #F2F2F2;
       border: 1px solid #c4c4c4;
       border-radius: 4px;
       padding: 15px 15px 10px 15px;
@@ -630,7 +582,7 @@
       &:focus {
         outline: none;
         background: rgba(137, 207, 240, 0.2);
-        border: 1px solid #0E5394;
+        border: 1px solid #5400E2;
         resize: none;
       }
     }
@@ -643,9 +595,6 @@
       padding-top: 10px;
 
       .raise_agreement {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: normal;
         font-size: 12px;
         line-height: 150%;
         color: #000;
@@ -688,15 +637,15 @@
 
     .raise_form_button_alone {
       margin-left: auto;
-      background-color: #0e5394;
+      background-color: #5400E2;
 
     }
 
     .raise_form_button_back {
-      color: #0E5394;
+      color: #5400E2;
       width: 80px;
       box-shadow: none;
-      background-color: #fff;
+      background-color: #F2F2F2;
       margin-left: auto;
       margin-right: 15px;
 
@@ -901,7 +850,7 @@
         .raise_page_slider_text {
           font-size: 17px;
           width: 300px;
-          font-weight: 600;
+
           letter-spacing: 0.15px;
         }
 
@@ -1044,7 +993,7 @@
             box-sizing: border-box;
             border-radius: 3px;
             margin-bottom: 30px;
-            color: #89cff0;
+            color: #B2B5BD;
             display: flex;
             justify-content: center;
             align-items: center;

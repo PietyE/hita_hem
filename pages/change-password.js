@@ -161,7 +161,7 @@ const ChangePassword = () => {
                             <div className="account_settings_buttons_container change_email_buttons_container">
                                 <Button
                                     type="submit"
-                                    colorStyle="dark-green"
+                                    colorStyle="dark-violet"
                                     // disabled={!isValid}
                                     className="account_settings_button_save change_email_button"
                                 >

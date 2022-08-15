@@ -95,7 +95,7 @@ const SignUp = ({ show }) => {
             isFetchIndicator={isFetching}
         >
             <header className='auth_session_header'>
-                <h1 className='auth_session_header_title'>{t("auth.session_sign_up.header_title")}</h1>
+                <h2 className='auth_session_header_title'>{t("auth.session_sign_up.header_title")}</h2>
                 <p className='auth_session_header_text'>{t("auth.session_sign_up.header_text")}<span
                     className='auth_session_header_text_accent'>{t("auth.session_sign_up.header_text_accent")}</span>
                 </p>
@@ -193,7 +193,7 @@ const SignUp = ({ show }) => {
                                 <CaptchaPrivacyBlock/>
                                 <Button
                                     type="submit"
-                                    colorStyle={"dark-green"}
+                                    colorStyle={"dark-violet"}
                                     className="auth_button"
                                     disabled={!values.is_agree}
                                 >

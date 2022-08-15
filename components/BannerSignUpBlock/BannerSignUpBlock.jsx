@@ -81,7 +81,7 @@ const BannerSignUpBlock = () => {
             <label className='banner_label'>
                 <input ref={inputRef} placeholder={t("home_page.placeholder")} type='text' className='banner_input'/>
                 <ButtonStyled
-                    colorStyle='dark-green'
+                    colorStyle='dark-violet'
                     className='banner_button'
                     onClick={handleSignUp}
                 >

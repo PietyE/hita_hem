@@ -9,6 +9,7 @@
   }
 
   .invest_opp_top_title {
+    font-weight: 700;
     width: 550px;
     margin-left: 320px;
     text-align: left;
@@ -41,6 +42,11 @@
   text-align: left;
   padding-top: 55px;
 
+
+  .invest_opp_top_image_wrapper{
+    padding: 10px 10px 60px;
+  }
+
   .invest_opp_nav {
     width: 1490px;
     padding-right: 25px;
@@ -52,12 +58,10 @@
     margin-bottom: 55px;
 
     .invest_opp_middle_title {
+      font-weight: 700;
       color: rgba(0, 0, 0, 0.87);
       font-kerning: normal;
-      font-family: 'Source sans Pro';
       font-size: 40px;
-      font-weight: 900;
-      font-style: normal;
       line-height: 70px;
       overflow-wrap: break-word;
 
@@ -72,14 +76,11 @@
       position: relative;
       width: 248px;
       height: 40px;
-      background: #FFFFFF;
+      background: #F2F2F2;
       border: 1px solid #C4C4C4;
       box-sizing: border-box;
       border-radius: 4px;
       padding-left: 15px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       line-height: 22px;
       color: #000;
@@ -89,7 +90,7 @@
       }
 
       &:active {
-        background-color: #fff;
+        background-color: #F2F2F2;
         color: #000;
         border: 1px solid #C4C4C4;
       }
@@ -124,7 +125,7 @@
       position: absolute;
       bottom: -215px;
       left: 0;
-      background: #FFFFFF;
+      background: #F2F2F2;
       box-shadow: 0px 3px 9px rgba(41, 40, 70, 0.3);
       border-radius: 4px;
       z-index: 1;
@@ -133,7 +134,7 @@
         padding: 0;
 
         &:active {
-          background-color: #fff;
+          background-color: #F2F2F2;
         }
       }
 
@@ -144,9 +145,6 @@
         .invest_opp_label {
           display: flex;
           align-items: center;
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: 600;
           font-size: 14px;
           line-height: 150%;
           color: rgba(0, 0, 0, 0.87);
@@ -185,9 +183,6 @@
     margin-left: auto;
 
     .invest_opp_filters_list_text {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 16px;
       line-height: 150%;
       color: #000;
@@ -195,14 +190,11 @@
     }
 
     .invest_opp_active_filter {
-      background: rgba(220, 232, 248, 0.5);
+      background: #E6E6E6;
       border-radius: 6px;
       padding: 9px;
       height: 40px;
       margin-right: 17px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 14px;
       line-height: 150%;
       color: rgba(0, 0, 0, 0.38);
@@ -233,6 +225,7 @@
 
 
 }
+
 
 @media screen and (max-width: 1490px) {
   .invest_opp_top_section {
@@ -301,7 +294,17 @@
 
 @media screen and (max-width: 1157px) {
   .invest_opp_middle_container {
-    .invest_opp_nav, .invest_opp_filters_list  {
+    .invest_opp_nav{
+      width: 778px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .invest_opp_middle_title{
+        margin-bottom: 20px;
+      }
+    }
+
+    .invest_opp_filters_list  {
       width: 778px;
     }
   }
@@ -357,6 +360,8 @@
         display: block;
         width: 90px;
         cursor: pointer;
+        background-color: #5400E2;
+        color: #fff;
       }
     }
 
@@ -380,7 +385,7 @@
       left: 0;
       right: 0;
       height: calc(100vh - 100px);
-      background: #fff;
+      background: #F2F2F2;
       border-radius: 16px 16px 0px 0px;
       padding: 22px 15px;
       z-index: 2;
@@ -390,7 +395,7 @@
         top: 5px;
         right: 15px;
         font-size: 22px;
-        font-weight: 700;
+
         color: #000;
         cursor: pointer;
       }
@@ -402,13 +407,11 @@
 
       .card-header {
         border-bottom: none;
-        background-color: #fff;
+        background-color: #F2F2F2;
       }
 
       .filter_mobile_menu_title {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 20px;
         line-height: 150%;
         color: #000;
@@ -421,9 +424,6 @@
         align-items: center;
         width: 100%;
         text-align: left;
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: bold;
         font-size: 18px;
         line-height: 150%;
         color: rgba(0, 0, 0, 0.87);
@@ -435,7 +435,8 @@
       }
 
       .filter_mobile_menu_accordion_tab {
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        background-color: #F2F2F2;
+        border-bottom: 1px solid #F2F2F2;
         display: flex;
         flex-wrap: wrap;
 
@@ -461,14 +462,13 @@
         padding-top: 25px;
 
         .filter_mobile_menu_buttons_apply {
+          background-color: #5400E2;
+          color: #fff;
           height: 48px;
         }
 
         .filter_mobile_menu_buttons_cancel {
           margin-right: 30px;
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: bold;
           font-size: 15px;
           line-height: 150%;
           color: #000;
@@ -541,7 +541,7 @@
       padding-left: 10px;
 
       .invest_opp_middle_title {
-        font-size: 24px;
+        font-size: 21px;
       }
     }
     .filter_mobile_menu{

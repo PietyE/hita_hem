@@ -55,7 +55,7 @@ const CommentItem = ({data, className, complete}) => {
                     <p className="comment_item_text">{data?.description}</p>
                     {isOwner && data?.user && !data.question && !complete && (
                         <Button
-                            colorStyle="outline-green"
+                            colorStyle="outline-violet"
                             className="comment_item_button"
                             onClick={() => setShowModal(data.pk)}
                         >
