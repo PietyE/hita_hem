@@ -21,7 +21,7 @@ const CampaignTabQuizRequest = () => {
                 {t("company_page.tab_quiz_request.text")}
             </p>
             <Button
-                colorStyle="dark-green"
+                colorStyle="dark-violet"
                 className="campaigns_tab_sign-up_button"
                 onClick={handleShowQuiz}
             >

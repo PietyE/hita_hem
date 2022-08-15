@@ -25,7 +25,7 @@ const ChangeProfileType = () => {
             <div className='account_settings_form_button_wrapper'>
                 <Button
                     type="submit"
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     className="account_settings_button_save"
                     onClick={_setShowCompleteChangeAccountType}
                 >

@@ -61,7 +61,7 @@ const SubscrebeFormSection = ({content = []}) => {
                     type='submit'
                     action='about_us_subscribe'
                     onClick={handleClickSubscribe}
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     disabled={!email}
                 >
                     {t("about_us_page.button")}

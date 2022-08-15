@@ -62,7 +62,7 @@ const Faq = () => {
 
           <Button
             type="submit"
-            colorStyle="dark-green"
+            colorStyle="dark-violet"
             className="faq_post_button"
           >
             {t("company_page.faq.button_send")}

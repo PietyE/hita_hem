@@ -286,7 +286,7 @@ const CampaignsListSection = ({companiesList}) => {
             <CampaignsList content={companiesList}/>
             {isMoreCampaigns && (
                 <Button
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     className="invest_opp_middle_button"
                     onClick={getMoreCampaigns}
                     disabled={!isMoreCampaigns}

@@ -673,7 +673,7 @@ const PersonalDetails = ({
                                                 </Button>
                                             )}
                                             <Button
-                                                colorStyle="dark-green"
+                                                colorStyle="dark-violet"
                                                 type="submit"
                                                 disabled={isButtonDisabled}
                                                 className={isEmpty(profile) || type ? "profile_form_agreement_button" : "profile_form_agreement_button profile_form_agreement_button_big"}

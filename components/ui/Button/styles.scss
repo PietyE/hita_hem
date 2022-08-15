@@ -68,7 +68,7 @@
     }
   }
 
-  &.outline-green {
+  &.outline-violet {
     background: #F2F2F2;
     box-sizing: border-box;
     border: 1px solid #5400E2;
@@ -158,7 +158,7 @@
     }
   }
 
-  &.dark-green {
+  &.dark-violet {
     background: #5400E2;
     font-size: 16px;
     &:focus {
@@ -185,7 +185,7 @@
   &.link {
     background: none;
     border: none;
-    color: rgb(46, 77, 161);
+    color: #5400E2;
     height: initial;
     font-size: inherit;
     padding: 0;
@@ -325,7 +325,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #58d0e0 !important;
+      background: #B2B5BD !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -382,7 +382,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #1380b1 !important;
+      background: #B2B5BD !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }

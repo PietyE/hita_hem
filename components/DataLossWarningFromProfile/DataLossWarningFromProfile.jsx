@@ -52,14 +52,14 @@ const DataLossWarningFromProfile = ({data}) => {
             <div className="deleting_account_button_wrapper">
                 <Button
                     className="data_loss_warning_button"
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     onClick={handleClose}
                 >
                     {t("dataLossWarning.confirm")}
                 </Button>
                 <Button
                     className="data_loss_warning_button"
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     onClick={_setShowDataLossWarningFromProfile}
                 >
                     {t("dataLossWarning.return")}

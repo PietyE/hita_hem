@@ -114,7 +114,7 @@ const MobileInvestment = ({data}) => {
                                     <div className="mobile_investments_field mobile_investments_contact">
                                         <a href={"mailto:" + payment.company_owner_email}>
                                             <ButtonStyled
-                                                colorStyle="dark-green"
+                                                colorStyle="dark-violet"
                                                 className="mobile_investments_item_button"
                                             >
                                                 {t("profile_page.investments.button")}

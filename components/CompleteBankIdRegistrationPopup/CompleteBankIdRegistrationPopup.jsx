@@ -124,7 +124,7 @@ const CompleteBankIdRegistrationPopup = ({show}) => {
             <CaptchaPrivacyBlock className='complete_bank_id_popup_captcha'/>
             <Button
                 className='complete_bank_id_popup_button'
-                colorStyle='dark-green'
+                colorStyle='dark-violet'
                 onClick={handleSubmit}
                 disabled={!isAgree}
             >{t("complete_bank_id_registration.button")}</Button>

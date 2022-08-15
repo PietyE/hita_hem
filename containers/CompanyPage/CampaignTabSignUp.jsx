@@ -23,7 +23,7 @@ const CampaignTabSignUp = () => {
         {t("company_page.tab_sign_up.text")}
       </p>
       <Button
-        colorStyle="dark-green"
+        colorStyle="dark-violet"
         className="campaigns_tab_sign-up_button"
         onClick={handleShowSignUp}
       >

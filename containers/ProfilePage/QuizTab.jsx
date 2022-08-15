@@ -136,11 +136,11 @@ const QuizTab = ({wasChanges, setWasChanges}) => {
             </div>
             <footer className='quiz_footer'>
                 <div className='quiz_footer_buttons_wrapper'>
-                    <ButtonStyled colorStyle='outline-green'
+                    <ButtonStyled colorStyle='outline-violet'
                                   className='quiz_footer_button_back quiz_footer_button'
                                   disabled={!wasChanges}
                                   onClick={handleBackButton}>{t("quiz.tab_back_button")}</ButtonStyled>
-                    <ButtonStyled colorStyle='dark-green'
+                    <ButtonStyled colorStyle='dark-violet'
                                   className='quiz_footer_button_confirm quiz_footer_button'
                                   disabled={!wasChanges}
                                   onClick={submitQuiz}>{t("quiz.button_confirm")}</ButtonStyled>

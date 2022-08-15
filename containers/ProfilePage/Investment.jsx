@@ -79,7 +79,7 @@ const Investment = () => {
                                 <div className="table_item_contact">
                                     <a href={"mailto:" + payment.company_owner_email}>
                                         <Button
-                                            colorStyle="dark-green"
+                                            colorStyle="dark-violet"
                                             className="profile_investment_item_invest_button"
                                         >
                                             {t("profile_page.investments.button")}
