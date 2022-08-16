@@ -56,7 +56,7 @@ const ResetPassword = ({ show }) => {
     >
       {isFetching && <SpinnerStyled/>}
 
-      <h1 className="sign_up_title mb-2">{t("auth.resetPasswordPopup.title")}</h1>
+      <h2 className="sign_up_title mb-2">{t("auth.resetPasswordPopup.title")}</h2>
       <p className="reset_password_text">
         {t("auth.resetPasswordPopup.description")}
       </p>

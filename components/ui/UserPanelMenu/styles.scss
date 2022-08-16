@@ -19,7 +19,8 @@
     background: #E6E6E6;
     //opacity: 0.1;
     transform: translateY(8px);
-
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
     color: #5400E2;
     &:hover{
       background: rgba(60, 100, 177, 0.3);

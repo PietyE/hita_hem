@@ -101,7 +101,7 @@ const SignUp = ({ show }) => {
                 </p>
 
             </header>
-            <h1 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h1>
+            <h2 className="sign_up_title mb-4">{t("auth.sign_up.sign_in")}</h2>
             <SocialsAuthButtons containerClassName='auth_socials_buttons'/>
             <SplitLine className='sign_in_split_line'/>
             <span className='sign_in_alt_text'>{t("auth.sign_up.alt_sign_in")}</span>
