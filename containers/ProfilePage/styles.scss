@@ -106,7 +106,7 @@
 .profile_personal_details {
   .profile_personal_details_title {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 24px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
     margin-bottom: 25px;
@@ -382,11 +382,12 @@
     width: 40%;
     display: flex;
     justify-content: center;
-    //align-items: center;
+    align-items: center;
     padding-left: 45px;
 
     .account_settings_change_email_language_button{
       display: flex;
+      height: 40px;
       justify-content: space-between;
       font-size: 16px;
       color: #000;
