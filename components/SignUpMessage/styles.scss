@@ -12,8 +12,14 @@
   .sign_up_message_link{
     font-size: 15px;
     text-decoration: underline;
-    text-transform: lowercase;
+    //text-transform: lowercase;
     font-weight: 700;
+    color: #5400E2;
+    cursor: pointer;
+    &:hover{
+      filter: brightness(1.8);
+      transition: 0.3s;
+    }
   }
 }
 

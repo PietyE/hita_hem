@@ -164,12 +164,13 @@
   }
 }
 
-
-@media screen and (max-width: 355px) {
+@media screen and (max-width: 385px) {
   .footer_container {
     .footer_item.footer_nav {
       .footer_nav_link {
         font-size: 10px;
+        margin-right: 14px;
+
       }
     }
   }

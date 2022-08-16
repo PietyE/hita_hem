@@ -82,6 +82,11 @@ button {
 
 .captcha_link{
   color: #5400E2;
+  &:hover{
+    filter: brightness(1.8);
+    color: #5400E2;
+    transition: 0.3s;
+  }
 }
 
 .hide{
