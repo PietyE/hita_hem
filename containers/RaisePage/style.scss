@@ -614,9 +614,13 @@
         .raise_agreement_link {
           text-decoration: underline;
           //color: #0000EE;
-          color: #3e77b5;
+          color: #5400E2;
           cursor: pointer;
           margin-left: 3px;
+          &:hover{
+            filter: brightness(1.8);
+            transition: 0.3s;
+          }
         }
       }
     }
