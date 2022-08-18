@@ -47,7 +47,7 @@
     //padding: 10px 10px 60px;
     //display: flex;
     //justify-content: center;
-    width: 1490px;
+    width: 1150px;
     padding-right: 25px;
     padding-left: 25px;
     margin-right: auto;
@@ -271,7 +271,16 @@
     }
   }
   .invest_opp_middle_container {
-    .invest_opp_nav, .invest_opp_filters_list, .invest_opp_top_image_wrapper {
+    .invest_opp_nav{
+      width: 1157px;
+    }
+  }
+  .invest_opp_middle_container {
+    .invest_opp_top_image_wrapper{
+      width: 800px;
+
+    }
+    .invest_opp_filters_list{
       width: 1157px;
     }
   }
@@ -304,7 +313,7 @@
 @media screen and (max-width: 1157px) {
   .invest_opp_middle_container {
     .invest_opp_top_image_wrapper{
-      width: 778px;
+      width: 600px;
     }
     .invest_opp_nav{
       width: 778px;
