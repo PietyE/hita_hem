@@ -44,7 +44,16 @@
 
 
   .invest_opp_top_image_wrapper{
-    padding: 10px 10px 60px;
+    //padding: 10px 10px 60px;
+    //display: flex;
+    //justify-content: center;
+    width: 1490px;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 55px;
+    padding-top: 10px;
   }
 
   .invest_opp_nav {
@@ -262,7 +271,7 @@
     }
   }
   .invest_opp_middle_container {
-    .invest_opp_nav, .invest_opp_filters_list {
+    .invest_opp_nav, .invest_opp_filters_list, .invest_opp_top_image_wrapper {
       width: 1157px;
     }
   }
@@ -294,6 +303,9 @@
 
 @media screen and (max-width: 1157px) {
   .invest_opp_middle_container {
+    .invest_opp_top_image_wrapper{
+      width: 778px;
+    }
     .invest_opp_nav{
       width: 778px;
       display: flex;
@@ -344,6 +356,9 @@
     }
   }
   .invest_opp_middle_container {
+    .invest_opp_top_image_wrapper{
+      width: auto;
+    }
     .invest_opp_nav {
       width: auto;
       align-items: center;
