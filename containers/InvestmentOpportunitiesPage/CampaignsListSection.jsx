@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
 import dynamic from "next/dynamic";
-import InvestPageImage from './assets/investPage.png'
+import InvestPageImage from './assets/InvestPageNew.png'
 import {faCaretDown, faTimes} from "@fortawesome/free-solid-svg-icons";
 
 import CampaignsList from "components/CampaignsList";
