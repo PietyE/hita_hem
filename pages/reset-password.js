@@ -131,7 +131,7 @@ const ResetPassword = () => {
                                     <div className="account_settings_buttons_container change_email_buttons_container">
                                         <Button
                                             type="submit"
-                                            colorStyle="dark-green"
+                                            colorStyle="dark-violet"
                                             className="account_settings_button_save change_email_button"
                                         >
                                             {t("change_email_page.button_submit")}

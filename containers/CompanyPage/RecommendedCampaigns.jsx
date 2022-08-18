@@ -22,7 +22,7 @@ const RecommendedCampaigns = () => {
                         <Link href={INVEST_ROUTE} prefetch={false}>
 
                         <ButtonStyled className='recommended_campaigns_button'
-                                      colorStyle="dark-green"
+                                      colorStyle="dark-violet"
                         >
                             {t("company_page.recommended.button")}
                         </ButtonStyled>

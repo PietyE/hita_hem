@@ -33,7 +33,10 @@ const Footer = () => {
     <footer className="footer_container">
       <div className="footer_content_container">
         <div className="footer_item logo_container">
-          <Logo classNameText="footer_text" />
+          <Logo
+              type='footer'
+              // classNameText="footer_text"
+          />
         </div>
         <div className="footer_item footer_nav">
           <Link href={language==='sv'?INVEST_ROUTE:INVEST_ROUTE_EN} prefetch={false}>

@@ -41,14 +41,14 @@ const ShowConfirmationOfAccountDeletion = ({ show }) => {
       <div className="deleting_account_button_wrapper">
         <Button
           className="deleting_account_button_yes"
-          colorStyle="dark-green"
+          colorStyle="dark-violet"
           onClick={_deleteAccount}
         >
           {t("confirmationOfAccountDeletion.button_confirm")}
         </Button>
         <Button
           className="deleting_account_button_no"
-          colorStyle="dark-green"
+          colorStyle="dark-violet"
           onClick={_setShowConfirmationOfAccountDeleting}
         >
           {t("confirmationOfAccountDeletion.button_discard")}

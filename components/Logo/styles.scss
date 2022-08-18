@@ -1,21 +1,52 @@
 .logo_container {
   @extend .d-flex-center;
   justify-content: flex-start;
-  .logo_circle {
-    width: 42px;
-    height: 42px;
-    background: #ffffff;
-    border-radius: 50%;
+
+  .full_logo{
+    height: 60px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    max-height: 75px;
+    overflow: hidden;
+    img{
+      height: 60px;
+    }
   }
-  .logo_text {
-    font-family: Quicksand,sans-serif;
-    font-size: 1.25rem;
-    line-height: 1.4rem;
-    font-weight: 700;
-    margin-left: 10px;
-    color: $DARK_GREY_LOGO_TEXT;
+  .short_logo{
+    display: none;
+  }
+  //.logo_circle {
+  //  width: 42px;
+  //  height: 42px;
+  //  background: #F2F2F2;
+  //  border-radius: 50%;
+  //  display: flex;
+  //  justify-content: center;
+  //  align-items: center;
+  //}
+  //.logo_text {
+  //  font-size: 1.25rem;
+  //  line-height: 1.4rem;
+  //  margin-left: 10px;
+  //  color: $DARK_GREY_LOGO_TEXT;
+  //}
+}
+
+@media screen and (max-width: 1200px) {
+  .logo_container {
+    .full_logo{
+      display: none;
+    }
+    .short_logo{
+      display: block;
+      width: 70px;
+      height: 70px;
+      //background: #F2F2F2;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
 }

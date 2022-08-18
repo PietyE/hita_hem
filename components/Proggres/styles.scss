@@ -3,9 +3,7 @@
   flex-direction: column;
   width: 100%;
   .progress_title {
-    font-family: Source Sans Pro;
-    font-style: normal;
-    font-weight: normal;
+
     font-size: 14px;
     line-height: 100%;
     color: rgba(0, 0, 0, 0.38);
@@ -17,18 +15,12 @@
     justify-content: space-between;
     align-items: center;
     .percent {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
       font-size: 24px;
       line-height: 150%;
       font-feature-settings: 'pnum' on, 'lnum' on;
       color: rgba(0, 0, 0, 0.87);
     }
     .day_left {
-      font-weight: 500;
-      font-family: 'Source sans Pro',Mulish, sans-serif;
-      font-style: normal;
       font-size: 18px;
       line-height: 24px;
       text-align: right;

@@ -25,7 +25,7 @@ const MobileView = ({oneCategoryData, slug, handleClickQuestion, parentTitleRef}
                                 data-slug={item.slug}
                             >
                                 <IconComponent
-                                    style={slug === item.slug ? {color: '#1F607C'} : {}}
+                                    style={slug === item.slug ? {color: '#5400E2'} : {}}
                                     icon={slug === item.slug ? faChevronDown : faChevronRight}
                                 />
                                 <span data-slug={item.slug}>

@@ -4,15 +4,13 @@
   justify-content: center;
   align-items: center;
   justify-content: center;
-  font-style: normal;
+  text-transform: uppercase;
   border-radius: 6px;
   height: 48px;
   color: #ffffff;
   &.outline-white {
     background-color: transparent;
     border: 2px solid #ffffff;
-    font-family: "Source Sans Pro",sans-serif;
-    font-weight: 600;
     font-size: 16px;
     &:focus {
       transition: 0.3s;
@@ -41,8 +39,6 @@
   &.outline-black {
     background-color: transparent;
     border: 2px solid #000;
-    font-family: "Source Sans Pro",sans-serif;
-    font-weight: 600;
     font-size: 16px;
     color: black;
     &:focus {
@@ -72,30 +68,27 @@
     }
   }
 
-  &.outline-green {
-    background: #ffffff;
+  &.outline-violet {
+    background: #F2F2F2;
     box-sizing: border-box;
-    border: 1px solid #0E5394;
+    border: 1px solid #5400E2;
     box-sizing: border-box;
-    font-family:"Source Sans Pro",sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 14px;
     line-height: 32px;
     display: flex;
     align-items: center;
     text-align: center;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #0E5394;
+    color: #5400E2;
     &:focus {
       transition: 0.3s;
-      background-color: #89cff0;
+      background-color: #B2B5BD;
       color: #ffffff !important;
       outline: none;
       box-shadow: none;
     }
     &:hover {
-      background-color: #89cff0;
+      background-color: #B2B5BD;
       transition: 0.3s;
       outline: none;
       box-shadow: none;
@@ -105,10 +98,8 @@
     }
   }
   &.white {
-    background: #ffffff;
+    background: #F2F2F2;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-    font-family: "Source Sans Pro",sans-serif;
-    font-weight: 500;
     color: rgba(0, 0, 0, 0.87);
     border: none;
     font-size: 16px;
@@ -135,12 +126,9 @@
     }
   }
   &.black {
-    background: #ffffff;
+    background: #F2F2F2;
     box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
-    font-family: "Source Sans Pro",sans-serif;
     border: 2px solid #000;
-
-    font-weight: 500;
     color: rgba(0, 0, 0, 0.87);
     //border: none;
     font-size: 16px;
@@ -170,10 +158,8 @@
     }
   }
 
-  &.dark-green {
-    background: #0E5394;
-    font-family: "Source Sans Pro",sans-serif;
-    font-weight: 600;
+  &.dark-violet {
+    background: #5400E2;
     font-size: 16px;
     &:focus {
       filter: brightness(1);
@@ -188,7 +174,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #0E5394 !important;
+      background: #5400E2 !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -199,7 +185,7 @@
   &.link {
     background: none;
     border: none;
-    color: rgb(46, 77, 161);
+    color: #5400E2;
     height: initial;
     font-size: inherit;
     padding: 0;
@@ -237,18 +223,14 @@
     box-shadow: none;
   }
   &.blue {
-    background: #89cff0;
+    background: #B2B5BD;
     box-shadow: 0px 1px 12px rgba(74, 87, 133, 0.25);
-    font-family:"Source Sans Pro",sans-serif;
-    font-weight: bold;
     font-size: 18px;
     color: #ffffff;
     transform: rotate(-0.14deg);
   }
   &.dark-blue {
-    background: #0E5394;
-    font-family:"Source Sans Pro",sans-serif;
-    font-weight: 600;
+    background: #5400E2;
     font-size: 16px;
     &:focus {
       filter: brightness(1);
@@ -263,7 +245,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #0E5394 !important;
+      background: #5400E2 !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -276,9 +258,6 @@
     background: #e0719e;
     border: 6px solid #383a48;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 800;
     font-size: 18px;
     line-height: 150%;
     text-align: center;
@@ -329,10 +308,7 @@
     }
   }
   &.light-blue {
-    background: #89cff0;
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 600;
+    background: #B2B5BD;
     font-size: 14px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
@@ -349,7 +325,7 @@
       box-shadow: none;
     }
     &:active {
-      background: #58d0e0 !important;
+      background: #B2B5BD !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -358,10 +334,7 @@
     }
   }
   &.grey {
-    background: rgba(220, 232, 248, 0.5);
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 600;
+    background: #E6E6E6;
     font-size: 16px;
     line-height: 150%;
     color: rgba(0, 0, 0, 0.87);
@@ -387,16 +360,13 @@
     }
   }
   &.outline-blue {
-    border: 1px solid #89cff0;
+    border: 1px solid #B2B5BD;
     box-sizing: border-box;
     border-radius: 6px;
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: 600;
     font-size: 15px;
     line-height: 150%;
-    color: #89cff0;
-    background-color: #fff;
+    color: #B2B5BD;
+    background-color: #F2F2F2;
     &:focus {
       filter: brightness(1);
       transition: 0.3s;
@@ -405,14 +375,14 @@
     }
     &:hover {
       //filter: brightness(1.2);
-      color: #57a9d0;
+      //color: #57a9d0;
 
       transition: 0.3s;
       outline: none;
       box-shadow: none;
     }
     &:active {
-      background: #1380b1 !important;
+      background: #B2B5BD !important;
       filter: brightness(1.4);
       transition: 0.3s;
     }
@@ -421,10 +391,7 @@
     }
   }
   &.light-blue-white-text {
-    background: #89cff0;
-    font-family: 'Source sans Pro', sans-serif;
-    font-style: normal;
-    font-weight: bold;
+    background: #5400E2;
     font-size: 15px;
     line-height: 150%;
     color: #ffffff;
@@ -443,7 +410,7 @@
     }
     &:active {
       //background: #58d0e0 !important;
-      background: #89cff0 !important;
+      background: #B2B5BD !important;
       //filter: brightness(1.4);
       transition: 0.3s;
     }

@@ -138,7 +138,7 @@ const Overview = () => {
                 </div>
                 {!isAuth &&
                 <ButtonStyled
-                    colorStyle='dark-green'
+                    colorStyle='dark-violet'
                     className='project_info_show_more_button'
                     onClick={handleSignIn}
                 >
@@ -147,7 +147,7 @@ const Overview = () => {
                 }
                 {isAuth && !isQuizPassed &&
                 <ButtonStyled
-                    colorStyle='dark-green'
+                    colorStyle='dark-violet'
                     className='project_info_show_more_button'
                     onClick={handleOpenQuiz}
                 >

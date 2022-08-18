@@ -123,7 +123,7 @@ const PersonalDetailsUpload = ({setFieldValue, values}) => {
                     onChange={imageChangeHandler}
                 />
                 <Button
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     type="button"
                     className="profile_form_upload_avatar_button"
                 >

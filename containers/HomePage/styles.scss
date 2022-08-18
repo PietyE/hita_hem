@@ -13,15 +13,13 @@
     align-items: center;
 
     .campaigns_title {
+      font-weight: 700;
       font-kerning: normal;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 900;
       font-size: 40px;
       line-height: 40px;
       text-align: center;
       letter-spacing: 1px;
-      font-style: normal;
+
       color: #424242;
 
       margin-bottom: 52px;
@@ -31,10 +29,6 @@
       margin-bottom: 60px;
       width: 260px;
       height: 56px;
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      //font-weight: bold;
       font-size: 16px;
       line-height: 18px;
     }
@@ -52,9 +46,6 @@
 
     .raise_step {
       position: relative;
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
       width: 335px;
       overflow: hidden;
       margin-right: 100px;
@@ -81,7 +72,7 @@
       left: 0;
       height: 65px;
       width: 65px;
-      background-color: #fff;
+      //background-color: #F2F2F2;
       border-radius: 50px;
       display: flex;
       align-items: center;
@@ -95,17 +86,15 @@
     }
 
     .raise_step_title {
-      font-kerning: normal;
-      font-family: 'Source sans Pro';
-      font-size: 22px;
       font-weight: 700;
-      font-style: normal;
+      font-kerning: normal;
+      font-size: 22px;
       line-height: 28px;
       color: #424242;
     }
 
     .raise_step_title_accent {
-      font-weight: bold;
+
       font-size: 24px;
       line-height: 32px;
       font-feature-settings: 'pnum' on, 'lnum' on;
@@ -114,9 +103,9 @@
     }
 
     .raise_step_text {
-      font-weight: normal;
+
       font-size: 22px;
-      font-weight: 500;
+
       line-height: 28px;
       color: #000000;
       //opacity: 0.6;
@@ -130,17 +119,14 @@
   }
 
   .instructions_container {
-    background-color: #f0f0ff;
+    background-color: #E6E6E6;
     padding-bottom: 40px;
     padding-top: 60px;
 
     width: 100%;
 
     .instructions_title {
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 32px;
       line-height: 40px;
       text-align: center;
@@ -151,7 +137,7 @@
 
     .instructions_tab-bar {
       width: 470px;
-      background: #fff;
+      background: #F2F2F2;
       margin-left: auto;
       margin-right: auto;
       margin-bottom: 75px;
@@ -162,16 +148,13 @@
 
   .join-us_container {
     padding: 90px 15px;
-    background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-size: 253px auto, 500px auto, 500px auto;
-    background-position: center 82%, -10% 45%, 110% 45%;
+    //background: url('./images/underline.png'), url('./images/red.png'), url('./images/blue.png');
+    //background-repeat: no-repeat, no-repeat, no-repeat;
+    //background-size: 253px auto, 500px auto, 500px auto;
+    //background-position: center 82%, -10% 45%, 110% 45%;
 
     .join-us_title {
-
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
+      font-weight: 700;
       font-size: 32px;
       line-height: 64px;
       text-align: center;
@@ -194,16 +177,14 @@
 }
 
 .home_page_top_title {
+  font-weight: 700;
   font-kerning: normal;
-  font-family: 'Source sans Pro';
-  font-weight: 900;
   font-size: 400%;
-  font-style: normal;
   line-height: 60px;
-
 }
 
 .banner_title {
+  font-weight: 700;
   color: black;
 }
 
@@ -329,6 +310,7 @@
           display: block;
           font-size: 25px;
           margin-right: 8px;
+          transform: translateY(-2px);
         }
       }
 

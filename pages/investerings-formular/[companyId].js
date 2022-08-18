@@ -99,7 +99,7 @@ const InvestFormPage = () => {
     const minimumInvestAmount = useSelector(getMinimumInvestAmountSelector)
 
 
-    const shares = Math.floor(amount / price);
+    const shares = Math.floor(amount.replace(/,/, '.') / price);
 
     const currentInvestment = shares * price;
 
@@ -171,11 +171,11 @@ const InvestFormPage = () => {
                                 </h2>
                                 <div className="invest_form_invest_shares_container">
                                     <p className="invest_form_invest_shares">
-                                        {moneyFormat.format(shares)} {t("invest_form_page.statistics_shares")}
+                                        {shares ? moneyFormat.format(shares) : 0} {t("invest_form_page.statistics_shares")}
 
                                     </p>
                                     <p className="invest_form_invest_shares_total">
-                                        {currency} {moneyFormat.format(currentInvestment) || 0}
+                                        {currency} {currentInvestment ? moneyFormat.format(currentInvestment) : 0}
                                     </p>
                                 </div>
                                 <p className="invest_form_invest_statistics_text">
@@ -185,7 +185,7 @@ const InvestFormPage = () => {
                                     <p>{t("invest_form_page.invest_form_total")}</p>
                                     <p className="invest_form_content_block_footer_total">
                                         {" "}
-                                        {currency} {moneyFormat.format(total) || 0}
+                                        {currency} {total ? moneyFormat.format(total) : 0}
                                     </p>
                                 </div>
                             </div>

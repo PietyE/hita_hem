@@ -41,10 +41,7 @@
     border-radius: 50px;
     width: 36px;
     height: 36px;
-    background-color: #0e5394;
-    font-family: "Source Sans Pro",sans-serif;
-    font-style: normal;
-    font-weight: 500;
+    background-color: #5400E2;
     font-size: 16px;
     line-height: 22px;
     text-align: center;
@@ -57,9 +54,6 @@
 
   }
   .step_icon_description{
-    font-family: "Source Sans Pro",sans-serif;
-    font-style: normal;
-    font-weight: normal;
     font-size: 12px;
     line-height: 22px;
     text-align: center;
@@ -68,8 +62,8 @@
   }
   .step_icon_description_active{
     @extend .step_icon_description;
-    font-weight: 500;
-    color: #0E5394;
+
+    color: #5400E2;
     opacity: 1;
 
 

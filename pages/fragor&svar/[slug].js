@@ -123,7 +123,7 @@ const Slug = ({initialLang}) => {
                                         >
                                 <span
                                     data-slug={item.slug}
-                                    style={item?.question === question.question ? {color: '#1F607C'} : {}}
+                                    style={item?.question === question.question ? {color: '#5400E2'} : {}}
                                 >
                                      {item?.question}
                                 </span>

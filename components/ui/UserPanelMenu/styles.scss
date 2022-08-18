@@ -1,11 +1,8 @@
 .user_menu{
   width: 200px;
   top: 25px !important;
-  background: #FFFFFF;
+  background: #F2F2F2;
   border-radius: 8px;
-  font-family: "Source Sans Pro",sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 16px;
   line-height: 150%;
   color: rgba(0, 0, 0, 0.87);
@@ -19,11 +16,12 @@
     }
   }
   .user_menu_item_logout{
-    background: rgba(60, 100, 177, 0.1);
+    background: #E6E6E6;
     //opacity: 0.1;
     transform: translateY(8px);
-    font-weight: 600;
-    color: #1F607C;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    color: #5400E2;
     &:hover{
       background: rgba(60, 100, 177, 0.3);
 
@@ -33,6 +31,7 @@
     }
     span{
       line-height: 40px;
+      color: #5400E2;
       &::before{
 
       }

@@ -24,10 +24,6 @@
     .faq_one_category_questions_item {
       border-bottom: 1px solid #bfbfbf;
       cursor: pointer;
-      //pointer-events: none;
-      font-family: "Source sans Pro", sans-serif;
-      font-style: normal;
-      font-weight: 600;
       font-size: 18px;
       margin: 10px 0;
 
@@ -40,7 +36,7 @@
 
     .faq_one_category_questions_item_selected {
       @extend .faq_one_category_questions_item;
-      //color: #1F607C;
+      //color: #5400E2;
       &:hover {
         transition: 0.3s;
         transform: translateY(0);
@@ -54,28 +50,16 @@
     flex-direction: column;
 
     .faq_one_category_question {
-      font-family: "Source sans Pro", sans-serif;
-      font-style: normal;
       font-weight: 700;
       font-size: 24px;
       color: #000;
-
-
-
     }
 
     .faq_one_category_answer {
-      //width: 70%;
-      font-family: "Source sans Pro", sans-serif;
-      font-style: normal;
-      font-weight: 500;
       font-size: 16px;
       color: #000;
 
       p {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: 400;
         font-size: 22px;
         line-height: 150%;
         color: #424242;
@@ -87,9 +71,6 @@
 
       h3 {
         margin-bottom: 10px;
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: bold;
         font-size: 32px;
         line-height: 40px;
         letter-spacing: 0.1px;
@@ -102,20 +83,13 @@
         margin: 22px 0;
 
         li {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: normal;
           font-size: 22px;
           line-height: 170%;
           position: relative;
-          //display: flex;
-          //align-items: center;
           padding-left: 20px;
           color: #424242;
           img{
             max-width: 100%;
-            //width: 100%;
-
           }
 
           &::before {
@@ -133,25 +107,16 @@
       }
 
       ol {
-        //list-style: none;
         padding: 0 0 0 40px;
         margin: 22px 0;
 
         li {
-          font-family: 'Source sans Pro', sans-serif;
-          font-style: normal;
-          font-weight: normal;
           font-size: 22px;
           line-height: 170%;
           position: relative;
-          //display: flex;
-          //align-items: center;
-          //padding-left: 20px;
           color: #424242;
           img{
             max-width: 100%;
-            //width: 100%;
-
           }
           //
           //&::before {
@@ -187,7 +152,7 @@
     border: none;
     div{
       border: none;
-      background-color: #fff;
+      background-color: #F2F2F2;
     }
   }
   .mobile_one_category_question{
@@ -195,7 +160,7 @@
 
     //p{
     //  pointer-events: none;
-        font-weight: 600;
+
         font-size: 18px;
     //}
     svg{
@@ -211,23 +176,17 @@
   }
   .mobile_one_category_question_active{
     @extend .mobile_one_category_question;
-    color: #1F607C;
+    color: #5400E2;
     svg{
       margin-right: 7px;
       pointer-events: none;
     }
   }
   .mobile_one_category_answer{
-    font-family: "Source sans Pro", sans-serif;
-    font-style: normal;
-    font-weight: 500;
     font-size: 16px;
     color: #000;
 
     p {
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: 400;
       font-size: 22px;
       line-height: 150%;
       color: #424242;
@@ -235,9 +194,6 @@
 
     h3 {
       margin-bottom: 10px;
-      font-family: 'Source sans Pro', sans-serif;
-      font-style: normal;
-      font-weight: bold;
       font-size: 32px;
       line-height: 40px;
       letter-spacing: 0.1px;
@@ -255,9 +211,6 @@
 
 
       li {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: normal;
         font-size: 22px;
         line-height: 170%;
         position: relative;
@@ -286,9 +239,6 @@
       margin: 22px 0;
 
       li {
-        font-family: 'Source sans Pro', sans-serif;
-        font-style: normal;
-        font-weight: normal;
         font-size: 22px;
         line-height: 170%;
         position: relative;

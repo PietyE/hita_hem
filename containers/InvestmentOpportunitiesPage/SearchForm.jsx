@@ -76,7 +76,7 @@ const SearchForm = ({
                 />
                 <ButtonStyled
                     className={`invest_search_button ${searchButtonClassName}`}
-                    colorStyle="dark-green"
+                    colorStyle="dark-violet"
                     type='submit'
                 >{t("investment_opportunities_page.search_page_button")}</ButtonStyled>
             </form>

@@ -42,7 +42,7 @@ const FaqResponseModalWindow = ({ show, handleClose, postId }) => {
 
         <Button
           type="submit"
-          colorStyle="dark-green"
+          colorStyle="dark-violet"
           className="faq_answer_modal_button"
         >
           Send

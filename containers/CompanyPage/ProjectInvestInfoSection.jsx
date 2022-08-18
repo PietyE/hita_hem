@@ -180,7 +180,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
           }
       {!isCompanyClosed && type === 1 &&(
         <Button
-          colorStyle="dark-green"
+          colorStyle="dark-violet"
           className="invest_button"
           onClick={handleClickInvest}
           disabled={!userCanInvest}
@@ -192,7 +192,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
           { type === 2 &&(
               <a href = {"mailto:" + "info@accumeo.com"}>
                 <Button
-                    colorStyle = "dark-green"
+                    colorStyle = "dark-violet"
                     className = {`sticky_invest_button ${classNameVisible}`}
                     // disabled = {!isAuth}
                 >
@@ -206,12 +206,12 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
               ?
       (  isPassedQuiz ? (
               <a href={"mailto:" + "info@accumeo.com"}>
-                <Button colorStyle="dark-green" className="invest_button">
+                <Button colorStyle="dark-violet" className="invest_button">
                   {t("company_page.button_contact")}
                 </Button>
               </a>
       ):(
-          <Button colorStyle="dark-green" className="invest_button" onClick={handleOpenQuiz}>
+          <Button colorStyle="dark-violet" className="invest_button" onClick={handleOpenQuiz}>
             {t("company_page.button_contact")}
           </Button>
 
@@ -219,7 +219,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
       )
               :
               (
-                  <Button colorStyle="dark-green" className="invest_button" disabled={!isAuth}>
+                  <Button colorStyle="dark-violet" className="invest_button" disabled={!isAuth}>
                     {t("company_page.button_contact")}
                   </Button>
               )
@@ -266,7 +266,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
             <div className={userCanInvest ? `sticky_invest_button_container ${classNameVisible}` : `sticky_invest_button_container sticky_invest_button_container_closed ${classNameVisible}`}>
               <div className='sticky_invest_content_wrapper'>
                 {userCanInvest && <Button
-                    colorStyle = "dark-green"
+                    colorStyle = "dark-violet"
                     className = {`sticky_invest_button ${classNameVisible}`}
                     onClick = {handleClickInvest}
                     disabled = {!userCanInvest}
@@ -283,7 +283,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
                 {isAuth ?
                     <a href = {"mailto:" + "info@accumeo.com"}>
                       <Button
-                          colorStyle = "dark-green"
+                          colorStyle = "dark-violet"
                           className = {`sticky_invest_button ${classNameVisible}`}
                           disabled = {!isAuth}
                       >
@@ -292,7 +292,7 @@ const ProjectInvestInfoSection = ({ isAuth,sectionRef, isVisible, matchesAll }) 
                     </a>
                     :
                     <Button
-                        colorStyle = "dark-green"
+                        colorStyle = "dark-violet"
                         className = {`sticky_invest_button ${classNameVisible}`}
                         disabled = {!isAuth}
                     >
