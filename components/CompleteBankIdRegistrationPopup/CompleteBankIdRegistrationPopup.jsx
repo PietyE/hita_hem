@@ -111,15 +111,16 @@ const CompleteBankIdRegistrationPopup = ({show}) => {
                    <span className = "sign_up_password_label">
                 {t("auth.sign_up.agreement_text")}
               </span>
+                   <a
+                       target = "_blank"
+                       rel = "noopener noreferrer"
+                       href = {documentUrl?.file || documentUrl?.url}
+                       className = "sign_up_password_link"
+                   >
+                       {t("auth.sign_up.agreement_link")}
+                   </a>
                </label>
-               <a
-                   target = "_blank"
-                   rel = "noopener noreferrer"
-                   href = {documentUrl?.file || documentUrl?.url}
-                   className = "sign_up_password_link"
-               >
-                   {t("auth.sign_up.agreement_link")}
-               </a>
+
            </div>
             <CaptchaPrivacyBlock className='complete_bank_id_popup_captcha'/>
             <Button

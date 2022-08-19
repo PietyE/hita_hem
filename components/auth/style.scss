@@ -236,6 +236,11 @@ z-index: 2;
   text-decoration: underline;
   margin-left: 4px;
   cursor: pointer;
+  &:hover{
+    filter: brightness(1.8);
+    color: #5400E2;
+    transition: 0.3s;
+  }
 }
 .auth_button{
   width: 100%;
