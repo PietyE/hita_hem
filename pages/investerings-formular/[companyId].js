@@ -31,7 +31,7 @@ import {HOME_ROUTE} from "constants/routesConstant";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 import {recaptcha} from "../../utils/recaptcha";
 
-const numbers_validation = /^\d*(?:[.,]\d*)?$/;
+const numbers_validation = /^[0-9]{1,8}[,.]{0,1}[0-9]{0,2}$/;
 
 const InvestFormPage = () => {
     const {t} = useTranslation();
@@ -102,12 +102,12 @@ const InvestFormPage = () => {
     const shares = Math.floor(amount.replace(/,/, '.') / price);
 
     const currentInvestment = shares * price;
-
-    const total = Number(paymentByCompany) + currentInvestment;
+    const total = Number(paymentByCompany) + (currentInvestment || 0);
+    const isButtonDisabled = Number(amount) < Number(minimumInvestAmount)
 
     const handleChangeInput = (e) => {
-        if (numbers_validation.test(e.target.value)) {
-            setAmount(e.target.value);
+        if (numbers_validation.test(e.target.value) || !e.target.value) {
+            setAmount(e.target.value.replace(",", "."));
         }
     };
 
@@ -194,6 +194,7 @@ const InvestFormPage = () => {
                             <PersonalDetails
                                 type="invest-form"
                                 onMakePayment={onSubmit}
+                                disabled={isButtonDisabled}
                                 currentInvestment={currentInvestment}
                                 sectionClassName="invest_form_profile_personal_details"
                             />
