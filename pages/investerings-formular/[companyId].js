@@ -101,7 +101,7 @@ const InvestFormPage = () => {
 
     const shares = Math.floor(amount.replace(/,/, '.') / price);
 
-    const currentInvestment = shares * price;
+    const currentInvestment = shares * Number(price);
     const total = Number(paymentByCompany) + (currentInvestment || 0);
     const isButtonDisabled = Number(amount) < Number(minimumInvestAmount)
 
@@ -195,7 +195,7 @@ const InvestFormPage = () => {
                                 type="invest-form"
                                 onMakePayment={onSubmit}
                                 disabled={isButtonDisabled}
-                                currentInvestment={currentInvestment}
+                                currentInvestment={Number(currentInvestment.toFixed(4))}
                                 sectionClassName="invest_form_profile_personal_details"
                             />
                         </div>
