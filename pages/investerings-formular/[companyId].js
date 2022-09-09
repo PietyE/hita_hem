@@ -146,9 +146,12 @@ const InvestFormPage = () => {
                                 <p className="invest_form_invest_text">
                                     {t("invest_form_page.invest_text")}{" "}
                                     <span>
-                    {currency} {minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ``}
+                    {currency} {minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ``}.
+                </span>
+                                    {" "} {t("invest_form_page.invest_text2")}{" "}
+                                    <span>
 
-
+                    {currency} {price ? moneyFormat.format(price) : ``}
                 </span>
                                 </p>
                                 <label className="invest_form_invest_label">

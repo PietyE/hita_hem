@@ -300,6 +300,8 @@ export const en = {
             invest_title: "Invest amount",
             invest_text:
                 "Please be informed that the minimum amount you can invest is",
+            invest_text2:
+                "Price per share ",
             invest_label: "Total*",
             invest_placeholder: "",
             statistics_title: "Your investment",
