@@ -31,7 +31,7 @@ import {HOME_ROUTE} from "constants/routesConstant";
 import useMoneyFormat from "customHooks/useMoneyFormat";
 import {recaptcha} from "../../utils/recaptcha";
 
-const numbers_validation = /^\d*(?:[.,]\d*)?$/;
+const numbers_validation = /^[0-9]{1,8}[,.]{0,1}[0-9]{0,2}$/;
 
 const InvestFormPage = () => {
     const {t} = useTranslation();
@@ -101,13 +101,13 @@ const InvestFormPage = () => {
 
     const shares = Math.floor(amount.replace(/,/, '.') / price);
 
-    const currentInvestment = shares * price;
-
-    const total = Number(paymentByCompany) + currentInvestment;
+    const currentInvestment = shares * Number(price);
+    const total = Number(paymentByCompany) + (currentInvestment || 0);
+    const isButtonDisabled = Number(amount) < Number(minimumInvestAmount)
 
     const handleChangeInput = (e) => {
-        if (numbers_validation.test(e.target.value)) {
-            setAmount(e.target.value);
+        if (numbers_validation.test(e.target.value) || !e.target.value) {
+            setAmount(e.target.value.replace(",", "."));
         }
     };
 
@@ -146,9 +146,12 @@ const InvestFormPage = () => {
                                 <p className="invest_form_invest_text">
                                     {t("invest_form_page.invest_text")}{" "}
                                     <span>
-                    {currency} {minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ``}
+                    {currency} {minimumInvestAmount ? moneyFormat.format(minimumInvestAmount) : ``}.
+                </span>
+                                    {" "} {t("invest_form_page.invest_text2")}{" "}
+                                    <span>
 
-
+                    {currency} {price ? moneyFormat.format(price) : ``}
                 </span>
                                 </p>
                                 <label className="invest_form_invest_label">
@@ -194,7 +197,8 @@ const InvestFormPage = () => {
                             <PersonalDetails
                                 type="invest-form"
                                 onMakePayment={onSubmit}
-                                currentInvestment={currentInvestment}
+                                disabled={isButtonDisabled}
+                                currentInvestment={Number(currentInvestment.toFixed(4))}
                                 sectionClassName="invest_form_profile_personal_details"
                             />
                         </div>

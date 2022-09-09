@@ -298,6 +298,7 @@ invest_form_page: {
         progress_target: "Mål",
         invest_title: "Investeringsbelopp",
     invest_text: "Vänligen notera att det minsta belopp du kan investera är ",
+    invest_text2: "Pris per aktie  ",
     invest_label: "Belopp*",
         invest_placeholder: "",
         statistics_title: "Din investering",
