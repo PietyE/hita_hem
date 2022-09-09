@@ -39,6 +39,7 @@ const PersonalDetails = ({
                              onMakePayment,
                              currentInvestment,
                              sectionClassName,
+                             disabled
                          }) => {
     const {t} = useTranslation();
     const history = useRouter();
@@ -289,8 +290,8 @@ const PersonalDetails = ({
                     let isButtonDisabled;
                     if (type) {
                         isButtonDisabled = isEmpty(profile)
-                            ? !(dirty && currentInvestment > 0 && values.is_agree)
-                            : currentInvestment <= 0;
+                            ? !(dirty && !disabled && values.is_agree)
+                            : disabled;
                     } else if (isEmpty(profile)) {
                         isButtonDisabled = !(dirty && values.is_agree);
                     } else {
