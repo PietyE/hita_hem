@@ -8,5 +8,8 @@ const makeBlogSchema = () => {
     })
 }
 
+const  = {
+	description: 'Här samlar vi nyheter och kunskap kring equity crowdfunding'
+}
 
 export default makeBlogSchema
